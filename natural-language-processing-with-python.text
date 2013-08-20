@@ -124,6 +124,7 @@ NLTK 入门
 
 要查找有相似上下文的词语, 使用 `similar` 函数
 
+    :::python
     >>> text1.similar("monstrous")
     Building word-context index...
     abundant candid careful christian contemptible curious delightfully
@@ -139,6 +140,7 @@ NLTK 入门
 
 例如"monstrous"与"very", 其中"very"是上面`text2.similar("monstrous")`函数检索出来的具有相似上下文的词语, 因此可以得到如下结果:
 
+    :::python
     >>> text2.common_contexts(["monstrous", "very"])
     a_lucky a_pretty am_glad be_glad is_pretty
     >>> text2.common_contexts(["monstrous", "he"])
@@ -148,17 +150,20 @@ NLTK 入门
 
 使用另一对词试试:
 
+    :::python
     >>> text2.common_contexts(["glad", "happy"])
     be_to so_to very_to was_to
 
 用离散图表示一个单词在文本中出现的位置:
 
+    :::python
     >>> text4.dispersion_plot(["citizens", "democracy", "freedom", "duties", "America"])
 
 ![美国总统就职演说词汇分布图: 可以用来研究随时间推移语言使用上的变化](http://nltk.org/images/inaugural.png)
 
 产生随机文本(这里不理解, 怎么产生的? 似乎是随机抽取句子短语. 总之不是抽取连续的一段.)
 
+    :::python
     >>> text3.generate()
     Building ngram index...
     In the mount Gilead . And Pharaoh said unto the land of Egy And there
