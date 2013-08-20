@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>创建打印样式表 - OK Computer</title>
+  <meta name="description" content="杨丁苗的个人博客">
+  <meta name="author" content="ZoeyYoung">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+  <!--[if lt IE 9]>
+  <script src="http://zoeyyoung.github.io/theme/html5.js"></script>
+  <![endif]-->
+  <!-- Le styles -->
+  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet" />
+  <link href="http://zoeyyoung.github.io/theme/print.css" rel="stylesheet" media="print" />
+  <link href="http://zoeyyoung.github.io/theme/local.css" rel="stylesheet" media="screen" />
+  <link href="http://zoeyyoung.github.io/theme/pygments.css" rel="stylesheet" />
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet" />
+  <!--[if IE 7]>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome-ie7.min.css" rel="stylesheet" />
+  <![endif]-->
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div id="header" class="span2 no-print">
+        <div class="brand-wrapper">
+          <a href="http://zoeyyoung.github.io" class="brand">OK Computer</a>
+          <p style="text-align: center; font-size: 12px; margin-top: 0;">It's better to burn out <br/> than to fade away.</p>
+        </div>
+        <ul id="blog-nav" class="nav">
+          <li>SITE</li>
+          <li><a href="http://zoeyyoung.github.io">首页</a></li>
+          <li><a href="http://zoeyyoung.github.io/archives.html">归档</a></li>
+          <li><a href="http://zoeyyoung.github.io/tags.html">标签</a></li>
+          <li><hr/></li>
+          <li>CATEGORIES</li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/java.html ">Java</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/linux.html ">Linux</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/nlp.html ">NLP</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/nosql.html ">NoSQL</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/python.html ">Python</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/ruby.html ">Ruby</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/tips.html ">Tips</a>
+          </li>
+                    <li  class="active" >
+            <a href="http://zoeyyoung.github.io/category/qian-duan.html ">前端</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/gong-zuo-ji-lu.html ">工作记录</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/wo-de-xiang-mu.html ">我的项目</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/suan-fa.html ">算法</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/du-shu.html ">读书</a>
+          </li>
+                    <li><hr/></li>
+                    <li>PAGES<li>
+          
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/about-me.html">关于我</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/golden-slumber.html">Golden Slumber</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/on-the-road.html">在路上</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/software.html">我使用的软件</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/translate.html">翻译</a>
+          </li>
+                            </ul>
+      </div>
+      <div class="main-content span10">
+          <div class='article'>
+  <article class="span12">
+    <h1>创建打印样式表</h1>
+    <div class="article-metadata">
+<time class="published" datetime="2013 六月 24 周一">2013 六月 24 周一 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/qian-duan.html">前端</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/css.html">CSS</a>
+        <a href="http://zoeyyoung.github.io/tag/html.html">HTML</a>
+    </span>
+<!-- <p></p> -->
+</div>    <p>Chrome浏览器有一项非常好用的功能, 就是直接将网页保存为PDF(Ctrl+P), 虽然部分人觉得没有用, 但我经常使用这个功能</p>
+<p>比如说, 有的博文写得不错, 想保存, 但是以什么样的方式保存是个问题</p>
+<p>以前我会用为知, EverNote之类的笔记软件保存, 但是我又有格式强迫症, 总觉得保存下来的网页不够漂亮, 因为会保存一些不必要的格式</p>
+<p>所以还是存为PDF对我来说可看性强一点</p>
+<p>许多网站并没有<strong>Print Style Sheet</strong>这个东西, 直接后果是我存为PDF时会连导航栏, 底部信息等跟文章无关的东西一并保存了, 需要打印的话这些也会一起打印出来</p>
+<p>因此, 对于信息类的网站, 有一个<strong>Print Style Sheet</strong>我认为是非常有必要的</p>
+<p>而这个东西的创建又极其的简单, 只要在原有的样式表中添加一个<code>media="print"</code>的样式表</p>
+<div class="highlight"><pre><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;print.css&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">media=</span><span class="s">&quot;print&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+
+
+<p>原有的样式表的<code>media="screen"</code>, 否则打印样式表会继承原有的样式表(非必须)</p>
+<div class="highlight"><pre><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;screen.css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">media=</span><span class="s">&quot;screen&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+
+
+<p>需要注意的是, Chrome的打印功能本身对页面进行了处理, 因此一些样式不设置也不影响</p>
+<p>但是对于内容的显示与否, Chrome的打印样式并未做处理</p>
+<p>下面是创建样式的主要步骤(同参考文档, 详细解说可看参考文档):</p>
+<h3>1. Remove the Navigation</h3>
+<p>更简单的说, 就是移除一切不需要显示的, 设置<code>display: none;</code></p>
+<div class="highlight"><pre><span class="nf">#nav</span><span class="o">,</span> <span class="nf">#sidebar</span> <span class="p">{</span> <span class="k">display</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+
+
+<p>一个小技巧, 就是为所有不需要打印的元素添加一个类</p>
+<div class="highlight"><pre><span class="nc">.no-print</span> <span class="p">{</span> <span class="k">display</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+
+
+<h3>2. Enlarge the Content Area</h3>
+<p>扩大正文区域, 一般我们文章显示宽度并非100%, 这边修改正文区域为100%, 并移除浮动</p>
+<div class="highlight"><pre><span class="nf">#content</span> <span class="p">{</span> <span class="k">width</span><span class="o">:</span> <span class="m">100</span><span class="o">%</span><span class="p">;</span> <span class="k">margin</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span> <span class="k">float</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+
+
+<h3>3. Reset the Background Colors</h3>
+<p>重置背景色, 打印一般为白底黑字, 但一些网页的背景颜色是深色, 而字体是浅色, 所以要重置</p>
+<div class="highlight"><pre><span class="nt">body</span> <span class="p">{</span> <span class="k">background</span><span class="o">:</span> <span class="nb">white</span><span class="p">;</span> <span class="p">}</span>
+<span class="nf">#content</span> <span class="p">{</span> <span class="k">background</span><span class="o">:</span> <span class="k">transparent</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+
+
+<h3>4. Reset Text Colors</h3>
+<p>既然要重置背景色, 当然字体颜色也要重置了, 否则打印字体颜色为白色的字, 那就没法阅读了</p>
+<div class="highlight"><pre><span class="nf">#author</span> <span class="p">{</span> <span class="k">color</span><span class="o">:</span> <span class="m">#111</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+
+
+<h3>5. Display the Destination of Links</h3>
+<p>网页中的链接在打印的文章中是无法点击的, 这时打印出链接会更直观的表示出这里是链接, 而不是直接略过了, 当然并不是所有链接都需要打印出, 通常是正文中的链接才需要打印出</p>
+<div class="highlight"><pre><span class="nt">a</span><span class="nd">:link:after</span> <span class="p">{</span> <span class="k">content</span><span class="o">:</span> <span class="s2">&quot; (&quot;</span> <span class="n">attr</span><span class="p">(</span><span class="n">href</span><span class="p">)</span> <span class="s2">&quot;) &quot;</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+
+
+<h3>6. Make Links Stand Out from Regular Text</h3>
+<p>给链接添加样式, 比如加粗, 或加下划线</p>
+<div class="highlight"><pre><span class="nt">a</span><span class="nd">:link</span> <span class="p">{</span> <span class="k">font-weight</span><span class="o">:</span> <span class="k">bold</span><span class="p">;</span> <span class="k">text-decoration</span><span class="o">:</span> <span class="k">underline</span><span class="p">;</span> <span class="k">color</span><span class="o">:</span> <span class="m">#06c</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+
+
+<h3>7. What About Font Size?</h3>
+<p>设置字体大小, 差不多就行了</p>
+<div class="highlight"><pre><span class="nt">p</span> <span class="p">{</span> <span class="k">font-size</span><span class="o">:</span> <span class="m">12pt</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+
+
+<h3>8. What About Fonts?</h3>
+<p>设置字体</p>
+<div class="highlight"><pre><span class="nt">body</span> <span class="p">{</span> <span class="k">font-family</span><span class="o">:</span> <span class="n">Georgia</span><span class="o">,</span> <span class="err">‘</span><span class="n">Times</span> <span class="n">New</span> <span class="n">Roman</span><span class="err">’</span><span class="o">,</span> <span class="k">serif</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+
+
+<h3>9. My Blog Has a Lot of Comments. What Should I Do?</h3>
+<p>对于评论的处理, 显示还是不显示? 让读者自己选择吧, 使用分页, 将评论的页面单独出来, 打印或保存时都可以选择打印部分页</p>
+<div class="highlight"><pre><span class="nf">#comments</span> <span class="p">{</span> <span class="k">page</span><span class="o">-</span><span class="n">break</span><span class="o">-</span><span class="n">before</span><span class="o">:</span> <span class="k">always</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+
+
+<h3>10. Show a Print-Only Message</h3>
+<p>只在打印中显示的信息, 方法就是设置一段在正常页面不显示的段落, 然后在打印页面中显示出来, 利用<code>display</code>属性</p>
+<p>我的<code>print.css</code></p>
+<script src="https://gist.github.com/ZoeyYoung/5850742.js"></script>
+
+<p>添加样式前:</p>
+<p><img alt="顶部导航也显示在打印页中" src="/static/images/print-style-sheet.jpg" /></p>
+<p><img alt="评论与文章是连续显示的" src="/static/images/print-style-sheet2.jpg" /></p>
+<p><img alt="底部导航也显示在打印页中" src="/static/images/print-style-sheet3.jpg" /></p>
+<p>添加样式后:</p>
+<p><img alt="首页不显示导航了" src="/static/images/print-style-sheet4.jpg" /></p>
+<p><img alt="评论页单独出来了" src="/static/images/print-style-sheet5.jpg" /></p>
+<p>Chrome的开发人员工具中还有模拟media的功能</p>
+<p><img alt="media" src="/static/images/chrome-dev-tool.jpg" /></p>
+<p>将<strong>Emulate CSS media</strong>修改为<strong>print</strong>后页面显示为</p>
+<p><img alt="Emulate CSS media:print" src="/static/images/print-style-sheet6.jpg" /></p>
+<h3>参考文档:</h3>
+<ul>
+<li><a href="http://www.webdesignerdepot.com/2010/01/10-tips-for-better-print-style-sheets/">10 Tips for Better Print Style Sheets</a></li>
+</ul>
+<h3>存在问题</h3>
+<ul>
+<li>在Chrome中经常会直接显示打印的效果...用Ctrl+F5刷新才显示正常, 为什么? 在IE下没发现这个问题..</li>
+</ul>
+    <hr />
+  </article>
+  <div class="span12 comment">
+      <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style_32x32 no-print">
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a href="http://www.jiathis.com/share?uid=1801890" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1801890" charset="utf-8"></script>
+<!-- JiaThis Button END -->      <!-- <h3>Comments</h3> -->
+      <!--  -->
+      <!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" id="UYScript" src="http://v1.uyan.cc/js/iframe.js?UYUserId=1801890" async=""></script>
+<!-- UY END -->      <!-- UJian Button BEGIN -->
+<script type="text/javascript">var ujian_config = {target:1,mouseoverColor:'#222222',hoverTextColor:'#FFFFFF'};</script>
+<script type="text/javascript" src="http://v1.ujian.cc/code/ujian.js?type=slide&btn=3&fade=1&picsize=96&uid=1801890"></script>
+<a href="http://www.ujian.cc" style="border:0;"><img src="http://img.ujian.cc/pixel.png" alt="友荐云推荐" style="border:0;padding:0;margin:0;" /></a>
+<!-- UJian Button END -->  </div>
+</div>
+                </div>    </div><!-- End of fluid row-->
+  </div><!-- End of Container-->
+  <!--footer-->
+  <footer id="footer" class="no-print">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span1"></div>
+        <div class="span2" id="socialist">
+          <ul class="nav">
+            <li>Social</li>
+                                    <li><a href="http://weibo.com/1990zoey"><i class="icon-weibo icon-large"></i>新浪微博</a></li>
+                        <li><a href="http://www.renren.com/230222157/profile"><i class="icon-renren icon-large"></i>人人网</a></li>
+                        <li><a href="http://www.douban.com/people/ZoeyYoung/"><i class="icon-leaf icon-large"></i>豆瓣</a></li>
+                                    <li><a href="mailto:ydingmiao@gmail.com">
+              <i class="icon-envelope icon-large"></i>联系我
+            </a></li>
+                      </ul>
+        </div>
+                <div class="span2">
+          <ul class="nav">
+            <li>Links</li>
+                                    <li><a href="http://my.oschina.net/zoey1990">
+              <i class="icon-heart icon-large"></i>OSC
+            </a></li>
+                        <li><a href="http://www.xiami.com/u/2092563">
+              <i class="icon-music icon-large"></i>虾米
+            </a></li>
+                        <li><a href="https://gist.github.com/ZoeyYoung">
+              <i class="icon-github icon-large"></i>GIST
+            </a></li>
+                        <li><a href="https://github.com/ZoeyYoung">
+              <i class="icon-github icon-large"></i>GitHub
+            </a></li>
+                      </ul>
+        </div>
+        <div class="span2" id="site-links">
+          <ul class="nav">
+            <li>Site</li>
+            <li><a href="http://zoeyyoung.github.io">
+              <i class="icon-home icon-large"></i>首页
+            </a></li>
+            <li><a href="http://zoeyyoung.github.io/archives.html">
+              <i class="icon-list icon-large"></i>归档
+            </a></li>
+            <li><a href="http://zoeyyoung.github.io/tags.html">
+              <i class="icon-tags icon-large"></i>标签
+            </a></li>
+                        <li><a href="http://zoeyyoung.github.io/" rel="alternate">
+              <i class="icon-rss-sign icon-large"></i>Atom Feed
+            </a></li>
+          </ul>
+        </div>
+                <div class="sina-weibo span4">
+          <a href="http://weibo.com/u/1861922471?s=6uyXnP" target="_blank"><img border="0" src="http://service.t.sina.com.cn/widget/qmd/1861922471/c4ba5282/1.png"/></a>
+        </div>
+                <div class="span1"></div>
+      </div><!--end of fluid row-->
+      <p style="text-align: center;">
+          <a href="http://zoeyyoung.github.io">OK Computer</a>
+          &copy; ZoeyYoung
+          Powered by
+          <a href="https://github.com/getpelican/pelican">Pelican</a>
+          and
+          <a href="https://twitter.github.com/bootstrap">Twitter Bootstrap</a>
+          .
+          Icons by
+          <a href="http://gregoryloucas.github.io/Fontstrap/">Font Awesome</a>
+          .Theme By <a href="http://zoeyyoung.gitcafe.com/">ZoeyYoung</a>
+      </p>
+    </div>
+  </footer>
+  <!--/footer-->
+  <script src="http://zoeyyoung.github.io/theme/jquery-1.10.0.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+  <script>var _gaq=[['_setAccount','UA-41731595-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+</body>
+</html>

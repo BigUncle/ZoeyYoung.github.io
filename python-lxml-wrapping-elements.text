@@ -1,0 +1,124 @@
+Title: [解决] Python lxml wrapping elements
+Date: 2013-08-05
+Tags: Python,lxml,wrapping,html
+Slug: python-lxml-wrapping-elements
+Author: Zoey Young
+Summary: 有的网页中正文没有使用`<div>`进行包装, 结果提取正文时只提取了某一段, 而不是作为整体的正文, 一开始直接将`<body>`元素变成`<div>`, 发现会有其它副作用, 因为其它代码中有通过标签是否是body作为判断的代码. 因此考虑默认为`<body>`的子元素加一层`<div>`包装.
+
+与这个问题有点类似: [Stack Overflow: Python lxml wrapping elements](http://stackoverflow.com/questions/6038616/python-lxml-wrapping-elements)
+
+有的网页中正文没有使用`<div>`进行包装, 结果提取正文时只提取了某一段, 而不是作为整体的正文, 一开始直接将`<body>`元素变成`<div>`, 发现会有其它副作用, 因为其它代码中有通过标签是否是body作为判断的代码. 因此考虑默认为`<body>`的子元素加一层`<div>`包装.
+
+假设有如下HTML片段:
+
+    :::html
+    <html>
+    <head>
+    </head>
+    <body>
+        Text
+        <h1>Title</h1>
+        Tail1
+        <div>p1<p>inner text</p></div>
+        <p>p2</p>
+        Tail2
+    </body>
+
+我想转换成如下片段:
+
+    :::html
+    <html>
+    <head>
+    </head>
+    <body>
+        <div>
+            Text
+            <h1>Title</h1>
+            Tail1
+            <div>p1<p>inner text</p></div>
+            <p>p2</p>
+            Tail2
+        </div>
+    </body>
+
+使用如下代码:
+
+    :::python
+    from lxml.html import html5parser
+    from lxml.html import fragment_fromstring
+    from lxml.html import tostring
+    html = """
+    <html>
+    <head>
+    </head>
+    <body>
+        Text
+        <h1>Title</h1>
+        Tail1
+        <div>p1<p>inner text</p></div>
+        <p>p2</p>
+        Tail2
+    </body>
+    """
+    html5doc = html5parser.document_fromstring(html, guess_charset=False)
+    root = fragment_fromstring(tostring(html5doc))
+    for elem in root.findall(".//body"):
+        # 1. 为Text包装<p>, 即将Text变成<p>Text</p>
+        if elem.text and elem.text.strip():
+            p = fragment_fromstring('<p/>')
+            p.text = elem.text
+            elem.text = None
+            elem.insert(0, p)
+        # 2. 为body的子元素包装div
+        div = fragment_fromstring("<div/>")
+        for e in elem.iterchildren():
+            print(e, e.text)
+            div.append(e)
+            print(tostring(div))
+        elem.insert(0, div)
+
+    print(tostring(root))
+
+输出:
+
+    :::bat
+    <Element p at 0x37b3990> Text
+    b'<div><p>Text</p></div>'
+    <Element h1 at 0x37b39e8> Title
+    b'<div><p>Text</p><h1>Title</h1>Tail1</div>'
+    <Element div at 0x37b3830> p1
+    b'<div><p>Text</p><h1>Title</h1>Tail1<div>p1<p>inner text</p></div></div>'
+    <Element p at 0x37b3938> p2
+    b'<div><p>Text</p><h1>Title</h1>Tail1<div>p1<p>inner text</p></div><p>p2</p>Tail2</div>'
+    b'<html xmlns:html="http://www.w3.org/1999/xhtml"><head></head><body><div><p>Text</p><h1>Title</h1>Tail1<div>p1<p>inner text</p></div><p>p2</p>Tail2</div></body></html>'
+
+HTML:
+
+    :::html
+    <html>
+    <head>
+    </head>
+    <body>
+        <div>
+            <p>Text</p>
+            <h1>Title</h1>
+            Tail1
+            <div>p1<p>inner text</p></div>
+            <p>p2</p>
+            Tail2
+        </div>
+    </body>
+
+
+步骤1是预处理, 如果不这么处理会输出:
+
+    :::bat
+    <Element h1 at 0x38e7990> Title
+    b'<div><h1>Title</h1>Tail1</div>'
+    <Element div at 0x38e7938> p1
+    b'<div><h1>Title</h1>Tail1<div>p1<p>inner text</p></div></div>'
+    <Element p at 0x38e7830> p2
+    b'<div><h1>Title</h1>Tail1<div>p1<p>inner text</p></div><p>p2</p>Tail2</div>'
+    b'<html xmlns:html="http://www.w3.org/1999/xhtml"><head></head><body>Text<div><h1>Title</h1>Tail1<div>p1<p>inner text</p></div><p>p2</p>Tail2</div></body></html>'
+
+因为`Text`不包含在`elem.iterchildren()`里.

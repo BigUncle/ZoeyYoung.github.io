@@ -1,0 +1,25 @@
+Title: 8080端口被占用
+Date: 2011-05-03
+Tags: 端口,Tomcat,进程,Windows
+Slug: tomcat-cant-start
+Author: Zoey Young
+Summary: 8080端口被占用无法启动Tomcat解决方案
+
+用tomcat的时候出现tomcat启动不起来多数情况是由于8080端口被占用
+
+那如何结束占用8080端口的进程呢?
+
+1、`Win+R` cmd 打开运行窗口
+
+输入`netstat -ano`会出现类似下图的数据窗口
+
+![netstat -ano](/static/images/netstat-ano.jpg)
+
+2、比如我们要结束tomcat的8080端口
+
+由图8080的端口PID是2272, 调出windows资源管理器可以看到PID 2272被**reportingservicesservice.exe**进程占用, 结束该进程, 然后重启Tomcat.
+
+![任务管理器](/static/images/pip2272.png)
+
+3、还有一种情况, 直接结束进程中的**javaw.exe**即可
+

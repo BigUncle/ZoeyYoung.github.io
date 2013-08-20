@@ -1,0 +1,50 @@
+Title: [安装] Python相关
+Date: 2013-07-06
+Tags: Windows,Python,pip,virtualenv
+Slug: python-env-install
+Author: Zoey Young
+Summary: Python安装相关, 主要是一些书签与步骤记录.
+
+重装系统后, 重新配置了下Python环境, 并不复杂, 但是得打开好几个网站, 我习惯先看下官网有啥更新说明, 因此记录下, 以免每次都要找
+
+[安装Python](http://www.python.org/download/), 下载安装Python 2.7.X, 安装目录C:\Python27
+
+[安装setuptools](https://pypi.python.org/pypi/setuptools), Windows下, 下载**[ez_setup.py](https://pypi.python.org/pypi/setuptools/0.9.6#windows)**文件并运行
+
+在环境变量PATH中追加: `C:\Python27;C:\Python27\Scripts` 或 `C:\Python33;C:\Python33\Scripts`
+
+[安装pip](https://pypi.python.org/pypi/pip), 可以在[Github](https://github.com/pypa/pip)上下载开发版, 然后解压, 进入根目录, 使用命令行安装
+
+    :::bat
+    python setup.py insatll
+
+使用**requirements.txt**
+
+    pip install -r requirements.txt
+
+安装[virtualenv](http://www.virtualenv.org/en/latest/)
+
+    :::bat
+    pip install virtualenv
+
+或最新开发版:
+
+    :::bat
+    pip install https://github.com/pypa/virtualenv/tarball/develop
+
+安装[Sphinx](http://doc.42qu.com/sphinx.html), 用于生成文档
+
+    :::bat
+    pip install sphinx
+
+http://stackoverflow.com/questions/4750806/how-to-install-pip-on-windows
+
+#### Windows下exe安装
+
+[Unofficial Windows Binaries for Python Extension Packages](http://www.lfd.uci.edu/~gohlke/pythonlibs/)
+
+[lxml](https://pypi.python.org/simple/lxml/)
+
+#### 可参考文档
+
+[StackOverflow: How to install pip on windows?](http://stackoverflow.com/questions/4750806/how-to-install-pip-on-windows)

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>[解决] 使用lxml过滤HTML中class或id符合特定正则的元素 - OK Computer</title>
+  <meta name="description" content="杨丁苗的个人博客">
+  <meta name="author" content="ZoeyYoung">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+  <!--[if lt IE 9]>
+  <script src="http://zoeyyoung.github.io/theme/html5.js"></script>
+  <![endif]-->
+  <!-- Le styles -->
+  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet" />
+  <link href="http://zoeyyoung.github.io/theme/print.css" rel="stylesheet" media="print" />
+  <link href="http://zoeyyoung.github.io/theme/local.css" rel="stylesheet" media="screen" />
+  <link href="http://zoeyyoung.github.io/theme/pygments.css" rel="stylesheet" />
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet" />
+  <!--[if IE 7]>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome-ie7.min.css" rel="stylesheet" />
+  <![endif]-->
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div id="header" class="span2 no-print">
+        <div class="brand-wrapper">
+          <a href="http://zoeyyoung.github.io" class="brand">OK Computer</a>
+          <p style="text-align: center; font-size: 12px; margin-top: 0;">It's better to burn out <br/> than to fade away.</p>
+        </div>
+        <ul id="blog-nav" class="nav">
+          <li>SITE</li>
+          <li><a href="http://zoeyyoung.github.io">首页</a></li>
+          <li><a href="http://zoeyyoung.github.io/archives.html">归档</a></li>
+          <li><a href="http://zoeyyoung.github.io/tags.html">标签</a></li>
+          <li><hr/></li>
+          <li>CATEGORIES</li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/java.html ">Java</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/linux.html ">Linux</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/nlp.html ">NLP</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/nosql.html ">NoSQL</a>
+          </li>
+                    <li  class="active" >
+            <a href="http://zoeyyoung.github.io/category/python.html ">Python</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/ruby.html ">Ruby</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/tips.html ">Tips</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/qian-duan.html ">前端</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/gong-zuo-ji-lu.html ">工作记录</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/wo-de-xiang-mu.html ">我的项目</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/suan-fa.html ">算法</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/du-shu.html ">读书</a>
+          </li>
+                    <li><hr/></li>
+                    <li>PAGES<li>
+          
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/about-me.html">关于我</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/golden-slumber.html">Golden Slumber</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/on-the-road.html">在路上</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/software.html">我使用的软件</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/translate.html">翻译</a>
+          </li>
+                            </ul>
+      </div>
+      <div class="main-content span10">
+          <div class='article'>
+  <article class="span12">
+    <h1>[解决] 使用lxml过滤HTML中class或id符合特定正则的元素</h1>
+    <div class="article-metadata">
+<time class="published" datetime="2013 七月 31 周三">2013 七月 31 周三 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/python.html">Python</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/windows.html">Windows</a>
+        <a href="http://zoeyyoung.github.io/tag/python.html">Python</a>
+        <a href="http://zoeyyoung.github.io/tag/lxml.html">lxml</a>
+    </span>
+<!-- <p></p> -->
+</div>    <p>在看<a href="https://github.com/buriy/python-readability">readability-lxml</a>源码过程中遇到的问题, 很困惑为啥有部分应该在<code>remove_unlikely_candidates(doc)</code>过程中被删除的元素最后还在正文提取中出现.</p>
+<p>源码是这样的:</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">remove_unlikely_candidates</span><span class="p">(</span><span class="n">doc</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">doc</span><span class="o">.</span><span class="n">iter</span><span class="p">():</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;class&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">),</span> <span class="n">elem</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;id&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">))</span>
+        <span class="c">#log.debug(s)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">REGEXES</span><span class="p">[</span><span class="s">&#39;unlikelyCandidatesRe&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">and</span>
+                <span class="p">(</span><span class="ow">not</span> <span class="n">REGEXES</span><span class="p">[</span><span class="s">&#39;okMaybeItsACandidateRe&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">s</span><span class="p">))</span> <span class="ow">and</span>
+                <span class="n">elem</span><span class="o">.</span><span class="n">tag</span> <span class="o">!=</span> <span class="s">&#39;body&#39;</span> <span class="ow">and</span>
+                <span class="n">elem</span><span class="o">.</span><span class="n">getparent</span><span class="p">()</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span>
+                <span class="p">):</span>
+            <span class="c"># log.debug(&quot;Removing unlikely candidate - %s&quot; % describe(elem))</span>
+            <span class="n">elem</span><span class="o">.</span><span class="n">drop_tree</span><span class="p">()</span>
+</pre></div>
+
+
+<p>原来以为挺简单的, 但是涉及到特殊情况比如<code>&lt;div class="unwanted"&gt;This &lt;p&gt;content&lt;/p&gt; should go&lt;/div&gt;</code>这种含tail text即<code>should go</code>的, 或多级元素的, 就比较复杂了. 可能遍历到哪就自动中断了. 我这里写一个简化版本的作为测试:</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">lxml.html</span> <span class="kn">import</span> <span class="n">fromstring</span><span class="p">,</span> <span class="n">tostring</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="n">html</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">&lt;html&gt;</span>
+<span class="s">&lt;head&gt;</span>
+<span class="s">&lt;/head&gt;</span>
+
+<span class="s">&lt;body&gt;</span>
+<span class="s">    &lt;div&gt;</span>
+<span class="s">        &lt;div class=&quot;unwanted&quot;&gt;This &lt;p&gt;content&lt;/p&gt; should go&lt;/div&gt;</span>
+<span class="s">        &lt;p class=&quot;fine&quot;&gt;This content should stay&lt;/p&gt;</span>
+<span class="s">        What</span>
+<span class="s">    &lt;/div&gt;</span>
+
+<span class="s">    &lt;div id = &quot;second&quot; class=&quot;unwanted&quot;&gt;</span>
+<span class="s">        &lt;p class = &quot;alreadydead&quot;&gt;This content should not be looked at&lt;/p&gt;</span>
+<span class="s">        &lt;p class = &quot;alreadydead&quot;&gt;Nor should this&lt;/&gt;</span>
+<span class="s">        &lt;div class=&quot;alreadydead&quot;&gt;</span>
+<span class="s">            &lt;p class=&quot;alreadydead&quot;&gt;Still dead&lt;/p&gt;</span>
+<span class="s">        &lt;/div&gt;</span>
+<span class="s">    &lt;/div&gt;</span>
+
+<span class="s">    &lt;div&gt;</span>
+<span class="s">        &lt;p class=&quot;yeswanted&quot;&gt;This content should also stay&lt;/p&gt;</span>
+<span class="s">    &lt;/div&gt;</span>
+
+<span class="s">    &lt;div id=&quot;unwanted&quot;&gt;This &lt;p&gt;content&lt;/p&gt; should go&lt;/div&gt;</span>
+<span class="s">&lt;/body&gt;</span>
+<span class="s">&quot;&quot;&quot;</span>
+<span class="n">doc</span> <span class="o">=</span> <span class="n">fromstring</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</pre></div>
+
+
+<p>刚开始使用代码如下:</p>
+<div class="highlight"><pre><span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">doc</span><span class="o">.</span><span class="n">iter</span><span class="p">():</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;class&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">),</span> <span class="n">elem</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;id&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">&#39;unwanted&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">and</span> <span class="n">elem</span><span class="o">.</span><span class="n">tag</span> <span class="o">!=</span> <span class="s">&#39;body&#39;</span> <span class="ow">and</span> <span class="n">elem</span><span class="o">.</span><span class="n">getparent</span><span class="p">()</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">elem</span><span class="o">.</span><span class="n">drop_tree</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">tostring</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">pretty_print</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+</pre></div>
+
+
+<p>输出:</p>
+<div class="highlight"><pre><span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div&gt;&lt;p</span> <span class="na">class=</span><span class="s">&quot;fine&quot;</span><span class="nt">&gt;</span>This content should stay<span class="nt">&lt;/p&gt;</span> What<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;second&quot;</span> <span class="na">class=</span><span class="s">&quot;unwanted&quot;</span><span class="nt">&gt;</span>\n
+        <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">&quot;alreadydead&quot;</span><span class="nt">&gt;</span>This content should not be looked at<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">&quot;alreadydead&quot;</span><span class="nt">&gt;</span>Nor should this<span class="ni">&amp;gt;</span><span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;alreadydead&quot;</span><span class="nt">&gt;&lt;p</span> <span class="na">class=</span><span class="s">&quot;alreadydead&quot;</span><span class="nt">&gt;</span>Still dead<span class="nt">&lt;/p&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div&gt;&lt;p</span> <span class="na">class=</span><span class="s">&quot;yeswanted&quot;</span><span class="nt">&gt;</span>This content should also stay<span class="nt">&lt;/p&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;unwanted&quot;</span><span class="nt">&gt;</span>This <span class="nt">&lt;p&gt;</span>content<span class="nt">&lt;/p&gt;</span>should go <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
+
+
+<p>很明显, 该删除的都没删除.</p>
+<p>以为是<code>drop_tree()</code>没删除tail text的关系, 改成<code>elem.getparent().remove(elem)</code>, 执行结果还是一样...</p>
+<div class="highlight"><pre><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">doc</span><span class="o">.</span><span class="n">iter</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">elem</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;class&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">),</span> <span class="n">elem</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;id&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">&#39;unwanted&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">and</span> <span class="n">elem</span><span class="o">.</span><span class="n">tag</span> <span class="o">!=</span> <span class="s">&#39;body&#39;</span> <span class="ow">and</span> <span class="n">elem</span><span class="o">.</span><span class="n">getparent</span><span class="p">()</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">elem</span><span class="o">.</span><span class="n">getparent</span><span class="p">()</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span>
+</pre></div>
+
+
+<p>尝试将elem打印出来, 发现只有5条</p>
+<div class="highlight"><pre><span class="m">0</span> <span class="p">&lt;</span><span class="n">Element</span> html at <span class="m">0</span>x<span class="m">2</span>d<span class="m">5</span>baf<span class="m">0</span><span class="p">&gt;</span>
+<span class="n">1</span> <span class="p">&lt;</span><span class="n">Element</span> head at <span class="m">0</span>x<span class="m">314</span>f<span class="m">200</span><span class="p">&gt;</span>
+<span class="n">2</span> <span class="p">&lt;</span><span class="n">Element</span> body at <span class="m">0</span>x<span class="m">3376780</span><span class="p">&gt;</span>
+<span class="n">3</span> <span class="p">&lt;</span><span class="n">Element</span> div at <span class="m">0</span>x<span class="m">33767</span>d<span class="m">8</span><span class="p">&gt;</span>
+<span class="n">4</span> <span class="p">&lt;</span><span class="n">Element</span> div at <span class="m">0</span>x<span class="m">314</span>f<span class="m">200</span><span class="p">&gt;</span>
+<span class="n">5</span> <span class="p">&lt;</span><span class="n">Element</span> p at <span class="m">0</span>x<span class="m">3376780</span>&gt;
+</pre></div>
+
+
+<p>想到<code>iter()</code>应该是使用了迭代器模式. 因此应该有<code>next()</code>方法. 而在删除掉节点的同时, 相应对象的<code>next()</code>引用也被删除了. 因此才只遍历了第一部分. 具体怎么遍历的还不是很清楚.</p>
+<p>使用</p>
+<div class="highlight"><pre><span class="n">allelem</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">iter</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">dir</span><span class="p">(</span><span class="n">allelem</span><span class="p">))</span>
+</pre></div>
+
+
+<p>输出</p>
+<div class="highlight"><pre>[<span class="s1">&#39;__class__&#39;</span><span class="p">,</span> <span class="s1">&#39;__delattr__&#39;</span><span class="p">,</span> <span class="s1">&#39;__dir__&#39;</span><span class="p">,</span> <span class="s1">&#39;__doc__&#39;</span><span class="p">,</span> <span class="s1">&#39;__eq__&#39;</span><span class="p">,</span> <span class="s1">&#39;__format__&#39;</span><span class="p">,</span> <span class="s1">&#39;__ge__&#39;</span><span class="p">,</span> <span class="s1">&#39;__getattribute__&#39;</span><span class="p">,</span> <span class="s1">&#39;__gt__&#39;</span><span class="p">,</span> <span class="s1">&#39;__hash__&#39;</span><span class="p">,</span> <span class="s1">&#39;__init__&#39;</span><span class="p">,</span> <span class="s1">&#39;__iter__&#39;</span><span class="p">,</span> <span class="s1">&#39;__le__&#39;</span><span class="p">,</span> <span class="s1">&#39;__lt__&#39;</span><span class="p">,</span> <span class="s1">&#39;__ne__&#39;</span><span class="p">,</span> <span class="s1">&#39;__new__&#39;</span><span class="p">,</span> <span class="s1">&#39;__next__&#39;</span><span class="p">,</span> <span class="s1">&#39;__pyx_vtable__&#39;</span><span class="p">,</span> <span class="s1">&#39;__reduce__&#39;</span><span class="p">,</span> <span class="s1">&#39;__reduce_ex__&#39;</span><span class="p">,</span> <span class="s1">&#39;__repr__&#39;</span><span class="p">,</span> <span class="s1">&#39;__setattr__&#39;</span><span class="p">,</span> <span class="s1">&#39;__sizeof__&#39;</span><span class="p">,</span> <span class="s1">&#39;__str__&#39;</span><span class="p">,</span> <span class="s1">&#39;__subclasshook__&#39;</span>]
+</pre></div>
+
+
+<p>其中确实有<code>__next__</code>, 最后使用如下代码</p>
+<div class="highlight"><pre><span class="n">allelem</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">iter</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">allelem</span><span class="p">:</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;class&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">),</span> <span class="n">elem</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;id&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">&#39;unwanted&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">and</span> <span class="n">elem</span><span class="o">.</span><span class="n">tag</span> <span class="o">!=</span> <span class="s">&#39;body&#39;</span> <span class="ow">and</span> <span class="n">elem</span><span class="o">.</span><span class="n">getparent</span><span class="p">()</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+          <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">&#39;.//*&#39;</span><span class="p">))):</span>
+              <span class="n">allelem</span><span class="o">.</span><span class="n">__next__</span><span class="p">()</span>
+          <span class="n">elem</span><span class="o">.</span><span class="n">getparent</span><span class="p">()</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">tostring</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">pretty_print</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span> <span class="nb">file</span><span class="o">=</span><span class="n">output</span><span class="p">)</span>
+</pre></div>
+
+
+<p>终于正确输出想要的HTML:</p>
+<div class="highlight"><pre><span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div&gt;</span>
+        <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">&quot;fine&quot;</span><span class="nt">&gt;</span>This content should stay<span class="nt">&lt;/p&gt;</span>What<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div&gt;</span>
+        <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">&quot;yeswanted&quot;</span><span class="nt">&gt;</span>This content should also stay<span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
+
+
+<p>还有另外一种方式, 但没有第一种方法快:</p>
+<div class="highlight"><pre><span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">doc</span><span class="o">.</span><span class="n">iter</span><span class="p">():</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;class&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">),</span> <span class="n">elem</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;id&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">&#39;unwanted&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">and</span> <span class="n">elem</span><span class="o">.</span><span class="n">tag</span> <span class="o">!=</span> <span class="s">&#39;body&#39;</span> <span class="ow">and</span> <span class="n">elem</span><span class="o">.</span><span class="n">getparent</span><span class="p">()</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">elem</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s">&#39;class&#39;</span><span class="p">,</span> <span class="s">&#39;removethis&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">doc</span><span class="o">.</span><span class="n">find_class</span><span class="p">(</span><span class="s">&#39;removethis&#39;</span><span class="p">):</span>
+    <span class="n">elem</span><span class="o">.</span><span class="n">getparent</span><span class="p">()</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">tostring</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">pretty_print</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span> <span class="nb">file</span><span class="o">=</span><span class="n">output</span><span class="p">)</span>
+</pre></div>
+
+
+<p>这是我一开始想到的方式, 前面一种是参考了<strong>Stack Overflow</strong>后总结出来的. 因为提问者给出的代码中直接用了<code>next()</code>, 而我发现没有这个方法, 一开始没用它, 后面用<code>dir</code>看了一下发现有<code>__next__()</code>这个方法, 官方文档很多地方挺奇怪的..很无语.</p>
+<p>最后将源码修改为:</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">remove_unlikely_candidates</span><span class="p">(</span><span class="n">doc</span><span class="p">):</span>
+    <span class="n">allelem</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">iter</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">allelem</span><span class="p">:</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;class&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">),</span> <span class="n">elem</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;id&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">REGEXES</span><span class="p">[</span><span class="s">&#39;unlikelyCandidatesRe&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="n">REGEXES</span><span class="p">[</span><span class="s">&#39;okMaybeItsACandidateRe&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">s</span><span class="p">))</span> <span class="ow">and</span> <span class="n">elem</span><span class="o">.</span><span class="n">tag</span> <span class="o">!=</span> <span class="s">&#39;body&#39;</span> <span class="ow">and</span> <span class="n">elem</span><span class="o">.</span><span class="n">getparent</span><span class="p">()</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">&#39;.//*&#39;</span><span class="p">))):</span>
+                <span class="n">allelem</span><span class="o">.</span><span class="n">__next__</span><span class="p">()</span>
+            <span class="n">elem</span><span class="o">.</span><span class="n">getparent</span><span class="p">()</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span>
+</pre></div>
+
+
+<p>终于解决了纠结好久的问题, 原本以为源码不会有问题的...</p>
+<p>参考文档:</p>
+<p><a href="http://stackoverflow.com/questions/6152364/editing-tree-in-place-while-iterating-in-lxml">Stack Overflow: Editing tree in place while iterating in lxml</a></p>
+    <hr />
+  </article>
+  <div class="span12 comment">
+      <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style_32x32 no-print">
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a href="http://www.jiathis.com/share?uid=1801890" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1801890" charset="utf-8"></script>
+<!-- JiaThis Button END -->      <!-- <h3>Comments</h3> -->
+      <!--  -->
+      <!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" id="UYScript" src="http://v1.uyan.cc/js/iframe.js?UYUserId=1801890" async=""></script>
+<!-- UY END -->      <!-- UJian Button BEGIN -->
+<script type="text/javascript">var ujian_config = {target:1,mouseoverColor:'#222222',hoverTextColor:'#FFFFFF'};</script>
+<script type="text/javascript" src="http://v1.ujian.cc/code/ujian.js?type=slide&btn=3&fade=1&picsize=96&uid=1801890"></script>
+<a href="http://www.ujian.cc" style="border:0;"><img src="http://img.ujian.cc/pixel.png" alt="友荐云推荐" style="border:0;padding:0;margin:0;" /></a>
+<!-- UJian Button END -->  </div>
+</div>
+                </div>    </div><!-- End of fluid row-->
+  </div><!-- End of Container-->
+  <!--footer-->
+  <footer id="footer" class="no-print">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span1"></div>
+        <div class="span2" id="socialist">
+          <ul class="nav">
+            <li>Social</li>
+                                    <li><a href="http://weibo.com/1990zoey"><i class="icon-weibo icon-large"></i>新浪微博</a></li>
+                        <li><a href="http://www.renren.com/230222157/profile"><i class="icon-renren icon-large"></i>人人网</a></li>
+                        <li><a href="http://www.douban.com/people/ZoeyYoung/"><i class="icon-leaf icon-large"></i>豆瓣</a></li>
+                                    <li><a href="mailto:ydingmiao@gmail.com">
+              <i class="icon-envelope icon-large"></i>联系我
+            </a></li>
+                      </ul>
+        </div>
+                <div class="span2">
+          <ul class="nav">
+            <li>Links</li>
+                                    <li><a href="http://my.oschina.net/zoey1990">
+              <i class="icon-heart icon-large"></i>OSC
+            </a></li>
+                        <li><a href="http://www.xiami.com/u/2092563">
+              <i class="icon-music icon-large"></i>虾米
+            </a></li>
+                        <li><a href="https://gist.github.com/ZoeyYoung">
+              <i class="icon-github icon-large"></i>GIST
+            </a></li>
+                        <li><a href="https://github.com/ZoeyYoung">
+              <i class="icon-github icon-large"></i>GitHub
+            </a></li>
+                      </ul>
+        </div>
+        <div class="span2" id="site-links">
+          <ul class="nav">
+            <li>Site</li>
+            <li><a href="http://zoeyyoung.github.io">
+              <i class="icon-home icon-large"></i>首页
+            </a></li>
+            <li><a href="http://zoeyyoung.github.io/archives.html">
+              <i class="icon-list icon-large"></i>归档
+            </a></li>
+            <li><a href="http://zoeyyoung.github.io/tags.html">
+              <i class="icon-tags icon-large"></i>标签
+            </a></li>
+                        <li><a href="http://zoeyyoung.github.io/" rel="alternate">
+              <i class="icon-rss-sign icon-large"></i>Atom Feed
+            </a></li>
+          </ul>
+        </div>
+                <div class="sina-weibo span4">
+          <a href="http://weibo.com/u/1861922471?s=6uyXnP" target="_blank"><img border="0" src="http://service.t.sina.com.cn/widget/qmd/1861922471/c4ba5282/1.png"/></a>
+        </div>
+                <div class="span1"></div>
+      </div><!--end of fluid row-->
+      <p style="text-align: center;">
+          <a href="http://zoeyyoung.github.io">OK Computer</a>
+          &copy; ZoeyYoung
+          Powered by
+          <a href="https://github.com/getpelican/pelican">Pelican</a>
+          and
+          <a href="https://twitter.github.com/bootstrap">Twitter Bootstrap</a>
+          .
+          Icons by
+          <a href="http://gregoryloucas.github.io/Fontstrap/">Font Awesome</a>
+          .Theme By <a href="http://zoeyyoung.gitcafe.com/">ZoeyYoung</a>
+      </p>
+    </div>
+  </footer>
+  <!--/footer-->
+  <script src="http://zoeyyoung.github.io/theme/jquery-1.10.0.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+  <script>var _gaq=[['_setAccount','UA-41731595-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+</body>
+</html>

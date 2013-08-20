@@ -1,0 +1,136 @@
+Title: MongoDB使用Whoosh进行全文搜索
+Date: 2013-08-08
+Tags: MongoDB,NoSQL,Whoosh
+Slug: mongodb-whoosh-full-text-search
+Author: Zoey Young
+Summary: MongoDB使用Whoosh进行全文搜索
+
+在我的书签云项目中采用了MongoDB数据库.
+
+假设我有如下格式的文档(省略了与搜索无关的字段):
+
+    {
+      "_id" : ObjectId("519cd22917a0b7429bc2a1c0"),
+      "title" : "Python搭配MongoDB使用方法 - I'm SErHo",
+      "tags" : ["Python", "数据库", "MongoDB", "PyMongo", "博客"],
+      "url" : "http://serholiu.com/python-mongodb",
+      "article" : "<div><article>\n<h2>Python搭配MongoDB使用方法</a></h2>\n<p>这几天在学习Python Web开发</a>，于是做准备做一个博客来练练手，当然，只是练手的，博客界有WordPress这样的好玩意儿，何必还自己造车呢？决定使用Tornado这个框架，然后数据库方面决定顺便熟悉一下MongoDB这样的非关系型数据库。Python让我觉得轻松，再和MongoDB搭配上，那感觉真是好。</p><p>下面就谈谈Python操作MongoDB的一些基本用法，先介绍一下MongoDB，这是现在风头正劲的NoSQL数据库，没有关系数据库那种表之类的概念，就像Python中的字典一样，一个键对应一个值，然后这些键值组成一个文档，然后文档组成一个集合，集合再组成一个数据库，类型十分丰富，使用Python操作MongoDB需要安装MongoDB的Python驱动</a>，安装完成后，就可以和我一起开始了。</p><p>启动数据库（具体方法不是本文重点），连接数据库。</p></article></div>",
+      "note" : "# Good Post!"
+    }
+
+我要搜索与Python有关的文档.
+
+MongoDB有提供全文搜索功能, 但[支持的语言](http://docs.mongodb.org/manual/reference/command/text/#text-search-languages)不包含中文.
+
+并且官方也[不推荐](http://docs.mongodb.org/manual/tutorial/enable-text-search/)用在生产系统上.
+
+<div class="admonition warning">
+    <p class="first admonition-title">Warning</p>
+    <ul class="simple">
+        <li>Do <strong>not</strong> enable or use text search on production systems.</li>
+    </ul>
+    <ul class="last simple">
+        <li>Text indexes have significant storage requirements and performance costs. See <a class="reference internal" href="../../core/indexes/#index-feature-text"><em>text Indexes</em></a> for more information.</li>
+    </ul>
+</div>
+
+原本使用普通的正则匹配:
+
+    :::python
+    def get_by_keywords(keywords):
+        t_keywords = r".*" + keywords + r".*"
+        keywords = keywords.split(' ')
+        regex_keywords = r".*"
+        for key in keywords:
+            regex_keywords += key + r".*"
+        regex_list = []
+        # 先匹配完全符合的
+        regex_list.append({'title': {'$regex': t_keywords, '$options': '-i'}})
+        regex_list.append({'description': {'$regex': t_keywords, '$options': '-i'}})
+        regex_list.append({'tags': {'$regex': t_keywords, '$options': '-i'}})
+        regex_list.append({'note': {'$regex': t_keywords, '$options': '-i'}})
+        # 再匹配用空格分开的多个词
+        regex_list.append({'title': {'$regex': regex_keywords, '$options': '-i'}})
+        regex_list.append({'url': {'$regex': regex_keywords, '$options': '-i'}})
+        regex_list.append({'description': {'$regex': regex_keywords, '$options': '-i'}})
+        regex_list.append({'note': {'$regex': regex_keywords, '$options': '-i'}})
+        for key in keywords:
+            regex_list.append({'tags': {'$regex': r".*"+key+r".*", '$options': '-i'}})
+        return bookmarks_collection.find({'$or': regex_list})
+
+共匹配到203个书签. (后面使用Whoosh搜索到280个书签).
+
+看起来很糟糕. 并且效果并不理想.
+
+查找发现了Whoosh
+
+[Whoosh](http://pythonhosted.org/Whoosh/)是python写的全文搜索引擎, 很容易集成和使用, 因此目前决定使用whoosh来进行全文检索.
+
+安装:
+
+    :::bat
+    pip install Whoosh
+
+使用:
+
+    :::python
+    import pymongo
+    # MongoDB中有数据库bookmarks_cloud, 有集合bookmarks
+    bookmarks_collection = pymongo.Connection().bookmarks_cloud.bookmarks
+
+    from bookmarks_cloud.whoosh_fts import ChineseAnalyzer
+    from whoosh.fields import Schema, TEXT, ID, KEYWORD
+    # 我需要在url, title, tags, note, article中进行搜索,
+    # 然后根据搜索到的_id再去数据库中获取数据.
+    # 这里并没有添加bookmarks文档中所有元素.
+    # 还有一种方式是直接添加所有最后需要展示的元素.
+    schema = Schema(
+                nid=ID(unique=True, stored=True),
+                url=ID(unique=True, stored=True),
+                title=TEXT(phrase=False),
+                tags=KEYWORD(lowercase=True, commas=True, scorable=True),
+                note=TEXT(analyzer=ChineseAnalyzer()),
+                article=TEXT(stored=True, analyzer=ChineseAnalyzer())
+            )
+    # 索引
+    import os
+    from whoosh.index import create_in, open_dir
+    if not os.path.exists("testindexdir"):
+        os.mkdir("testindexdir")
+        create_in("testindexdir", schema)
+    ix = open_dir("testindexdir")
+    writer = ix.writer()
+    for bm in bookmarks_collection.find(timeout=False):
+        writer.update_document(
+                nid=str(bm['_id']),
+                url=bm['url'],
+                title=bm['title'],
+                tags=",".join(bm['tags']),
+                note=bm['note'],
+                article=bm['article']
+            )
+    writer.commit()
+    # 搜索
+    from whoosh.qparser import MultifieldParser
+    with ix.searcher() as searcher:
+        query = MultifieldParser(["url", "title", "tags", "note", "article"], ix.schema).parse("Python")
+        results = searcher.search(query)
+        print(len(results))
+        print(results[0])
+        keywords = [keyword for keyword, score in results.key_terms("article", docs=10, numterms=5)]
+        print(keywords)
+
+若想使用分页, 使用:
+
+    :::python
+    searcher.search_page(query, 1, pagelen=20)
+
+[具体使用的代码](https://github.com/ZoeyYoung/Bookmarks_Cloud/blob/master/bookmarks_cloud/whoosh_fts.py)
+
+### 参考文档
+
+[实现Django的全文检索功能（一）：选择Whoosh全文检索引擎](http://blog.csdn.net/wenxuansoft/article/details/8169842) ChineseAnalyzer是使用这篇文章中的, 其中修改使用了`jieba.cut_for_search(value)`, 而不是博主使用的`jieba.cut()`
+
+[python-searchengine](https://github.com/qoda/python-searchengine/blob/master/searchengine/search.py)
+
+[Whoosh: full-text search with Python](http://gelnior.wordpress.com/2012/05/23/whoosh-full-text-search-for-python/)

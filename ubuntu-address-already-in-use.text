@@ -1,0 +1,29 @@
+Title: Ubuntu 下 Address already in use 解决方法
+Date: 2012-07-06
+Tags: Ubuntu,Linux,进程,local,终端
+Slug: ubuntu-address-already-in-use
+Author: Zoey Young
+Summary: Ubuntu 下 Address already in use 解决方法
+
+**横线下是正文，上面是背景废话**
+
+刚刚要在机子上测试ruhoh博客时，因为之前注销系统的时候直接把终端关掉了，而没有先停止服务
+
+所以执行**rackup -p9292**时，就出现了之个错误，本来想就直接用之前的吧，但是更新的博客内容没有出现，所以还是得重启服务，但是肯定不想重启机子的
+
+知道肯定可以用命令解决，但是对Linux下进程管理的命令不熟，所以上网搜索之，没有搜到具体解决方法，可能是关键词不对，最后自己解决了
+
+因为我使用Ubuntu还不久，并没有系统学习过，所以这里记下自己随便解决方法，防止下次又忘了
+
+* * *
+
+首先，这里假设要使用的地址端口为“9292”，在终端中输入：
+
+    netstat -pant | grep 9292
+
+则可能会输出如下：
+
+    Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+    tcp        0      0 0.0.0.0:9292            0.0.0.0:*               LISTEN      19863/rackup
+
+注意到最后一列是PID/Program name，所以使用**kill 19863**，杀掉进程即可

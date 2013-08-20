@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>OK Computer</title>
+  <meta name="description" content="杨丁苗的个人博客">
+  <meta name="author" content="ZoeyYoung">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+  <!--[if lt IE 9]>
+  <script src="http://zoeyyoung.github.io/theme/html5.js"></script>
+  <![endif]-->
+  <!-- Le styles -->
+  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet" />
+  <link href="http://zoeyyoung.github.io/theme/print.css" rel="stylesheet" media="print" />
+  <link href="http://zoeyyoung.github.io/theme/local.css" rel="stylesheet" media="screen" />
+  <link href="http://zoeyyoung.github.io/theme/pygments.css" rel="stylesheet" />
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet" />
+  <!--[if IE 7]>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome-ie7.min.css" rel="stylesheet" />
+  <![endif]-->
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div id="header" class="span2 no-print">
+        <div class="brand-wrapper">
+          <a href="http://zoeyyoung.github.io" class="brand">OK Computer</a>
+          <p style="text-align: center; font-size: 12px; margin-top: 0;">It's better to burn out <br/> than to fade away.</p>
+        </div>
+        <ul id="blog-nav" class="nav">
+          <li>SITE</li>
+          <li><a href="http://zoeyyoung.github.io">首页</a></li>
+          <li><a href="http://zoeyyoung.github.io/archives.html">归档</a></li>
+          <li><a href="http://zoeyyoung.github.io/tags.html">标签</a></li>
+          <li><hr/></li>
+          <li>CATEGORIES</li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/java.html ">Java</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/linux.html ">Linux</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/nlp.html ">NLP</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/nosql.html ">NoSQL</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/python.html ">Python</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/ruby.html ">Ruby</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/tips.html ">Tips</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/qian-duan.html ">前端</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/gong-zuo-ji-lu.html ">工作记录</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/wo-de-xiang-mu.html ">我的项目</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/suan-fa.html ">算法</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/du-shu.html ">读书</a>
+          </li>
+                    <li><hr/></li>
+                    <li>PAGES<li>
+          
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/about-me.html">关于我</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/golden-slumber.html">Golden Slumber</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/on-the-road.html">在路上</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/software.html">我使用的软件</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/translate.html">翻译</a>
+          </li>
+                            </ul>
+      </div>
+      <div class="main-content span10">
+          
+    <div class='row-fluid'>
+        <div class="span12">
+            <a href="http://zoeyyoung.github.io/mongodb-whoosh-full-text-search.html"><h1>MongoDB使用Whoosh进行全文搜索</h1></a>
+            <div class="article-metadata">
+<time class="published" datetime="2013 八月 08 周四">2013 八月 08 周四 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/nosql.html">NoSQL</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/mongodb.html">MongoDB</a>
+        <a href="http://zoeyyoung.github.io/tag/nosql.html">NoSQL</a>
+        <a href="http://zoeyyoung.github.io/tag/whoosh.html">Whoosh</a>
+    </span>
+<!-- <p></p> -->
+</div>            <p>在我的书签云项目中采用了MongoDB数据库.</p>
+<p>假设我有如下格式的文档(省略了与搜索无关的字段):</p>
+<div class="highlight"><pre><span class="p">{</span>
+  <span class="s2">&quot;_id&quot;</span> <span class="p">:</span> <span class="nx">ObjectId</span><span class="p">(</span><span class="s2">&quot;519cd22917a0b7429bc2a1c0&quot;</span><span class="p">),</span>
+  <span class="s2">&quot;title&quot;</span> <span class="p">:</span> <span class="s2">&quot;Python搭配MongoDB使用方法 - I&#39;m SErHo&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;tags&quot;</span> <span class="p">:</span> <span class="err">[</span><span class="s2">&quot;Python&quot;</span><span class="p">,</span> <span class="s2">&quot;数据库&quot;</span><span class="p">,</span> <span class="s2">&quot;MongoDB&quot;</span><span class="p">,</span> <span class="s2">&quot;PyMongo&quot;</span><span class="p">,</span> <span class="s2">&quot;博客&quot;</span><span class="cp">]</span>,
+  &quot;url&quot; : &quot;http://serholiu.com/python-mongodb&quot;,
+  &quot;article&quot; : &quot;<span class="nt">&lt;div&gt;&lt;article&gt;</span>\n<span class="nt">&lt;h2&gt;</span>Python搭配MongoDB使用方法<span class="nt">&lt;/a&gt;&lt;/h2&gt;</span>\n<span class="nt">&lt;p&gt;</span>这几天在学习Python Web开发<span class="nt">&lt;/a&gt;</span>，于是做准备做一个博客来练练手，当然，只是练手的，博客界有WordPress这样的好玩意儿，何必还自己造车呢？决定使用Tornado这个框架，然后数据库方面决定顺便熟悉一下MongoDB这样的非关系型数据库。Python让我觉得轻松，再和MongoDB搭配上，那感觉真是好。<span class="nt">&lt;/p&gt;&lt;p&gt;</span>下面就谈谈Python操作MongoDB的一些基本用法，先介绍一下MongoDB，这是现在风头正劲的NoSQL数据库，没有关系数据库那种表之类的概念，就像Python中的字典一样，一个键对应一个值，然后这些键值组成一个文档，然后文档组成一个集合，集合再组成一个数据库，类型十分丰富，使用Python操作MongoDB需要安装MongoDB的Python驱动<span class="nt">&lt;/a&gt;</span>，安装完成后，就可以和我一起开始了。<span class="nt">&lt;/p&gt;&lt;p&gt;</span>启动数据库（具体方法不是本文重点），连接数据库。<span class="nt">&lt;/p&gt;&lt;/article&gt;&lt;/div&gt;</span>&quot;,
+  &quot;note&quot; : &quot;# Good Post!&quot;
+}
+</pre></div>
+
+
+<p>我要搜索与Python有关的文档.</p>
+<p>MongoDB有提供全文搜索功能, 但<a href="http://docs.mongodb.org/manual/reference/command/text/#text-search-languages">支持的语言</a>不包含中文.</p>
+<p>并且官方也<a href="http://docs.mongodb.org/manual/tutorial/enable-text-search/">不推荐</a>用在生产系统上.</p>
+<div class="admonition warning">
+    <p class="first admonition-title">Warning</p>
+    <ul class="simple">
+        <li>Do <strong>not</strong> enable or use text search on production systems.</li>
+    </ul>
+    <ul class="last simple">
+        <li>Text indexes have significant storage requirements and performance costs. See <a class="reference internal" href="../../core/indexes/#index-feature-text"><em>text Indexes</em></a> for more information.</li>
+    </ul>
+</div>
+
+<p>原本使用普通的正则匹配:</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">get_by_keywords</span><span class="p">(</span><span class="n">keywords</span><span class="p">):</span>
+    <span class="n">t_keywords</span> <span class="o">=</span> <span class="s">r&quot;.*&quot;</span> <span class="o">+</span> <span class="n">keywords</span> <span class="o">+</span> <span class="s">r&quot;.*&quot;</span>
+    <span class="n">keywords</span> <span class="o">=</span> <span class="n">keywords</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">)</span>
+    <span class="n">regex_keywords</span> <span class="o">=</span> <span class="s">r&quot;.*&quot;</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keywords</span><span class="p">:</span>
+        <span class="n">regex_keywords</span> <span class="o">+=</span> <span class="n">key</span> <span class="o">+</span> <span class="s">r&quot;.*&quot;</span>
+    <span class="n">regex_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c"># 先匹配完全符合的</span>
+    <span class="n">regex_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s">&#39;title&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s">&#39;$regex&#39;</span><span class="p">:</span> <span class="n">t_keywords</span><span class="p">,</span> <span class="s">&#39;$options&#39;</span><span class="p">:</span> <span class="s">&#39;-i&#39;</span><span class="p">}})</span>
+    <span class="n">regex_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s">&#39;description&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s">&#39;$regex&#39;</span><span class="p">:</span> <span class="n">t_keywords</span><span class="p">,</span> <span class="s">&#39;$options&#39;</span><span class="p">:</span> <span class="s">&#39;-i&#39;</span><span class="p">}})</span>
+    <span class="n">regex_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s">&#39;tags&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s">&#39;$regex&#39;</span><span class="p">:</span> <span class="n">t_keywords</span><span class="p">,</span> <span class="s">&#39;$options&#39;</span><span class="p">:</span> <span class="s">&#39;-i&#39;</span><span class="p">}})</span>
+    <span class="n">regex_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s">&#39;note&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s">&#39;$regex&#39;</span><span class="p">:</span> <span class="n">t_keywords</span><span class="p">,</span> <span class="s">&#39;$options&#39;</span><span class="p">:</span> <span class="s">&#39;-i&#39;</span><span class="p">}})</span>
+    <span class="c"># 再匹配用空格分开的多个词</span>
+    <span class="n">regex_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s">&#39;title&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s">&#39;$regex&#39;</span><span class="p">:</span> <span class="n">regex_keywords</span><span class="p">,</span> <span class="s">&#39;$options&#39;</span><span class="p">:</span> <span class="s">&#39;-i&#39;</span><span class="p">}})</span>
+    <span class="n">regex_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s">&#39;url&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s">&#39;$regex&#39;</span><span class="p">:</span> <span class="n">regex_keywords</span><span class="p">,</span> <span class="s">&#39;$options&#39;</span><span class="p">:</span> <span class="s">&#39;-i&#39;</span><span class="p">}})</span>
+    <span class="n">regex_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s">&#39;description&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s">&#39;$regex&#39;</span><span class="p">:</span> <span class="n">regex_keywords</span><span class="p">,</span> <span class="s">&#39;$options&#39;</span><span class="p">:</span> <span class="s">&#39;-i&#39;</span><span class="p">}})</span>
+    <span class="n">regex_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s">&#39;note&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s">&#39;$regex&#39;</span><span class="p">:</span> <span class="n">regex_keywords</span><span class="p">,</span> <span class="s">&#39;$options&#39;</span><span class="p">:</span> <span class="s">&#39;-i&#39;</span><span class="p">}})</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keywords</span><span class="p">:</span>
+        <span class="n">regex_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s">&#39;tags&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s">&#39;$regex&#39;</span><span class="p">:</span> <span class="s">r&quot;.*&quot;</span><span class="o">+</span><span class="n">key</span><span class="o">+</span><span class="s">r&quot;.*&quot;</span><span class="p">,</span> <span class="s">&#39;$options&#39;</span><span class="p">:</span> <span class="s">&#39;-i&#39;</span><span class="p">}})</span>
+    <span class="k">return</span> <span class="n">bookmarks_collection</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s">&#39;$or&#39;</span><span class="p">:</span> <span class="n">regex_list</span><span class="p">})</span>
+</pre></div>
+
+
+<p>共匹配到203个书签. (后面使用Whoosh搜索到280个书签).</p>
+<p>看起来很糟糕. 并且效果并不理想.</p>
+<p>查找发现了Whoosh</p>
+<p><a href="http://pythonhosted.org/Whoosh/">Whoosh</a>是python写的全文搜索引擎, 很容易集成和使用, 因此目前决定使用whoosh来进行全文检索.</p>
+<p>安装:</p>
+<div class="highlight"><pre>pip install Whoosh
+</pre></div>
+
+
+<p>使用:</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">pymongo</span>
+<span class="c"># MongoDB中有数据库bookmarks_cloud, 有集合bookmarks</span>
+<span class="n">bookmarks_collection</span> <span class="o">=</span> <span class="n">pymongo</span><span class="o">.</span><span class="n">Connection</span><span class="p">()</span><span class="o">.</span><span class="n">bookmarks_cloud</span><span class="o">.</span><span class="n">bookmarks</span>
+
+<span class="kn">from</span> <span class="nn">bookmarks_cloud.whoosh_fts</span> <span class="kn">import</span> <span class="n">ChineseAnalyzer</span>
+<span class="kn">from</span> <span class="nn">whoosh.fields</span> <span class="kn">import</span> <span class="n">Schema</span><span class="p">,</span> <span class="n">TEXT</span><span class="p">,</span> <span class="n">ID</span><span class="p">,</span> <span class="n">KEYWORD</span>
+<span class="c"># 我需要在url, title, tags, note, article中进行搜索,</span>
+<span class="c"># 然后根据搜索到的_id再去数据库中获取数据.</span>
+<span class="c"># 这里并没有添加bookmarks文档中所有元素.</span>
+<span class="c"># 还有一种方式是直接添加所有最后需要展示的元素.</span>
+<span class="n">schema</span> <span class="o">=</span> <span class="n">Schema</span><span class="p">(</span>
+            <span class="n">nid</span><span class="o">=</span><span class="n">ID</span><span class="p">(</span><span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">stored</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
+            <span class="n">url</span><span class="o">=</span><span class="n">ID</span><span class="p">(</span><span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">stored</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
+            <span class="n">title</span><span class="o">=</span><span class="n">TEXT</span><span class="p">(</span><span class="n">phrase</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span>
+            <span class="n">tags</span><span class="o">=</span><span class="n">KEYWORD</span><span class="p">(</span><span class="n">lowercase</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">commas</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">scorable</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
+            <span class="n">note</span><span class="o">=</span><span class="n">TEXT</span><span class="p">(</span><span class="n">analyzer</span><span class="o">=</span><span class="n">ChineseAnalyzer</span><span class="p">()),</span>
+            <span class="n">article</span><span class="o">=</span><span class="n">TEXT</span><span class="p">(</span><span class="n">stored</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">analyzer</span><span class="o">=</span><span class="n">ChineseAnalyzer</span><span class="p">())</span>
+        <span class="p">)</span>
+<span class="c"># 索引</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">whoosh.index</span> <span class="kn">import</span> <span class="n">create_in</span><span class="p">,</span> <span class="n">open_dir</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s">&quot;testindexdir&quot;</span><span class="p">):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s">&quot;testindexdir&quot;</span><span class="p">)</span>
+    <span class="n">create_in</span><span class="p">(</span><span class="s">&quot;testindexdir&quot;</span><span class="p">,</span> <span class="n">schema</span><span class="p">)</span>
+<span class="n">ix</span> <span class="o">=</span> <span class="n">open_dir</span><span class="p">(</span><span class="s">&quot;testindexdir&quot;</span><span class="p">)</span>
+<span class="n">writer</span> <span class="o">=</span> <span class="n">ix</span><span class="o">.</span><span class="n">writer</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">bm</span> <span class="ow">in</span> <span class="n">bookmarks_collection</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="n">writer</span><span class="o">.</span><span class="n">update_document</span><span class="p">(</span>
+            <span class="n">nid</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">bm</span><span class="p">[</span><span class="s">&#39;_id&#39;</span><span class="p">]),</span>
+            <span class="n">url</span><span class="o">=</span><span class="n">bm</span><span class="p">[</span><span class="s">&#39;url&#39;</span><span class="p">],</span>
+            <span class="n">title</span><span class="o">=</span><span class="n">bm</span><span class="p">[</span><span class="s">&#39;title&#39;</span><span class="p">],</span>
+            <span class="n">tags</span><span class="o">=</span><span class="s">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">bm</span><span class="p">[</span><span class="s">&#39;tags&#39;</span><span class="p">]),</span>
+            <span class="n">note</span><span class="o">=</span><span class="n">bm</span><span class="p">[</span><span class="s">&#39;note&#39;</span><span class="p">],</span>
+            <span class="n">article</span><span class="o">=</span><span class="n">bm</span><span class="p">[</span><span class="s">&#39;article&#39;</span><span class="p">]</span>
+        <span class="p">)</span>
+<span class="n">writer</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+<span class="c"># 搜索</span>
+<span class="kn">from</span> <span class="nn">whoosh.qparser</span> <span class="kn">import</span> <span class="n">MultifieldParser</span>
+<span class="k">with</span> <span class="n">ix</span><span class="o">.</span><span class="n">searcher</span><span class="p">()</span> <span class="k">as</span> <span class="n">searcher</span><span class="p">:</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">MultifieldParser</span><span class="p">([</span><span class="s">&quot;url&quot;</span><span class="p">,</span> <span class="s">&quot;title&quot;</span><span class="p">,</span> <span class="s">&quot;tags&quot;</span><span class="p">,</span> <span class="s">&quot;note&quot;</span><span class="p">,</span> <span class="s">&quot;article&quot;</span><span class="p">],</span> <span class="n">ix</span><span class="o">.</span><span class="n">schema</span><span class="p">)</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s">&quot;Python&quot;</span><span class="p">)</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">searcher</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">keywords</span> <span class="o">=</span> <span class="p">[</span><span class="n">keyword</span> <span class="k">for</span> <span class="n">keyword</span><span class="p">,</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">key_terms</span><span class="p">(</span><span class="s">&quot;article&quot;</span><span class="p">,</span> <span class="n">docs</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">numterms</span><span class="o">=</span><span class="mi">5</span><span class="p">)]</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">keywords</span><span class="p">)</span>
+</pre></div>
+
+
+<p>若想使用分页, 使用:</p>
+<div class="highlight"><pre><span class="n">searcher</span><span class="o">.</span><span class="n">search_page</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">pagelen</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+
+
+<p><a href="https://github.com/ZoeyYoung/Bookmarks_Cloud/blob/master/bookmarks_cloud/whoosh_fts.py">具体使用的代码</a></p>
+<h3>参考文档</h3>
+<p><a href="http://blog.csdn.net/wenxuansoft/article/details/8169842">实现Django的全文检索功能（一）：选择Whoosh全文检索引擎</a> ChineseAnalyzer是使用这篇文章中的, 其中修改使用了<code>jieba.cut_for_search(value)</code>, 而不是博主使用的<code>jieba.cut()</code></p>
+<p><a href="https://github.com/qoda/python-searchengine/blob/master/searchengine/search.py">python-searchengine</a></p>
+<p><a href="http://gelnior.wordpress.com/2012/05/23/whoosh-full-text-search-for-python/">Whoosh: full-text search with Python</a></p>
+            <a class="btn btn-mini xsmall" href="http://zoeyyoung.github.io/mongodb-whoosh-full-text-search.html"><i class="icon-comment"></i> 评论 </a>
+            <hr />
+        </div>
+    </div>
+         <div class='row-fluid'>
+      <div class='span12'>
+        <a href="http://zoeyyoung.github.io/mongodb-cloud-service.html"><h1>MongoDB云服务使用</h1></a>
+        <div class="article-metadata">
+<time class="published" datetime="2013 八月 07 周三">2013 八月 07 周三 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/nosql.html">NoSQL</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/mongodb.html">MongoDB</a>
+        <a href="http://zoeyyoung.github.io/tag/mongohq.html">MongoHQ</a>
+        <a href="http://zoeyyoung.github.io/tag/mongolib.html">MongoLib</a>
+    </span>
+<!-- <p></p> -->
+</div>        <p>MongoDB云服务使用</p>
+        <a class="btn btn-mini xsmall" href="http://zoeyyoung.github.io/mongodb-cloud-service.html">
+        <i class="icon-plus-sign"></i> 阅读全文 </a>
+        <hr />
+      </div>
+    </div>
+         <div class='row-fluid'>
+      <div class='span12'>
+        <a href="http://zoeyyoung.github.io/mongodb-array-update-with-query.html"><h1>MongoDB中数组更新操作</h1></a>
+        <div class="article-metadata">
+<time class="published" datetime="2013 八月 03 周六">2013 八月 03 周六 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/nosql.html">NoSQL</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/mongodb.html">MongoDB</a>
+        <a href="http://zoeyyoung.github.io/tag/nosql.html">NoSQL</a>
+        <a href="http://zoeyyoung.github.io/tag/update.html">Update</a>
+    </span>
+<!-- <p></p> -->
+</div>        <p>在每个文档, 标签tags是以数组Array的形式存在的, 我现在有个标签命名为<strong>python</strong>, 我想全部改成<strong>Python</strong></p>
+        <a class="btn btn-mini xsmall" href="http://zoeyyoung.github.io/mongodb-array-update-with-query.html">
+        <i class="icon-plus-sign"></i> 阅读全文 </a>
+        <hr />
+      </div>
+    </div>
+         <div class='row-fluid'>
+      <div class='span12'>
+        <a href="http://zoeyyoung.github.io/bookmarks-cloud-tornado-project.html"><h1>书签云项目</h1></a>
+        <div class="article-metadata">
+<time class="published" datetime="2013 七月 24 周三">2013 七月 24 周三 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/wo-de-xiang-mu.html">我的项目</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/tornado.html">Tornado</a>
+        <a href="http://zoeyyoung.github.io/tag/mongodb.html">MongoDB</a>
+        <a href="http://zoeyyoung.github.io/tag/python.html">Python</a>
+        <a href="http://zoeyyoung.github.io/tag/xiang-mu.html">项目</a>
+        <a href="http://zoeyyoung.github.io/tag/biao-qian.html">标签</a>
+        <a href="http://zoeyyoung.github.io/tag/shu-qian.html">书签</a>
+        <a href="http://zoeyyoung.github.io/tag/lian-jie.html">链接</a>
+    </span>
+<!-- <p></p> -->
+</div>        <p>我的基于Tornado的项目</p>
+        <a class="btn btn-mini xsmall" href="http://zoeyyoung.github.io/bookmarks-cloud-tornado-project.html">
+        <i class="icon-plus-sign"></i> 阅读全文 </a>
+        <hr />
+      </div>
+    </div>
+         <div class='row-fluid'>
+      <div class='span12'>
+        <a href="http://zoeyyoung.github.io/unable-to-find-vcvarsall-bat.html"><h1>[解决] Windows下安装Python Extension Package出现 error: Unable to find vcvarsall.bat 错误</h1></a>
+        <div class="article-metadata">
+<time class="published" datetime="2013 七月 02 周二">2013 七月 02 周二 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/python.html">Python</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/motor.html">Motor</a>
+        <a href="http://zoeyyoung.github.io/tag/mongodb.html">MongoDB</a>
+        <a href="http://zoeyyoung.github.io/tag/python.html">Python</a>
+        <a href="http://zoeyyoung.github.io/tag/windows.html">Windows</a>
+        <a href="http://zoeyyoung.github.io/tag/wen-ti.html">问题</a>
+    </span>
+<!-- <p></p> -->
+</div>        <p>Windows下安装Python Extension Package出现 error: Unable to find vcvarsall.bat 错误</p>
+        <a class="btn btn-mini xsmall" href="http://zoeyyoung.github.io/unable-to-find-vcvarsall-bat.html">
+        <i class="icon-plus-sign"></i> 阅读全文 </a>
+        <hr />
+      </div>
+    </div>
+            <div class="pagination no-print">
+<ul>
+    <li class="prev disabled"><a href="#">&larr; 上一页</a></li>
+
+    <li class="active"><a href="http://zoeyyoung.github.io/tag/mongodb.html">1</a></li>
+
+    <li class="next disabled"><a href="#">&rarr; 下一页</a></li>
+
+</ul>
+</div>       
+                </div>    </div><!-- End of fluid row-->
+  </div><!-- End of Container-->
+  <!--footer-->
+  <footer id="footer" class="no-print">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span1"></div>
+        <div class="span2" id="socialist">
+          <ul class="nav">
+            <li>Social</li>
+                                    <li><a href="http://weibo.com/1990zoey"><i class="icon-weibo icon-large"></i>新浪微博</a></li>
+                        <li><a href="http://www.renren.com/230222157/profile"><i class="icon-renren icon-large"></i>人人网</a></li>
+                        <li><a href="http://www.douban.com/people/ZoeyYoung/"><i class="icon-leaf icon-large"></i>豆瓣</a></li>
+                                    <li><a href="mailto:ydingmiao@gmail.com">
+              <i class="icon-envelope icon-large"></i>联系我
+            </a></li>
+                      </ul>
+        </div>
+                <div class="span2">
+          <ul class="nav">
+            <li>Links</li>
+                                    <li><a href="http://my.oschina.net/zoey1990">
+              <i class="icon-heart icon-large"></i>OSC
+            </a></li>
+                        <li><a href="http://www.xiami.com/u/2092563">
+              <i class="icon-music icon-large"></i>虾米
+            </a></li>
+                        <li><a href="https://gist.github.com/ZoeyYoung">
+              <i class="icon-github icon-large"></i>GIST
+            </a></li>
+                        <li><a href="https://github.com/ZoeyYoung">
+              <i class="icon-github icon-large"></i>GitHub
+            </a></li>
+                      </ul>
+        </div>
+        <div class="span2" id="site-links">
+          <ul class="nav">
+            <li>Site</li>
+            <li><a href="http://zoeyyoung.github.io">
+              <i class="icon-home icon-large"></i>首页
+            </a></li>
+            <li><a href="http://zoeyyoung.github.io/archives.html">
+              <i class="icon-list icon-large"></i>归档
+            </a></li>
+            <li><a href="http://zoeyyoung.github.io/tags.html">
+              <i class="icon-tags icon-large"></i>标签
+            </a></li>
+                        <li><a href="http://zoeyyoung.github.io/" rel="alternate">
+              <i class="icon-rss-sign icon-large"></i>Atom Feed
+            </a></li>
+          </ul>
+        </div>
+                <div class="sina-weibo span4">
+          <a href="http://weibo.com/u/1861922471?s=6uyXnP" target="_blank"><img border="0" src="http://service.t.sina.com.cn/widget/qmd/1861922471/c4ba5282/1.png"/></a>
+        </div>
+                <div class="span1"></div>
+      </div><!--end of fluid row-->
+      <p style="text-align: center;">
+          <a href="http://zoeyyoung.github.io">OK Computer</a>
+          &copy; ZoeyYoung
+          Powered by
+          <a href="https://github.com/getpelican/pelican">Pelican</a>
+          and
+          <a href="https://twitter.github.com/bootstrap">Twitter Bootstrap</a>
+          .
+          Icons by
+          <a href="http://gregoryloucas.github.io/Fontstrap/">Font Awesome</a>
+          .Theme By <a href="http://zoeyyoung.gitcafe.com/">ZoeyYoung</a>
+      </p>
+    </div>
+  </footer>
+  <!--/footer-->
+  <script src="http://zoeyyoung.github.io/theme/jquery-1.10.0.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+  <script>var _gaq=[['_setAccount','UA-41731595-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+</body>
+</html>

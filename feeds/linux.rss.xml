@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OK Computer</title><link>http://zoeyyoung.github.io/</link><description>It's better to burn out &lt;br/&gt; than to fade away.</description><atom:link href="http://zoeyyoung.github.io/feeds/linux.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 06 Nov 2012 00:00:00 +0800</lastBuildDate><item><title>Ubuntu下安装JDK</title><link>http://zoeyyoung.github.io/ubuntu-jdk-install.html</link><description>&lt;p&gt;https://help.ubuntu.com/community/Java : 整得比较全面，各种安装方法都有&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.webupd8.org/2012/01/install-oracle-java-jdk-7-in-ubuntu-via.html"&gt;INSTALL ORACLE JAVA 7 IN UBUNTU VIA PPA REPOSITORY&lt;/a&gt; : 之前整了篇手动安装的比较麻烦，还是PPA方便&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update
+sudo apt-get install oracle-java7-installer
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;不能保证一直有效, 所以还是得打开网址查看一下&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 06 Nov 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-11-06:ubuntu-jdk-install.html</guid><category>Java</category><category>Ubuntu</category><category>JDK</category><category>安装</category><category>Oracle</category></item><item><title>Ubuntu 下 Address already in use 解决方法</title><link>http://zoeyyoung.github.io/ubuntu-address-already-in-use.html</link><description>&lt;p&gt;&lt;strong&gt;横线下是正文，上面是背景废话&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;刚刚要在机子上测试ruhoh博客时，因为之前注销系统的时候直接把终端关掉了，而没有先停止服务&lt;/p&gt;
+&lt;p&gt;所以执行&lt;strong&gt;rackup -p9292&lt;/strong&gt;时，就出现了之个错误，本来想就直接用之前的吧，但是更新的博客内容没有出现，所以还是得重启服务，但是肯定不想重启机子的&lt;/p&gt;
+&lt;p&gt;知道肯定可以用命令解决，但是对Linux下进程管理的命令不熟，所以上网搜索之，没有搜到具体解决方法，可能是关键词不对，最后自己解决了&lt;/p&gt;
+&lt;p&gt;因为我使用Ubuntu还不久，并没有系统学习过，所以这里记下自己随便解决方法，防止下次又忘了&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;首先，这里假设要使用的地址端口为“9292”，在终端中输入：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;netstat&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pant&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;grep&lt;/span&gt; &lt;span class="mi"&gt;9292&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;则可能会输出如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Proto&lt;/span&gt; &lt;span class="n"&gt;Recv&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Q&lt;/span&gt; &lt;span class="n"&gt;Send&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Q&lt;/span&gt; &lt;span class="n"&gt;Local&lt;/span&gt; &lt;span class="n"&gt;Address&lt;/span&gt;           &lt;span class="n"&gt;Foreign&lt;/span&gt; &lt;span class="n"&gt;Address&lt;/span&gt;         &lt;span class="n"&gt;State&lt;/span&gt;       &lt;span class="n"&gt;PID&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Program&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;
+&lt;span class="n"&gt;tcp&lt;/span&gt;        &lt;span class="mi"&gt;0&lt;/span&gt;      &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="mf"&gt;0.0.0.0&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;9292&lt;/span&gt;            &lt;span class="mf"&gt;0.0.0.0&lt;/span&gt;&lt;span class="o"&gt;:*&lt;/span&gt;               &lt;span class="n"&gt;LISTEN&lt;/span&gt;      &lt;span class="mi"&gt;19863&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;rackup&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;注意到最后一列是PID/Program name，所以使用&lt;strong&gt;kill 19863&lt;/strong&gt;，杀掉进程即可&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Fri, 06 Jul 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-07-06:ubuntu-address-already-in-use.html</guid><category>Ubuntu</category><category>Linux</category><category>进程</category><category>local</category><category>终端</category></item><item><title>Ubuntu 下安装 fcitx 以及五笔拼音输入法</title><link>http://zoeyyoung.github.io/ubuntu-install-fcitx.html</link><description>&lt;p&gt;用Ubuntu时最不舒服的就是打字, 输入法没Windows中好用, 或许还是习惯的问题&lt;/p&gt;
+&lt;p&gt;还好, 还是能找到五笔输入法. 但是五笔拼音现在用的感觉还是不怎么好用&lt;/p&gt;
+&lt;p&gt;目前是使用fcitx, 整理一下教程及安装方法, 以节省每次都得查阅的麻烦&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://fcitx-im.org/wiki/Fcitx"&gt;官网&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://fcitx-im.org/wiki/Install_(Ubuntu)/zh-cn"&gt;Ubuntu下安装&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://fcitx-im.org/wiki/Configure_(Ubuntu)/zh-cn"&gt;Ubuntu下配置&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://fcitx.github.com/handbook/"&gt;手册&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;写这篇时使用的是&lt;strong&gt;Ubuntu 12.04&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;1、 终端中&lt;/p&gt;
+&lt;p&gt;我只安装了五笔拼音, 似乎默认就装了好几个拼音输入法&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo add-apt-repository ppa:fcitx-team/nightly
+sudo apt-get update
+sudo apt-get install fcitx
+sudo apt-get install fcitx-table-
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;2、 在系统设置(System Settings)-&amp;gt;语言支持(Language Support)菜单中，将输入法设置"fcitx"&lt;/p&gt;
+&lt;p&gt;3、 使用fcitx-config设置输入法(有图形界面)，按喜好设置了&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Thu, 07 Jun 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-06-07:ubuntu-install-fcitx.html</guid><category>Ubuntu</category><category>Linux</category><category>fcitx</category><category>输入法</category><category>五笔</category><category>安装</category></item></channel></rss>

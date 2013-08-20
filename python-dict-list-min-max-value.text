@@ -1,0 +1,61 @@
+Title: [基础] 在Python中获得字典列表中最大值与最小值
+Date: 2013-08-06
+Tags: Python
+Slug: python-dict-list-min-max-value
+Author: Zoey Young
+Summary: 假设有字典列表:`dict_list = [{'price': 99, 'barcode': '2342355'}, {'price': 88, 'barcode': '2345566'}, {'price': 77, 'barcode': '2342377'}]`, 要求`price`的最大值与最小值
+
+假设有字典列表:
+
+    :::python
+    dict_list = [{'price': 99, 'barcode': '2342355'}, {'price': 88, 'barcode': '2345566'}, {'price': 77, 'barcode': '2342377'}]
+
+要求`price`的最大值与最小值
+
+最原始的方法:
+
+    :::python
+    min_price, max_price = 100, 0
+    for item in dict_list:
+        if item['price'] < min_price:
+            min_price = item['price']
+        if item['price'] > max_price:
+            max_price = item['price']
+    print(max_price, min_price)
+
+刚学Python时会这么写...
+
+先使用列表推导式(list comprehension), 再使用内置函数求最大值最小值:
+
+    :::python
+    seq = [item['price'] for item in dict_list]
+    print(max(seq), min(seq))
+
+这种方式要遍历列表多次.
+
+使用生成器表达式(generator expression)
+
+    :::python
+    min_price, max_price = 100, 0
+    for x in (item['the_key'] for item in dict_list):
+        min_price,max_price = min(x,min_price),max(x,max_price)
+    print(max_price, min_price)
+
+更简单的写法:
+
+    :::python
+    max_price = max(item['price'] for item in dict_list)
+    min_price = min(item['price'] for item in dict_list)
+    print(max_price, min_price)
+
+> This avoids the overhead of sorting the list -- and, by using a generator expression, instead of a list comprehension -- actually avoids creating any lists, as well. Efficient, direct, readable... Pythonic!
+
+返回整个dict, 不仅仅是price:
+
+    :::python
+    max_priced_item = max(dict_list, key=lambda x:x['price'])
+    min_priced_item = min(dict_list, key=lambda x:x['price'])
+    print(max_priced_item, min_priced_item)
+    # {'price': 99, 'barcode': '2342355'} {'price': 77, 'barcode': '2342377'}
+
+总结自: [In List of Dicts, find min() value of a common Dict field](http://stackoverflow.com/questions/5320871/in-list-of-dicts-find-min-value-of-a-common-dict-field)

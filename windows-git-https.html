@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>在 Windows 下 Git 的使用 - OK Computer</title>
+  <meta name="description" content="杨丁苗的个人博客">
+  <meta name="author" content="ZoeyYoung">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+  <!--[if lt IE 9]>
+  <script src="http://zoeyyoung.github.io/theme/html5.js"></script>
+  <![endif]-->
+  <!-- Le styles -->
+  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet" />
+  <link href="http://zoeyyoung.github.io/theme/print.css" rel="stylesheet" media="print" />
+  <link href="http://zoeyyoung.github.io/theme/local.css" rel="stylesheet" media="screen" />
+  <link href="http://zoeyyoung.github.io/theme/pygments.css" rel="stylesheet" />
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet" />
+  <!--[if IE 7]>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome-ie7.min.css" rel="stylesheet" />
+  <![endif]-->
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div id="header" class="span2 no-print">
+        <div class="brand-wrapper">
+          <a href="http://zoeyyoung.github.io" class="brand">OK Computer</a>
+          <p style="text-align: center; font-size: 12px; margin-top: 0;">It's better to burn out <br/> than to fade away.</p>
+        </div>
+        <ul id="blog-nav" class="nav">
+          <li>SITE</li>
+          <li><a href="http://zoeyyoung.github.io">首页</a></li>
+          <li><a href="http://zoeyyoung.github.io/archives.html">归档</a></li>
+          <li><a href="http://zoeyyoung.github.io/tags.html">标签</a></li>
+          <li><hr/></li>
+          <li>CATEGORIES</li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/java.html ">Java</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/linux.html ">Linux</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/nlp.html ">NLP</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/nosql.html ">NoSQL</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/python.html ">Python</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/ruby.html ">Ruby</a>
+          </li>
+                    <li  class="active" >
+            <a href="http://zoeyyoung.github.io/category/tips.html ">Tips</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/qian-duan.html ">前端</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/gong-zuo-ji-lu.html ">工作记录</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/wo-de-xiang-mu.html ">我的项目</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/suan-fa.html ">算法</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/du-shu.html ">读书</a>
+          </li>
+                    <li><hr/></li>
+                    <li>PAGES<li>
+          
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/about-me.html">关于我</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/golden-slumber.html">Golden Slumber</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/on-the-road.html">在路上</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/software.html">我使用的软件</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/translate.html">翻译</a>
+          </li>
+                            </ul>
+      </div>
+      <div class="main-content span10">
+          <div class='article'>
+  <article class="span12">
+    <h1>在 Windows 下 Git 的使用</h1>
+    <div class="article-metadata">
+<time class="published" datetime="2013 六月 29 周六">2013 六月 29 周六 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/tips.html">Tips</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/git.html">Git</a>
+        <a href="http://zoeyyoung.github.io/tag/windows.html">Windows</a>
+        <a href="http://zoeyyoung.github.io/tag/git-bash.html">Git Bash</a>
+        <a href="http://zoeyyoung.github.io/tag/ssh.html">SSH</a>
+        <a href="http://zoeyyoung.github.io/tag/pei-zhi.html">配置</a>
+        <a href="http://zoeyyoung.github.io/tag/an-zhuang.html">安装</a>
+    </span>
+<!-- <p></p> -->
+</div>    <p>这个问题很基础, 但是第一次使用时很困扰</p>
+<p>按照<a href="https://gitcafe.com/GitCafe/Help/blob/master/Setup_Git.md">帮助</a>安装了Windows下的Git客户端, 例如我下载安装了<strong>Git-1.8.3-preview20130601.exe</strong></p>
+<p>(还有其它软件, 比如<a href="http://code.google.com/p/tortoisegit/">TortoiseGit</a>)</p>
+<p>在GitCafe上<strong>创建</strong>仓库后, 会有提示怎么初始化仓库的说明</p>
+<p>其中有一步是:</p>
+<div class="highlight"><pre>git remote add origin <span class="s1">&#39;git@gitcafe.com:ZoeyYoung/Hello_Git.git&#39;</span>
+</pre></div>
+
+
+<p>但是这里提供的地址<code>git@gitcafe.com:ZoeyYoung/Hello_Git.git</code>是SSH的</p>
+<p><img alt="ssh" src="/static/images/gitcafe_ssh.jpg" /></p>
+<p>所以需要配置SSH, <a href="https://gitcafe.com/GitCafe/Help/tree/master/SSH">相关帮助</a></p>
+<p>如果不配置则会出现<code>Permission_denied: Error: Permission denied (publickey)</code>问题</p>
+<div class="highlight"><pre>Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+</pre></div>
+
+
+<p>但是配置好SSH后, 尝试了下在Windows自带cmd下还是会出现上面的问题</p>
+<p>原因是SSH的地址是<code>~/.ssh</code>, 而cmd下并不识别这个地址...因此只能在Git Bash下使用(跟安装时选择的只在Git Bash下使用可能也有关, 没尝试)</p>
+<p>而我觉得比较方便的方式是使用<code>https</code>地址</p>
+<p><img alt="https" src="/static/images/gitcafe_https.jpg" /></p>
+<p>即把上面的语句改为</p>
+<div class="highlight"><pre>git remote add origin <span class="s1">&#39;https://gitcafe.com/ZoeyYoung/Hello_Git.git&#39;</span>
+</pre></div>
+
+
+<p>这样就不用配置SSH, 并且可以直接在cmd命令行下使用</p>
+<div class="highlight"><pre>D:\Hello_Git<span class="p">&gt;</span><span class="n">git</span> push -u origin master
+Counting objects: <span class="m">5</span><span class="p">,</span> done.
+Writing objects: <span class="m">100</span>% (<span class="m">3</span><span class="n">/3),</span> <span class="m">253</span> bytes <span class="p">|</span> <span class="n">0</span> bytes<span class="n">/s,</span> done.
+Total <span class="m">3</span> (delta <span class="m">0</span>)<span class="p">,</span> reused <span class="m">0</span> (delta <span class="m">0</span>)
+Username <span class="k">for</span> <span class="s1">&#39;https://gitcafe.com&#39;</span>: ZoeyYoung
+Password <span class="k">for</span> <span class="s1">&#39;https://ZoeyYoung@gitcafe.com&#39;</span>:
+To https:<span class="n">//gitcafe.com/ZoeyYoung/Hello_Git.git</span>
+<span class="m">35</span>fadd<span class="m">4</span>..<span class="m">254</span>fb<span class="m">27</span>  master -<span class="p">&gt;</span> <span class="n">master</span>
+Branch master <span class="k">set</span> <span class="nv">up</span> to track remote branch master from origin.
+</pre></div>
+
+
+<p>只需输入用户名和密码即可.</p>
+<p>注意到这点是因为感觉配置SSH很麻烦 - -</p>
+<p>而且我用pelican写博客后编译上传时, 可以直接在cmd下编译上传, 运行如下<strong>publish.bat</strong>文件即可</p>
+<div class="highlight"><pre>pelican -s pelicanconf.py content -o output
+<span class="k">cd</span> output
+git add .
+git commit -m <span class="s2">&quot;Update&quot;</span>
+git push
+<span class="k">cd</span> ../
+</pre></div>
+
+
+<p>如果使用SSH方式得在cmd下编译, 然后跑到Git Bash下提交</p>
+<h3>已经SSH了, 可以——</h3>
+<p>如果已经配置了SSH地址, 再想配置成HTTPS地址, 会提示</p>
+<div class="highlight"><pre><span class="n">fatal</span><span class="o">:</span> <span class="n">remote</span> <span class="n">origin</span> <span class="n">already</span> <span class="n">exists</span><span class="o">.</span>
+</pre></div>
+
+
+<p>这时可以修改<strong>D:/Hello_Git/.git/config</strong>文件中的如下片段</p>
+<div class="highlight"><pre><span class="k">[remote &quot;origin&quot;]</span>
+<span class="na">url</span> <span class="o">=</span> <span class="s">git@gitcafe.com:ZoeyYoung/Hello_Git.git</span>
+</pre></div>
+
+
+<p>为</p>
+<div class="highlight"><pre><span class="k">[remote &quot;origin&quot;]</span>
+<span class="na">url</span> <span class="o">=</span> <span class="s">https://gitcafe.com/ZoeyYoung/Hello_Git.git</span>
+</pre></div>
+
+
+<p>即可</p>
+<h3>今天犯了个低级错误</h3>
+<p>忘了add、commit就急着push, 会出现</p>
+<div class="highlight"><pre><span class="n">error</span><span class="o">:</span> <span class="n">src</span> <span class="n">refspec</span> <span class="n">master</span> <span class="n">does</span> <span class="n">not</span> <span class="n">match</span> <span class="n">any</span><span class="o">.</span>
+<span class="n">error</span><span class="o">:</span> <span class="n">failed</span> <span class="n">to</span> <span class="n">push</span> <span class="n">some</span> <span class="n">refs</span> <span class="n">to</span> <span class="s1">&#39;https://gitcafe.com/ZoeyYoung/Hello_Git.git&#39;</span>
+</pre></div>
+
+
+<h3>其它要参考文章</h3>
+<ul>
+<li><a href="http://www.fantxi.com/blog/archives/tortoisegit-github/">TortoiseGit GitHub 使用小计</a></li>
+<li><a href="http://zengrong.net/post/1722.htm">使用Git、Git GUI和TortoiseGit</a></li>
+</ul>
+    <hr />
+  </article>
+  <div class="span12 comment">
+      <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style_32x32 no-print">
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a href="http://www.jiathis.com/share?uid=1801890" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1801890" charset="utf-8"></script>
+<!-- JiaThis Button END -->      <!-- <h3>Comments</h3> -->
+      <!--  -->
+      <!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" id="UYScript" src="http://v1.uyan.cc/js/iframe.js?UYUserId=1801890" async=""></script>
+<!-- UY END -->      <!-- UJian Button BEGIN -->
+<script type="text/javascript">var ujian_config = {target:1,mouseoverColor:'#222222',hoverTextColor:'#FFFFFF'};</script>
+<script type="text/javascript" src="http://v1.ujian.cc/code/ujian.js?type=slide&btn=3&fade=1&picsize=96&uid=1801890"></script>
+<a href="http://www.ujian.cc" style="border:0;"><img src="http://img.ujian.cc/pixel.png" alt="友荐云推荐" style="border:0;padding:0;margin:0;" /></a>
+<!-- UJian Button END -->  </div>
+</div>
+                </div>    </div><!-- End of fluid row-->
+  </div><!-- End of Container-->
+  <!--footer-->
+  <footer id="footer" class="no-print">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span1"></div>
+        <div class="span2" id="socialist">
+          <ul class="nav">
+            <li>Social</li>
+                                    <li><a href="http://weibo.com/1990zoey"><i class="icon-weibo icon-large"></i>新浪微博</a></li>
+                        <li><a href="http://www.renren.com/230222157/profile"><i class="icon-renren icon-large"></i>人人网</a></li>
+                        <li><a href="http://www.douban.com/people/ZoeyYoung/"><i class="icon-leaf icon-large"></i>豆瓣</a></li>
+                                    <li><a href="mailto:ydingmiao@gmail.com">
+              <i class="icon-envelope icon-large"></i>联系我
+            </a></li>
+                      </ul>
+        </div>
+                <div class="span2">
+          <ul class="nav">
+            <li>Links</li>
+                                    <li><a href="http://my.oschina.net/zoey1990">
+              <i class="icon-heart icon-large"></i>OSC
+            </a></li>
+                        <li><a href="http://www.xiami.com/u/2092563">
+              <i class="icon-music icon-large"></i>虾米
+            </a></li>
+                        <li><a href="https://gist.github.com/ZoeyYoung">
+              <i class="icon-github icon-large"></i>GIST
+            </a></li>
+                        <li><a href="https://github.com/ZoeyYoung">
+              <i class="icon-github icon-large"></i>GitHub
+            </a></li>
+                      </ul>
+        </div>
+        <div class="span2" id="site-links">
+          <ul class="nav">
+            <li>Site</li>
+            <li><a href="http://zoeyyoung.github.io">
+              <i class="icon-home icon-large"></i>首页
+            </a></li>
+            <li><a href="http://zoeyyoung.github.io/archives.html">
+              <i class="icon-list icon-large"></i>归档
+            </a></li>
+            <li><a href="http://zoeyyoung.github.io/tags.html">
+              <i class="icon-tags icon-large"></i>标签
+            </a></li>
+                        <li><a href="http://zoeyyoung.github.io/" rel="alternate">
+              <i class="icon-rss-sign icon-large"></i>Atom Feed
+            </a></li>
+          </ul>
+        </div>
+                <div class="sina-weibo span4">
+          <a href="http://weibo.com/u/1861922471?s=6uyXnP" target="_blank"><img border="0" src="http://service.t.sina.com.cn/widget/qmd/1861922471/c4ba5282/1.png"/></a>
+        </div>
+                <div class="span1"></div>
+      </div><!--end of fluid row-->
+      <p style="text-align: center;">
+          <a href="http://zoeyyoung.github.io">OK Computer</a>
+          &copy; ZoeyYoung
+          Powered by
+          <a href="https://github.com/getpelican/pelican">Pelican</a>
+          and
+          <a href="https://twitter.github.com/bootstrap">Twitter Bootstrap</a>
+          .
+          Icons by
+          <a href="http://gregoryloucas.github.io/Fontstrap/">Font Awesome</a>
+          .Theme By <a href="http://zoeyyoung.gitcafe.com/">ZoeyYoung</a>
+      </p>
+    </div>
+  </footer>
+  <!--/footer-->
+  <script src="http://zoeyyoung.github.io/theme/jquery-1.10.0.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+  <script>var _gaq=[['_setAccount','UA-41731595-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+</body>
+</html>

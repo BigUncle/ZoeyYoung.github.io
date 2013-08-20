@@ -1,0 +1,83 @@
+Title: [学习] NLTK Python自然语言处理
+Date: 2013-08-20
+Tags: Windows,Python,NLTK,NLP
+Slug: natural-language-processing-with-python
+Author: Zoey Young
+Summary: NLTK Python自然语言处理 学习
+
+先安装[PyYAML](http://www.lfd.uci.edu/~gohlke/pythonlibs/#pyyaml)
+
+再安装[NLTK](http://nltk.org/nltk3-alpha/)
+
+[Github上nltk3-alpha](https://github.com/nltk/nltk3-alpha)
+
+    python setup.py install
+
+NLTK 入门
+
+    :::python
+    >>> import nltk
+    >>> nltk.download()
+    NLTK Downloader
+    ---------------------------------------------------------------------------
+        d) Download   l) List    u) Update   c) Config   h) Help   q) Quit
+    ---------------------------------------------------------------------------
+    Downloader> c
+    Data Server:
+      - URL: <http://nltk.github.com/nltk_data/>
+      - 3 Package Collections Available
+      - 78 Individual Packages Available
+    Local Machine:
+      - Data directory: C:\Users\Zoey\AppData\Roaming\nltk_data
+    ---------------------------------------------------------------------------
+        s) Show Config   u) Set Server URL   d) Set Data Dir   m) Main Menu
+    ---------------------------------------------------------------------------
+    Config> d
+      New Directory> D:\nltk_data
+    ---------------------------------------------------------------------------
+        s) Show Config   u) Set Server URL   d) Set Data Dir   m) Main Menu
+    ---------------------------------------------------------------------------
+    Config> m
+    ---------------------------------------------------------------------------
+        d) Download   l) List    u) Update   c) Config   h) Help   q) Quit
+    ---------------------------------------------------------------------------
+    Downloader> d
+
+    Download which package (l=list; x=cancel)?
+      Identifier> book
+          Downloading collection 'book'
+            |
+            | ...
+            |
+          Done downloading collection book
+
+如果不能正常下载, 则需手动下载, 放入相应的文件夹内.
+
+    :::python
+    Searched in:
+      - 'C:/\\Users\\Zoey/nltk_data'
+      - 'C:\\nltk_data'
+      - 'D:\\nltk_data'
+      - 'E:\\nltk_data'
+      - 'C:\\Python33\\nltk_data'
+      - 'C:\\Python33\\lib\\nltk_data'
+      - 'C:\\Users\\Zoey\\AppData\\Roaming\\nltk_data'
+
+似乎不是任意文件夹都可以. 一开始放在F盘提示找不到.
+
+    :::python
+    >>> from nltk.book import *
+    *** Introductory Examples for the NLTK Book ***
+    Loading text1, ..., text9 and sent1, ..., sent9
+    Type the name of the text or sentence to view it.
+    Type: 'texts()' or 'sents()' to list the materials.
+    text1: Moby Dick by Herman Melville 1851
+    text2: Sense and Sensibility by Jane Austen 1811
+    text3: The Book of Genesis
+    text4: Inaugural Address Corpus
+    text5: Chat Corpus
+    text6: Monty Python and the Holy Grail
+    text7: Wall Street Journal
+    text8: Personals Corpus
+    text9: The Man Who Was Thursday by G . K . Chesterton 1908
+

@@ -1,0 +1,81 @@
+Title: 使用JS播放声音——SoundManager 2
+Date: 2012-11-08
+Tags: JavaScript
+Slug: sound-manager-2-web-im
+Author: Zoey Young
+Description: 使用JS播放声音——SoundManager 2
+Summary: 使用JS播放声音——SoundManager 2
+
+**任务**: 让Web IM有声音提示
+
+**轮子**: http://www.schillmania.com/projects/soundmanager2/
+
+### SoundManager 2 makes it easier to play audio using JavaScript.
+
+官方文档写得很详细，好东西
+
+写个[Demo](http://zoeyyoung.gitcafe.com/lib/sm2demo/index.html)
+
+需要的文件有：下载soundmanager2包中的script文件夹和swf文件夹
+
+    :::text
+    Demo/
+    - index.html
+    Demo/script/
+    - jquery-1.8.2.min.js
+    - soundmanager2-nodebug-jsmin.js
+    Demo/swf/
+    - soundmanager2_flash_xdomain.zip
+    - soundmanager2_flash9_debug.swf
+    - soundmanager2_flash9.swf
+    - soundmanager2_debug.swf
+    - soundmanager2.swf
+    Demo/sound/
+    - msg.mp3
+
+index.html
+
+    :::html
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset=utf-8 />
+        <title>SoundDemo</title>
+        <script type="text/javascript" src="script/soundmanager2-nodebug-jsmin.js"></script>
+        <script type="text/javascript" src="script/jquery-1.10.0.min.js"></script>
+        <script type="text/javascript">
+          soundManager.setup({
+            url: 'swf/', //swf文件夹的位置
+            onready: function() {
+              soundManager.createSound({
+                id: 'msg',
+                autoLoad: true,
+                autoPlay: false,
+                url: 'sound/msg.mp3' //mp3文件的位置
+              });
+            }
+          });
+          $(document).ready(function () {
+            $('#play').click(function () {
+              soundManager.play('msg'); //点击按钮可播放
+            });
+          });
+        </script>
+    </head>
+    <body>
+        <input type='button' id='play' value='Play' />
+    </body>
+    </html>
+
+### 遇到的问题
+
+* 需要把Demo部署到服务器上才能正常, 否则还是会有?跨域的问题?(应该是这个问题吧), 不能加载本地文件. (意思是: 本地直接打开index.html是不能播放的, 但我上传到博客的服务器上就能播放了..有人不理解这个 - - 搜索"跨域"相关)
+
+* 用的.wav文件在chrome中能正常播放, 但在IE中不能播放, 转成.mp3文件后就都可以正常播放了
+
+将代码添加到我自己写的IM里成功播放声音
+
+参考文档:
+
+* [Ext:在Ext中播放声音(mp3等)](http://hi.baidu.com/ccutshyhao/item/4923810efa6a428e03ce1b0e)
+* [tip：如何原生播放声音](http://yiminghe.iteye.com/blog/1201423)

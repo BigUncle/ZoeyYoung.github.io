@@ -1,0 +1,68 @@
+Title: Web IM
+Date: 2013-06-13
+Tags: ExtJS,jQuery,DWR,Java EE,Spring
+Slug: web-im-project
+Author: Zoey Young
+Summary: 我的实习项目 Web IM
+
+在永中实习期间的项目, 独立维护, 对公司原有的代码进行了大量的修改, 解决了大量Bug, 并对原有代码进行了重构、优化
+
+项目主要使用到了ExtJS, jQuery, 使用DWR进行数据推送与Ajax数据获取
+
+在这里只给出截图
+
+联系人界面, 可收进, 展开, 模仿新浪微博
+
+![1](/static/images/IM/1.jpg)
+
+主聊天界面, 主要使用了ExtJS组件实现
+
+![2](/static/images/IM/2.jpg)
+
+在有新消息时, 会有声音提醒, 闪动提醒, 高亮提醒
+
+![3](/static/images/IM/3.jpg)
+
+悬浮可出现消息列表
+
+![4](/static/images/IM/4.jpg)
+
+联系人资料
+
+![5](/static/images/IM/5.jpg)
+
+创建讨论组
+
+![6](/static/images/IM/6.jpg)
+
+查找联系人
+
+![7](/static/images/IM/7.jpg)
+
+添加联系人
+
+![8](/static/images/IM/8.jpg)
+
+查找讨论组
+
+![9](/static/images/IM/9.jpg)
+
+加入讨论组
+
+![10](/static/images/IM/10.jpg)
+
+添加好友提醒
+
+![11](/static/images/IM/11.jpg)
+
+![14](/static/images/IM/14.jpg)
+
+![15](/static/images/IM/15.jpg)
+
+历史记录
+
+![12](/static/images/IM/12.jpg)
+
+右键菜单
+
+![13](/static/images/IM/13.jpg)

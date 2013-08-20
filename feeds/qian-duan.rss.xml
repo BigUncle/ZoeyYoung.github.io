@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OK Computer</title><link>http://zoeyyoung.github.io/</link><description>It's better to burn out &lt;br/&gt; than to fade away.</description><atom:link href="http://zoeyyoung.github.io/feeds/qian-duan.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 06 Aug 2013 00:00:00 +0800</lastBuildDate><item><title>彩色固定位置菜单</title><link>http://zoeyyoung.github.io/fixed-colorful-menu.html</link><description>&lt;p&gt;目前设计的比较满意的菜单, 把代码单独拿出来做成Demo.&lt;/p&gt;
+&lt;p&gt;可用在菜单项不多的应用中.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="menu" src="/static/images/menu.gif" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://zoeyyoung.gitcafe.com/lib/menudemo/menu.html"&gt;Demo&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 06 Aug 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-08-06:fixed-colorful-menu.html</guid><category>前端</category><category>Menu</category></item><item><title>[解决] jQuery hover对于动态添加元素无法生效的问题</title><link>http://zoeyyoung.github.io/jquery-hover.html</link><description>&lt;p&gt;原本直接使用&lt;code&gt;hover()&lt;/code&gt;, 但是我的应用中有使用Ajax动态添加元素, 而新添加的元素对&lt;code&gt;hover()&lt;/code&gt;事件无响应&lt;/p&gt;
+&lt;p&gt;最初写法:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.link-item&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;hover&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.link-note&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;stop&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;slideToggle&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;搜索发现许多人说用&lt;code&gt;live()&lt;/code&gt;, 但看官方文档&lt;code&gt;live()&lt;/code&gt;已经移除了&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;version deprecated: 1.7 | removed: 1.9
+As of jQuery 1.7, the &lt;code&gt;.live()&lt;/code&gt; method is deprecated. Use &lt;code&gt;.on()&lt;/code&gt; to attach event handlers. Users of older versions of jQuery should use &lt;code&gt;.delegate()&lt;/code&gt; in preference to &lt;code&gt;.live()&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;selector&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;live&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;events&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;handler&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;                &lt;span class="c1"&gt;// jQuery 1.3+&lt;/span&gt;
+&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;delegate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;selector&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;events&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;handler&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;  &lt;span class="c1"&gt;// jQuery 1.4.3+&lt;/span&gt;
+&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;on&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;events&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;selector&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;handler&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;        &lt;span class="c1"&gt;// jQuery 1.7+&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;因此使用&lt;code&gt;on()&lt;/code&gt;方法修改后写法:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;on&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;mouseenter mouseleave&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;.link-item&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.link-note&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;stop&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;slideToggle&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;注意这里事件不是&lt;code&gt;hover&lt;/code&gt;, 而是&lt;code&gt;mouseenter mouseleave&lt;/code&gt;. (我试过用&lt;code&gt;hover&lt;/code&gt;没有生效...)&lt;/p&gt;
+&lt;p&gt;===== 下面是废话 =====&lt;/p&gt;
+&lt;p&gt;最近整理文件, 发现不写博客, 不写记录的话, 做过的东西跟没做过没差...因为完全不记得&lt;/p&gt;
+&lt;p&gt;写记录的话, 即使会过时, 至少还感觉自己做过了...最大的优点是有时重复遇到的问题直接看博客就解决了..不用再去搜索一遍&lt;/p&gt;
+&lt;p&gt;我目前做的应用的目的也是这样的, 有些搜索过的博文, 或感兴趣的链接放书签里很久都没去看过了, 但通过整理记笔记加标签, 下次直接搜索书签很容易就找到了.&lt;/p&gt;
+&lt;p&gt;笔记软件和美味书签的结合.&lt;/p&gt;
+&lt;p&gt;代码也是的, 之前总直接保存在笔记本里, 结果原来写的代码压根不记得了, 也不想去看不想去改. 这回应用中好好利用了Git, 修改了一定代码后就及时提交, 并写提交的内容, 相当于跟着代码的生命周期在走. 感觉很爽. 以后即使电脑上文件丢失也不怕了.&lt;/p&gt;
+&lt;p&gt;想到这点是因为之前移动硬盘坏过, 我把文件都恢复出来了, 结果一堆图片还有文件都是损坏掉的, 只能看到文件名了...又没备份, 只能直接删掉了...共删了几个G的东西...还好没啥重要的, 其实好多文件我都忘了它的存在了..但万一是重要文件就该心疼了...&lt;/p&gt;
+&lt;p&gt;所以这回我也意识到要经常备份我的数据库了...上次修改了一个配置, 结果打开应用数据是空的. 我以为完蛋了..数据难道被我误删了...还好不是...是安装时配置参数的问题.万一呢...吓了我一跳...所有书签都保存在里面呢...要是丢了就呵呵了...&lt;/p&gt;
+&lt;p&gt;还有这个博客托管在GitCafe, 前面文章也写到了.&lt;/p&gt;
+&lt;p&gt;每次直接修改本地文件, 然后Git提交, 感觉非常好. 当然了...一般人还是用富文本比较直接...这种方式估计只有程序员会这么做, 或者一些对计算机, 编程感兴趣的人&lt;/p&gt;
+&lt;p&gt;End&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sat, 27 Jul 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-07-27:jquery-hover.html</guid><category>前端</category><category>JavaScript</category><category>jQuery</category></item><item><title>使用SVG制作简单LOGO</title><link>http://zoeyyoung.github.io/svg-logo.html</link><description>&lt;h3&gt;什么是SVG?&lt;/h3&gt;
+&lt;p&gt;&lt;a href="http://zh.wikipedia.org/wiki/SVG"&gt;维基&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="位图和矢量图" src="/static/images/Bitmap_VS_SVG.svg.png" /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这张图片展示了位图和矢量图的区别。位图是由点构成的，矢量图则是由一些形状元素构成。该图中显示放大位图可以看到点，而放大矢量图看到的仍然是形状。SVG属于矢量图，因此能够无级缩放，而不会导致马赛克。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;开始制作&lt;/h3&gt;
+&lt;p&gt;首先在&lt;a href="http://www.google.com/fonts/"&gt;Google Font&lt;/a&gt;选择一款字体, 其它地方也可以..&lt;/p&gt;
+&lt;p&gt;我选了&lt;strong&gt;Lobster&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Lobster" src="/static/images/Lobster.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;使用&lt;a href="http://inkscape.org/download/"&gt;Inkscape&lt;/a&gt;制作&lt;strong&gt;.svg&lt;/strong&gt;文件&lt;/p&gt;
+&lt;p&gt;参考&lt;a href="http://inkscape.org/doc/advanced/tutorial-advanced.zh_CN.html"&gt;教程&lt;/a&gt;中创建文本部分&lt;/p&gt;
+&lt;p&gt;快捷键&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Alt+&amp;lt;&lt;/code&gt; 和 &lt;code&gt;Alt+&amp;gt;&lt;/code&gt; 改变当前行的字间距&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Alt+arrows&lt;/code&gt; 键移动光标右侧的文字&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Alt+Left&lt;/code&gt; 和 &lt;code&gt;Alt+Right&lt;/code&gt; 将文字左右移动&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Alt+Up&lt;/code&gt; 和 &lt;code&gt;Alt+Down&lt;/code&gt; 将文字上下移动&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;可单独调整每个文字的大小&lt;/p&gt;
+&lt;p&gt;制作后的效果:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Inkscape" src="/static/images/Inkscape.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;这里我只使用了最基础的功能, 因为也是第一次用...还有很多功能值得探索&lt;/p&gt;
+&lt;p&gt;在&lt;strong&gt;Document Properties&lt;/strong&gt;中可调整画布大小&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Inkscape" src="/static/images/Inkscape2.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;将文件存为&lt;strong&gt;logo.svg&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;接下来可以在网站中设置CSS来实现特殊的效果了&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;brand-wrapper&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;a&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://zoeyyoung.gitcafe.com&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;brand&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;OK Computer&lt;span class="nt"&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;p&lt;/span&gt; &lt;span class="na"&gt;style=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text-align: center;&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;It&amp;#39;s better to burn out &lt;span class="nt"&gt;&amp;lt;br&amp;gt;&lt;/span&gt; than to fade away.&lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;CSS:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;body&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;background-color&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;#EAF4FF&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;font&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;16px&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="m"&gt;5&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="m"&gt;5&lt;/span&gt;&lt;span class="n"&gt;fae&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="m"&gt;8&lt;/span&gt;&lt;span class="n"&gt;f6f&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="m"&gt;96&lt;/span&gt;&lt;span class="n"&gt;c5&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="m"&gt;9&lt;/span&gt;&lt;span class="n"&gt;ed1&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;tahoma&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;arial&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="m"&gt;5&lt;/span&gt;&lt;span class="n"&gt;b8b&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="m"&gt;4&lt;/span&gt;&lt;span class="n"&gt;f53&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="nc"&gt;.brand&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;text-indent&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;-9999px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;display&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="k"&gt;block&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;height&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;130px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;background&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;rgba&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="sx"&gt;url(&amp;quot;logo.svg&amp;quot;)&lt;/span&gt; &lt;span class="k"&gt;center&lt;/span&gt; &lt;span class="m"&gt;70px&lt;/span&gt; &lt;span class="k"&gt;no-repeat&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="nc"&gt;.brand-wrapper&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;margin&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;20px&lt;/span&gt; &lt;span class="k"&gt;auto&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;width&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;230px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;height&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;230px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;border&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;2px&lt;/span&gt; &lt;span class="k"&gt;dashed&lt;/span&gt; &lt;span class="m"&gt;#000&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;border&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;radius&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;100&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;这里用到了设置Logo经常用使用的方法, &lt;code&gt;text-indent: -9999px;&lt;/code&gt;, 然后设置背景图片.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;brand-wrapper&lt;/code&gt;用来制作圆形边框, 通过微调可实现不同的效果&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Logo" src="/static/images/logo.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://zoeyyoung.gitcafe.com/lib/brand.html"&gt;Demo&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这样一个简单的LOGO就完成了, 而且放大网页并不影响显示效果.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Wed, 26 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-26:svg-logo.html</guid><category>前端</category><category>Logo</category><category>SVG</category></item><item><title>自动动手制作Pelican主题</title><link>http://zoeyyoung.github.io/pelican-theme.html</link><description>&lt;h3&gt;我创建的主题&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://github.com/ZoeyYoung/my-pelican-theme"&gt;第1个主题&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="截图" src="/static/images/screenshot.jpg" /&gt;&lt;/p&gt;
+&lt;h3&gt;使用主题&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Specify name of a built-in theme&lt;/span&gt;
+&lt;span class="n"&gt;THEME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;notmyidea&amp;quot;&lt;/span&gt;
+&lt;span class="c"&gt;# Specify name of a theme installed via the pelican-themes tool&lt;/span&gt;
+&lt;span class="n"&gt;THEME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;chunk&amp;quot;&lt;/span&gt;
+&lt;span class="c"&gt;# Specify a customized theme, via path relative to the settings file&lt;/span&gt;
+&lt;span class="n"&gt;THEME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;themes/mycustomtheme&amp;quot;&lt;/span&gt;
+&lt;span class="c"&gt;# Specify a customized theme, via absolute path&lt;/span&gt;
+&lt;span class="n"&gt;THEME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;~/projects/mysite/themes/mycustomtheme&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;目录结构&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;├──&lt;/span&gt; &lt;span class="n"&gt;static&lt;/span&gt;                    &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="err"&gt;会被复制到&lt;/span&gt; &lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;theme&lt;/span&gt; &lt;span class="err"&gt;文件夹&lt;/span&gt;
+&lt;span class="err"&gt;│&lt;/span&gt;   &lt;span class="err"&gt;├──&lt;/span&gt; &lt;span class="n"&gt;css&lt;/span&gt;
+&lt;span class="err"&gt;│&lt;/span&gt;   &lt;span class="err"&gt;└──&lt;/span&gt; &lt;span class="n"&gt;images&lt;/span&gt;
+&lt;span class="err"&gt;└──&lt;/span&gt; &lt;span class="n"&gt;templates&lt;/span&gt;
+    &lt;span class="err"&gt;├──&lt;/span&gt; &lt;span class="n"&gt;archives&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;         &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;display&lt;/span&gt; &lt;span class="n"&gt;archives&lt;/span&gt;
+    &lt;span class="err"&gt;├──&lt;/span&gt; &lt;span class="n"&gt;period_archives&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;  &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;display&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;period&lt;/span&gt; &lt;span class="n"&gt;archives&lt;/span&gt;
+    &lt;span class="err"&gt;├──&lt;/span&gt; &lt;span class="n"&gt;article&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;          &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;processed&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;each&lt;/span&gt; &lt;span class="n"&gt;article&lt;/span&gt;
+    &lt;span class="err"&gt;├──&lt;/span&gt; &lt;span class="n"&gt;author&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;           &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;processed&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;each&lt;/span&gt; &lt;span class="n"&gt;author&lt;/span&gt;
+    &lt;span class="err"&gt;├──&lt;/span&gt; &lt;span class="n"&gt;authors&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;          &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;must&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt; &lt;span class="nb"&gt;all&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;authors&lt;/span&gt;
+    &lt;span class="err"&gt;├──&lt;/span&gt; &lt;span class="n"&gt;categories&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;       &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="err"&gt;列出所有分类目录&lt;/span&gt;
+    &lt;span class="err"&gt;├──&lt;/span&gt; &lt;span class="n"&gt;category&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;         &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;processed&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;each&lt;/span&gt; &lt;span class="n"&gt;category&lt;/span&gt;
+    &lt;span class="err"&gt;├──&lt;/span&gt; &lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;            &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;List&lt;/span&gt; &lt;span class="nb"&gt;all&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;articles&lt;/span&gt;
+    &lt;span class="err"&gt;├──&lt;/span&gt; &lt;span class="n"&gt;page&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;             &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;processed&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;each&lt;/span&gt; &lt;span class="n"&gt;page&lt;/span&gt;
+    &lt;span class="err"&gt;├──&lt;/span&gt; &lt;span class="n"&gt;tag&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;              &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="n"&gt;processed&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;each&lt;/span&gt; &lt;span class="n"&gt;tag&lt;/span&gt;
+    &lt;span class="err"&gt;└──&lt;/span&gt; &lt;span class="n"&gt;tags&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;             &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="err"&gt;列出所有标签&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="err"&gt;可以是标签云&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;快速的方案是拷贝已有的主题进行修改&lt;/p&gt;
+&lt;h3&gt;模板 和 变量&lt;/h3&gt;
+&lt;h4&gt;共同的变量&lt;/h4&gt;
+&lt;p&gt;即在每个模板中能使用的变量, 其中在配置文件中定义的变量在所有模板中都能使用&lt;/p&gt;
+&lt;p&gt;例如: 作者 {{ AUTHOR }}&lt;/p&gt;
+&lt;table border="1" class="docutils"&gt;
+    &lt;colgroup&gt;
+        &lt;col width="20%"&gt;
+        &lt;col width="80%"&gt;
+    &lt;/colgroup&gt;
+    &lt;thead valign="bottom"&gt;
+        &lt;tr class="row-odd"&gt;&lt;th class="head"&gt;变量&lt;/th&gt;
+        &lt;th class="head"&gt;描述&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody valign="top"&gt;
+        &lt;tr class="row-even"&gt;
+            &lt;td&gt;output_file&lt;/td&gt;
+            &lt;td&gt;当前生成的文件的文件名. 例如, 当Pelican渲染主页时, output_file的值为"index.html".&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr class="row-odd"&gt;
+            &lt;td&gt;articles&lt;/td&gt;
+            &lt;td&gt;文章列表, 根据日期降序排序. 所有元素为&lt;cite&gt;Article&lt;/cite&gt;对象, 可以访问其属性(如: title, summary, author等). 有时会被覆盖(例如在tags页中). 这时需要使用&lt;cite&gt;all_articles&lt;/cite&gt;变量代替.&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr class="row-even"&gt;
+            &lt;td&gt;dates&lt;/td&gt;
+            &lt;td&gt;与articles同样的列表, 但是根据日期升序排序.&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr class="row-odd"&gt;
+            &lt;td&gt;tags&lt;/td&gt;
+            &lt;td&gt;(tag, articles)列表元组, 包含所有标签.&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr class="row-even"&gt;
+            &lt;td&gt;categories&lt;/td&gt;
+            &lt;td&gt;(category, articles)列表元组, 包含所有分类目录, 以及各自的文章(values)列表&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr class="row-odd"&gt;
+            &lt;td&gt;pages&lt;/td&gt;
+            &lt;td&gt;页面列表&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;每个模板页中还有特殊的变量, 很简单, 具体看官方文档&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://docs.getpelican.com/en/latest/themes.html"&gt;How to create themes for Pelican&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;pelican-themes脚本的使用&lt;/h3&gt;
+&lt;p&gt;&lt;a href="http://docs.getpelican.com/en/latest/pelican-themes.html"&gt;pelican-themes&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;不是非要使用...&lt;/p&gt;
+&lt;p&gt;我是没用上 - -&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 25 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-25:pelican-theme.html</guid><category>Pelican</category><category>Theme</category></item><item><title>Web字体</title><link>http://zoeyyoung.github.io/web-font.html</link><description>&lt;p&gt;现代浏览器的优点就是当你觉得某个页面不错的时候, 可以很容易通过开发人员工具学习页面的相关设置(IE可忽略- -, 那个开发人员工具很难用...)&lt;/p&gt;
+&lt;p&gt;看了几篇相关文章, 都写得比较早了, 有些观点有冲突, 关系到不同平台的问题个人总是比较难以测试&lt;/p&gt;
+&lt;p&gt;我主要在Win7下使用Chrome浏览器, 没怎么注意字体的问题&lt;/p&gt;
+&lt;p&gt;这次在各个浏览器下进行一下测试(Mac, WinXP, Linux因条件因素暂时就不测试)&lt;/p&gt;
+&lt;p&gt;学习一些大网站的设置是不错的方法, 特别是一些前端相关的中文网站&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3&gt;测试字体&lt;/h3&gt;
+&lt;p&gt;在浏览器中直接调整CSS进行测试&lt;/p&gt;
+&lt;p&gt;正常: 海纳百川、有容乃大&lt;/p&gt;
+&lt;p&gt;斜体: &lt;em&gt;海纳百川、有容乃大&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;粗体: &lt;strong&gt;海纳百川、有容乃大&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;ABCDEFGHIJKLMNOPQRSTUVWXYZ&lt;/p&gt;
+&lt;p&gt;abcdefghijklmnopqrstuvwxyz&lt;/p&gt;
+&lt;p&gt;1234567890.:,;'"(!?)+-*/=&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;截图不是很清晰, 用了美图秀秀的拼图功能后就更不清晰了 - -||&lt;/p&gt;
+&lt;p&gt;但还是可以看出区别&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;默认&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="1" src="/static/images/Font/默认.jpg" /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;淘宝 &lt;code&gt;font: 12px/1.5 tahoma,arial,\5b8b\4f53;&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="2" src="/static/images/Font/测试1.jpg" /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;font: 62.5%/160% "Microsoft JhengHei","微軟正黑體","Microsoft YaHei","微软雅黑",Verdana, Arial, Helvetica, sans-serif;&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="3" src="/static/images/Font/测试2.jpg" /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;谷歌 &lt;code&gt;font: 12px/1.5 arial,sans-serif;&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="4" src="/static/images/Font/测试3.jpg" /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;我的设置: &lt;code&gt;font: 16px/1.5 \5fae\8f6f\96c5\9ed1,tahoma,arial,\5b8b\4f53;&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="5" src="/static/images/Font/测试4.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;主要区别在斜体上&lt;/p&gt;
+&lt;p&gt;12px对于现在的屏幕我感觉太小了, 基本我都得把网页放大了看&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3&gt;一些知识点&lt;/h3&gt;
+&lt;p&gt;通常用户看到的页面的样式会受到三层控制:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;第一层 浏览器的默认样式(各种环境下有不一致性, 一般使用reset.css来尽量重写浏览器的默认设置)&lt;/li&gt;
+&lt;li&gt;第二层 网页定义样式(&lt;strong&gt;关键&lt;/strong&gt;)&lt;/li&gt;
+&lt;li&gt;第三层 用户自定义样式(普通用户不会去设置)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;和CSS一样，后面的优先级高于前面的&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://designworkplan.com/typography-fonts/arial-is-everywhere.htm"&gt;无处不在的Arial&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The main reason why Microsoft chose Arial as standard typeface is because of the license fee from the original Helvectia typeface by the Haas Foundry was too high.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;通用字体族&lt;/strong&gt;(置于最后)&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在所有指定字体都失效的情况下，浏览器指定的一种最终的代用字体&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;如: serif(衬线字体) 和 sans-serif(无衬线字体)&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;设计者应该尽可能的给出齐全的font set，以尽可能的覆盖所有的系统，而不应该依赖于通用字体族&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;性能和效率&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;大部分平台都有arial，减少浏览器的查找时间。&lt;/li&gt;
+&lt;li&gt;代码最少，书写方便。arial基本上是名字最短的字体了，可以节约CSS的大小。&lt;/li&gt;
+&lt;li&gt;所有的字母都小写, 目前Google就是这样做的, 好处是既可以编写更快也能提升Gzip压缩的效率。&lt;/li&gt;
+&lt;li&gt;中文最好用unicode表示, 比如使用宋体是{font-family:\5b8b\4f53;}, 使用微软雅黑是{font-family:\5fae\8f6f\96c5\9ed1;}, 这样的好处是避免编码问题, 同时能得到所有的主流浏览器的支持。&lt;/li&gt;
+&lt;li&gt;使用正确的字体种类写法, 避免使用引号, 这样可以缩小CSS的大小。中文字体可以按上一条方式来编写。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;一些中文网站的字体设置&lt;/h3&gt;
+&lt;p&gt;有些文章写得比较早, 因此推荐的最佳方案会有所改变, 参考一些网站的字体设置&lt;/p&gt;
+&lt;p&gt;并非都是最佳的, 但谁也没法定义最佳...&lt;/p&gt;
+&lt;p&gt;淘宝&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;font&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="n"&gt;px&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mf"&gt;1.5&lt;/span&gt; &lt;span class="n"&gt;tahoma&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;arial&lt;/span&gt;&lt;span class="o"&gt;,\&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="n"&gt;b8b&lt;/span&gt;&lt;span class="o"&gt;\&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="n"&gt;f53&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;百度&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;font&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="n"&gt;px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;font&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;family&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;arial&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="n"&gt;b8b&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="mf"&gt;4f&lt;/span&gt;&lt;span class="mi"&gt;53&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;sans&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;serif&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;新浪&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;font&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="n"&gt;px&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mf"&gt;1.125&lt;/span&gt; &lt;span class="n"&gt;Arial&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;Helvetica&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;sans&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;serif&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;a href="http://dancewithnet.com/"&gt;随网之舞&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;font&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;62.5&lt;/span&gt;&lt;span class="o"&gt;%/&lt;/span&gt;&lt;span class="mi"&gt;160&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Microsoft JhengHei&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;微軟正黑體&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Microsoft YaHei&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;微软雅黑&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="n"&gt;Verdana&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Arial&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Helvetica&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sans&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;serif&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;a href="http://justjavac.com/"&gt;justjavac&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;font&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;family&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;Times&lt;/span&gt; &lt;span class="n"&gt;New&lt;/span&gt; &lt;span class="n"&gt;Roman&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;Helvetica&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;arial&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;freesans&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;clean&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;sans&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;serif&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;font&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;13&lt;/span&gt;&lt;span class="n"&gt;px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;height&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="n"&gt;px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;相关文档:&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="http://xw332.blog.163.com/blog/static/103567420073645920507/"&gt;微软雅黑 vs windows宋体&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="http://www.cnblogs.com/ruxpinsp1/archive/2008/04/29/font-in-front-end-development-1.html"&gt;谈谈网页设计中的字体应用 (1) Font Set&lt;/a&gt; 作者: 棕熊 时间: 2008-04-29&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="http://dancewithnet.com/2009/11/22/default-web-font-style/"&gt;默认Web字体样式&lt;/a&gt; 作者: 秦歌, 时间: 2009-11-22&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://www.evernote.com/shard/s17/sh/77011947-b7d0-4b50-b450-a81f827c3e6f/8e4e30329e487fdb4b32ddb5450c9e6f"&gt;Evernote收藏&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="http://justjavac.com/web/2012/04/13/best-web-default-fonts"&gt;最佳 Web 中文默认字体&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 25 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-25:web-font.html</guid><category>CSS</category><category>字体</category><category>Web</category><category>微软雅黑</category><category>浏览器</category></item><item><title>创建打印样式表</title><link>http://zoeyyoung.github.io/print-style-sheet.html</link><description>&lt;p&gt;Chrome浏览器有一项非常好用的功能, 就是直接将网页保存为PDF(Ctrl+P), 虽然部分人觉得没有用, 但我经常使用这个功能&lt;/p&gt;
+&lt;p&gt;比如说, 有的博文写得不错, 想保存, 但是以什么样的方式保存是个问题&lt;/p&gt;
+&lt;p&gt;以前我会用为知, EverNote之类的笔记软件保存, 但是我又有格式强迫症, 总觉得保存下来的网页不够漂亮, 因为会保存一些不必要的格式&lt;/p&gt;
+&lt;p&gt;所以还是存为PDF对我来说可看性强一点&lt;/p&gt;
+&lt;p&gt;许多网站并没有&lt;strong&gt;Print Style Sheet&lt;/strong&gt;这个东西, 直接后果是我存为PDF时会连导航栏, 底部信息等跟文章无关的东西一并保存了, 需要打印的话这些也会一起打印出来&lt;/p&gt;
+&lt;p&gt;因此, 对于信息类的网站, 有一个&lt;strong&gt;Print Style Sheet&lt;/strong&gt;我认为是非常有必要的&lt;/p&gt;
+&lt;p&gt;而这个东西的创建又极其的简单, 只要在原有的样式表中添加一个&lt;code&gt;media="print"&lt;/code&gt;的样式表&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;link&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;print.css&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text/css&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;rel=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;stylesheet&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;media=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;print&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;原有的样式表的&lt;code&gt;media="screen"&lt;/code&gt;, 否则打印样式表会继承原有的样式表(非必须)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;link&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;screen.css&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;rel=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;stylesheet&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text/css&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;media=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;screen&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;需要注意的是, Chrome的打印功能本身对页面进行了处理, 因此一些样式不设置也不影响&lt;/p&gt;
+&lt;p&gt;但是对于内容的显示与否, Chrome的打印样式并未做处理&lt;/p&gt;
+&lt;p&gt;下面是创建样式的主要步骤(同参考文档, 详细解说可看参考文档):&lt;/p&gt;
+&lt;h3&gt;1. Remove the Navigation&lt;/h3&gt;
+&lt;p&gt;更简单的说, 就是移除一切不需要显示的, 设置&lt;code&gt;display: none;&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nf"&gt;#nav&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nf"&gt;#sidebar&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="k"&gt;display&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="k"&gt;none&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;一个小技巧, 就是为所有不需要打印的元素添加一个类&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nc"&gt;.no-print&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="k"&gt;display&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="k"&gt;none&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;2. Enlarge the Content Area&lt;/h3&gt;
+&lt;p&gt;扩大正文区域, 一般我们文章显示宽度并非100%, 这边修改正文区域为100%, 并移除浮动&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nf"&gt;#content&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="k"&gt;width&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;100&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;margin&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;float&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="k"&gt;none&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;3. Reset the Background Colors&lt;/h3&gt;
+&lt;p&gt;重置背景色, 打印一般为白底黑字, 但一些网页的背景颜色是深色, 而字体是浅色, 所以要重置&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;body&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="k"&gt;background&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;white&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="nf"&gt;#content&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="k"&gt;background&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="k"&gt;transparent&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;4. Reset Text Colors&lt;/h3&gt;
+&lt;p&gt;既然要重置背景色, 当然字体颜色也要重置了, 否则打印字体颜色为白色的字, 那就没法阅读了&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nf"&gt;#author&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="k"&gt;color&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;#111&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;5. Display the Destination of Links&lt;/h3&gt;
+&lt;p&gt;网页中的链接在打印的文章中是无法点击的, 这时打印出链接会更直观的表示出这里是链接, 而不是直接略过了, 当然并不是所有链接都需要打印出, 通常是正文中的链接才需要打印出&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;a&lt;/span&gt;&lt;span class="nd"&gt;:link:after&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="k"&gt;content&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot; (&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;attr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;href&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;) &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;6. Make Links Stand Out from Regular Text&lt;/h3&gt;
+&lt;p&gt;给链接添加样式, 比如加粗, 或加下划线&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;a&lt;/span&gt;&lt;span class="nd"&gt;:link&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="k"&gt;font-weight&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="k"&gt;bold&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;text-decoration&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="k"&gt;underline&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;color&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;#06c&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;7. What About Font Size?&lt;/h3&gt;
+&lt;p&gt;设置字体大小, 差不多就行了&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;p&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="k"&gt;font-size&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;12pt&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;8. What About Fonts?&lt;/h3&gt;
+&lt;p&gt;设置字体&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;body&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="k"&gt;font-family&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Georgia&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="err"&gt;‘&lt;/span&gt;&lt;span class="n"&gt;Times&lt;/span&gt; &lt;span class="n"&gt;New&lt;/span&gt; &lt;span class="n"&gt;Roman&lt;/span&gt;&lt;span class="err"&gt;’&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="k"&gt;serif&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;9. My Blog Has a Lot of Comments. What Should I Do?&lt;/h3&gt;
+&lt;p&gt;对于评论的处理, 显示还是不显示? 让读者自己选择吧, 使用分页, 将评论的页面单独出来, 打印或保存时都可以选择打印部分页&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nf"&gt;#comments&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="k"&gt;page&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;break&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;before&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="k"&gt;always&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;10. Show a Print-Only Message&lt;/h3&gt;
+&lt;p&gt;只在打印中显示的信息, 方法就是设置一段在正常页面不显示的段落, 然后在打印页面中显示出来, 利用&lt;code&gt;display&lt;/code&gt;属性&lt;/p&gt;
+&lt;p&gt;我的&lt;code&gt;print.css&lt;/code&gt;&lt;/p&gt;
+&lt;script src="https://gist.github.com/ZoeyYoung/5850742.js"&gt;&lt;/script&gt;
+
+&lt;p&gt;添加样式前:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="顶部导航也显示在打印页中" src="/static/images/print-style-sheet.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="评论与文章是连续显示的" src="/static/images/print-style-sheet2.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="底部导航也显示在打印页中" src="/static/images/print-style-sheet3.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;添加样式后:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="首页不显示导航了" src="/static/images/print-style-sheet4.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="评论页单独出来了" src="/static/images/print-style-sheet5.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;Chrome的开发人员工具中还有模拟media的功能&lt;/p&gt;
+&lt;p&gt;&lt;img alt="media" src="/static/images/chrome-dev-tool.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;将&lt;strong&gt;Emulate CSS media&lt;/strong&gt;修改为&lt;strong&gt;print&lt;/strong&gt;后页面显示为&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Emulate CSS media:print" src="/static/images/print-style-sheet6.jpg" /&gt;&lt;/p&gt;
+&lt;h3&gt;参考文档:&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.webdesignerdepot.com/2010/01/10-tips-for-better-print-style-sheets/"&gt;10 Tips for Better Print Style Sheets&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;存在问题&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;在Chrome中经常会直接显示打印的效果...用Ctrl+F5刷新才显示正常, 为什么? 在IE下没发现这个问题..&lt;/li&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Mon, 24 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-24:print-style-sheet.html</guid><category>CSS</category><category>HTML</category></item><item><title>博客主题中通用的代码片段</title><link>http://zoeyyoung.github.io/theme-design.html</link><description>&lt;p&gt;目前博客主题使用的是Pelican主题中的built-texts, GitHub中提供了许多主题, 但试了几个都不怎么好看, 最后觉得这个还不错, 比较简洁&lt;/p&gt;
+&lt;p&gt;当然和Wordpress中的那么多主题资源不能比了...&lt;/p&gt;
+&lt;p&gt;该主题基于Bootstrap, 很容易进行修改&lt;/p&gt;
+&lt;p&gt;我根据需要进行了一些修改, 先给个原始的截图&lt;/p&gt;
+&lt;p&gt;&lt;img alt="built-texts-screenshot" src="/static/images/build-texts.png" /&gt;&lt;/p&gt;
+&lt;p&gt;下面记录一些可做的修改和资源&lt;/p&gt;
+&lt;h2&gt;字体&lt;/h2&gt;
+&lt;p&gt;本博客的字体使用到了Google Font API&lt;/p&gt;
+&lt;p&gt;http://www.google.com/fonts/&lt;/p&gt;
+&lt;p&gt;页面中:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cm"&gt;/* Single font load*/&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;link&lt;/span&gt; &lt;span class="n"&gt;rel&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;stylesheet&amp;quot;&lt;/span&gt; &lt;span class="k"&gt;type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text/css&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;href&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://fonts.googleapis.com/css?family=Droid+Serif&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="cm"&gt;/* Multiple font load*/&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;link&lt;/span&gt; &lt;span class="n"&gt;rel&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;stylesheet&amp;quot;&lt;/span&gt; &lt;span class="k"&gt;type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text/css&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;href&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://fonts.googleapis.com/css?family=Nobile|Droid+Serif|Old+Standard+TT|Droid+Sans&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;lt;!--&lt;/span&gt; &lt;span class="n"&gt;Some&lt;/span&gt; &lt;span class="n"&gt;special&lt;/span&gt; &lt;span class="n"&gt;fonts&lt;/span&gt; &lt;span class="o"&gt;--&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;CSS文件中:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;body&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;font&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;family&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;Droid&lt;/span&gt; &lt;span class="n"&gt;Serif&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;serif&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;font&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;48&lt;/span&gt;&lt;span class="n"&gt;px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;使用方法很简单, 就不介绍了, 缺点是只适用于英文字体...&lt;/p&gt;
+&lt;h2&gt;自定义文本选择&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="自定义文本选择" src="/static/images/selection.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;设置选中时的颜色&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="nd"&gt;:selection&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="k"&gt;background&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;#F92659&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;color&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="nb"&gt;white&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="nd"&gt;:-moz-selection&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="k"&gt;background&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;#F92659&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;color&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="nb"&gt;white&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="nd"&gt;:-webkit-selection&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="k"&gt;background&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;#F92659&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;color&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="nb"&gt;white&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;改变颜色值即可&lt;/p&gt;
+&lt;h2&gt;隐藏Brand文本为Logo标志&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;brand&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;indent&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;9999&lt;/span&gt;&lt;span class="n"&gt;px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="nl"&gt;display:&lt;/span&gt; &lt;span class="n"&gt;block&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="nl"&gt;width:&lt;/span&gt; &lt;span class="mi"&gt;320&lt;/span&gt;&lt;span class="n"&gt;px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="nl"&gt;height:&lt;/span&gt; &lt;span class="mi"&gt;45&lt;/span&gt;&lt;span class="n"&gt;px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="nl"&gt;background:&lt;/span&gt; &lt;span class="n"&gt;transparent&lt;/span&gt; &lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;static/logo.png&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;repeat&lt;/span&gt; &lt;span class="n"&gt;scroll&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;根据Brand原来属于什么标签或位置会有所不同, 做微调即可&lt;/p&gt;
+&lt;p&gt;英文一般直接用特殊字体就好了感觉...&lt;/p&gt;
+&lt;p&gt;许多网站都用了这个方法来设置Logo&lt;/p&gt;
+&lt;h2&gt;修改引用的样式&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;blockquote&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;background&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;#f9f9f9&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;border-left&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;10px&lt;/span&gt; &lt;span class="k"&gt;solid&lt;/span&gt; &lt;span class="m"&gt;#ccc&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;margin&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;1.5em&lt;/span&gt; &lt;span class="m"&gt;10px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;padding&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;.5em&lt;/span&gt; &lt;span class="m"&gt;10px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;quotes&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;\201C&amp;quot;&amp;quot;\201D&amp;quot;&amp;quot;\2018&amp;quot;&amp;quot;\2019&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="nt"&gt;blockquote&lt;/span&gt;&lt;span class="nd"&gt;:before&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;color&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;#ccc&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;content&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="k"&gt;open-quote&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;font-size&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;4em&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;line-height&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;.1em&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;margin-right&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;.25em&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;vertical-align&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;-.4em&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="nt"&gt;blockquote&lt;/span&gt; &lt;span class="nt"&gt;p&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;display&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="k"&gt;inline&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;a href="http://css-tricks.com/snippets/css/simple-and-nice-blockquote-styling/"&gt;来源&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;给文章图片加边框&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="给文章图片加边框" src="/static/images/img-border.jpg" /&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;article&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt; &lt;span class="n"&gt;img&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nl"&gt;background:&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="mo"&gt;000&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="cm"&gt;/*Change this to a background image or remove*/&lt;/span&gt;
+    &lt;span class="nl"&gt;border:&lt;/span&gt;&lt;span class="n"&gt;solid&lt;/span&gt; &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="n"&gt;fff&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;border&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;width&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="n"&gt;px&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="n"&gt;px&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="n"&gt;px&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="n"&gt;px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;box&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;shadow&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="n"&gt;px&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="n"&gt;px&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="n"&gt;px&lt;/span&gt; &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="mi"&gt;333&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="cm"&gt;/* Standard blur at 5px. Increase for more depth */&lt;/span&gt;
+    &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;webkit&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;box&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;shadow&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="n"&gt;px&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="n"&gt;px&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="n"&gt;px&lt;/span&gt; &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="mi"&gt;333&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;moz&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;box&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;shadow&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="n"&gt;px&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="n"&gt;px&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="n"&gt;px&lt;/span&gt; &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="mi"&gt;333&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;注意不要把不该加的也给加上了...&lt;/p&gt;
+&lt;p&gt;其实应该引入类的...&lt;/p&gt;
+&lt;h2&gt;锚链接伪类&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;link&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt; &lt;span class="n"&gt;color&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;blue&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; &lt;span class="o"&gt;}&lt;/span&gt;
+&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;visited&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt; &lt;span class="n"&gt;color&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;purple&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; &lt;span class="o"&gt;}&lt;/span&gt;
+&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;hover&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt; &lt;span class="n"&gt;color&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;red&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; &lt;span class="o"&gt;}&lt;/span&gt;
+&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;active&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt; &lt;span class="n"&gt;color&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;yellow&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; &lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;这个记忆的方式貌似是&lt;strong&gt;LoVe HAte&lt;/strong&gt;, 需要按顺序设置&lt;/p&gt;
+&lt;h2&gt;评论与分享系统&lt;/h2&gt;
+&lt;p&gt;我用的&lt;a href="http://www.uyan.cc/"&gt;友言&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;默认是用的DISQUS, 但这个对国产的社交化平台没啥支持, 所以换成了友言&lt;/p&gt;
+&lt;p&gt;同时用了&lt;a href="http://www.jiathis.com/"&gt;加网&lt;/a&gt;, 用于分享&lt;/p&gt;
+&lt;p&gt;百度分享也提供了一样的功能...&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;待续...&lt;/p&gt;
+&lt;p&gt;参考文档:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.hongkiat.com/blog/css-snippets-for-designers/"&gt;50 Useful CSS Snippets Every Designer Should Have&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Fri, 21 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-21:theme-design.html</guid><category>CSS</category><category>HTML</category></item><item><title>Ext.QuickTips.init()</title><link>http://zoeyyoung.github.io/ext-quicktips-init.html</link><description>&lt;p&gt;先说我测试的Ext版本: ext-4.1.1a-gpl（感觉独立于版本存在的教程都有点...）&lt;/p&gt;
+&lt;p&gt;虽然API里面有例子, 写这个有点多余, 但是网上搜索到的文章存在误导, 例如:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;a&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;ext:qtip=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;my tooltip&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;Link&lt;span class="nt"&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;上面代码中&lt;code&gt;"my tooltip"&lt;/code&gt;的属性名为&lt;code&gt;ext:qtip&lt;/code&gt;(估计是原来的名称), 试了半天没显示出什么tooltip, 看了下官方的教程, 应该把属性名改为&lt;code&gt;data-qtip&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;能够正确显示tooltip的代码如下 ：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;meta&lt;/span&gt; &lt;span class="na"&gt;http-equiv=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Content-Type&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;content=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text/html; charset=UTF-8&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;title&amp;gt;&lt;/span&gt;Ext.QuickTips&lt;span class="nt"&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;link&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;others library&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;rel=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;stylesheet&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text/css&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/js/sandbox/extjs/resources/css/ext-all.css&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;script &lt;/span&gt;&lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;others library&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/js/sandbox/extjs/ext-all.js&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text/javascript&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;a&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;data-qtip=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;my tooltip1&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;Link1&lt;span class="nt"&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;a&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;data-qtip=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;my tooltip2&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;Link2&lt;span class="nt"&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;input&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;button&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;data-qtip=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;my tooltip3&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;value=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Button&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;script &lt;/span&gt;&lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text/javascript&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="nx"&gt;Ext&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;require&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Ext.tip.*&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
+        &lt;span class="nx"&gt;Ext&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;onReady&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+          &lt;span class="nx"&gt;Ext&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;QuickTips&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;init&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+        &lt;span class="p"&gt;});&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;a href="http://runjs.cn/code/hoqeicfy"&gt;查看代码&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Fri, 09 Nov 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-11-09:ext-quicktips-init.html</guid><category>ExtJS</category><category>前端</category><category>JavaScript</category><category>Html</category><category>代码</category></item><item><title>使用JS播放声音——SoundManager 2</title><link>http://zoeyyoung.github.io/sound-manager-2-web-im.html</link><description>&lt;p&gt;&lt;strong&gt;任务&lt;/strong&gt;: 让Web IM有声音提示&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;轮子&lt;/strong&gt;: http://www.schillmania.com/projects/soundmanager2/&lt;/p&gt;
+&lt;h3&gt;SoundManager 2 makes it easier to play audio using JavaScript.&lt;/h3&gt;
+&lt;p&gt;官方文档写得很详细，好东西&lt;/p&gt;
+&lt;p&gt;写个&lt;a href="http://zoeyyoung.gitcafe.com/lib/sm2demo/index.html"&gt;Demo&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;需要的文件有：下载soundmanager2包中的script文件夹和swf文件夹&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Demo/
+- index.html
+Demo/script/
+- jquery-1.8.2.min.js
+- soundmanager2-nodebug-jsmin.js
+Demo/swf/
+- soundmanager2_flash_xdomain.zip
+- soundmanager2_flash9_debug.swf
+- soundmanager2_flash9.swf
+- soundmanager2_debug.swf
+- soundmanager2.swf
+Demo/sound/
+- msg.mp3
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;index.html&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;meta&lt;/span&gt; &lt;span class="na"&gt;charset=&lt;/span&gt;&lt;span class="s"&gt;utf-8&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;title&amp;gt;&lt;/span&gt;SoundDemo&lt;span class="nt"&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;script &lt;/span&gt;&lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text/javascript&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;script/soundmanager2-nodebug-jsmin.js&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;script &lt;/span&gt;&lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text/javascript&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;script/jquery-1.10.0.min.js&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;script &lt;/span&gt;&lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text/javascript&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class="nx"&gt;soundManager&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+        &lt;span class="nx"&gt;url&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;swf/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;//swf文件夹的位置&lt;/span&gt;
+        &lt;span class="nx"&gt;onready&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+          &lt;span class="nx"&gt;soundManager&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;createSound&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+            &lt;span class="nx"&gt;id&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;msg&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="nx"&gt;autoLoad&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="nx"&gt;autoPlay&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="nx"&gt;url&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;sound/msg.mp3&amp;#39;&lt;/span&gt; &lt;span class="c1"&gt;//mp3文件的位置&lt;/span&gt;
+          &lt;span class="p"&gt;});&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+      &lt;span class="p"&gt;});&lt;/span&gt;
+      &lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;ready&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;#play&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;click&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+          &lt;span class="nx"&gt;soundManager&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;play&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;msg&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;//点击按钮可播放&lt;/span&gt;
+        &lt;span class="p"&gt;});&lt;/span&gt;
+      &lt;span class="p"&gt;});&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;input&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;button&amp;#39;&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;play&amp;#39;&lt;/span&gt; &lt;span class="na"&gt;value=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Play&amp;#39;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;遇到的问题&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;需要把Demo部署到服务器上才能正常, 否则还是会有?跨域的问题?(应该是这个问题吧), 不能加载本地文件. (意思是: 本地直接打开index.html是不能播放的, 但我上传到博客的服务器上就能播放了..有人不理解这个 - - 搜索"跨域"相关)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;用的.wav文件在chrome中能正常播放, 但在IE中不能播放, 转成.mp3文件后就都可以正常播放了&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;将代码添加到我自己写的IM里成功播放声音&lt;/p&gt;
+&lt;p&gt;参考文档:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://hi.baidu.com/ccutshyhao/item/4923810efa6a428e03ce1b0e"&gt;Ext:在Ext中播放声音(mp3等)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://yiminghe.iteye.com/blog/1201423"&gt;tip：如何原生播放声音&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Thu, 08 Nov 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-11-08:sound-manager-2-web-im.html</guid><category>JavaScript</category></item></channel></rss>

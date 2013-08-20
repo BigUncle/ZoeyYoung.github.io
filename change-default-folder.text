@@ -1,0 +1,39 @@
+Title: 修改Windows中默认用户文件夹的存放位置
+Date: 2012-11-01
+Tags: Windows,Tips,文件夹
+Slug: change-default-folder
+Author: Zoey Young
+Summary: 优化类软件都有这功能，不过还是给自己定制一下，直接导入比较方便
+
+优化类软件都有这功能，不过还是给自己定制一下，直接导入比较方便。
+
+### 一般步骤
+
+打开注册表编辑器(Win+R regedit)，进入分支：
+
+    HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders
+
+对数据进行修改即可
+
+![注册表中修改](/static/images/default-folder.gif)
+
+修改后可能要重启explorer才生效
+
+### 懒人
+
+可将相应设置存为".reg"文件，在重装系统后可直接导入注册表
+
+    :::registry
+    Windows Registry Editor Version 5.00
+    [HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders]
+    "Desktop"="F:\\Desktop"
+    "Favorites"="E:\\Favorites"
+    "My Music"="E:\\Music"
+    "My Pictures"="E:\\Pictures"
+    "My Video"="E:\\Videos"
+    "Personal"="E:\\Documents"
+    "{374DE290-123F-4565-9164-39C4925E467B}"="E:\\Downloads"
+
+注：上面文件夹路径中要使用双斜杠(\\)，使用单斜杠无效。
+
+设置后要重新启动**explorer**才能生效

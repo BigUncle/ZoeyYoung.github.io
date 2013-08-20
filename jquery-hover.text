@@ -1,0 +1,55 @@
+Title: [解决] jQuery hover对于动态添加元素无法生效的问题
+Date: 2013-07-27
+Tags: 前端,JavaScript,jQuery
+Slug: jquery-hover
+Author: Zoey Young
+Summary: jQuery hover对于动态添加元素无法生效的问题
+
+原本直接使用`hover()`, 但是我的应用中有使用Ajax动态添加元素, 而新添加的元素对`hover()`事件无响应
+
+最初写法:
+
+    :::javascript
+    $('.link-item').hover(function() {
+        $('.link-note', this).stop(true, true).slideToggle();
+    });
+
+搜索发现许多人说用`live()`, 但看官方文档`live()`已经移除了
+
+> version deprecated: 1.7 | removed: 1.9
+> As of jQuery 1.7, the `.live()` method is deprecated. Use `.on()` to attach event handlers. Users of older versions of jQuery should use `.delegate()` in preference to `.live()`.
+
+    :::javascript
+    $(selector).live(events, data, handler);                // jQuery 1.3+
+    $(document).delegate(selector, events, data, handler);  // jQuery 1.4.3+
+    $(document).on(events, selector, data, handler);        // jQuery 1.7+
+
+因此使用`on()`方法修改后写法:
+
+    $(document).on('mouseenter mouseleave', '.link-item', function() {
+        $('.link-note', this).stop(true, true).slideToggle();
+    });
+
+注意这里事件不是`hover`, 而是`mouseenter mouseleave`. (我试过用`hover`没有生效...)
+
+===== 下面是废话 =====
+
+最近整理文件, 发现不写博客, 不写记录的话, 做过的东西跟没做过没差...因为完全不记得
+
+写记录的话, 即使会过时, 至少还感觉自己做过了...最大的优点是有时重复遇到的问题直接看博客就解决了..不用再去搜索一遍
+
+我目前做的应用的目的也是这样的, 有些搜索过的博文, 或感兴趣的链接放书签里很久都没去看过了, 但通过整理记笔记加标签, 下次直接搜索书签很容易就找到了.
+
+笔记软件和美味书签的结合.
+
+代码也是的, 之前总直接保存在笔记本里, 结果原来写的代码压根不记得了, 也不想去看不想去改. 这回应用中好好利用了Git, 修改了一定代码后就及时提交, 并写提交的内容, 相当于跟着代码的生命周期在走. 感觉很爽. 以后即使电脑上文件丢失也不怕了.
+
+想到这点是因为之前移动硬盘坏过, 我把文件都恢复出来了, 结果一堆图片还有文件都是损坏掉的, 只能看到文件名了...又没备份, 只能直接删掉了...共删了几个G的东西...还好没啥重要的, 其实好多文件我都忘了它的存在了..但万一是重要文件就该心疼了...
+
+所以这回我也意识到要经常备份我的数据库了...上次修改了一个配置, 结果打开应用数据是空的. 我以为完蛋了..数据难道被我误删了...还好不是...是安装时配置参数的问题.万一呢...吓了我一跳...所有书签都保存在里面呢...要是丢了就呵呵了...
+
+还有这个博客托管在GitCafe, 前面文章也写到了.
+
+每次直接修改本地文件, 然后Git提交, 感觉非常好. 当然了...一般人还是用富文本比较直接...这种方式估计只有程序员会这么做, 或者一些对计算机, 编程感兴趣的人
+
+End

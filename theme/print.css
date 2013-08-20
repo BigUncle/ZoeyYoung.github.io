@@ -1,0 +1,10 @@
+.no-print { display: none !important; }
+body { color: black !important; background: white !important; background-image: none !important; font-family: '微软雅黑', Georgia, ‘Times New Roman’, serif; }
+.article-sidebar, .article-content { width: 100% !important; margin: 0 !important; float: none !important; }
+.content { background: transparent !important; }
+.content a:link:after { content: " (" attr(href) ") "; }
+.content a:link { font-weight: bold; text-decoration: underline; color: #06c !important;}
+p { font-size: 12pt; }
+#uyan_frame { page-break-before: always; }
+#uyan_frame a:link:after { content: ""; }
+.gist .line-numbers, .gist-meta { display: none; }

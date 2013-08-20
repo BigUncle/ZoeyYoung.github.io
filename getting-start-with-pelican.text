@@ -1,0 +1,47 @@
+Title: 在 Windows 下使用 Pelican + GitCafe Page 创建 Blog
+Date: 2013-06-13
+Tags: pelican
+Slug: getting-start-with-pelican
+Author: Zoey Young
+Summary: 在 Windows 下使用 Pelican + GitCafe Page 创建 Blog
+
+参考该[博客](http://riku.gitcafe.com/category/post.html)的两篇文章
+
+### 安装
+
+[官方文档](http://docs.getpelican.com/en/latest/getting_started.html)
+
+我使用virtualenv安装(需要先安装virtualenv):
+
+    :::bat
+    D:\>virtualenv pelican
+    D:\>cd pelican/Scripts
+    D:\pelican\Scripts>activate.bat
+    D:\pelican\Scripts>pip install pelican
+    D:\pelican\Scripts>pip install Markdown
+    D:\pelican\Scripts>cd ..
+    D:\pelican>pelican-quickstart
+
+配置文件: **pelicanconf.py**
+
+**特别注意** 以为创建与账户名同名的项目名称要小写，结果半天都没生成(GitHub是要小写的)，最后删除项目重新创建与 **ZoeyYoung** 项目才终于正确生成页面了.
+
+快速发布, 在**pelican目录**下
+
+创建**publish.bat**文件:
+
+    :::bat
+    pelican -s pelicanconf.py content -o output
+    cd output
+    git add .
+    git commit -m "Update"
+    git push
+    cd ../
+
+在命令行提示符下运行, 输入用户名, 密码, 则发布成功
+
+`Permission denied (publickey).`的问题, 改成以`https`形式提交就解决了
+
+比如我的: https://gitcafe.com/ZoeyYoung/ZoeyYoung.git
+
+Ubuntu下应该没这个问题吧...

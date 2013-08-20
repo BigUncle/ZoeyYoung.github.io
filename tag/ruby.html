@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>OK Computer</title>
+  <meta name="description" content="杨丁苗的个人博客">
+  <meta name="author" content="ZoeyYoung">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+  <!--[if lt IE 9]>
+  <script src="http://zoeyyoung.github.io/theme/html5.js"></script>
+  <![endif]-->
+  <!-- Le styles -->
+  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet" />
+  <link href="http://zoeyyoung.github.io/theme/print.css" rel="stylesheet" media="print" />
+  <link href="http://zoeyyoung.github.io/theme/local.css" rel="stylesheet" media="screen" />
+  <link href="http://zoeyyoung.github.io/theme/pygments.css" rel="stylesheet" />
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet" />
+  <!--[if IE 7]>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome-ie7.min.css" rel="stylesheet" />
+  <![endif]-->
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div id="header" class="span2 no-print">
+        <div class="brand-wrapper">
+          <a href="http://zoeyyoung.github.io" class="brand">OK Computer</a>
+          <p style="text-align: center; font-size: 12px; margin-top: 0;">It's better to burn out <br/> than to fade away.</p>
+        </div>
+        <ul id="blog-nav" class="nav">
+          <li>SITE</li>
+          <li><a href="http://zoeyyoung.github.io">首页</a></li>
+          <li><a href="http://zoeyyoung.github.io/archives.html">归档</a></li>
+          <li><a href="http://zoeyyoung.github.io/tags.html">标签</a></li>
+          <li><hr/></li>
+          <li>CATEGORIES</li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/java.html ">Java</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/linux.html ">Linux</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/nlp.html ">NLP</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/nosql.html ">NoSQL</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/python.html ">Python</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/ruby.html ">Ruby</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/tips.html ">Tips</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/qian-duan.html ">前端</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/gong-zuo-ji-lu.html ">工作记录</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/wo-de-xiang-mu.html ">我的项目</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/suan-fa.html ">算法</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/du-shu.html ">读书</a>
+          </li>
+                    <li><hr/></li>
+                    <li>PAGES<li>
+          
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/about-me.html">关于我</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/golden-slumber.html">Golden Slumber</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/on-the-road.html">在路上</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/software.html">我使用的软件</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/translate.html">翻译</a>
+          </li>
+                            </ul>
+      </div>
+      <div class="main-content span10">
+          
+    <div class='row-fluid'>
+        <div class="span12">
+            <a href="http://zoeyyoung.github.io/ruby-rvm.html"><h1>RVM</h1></a>
+            <div class="article-metadata">
+<time class="published" datetime="2012 六月 24 周日">2012 六月 24 周日 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/ruby.html">Ruby</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/ruby.html">Ruby</a>
+    </span>
+<!-- <p></p> -->
+</div>            <p>rvm是一个命令行工具，可以提供一个便捷的多版本ruby环境的管理和切换。</p>
+<p>https://rvm.io/</p>
+<p>如果你打算学习ruby/rails, rvm是必不可少的工具之一。</p>
+<p>这里所有的命令都是在用户权限下操作的，任何命令最好都不要用sudo.</p>
+<h2>安装RVM</h2>
+<p><a href="https://rvm.io/rvm/install/">安装RVM Installing RVM</a></p>
+<p>Installing the stable release version:</p>
+<div class="highlight"><pre><span class="err">$</span> <span class="n">curl</span> <span class="o">-</span><span class="n">L</span> <span class="n">get</span><span class="p">.</span><span class="n">rvm</span><span class="p">.</span><span class="n">io</span> <span class="o">|</span> <span class="n">bash</span> <span class="o">-</span><span class="n">s</span> <span class="n">stable</span>
+<span class="err">$</span> <span class="n">source</span> <span class="o">~/</span><span class="p">.</span><span class="n">bashrc</span>
+<span class="err">$</span> <span class="n">source</span> <span class="o">~/</span><span class="p">.</span><span class="n">bash_profile</span>
+</pre></div>
+
+
+<p>To get the latest development state:</p>
+<div class="highlight"><pre><span class="err">$</span> <span class="n">curl</span> <span class="o">-</span><span class="n">L</span> <span class="n">https</span><span class="o">:</span><span class="c1">//get.rvm.io | bash</span>
+</pre></div>
+
+
+<p><a href="https://rvm.io/rvm/upgrading/">升级RVM  Upgrading RVM</a></p>
+<h2>ruby的安装与切换</h2>
+<p>列出已知的ruby版本</p>
+<div class="highlight"><pre><span class="n">rvm</span> <span class="n">list</span> <span class="n">known</span>
+</pre></div>
+
+
+<p>安装一个ruby版本</p>
+<div class="highlight"><pre><span class="n">rvm</span> <span class="n">install</span> <span class="mf">1.9.3</span>
+</pre></div>
+
+
+<p>这里安装了最新的1.9.3, rvm list known列表里面的都可以安装</p>
+<p>使用一个ruby版本</p>
+<div class="highlight"><pre><span class="n">rvm</span> <span class="n">use</span> <span class="mf">1.9.3</span>
+</pre></div>
+
+
+<p>如果想设置为默认版本，可以这样</p>
+<div class="highlight"><pre><span class="n">rvm</span> <span class="n">use</span> <span class="mf">1.9.3</span> <span class="o">--</span><span class="k">default</span>
+</pre></div>
+
+
+<p>查询已经安装的ruby</p>
+<div class="highlight"><pre><span class="n">rvm</span> <span class="n">list</span>
+</pre></div>
+
+
+<p>卸载一个已安装版本</p>
+<div class="highlight"><pre><span class="n">rvm</span> <span class="n">remove</span> <span class="mf">1.9.2</span>
+</pre></div>
+
+
+<h2>gemset的使用</h2>
+<p>rvm不仅可以提供一个多ruby版本共存的环境，还可以根据项目管理不同的gemset.</p>
+<p>gemset可以理解为是一个独立的虚拟gem环境，每一个gemset都是相互独立的。</p>
+<p>比如你有两个项目，一个是rails 2.3 一个是 rails 3. gemset可以帮你便捷的建立两套gem开发环境，并且方便的切换。</p>
+<p>gemset是附加在ruby语言版本下面的，例如你用了1.9.2, 建立了一个叫rails3的gemset,当切换到1.8.7的时候，rails3这个gemset并不存在。</p>
+<p>建立gemset</p>
+<div class="highlight"><pre><span class="n">rvm</span> <span class="n">use</span> <span class="mf">1.8.7</span>
+<span class="n">rvm</span> <span class="n">gemset</span> <span class="n">create</span> <span class="n">rails23</span>
+</pre></div>
+
+
+<p>然后可以设定已建立的gemset做为当前环境</p>
+<p>use 可以用来切换语言，或者gemset,前提是他们已经被安装(或者建立)。并可以在list命令中看到。</p>
+<div class="highlight"><pre><span class="n">rvm</span> <span class="n">use</span> <span class="mf">1.8.7</span>
+<span class="n">rvm</span> <span class="n">use</span> <span class="mf">1.8.7</span><span class="err">@</span><span class="n">rails23</span>
+</pre></div>
+
+
+<p>然后所有安装的gem都是安装在这个gemset之下。</p>
+<p>列出当前ruby的gemset</p>
+<div class="highlight"><pre><span class="n">rvm</span> <span class="n">gemset</span> <span class="n">list</span>
+</pre></div>
+
+
+<p>清空gemset中的gem</p>
+<p>如果你想清空一个gemset的所有gem,想重新安装所有gem，可以这样</p>
+<div class="highlight"><pre><span class="n">rvm</span> <span class="n">gemset</span> <span class="n">empty</span> <span class="mf">1.8.7</span><span class="err">@</span><span class="n">rails23</span>
+</pre></div>
+
+
+<p>删除一个gemset</p>
+<div class="highlight"><pre><span class="n">rvm</span> <span class="n">gemset</span> <span class="n">delete</span> <span class="n">rails2</span><span class="o">-</span><span class="mi">3</span>
+</pre></div>
+
+
+<p>项目自动加载gemset</p>
+<p>rvm还可以自动加载gemset.</p>
+<p>例如我们有一个rails3.1.3项目，需要1.9.3版本ruby.整个流程可以这样。</p>
+<div class="highlight"><pre><span class="n">rvm</span> <span class="n">install</span> <span class="mf">1.9.3</span>
+<span class="n">rvm</span> <span class="n">use</span> <span class="mf">1.9.3</span>
+<span class="n">rvm</span> <span class="n">gemset</span> <span class="n">create</span> <span class="n">rails313</span>
+<span class="n">rvm</span> <span class="n">use</span> <span class="mf">1.9.3</span><span class="err">@</span><span class="n">rails313</span>
+</pre></div>
+
+
+<p>下面进入到项目目录，建立一个.rvmrc文件。</p>
+<p>在这个文件里可以很简单的加一个命令：</p>
+<div class="highlight"><pre><span class="n">rvm</span> <span class="n">use</span> <span class="mf">1.9.3</span><span class="err">@</span><span class="n">rails313</span>
+</pre></div>
+
+
+<p>然后无论你当前ruby设置是什么，cd到这个项目的时候，rvm会帮你加载 ruby 1.9.3和rails313 gemset.</p>
+<p>使用rvm来快速部署nginx+passenger</p>
+<p>*首先安装passenger</p>
+<div class="highlight"><pre><span class="n">gem</span> <span class="n">install</span> <span class="n">passenger</span>
+</pre></div>
+
+
+<p>然后使用passenger-install-nginx-module 来安装nginx和部署。</p>
+<p>因为这一步需要root权限（因为要编译nginx）可以用rvmsudo这个东西。（这个东西真是个好东西）</p>
+<div class="highlight"><pre><span class="n">rvmsudo</span> <span class="n">passenger</span><span class="o">-</span><span class="n">install</span><span class="o">-</span><span class="n">nginx</span><span class="o">-</span><span class="n">module</span>
+</pre></div>
+
+
+<p>然后会让你选择是下载nginx源码自动编译安装，还是自己选择nginx源码位置。</p>
+<p>选择nginx手动安装的可以添加别的编译参数，方便自定义编译nginx。</p>
+<p>然后一路下载安装。默认的安装位置为/opt/nginx.</p>
+<p>然后看看nginx.conf，都给你配置好了，只需要加上root位置（yourapp/public）就可以了。</p>
+<p>当我第一次安装完成了，就惊呼，这也太爽了吧。</p>
+<p>ps:rvm是个好东西，做的很智能，（大部分）操作失败后会告诉你原因，然后告诉你需要安装哪些Lib等等，非常适合新手老手使用,简直是居家旅行必备良药。</p>
+<p><a href="https://rvm.io/rubies/upgrading/">升级Ruby Upgrading Rubies</a></p>
+<p><a href="http://reyesyang.info/articles/27-install-rvm-step-by-step-and-why-rvm-is-not-a-function">手把手安装RVM以及为什么RVM is not a function</a></p>
+            <a class="btn btn-mini xsmall" href="http://zoeyyoung.github.io/ruby-rvm.html"><i class="icon-comment"></i> 评论 </a>
+            <hr />
+        </div>
+    </div>
+            <div class="pagination no-print">
+<ul>
+    <li class="prev disabled"><a href="#">&larr; 上一页</a></li>
+
+    <li class="active"><a href="http://zoeyyoung.github.io/tag/ruby.html">1</a></li>
+
+    <li class="next disabled"><a href="#">&rarr; 下一页</a></li>
+
+</ul>
+</div>       
+                </div>    </div><!-- End of fluid row-->
+  </div><!-- End of Container-->
+  <!--footer-->
+  <footer id="footer" class="no-print">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span1"></div>
+        <div class="span2" id="socialist">
+          <ul class="nav">
+            <li>Social</li>
+                                    <li><a href="http://weibo.com/1990zoey"><i class="icon-weibo icon-large"></i>新浪微博</a></li>
+                        <li><a href="http://www.renren.com/230222157/profile"><i class="icon-renren icon-large"></i>人人网</a></li>
+                        <li><a href="http://www.douban.com/people/ZoeyYoung/"><i class="icon-leaf icon-large"></i>豆瓣</a></li>
+                                    <li><a href="mailto:ydingmiao@gmail.com">
+              <i class="icon-envelope icon-large"></i>联系我
+            </a></li>
+                      </ul>
+        </div>
+                <div class="span2">
+          <ul class="nav">
+            <li>Links</li>
+                                    <li><a href="http://my.oschina.net/zoey1990">
+              <i class="icon-heart icon-large"></i>OSC
+            </a></li>
+                        <li><a href="http://www.xiami.com/u/2092563">
+              <i class="icon-music icon-large"></i>虾米
+            </a></li>
+                        <li><a href="https://gist.github.com/ZoeyYoung">
+              <i class="icon-github icon-large"></i>GIST
+            </a></li>
+                        <li><a href="https://github.com/ZoeyYoung">
+              <i class="icon-github icon-large"></i>GitHub
+            </a></li>
+                      </ul>
+        </div>
+        <div class="span2" id="site-links">
+          <ul class="nav">
+            <li>Site</li>
+            <li><a href="http://zoeyyoung.github.io">
+              <i class="icon-home icon-large"></i>首页
+            </a></li>
+            <li><a href="http://zoeyyoung.github.io/archives.html">
+              <i class="icon-list icon-large"></i>归档
+            </a></li>
+            <li><a href="http://zoeyyoung.github.io/tags.html">
+              <i class="icon-tags icon-large"></i>标签
+            </a></li>
+                        <li><a href="http://zoeyyoung.github.io/" rel="alternate">
+              <i class="icon-rss-sign icon-large"></i>Atom Feed
+            </a></li>
+          </ul>
+        </div>
+                <div class="sina-weibo span4">
+          <a href="http://weibo.com/u/1861922471?s=6uyXnP" target="_blank"><img border="0" src="http://service.t.sina.com.cn/widget/qmd/1861922471/c4ba5282/1.png"/></a>
+        </div>
+                <div class="span1"></div>
+      </div><!--end of fluid row-->
+      <p style="text-align: center;">
+          <a href="http://zoeyyoung.github.io">OK Computer</a>
+          &copy; ZoeyYoung
+          Powered by
+          <a href="https://github.com/getpelican/pelican">Pelican</a>
+          and
+          <a href="https://twitter.github.com/bootstrap">Twitter Bootstrap</a>
+          .
+          Icons by
+          <a href="http://gregoryloucas.github.io/Fontstrap/">Font Awesome</a>
+          .Theme By <a href="http://zoeyyoung.gitcafe.com/">ZoeyYoung</a>
+      </p>
+    </div>
+  </footer>
+  <!--/footer-->
+  <script src="http://zoeyyoung.github.io/theme/jquery-1.10.0.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+  <script>var _gaq=[['_setAccount','UA-41731595-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+Title: [常用] 在Python中检测网页编码
+Date: 2013-07-14
+Tags: Windows,Python,pip,chardet
+Slug: python-chardet
+Author: Zoey Young
+Summary: 在Python中检测网页编码, 包括使用Chardet和BeautifulSoup4的UnicodeDammit
+
+在使用Python抓取网页并进行分析时出现这个错误:
+
+    UnicodeDecodeError: 'utf8' codec can't decode byte 0xd6
+
+原因是部分中文网站编码不是`utf8`, 因此需要进行编码判断
+
+#### 问题描述:
+
+引自[如何高效、准确、自动识别网页编码](http://www.cnblogs.com/tdlian/archive/2011/11/25/2263054.html)
+
+在引入编码自动识别前, 我们有两种途径获取网页的编码信息:
+
+其一、通过服务器返回的 header 里的 charset 变量获取
+
+其二、通过页面里的 meta 信息获取
+
+正常情况下, 如果服务器或者页面有提供这两个参数, 而且参数是正确的, 那我们抓取网页时就不存在编码的问题了.
+
+但是现实总是会难为我们这些程序员, 抓取网页时, 经常会出现以下几种情况:
+
+1. 这两个参数缺失了
+2. 这两个参数虽然都提供了，但是不一致
+3. 这两个参数提供了，但是与网页实际的编码不一致
+
+为了尽可能的自动的获取所有网页的编码，所以引入了编码自动识别
+
+#### Chardet
+
+搜索**chardet**马上就找到了Python的[chardet](https://pypi.python.org/pypi/chardet)第三方库
+
+可以通过pip安装
+
+    :::bat
+    pip install chardet
+
+主页描述:
+
+chardet guesses the encoding of text files.
+
+Detects...
+
+* ASCII, UTF-8, UTF-16 (2 variants), UTF-32 (4 variants)
+* Big5, GB2312, EUC-TW, HZ-GB-2312, ISO-2022-CN (Traditional and Simplified Chinese)
+* EUC-JP, SHIFT_JIS, ISO-2022-JP (Japanese)
+* EUC-KR, ISO-2022-KR (Korean)
+* KOI8-R, MacCyrillic, IBM855, IBM866, ISO-8859-5, windows-1251 (Cyrillic)
+* ISO-8859-2, windows-1250 (Hungarian)
+* ISO-8859-5, windows-1251 (Bulgarian)
+* windows-1252 (English)
+* ISO-8859-7, windows-1253 (Greek)
+* ISO-8859-8, windows-1255 (Visual and Logical Hebrew)
+* TIS-620 (Thai)
+
+Requires Python 2.1 or later.
+
+我使用的是Python 2.7.X
+
+网页编码判断:
+
+    :::python
+    import chardet
+    import urllib2
+
+    #可根据需要，选择不同的数据
+    html = urllib2.urlopen('http://www.zol.com.cn/').read()
+    print(chardet.detect(html))
+
+运行结果:
+
+    :::python
+    {'confidence': 0.99, 'encoding': 'GB2312'}
+
+`chardet.detect()`返回字典, 其中`confidence`是检测精确度, `encoding`是编码形式
+
+另一种方式:
+
+    :::python
+    import urllib2
+    from chardet.universaldetector import UniversalDetector
+    html = urllib2.urlopen('http://www.zol.com.cn/')
+    #创建一个检测对象
+    detector = UniversalDetector()
+    for line in html.readlines():
+        #分块进行测试，直到达到阈值
+        detector.feed(line)
+        if detector.done: break
+    #关闭检测对象
+    detector.close()
+    html.close()
+    #输出检测结果
+    print detector.result
+
+运行结果：
+
+    :::python
+    {'confidence': 0.99, 'encoding': 'GB2312'}
+
+如果要对一个大文件进行编码识别, 使用后一种方法, 可以只读一部分去判别编码方式, 从而提高检测速度.
+
+#### BeautifulSoup4 UnicodeDammit
+
+可以使用BeautifulSoup4的[UnicodeDammit](http://www.crummy.com/software/BeautifulSoup/bs4/doc/#unicode-dammit)模块
+
+    :::python
+    from bs4 import UnicodeDammit
+    dammit = UnicodeDammit("Sacr\xc3\xa9 bleu!")
+    print(dammit.unicode_markup)
+    # Sacré bleu!
+    dammit.original_encoding
+    # 'utf-8'
+
+#### 总结
+
+不管使用上面哪种模块, 都不能保证百分百正确...部分网站太吭爹了...
+
+下面是我最后的写法, 结合两种方式, 之前测试出现乱码的网站都能检测出来了, 就是代码看着不是很干净:
+
+<script src="https://gist.github.com/ZoeyYoung/6121052.js"></script>
+
+#### 参考文档
+
+[python编码检测原理以及chardet模块应用](http://segmentfault.com/q/1010000000185278)
+
+[如何高效、准确、自动识别网页编码](http://www.dewen.org/q/626/)
+

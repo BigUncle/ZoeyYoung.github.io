@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>OK Computer</title>
+  <meta name="description" content="杨丁苗的个人博客">
+  <meta name="author" content="ZoeyYoung">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+  <!--[if lt IE 9]>
+  <script src="http://zoeyyoung.github.io/theme/html5.js"></script>
+  <![endif]-->
+  <!-- Le styles -->
+  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet" />
+  <link href="http://zoeyyoung.github.io/theme/print.css" rel="stylesheet" media="print" />
+  <link href="http://zoeyyoung.github.io/theme/local.css" rel="stylesheet" media="screen" />
+  <link href="http://zoeyyoung.github.io/theme/pygments.css" rel="stylesheet" />
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet" />
+  <!--[if IE 7]>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome-ie7.min.css" rel="stylesheet" />
+  <![endif]-->
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div id="header" class="span2 no-print">
+        <div class="brand-wrapper">
+          <a href="http://zoeyyoung.github.io" class="brand">OK Computer</a>
+          <p style="text-align: center; font-size: 12px; margin-top: 0;">It's better to burn out <br/> than to fade away.</p>
+        </div>
+        <ul id="blog-nav" class="nav">
+          <li>SITE</li>
+          <li><a href="http://zoeyyoung.github.io">首页</a></li>
+          <li><a href="http://zoeyyoung.github.io/archives.html">归档</a></li>
+          <li><a href="http://zoeyyoung.github.io/tags.html">标签</a></li>
+          <li><hr/></li>
+          <li>CATEGORIES</li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/java.html ">Java</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/linux.html ">Linux</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/nlp.html ">NLP</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/nosql.html ">NoSQL</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/python.html ">Python</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/ruby.html ">Ruby</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/tips.html ">Tips</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/qian-duan.html ">前端</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/gong-zuo-ji-lu.html ">工作记录</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/wo-de-xiang-mu.html ">我的项目</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/suan-fa.html ">算法</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/du-shu.html ">读书</a>
+          </li>
+                    <li><hr/></li>
+                    <li>PAGES<li>
+          
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/about-me.html">关于我</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/golden-slumber.html">Golden Slumber</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/on-the-road.html">在路上</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/software.html">我使用的软件</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/translate.html">翻译</a>
+          </li>
+                            </ul>
+      </div>
+      <div class="main-content span10">
+          
+    <div class='row-fluid'>
+        <div class="span12">
+            <a href="http://zoeyyoung.github.io/python-chardet.html"><h1>[常用] 在Python中检测网页编码</h1></a>
+            <div class="article-metadata">
+<time class="published" datetime="2013 七月 14 周日">2013 七月 14 周日 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/python.html">Python</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/windows.html">Windows</a>
+        <a href="http://zoeyyoung.github.io/tag/python.html">Python</a>
+        <a href="http://zoeyyoung.github.io/tag/pip.html">pip</a>
+        <a href="http://zoeyyoung.github.io/tag/chardet.html">chardet</a>
+    </span>
+<!-- <p></p> -->
+</div>            <p>在使用Python抓取网页并进行分析时出现这个错误:</p>
+<div class="highlight"><pre><span class="nl">UnicodeDecodeError:</span> <span class="err">&#39;</span><span class="n">utf8</span><span class="err">&#39;</span> <span class="n">codec</span> <span class="n">can</span><span class="err">&#39;</span><span class="n">t</span> <span class="n">decode</span> <span class="n">byte</span> <span class="mh">0xd6</span>
+</pre></div>
+
+
+<p>原因是部分中文网站编码不是<code>utf8</code>, 因此需要进行编码判断</p>
+<h4>问题描述:</h4>
+<p>引自<a href="http://www.cnblogs.com/tdlian/archive/2011/11/25/2263054.html">如何高效、准确、自动识别网页编码</a></p>
+<p>在引入编码自动识别前, 我们有两种途径获取网页的编码信息:</p>
+<p>其一、通过服务器返回的 header 里的 charset 变量获取</p>
+<p>其二、通过页面里的 meta 信息获取</p>
+<p>正常情况下, 如果服务器或者页面有提供这两个参数, 而且参数是正确的, 那我们抓取网页时就不存在编码的问题了.</p>
+<p>但是现实总是会难为我们这些程序员, 抓取网页时, 经常会出现以下几种情况:</p>
+<ol>
+<li>这两个参数缺失了</li>
+<li>这两个参数虽然都提供了，但是不一致</li>
+<li>这两个参数提供了，但是与网页实际的编码不一致</li>
+</ol>
+<p>为了尽可能的自动的获取所有网页的编码，所以引入了编码自动识别</p>
+<h4>Chardet</h4>
+<p>搜索<strong>chardet</strong>马上就找到了Python的<a href="https://pypi.python.org/pypi/chardet">chardet</a>第三方库</p>
+<p>可以通过pip安装</p>
+<div class="highlight"><pre>pip install chardet
+</pre></div>
+
+
+<p>主页描述:</p>
+<p>chardet guesses the encoding of text files.</p>
+<p>Detects...</p>
+<ul>
+<li>ASCII, UTF-8, UTF-16 (2 variants), UTF-32 (4 variants)</li>
+<li>Big5, GB2312, EUC-TW, HZ-GB-2312, ISO-2022-CN (Traditional and Simplified Chinese)</li>
+<li>EUC-JP, SHIFT_JIS, ISO-2022-JP (Japanese)</li>
+<li>EUC-KR, ISO-2022-KR (Korean)</li>
+<li>KOI8-R, MacCyrillic, IBM855, IBM866, ISO-8859-5, windows-1251 (Cyrillic)</li>
+<li>ISO-8859-2, windows-1250 (Hungarian)</li>
+<li>ISO-8859-5, windows-1251 (Bulgarian)</li>
+<li>windows-1252 (English)</li>
+<li>ISO-8859-7, windows-1253 (Greek)</li>
+<li>ISO-8859-8, windows-1255 (Visual and Logical Hebrew)</li>
+<li>TIS-620 (Thai)</li>
+</ul>
+<p>Requires Python 2.1 or later.</p>
+<p>我使用的是Python 2.7.X</p>
+<p>网页编码判断:</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">chardet</span>
+<span class="kn">import</span> <span class="nn">urllib2</span>
+
+<span class="c">#可根据需要，选择不同的数据</span>
+<span class="n">html</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">&#39;http://www.zol.com.cn/&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">chardet</span><span class="o">.</span><span class="n">detect</span><span class="p">(</span><span class="n">html</span><span class="p">))</span>
+</pre></div>
+
+
+<p>运行结果:</p>
+<div class="highlight"><pre><span class="p">{</span><span class="s">&#39;confidence&#39;</span><span class="p">:</span> <span class="mf">0.99</span><span class="p">,</span> <span class="s">&#39;encoding&#39;</span><span class="p">:</span> <span class="s">&#39;GB2312&#39;</span><span class="p">}</span>
+</pre></div>
+
+
+<p><code>chardet.detect()</code>返回字典, 其中<code>confidence</code>是检测精确度, <code>encoding</code>是编码形式</p>
+<p>另一种方式:</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">urllib2</span>
+<span class="kn">from</span> <span class="nn">chardet.universaldetector</span> <span class="kn">import</span> <span class="n">UniversalDetector</span>
+<span class="n">html</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">&#39;http://www.zol.com.cn/&#39;</span><span class="p">)</span>
+<span class="c">#创建一个检测对象</span>
+<span class="n">detector</span> <span class="o">=</span> <span class="n">UniversalDetector</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">html</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
+    <span class="c">#分块进行测试，直到达到阈值</span>
+    <span class="n">detector</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">detector</span><span class="o">.</span><span class="n">done</span><span class="p">:</span> <span class="k">break</span>
+<span class="c">#关闭检测对象</span>
+<span class="n">detector</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="n">html</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="c">#输出检测结果</span>
+<span class="k">print</span> <span class="n">detector</span><span class="o">.</span><span class="n">result</span>
+</pre></div>
+
+
+<p>运行结果：</p>
+<div class="highlight"><pre><span class="p">{</span><span class="s">&#39;confidence&#39;</span><span class="p">:</span> <span class="mf">0.99</span><span class="p">,</span> <span class="s">&#39;encoding&#39;</span><span class="p">:</span> <span class="s">&#39;GB2312&#39;</span><span class="p">}</span>
+</pre></div>
+
+
+<p>如果要对一个大文件进行编码识别, 使用后一种方法, 可以只读一部分去判别编码方式, 从而提高检测速度.</p>
+<h4>BeautifulSoup4 UnicodeDammit</h4>
+<p>可以使用BeautifulSoup4的<a href="http://www.crummy.com/software/BeautifulSoup/bs4/doc/#unicode-dammit">UnicodeDammit</a>模块</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">UnicodeDammit</span>
+<span class="n">dammit</span> <span class="o">=</span> <span class="n">UnicodeDammit</span><span class="p">(</span><span class="s">&quot;Sacr</span><span class="se">\xc3\xa9</span><span class="s"> bleu!&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">dammit</span><span class="o">.</span><span class="n">unicode_markup</span><span class="p">)</span>
+<span class="c"># Sacré bleu!</span>
+<span class="n">dammit</span><span class="o">.</span><span class="n">original_encoding</span>
+<span class="c"># &#39;utf-8&#39;</span>
+</pre></div>
+
+
+<h4>总结</h4>
+<p>不管使用上面哪种模块, 都不能保证百分百正确...部分网站太吭爹了...</p>
+<p>下面是我最后的写法, 结合两种方式, 之前测试出现乱码的网站都能检测出来了, 就是代码看着不是很干净:</p>
+<script src="https://gist.github.com/ZoeyYoung/6121052.js"></script>
+
+<h4>参考文档</h4>
+<p><a href="http://segmentfault.com/q/1010000000185278">python编码检测原理以及chardet模块应用</a></p>
+<p><a href="http://www.dewen.org/q/626/">如何高效、准确、自动识别网页编码</a></p>
+            <a class="btn btn-mini xsmall" href="http://zoeyyoung.github.io/python-chardet.html"><i class="icon-comment"></i> 评论 </a>
+            <hr />
+        </div>
+    </div>
+         <div class='row-fluid'>
+      <div class='span12'>
+        <a href="http://zoeyyoung.github.io/mongodb.html"><h1>MongoDB相关记录</h1></a>
+        <div class="article-metadata">
+<time class="published" datetime="2013 七月 06 周六">2013 七月 06 周六 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/nosql.html">NoSQL</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/windows.html">Windows</a>
+        <a href="http://zoeyyoung.github.io/tag/python.html">Python</a>
+        <a href="http://zoeyyoung.github.io/tag/pip.html">pip</a>
+        <a href="http://zoeyyoung.github.io/tag/virtualenv.html">virtualenv</a>
+    </span>
+<!-- <p></p> -->
+</div>        <p>MongoDB相关记录, 安装, 启动...</p>
+        <a class="btn btn-mini xsmall" href="http://zoeyyoung.github.io/mongodb.html">
+        <i class="icon-plus-sign"></i> 阅读全文 </a>
+        <hr />
+      </div>
+    </div>
+         <div class='row-fluid'>
+      <div class='span12'>
+        <a href="http://zoeyyoung.github.io/python-env-install.html"><h1>[安装] Python相关</h1></a>
+        <div class="article-metadata">
+<time class="published" datetime="2013 七月 06 周六">2013 七月 06 周六 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/python.html">Python</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/windows.html">Windows</a>
+        <a href="http://zoeyyoung.github.io/tag/python.html">Python</a>
+        <a href="http://zoeyyoung.github.io/tag/pip.html">pip</a>
+        <a href="http://zoeyyoung.github.io/tag/virtualenv.html">virtualenv</a>
+    </span>
+<!-- <p></p> -->
+</div>        <p>Python安装相关, 主要是一些书签与步骤记录.</p>
+        <a class="btn btn-mini xsmall" href="http://zoeyyoung.github.io/python-env-install.html">
+        <i class="icon-plus-sign"></i> 阅读全文 </a>
+        <hr />
+      </div>
+    </div>
+            <div class="pagination no-print">
+<ul>
+    <li class="prev disabled"><a href="#">&larr; 上一页</a></li>
+
+    <li class="active"><a href="http://zoeyyoung.github.io/tag/pip.html">1</a></li>
+
+    <li class="next disabled"><a href="#">&rarr; 下一页</a></li>
+
+</ul>
+</div>       
+                </div>    </div><!-- End of fluid row-->
+  </div><!-- End of Container-->
+  <!--footer-->
+  <footer id="footer" class="no-print">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span1"></div>
+        <div class="span2" id="socialist">
+          <ul class="nav">
+            <li>Social</li>
+                                    <li><a href="http://weibo.com/1990zoey"><i class="icon-weibo icon-large"></i>新浪微博</a></li>
+                        <li><a href="http://www.renren.com/230222157/profile"><i class="icon-renren icon-large"></i>人人网</a></li>
+                        <li><a href="http://www.douban.com/people/ZoeyYoung/"><i class="icon-leaf icon-large"></i>豆瓣</a></li>
+                                    <li><a href="mailto:ydingmiao@gmail.com">
+              <i class="icon-envelope icon-large"></i>联系我
+            </a></li>
+                      </ul>
+        </div>
+                <div class="span2">
+          <ul class="nav">
+            <li>Links</li>
+                                    <li><a href="http://my.oschina.net/zoey1990">
+              <i class="icon-heart icon-large"></i>OSC
+            </a></li>
+                        <li><a href="http://www.xiami.com/u/2092563">
+              <i class="icon-music icon-large"></i>虾米
+            </a></li>
+                        <li><a href="https://gist.github.com/ZoeyYoung">
+              <i class="icon-github icon-large"></i>GIST
+            </a></li>
+                        <li><a href="https://github.com/ZoeyYoung">
+              <i class="icon-github icon-large"></i>GitHub
+            </a></li>
+                      </ul>
+        </div>
+        <div class="span2" id="site-links">
+          <ul class="nav">
+            <li>Site</li>
+            <li><a href="http://zoeyyoung.github.io">
+              <i class="icon-home icon-large"></i>首页
+            </a></li>
+            <li><a href="http://zoeyyoung.github.io/archives.html">
+              <i class="icon-list icon-large"></i>归档
+            </a></li>
+            <li><a href="http://zoeyyoung.github.io/tags.html">
+              <i class="icon-tags icon-large"></i>标签
+            </a></li>
+                        <li><a href="http://zoeyyoung.github.io/" rel="alternate">
+              <i class="icon-rss-sign icon-large"></i>Atom Feed
+            </a></li>
+          </ul>
+        </div>
+                <div class="sina-weibo span4">
+          <a href="http://weibo.com/u/1861922471?s=6uyXnP" target="_blank"><img border="0" src="http://service.t.sina.com.cn/widget/qmd/1861922471/c4ba5282/1.png"/></a>
+        </div>
+                <div class="span1"></div>
+      </div><!--end of fluid row-->
+      <p style="text-align: center;">
+          <a href="http://zoeyyoung.github.io">OK Computer</a>
+          &copy; ZoeyYoung
+          Powered by
+          <a href="https://github.com/getpelican/pelican">Pelican</a>
+          and
+          <a href="https://twitter.github.com/bootstrap">Twitter Bootstrap</a>
+          .
+          Icons by
+          <a href="http://gregoryloucas.github.io/Fontstrap/">Font Awesome</a>
+          .Theme By <a href="http://zoeyyoung.gitcafe.com/">ZoeyYoung</a>
+      </p>
+    </div>
+  </footer>
+  <!--/footer-->
+  <script src="http://zoeyyoung.github.io/theme/jquery-1.10.0.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+  <script>var _gaq=[['_setAccount','UA-41731595-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+</body>
+</html>

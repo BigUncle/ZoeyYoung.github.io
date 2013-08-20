@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OK Computer</title><link>http://zoeyyoung.github.io/</link><description>It's better to burn out &lt;br/&gt; than to fade away.</description><atom:link href="http://zoeyyoung.github.io/feeds/ruby.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 24 Jun 2012 00:00:00 +0800</lastBuildDate><item><title>RVM</title><link>http://zoeyyoung.github.io/ruby-rvm.html</link><description>&lt;p&gt;rvm是一个命令行工具，可以提供一个便捷的多版本ruby环境的管理和切换。&lt;/p&gt;
+&lt;p&gt;https://rvm.io/&lt;/p&gt;
+&lt;p&gt;如果你打算学习ruby/rails, rvm是必不可少的工具之一。&lt;/p&gt;
+&lt;p&gt;这里所有的命令都是在用户权限下操作的，任何命令最好都不要用sudo.&lt;/p&gt;
+&lt;h2&gt;安装RVM&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://rvm.io/rvm/install/"&gt;安装RVM Installing RVM&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Installing the stable release version:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;curl&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;L&lt;/span&gt; &lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rvm&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;io&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;bash&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="n"&gt;stable&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt; &lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bashrc&lt;/span&gt;
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt; &lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bash_profile&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;To get the latest development state:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;curl&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;L&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//get.rvm.io | bash&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;a href="https://rvm.io/rvm/upgrading/"&gt;升级RVM  Upgrading RVM&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;ruby的安装与切换&lt;/h2&gt;
+&lt;p&gt;列出已知的ruby版本&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;rvm&lt;/span&gt; &lt;span class="n"&gt;list&lt;/span&gt; &lt;span class="n"&gt;known&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;安装一个ruby版本&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;rvm&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="mf"&gt;1.9.3&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;这里安装了最新的1.9.3, rvm list known列表里面的都可以安装&lt;/p&gt;
+&lt;p&gt;使用一个ruby版本&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;rvm&lt;/span&gt; &lt;span class="n"&gt;use&lt;/span&gt; &lt;span class="mf"&gt;1.9.3&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;如果想设置为默认版本，可以这样&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;rvm&lt;/span&gt; &lt;span class="n"&gt;use&lt;/span&gt; &lt;span class="mf"&gt;1.9.3&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="k"&gt;default&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;查询已经安装的ruby&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;rvm&lt;/span&gt; &lt;span class="n"&gt;list&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;卸载一个已安装版本&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;rvm&lt;/span&gt; &lt;span class="n"&gt;remove&lt;/span&gt; &lt;span class="mf"&gt;1.9.2&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;gemset的使用&lt;/h2&gt;
+&lt;p&gt;rvm不仅可以提供一个多ruby版本共存的环境，还可以根据项目管理不同的gemset.&lt;/p&gt;
+&lt;p&gt;gemset可以理解为是一个独立的虚拟gem环境，每一个gemset都是相互独立的。&lt;/p&gt;
+&lt;p&gt;比如你有两个项目，一个是rails 2.3 一个是 rails 3. gemset可以帮你便捷的建立两套gem开发环境，并且方便的切换。&lt;/p&gt;
+&lt;p&gt;gemset是附加在ruby语言版本下面的，例如你用了1.9.2, 建立了一个叫rails3的gemset,当切换到1.8.7的时候，rails3这个gemset并不存在。&lt;/p&gt;
+&lt;p&gt;建立gemset&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;rvm&lt;/span&gt; &lt;span class="n"&gt;use&lt;/span&gt; &lt;span class="mf"&gt;1.8.7&lt;/span&gt;
+&lt;span class="n"&gt;rvm&lt;/span&gt; &lt;span class="n"&gt;gemset&lt;/span&gt; &lt;span class="n"&gt;create&lt;/span&gt; &lt;span class="n"&gt;rails23&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;然后可以设定已建立的gemset做为当前环境&lt;/p&gt;
+&lt;p&gt;use 可以用来切换语言，或者gemset,前提是他们已经被安装(或者建立)。并可以在list命令中看到。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;rvm&lt;/span&gt; &lt;span class="n"&gt;use&lt;/span&gt; &lt;span class="mf"&gt;1.8.7&lt;/span&gt;
+&lt;span class="n"&gt;rvm&lt;/span&gt; &lt;span class="n"&gt;use&lt;/span&gt; &lt;span class="mf"&gt;1.8.7&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;rails23&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;然后所有安装的gem都是安装在这个gemset之下。&lt;/p&gt;
+&lt;p&gt;列出当前ruby的gemset&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;rvm&lt;/span&gt; &lt;span class="n"&gt;gemset&lt;/span&gt; &lt;span class="n"&gt;list&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;清空gemset中的gem&lt;/p&gt;
+&lt;p&gt;如果你想清空一个gemset的所有gem,想重新安装所有gem，可以这样&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;rvm&lt;/span&gt; &lt;span class="n"&gt;gemset&lt;/span&gt; &lt;span class="n"&gt;empty&lt;/span&gt; &lt;span class="mf"&gt;1.8.7&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;rails23&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;删除一个gemset&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;rvm&lt;/span&gt; &lt;span class="n"&gt;gemset&lt;/span&gt; &lt;span class="n"&gt;delete&lt;/span&gt; &lt;span class="n"&gt;rails2&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;项目自动加载gemset&lt;/p&gt;
+&lt;p&gt;rvm还可以自动加载gemset.&lt;/p&gt;
+&lt;p&gt;例如我们有一个rails3.1.3项目，需要1.9.3版本ruby.整个流程可以这样。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;rvm&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="mf"&gt;1.9.3&lt;/span&gt;
+&lt;span class="n"&gt;rvm&lt;/span&gt; &lt;span class="n"&gt;use&lt;/span&gt; &lt;span class="mf"&gt;1.9.3&lt;/span&gt;
+&lt;span class="n"&gt;rvm&lt;/span&gt; &lt;span class="n"&gt;gemset&lt;/span&gt; &lt;span class="n"&gt;create&lt;/span&gt; &lt;span class="n"&gt;rails313&lt;/span&gt;
+&lt;span class="n"&gt;rvm&lt;/span&gt; &lt;span class="n"&gt;use&lt;/span&gt; &lt;span class="mf"&gt;1.9.3&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;rails313&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;下面进入到项目目录，建立一个.rvmrc文件。&lt;/p&gt;
+&lt;p&gt;在这个文件里可以很简单的加一个命令：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;rvm&lt;/span&gt; &lt;span class="n"&gt;use&lt;/span&gt; &lt;span class="mf"&gt;1.9.3&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;rails313&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;然后无论你当前ruby设置是什么，cd到这个项目的时候，rvm会帮你加载 ruby 1.9.3和rails313 gemset.&lt;/p&gt;
+&lt;p&gt;使用rvm来快速部署nginx+passenger&lt;/p&gt;
+&lt;p&gt;*首先安装passenger&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;gem&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;passenger&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;然后使用passenger-install-nginx-module 来安装nginx和部署。&lt;/p&gt;
+&lt;p&gt;因为这一步需要root权限（因为要编译nginx）可以用rvmsudo这个东西。（这个东西真是个好东西）&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;rvmsudo&lt;/span&gt; &lt;span class="n"&gt;passenger&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;install&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;nginx&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;module&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;然后会让你选择是下载nginx源码自动编译安装，还是自己选择nginx源码位置。&lt;/p&gt;
+&lt;p&gt;选择nginx手动安装的可以添加别的编译参数，方便自定义编译nginx。&lt;/p&gt;
+&lt;p&gt;然后一路下载安装。默认的安装位置为/opt/nginx.&lt;/p&gt;
+&lt;p&gt;然后看看nginx.conf，都给你配置好了，只需要加上root位置（yourapp/public）就可以了。&lt;/p&gt;
+&lt;p&gt;当我第一次安装完成了，就惊呼，这也太爽了吧。&lt;/p&gt;
+&lt;p&gt;ps:rvm是个好东西，做的很智能，（大部分）操作失败后会告诉你原因，然后告诉你需要安装哪些Lib等等，非常适合新手老手使用,简直是居家旅行必备良药。&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://rvm.io/rubies/upgrading/"&gt;升级Ruby Upgrading Rubies&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://reyesyang.info/articles/27-install-rvm-step-by-step-and-why-rvm-is-not-a-function"&gt;手把手安装RVM以及为什么RVM is not a function&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sun, 24 Jun 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-06-24:ruby-rvm.html</guid><category>Ruby</category></item></channel></rss>

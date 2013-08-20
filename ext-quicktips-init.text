@@ -1,0 +1,41 @@
+Title: Ext.QuickTips.init()
+Date: 2012-11-09
+Tags: ExtJS,前端,JavaScript,Html,代码
+Slug: ext-quicktips-init
+Author: Zoey Young
+Summary: Ext.QuickTips.init()使用
+
+先说我测试的Ext版本: ext-4.1.1a-gpl（感觉独立于版本存在的教程都有点...）
+
+虽然API里面有例子, 写这个有点多余, 但是网上搜索到的文章存在误导, 例如:
+
+    :::html
+    <a href="#" ext:qtip="my tooltip">Link</a>
+
+上面代码中`"my tooltip"`的属性名为`ext:qtip`(估计是原来的名称), 试了半天没显示出什么tooltip, 看了下官方的教程, 应该把属性名改为`data-qtip`.
+
+能够正确显示tooltip的代码如下 ：
+
+    :::html
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Ext.QuickTips</title>
+        <link class="others library" rel="stylesheet" type="text/css" href="/js/sandbox/extjs/resources/css/ext-all.css">
+        <script class="others library" src="/js/sandbox/extjs/ext-all.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <a href="#" data-qtip="my tooltip1">Link1</a>
+        <a href="#" data-qtip="my tooltip2">Link2</a>
+        <input type="button" data-qtip="my tooltip3" value="Button"/>
+        <script type="text/javascript">
+            Ext.require(['Ext.tip.*']);
+            Ext.onReady(function () {
+              Ext.QuickTips.init();
+            });
+        </script>
+    </body>
+    </html>
+
+[查看代码](http://runjs.cn/code/hoqeicfy)

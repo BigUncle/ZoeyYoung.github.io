@@ -1,0 +1,944 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OK Computer</title><link>http://zoeyyoung.github.io/</link><description>It's better to burn out &lt;br/&gt; than to fade away.</description><atom:link href="http://zoeyyoung.github.io/feeds/python.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 06 Aug 2013 00:00:00 +0800</lastBuildDate><item><title>[基础] 在Python中获得字典列表中最大值与最小值</title><link>http://zoeyyoung.github.io/python-dict-list-min-max-value.html</link><description>&lt;p&gt;假设有字典列表:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;dict_list&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[{&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;price&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;99&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;barcode&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;2342355&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;price&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;88&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;barcode&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;2345566&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;price&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;77&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;barcode&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;2342377&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;}]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;要求&lt;code&gt;price&lt;/code&gt;的最大值与最小值&lt;/p&gt;
+&lt;p&gt;最原始的方法:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;min_price&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;max_price&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;dict_list&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;price&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;min_price&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;min_price&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;price&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;price&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;max_price&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;max_price&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;price&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;max_price&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;min_price&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;刚学Python时会这么写...&lt;/p&gt;
+&lt;p&gt;先使用列表推导式(list comprehension), 再使用内置函数求最大值最小值:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;seq&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;price&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;dict_list&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;max&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;seq&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="nb"&gt;min&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;seq&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;这种方式要遍历列表多次.&lt;/p&gt;
+&lt;p&gt;使用生成器表达式(generator expression)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;min_price&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;max_price&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;the_key&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;dict_list&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;min_price&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;max_price&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;min&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;min_price&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="nb"&gt;max&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;max_price&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;max_price&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;min_price&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;更简单的写法:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;max_price&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;max&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;price&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;dict_list&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;min_price&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;min&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;price&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;dict_list&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;max_price&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;min_price&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;blockquote&gt;
+&lt;p&gt;This avoids the overhead of sorting the list -- and, by using a generator expression, instead of a list comprehension -- actually avoids creating any lists, as well. Efficient, direct, readable... Pythonic!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;返回整个dict, 不仅仅是price:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;max_priced_item&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;max&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dict_list&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;price&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;min_priced_item&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;min&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dict_list&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;price&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;max_priced_item&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;min_priced_item&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c"&gt;# {&amp;#39;price&amp;#39;: 99, &amp;#39;barcode&amp;#39;: &amp;#39;2342355&amp;#39;} {&amp;#39;price&amp;#39;: 77, &amp;#39;barcode&amp;#39;: &amp;#39;2342377&amp;#39;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;总结自: &lt;a href="http://stackoverflow.com/questions/5320871/in-list-of-dicts-find-min-value-of-a-common-dict-field"&gt;In List of Dicts, find min() value of a common Dict field&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 06 Aug 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-08-06:python-dict-list-min-max-value.html</guid><category>Python</category></item><item><title>[解决] Python lxml wrapping elements</title><link>http://zoeyyoung.github.io/python-lxml-wrapping-elements.html</link><description>&lt;p&gt;与这个问题有点类似: &lt;a href="http://stackoverflow.com/questions/6038616/python-lxml-wrapping-elements"&gt;Stack Overflow: Python lxml wrapping elements&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;有的网页中正文没有使用&lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt;进行包装, 结果提取正文时只提取了某一段, 而不是作为整体的正文, 一开始直接将&lt;code&gt;&amp;lt;body&amp;gt;&lt;/code&gt;元素变成&lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt;, 发现会有其它副作用, 因为其它代码中有通过标签是否是body作为判断的代码. 因此考虑默认为&lt;code&gt;&amp;lt;body&amp;gt;&lt;/code&gt;的子元素加一层&lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt;包装.&lt;/p&gt;
+&lt;p&gt;假设有如下HTML片段:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+    Text
+    &lt;span class="nt"&gt;&amp;lt;h1&amp;gt;&lt;/span&gt;Title&lt;span class="nt"&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
+    Tail1
+    &lt;span class="nt"&gt;&amp;lt;div&amp;gt;&lt;/span&gt;p1&lt;span class="nt"&gt;&amp;lt;p&amp;gt;&lt;/span&gt;inner text&lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;p&amp;gt;&lt;/span&gt;p2&lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+    Tail2
+&lt;span class="nt"&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;我想转换成如下片段:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;div&amp;gt;&lt;/span&gt;
+        Text
+        &lt;span class="nt"&gt;&amp;lt;h1&amp;gt;&lt;/span&gt;Title&lt;span class="nt"&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
+        Tail1
+        &lt;span class="nt"&gt;&amp;lt;div&amp;gt;&lt;/span&gt;p1&lt;span class="nt"&gt;&amp;lt;p&amp;gt;&lt;/span&gt;inner text&lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;p&amp;gt;&lt;/span&gt;p2&lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+        Tail2
+    &lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;使用如下代码:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;lxml.html&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;html5parser&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;lxml.html&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;fragment_fromstring&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;lxml.html&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;tostring&lt;/span&gt;
+&lt;span class="n"&gt;html&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="s"&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;    Text&lt;/span&gt;
+&lt;span class="s"&gt;    &amp;lt;h1&amp;gt;Title&amp;lt;/h1&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;    Tail1&lt;/span&gt;
+&lt;span class="s"&gt;    &amp;lt;div&amp;gt;p1&amp;lt;p&amp;gt;inner text&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;    &amp;lt;p&amp;gt;p2&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;    Tail2&lt;/span&gt;
+&lt;span class="s"&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;html5doc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;html5parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;document_fromstring&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;guess_charset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;root&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fragment_fromstring&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tostring&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;html5doc&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;elem&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;findall&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;.//body&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="c"&gt;# 1. 为Text包装&amp;lt;p&amp;gt;, 即将Text变成&amp;lt;p&amp;gt;Text&amp;lt;/p&amp;gt;&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+        &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fragment_fromstring&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;lt;p/&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;
+        &lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+        &lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;insert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="c"&gt;# 2. 为body的子元素包装div&lt;/span&gt;
+    &lt;span class="n"&gt;div&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fragment_fromstring&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;div/&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iterchildren&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;div&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tostring&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;div&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;insert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;div&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tostring&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;root&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;输出:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;Element&lt;/span&gt; p at &lt;span class="m"&gt;0&lt;/span&gt;x&lt;span class="m"&gt;37&lt;/span&gt;b&lt;span class="m"&gt;3990&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Text&lt;/span&gt;
+b&lt;span class="s1"&gt;&amp;#39;&amp;lt;div&amp;gt;&amp;lt;p&amp;gt;Text&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt;&amp;#39;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;Element&lt;/span&gt; h&lt;span class="m"&gt;1&lt;/span&gt; at &lt;span class="m"&gt;0&lt;/span&gt;x&lt;span class="m"&gt;37&lt;/span&gt;b&lt;span class="m"&gt;39&lt;/span&gt;e&lt;span class="m"&gt;8&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Title&lt;/span&gt;
+b&lt;span class="s1"&gt;&amp;#39;&amp;lt;div&amp;gt;&amp;lt;p&amp;gt;Text&amp;lt;/p&amp;gt;&amp;lt;h1&amp;gt;Title&amp;lt;/h1&amp;gt;Tail1&amp;lt;/div&amp;gt;&amp;#39;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;Element&lt;/span&gt; div at &lt;span class="m"&gt;0&lt;/span&gt;x&lt;span class="m"&gt;37&lt;/span&gt;b&lt;span class="m"&gt;3830&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;p1&lt;/span&gt;
+b&lt;span class="s1"&gt;&amp;#39;&amp;lt;div&amp;gt;&amp;lt;p&amp;gt;Text&amp;lt;/p&amp;gt;&amp;lt;h1&amp;gt;Title&amp;lt;/h1&amp;gt;Tail1&amp;lt;div&amp;gt;p1&amp;lt;p&amp;gt;inner text&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;/div&amp;gt;&amp;#39;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;Element&lt;/span&gt; p at &lt;span class="m"&gt;0&lt;/span&gt;x&lt;span class="m"&gt;37&lt;/span&gt;b&lt;span class="m"&gt;3938&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;p2&lt;/span&gt;
+b&lt;span class="s1"&gt;&amp;#39;&amp;lt;div&amp;gt;&amp;lt;p&amp;gt;Text&amp;lt;/p&amp;gt;&amp;lt;h1&amp;gt;Title&amp;lt;/h1&amp;gt;Tail1&amp;lt;div&amp;gt;p1&amp;lt;p&amp;gt;inner text&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;p&amp;gt;p2&amp;lt;/p&amp;gt;Tail2&amp;lt;/div&amp;gt;&amp;#39;&lt;/span&gt;
+b&lt;span class="s1"&gt;&amp;#39;&amp;lt;html xmlns:html=&amp;quot;http://www.w3.org/1999/xhtml&amp;quot;&amp;gt;&amp;lt;head&amp;gt;&amp;lt;/head&amp;gt;&amp;lt;body&amp;gt;&amp;lt;div&amp;gt;&amp;lt;p&amp;gt;Text&amp;lt;/p&amp;gt;&amp;lt;h1&amp;gt;Title&amp;lt;/h1&amp;gt;Tail1&amp;lt;div&amp;gt;p1&amp;lt;p&amp;gt;inner text&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;p&amp;gt;p2&amp;lt;/p&amp;gt;Tail2&amp;lt;/div&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;HTML:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;div&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;p&amp;gt;&lt;/span&gt;Text&lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;h1&amp;gt;&lt;/span&gt;Title&lt;span class="nt"&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
+        Tail1
+        &lt;span class="nt"&gt;&amp;lt;div&amp;gt;&lt;/span&gt;p1&lt;span class="nt"&gt;&amp;lt;p&amp;gt;&lt;/span&gt;inner text&lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;p&amp;gt;&lt;/span&gt;p2&lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+        Tail2
+    &lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;步骤1是预处理, 如果不这么处理会输出:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;Element&lt;/span&gt; h&lt;span class="m"&gt;1&lt;/span&gt; at &lt;span class="m"&gt;0&lt;/span&gt;x&lt;span class="m"&gt;38&lt;/span&gt;e&lt;span class="m"&gt;7990&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Title&lt;/span&gt;
+b&lt;span class="s1"&gt;&amp;#39;&amp;lt;div&amp;gt;&amp;lt;h1&amp;gt;Title&amp;lt;/h1&amp;gt;Tail1&amp;lt;/div&amp;gt;&amp;#39;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;Element&lt;/span&gt; div at &lt;span class="m"&gt;0&lt;/span&gt;x&lt;span class="m"&gt;38&lt;/span&gt;e&lt;span class="m"&gt;7938&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;p1&lt;/span&gt;
+b&lt;span class="s1"&gt;&amp;#39;&amp;lt;div&amp;gt;&amp;lt;h1&amp;gt;Title&amp;lt;/h1&amp;gt;Tail1&amp;lt;div&amp;gt;p1&amp;lt;p&amp;gt;inner text&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;/div&amp;gt;&amp;#39;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;Element&lt;/span&gt; p at &lt;span class="m"&gt;0&lt;/span&gt;x&lt;span class="m"&gt;38&lt;/span&gt;e&lt;span class="m"&gt;7830&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;p2&lt;/span&gt;
+b&lt;span class="s1"&gt;&amp;#39;&amp;lt;div&amp;gt;&amp;lt;h1&amp;gt;Title&amp;lt;/h1&amp;gt;Tail1&amp;lt;div&amp;gt;p1&amp;lt;p&amp;gt;inner text&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;p&amp;gt;p2&amp;lt;/p&amp;gt;Tail2&amp;lt;/div&amp;gt;&amp;#39;&lt;/span&gt;
+b&lt;span class="s1"&gt;&amp;#39;&amp;lt;html xmlns:html=&amp;quot;http://www.w3.org/1999/xhtml&amp;quot;&amp;gt;&amp;lt;head&amp;gt;&amp;lt;/head&amp;gt;&amp;lt;body&amp;gt;Text&amp;lt;div&amp;gt;&amp;lt;h1&amp;gt;Title&amp;lt;/h1&amp;gt;Tail1&amp;lt;div&amp;gt;p1&amp;lt;p&amp;gt;inner text&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;p&amp;gt;p2&amp;lt;/p&amp;gt;Tail2&amp;lt;/div&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;因为&lt;code&gt;Text&lt;/code&gt;不包含在&lt;code&gt;elem.iterchildren()&lt;/code&gt;里.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Mon, 05 Aug 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-08-05:python-lxml-wrapping-elements.html</guid><category>Python</category><category>lxml</category><category>wrapping</category><category>html</category></item><item><title>[解决] 使用lxml过滤HTML中class或id符合特定正则的元素</title><link>http://zoeyyoung.github.io/python-lxml-html-iter.html</link><description>&lt;p&gt;在看&lt;a href="https://github.com/buriy/python-readability"&gt;readability-lxml&lt;/a&gt;源码过程中遇到的问题, 很困惑为啥有部分应该在&lt;code&gt;remove_unlikely_candidates(doc)&lt;/code&gt;过程中被删除的元素最后还在正文提取中出现.&lt;/p&gt;
+&lt;p&gt;源码是这样的:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;remove_unlikely_candidates&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;doc&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;elem&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;doc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iter&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+        &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt; &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;class&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+        &lt;span class="c"&gt;#log.debug(s)&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;REGEXES&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;unlikelyCandidatesRe&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt;
+                &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;REGEXES&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;okMaybeItsACandidateRe&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt;
+                &lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;body&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt;
+                &lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getparent&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+                &lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="c"&gt;# log.debug(&amp;quot;Removing unlikely candidate - %s&amp;quot; % describe(elem))&lt;/span&gt;
+            &lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;drop_tree&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;原来以为挺简单的, 但是涉及到特殊情况比如&lt;code&gt;&amp;lt;div class="unwanted"&amp;gt;This &amp;lt;p&amp;gt;content&amp;lt;/p&amp;gt; should go&amp;lt;/div&amp;gt;&lt;/code&gt;这种含tail text即&lt;code&gt;should go&lt;/code&gt;的, 或多级元素的, 就比较复杂了. 可能遍历到哪就自动中断了. 我这里写一个简化版本的作为测试:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;lxml.html&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;fromstring&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;tostring&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;re&lt;/span&gt;
+
+&lt;span class="n"&gt;html&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="s"&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+
+&lt;span class="s"&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;    &amp;lt;div&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;        &amp;lt;div class=&amp;quot;unwanted&amp;quot;&amp;gt;This &amp;lt;p&amp;gt;content&amp;lt;/p&amp;gt; should go&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;        &amp;lt;p class=&amp;quot;fine&amp;quot;&amp;gt;This content should stay&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;        What&lt;/span&gt;
+&lt;span class="s"&gt;    &amp;lt;/div&amp;gt;&lt;/span&gt;
+
+&lt;span class="s"&gt;    &amp;lt;div id = &amp;quot;second&amp;quot; class=&amp;quot;unwanted&amp;quot;&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;        &amp;lt;p class = &amp;quot;alreadydead&amp;quot;&amp;gt;This content should not be looked at&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;        &amp;lt;p class = &amp;quot;alreadydead&amp;quot;&amp;gt;Nor should this&amp;lt;/&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;        &amp;lt;div class=&amp;quot;alreadydead&amp;quot;&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;            &amp;lt;p class=&amp;quot;alreadydead&amp;quot;&amp;gt;Still dead&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;        &amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;    &amp;lt;/div&amp;gt;&lt;/span&gt;
+
+&lt;span class="s"&gt;    &amp;lt;div&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;        &amp;lt;p class=&amp;quot;yeswanted&amp;quot;&amp;gt;This content should also stay&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;    &amp;lt;/div&amp;gt;&lt;/span&gt;
+
+&lt;span class="s"&gt;    &amp;lt;div id=&amp;quot;unwanted&amp;quot;&amp;gt;This &amp;lt;p&amp;gt;content&amp;lt;/p&amp;gt; should go&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;doc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fromstring&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;刚开始使用代码如下:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;elem&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;doc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iter&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt; &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;class&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;compile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;unwanted&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;body&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getparent&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;drop_tree&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tostring&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;doc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;pretty_print&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;输出:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;head&amp;gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;div&amp;gt;&amp;lt;p&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;fine&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;This content should stay&lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt; What&lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;second&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;unwanted&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;\n
+        &lt;span class="nt"&gt;&amp;lt;p&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;alreadydead&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;This content should not be looked at&lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;p&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;alreadydead&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;Nor should this&lt;span class="ni"&gt;&amp;amp;gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;alreadydead&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;p&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;alreadydead&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;Still dead&lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;div&amp;gt;&amp;lt;p&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;yeswanted&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;This content should also stay&lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;unwanted&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;This &lt;span class="nt"&gt;&amp;lt;p&amp;gt;&lt;/span&gt;content&lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;should go &lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;很明显, 该删除的都没删除.&lt;/p&gt;
+&lt;p&gt;以为是&lt;code&gt;drop_tree()&lt;/code&gt;没删除tail text的关系, 改成&lt;code&gt;elem.getparent().remove(elem)&lt;/code&gt;, 执行结果还是一样...&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;elem&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;doc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iter&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+    &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt; &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;class&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;compile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;unwanted&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;body&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getparent&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getparent&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;remove&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;尝试将elem打印出来, 发现只有5条&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="m"&gt;0&lt;/span&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;Element&lt;/span&gt; html at &lt;span class="m"&gt;0&lt;/span&gt;x&lt;span class="m"&gt;2&lt;/span&gt;d&lt;span class="m"&gt;5&lt;/span&gt;baf&lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="n"&gt;1&lt;/span&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;Element&lt;/span&gt; head at &lt;span class="m"&gt;0&lt;/span&gt;x&lt;span class="m"&gt;314&lt;/span&gt;f&lt;span class="m"&gt;200&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="n"&gt;2&lt;/span&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;Element&lt;/span&gt; body at &lt;span class="m"&gt;0&lt;/span&gt;x&lt;span class="m"&gt;3376780&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="n"&gt;3&lt;/span&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;Element&lt;/span&gt; div at &lt;span class="m"&gt;0&lt;/span&gt;x&lt;span class="m"&gt;33767&lt;/span&gt;d&lt;span class="m"&gt;8&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="n"&gt;4&lt;/span&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;Element&lt;/span&gt; div at &lt;span class="m"&gt;0&lt;/span&gt;x&lt;span class="m"&gt;314&lt;/span&gt;f&lt;span class="m"&gt;200&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="n"&gt;5&lt;/span&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;Element&lt;/span&gt; p at &lt;span class="m"&gt;0&lt;/span&gt;x&lt;span class="m"&gt;3376780&lt;/span&gt;&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;想到&lt;code&gt;iter()&lt;/code&gt;应该是使用了迭代器模式. 因此应该有&lt;code&gt;next()&lt;/code&gt;方法. 而在删除掉节点的同时, 相应对象的&lt;code&gt;next()&lt;/code&gt;引用也被删除了. 因此才只遍历了第一部分. 具体怎么遍历的还不是很清楚.&lt;/p&gt;
+&lt;p&gt;使用&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;allelem&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;doc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iter&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;dir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;allelem&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;[&lt;span class="s1"&gt;&amp;#39;__class__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__delattr__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__dir__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__doc__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__eq__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__format__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__ge__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__getattribute__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__gt__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__hash__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__init__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__iter__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__le__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__lt__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__ne__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__new__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__next__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__pyx_vtable__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__reduce__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__reduce_ex__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__repr__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__setattr__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__sizeof__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__str__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__subclasshook__&amp;#39;&lt;/span&gt;]
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;其中确实有&lt;code&gt;__next__&lt;/code&gt;, 最后使用如下代码&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;allelem&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;doc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iter&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;elem&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;allelem&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt; &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;class&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;compile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;unwanted&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;body&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getparent&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+          &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;findall&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;.//*&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))):&lt;/span&gt;
+              &lt;span class="n"&gt;allelem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;__next__&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+          &lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getparent&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;remove&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tostring&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;doc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;pretty_print&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="nb"&gt;file&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;终于正确输出想要的HTML:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;head&amp;gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;div&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;p&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;fine&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;This content should stay&lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;What&lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;div&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;p&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;yeswanted&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;This content should also stay&lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;还有另外一种方式, 但没有第一种方法快:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;elem&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;doc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iter&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt; &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;class&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;compile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;unwanted&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;body&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getparent&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;class&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;removethis&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;elem&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;doc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find_class&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;removethis&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getparent&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;remove&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tostring&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;doc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;pretty_print&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="nb"&gt;file&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;这是我一开始想到的方式, 前面一种是参考了&lt;strong&gt;Stack Overflow&lt;/strong&gt;后总结出来的. 因为提问者给出的代码中直接用了&lt;code&gt;next()&lt;/code&gt;, 而我发现没有这个方法, 一开始没用它, 后面用&lt;code&gt;dir&lt;/code&gt;看了一下发现有&lt;code&gt;__next__()&lt;/code&gt;这个方法, 官方文档很多地方挺奇怪的..很无语.&lt;/p&gt;
+&lt;p&gt;最后将源码修改为:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;remove_unlikely_candidates&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;doc&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;allelem&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;doc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iter&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;elem&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;allelem&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt; &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;class&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;REGEXES&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;unlikelyCandidatesRe&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;REGEXES&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;okMaybeItsACandidateRe&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tag&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;body&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getparent&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;findall&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;.//*&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))):&lt;/span&gt;
+                &lt;span class="n"&gt;allelem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;__next__&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+            &lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getparent&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;remove&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;elem&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;终于解决了纠结好久的问题, 原本以为源码不会有问题的...&lt;/p&gt;
+&lt;p&gt;参考文档:&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://stackoverflow.com/questions/6152364/editing-tree-in-place-while-iterating-in-lxml"&gt;Stack Overflow: Editing tree in place while iterating in lxml&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Wed, 31 Jul 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-07-31:python-lxml-html-iter.html</guid><category>Windows</category><category>Python</category><category>lxml</category></item><item><title>[基础] 给Python初学者的一些技巧</title><link>http://zoeyyoung.github.io/python-shortcuts-for-the-python-beginner.html</link><description>&lt;p&gt;在 Python 2.7.5 和 Python 3.3.2 中进行测试, 更正部分不一致&lt;/p&gt;
+&lt;p&gt;英文原文: &lt;a href="http://maxburstein.com/blog/python-shortcuts-for-the-python-beginner/"&gt;Python Shortcuts for the Python Beginner —— Max Burstein&lt;/a&gt;, 编译: 伯乐在线 – 刘志军&lt;/p&gt;
+&lt;p&gt;译文链接：http://blog.jobbole.com/32748/&lt;/p&gt;
+&lt;p&gt;以下是我近些年收集的一些Python实用技巧和工具，希望能对你有所帮助。&lt;/p&gt;
+&lt;h4&gt;交换变量 Swapping Variables&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;
+&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;
+
+&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;
+
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;行内 if 语句 Inline if Statement&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Hello&amp;quot;&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;World&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Hello&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;连接 Concatenations&lt;/h4&gt;
+&lt;p&gt;下面的最后一种方式在绑定两个不同类型的对象时显得很cool.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;nfc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Packers&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;49ers&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;afc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Ravens&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Patriots&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;nfc&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;afc&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Packers&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;49ers&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Ravens&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Patriots&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot; world&amp;quot;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;world&lt;/span&gt;
+
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;1&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot; world&amp;quot;&lt;/span&gt; &lt;span class="c"&gt;# 这里在Python3中使用单引号会出错&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;world&lt;/span&gt;
+
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;world&amp;quot;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;world&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;nfc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Packers&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;49ers&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;nfc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c"&gt;# 注意这里与Python3不同&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;  &lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Packers&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;49ers&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Python3中略有不同:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;nfc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Packers&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;49ers&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;afc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Ravens&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Patriots&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;nfc&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;afc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Packers&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;49ers&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Ravens&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Patriots&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot; world&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;world&lt;/span&gt;
+
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;1&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot; world&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;world&lt;/span&gt;
+
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;world&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;world&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;nfc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Packers&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;49ers&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;数字技巧 Number Tricks&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# 除后向下取整 Floor Division (rounds down)&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;5.0&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="mf"&gt;2.0&lt;/span&gt;
+&lt;span class="c"&gt;# 2的5次方&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;32&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;注意浮点数的除法&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="o"&gt;/.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="mf"&gt;2.9999999999999996&lt;/span&gt;  &lt;span class="c"&gt;# Python2 中输出 3.0&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="o"&gt;//.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="mf"&gt;2.0&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;数值比较 Numerical Comparison&lt;/h4&gt;
+&lt;p&gt;这是我见过诸多语言中很少有的如此棒的简便法&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;同时迭代两个列表  Iterate Through Two Lists at the Same Time&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;nfc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Packers&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;49ers&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;afc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Ravens&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Patriots&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;teama&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;teamb&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;zip&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;nfc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;afc&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;teama&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot; vs. &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;teamb&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Packers&lt;/span&gt; &lt;span class="n"&gt;vs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;Ravens&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;49&lt;/span&gt;&lt;span class="n"&gt;ers&lt;/span&gt; &lt;span class="n"&gt;vs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;Patriots&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;带索引的列表迭代  Iterate Through List With an Index&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;teams&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Packers&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;49ers&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Ravens&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Patriots&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;team&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;enumerate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;teams&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;team&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;Packers&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="mi"&gt;49&lt;/span&gt;&lt;span class="n"&gt;ers&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="n"&gt;Ravens&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="n"&gt;Patriots&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;列表推导 List Comprehension&lt;/h4&gt;
+&lt;p&gt;使用列表推导我们可以将下面代码:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;numbers&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;even&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;number&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;numbers&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;number&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;even&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;number&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;转变成:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;numbers&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;even&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;number&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;number&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;numbers&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;number&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;是不是很牛呢, 哈哈.&lt;/p&gt;
+&lt;h4&gt;字典推导 Dictionary Comprehension&lt;/h4&gt;
+&lt;p&gt;和列表推导类似, 字典可以做同样的工作：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;teams&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Packers&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;49ers&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Ravens&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Patriots&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;enumerate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;teams&lt;/span&gt;&lt;span class="p"&gt;)})&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;49ers&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Ravens&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Patriots&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Packers&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="c"&gt;# Python3 &amp;gt;&amp;gt;&amp;gt; {&amp;#39;Packers&amp;#39;: 0, &amp;#39;Patriots&amp;#39;: 3, &amp;#39;Ravens&amp;#39;: 2, &amp;#39;49ers&amp;#39;: 1}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;初始化列表的值 Initialize List Values&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;items&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The &lt;code&gt;[0]*3&lt;/code&gt; is nice, but you have to be careful with it. You can hit a big snag with references For instance:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[[]]&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="c"&gt;# [[], [], []]&lt;/span&gt;
+&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c"&gt;# [[0], [0], [0]]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;列表转换为字符串 Converting a List to a String&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;teams&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Packers&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;49ers&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Ravens&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Patriots&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;, &amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;teams&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Packers&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;49&lt;/span&gt;&lt;span class="n"&gt;ers&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Ravens&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Patriots&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;从字典中获取元素 Get Item From Dictionary&lt;/h4&gt;
+&lt;p&gt;我承认&lt;code&gt;try/except&lt;/code&gt;代码并不雅致, 不过这里有一种简单方法, 尝试在字典中查找key, 如果没有找到对应的value将用第二个参数设为其变量值.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;user&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;name&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Max&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;three&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+   &lt;span class="n"&gt;is_admin&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;admin&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;KeyError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+   &lt;span class="n"&gt;is_admin&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;你可以这样做:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;user&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;name&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Max&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;three&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="n"&gt;is_admin&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;admin&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;获取列表的子集 Taking a Subset of a List&lt;/h4&gt;
+&lt;p&gt;有时，你只需要列表中的部分元素，这里是一些获取列表子集的方法。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="c"&gt;#前3个&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;[:&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="c"&gt;#中间4个&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="c"&gt;#最后3个&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;:])&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="c"&gt;#奇数项&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;[::&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="c"&gt;#偶数项&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="c"&gt;#Reverse List&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;[::&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;60个字符解决FizzBuzz问题 FizzBuzz in 60 Characters&lt;/h4&gt;
+&lt;p&gt;前段时间 Jeff Atwood 推广了一个简单的编程练习叫&lt;a href="http://www.codinghorror.com/blog/2007/02/why-cant-programmers-program.html"&gt;FizzBuzz&lt;/a&gt;, 问题引用如下：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;写一个程序, 打印数字1到100, 3的倍数打印"Fizz"来替换这个数, 5的倍数打印"Buzz", 对于既是3的倍数又是5的倍数的数字打印"FizzBuzz".&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这里是一个简短的, 有意思的方法解决这个问题:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;101&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;fizz&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;::]&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;buzz&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;::]&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;集合 Collections&lt;/h4&gt;
+&lt;p&gt;除了python内置的数据类型外, 在&lt;a href="http://docs.python.org/2/library/collections.html"&gt;collection&lt;/a&gt;模块同样还包括一些特别的用例. 在有些场合Counter非常实用. 如果你参加过在这一年的&lt;a href="https://www.facebook.com/hackercup"&gt;Facebook HackerCup&lt;/a&gt;, 你甚至也能找到他的实用之处.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;collections&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Counter&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;Counter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;hello&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Counter&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;l&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;h&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;e&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;o&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;迭代工具 Itertools&lt;/h4&gt;
+&lt;p&gt;和collections库一样, python还有一个库叫&lt;a href="http://docs.python.org/2/library/itertools.html"&gt;itertools&lt;/a&gt;, 对某些问题真能高效地解决. 其中一个用例是查找所有组合. 它能告诉你在一个组中元素的所有不同的组合方式.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;itertools&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;combinations&lt;/span&gt;
+&lt;span class="n"&gt;teams&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Packers&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;49ers&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Ravens&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Patriots&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;game&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;combinations&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;teams&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;game&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Packers&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;49ers&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Packers&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Ravens&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Packers&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Patriots&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;49ers&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Ravens&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;49ers&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Patriots&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Ravens&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Patriots&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;False == True (Python2)&lt;/h4&gt;
+&lt;p&gt;比起实用技术来说这是一个很有趣的事. 在python中, True和False是全局变量. 因此:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;False&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;True&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;False&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+   &lt;span class="n"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Hello&amp;quot;&lt;/span&gt;
+&lt;span class="nl"&gt;else:&lt;/span&gt;
+   &lt;span class="n"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;World&amp;quot;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Hello&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;In python 2 True and False are basically just global variables. In Python 3 they are keywords.&lt;/p&gt;
+&lt;p&gt;如果你还有任何很酷的奇技淫巧, 可以在下面留言, 感谢阅读.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Wed, 17 Jul 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-07-17:python-shortcuts-for-the-python-beginner.html</guid><category>Python</category></item><item><title>[待学习] matplotlib相关</title><link>http://zoeyyoung.github.io/python-matplotlib.html</link><description>&lt;p&gt;&lt;a href="http://matplotlib.org/"&gt;主页&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Windows下安装&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#matplotlib"&gt;matplotlib&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;使用这个安装还得安装其它依赖包.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#scipy-stack"&gt;Scipy-stack&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;直接安装这个即可.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Scipy-stack (experimental) is a meta package that contains numpy-MKL, scipy, matplotlib, ipython, pandas, sympy, nose and many of their dependencies (dateutil, setuptools, gmpy, Pillow, pygments, pyreadline, pytz, statsmodels, tornado).&lt;/p&gt;
+&lt;p&gt;Note: use with a fresh CPython installation only.&lt;/p&gt;
+&lt;/blockquote&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Mon, 15 Jul 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-07-15:python-matplotlib.html</guid><category>Windows</category><category>Python</category><category>lxml</category></item><item><title>[常用] 在Python中检测网页编码</title><link>http://zoeyyoung.github.io/python-chardet.html</link><description>&lt;p&gt;在使用Python抓取网页并进行分析时出现这个错误:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nl"&gt;UnicodeDecodeError:&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;utf8&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;codec&lt;/span&gt; &lt;span class="n"&gt;can&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="n"&gt;decode&lt;/span&gt; &lt;span class="n"&gt;byte&lt;/span&gt; &lt;span class="mh"&gt;0xd6&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;原因是部分中文网站编码不是&lt;code&gt;utf8&lt;/code&gt;, 因此需要进行编码判断&lt;/p&gt;
+&lt;h4&gt;问题描述:&lt;/h4&gt;
+&lt;p&gt;引自&lt;a href="http://www.cnblogs.com/tdlian/archive/2011/11/25/2263054.html"&gt;如何高效、准确、自动识别网页编码&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;在引入编码自动识别前, 我们有两种途径获取网页的编码信息:&lt;/p&gt;
+&lt;p&gt;其一、通过服务器返回的 header 里的 charset 变量获取&lt;/p&gt;
+&lt;p&gt;其二、通过页面里的 meta 信息获取&lt;/p&gt;
+&lt;p&gt;正常情况下, 如果服务器或者页面有提供这两个参数, 而且参数是正确的, 那我们抓取网页时就不存在编码的问题了.&lt;/p&gt;
+&lt;p&gt;但是现实总是会难为我们这些程序员, 抓取网页时, 经常会出现以下几种情况:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;这两个参数缺失了&lt;/li&gt;
+&lt;li&gt;这两个参数虽然都提供了，但是不一致&lt;/li&gt;
+&lt;li&gt;这两个参数提供了，但是与网页实际的编码不一致&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;为了尽可能的自动的获取所有网页的编码，所以引入了编码自动识别&lt;/p&gt;
+&lt;h4&gt;Chardet&lt;/h4&gt;
+&lt;p&gt;搜索&lt;strong&gt;chardet&lt;/strong&gt;马上就找到了Python的&lt;a href="https://pypi.python.org/pypi/chardet"&gt;chardet&lt;/a&gt;第三方库&lt;/p&gt;
+&lt;p&gt;可以通过pip安装&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;pip install chardet
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;主页描述:&lt;/p&gt;
+&lt;p&gt;chardet guesses the encoding of text files.&lt;/p&gt;
+&lt;p&gt;Detects...&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ASCII, UTF-8, UTF-16 (2 variants), UTF-32 (4 variants)&lt;/li&gt;
+&lt;li&gt;Big5, GB2312, EUC-TW, HZ-GB-2312, ISO-2022-CN (Traditional and Simplified Chinese)&lt;/li&gt;
+&lt;li&gt;EUC-JP, SHIFT_JIS, ISO-2022-JP (Japanese)&lt;/li&gt;
+&lt;li&gt;EUC-KR, ISO-2022-KR (Korean)&lt;/li&gt;
+&lt;li&gt;KOI8-R, MacCyrillic, IBM855, IBM866, ISO-8859-5, windows-1251 (Cyrillic)&lt;/li&gt;
+&lt;li&gt;ISO-8859-2, windows-1250 (Hungarian)&lt;/li&gt;
+&lt;li&gt;ISO-8859-5, windows-1251 (Bulgarian)&lt;/li&gt;
+&lt;li&gt;windows-1252 (English)&lt;/li&gt;
+&lt;li&gt;ISO-8859-7, windows-1253 (Greek)&lt;/li&gt;
+&lt;li&gt;ISO-8859-8, windows-1255 (Visual and Logical Hebrew)&lt;/li&gt;
+&lt;li&gt;TIS-620 (Thai)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Requires Python 2.1 or later.&lt;/p&gt;
+&lt;p&gt;我使用的是Python 2.7.X&lt;/p&gt;
+&lt;p&gt;网页编码判断:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;chardet&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;urllib2&lt;/span&gt;
+
+&lt;span class="c"&gt;#可根据需要，选择不同的数据&lt;/span&gt;
+&lt;span class="n"&gt;html&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;urllib2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;urlopen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;http://www.zol.com.cn/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;chardet&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;detect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;运行结果:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;confidence&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;0.99&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;encoding&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;GB2312&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;chardet.detect()&lt;/code&gt;返回字典, 其中&lt;code&gt;confidence&lt;/code&gt;是检测精确度, &lt;code&gt;encoding&lt;/code&gt;是编码形式&lt;/p&gt;
+&lt;p&gt;另一种方式:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;urllib2&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;chardet.universaldetector&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;UniversalDetector&lt;/span&gt;
+&lt;span class="n"&gt;html&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;urllib2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;urlopen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;http://www.zol.com.cn/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c"&gt;#创建一个检测对象&lt;/span&gt;
+&lt;span class="n"&gt;detector&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;UniversalDetector&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;readlines&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="c"&gt;#分块进行测试，直到达到阈值&lt;/span&gt;
+    &lt;span class="n"&gt;detector&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;feed&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;detector&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;done&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="k"&gt;break&lt;/span&gt;
+&lt;span class="c"&gt;#关闭检测对象&lt;/span&gt;
+&lt;span class="n"&gt;detector&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;close&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;close&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="c"&gt;#输出检测结果&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;detector&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;运行结果：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;confidence&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;0.99&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;encoding&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;GB2312&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;如果要对一个大文件进行编码识别, 使用后一种方法, 可以只读一部分去判别编码方式, 从而提高检测速度.&lt;/p&gt;
+&lt;h4&gt;BeautifulSoup4 UnicodeDammit&lt;/h4&gt;
+&lt;p&gt;可以使用BeautifulSoup4的&lt;a href="http://www.crummy.com/software/BeautifulSoup/bs4/doc/#unicode-dammit"&gt;UnicodeDammit&lt;/a&gt;模块&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;bs4&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;UnicodeDammit&lt;/span&gt;
+&lt;span class="n"&gt;dammit&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;UnicodeDammit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Sacr&lt;/span&gt;&lt;span class="se"&gt;\xc3\xa9&lt;/span&gt;&lt;span class="s"&gt; bleu!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dammit&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unicode_markup&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c"&gt;# Sacré bleu!&lt;/span&gt;
+&lt;span class="n"&gt;dammit&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;original_encoding&lt;/span&gt;
+&lt;span class="c"&gt;# &amp;#39;utf-8&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;总结&lt;/h4&gt;
+&lt;p&gt;不管使用上面哪种模块, 都不能保证百分百正确...部分网站太吭爹了...&lt;/p&gt;
+&lt;p&gt;下面是我最后的写法, 结合两种方式, 之前测试出现乱码的网站都能检测出来了, 就是代码看着不是很干净:&lt;/p&gt;
+&lt;script src="https://gist.github.com/ZoeyYoung/6121052.js"&gt;&lt;/script&gt;
+
+&lt;h4&gt;参考文档&lt;/h4&gt;
+&lt;p&gt;&lt;a href="http://segmentfault.com/q/1010000000185278"&gt;python编码检测原理以及chardet模块应用&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.dewen.org/q/626/"&gt;如何高效、准确、自动识别网页编码&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sun, 14 Jul 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-07-14:python-chardet.html</guid><category>Windows</category><category>Python</category><category>pip</category><category>chardet</category></item><item><title>[学习中] 使用lxml解析HTML</title><link>http://zoeyyoung.github.io/python-lxml-html.html</link><description>&lt;p&gt;&lt;a href="http://www.cnblogs.com/descusr/archive/2012/06/20/2557075.html"&gt;用lxml解析HTML&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;page&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;etree&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;HTML&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lower&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;decode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;其中&lt;code&gt;decode('utf-8')&lt;/code&gt;是针对编码为&lt;code&gt;utf8&lt;/code&gt;的网站&lt;/p&gt;
+&lt;p&gt;通常要先判断网页编码, 可以使用chardet第三方库进行判断&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;chardet&lt;/span&gt;
+&lt;span class="n"&gt;encoding&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;chardet&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;detect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;encoding&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;htmlEl&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;etree&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;HTML&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lower&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;decode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;encoding&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;ignore&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;遇到&lt;code&gt;UnicodeEncodeError: 'ascii' codec can't encode characters in position 0-5: ordinal not in range(128)&lt;/code&gt;错误&lt;/p&gt;
+&lt;p&gt;加上&lt;code&gt;.encode('utf-8')&lt;/code&gt;解决&lt;/p&gt;
+&lt;p&gt;扩展的示例:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/usr/bin/env python&lt;/span&gt;
+&lt;span class="c"&gt;# -*- coding: utf-8 -*-&lt;/span&gt;
+
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;lxml&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;etree&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;chardet&lt;/span&gt;
+
+&lt;span class="n"&gt;html&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&amp;#39;&amp;#39;&lt;/span&gt;
+&lt;span class="s"&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;　　&amp;lt;head&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;　　　　&amp;lt;meta name=&amp;quot;content-type&amp;quot; content=&amp;quot;text/html; charset=utf-8&amp;quot; /&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;　　　　&amp;lt;title&amp;gt;友情链接查询 - 站长工具&amp;lt;/title&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;　　　　&amp;lt;!-- uRj0Ak8VLEPhjWhg3m9z4EjXJwc --&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;　　　　&amp;lt;meta name=&amp;quot;Keywords&amp;quot; content=&amp;quot;友情链接查询&amp;quot; /&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;　　　　&amp;lt;meta name=&amp;quot;Description&amp;quot; content=&amp;quot;友情链接查询&amp;quot; /&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;　　&amp;lt;/head&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;　　&amp;lt;body&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;　　　　&amp;lt;h1 class=&amp;quot;heading&amp;quot;&amp;gt;Top News&amp;lt;/h1&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;　　　　&amp;lt;p style=&amp;quot;font-size: 200%&amp;quot;&amp;gt;World News only on this page&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;　　　　Ah, and here&amp;#39;s some more text, by the way.&lt;/span&gt;
+&lt;span class="s"&gt;　　　　&amp;lt;p&amp;gt;... and this is a parsed fragment ...&amp;lt;/p&amp;gt;&lt;/span&gt;
+
+&lt;span class="s"&gt;　　　　&amp;lt;a href=&amp;quot;http://www.cydf.org.cn/&amp;quot; rel=&amp;quot;nofollow&amp;quot; target=&amp;quot;_blank&amp;quot;&amp;gt;青少年发展基金会&amp;lt;/a&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;　　　　&amp;lt;a href=&amp;quot;http://www.4399.com/flash/32979.htm&amp;quot; target=&amp;quot;_blank&amp;quot;&amp;gt;洛克王国&amp;lt;/a&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;　　　　&amp;lt;a href=&amp;quot;http://www.4399.com/flash/35538.htm&amp;quot; target=&amp;quot;_blank&amp;quot;&amp;gt;奥拉星&amp;lt;/a&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;　　　　&amp;lt;a href=&amp;quot;http://game.3533.com/game/&amp;quot; target=&amp;quot;_blank&amp;quot;&amp;gt;手机游戏&amp;lt;/a&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;　　　　&amp;lt;a href=&amp;quot;http://game.3533.com/tupian/&amp;quot; target=&amp;quot;_blank&amp;quot;&amp;gt;手机壁纸&amp;lt;/a&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;　　　　&amp;lt;a href=&amp;quot;http://www.4399.com/&amp;quot; target=&amp;quot;_blank&amp;quot;&amp;gt;4399小游戏&amp;lt;/a&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;　　　　&amp;lt;a href=&amp;quot;http://www.91wan.com/&amp;quot; target=&amp;quot;_blank&amp;quot;&amp;gt;91wan游戏&amp;lt;/a&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;        &amp;lt;div&amp;gt;hello&amp;lt;p&amp;gt;world&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;　　&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;span class="s"&gt;&amp;#39;&amp;#39;&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;encoding&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;chardet&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;detect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;encoding&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;encoding&lt;/span&gt;
+
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;lxml.html.clean&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Cleaner&lt;/span&gt;
+&lt;span class="n"&gt;cleaner&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Cleaner&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;style&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;scripts&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;page_structure&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;safe_attrs_only&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;html&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;cleaner&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;clean_html&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c"&gt;# page = etree.HTML(html.lower().decode(&amp;#39;utf-8&amp;#39;))&lt;/span&gt;
+&lt;span class="n"&gt;page&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;etree&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;HTML&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;decode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;encoding&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;ignore&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="c"&gt;# 获得所有链接&lt;/span&gt;
+&lt;span class="n"&gt;hrefs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;page&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xpath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;u&amp;quot;//a&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;href&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;hrefs&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;href&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;attrib&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;href&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;href&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;encode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# 输出:&lt;/span&gt;
+&lt;span class="c"&gt;# {&amp;#39;href&amp;#39;: &amp;#39;http://www.cydf.org.cn/&amp;#39;, &amp;#39;target&amp;#39;: &amp;#39;_blank&amp;#39;, &amp;#39;rel&amp;#39;: &amp;#39;nofollow&amp;#39;} 青少年发展基金会&lt;/span&gt;
+&lt;span class="c"&gt;# {&amp;#39;href&amp;#39;: &amp;#39;http://www.4399.com/flash/32979.htm&amp;#39;, &amp;#39;target&amp;#39;: &amp;#39;_blank&amp;#39;} 洛克王国&lt;/span&gt;
+&lt;span class="c"&gt;# {&amp;#39;href&amp;#39;: &amp;#39;http://www.4399.com/flash/35538.htm&amp;#39;, &amp;#39;target&amp;#39;: &amp;#39;_blank&amp;#39;} 奥拉星&lt;/span&gt;
+&lt;span class="c"&gt;# {&amp;#39;href&amp;#39;: &amp;#39;http://game.3533.com/game/&amp;#39;, &amp;#39;target&amp;#39;: &amp;#39;_blank&amp;#39;} 手机游戏&lt;/span&gt;
+&lt;span class="c"&gt;# {&amp;#39;href&amp;#39;: &amp;#39;http://game.3533.com/tupian/&amp;#39;, &amp;#39;target&amp;#39;: &amp;#39;_blank&amp;#39;} 手机壁纸&lt;/span&gt;
+&lt;span class="c"&gt;# {&amp;#39;href&amp;#39;: &amp;#39;http://www.4399.com/&amp;#39;, &amp;#39;target&amp;#39;: &amp;#39;_blank&amp;#39;} 4399小游戏&lt;/span&gt;
+&lt;span class="c"&gt;# {&amp;#39;href&amp;#39;: &amp;#39;http://www.91wan.com/&amp;#39;, &amp;#39;target&amp;#39;: &amp;#39;_blank&amp;#39;} 91wan游戏&lt;/span&gt;
+
+&lt;span class="c"&gt;# 获得标题&lt;/span&gt;
+&lt;span class="n"&gt;title&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;page&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;.//title&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;encode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;title:&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;title&lt;/span&gt;  &lt;span class="c"&gt;# title: 友情链接查询 - 站长工具&lt;/span&gt;
+
+&lt;span class="c"&gt;# 获得description&lt;/span&gt;
+&lt;span class="c"&gt;# description = page.find(u&amp;quot;.//meta[@name=&amp;#39;description&amp;#39;]&amp;quot;)&lt;/span&gt;
+&lt;span class="n"&gt;description&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;page&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xpath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;//meta[translate(@name, &amp;#39;ABCDEFGHJIKLMNOPQRSTUVWXYZ&amp;#39;, &amp;#39;abcdefghjiklmnopqrstuvwxyz&amp;#39;)=&amp;#39;description&amp;#39;]&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;description&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="c"&gt;# description = description.attrib[&amp;quot;content&amp;quot;].encode(&amp;#39;utf-8&amp;#39;)&lt;/span&gt;
+    &lt;span class="n"&gt;description&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;attrib&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;content&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;encode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;description:&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;description&lt;/span&gt;  &lt;span class="c"&gt;# description: 友情链接查询&lt;/span&gt;
+
+&lt;span class="c"&gt;# 获得keywords&lt;/span&gt;
+&lt;span class="c"&gt;# keywords = page.find(&amp;quot;.//meta[@name=&amp;#39;keywords&amp;#39;]&amp;quot;)&lt;/span&gt;
+&lt;span class="n"&gt;keywords&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;page&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xpath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;//meta[translate(@name, &amp;#39;ABCDEFGHJIKLMNOPQRSTUVWXYZ&amp;#39;, &amp;#39;abcdefghjiklmnopqrstuvwxyz&amp;#39;)=&amp;#39;keywords&amp;#39;]&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;keywords&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="c"&gt;# keywords = keywords.attrib[&amp;quot;content&amp;quot;].encode(&amp;#39;utf-8&amp;#39;)&lt;/span&gt;
+    &lt;span class="n"&gt;keywords&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;keywords&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;attrib&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;content&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;encode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;keywords:&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;keywords&lt;/span&gt;  &lt;span class="c"&gt;# keywords: 友情链接查询&lt;/span&gt;
+
+&lt;span class="n"&gt;ps&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;page&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xpath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;u&amp;quot;/html/body/p[@style=&amp;#39;font-size: 200%&amp;#39;]&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;ps&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;encode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;div&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;page&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xpath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;u&amp;quot;//div[text()=&amp;#39;hello&amp;#39;]&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;div&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;XPATH是用一种类似目录树的方法来描述在XML文档中的路径. 比如用&lt;code&gt;/&lt;/code&gt;来作为上下层级间的分隔. 第一个&lt;code&gt;/&lt;/code&gt;表示文档的根节点(注意, 不是指文档最外层的tag节点, 而是指文档本身). 比如对于一个HTML文件来说, 最外层的节点应该是"/html".&lt;/p&gt;
+&lt;p&gt;定位某一个HTML标签, 可以使用类似文件路径里的绝对路径, 如&lt;code&gt;page.xpath(u"/html/body/p")&lt;/code&gt;，它会找到body这个节点下所有的&lt;code&gt;p&lt;/code&gt;标签; 也可以使用类似文件路径里的相对路径, 可以这样使用: page.xpath(u"//p"), 它会找到整个html代码里的所有p标签:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;p&lt;/span&gt; &lt;span class="na"&gt;style=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;font-size: 200%&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;World News only on this page&lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+Ah, and here&amp;#39;s some more text, by the way.
+&lt;span class="nt"&gt;&amp;lt;p&amp;gt;&lt;/span&gt;... and this is a parsed fragment ...&lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;注意：XPATH返回的不一定就是唯一的节点, 而是符合条件的所有节点. 如上所示, 只要是body里的p标签, 不管是body的第一级节点, 还是第二级, 第三级节点, 都会被取出来.&lt;/p&gt;
+&lt;p&gt;如果想进一步缩小范围, 直接定位到&lt;code&gt;&amp;lt;p style="font-size: 200%"&amp;gt;World News only on this page&amp;lt;/p&amp;gt;&lt;/code&gt;要怎么做呢? 这就需要增加过滤条件. 过滤的方法就是用&lt;code&gt;[]&lt;/code&gt;把过滤条件加上. lxml里有个过滤语法:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;page&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xpath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/html/body/p[@style=&amp;#39;font-size: 200%&amp;#39;]&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;或者:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;page&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xpath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;//p[@style=&amp;#39;font-size:200%&amp;#39;]&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;这样就取出了&lt;code&gt;body&lt;/code&gt;里&lt;code&gt;style&lt;/code&gt;为&lt;code&gt;font-size:200%&lt;/code&gt;的&lt;code&gt;p&lt;/code&gt;节点, 注意: 这个&lt;code&gt;p&lt;/code&gt;变量是一个&lt;code&gt;lxml.etree._Element&lt;/code&gt;对象列表, &lt;code&gt;p[0].text&lt;/code&gt;结果为&lt;code&gt;World News only on this page&lt;/code&gt;, 即标签之间的值: &lt;code&gt;p[0].values()&lt;/code&gt;结果为&lt;code&gt;font-size: 200%&lt;/code&gt;, 即所有属性值. 其中 &lt;code&gt;@style&lt;/code&gt;表示属性&lt;code&gt;style&lt;/code&gt;，类似地还可以使用如&lt;code&gt;@name&lt;/code&gt;, &lt;code&gt;@id&lt;/code&gt;, &lt;code&gt;@value&lt;/code&gt;, &lt;code&gt;@href&lt;/code&gt;, &lt;code&gt;@src&lt;/code&gt;, &lt;code&gt;@class&lt;/code&gt;...&lt;/p&gt;
+&lt;p&gt;如果标签里面没有属性怎么办? 那就可以用&lt;code&gt;text()&lt;/code&gt;, &lt;code&gt;position()&lt;/code&gt;等函数来过滤, 函数&lt;code&gt;text()&lt;/code&gt;的意思则是取得节点包含的文本. 比如：&lt;code&gt;&amp;lt;div&amp;gt;hello&amp;lt;p&amp;gt;world&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt;&lt;/code&gt;中, 用&lt;code&gt;div[text()='hello']&lt;/code&gt;即可取得这个&lt;code&gt;div&lt;/code&gt;, 而&lt;code&gt;world&lt;/code&gt;则是&lt;code&gt;p&lt;/code&gt;的&lt;code&gt;text()&lt;/code&gt;. 函数&lt;code&gt;position()&lt;/code&gt;的意思是取得节点的位置。比如&lt;code&gt;li[position()=2]&lt;/code&gt;表示取得第二个li节点, 它也可以被省略为&lt;code&gt;li[2]&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;不过要注意的是数字定位和过滤条件的顺序. 比如&lt;code&gt;ul/li[5][@name='hello']&lt;/code&gt;表示取&lt;code&gt;ul&lt;/code&gt;下第5项&lt;code&gt;li&lt;/code&gt;, 并且其&lt;code&gt;name&lt;/code&gt;必须是&lt;code&gt;hello&lt;/code&gt;, 否则返回空. 而如果用&lt;code&gt;ul/li[@name='hello'][5]&lt;/code&gt;的意思就不同, 它表示寻找&lt;code&gt;ul&lt;/code&gt;下第5个&lt;code&gt;name&lt;/code&gt;为&lt;code&gt;hello&lt;/code&gt;的&lt;code&gt;li&lt;/code&gt;节点.&lt;/p&gt;
+&lt;p&gt;此外, &lt;code&gt;*&lt;/code&gt;可以代替所有的节点名, 比如用&lt;code&gt;/html/body/*/span&lt;/code&gt;可以取出body下第二级的所有span, 而不管它上一级是div还是p或是其它什么东东.&lt;/p&gt;
+&lt;p&gt;而&lt;code&gt;descendant::&lt;/code&gt;前缀可以指代任意多层的中间节点, 它也可以被省略成一个&lt;code&gt;/&lt;/code&gt;. 比如在整个HTML文档中查找&lt;code&gt;id&lt;/code&gt;为&lt;code&gt;leftmenu&lt;/code&gt;的&lt;code&gt;div&lt;/code&gt;，可以用&lt;code&gt;/descendant::div[@id='leftmenu']&lt;/code&gt;，也可以简单地使用&lt;code&gt;//div[@id='leftmenu']&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;text = page.xpath(u"/descendant::*[text()]")&lt;/code&gt;表示任意多层的中间节点下任意标签之间的内容, 也即实现蜘蛛抓取页面内容功能. 以下内容使用text属性是取不到的:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;news&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    1. &lt;span class="nt"&gt;&amp;lt;b&amp;gt;&lt;/span&gt;无流量站点清理公告&lt;span class="nt"&gt;&amp;lt;/b&amp;gt;&lt;/span&gt;&lt;span class="ni"&gt;&amp;amp;nbsp;&amp;amp;nbsp;&lt;/span&gt;2013-02-22&lt;span class="nt"&gt;&amp;lt;br/&amp;gt;&lt;/span&gt;
+    取不到的内容
+&lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;news&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    2. &lt;span class="nt"&gt;&amp;lt;strong&amp;gt;&lt;/span&gt;无流量站点清理公告&lt;span class="nt"&gt;&amp;lt;/strong&amp;gt;&lt;/span&gt;&lt;span class="ni"&gt;&amp;amp;nbsp;&amp;amp;nbsp;&lt;/span&gt;2013-02-22&lt;span class="nt"&gt;&amp;lt;br/&amp;gt;&lt;/span&gt;
+    取不到的内容
+&lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;news&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    3. &lt;span class="nt"&gt;&amp;lt;span&amp;gt;&lt;/span&gt;无流量站点清理公告&lt;span class="nt"&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;&lt;span class="ni"&gt;&amp;amp;nbsp;&amp;amp;nbsp;&lt;/span&gt;2013-02-22&lt;span class="nt"&gt;&amp;lt;br/&amp;gt;&lt;/span&gt;
+    取不到的内容
+&lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;news&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    4. &lt;span class="nt"&gt;&amp;lt;u&amp;gt;&lt;/span&gt;无流量站点清理公告&lt;span class="nt"&gt;&amp;lt;/u&amp;gt;&lt;/span&gt;&lt;span class="ni"&gt;&amp;amp;nbsp;&amp;amp;nbsp;&lt;/span&gt;2013-02-22&lt;span class="nt"&gt;&amp;lt;br/&amp;gt;&lt;/span&gt;
+    取不到的内容
+&lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;这些“取不到的内容”使用这个是取不到的. 怎么办呢? 别担心, lxml还有一个属性叫做“tail”, 它的意思是结束节点前面的内容, 也就是说在&lt;code&gt;&amp;lt;br/&amp;gt;&lt;/code&gt;与&lt;code&gt;&amp;lt;/div&amp;gt;&lt;/code&gt;之间的内容. 它的源码里面的意思是&lt;strong&gt;“text after end tag”&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;至于&lt;code&gt;following-sibling::&lt;/code&gt;前缀就如其名所说, 表示同一层的下一个节点. &lt;code&gt;following-sibling::*&lt;/code&gt;就是任意下一个节点, 而&lt;code&gt;following-sibling::ul&lt;/code&gt;就是下一个ul节点.&lt;/p&gt;
+&lt;p&gt;如果script与style标签之间的内容影响解析页面, 或者页面很不规则, 可以使用&lt;code&gt;lxml.html.clean&lt;/code&gt;模块. 模块&lt;code&gt;lxml.html.clean&lt;/code&gt;提供一个Cleaner类来清理HTML页. 它支持删除嵌入脚本内容、特殊标记、CSS样式注释或者更多.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;cleaner&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Cleaner&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;style&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;scripts&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;page_structure&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;safe_attrs_only&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;print&lt;/span&gt; &lt;span class="n"&gt;cleaner&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;clean_html&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;注意, &lt;code&gt;page_structure&lt;/code&gt;, &lt;code&gt;safe_attrs_only&lt;/code&gt;为&lt;code&gt;False&lt;/code&gt;时保证页面的完整性, 否则, 这个Cleaner会把你的html结构与标签里的属性都给清理了. 使用Cleaner类要十分小心, 小心擦枪走火.&lt;/p&gt;
+&lt;p&gt;这里有详细的Cleaner类初始化参数说明：http://lxml.de/api/lxml.html.clean.Cleaner-class.html&lt;/p&gt;
+&lt;p&gt;忽略大小写可以：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;page&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;etree&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;HTML&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;keyword_tag&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;page&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xpath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;//meta[translate(@name, &amp;#39;ABCDEFGHJIKLMNOPQRSTUVWXYZ&amp;#39;, &amp;#39;abcdefghjiklmnopqrstuvwxyz&amp;#39;)=&amp;#39;keywords&amp;#39;]&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;a href="http://www.crifan.com/python_try_lxml_parse_html/"&gt;【记录】Python中尝试用lxml去解析html&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sun, 14 Jul 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-07-14:python-lxml-html.html</guid><category>Windows</category><category>Python</category><category>lxml</category></item><item><title>[安装] Python相关</title><link>http://zoeyyoung.github.io/python-env-install.html</link><description>&lt;p&gt;重装系统后, 重新配置了下Python环境, 并不复杂, 但是得打开好几个网站, 我习惯先看下官网有啥更新说明, 因此记录下, 以免每次都要找&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.python.org/download/"&gt;安装Python&lt;/a&gt;, 下载安装Python 2.7.X, 安装目录C:\Python27&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://pypi.python.org/pypi/setuptools"&gt;安装setuptools&lt;/a&gt;, Windows下, 下载&lt;strong&gt;&lt;a href="https://pypi.python.org/pypi/setuptools/0.9.6#windows"&gt;ez_setup.py&lt;/a&gt;&lt;/strong&gt;文件并运行&lt;/p&gt;
+&lt;p&gt;在环境变量PATH中追加: &lt;code&gt;C:\Python27;C:\Python27\Scripts&lt;/code&gt; 或 &lt;code&gt;C:\Python33;C:\Python33\Scripts&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://pypi.python.org/pypi/pip"&gt;安装pip&lt;/a&gt;, 可以在&lt;a href="https://github.com/pypa/pip"&gt;Github&lt;/a&gt;上下载开发版, 然后解压, 进入根目录, 使用命令行安装&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;python setup.py insatll
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;使用&lt;strong&gt;requirements.txt&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="n"&gt;requirements&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;安装&lt;a href="http://www.virtualenv.org/en/latest/"&gt;virtualenv&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;pip install virtualenv
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;或最新开发版:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;pip install https:&lt;span class="n"&gt;//github.com/pypa/virtualenv/tarball/develop&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;安装&lt;a href="http://doc.42qu.com/sphinx.html"&gt;Sphinx&lt;/a&gt;, 用于生成文档&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;pip install sphinx
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;http://stackoverflow.com/questions/4750806/how-to-install-pip-on-windows&lt;/p&gt;
+&lt;h4&gt;Windows下exe安装&lt;/h4&gt;
+&lt;p&gt;&lt;a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/"&gt;Unofficial Windows Binaries for Python Extension Packages&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://pypi.python.org/simple/lxml/"&gt;lxml&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;可参考文档&lt;/h4&gt;
+&lt;p&gt;&lt;a href="http://stackoverflow.com/questions/4750806/how-to-install-pip-on-windows"&gt;StackOverflow: How to install pip on windows?&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sat, 06 Jul 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-07-06:python-env-install.html</guid><category>Windows</category><category>Python</category><category>pip</category><category>virtualenv</category></item><item><title>[解决] Windows下安装Python Extension Package出现 error: Unable to find vcvarsall.bat 错误</title><link>http://zoeyyoung.github.io/unable-to-find-vcvarsall-bat.html</link><description>&lt;h3&gt;最简单的方式&lt;/h3&gt;
+&lt;p&gt;直接下载编译好的.exe文件进行安装&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/"&gt;Unofficial Windows Binaries for Python Extension Packages&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;常用的包应该都能找到.&lt;/p&gt;
+&lt;h3&gt;error: Unable to find vcvarsall.bat&lt;/h3&gt;
+&lt;p&gt;使用pip安装Motor时, 总出现问题, 如下:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;building &lt;span class="s1"&gt;&amp;#39;greenlet&amp;#39;&lt;/span&gt; extension
+
+error: Unable to find vcvarsall.bat
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;根据&lt;a href="http://stackoverflow.com/questions/2817869/error-unable-to-find-vcvarsall-bat"&gt;error: Unable to find vcvarsall.bat&lt;/a&gt;中的安装MinGW方法&lt;/p&gt;
+&lt;p&gt;1、我使用的是Python 2.7&lt;/p&gt;
+&lt;p&gt;2、安装&lt;a href="http://sourceforge.net/projects/mingw/?source=dlp"&gt;MinGW&lt;/a&gt;到&lt;strong&gt;C:\MinGW&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;3、添加&lt;strong&gt;C:\MinGW\bin&lt;/strong&gt;和&lt;strong&gt;C:\MinGW\lib&lt;/strong&gt;目录到环境变量PATH&lt;/p&gt;
+&lt;p&gt;4、编辑或添加C:\Python27\Lib\distutils\distutils.cfg文件, 添加如下两行:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;[build]&lt;/span&gt;
+&lt;span class="na"&gt;compiler&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;mingw32&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;我使用了virtualenv, 因此这里需要在相应目录下添加&lt;/p&gt;
+&lt;p&gt;5、重新执行&lt;code&gt;pip install motor&lt;/code&gt;, 报新的错误&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;building &lt;span class="s1"&gt;&amp;#39;greenlet&amp;#39;&lt;/span&gt; extension
+
+C:\MinGW\bin\gcc.exe -mno-cygwin -mdll -O -Wall -IC:\Python&lt;span class="m"&gt;27&lt;/span&gt;\include -ID:\LinksBox-Tornado\PC -c greenlet.c -o build\temp.win-amd&lt;span class="m"&gt;64-2&lt;/span&gt;.&lt;span class="m"&gt;7&lt;/span&gt;\Release\greenlet.o
+
+cc&lt;span class="m"&gt;1&lt;/span&gt;.exe: error: unrecognized command line option &lt;span class="s1"&gt;&amp;#39;-mno-cygwin&amp;#39;&lt;/span&gt;
+
+error: command &lt;span class="s1"&gt;&amp;#39;gcc&amp;#39;&lt;/span&gt; failed with exit status &lt;span class="m"&gt;1&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;参考&lt;a href="http://www.biaodianfu.com/python-error-unable-to-find-vcvarsall-bat.html"&gt;Python error: Unable to find vcvarsall.bat&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;原因是gcc 4.6.x以后不再接受&lt;code&gt;-mno-cygwin&lt;/code&gt;, 为了解决这个问题需要修改C:\Python27\Lib\distutils\cygwinccompiler.py文件。找到(搜索&lt;code&gt;-mno-cygwin&lt;/code&gt;)：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;set_executables&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;compiler&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;gcc -mno-cygwin -O -Wall&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                             &lt;span class="n"&gt;compiler_so&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;gcc -mno-cygwin -mdll -O -Wall&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                             &lt;span class="n"&gt;compiler_cxx&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;g++ -mno-cygwin -O -Wall&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                             &lt;span class="n"&gt;linker_exe&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;gcc -mno-cygwin&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                             &lt;span class="n"&gt;linker_so&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt; -mno-cygwin &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt; &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt;
+                                        &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;linker_dll&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;shared_option&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                                           &lt;span class="n"&gt;entry_point&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;修改为：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;set_executables&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;compiler&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;gcc -O -Wall&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                             &lt;span class="n"&gt;compiler_so&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;gcc -mdll -O -Wall&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                             &lt;span class="n"&gt;compiler_cxx&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;g++ -mno-cygwin -O -Wall&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                             &lt;span class="n"&gt;linker_exe&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;gcc&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                             &lt;span class="n"&gt;linker_so&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt; -mno-cygwin &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt; &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt;
+                                        &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;linker_dll&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;shared_option&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                                           &lt;span class="n"&gt;entry_point&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;接着还是出现问题了...&lt;/p&gt;
+&lt;p&gt;囧&lt;/p&gt;
+&lt;h3&gt;所以, 真正的解决方法是...&lt;/h3&gt;
+&lt;p&gt;到&lt;a href="https://pypi.python.org/pypi/greenlet"&gt;pypi greenlet&lt;/a&gt;上去下载&lt;strong&gt;greenlet-0.4.1.win-amd64-py2.7.exe&lt;/strong&gt;直接安装&lt;/p&gt;
+&lt;p&gt;然后将&lt;strong&gt;C:\Python27\Lib\site-packages&lt;/strong&gt;目录下的&lt;strong&gt;greenlet.pyd&lt;/strong&gt;和&lt;strong&gt;greenlet-0.4.1-py2.7.egg-info&lt;/strong&gt;两个文件拷贝到我的virtualenv目录的&lt;strong&gt;X:\virtualenvDir\Lib\site-packages&lt;/strong&gt;下才解决了问题&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 02 Jul 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-07-02:unable-to-find-vcvarsall-bat.html</guid><category>Motor</category><category>MongoDB</category><category>Python</category><category>Windows</category><category>问题</category></item></channel></rss>

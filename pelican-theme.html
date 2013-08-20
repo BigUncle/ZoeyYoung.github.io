@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>自动动手制作Pelican主题 - OK Computer</title>
+  <meta name="description" content="杨丁苗的个人博客">
+  <meta name="author" content="ZoeyYoung">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+  <!--[if lt IE 9]>
+  <script src="http://zoeyyoung.github.io/theme/html5.js"></script>
+  <![endif]-->
+  <!-- Le styles -->
+  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet" />
+  <link href="http://zoeyyoung.github.io/theme/print.css" rel="stylesheet" media="print" />
+  <link href="http://zoeyyoung.github.io/theme/local.css" rel="stylesheet" media="screen" />
+  <link href="http://zoeyyoung.github.io/theme/pygments.css" rel="stylesheet" />
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet" />
+  <!--[if IE 7]>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome-ie7.min.css" rel="stylesheet" />
+  <![endif]-->
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div id="header" class="span2 no-print">
+        <div class="brand-wrapper">
+          <a href="http://zoeyyoung.github.io" class="brand">OK Computer</a>
+          <p style="text-align: center; font-size: 12px; margin-top: 0;">It's better to burn out <br/> than to fade away.</p>
+        </div>
+        <ul id="blog-nav" class="nav">
+          <li>SITE</li>
+          <li><a href="http://zoeyyoung.github.io">首页</a></li>
+          <li><a href="http://zoeyyoung.github.io/archives.html">归档</a></li>
+          <li><a href="http://zoeyyoung.github.io/tags.html">标签</a></li>
+          <li><hr/></li>
+          <li>CATEGORIES</li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/java.html ">Java</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/linux.html ">Linux</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/nlp.html ">NLP</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/nosql.html ">NoSQL</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/python.html ">Python</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/ruby.html ">Ruby</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/tips.html ">Tips</a>
+          </li>
+                    <li  class="active" >
+            <a href="http://zoeyyoung.github.io/category/qian-duan.html ">前端</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/gong-zuo-ji-lu.html ">工作记录</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/wo-de-xiang-mu.html ">我的项目</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/suan-fa.html ">算法</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/du-shu.html ">读书</a>
+          </li>
+                    <li><hr/></li>
+                    <li>PAGES<li>
+          
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/about-me.html">关于我</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/golden-slumber.html">Golden Slumber</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/on-the-road.html">在路上</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/software.html">我使用的软件</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/translate.html">翻译</a>
+          </li>
+                            </ul>
+      </div>
+      <div class="main-content span10">
+          <div class='article'>
+  <article class="span12">
+    <h1>自动动手制作Pelican主题</h1>
+    <div class="article-metadata">
+<time class="published" datetime="2013 六月 25 周二">2013 六月 25 周二 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/qian-duan.html">前端</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/pelican.html">Pelican</a>
+        <a href="http://zoeyyoung.github.io/tag/theme.html">Theme</a>
+    </span>
+<!-- <p></p> -->
+</div>    <h3>我创建的主题</h3>
+<p><a href="https://github.com/ZoeyYoung/my-pelican-theme">第1个主题</a></p>
+<p><img alt="截图" src="/static/images/screenshot.jpg" /></p>
+<h3>使用主题</h3>
+<div class="highlight"><pre><span class="c"># Specify name of a built-in theme</span>
+<span class="n">THEME</span> <span class="o">=</span> <span class="s">&quot;notmyidea&quot;</span>
+<span class="c"># Specify name of a theme installed via the pelican-themes tool</span>
+<span class="n">THEME</span> <span class="o">=</span> <span class="s">&quot;chunk&quot;</span>
+<span class="c"># Specify a customized theme, via path relative to the settings file</span>
+<span class="n">THEME</span> <span class="o">=</span> <span class="s">&quot;themes/mycustomtheme&quot;</span>
+<span class="c"># Specify a customized theme, via absolute path</span>
+<span class="n">THEME</span> <span class="o">=</span> <span class="s">&quot;~/projects/mysite/themes/mycustomtheme&quot;</span>
+</pre></div>
+
+
+<h3>目录结构</h3>
+<div class="highlight"><pre><span class="err">├──</span> <span class="n">static</span>                    <span class="o">//</span> <span class="err">会被复制到</span> <span class="n">output</span><span class="o">/</span><span class="n">theme</span> <span class="err">文件夹</span>
+<span class="err">│</span>   <span class="err">├──</span> <span class="n">css</span>
+<span class="err">│</span>   <span class="err">└──</span> <span class="n">images</span>
+<span class="err">└──</span> <span class="n">templates</span>
+    <span class="err">├──</span> <span class="n">archives</span><span class="o">.</span><span class="n">html</span>         <span class="o">//</span> <span class="n">to</span> <span class="n">display</span> <span class="n">archives</span>
+    <span class="err">├──</span> <span class="n">period_archives</span><span class="o">.</span><span class="n">html</span>  <span class="o">//</span> <span class="n">to</span> <span class="n">display</span> <span class="n">time</span><span class="o">-</span><span class="n">period</span> <span class="n">archives</span>
+    <span class="err">├──</span> <span class="n">article</span><span class="o">.</span><span class="n">html</span>          <span class="o">//</span> <span class="n">processed</span> <span class="k">for</span> <span class="n">each</span> <span class="n">article</span>
+    <span class="err">├──</span> <span class="n">author</span><span class="o">.</span><span class="n">html</span>           <span class="o">//</span> <span class="n">processed</span> <span class="k">for</span> <span class="n">each</span> <span class="n">author</span>
+    <span class="err">├──</span> <span class="n">authors</span><span class="o">.</span><span class="n">html</span>          <span class="o">//</span> <span class="n">must</span> <span class="nb">list</span> <span class="nb">all</span> <span class="n">the</span> <span class="n">authors</span>
+    <span class="err">├──</span> <span class="n">categories</span><span class="o">.</span><span class="n">html</span>       <span class="o">//</span> <span class="err">列出所有分类目录</span>
+    <span class="err">├──</span> <span class="n">category</span><span class="o">.</span><span class="n">html</span>         <span class="o">//</span> <span class="n">processed</span> <span class="k">for</span> <span class="n">each</span> <span class="n">category</span>
+    <span class="err">├──</span> <span class="n">index</span><span class="o">.</span><span class="n">html</span>            <span class="o">//</span> <span class="n">the</span> <span class="n">index</span><span class="o">.</span> <span class="n">List</span> <span class="nb">all</span> <span class="n">the</span> <span class="n">articles</span>
+    <span class="err">├──</span> <span class="n">page</span><span class="o">.</span><span class="n">html</span>             <span class="o">//</span> <span class="n">processed</span> <span class="k">for</span> <span class="n">each</span> <span class="n">page</span>
+    <span class="err">├──</span> <span class="n">tag</span><span class="o">.</span><span class="n">html</span>              <span class="o">//</span> <span class="n">processed</span> <span class="k">for</span> <span class="n">each</span> <span class="n">tag</span>
+    <span class="err">└──</span> <span class="n">tags</span><span class="o">.</span><span class="n">html</span>             <span class="o">//</span> <span class="err">列出所有标签</span><span class="p">,</span> <span class="err">可以是标签云</span>
+</pre></div>
+
+
+<p>快速的方案是拷贝已有的主题进行修改</p>
+<h3>模板 和 变量</h3>
+<h4>共同的变量</h4>
+<p>即在每个模板中能使用的变量, 其中在配置文件中定义的变量在所有模板中都能使用</p>
+<p>例如: 作者 {{ AUTHOR }}</p>
+<table border="1" class="docutils">
+    <colgroup>
+        <col width="20%">
+        <col width="80%">
+    </colgroup>
+    <thead valign="bottom">
+        <tr class="row-odd"><th class="head">变量</th>
+        <th class="head">描述</th>
+        </tr>
+    </thead>
+    <tbody valign="top">
+        <tr class="row-even">
+            <td>output_file</td>
+            <td>当前生成的文件的文件名. 例如, 当Pelican渲染主页时, output_file的值为"index.html".</td>
+        </tr>
+        <tr class="row-odd">
+            <td>articles</td>
+            <td>文章列表, 根据日期降序排序. 所有元素为<cite>Article</cite>对象, 可以访问其属性(如: title, summary, author等). 有时会被覆盖(例如在tags页中). 这时需要使用<cite>all_articles</cite>变量代替.</td>
+        </tr>
+        <tr class="row-even">
+            <td>dates</td>
+            <td>与articles同样的列表, 但是根据日期升序排序.</td>
+        </tr>
+        <tr class="row-odd">
+            <td>tags</td>
+            <td>(tag, articles)列表元组, 包含所有标签.</td>
+        </tr>
+        <tr class="row-even">
+            <td>categories</td>
+            <td>(category, articles)列表元组, 包含所有分类目录, 以及各自的文章(values)列表</td>
+        </tr>
+        <tr class="row-odd">
+            <td>pages</td>
+            <td>页面列表</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>每个模板页中还有特殊的变量, 很简单, 具体看官方文档</p>
+<p><a href="http://docs.getpelican.com/en/latest/themes.html">How to create themes for Pelican</a></p>
+<h3>pelican-themes脚本的使用</h3>
+<p><a href="http://docs.getpelican.com/en/latest/pelican-themes.html">pelican-themes</a></p>
+<p>不是非要使用...</p>
+<p>我是没用上 - -</p>
+    <hr />
+  </article>
+  <div class="span12 comment">
+      <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style_32x32 no-print">
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a href="http://www.jiathis.com/share?uid=1801890" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1801890" charset="utf-8"></script>
+<!-- JiaThis Button END -->      <!-- <h3>Comments</h3> -->
+      <!--  -->
+      <!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" id="UYScript" src="http://v1.uyan.cc/js/iframe.js?UYUserId=1801890" async=""></script>
+<!-- UY END -->      <!-- UJian Button BEGIN -->
+<script type="text/javascript">var ujian_config = {target:1,mouseoverColor:'#222222',hoverTextColor:'#FFFFFF'};</script>
+<script type="text/javascript" src="http://v1.ujian.cc/code/ujian.js?type=slide&btn=3&fade=1&picsize=96&uid=1801890"></script>
+<a href="http://www.ujian.cc" style="border:0;"><img src="http://img.ujian.cc/pixel.png" alt="友荐云推荐" style="border:0;padding:0;margin:0;" /></a>
+<!-- UJian Button END -->  </div>
+</div>
+                </div>    </div><!-- End of fluid row-->
+  </div><!-- End of Container-->
+  <!--footer-->
+  <footer id="footer" class="no-print">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span1"></div>
+        <div class="span2" id="socialist">
+          <ul class="nav">
+            <li>Social</li>
+                                    <li><a href="http://weibo.com/1990zoey"><i class="icon-weibo icon-large"></i>新浪微博</a></li>
+                        <li><a href="http://www.renren.com/230222157/profile"><i class="icon-renren icon-large"></i>人人网</a></li>
+                        <li><a href="http://www.douban.com/people/ZoeyYoung/"><i class="icon-leaf icon-large"></i>豆瓣</a></li>
+                                    <li><a href="mailto:ydingmiao@gmail.com">
+              <i class="icon-envelope icon-large"></i>联系我
+            </a></li>
+                      </ul>
+        </div>
+                <div class="span2">
+          <ul class="nav">
+            <li>Links</li>
+                                    <li><a href="http://my.oschina.net/zoey1990">
+              <i class="icon-heart icon-large"></i>OSC
+            </a></li>
+                        <li><a href="http://www.xiami.com/u/2092563">
+              <i class="icon-music icon-large"></i>虾米
+            </a></li>
+                        <li><a href="https://gist.github.com/ZoeyYoung">
+              <i class="icon-github icon-large"></i>GIST
+            </a></li>
+                        <li><a href="https://github.com/ZoeyYoung">
+              <i class="icon-github icon-large"></i>GitHub
+            </a></li>
+                      </ul>
+        </div>
+        <div class="span2" id="site-links">
+          <ul class="nav">
+            <li>Site</li>
+            <li><a href="http://zoeyyoung.github.io">
+              <i class="icon-home icon-large"></i>首页
+            </a></li>
+            <li><a href="http://zoeyyoung.github.io/archives.html">
+              <i class="icon-list icon-large"></i>归档
+            </a></li>
+            <li><a href="http://zoeyyoung.github.io/tags.html">
+              <i class="icon-tags icon-large"></i>标签
+            </a></li>
+                        <li><a href="http://zoeyyoung.github.io/" rel="alternate">
+              <i class="icon-rss-sign icon-large"></i>Atom Feed
+            </a></li>
+          </ul>
+        </div>
+                <div class="sina-weibo span4">
+          <a href="http://weibo.com/u/1861922471?s=6uyXnP" target="_blank"><img border="0" src="http://service.t.sina.com.cn/widget/qmd/1861922471/c4ba5282/1.png"/></a>
+        </div>
+                <div class="span1"></div>
+      </div><!--end of fluid row-->
+      <p style="text-align: center;">
+          <a href="http://zoeyyoung.github.io">OK Computer</a>
+          &copy; ZoeyYoung
+          Powered by
+          <a href="https://github.com/getpelican/pelican">Pelican</a>
+          and
+          <a href="https://twitter.github.com/bootstrap">Twitter Bootstrap</a>
+          .
+          Icons by
+          <a href="http://gregoryloucas.github.io/Fontstrap/">Font Awesome</a>
+          .Theme By <a href="http://zoeyyoung.gitcafe.com/">ZoeyYoung</a>
+      </p>
+    </div>
+  </footer>
+  <!--/footer-->
+  <script src="http://zoeyyoung.github.io/theme/jquery-1.10.0.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+  <script>var _gaq=[['_setAccount','UA-41731595-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+</body>
+</html>

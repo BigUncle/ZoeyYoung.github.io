@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>OK Computer</title>
+  <meta name="description" content="杨丁苗的个人博客">
+  <meta name="author" content="ZoeyYoung">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+  <!--[if lt IE 9]>
+  <script src="http://zoeyyoung.github.io/theme/html5.js"></script>
+  <![endif]-->
+  <!-- Le styles -->
+  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet" />
+  <link href="http://zoeyyoung.github.io/theme/print.css" rel="stylesheet" media="print" />
+  <link href="http://zoeyyoung.github.io/theme/local.css" rel="stylesheet" media="screen" />
+  <link href="http://zoeyyoung.github.io/theme/pygments.css" rel="stylesheet" />
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet" />
+  <!--[if IE 7]>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome-ie7.min.css" rel="stylesheet" />
+  <![endif]-->
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div id="header" class="span2 no-print">
+        <div class="brand-wrapper">
+          <a href="http://zoeyyoung.github.io" class="brand">OK Computer</a>
+          <p style="text-align: center; font-size: 12px; margin-top: 0;">It's better to burn out <br/> than to fade away.</p>
+        </div>
+        <ul id="blog-nav" class="nav">
+          <li>SITE</li>
+          <li><a href="http://zoeyyoung.github.io">首页</a></li>
+          <li><a href="http://zoeyyoung.github.io/archives.html">归档</a></li>
+          <li><a href="http://zoeyyoung.github.io/tags.html">标签</a></li>
+          <li><hr/></li>
+          <li>CATEGORIES</li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/java.html ">Java</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/linux.html ">Linux</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/nlp.html ">NLP</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/nosql.html ">NoSQL</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/python.html ">Python</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/ruby.html ">Ruby</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/tips.html ">Tips</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/qian-duan.html ">前端</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/gong-zuo-ji-lu.html ">工作记录</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/wo-de-xiang-mu.html ">我的项目</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/suan-fa.html ">算法</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/du-shu.html ">读书</a>
+          </li>
+                    <li><hr/></li>
+                    <li>PAGES<li>
+          
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/about-me.html">关于我</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/golden-slumber.html">Golden Slumber</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/on-the-road.html">在路上</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/software.html">我使用的软件</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/translate.html">翻译</a>
+          </li>
+                            </ul>
+      </div>
+      <div class="main-content span10">
+          
+    <div class='row-fluid'>
+        <div class="span12">
+            <a href="http://zoeyyoung.github.io/mongodb-array-update-with-query.html"><h1>MongoDB中数组更新操作</h1></a>
+            <div class="article-metadata">
+<time class="published" datetime="2013 八月 03 周六">2013 八月 03 周六 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/nosql.html">NoSQL</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/mongodb.html">MongoDB</a>
+        <a href="http://zoeyyoung.github.io/tag/nosql.html">NoSQL</a>
+        <a href="http://zoeyyoung.github.io/tag/update.html">Update</a>
+    </span>
+<!-- <p></p> -->
+</div>            <p>要做的事情: 在每个文档, 标签tags是以数组Array的形式存在的, 我现在有个标签命名为<strong>python</strong>, 我想全部改成<strong>Python</strong></p>
+<p><a href="http://docs.mongodb.org/manual/reference/operator/positional/#op._S">$ (query)</a></p>
+<p>语法: <code>{ "&lt;array&gt;.$" : value }</code></p>
+<p>使用mongo shell, 首先插入三条记录:</p>
+<div class="highlight"><pre><span class="p">&gt;</span> <span class="n">mongo</span>
+MongoDB shell version: <span class="m">2</span>.<span class="m">4</span>.<span class="m">5</span>
+connecting to: test
+<span class="p">&gt;</span> <span class="n">db</span>.tags.insert({<span class="s2">&quot;tags&quot;</span>: [<span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;3&quot;</span>]})
+<span class="p">&gt;</span> <span class="n">db</span>.tags.insert({<span class="s2">&quot;tags&quot;</span>: [<span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;3&quot;</span>]})
+<span class="p">&gt;</span> <span class="n">db</span>.tags.insert({<span class="s2">&quot;tags&quot;</span>: [<span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;3&quot;</span>]})
+<span class="p">&gt;</span> <span class="n">db</span>.tags.find()
+{ <span class="s2">&quot;_id&quot;</span> : ObjectId(<span class="s2">&quot;...&quot;</span>)<span class="p">,</span> <span class="s2">&quot;tags&quot;</span> : [  <span class="s2">&quot;1&quot;</span><span class="p">,</span>  <span class="s2">&quot;2&quot;</span><span class="p">,</span>  <span class="s2">&quot;3&quot;</span> ] }
+{ <span class="s2">&quot;_id&quot;</span> : ObjectId(<span class="s2">&quot;...&quot;</span>)<span class="p">,</span> <span class="s2">&quot;tags&quot;</span> : [  <span class="s2">&quot;1&quot;</span><span class="p">,</span>  <span class="s2">&quot;2&quot;</span><span class="p">,</span>  <span class="s2">&quot;3&quot;</span> ] }
+{ <span class="s2">&quot;_id&quot;</span> : ObjectId(<span class="s2">&quot;...&quot;</span>)<span class="p">,</span> <span class="s2">&quot;tags&quot;</span> : [  <span class="s2">&quot;1&quot;</span><span class="p">,</span>  <span class="s2">&quot;2&quot;</span><span class="p">,</span>  <span class="s2">&quot;3&quot;</span> ] }
+</pre></div>
+
+
+<p>update默认只更新一条:</p>
+<div class="highlight"><pre><span class="p">&gt;</span> <span class="n">db</span>.tags.update({<span class="s2">&quot;tags&quot;</span> : <span class="s2">&quot;3&quot;</span>}<span class="p">,</span> {$<span class="k">set</span>: {<span class="s2">&quot;tags.$&quot;</span>: <span class="s2">&quot;5&quot;</span>}})
+<span class="p">&gt;</span> <span class="n">db</span>.tags.find()
+{ <span class="s2">&quot;_id&quot;</span> : ObjectId(<span class="s2">&quot;...&quot;</span>)<span class="p">,</span> <span class="s2">&quot;tags&quot;</span> : [  <span class="s2">&quot;1&quot;</span><span class="p">,</span>  <span class="s2">&quot;2&quot;</span><span class="p">,</span>  <span class="s2">&quot;5&quot;</span> ] }
+{ <span class="s2">&quot;_id&quot;</span> : ObjectId(<span class="s2">&quot;...&quot;</span>)<span class="p">,</span> <span class="s2">&quot;tags&quot;</span> : [  <span class="s2">&quot;1&quot;</span><span class="p">,</span>  <span class="s2">&quot;2&quot;</span><span class="p">,</span>  <span class="s2">&quot;3&quot;</span> ] }
+{ <span class="s2">&quot;_id&quot;</span> : ObjectId(<span class="s2">&quot;...&quot;</span>)<span class="p">,</span> <span class="s2">&quot;tags&quot;</span> : [  <span class="s2">&quot;1&quot;</span><span class="p">,</span>  <span class="s2">&quot;2&quot;</span><span class="p">,</span>  <span class="s2">&quot;3&quot;</span> ] }
+</pre></div>
+
+
+<p>更新全部, 加入option <code>{multi: true}</code>:</p>
+<div class="highlight"><pre><span class="p">&gt;</span> <span class="n">db</span>.tags.update({<span class="s2">&quot;tags&quot;</span> : <span class="s2">&quot;3&quot;</span>}<span class="p">,</span> {$<span class="k">set</span>: {<span class="s2">&quot;tags.$&quot;</span>: <span class="s2">&quot;5&quot;</span>}}<span class="p">,</span> {multi: true})
+<span class="p">&gt;</span> <span class="n">db</span>.tags.find()
+{ <span class="s2">&quot;_id&quot;</span> : ObjectId(<span class="s2">&quot;...&quot;</span>)<span class="p">,</span> <span class="s2">&quot;tags&quot;</span> : [  <span class="s2">&quot;1&quot;</span><span class="p">,</span>  <span class="s2">&quot;2&quot;</span><span class="p">,</span>  <span class="s2">&quot;5&quot;</span> ] }
+{ <span class="s2">&quot;_id&quot;</span> : ObjectId(<span class="s2">&quot;...&quot;</span>)<span class="p">,</span> <span class="s2">&quot;tags&quot;</span> : [  <span class="s2">&quot;1&quot;</span><span class="p">,</span>  <span class="s2">&quot;2&quot;</span><span class="p">,</span>  <span class="s2">&quot;5&quot;</span> ] }
+{ <span class="s2">&quot;_id&quot;</span> : ObjectId(<span class="s2">&quot;...&quot;</span>)<span class="p">,</span> <span class="s2">&quot;tags&quot;</span> : [  <span class="s2">&quot;1&quot;</span><span class="p">,</span>  <span class="s2">&quot;2&quot;</span><span class="p">,</span>  <span class="s2">&quot;5&quot;</span> ] }
+</pre></div>
+
+
+<p>使操作具原子性, <a href="http://docs.mongodb.org/manual/reference/operator/isolated/#op._S_isolated">$isolated</a>:</p>
+<div class="highlight"><pre><span class="p">&gt;</span> <span class="n">db</span>.tags.update({<span class="s2">&quot;tags&quot;</span> : <span class="s2">&quot;5&quot;</span><span class="p">,</span> $isolated : <span class="m">1</span>}<span class="p">,</span> {$<span class="k">set</span>: {<span class="s2">&quot;tags.$&quot;</span>: <span class="s2">&quot;6&quot;</span>}}<span class="p">,</span> {multi: true })
+<span class="p">&gt;</span> <span class="n">db</span>.tags.find()
+{ <span class="s2">&quot;_id&quot;</span> : ObjectId(<span class="s2">&quot;...&quot;</span>)<span class="p">,</span> <span class="s2">&quot;tags&quot;</span> : [  <span class="s2">&quot;1&quot;</span><span class="p">,</span>  <span class="s2">&quot;2&quot;</span><span class="p">,</span>  <span class="s2">&quot;6&quot;</span> ] }
+{ <span class="s2">&quot;_id&quot;</span> : ObjectId(<span class="s2">&quot;...&quot;</span>)<span class="p">,</span> <span class="s2">&quot;tags&quot;</span> : [  <span class="s2">&quot;1&quot;</span><span class="p">,</span>  <span class="s2">&quot;2&quot;</span><span class="p">,</span>  <span class="s2">&quot;6&quot;</span> ] }
+{ <span class="s2">&quot;_id&quot;</span> : ObjectId(<span class="s2">&quot;...&quot;</span>)<span class="p">,</span> <span class="s2">&quot;tags&quot;</span> : [  <span class="s2">&quot;1&quot;</span><span class="p">,</span>  <span class="s2">&quot;2&quot;</span><span class="p">,</span>  <span class="s2">&quot;6&quot;</span> ] }
+</pre></div>
+
+
+<p>上面是使用mongo shell进行操作, 下面使用pymongo进行等价操作, 来对我书签云中的标签进行整理:</p>
+<div class="highlight"><pre><span class="c">#!/usr/bin/env python</span>
+<span class="c"># -*- coding: utf-8 -*-</span>
+<span class="kn">import</span> <span class="nn">pymongo</span>
+
+<span class="n">bookmarks_collection</span> <span class="o">=</span> <span class="n">pymongo</span><span class="o">.</span><span class="n">Connection</span><span class="p">()</span><span class="o">.</span><span class="n">bookmarks_cloud</span><span class="o">.</span><span class="n">bookmarks</span>
+
+<span class="n">tags_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">&quot;Ajax&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;ajax&quot;</span><span class="p">],</span>
+    <span class="s">&quot;Apache&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;Apach&quot;</span><span class="p">,</span> <span class="s">&quot;apache&quot;</span><span class="p">],</span>
+    <span class="s">&quot;博客&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;Blog&quot;</span><span class="p">,</span> <span class="s">&quot;blog&quot;</span><span class="p">,</span> <span class="s">&quot;BLOG&quot;</span><span class="p">],</span>
+    <span class="s">&quot;Chrome&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;chrome&quot;</span><span class="p">],</span>
+    <span class="s">&quot;Chrome扩展&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;chrome extensions&quot;</span><span class="p">,</span> <span class="s">&quot;chrome扩展&quot;</span><span class="p">],</span>
+    <span class="s">&quot;CSS&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;css&quot;</span><span class="p">,</span> <span class="s">&quot;div+css布局&quot;</span><span class="p">],</span>
+    <span class="s">&quot;CSS3&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;css3&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">tags_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">v</span><span class="p">:</span>
+        <span class="n">bookmarks_collection</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s">&#39;tags&#39;</span><span class="p">:</span> <span class="n">t</span><span class="p">},</span> <span class="p">{</span><span class="s">&#39;$set&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s">&#39;tags.$&#39;</span><span class="p">:</span> <span class="n">k</span><span class="p">}},</span> <span class="n">multi</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+
+
+<p>目的是减少一些重复, 大小写不一致. 目前自动生成的标签的质量实在是很糟糕.</p>
+            <a class="btn btn-mini xsmall" href="http://zoeyyoung.github.io/mongodb-array-update-with-query.html"><i class="icon-comment"></i> 评论 </a>
+            <hr />
+        </div>
+    </div>
+            <div class="pagination no-print">
+<ul>
+    <li class="prev disabled"><a href="#">&larr; 上一页</a></li>
+
+    <li class="active"><a href="http://zoeyyoung.github.io/tag/update.html">1</a></li>
+
+    <li class="next disabled"><a href="#">&rarr; 下一页</a></li>
+
+</ul>
+</div>       
+                </div>    </div><!-- End of fluid row-->
+  </div><!-- End of Container-->
+  <!--footer-->
+  <footer id="footer" class="no-print">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span1"></div>
+        <div class="span2" id="socialist">
+          <ul class="nav">
+            <li>Social</li>
+                                    <li><a href="http://weibo.com/1990zoey"><i class="icon-weibo icon-large"></i>新浪微博</a></li>
+                        <li><a href="http://www.renren.com/230222157/profile"><i class="icon-renren icon-large"></i>人人网</a></li>
+                        <li><a href="http://www.douban.com/people/ZoeyYoung/"><i class="icon-leaf icon-large"></i>豆瓣</a></li>
+                                    <li><a href="mailto:ydingmiao@gmail.com">
+              <i class="icon-envelope icon-large"></i>联系我
+            </a></li>
+                      </ul>
+        </div>
+                <div class="span2">
+          <ul class="nav">
+            <li>Links</li>
+                                    <li><a href="http://my.oschina.net/zoey1990">
+              <i class="icon-heart icon-large"></i>OSC
+            </a></li>
+                        <li><a href="http://www.xiami.com/u/2092563">
+              <i class="icon-music icon-large"></i>虾米
+            </a></li>
+                        <li><a href="https://gist.github.com/ZoeyYoung">
+              <i class="icon-github icon-large"></i>GIST
+            </a></li>
+                        <li><a href="https://github.com/ZoeyYoung">
+              <i class="icon-github icon-large"></i>GitHub
+            </a></li>
+                      </ul>
+        </div>
+        <div class="span2" id="site-links">
+          <ul class="nav">
+            <li>Site</li>
+            <li><a href="http://zoeyyoung.github.io">
+              <i class="icon-home icon-large"></i>首页
+            </a></li>
+            <li><a href="http://zoeyyoung.github.io/archives.html">
+              <i class="icon-list icon-large"></i>归档
+            </a></li>
+            <li><a href="http://zoeyyoung.github.io/tags.html">
+              <i class="icon-tags icon-large"></i>标签
+            </a></li>
+                        <li><a href="http://zoeyyoung.github.io/" rel="alternate">
+              <i class="icon-rss-sign icon-large"></i>Atom Feed
+            </a></li>
+          </ul>
+        </div>
+                <div class="sina-weibo span4">
+          <a href="http://weibo.com/u/1861922471?s=6uyXnP" target="_blank"><img border="0" src="http://service.t.sina.com.cn/widget/qmd/1861922471/c4ba5282/1.png"/></a>
+        </div>
+                <div class="span1"></div>
+      </div><!--end of fluid row-->
+      <p style="text-align: center;">
+          <a href="http://zoeyyoung.github.io">OK Computer</a>
+          &copy; ZoeyYoung
+          Powered by
+          <a href="https://github.com/getpelican/pelican">Pelican</a>
+          and
+          <a href="https://twitter.github.com/bootstrap">Twitter Bootstrap</a>
+          .
+          Icons by
+          <a href="http://gregoryloucas.github.io/Fontstrap/">Font Awesome</a>
+          .Theme By <a href="http://zoeyyoung.gitcafe.com/">ZoeyYoung</a>
+      </p>
+    </div>
+  </footer>
+  <!--/footer-->
+  <script src="http://zoeyyoung.github.io/theme/jquery-1.10.0.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+  <script>var _gaq=[['_setAccount','UA-41731595-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+</body>
+</html>

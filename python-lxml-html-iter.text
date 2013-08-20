@@ -1,0 +1,178 @@
+Title: [解决] 使用lxml过滤HTML中class或id符合特定正则的元素
+Date: 2013-07-31
+Tags: Windows,Python,lxml
+Slug: python-lxml-html-iter
+Author: Zoey Young
+Summary: 使用lxml过滤HTML中class或id符合特定正则的元素
+
+在看[readability-lxml](https://github.com/buriy/python-readability)源码过程中遇到的问题, 很困惑为啥有部分应该在`remove_unlikely_candidates(doc)`过程中被删除的元素最后还在正文提取中出现.
+
+源码是这样的:
+
+    :::python
+    def remove_unlikely_candidates(doc):
+        for elem in doc.iter():
+            s = "%s %s" % (elem.get('class', ''), elem.get('id', ''))
+            #log.debug(s)
+            if (REGEXES['unlikelyCandidatesRe'].search(s) and
+                    (not REGEXES['okMaybeItsACandidateRe'].search(s)) and
+                    elem.tag != 'body' and
+                    elem.getparent() is not None
+                    ):
+                # log.debug("Removing unlikely candidate - %s" % describe(elem))
+                elem.drop_tree()
+
+
+原来以为挺简单的, 但是涉及到特殊情况比如`<div class="unwanted">This <p>content</p> should go</div>`这种含tail text即`should go`的, 或多级元素的, 就比较复杂了. 可能遍历到哪就自动中断了. 我这里写一个简化版本的作为测试:
+
+    :::python
+    from lxml.html import fromstring, tostring
+    import re
+
+    html = """
+    <html>
+    <head>
+    </head>
+
+    <body>
+        <div>
+            <div class="unwanted">This <p>content</p> should go</div>
+            <p class="fine">This content should stay</p>
+            What
+        </div>
+
+        <div id = "second" class="unwanted">
+            <p class = "alreadydead">This content should not be looked at</p>
+            <p class = "alreadydead">Nor should this</>
+            <div class="alreadydead">
+                <p class="alreadydead">Still dead</p>
+            </div>
+        </div>
+
+        <div>
+            <p class="yeswanted">This content should also stay</p>
+        </div>
+
+        <div id="unwanted">This <p>content</p> should go</div>
+    </body>
+    """
+    doc = fromstring(html)
+
+刚开始使用代码如下:
+
+    :::python
+    for elem in doc.iter():
+        s = "%s %s" % (elem.get('class', ''), elem.get('id', ''))
+        if re.compile('unwanted').search(s) and elem.tag != 'body' and elem.getparent() is not None:
+            elem.drop_tree()
+    print(tostring(doc, pretty_print=True))
+
+输出:
+
+    :::html
+    <html>
+    <head></head>
+    <body>
+        <div><p class="fine">This content should stay</p> What</div>
+        <div id="second" class="unwanted">\n
+            <p class="alreadydead">This content should not be looked at</p>
+            <p class="alreadydead">Nor should this&gt;</p>
+            <div class="alreadydead"><p class="alreadydead">Still dead</p></div>
+        </div>
+        <div><p class="yeswanted">This content should also stay</p></div>
+        <div class="unwanted">This <p>content</p>should go </div>
+    </body>
+    </html>
+
+很明显, 该删除的都没删除.
+
+以为是`drop_tree()`没删除tail text的关系, 改成`elem.getparent().remove(elem)`, 执行结果还是一样...
+
+    :::python
+    i = 0
+    for elem in doc.iter():
+        print(i, elem)
+        i = i+1
+        s = "%s %s" % (elem.get('class', ''), elem.get('id', ''))
+        if re.compile('unwanted').search(s) and elem.tag != 'body' and elem.getparent() is not None:
+            elem.getparent().remove(elem)
+
+尝试将elem打印出来, 发现只有5条
+
+    :::bat
+    0 <Element html at 0x2d5baf0>
+    1 <Element head at 0x314f200>
+    2 <Element body at 0x3376780>
+    3 <Element div at 0x33767d8>
+    4 <Element div at 0x314f200>
+    5 <Element p at 0x3376780>
+
+想到`iter()`应该是使用了迭代器模式. 因此应该有`next()`方法. 而在删除掉节点的同时, 相应对象的`next()`引用也被删除了. 因此才只遍历了第一部分. 具体怎么遍历的还不是很清楚.
+
+使用
+
+    :::python
+    allelem = doc.iter()
+    print(dir(allelem))
+
+输出
+
+    :::bat
+    ['__class__', '__delattr__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__iter__', '__le__', '__lt__', '__ne__', '__new__', '__next__', '__pyx_vtable__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__']
+
+其中确实有`__next__`, 最后使用如下代码
+
+    :::python
+    allelem = doc.iter()
+    for elem in allelem:
+        s = "%s %s" % (elem.get('class', ''), elem.get('id', ''))
+        if re.compile('unwanted').search(s) and elem.tag != 'body' and elem.getparent() is not None:
+              for i in range(len(elem.findall('.//*'))):
+                  allelem.__next__()
+              elem.getparent().remove(elem)
+    print(tostring(doc, pretty_print=True), file=output)
+
+终于正确输出想要的HTML:
+
+    :::html
+    <html>
+    <head></head>
+    <body>
+        <div>
+            <p class="fine">This content should stay</p>What</div>
+        <div>
+            <p class="yeswanted">This content should also stay</p>
+        </div>
+    </body>
+    </html>
+
+还有另外一种方式, 但没有第一种方法快:
+
+    :::python
+    for elem in doc.iter():
+        s = "%s %s" % (elem.get('class', ''), elem.get('id', ''))
+        if re.compile('unwanted').search(s) and elem.tag != 'body' and elem.getparent() is not None:
+            elem.set('class', 'removethis')
+    for elem in doc.find_class('removethis'):
+        elem.getparent().remove(elem)
+    print(tostring(doc, pretty_print=True), file=output)
+
+这是我一开始想到的方式, 前面一种是参考了**Stack Overflow**后总结出来的. 因为提问者给出的代码中直接用了`next()`, 而我发现没有这个方法, 一开始没用它, 后面用`dir`看了一下发现有`__next__()`这个方法, 官方文档很多地方挺奇怪的..很无语.
+
+最后将源码修改为:
+
+    :::python
+    def remove_unlikely_candidates(doc):
+        allelem = doc.iter()
+        for elem in allelem:
+            s = "%s %s" % (elem.get('class', ''), elem.get('id', ''))
+            if REGEXES['unlikelyCandidatesRe'].search(s) and (not REGEXES['okMaybeItsACandidateRe'].search(s)) and elem.tag != 'body' and elem.getparent() is not None:
+                for i in range(len(elem.findall('.//*'))):
+                    allelem.__next__()
+                elem.getparent().remove(elem)
+
+终于解决了纠结好久的问题, 原本以为源码不会有问题的...
+
+参考文档:
+
+[Stack Overflow: Editing tree in place while iterating in lxml](http://stackoverflow.com/questions/6152364/editing-tree-in-place-while-iterating-in-lxml)

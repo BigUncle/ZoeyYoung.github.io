@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>OK Computer</title>
+  <meta name="description" content="杨丁苗的个人博客">
+  <meta name="author" content="ZoeyYoung">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+  <!--[if lt IE 9]>
+  <script src="http://zoeyyoung.github.io/theme/html5.js"></script>
+  <![endif]-->
+  <!-- Le styles -->
+  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet" />
+  <link href="http://zoeyyoung.github.io/theme/print.css" rel="stylesheet" media="print" />
+  <link href="http://zoeyyoung.github.io/theme/local.css" rel="stylesheet" media="screen" />
+  <link href="http://zoeyyoung.github.io/theme/pygments.css" rel="stylesheet" />
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet" />
+  <!--[if IE 7]>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome-ie7.min.css" rel="stylesheet" />
+  <![endif]-->
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div id="header" class="span2 no-print">
+        <div class="brand-wrapper">
+          <a href="http://zoeyyoung.github.io" class="brand">OK Computer</a>
+          <p style="text-align: center; font-size: 12px; margin-top: 0;">It's better to burn out <br/> than to fade away.</p>
+        </div>
+        <ul id="blog-nav" class="nav">
+          <li>SITE</li>
+          <li><a href="http://zoeyyoung.github.io">首页</a></li>
+          <li><a href="http://zoeyyoung.github.io/archives.html">归档</a></li>
+          <li><a href="http://zoeyyoung.github.io/tags.html">标签</a></li>
+          <li><hr/></li>
+          <li>CATEGORIES</li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/java.html ">Java</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/linux.html ">Linux</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/nlp.html ">NLP</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/nosql.html ">NoSQL</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/python.html ">Python</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/ruby.html ">Ruby</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/tips.html ">Tips</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/qian-duan.html ">前端</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/gong-zuo-ji-lu.html ">工作记录</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/wo-de-xiang-mu.html ">我的项目</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/suan-fa.html ">算法</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/du-shu.html ">读书</a>
+          </li>
+                    <li><hr/></li>
+                    <li>PAGES<li>
+          
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/about-me.html">关于我</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/golden-slumber.html">Golden Slumber</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/on-the-road.html">在路上</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/software.html">我使用的软件</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/translate.html">翻译</a>
+          </li>
+                            </ul>
+      </div>
+      <div class="main-content span10">
+          
+    <div class='row-fluid'>
+        <div class="span12">
+            <a href="http://zoeyyoung.github.io/tomcat-config.html"><h1>Tomcat配置</h1></a>
+            <div class="article-metadata">
+<time class="published" datetime="2009 七月 18 周六">2009 七月 18 周六 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/gong-zuo-ji-lu.html">工作记录</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/tomcat.html">Tomcat</a>
+        <a href="http://zoeyyoung.github.io/tag/windows.html">Windows</a>
+        <a href="http://zoeyyoung.github.io/tag/fu-wu-qi.html">服务器</a>
+    </span>
+<!-- <p></p> -->
+</div>            <p><a href="http://tomcat.apache.org/index.html">Tomcat主页</a></p>
+<p>一、安装JDK 1.7</p>
+<p>1、添加环境变量: 在 <strong>我的电脑-&gt;属性-&gt;高级-&gt;环境变量</strong></p>
+<p>2、新建系统变量, 变量名: <code>JAVA_HOME</code>  变量值: <code>C:\Program Files\Java\jdk1.7.0</code> (JDK的安装目录)</p>
+<p>3、在原有的系统变量Path后面加上英文分号, 再添加<code>%JAVA_HOME%\bin;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\jre\bin;</code></p>
+<p>不要删除原来的. 看清楚, 它们之间的分号, 是英文的分号.</p>
+<p>4、测试JDK是否安装成功, 运行-&gt;cmd -&gt;D: 进入D盘, 输入<code>javac</code>看能否出来很多命令, 出来则说明JDK配置成功.</p>
+<p>二、Tomcat 7.0的安装配置</p>
+<p>1、Tomcat 7.0 的免安装版的配置(假如将Tomcat 解压到C:\Program Files目录, 目录结构为: C:\Program Files\apache-tomcat-7.0.11</p>
+<p>1、添加环境变量: 在 我的电脑-&gt;属性-&gt;高级-&gt;环境变量</p>
+<p>2、新建系统变量, 变量名: <code>CATALINA_HOME</code>  变量值: <code>C:\Program Files\apache-tomcat-7.0.11</code> (Tomcat 解压到的目录).</p>
+<p>3、在系统变量Path的最后面添加<code>%CATALINA_HOME%\lib;%CATALINA_HOME%\lib\servlet-api.jar;%CATALINA_HOME%\lib\jsp-api.jar</code>注意它们之间的分号, 一定是英文的分号.</p>
+<p>4、Tomcat 7.0的管理员的配置, 进入C:\Program Files\apache-tomcat-7.0.11(Tomcat目录)下的conf目录, 编辑tomcat-users.xml, 找到最后的:</p>
+<div class="highlight"><pre><span class="o">&lt;!--</span>
+  <span class="o">&lt;</span><span class="n">role</span> <span class="n">rolename</span><span class="o">=</span><span class="s">&quot;tomcat&quot;</span><span class="o">/&gt;</span>
+  <span class="o">&lt;</span><span class="n">role</span> <span class="n">rolename</span><span class="o">=</span><span class="s">&quot;role1&quot;</span><span class="o">/&gt;</span>
+  <span class="o">&lt;</span><span class="n">user</span> <span class="n">username</span><span class="o">=</span><span class="s">&quot;tomcat&quot;</span> <span class="n">password</span><span class="o">=</span><span class="s">&quot;tomcat&quot;</span> <span class="n">roles</span><span class="o">=</span><span class="s">&quot;tomcat&quot;</span><span class="o">/&gt;</span>
+  <span class="o">&lt;</span><span class="n">user</span> <span class="n">username</span><span class="o">=</span><span class="s">&quot;both&quot;</span> <span class="n">password</span><span class="o">=</span><span class="s">&quot;tomcat&quot;</span> <span class="n">roles</span><span class="o">=</span><span class="s">&quot;tomcat,role1&quot;</span><span class="o">/&gt;</span>
+  <span class="o">&lt;</span><span class="n">user</span> <span class="n">username</span><span class="o">=</span><span class="s">&quot;role1&quot;</span> <span class="n">password</span><span class="o">=</span><span class="s">&quot;tomcat&quot;</span> <span class="n">roles</span><span class="o">=</span><span class="s">&quot;role1&quot;</span><span class="o">/&gt;</span>
+<span class="o">--&gt;</span>
+</pre></div>
+
+
+<p>在上面这段后面添加上:</p>
+<div class="highlight"><pre><span class="o">&lt;</span><span class="n">role</span> <span class="n">rolename</span><span class="o">=</span><span class="s">&quot;manager-gui&quot;</span><span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="n">role</span> <span class="n">rolename</span><span class="o">=</span><span class="s">&quot;admin-gui&quot;</span><span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="n">user</span> <span class="n">username</span><span class="o">=</span><span class="s">&quot;admin&quot;</span> <span class="n">password</span><span class="o">=</span><span class="s">&quot;admin888&quot;</span> <span class="n">roles</span><span class="o">=</span><span class="s">&quot;admin-gui&quot;</span><span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="n">user</span> <span class="n">username</span><span class="o">=</span><span class="s">&quot;tomcat&quot;</span> <span class="n">password</span><span class="o">=</span><span class="s">&quot;tomcat&quot;</span> <span class="n">roles</span><span class="o">=</span><span class="s">&quot;manager-gui&quot;</span><span class="o">/&gt;</span>
+</pre></div>
+
+
+<p>5、从WIN+R CMD, 进入Tomcat目录下的bin目录, 双击startup.bat启动Tomcat, 在命令行窗口会出来英文提示.</p>
+<p>6、浏览器输入: http://localhost:8080 可以看到Tomcat的欢迎页面就说明配置成功了, 点击右上角上manager连接, 输入上面配置的用户名和密码, 就可以进入管理页面.</p>
+<p>注: 要从命令行运行, 否则会闪一下就消失.</p>
+            <a class="btn btn-mini xsmall" href="http://zoeyyoung.github.io/tomcat-config.html"><i class="icon-comment"></i> 评论 </a>
+            <hr />
+        </div>
+    </div>
+            <div class="pagination no-print">
+<ul>
+    <li class="prev disabled"><a href="#">&larr; 上一页</a></li>
+
+    <li class="active"><a href="http://zoeyyoung.github.io/tag/fu-wu-qi.html">1</a></li>
+
+    <li class="next disabled"><a href="#">&rarr; 下一页</a></li>
+
+</ul>
+</div>       
+                </div>    </div><!-- End of fluid row-->
+  </div><!-- End of Container-->
+  <!--footer-->
+  <footer id="footer" class="no-print">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span1"></div>
+        <div class="span2" id="socialist">
+          <ul class="nav">
+            <li>Social</li>
+                                    <li><a href="http://weibo.com/1990zoey"><i class="icon-weibo icon-large"></i>新浪微博</a></li>
+                        <li><a href="http://www.renren.com/230222157/profile"><i class="icon-renren icon-large"></i>人人网</a></li>
+                        <li><a href="http://www.douban.com/people/ZoeyYoung/"><i class="icon-leaf icon-large"></i>豆瓣</a></li>
+                                    <li><a href="mailto:ydingmiao@gmail.com">
+              <i class="icon-envelope icon-large"></i>联系我
+            </a></li>
+                      </ul>
+        </div>
+                <div class="span2">
+          <ul class="nav">
+            <li>Links</li>
+                                    <li><a href="http://my.oschina.net/zoey1990">
+              <i class="icon-heart icon-large"></i>OSC
+            </a></li>
+                        <li><a href="http://www.xiami.com/u/2092563">
+              <i class="icon-music icon-large"></i>虾米
+            </a></li>
+                        <li><a href="https://gist.github.com/ZoeyYoung">
+              <i class="icon-github icon-large"></i>GIST
+            </a></li>
+                        <li><a href="https://github.com/ZoeyYoung">
+              <i class="icon-github icon-large"></i>GitHub
+            </a></li>
+                      </ul>
+        </div>
+        <div class="span2" id="site-links">
+          <ul class="nav">
+            <li>Site</li>
+            <li><a href="http://zoeyyoung.github.io">
+              <i class="icon-home icon-large"></i>首页
+            </a></li>
+            <li><a href="http://zoeyyoung.github.io/archives.html">
+              <i class="icon-list icon-large"></i>归档
+            </a></li>
+            <li><a href="http://zoeyyoung.github.io/tags.html">
+              <i class="icon-tags icon-large"></i>标签
+            </a></li>
+                        <li><a href="http://zoeyyoung.github.io/" rel="alternate">
+              <i class="icon-rss-sign icon-large"></i>Atom Feed
+            </a></li>
+          </ul>
+        </div>
+                <div class="sina-weibo span4">
+          <a href="http://weibo.com/u/1861922471?s=6uyXnP" target="_blank"><img border="0" src="http://service.t.sina.com.cn/widget/qmd/1861922471/c4ba5282/1.png"/></a>
+        </div>
+                <div class="span1"></div>
+      </div><!--end of fluid row-->
+      <p style="text-align: center;">
+          <a href="http://zoeyyoung.github.io">OK Computer</a>
+          &copy; ZoeyYoung
+          Powered by
+          <a href="https://github.com/getpelican/pelican">Pelican</a>
+          and
+          <a href="https://twitter.github.com/bootstrap">Twitter Bootstrap</a>
+          .
+          Icons by
+          <a href="http://gregoryloucas.github.io/Fontstrap/">Font Awesome</a>
+          .Theme By <a href="http://zoeyyoung.gitcafe.com/">ZoeyYoung</a>
+      </p>
+    </div>
+  </footer>
+  <!--/footer-->
+  <script src="http://zoeyyoung.github.io/theme/jquery-1.10.0.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+  <script>var _gaq=[['_setAccount','UA-41731595-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+</body>
+</html>

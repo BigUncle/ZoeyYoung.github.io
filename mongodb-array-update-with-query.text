@@ -1,0 +1,79 @@
+Title: MongoDB中数组更新操作
+Date: 2013-08-03
+Tags: MongoDB,NoSQL,Update
+Slug: mongodb-array-update-with-query
+Author: Zoey Young
+Summary: 在每个文档, 标签tags是以数组Array的形式存在的, 我现在有个标签命名为**python**, 我想全部改成**Python**
+
+要做的事情: 在每个文档, 标签tags是以数组Array的形式存在的, 我现在有个标签命名为**python**, 我想全部改成**Python**
+
+[$ (query)](http://docs.mongodb.org/manual/reference/operator/positional/#op._S)
+
+语法: `{ "<array>.$" : value }`
+
+使用mongo shell, 首先插入三条记录:
+
+    :::bat
+    > mongo
+    MongoDB shell version: 2.4.5
+    connecting to: test
+    > db.tags.insert({"tags": ["1", "2", "3"]})
+    > db.tags.insert({"tags": ["1", "2", "3"]})
+    > db.tags.insert({"tags": ["1", "2", "3"]})
+    > db.tags.find()
+    { "_id" : ObjectId("..."), "tags" : [  "1",  "2",  "3" ] }
+    { "_id" : ObjectId("..."), "tags" : [  "1",  "2",  "3" ] }
+    { "_id" : ObjectId("..."), "tags" : [  "1",  "2",  "3" ] }
+
+update默认只更新一条:
+
+    :::bat
+    > db.tags.update({"tags" : "3"}, {$set: {"tags.$": "5"}})
+    > db.tags.find()
+    { "_id" : ObjectId("..."), "tags" : [  "1",  "2",  "5" ] }
+    { "_id" : ObjectId("..."), "tags" : [  "1",  "2",  "3" ] }
+    { "_id" : ObjectId("..."), "tags" : [  "1",  "2",  "3" ] }
+
+更新全部, 加入option `{multi: true}`:
+
+    :::bat
+    > db.tags.update({"tags" : "3"}, {$set: {"tags.$": "5"}}, {multi: true})
+    > db.tags.find()
+    { "_id" : ObjectId("..."), "tags" : [  "1",  "2",  "5" ] }
+    { "_id" : ObjectId("..."), "tags" : [  "1",  "2",  "5" ] }
+    { "_id" : ObjectId("..."), "tags" : [  "1",  "2",  "5" ] }
+
+使操作具原子性, [$isolated](http://docs.mongodb.org/manual/reference/operator/isolated/#op._S_isolated):
+
+    :::bat
+    > db.tags.update({"tags" : "5", $isolated : 1}, {$set: {"tags.$": "6"}}, {multi: true })
+    > db.tags.find()
+    { "_id" : ObjectId("..."), "tags" : [  "1",  "2",  "6" ] }
+    { "_id" : ObjectId("..."), "tags" : [  "1",  "2",  "6" ] }
+    { "_id" : ObjectId("..."), "tags" : [  "1",  "2",  "6" ] }
+
+上面是使用mongo shell进行操作, 下面使用pymongo进行等价操作, 来对我书签云中的标签进行整理:
+
+    :::python
+    #!/usr/bin/env python
+    # -*- coding: utf-8 -*-
+    import pymongo
+
+    bookmarks_collection = pymongo.Connection().bookmarks_cloud.bookmarks
+
+    tags_dict = {
+        "Ajax": ["ajax"],
+        "Apache": ["Apach", "apache"],
+        "博客": ["Blog", "blog", "BLOG"],
+        "Chrome": ["chrome"],
+        "Chrome扩展": ["chrome extensions", "chrome扩展"],
+        "CSS": ["css", "div+css布局"],
+        "CSS3": ["css3"]
+    }
+
+    for (k, v) in tags_dict.items():
+        print(k, v)
+        for t in v:
+            bookmarks_collection.update({'tags': t}, {'$set': {'tags.$': k}}, multi=True)
+
+目的是减少一些重复, 大小写不一致. 目前自动生成的标签的质量实在是很糟糕.

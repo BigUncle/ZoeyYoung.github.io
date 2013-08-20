@@ -1,0 +1,20 @@
+Title: LinksBox
+Date: 2013-06-13
+Tags: Flask,Python,Web
+Slug: linksbox-flask-project
+Author: Zoey Young
+Summary: 我的基于Flask的项目
+
+基于Flask, 数据库使用sqlite
+
+多用户, 类似微博, 可关注(取消关注)别人的收藏夹
+
+首页，显示所有链接
+
+![1](/static/images/Flask.png)
+
+添加链接
+
+![2](/static/images/Flask2.png)
+
+注: 一开始想实现的功能比较复杂, 后面想保持简单, 因此用Tornado实现了另一个个人使用的版本, 个人使用中...

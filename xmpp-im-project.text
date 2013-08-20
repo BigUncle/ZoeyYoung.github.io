@@ -1,0 +1,126 @@
+Title: 基于XMPP的Web IM
+Date: 2013-06-15
+Tags: XMPP,Openfire,jQuery,jQuery UI,strophejs,Web,Nginx
+Slug: xmpp-im-project
+Author: Zoey Young
+Summary: 我的基于XMPP的Web IM项目, 采用jQuery和jQuery UI, 还有strophejs开源库实现. 在看《XMPP高级编程》时，第一个程序就跑不起来，因为书中提供的BOSH连接管理器不可用，本文同时介绍了如何配置BOSH.
+
+平台：Windows 7
+
+### 安装准备
+
+* 下载[Openfire](http://www.igniterealtime.org/downloads/index.jsp)
+* 下载[Strophe.js](http://strophe.im/strophejs/)
+* 下载[Nginx](http://nginx.org/en/download.html)或者[Apache](http://httpd.apache.org/)并安装配置：只需一个，作为80端口服务的代理转发服务器(本文没有测试Apache)
+
+### 安装Openfire(当前版本3.8.2)
+
+普通安装包, 像正常安装软件一样安装就行了
+
+![1](/static/images/XMPP/openfire_1.jpg)
+
+首次需配置, 后面仍可在管理控制台进行更改
+
+goingmerry为我的主机名, 相当于localhost
+
+![2](/static/images/XMPP/openfire_2.jpg)
+
+![3](/static/images/XMPP/openfire_3.jpg)
+
+![4](/static/images/XMPP/openfire_4.jpg)
+
+![5](/static/images/XMPP/openfire_5.jpg)
+
+需要打开OpenFire的**http-binding**. 具体为登录后台管理界面。
+
+服务器 -> 服务器设置 -> Http绑定(英文界面：Server -> Server Settings -> Http Binding)
+
+![6](/static/images/XMPP/openfire_6.jpg)
+
+* 启用 - 客户端能使用HTTP绑定连接到这台服务器
+* Script Syntax - Enabled - Allows BOSH Clients With Limited Access to Connect to the Server
+* 端口按默认的。
+
+### 安装Spark(当前版本2.6.3), 用于测试
+
+![7](/static/images/XMPP/openfire_7.jpg)
+
+下面两图设置是对应的
+
+![8](/static/images/XMPP/openfire_8.jpg)
+
+![9](/static/images/XMPP/openfire_9.jpg)
+
+可在Spark中建立新帐号
+
+![10](/static/images/XMPP/openfire_10.jpg)
+
+### Nginx的配置
+
+下载Nginx(当前版本1.5.1): http://nginx.org/en/download.html
+
+打开nginx的配置文件**conf/nginx.conf**，增加如下行：
+
+    location / {
+        root html;
+        index index.html index.htm;
+    }
+    # 添加的-----Begin-----
+    # location /http-bind { 原来用这个成功的, 这回用的下面这个成功的..
+    location ~ ^/http-bind/ {
+        proxy_pass http://127.0.0.1:7070;
+        proxy_buffering off;
+        proxy_redirect off;
+        proxy_read_timeout 120;
+        proxy_connect_timeout 120;
+        tcp_nodelay on;
+        keepalive_timeout 55;
+    }
+    # 添加的-----End-----
+
+启动nginx: 打开命令行，进行nginx目录，输入`start nginx`
+
+### Strophe的示例程序运行
+
+将下载的**strophejs文件**解压至Ngnix的html文件夹中，在strophejs/examples文件夹中有一些示例文件，修改"*.js"文件中的`BOSH_SERVICE`为`'/http-bind/'`即可。(这里有个问题，示例程序中使用的jQuery有点过时，加载较慢，手动下载jQuery进行替换，能加快载入速度)
+
+这里以echobot.js为例：
+
+编辑echobot.js，修改第一行为：
+
+    var BOSH_SERVICE = '/http-bind/';
+
+在浏览器中打开：http://localhost/strophejs/examples/echobot.html
+
+使用Openfire中的用户进行登录, 点击连接成功后, 如图.
+
+![11](/static/images/XMPP/openfire_11.jpg)
+
+### Apache的配置
+
+在**httpd.conf**中加入下面几行：
+
+    LoadModule proxy_module modules/mod_proxy.so
+    LoadModule proxy_http_module modules/mod_proxy_http.so
+
+    ProxyRequests Off
+    ProxyPass /http-bind http://127.0.0.1:7070/http-bind/
+    ProxyPassReverse /http-bind http://127.0.0.1:7070/http-bind/
+
+注：需要apache有编译proxy模块
+
+### 测试我的项目
+
+我的项目实现了许多常用功能, 包括群聊, 状态设置, 个人名片等..
+
+代码未整理, 整理后再传到GitHub上
+
+与Spark进行通信, 如图
+
+![12](/static/images/XMPP/openfire_12.jpg)
+
+### 参考文档
+
+* [A short tutorial on Echobot by Alfred Westerveld](https://gist.github.com/makoto/272956)
+* [Anders Conbere’s guide to BOSH, ejabberd, Firefox, and Strophe](http://anders.conbere.org/blog/2011/05/03/get_xmpp_-_bosh_working_with_ejabberd_firefox_and_strophe/)
+* [WEBIM的简单实现](http://www.cnblogs.com/hannover/archive/2010/11/14/1876819.html)

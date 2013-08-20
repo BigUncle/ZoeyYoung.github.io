@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>基于XMPP的Web IM - OK Computer</title>
+  <meta name="description" content="杨丁苗的个人博客">
+  <meta name="author" content="ZoeyYoung">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+  <!--[if lt IE 9]>
+  <script src="http://zoeyyoung.github.io/theme/html5.js"></script>
+  <![endif]-->
+  <!-- Le styles -->
+  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet" />
+  <link href="http://zoeyyoung.github.io/theme/print.css" rel="stylesheet" media="print" />
+  <link href="http://zoeyyoung.github.io/theme/local.css" rel="stylesheet" media="screen" />
+  <link href="http://zoeyyoung.github.io/theme/pygments.css" rel="stylesheet" />
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet" />
+  <!--[if IE 7]>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome-ie7.min.css" rel="stylesheet" />
+  <![endif]-->
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div id="header" class="span2 no-print">
+        <div class="brand-wrapper">
+          <a href="http://zoeyyoung.github.io" class="brand">OK Computer</a>
+          <p style="text-align: center; font-size: 12px; margin-top: 0;">It's better to burn out <br/> than to fade away.</p>
+        </div>
+        <ul id="blog-nav" class="nav">
+          <li>SITE</li>
+          <li><a href="http://zoeyyoung.github.io">首页</a></li>
+          <li><a href="http://zoeyyoung.github.io/archives.html">归档</a></li>
+          <li><a href="http://zoeyyoung.github.io/tags.html">标签</a></li>
+          <li><hr/></li>
+          <li>CATEGORIES</li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/java.html ">Java</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/linux.html ">Linux</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/nlp.html ">NLP</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/nosql.html ">NoSQL</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/python.html ">Python</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/ruby.html ">Ruby</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/tips.html ">Tips</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/qian-duan.html ">前端</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/gong-zuo-ji-lu.html ">工作记录</a>
+          </li>
+                    <li  class="active" >
+            <a href="http://zoeyyoung.github.io/category/wo-de-xiang-mu.html ">我的项目</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/suan-fa.html ">算法</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/du-shu.html ">读书</a>
+          </li>
+                    <li><hr/></li>
+                    <li>PAGES<li>
+          
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/about-me.html">关于我</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/golden-slumber.html">Golden Slumber</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/on-the-road.html">在路上</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/software.html">我使用的软件</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/translate.html">翻译</a>
+          </li>
+                            </ul>
+      </div>
+      <div class="main-content span10">
+          <div class='article'>
+  <article class="span12">
+    <h1>基于XMPP的Web IM</h1>
+    <div class="article-metadata">
+<time class="published" datetime="2013 六月 15 周六">2013 六月 15 周六 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/wo-de-xiang-mu.html">我的项目</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/xmpp.html">XMPP</a>
+        <a href="http://zoeyyoung.github.io/tag/openfire.html">Openfire</a>
+        <a href="http://zoeyyoung.github.io/tag/jquery.html">jQuery</a>
+        <a href="http://zoeyyoung.github.io/tag/jquery-ui.html">jQuery UI</a>
+        <a href="http://zoeyyoung.github.io/tag/strophejs.html">strophejs</a>
+        <a href="http://zoeyyoung.github.io/tag/web.html">Web</a>
+        <a href="http://zoeyyoung.github.io/tag/nginx.html">Nginx</a>
+    </span>
+<!-- <p></p> -->
+</div>    <p>平台：Windows 7</p>
+<h3>安装准备</h3>
+<ul>
+<li>下载<a href="http://www.igniterealtime.org/downloads/index.jsp">Openfire</a></li>
+<li>下载<a href="http://strophe.im/strophejs/">Strophe.js</a></li>
+<li>下载<a href="http://nginx.org/en/download.html">Nginx</a>或者<a href="http://httpd.apache.org/">Apache</a>并安装配置：只需一个，作为80端口服务的代理转发服务器(本文没有测试Apache)</li>
+</ul>
+<h3>安装Openfire(当前版本3.8.2)</h3>
+<p>普通安装包, 像正常安装软件一样安装就行了</p>
+<p><img alt="1" src="/static/images/XMPP/openfire_1.jpg" /></p>
+<p>首次需配置, 后面仍可在管理控制台进行更改</p>
+<p>goingmerry为我的主机名, 相当于localhost</p>
+<p><img alt="2" src="/static/images/XMPP/openfire_2.jpg" /></p>
+<p><img alt="3" src="/static/images/XMPP/openfire_3.jpg" /></p>
+<p><img alt="4" src="/static/images/XMPP/openfire_4.jpg" /></p>
+<p><img alt="5" src="/static/images/XMPP/openfire_5.jpg" /></p>
+<p>需要打开OpenFire的<strong>http-binding</strong>. 具体为登录后台管理界面。</p>
+<p>服务器 -&gt; 服务器设置 -&gt; Http绑定(英文界面：Server -&gt; Server Settings -&gt; Http Binding)</p>
+<p><img alt="6" src="/static/images/XMPP/openfire_6.jpg" /></p>
+<ul>
+<li>启用 - 客户端能使用HTTP绑定连接到这台服务器</li>
+<li>Script Syntax - Enabled - Allows BOSH Clients With Limited Access to Connect to the Server</li>
+<li>端口按默认的。</li>
+</ul>
+<h3>安装Spark(当前版本2.6.3), 用于测试</h3>
+<p><img alt="7" src="/static/images/XMPP/openfire_7.jpg" /></p>
+<p>下面两图设置是对应的</p>
+<p><img alt="8" src="/static/images/XMPP/openfire_8.jpg" /></p>
+<p><img alt="9" src="/static/images/XMPP/openfire_9.jpg" /></p>
+<p>可在Spark中建立新帐号</p>
+<p><img alt="10" src="/static/images/XMPP/openfire_10.jpg" /></p>
+<h3>Nginx的配置</h3>
+<p>下载Nginx(当前版本1.5.1): http://nginx.org/en/download.html</p>
+<p>打开nginx的配置文件<strong>conf/nginx.conf</strong>，增加如下行：</p>
+<div class="highlight"><pre><span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+    <span class="n">root</span> <span class="n">html</span><span class="p">;</span>
+    <span class="n">index</span> <span class="n">index</span><span class="p">.</span><span class="n">html</span> <span class="n">index</span><span class="p">.</span><span class="n">htm</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="cp"># 添加的-----Begin-----</span>
+<span class="cp"># location /http-bind { 原来用这个成功的, 这回用的下面这个成功的..</span>
+<span class="n">location</span> <span class="o">~</span> <span class="o">^/</span><span class="n">http</span><span class="o">-</span><span class="n">bind</span><span class="o">/</span> <span class="p">{</span>
+    <span class="n">proxy_pass</span> <span class="n">http</span><span class="o">:</span><span class="c1">//127.0.0.1:7070;</span>
+    <span class="n">proxy_buffering</span> <span class="n">off</span><span class="p">;</span>
+    <span class="n">proxy_redirect</span> <span class="n">off</span><span class="p">;</span>
+    <span class="n">proxy_read_timeout</span> <span class="mi">120</span><span class="p">;</span>
+    <span class="n">proxy_connect_timeout</span> <span class="mi">120</span><span class="p">;</span>
+    <span class="n">tcp_nodelay</span> <span class="n">on</span><span class="p">;</span>
+    <span class="n">keepalive_timeout</span> <span class="mi">55</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="cp"># 添加的-----End-----</span>
+</pre></div>
+
+
+<p>启动nginx: 打开命令行，进行nginx目录，输入<code>start nginx</code></p>
+<h3>Strophe的示例程序运行</h3>
+<p>将下载的<strong>strophejs文件</strong>解压至Ngnix的html文件夹中，在strophejs/examples文件夹中有一些示例文件，修改"*.js"文件中的<code>BOSH_SERVICE</code>为<code>'/http-bind/'</code>即可。(这里有个问题，示例程序中使用的jQuery有点过时，加载较慢，手动下载jQuery进行替换，能加快载入速度)</p>
+<p>这里以echobot.js为例：</p>
+<p>编辑echobot.js，修改第一行为：</p>
+<div class="highlight"><pre><span class="n">var</span> <span class="n">BOSH_SERVICE</span> <span class="o">=</span> <span class="err">&#39;</span><span class="o">/</span><span class="n">http</span><span class="o">-</span><span class="n">bind</span><span class="o">/</span><span class="err">&#39;</span><span class="p">;</span>
+</pre></div>
+
+
+<p>在浏览器中打开：http://localhost/strophejs/examples/echobot.html</p>
+<p>使用Openfire中的用户进行登录, 点击连接成功后, 如图.</p>
+<p><img alt="11" src="/static/images/XMPP/openfire_11.jpg" /></p>
+<h3>Apache的配置</h3>
+<p>在<strong>httpd.conf</strong>中加入下面几行：</p>
+<div class="highlight"><pre><span class="n">LoadModule</span> <span class="n">proxy_module</span> <span class="n">modules</span><span class="o">/</span><span class="n">mod_proxy</span><span class="p">.</span><span class="n">so</span>
+<span class="n">LoadModule</span> <span class="n">proxy_http_module</span> <span class="n">modules</span><span class="o">/</span><span class="n">mod_proxy_http</span><span class="p">.</span><span class="n">so</span>
+
+<span class="n">ProxyRequests</span> <span class="n">Off</span>
+<span class="n">ProxyPass</span> <span class="o">/</span><span class="n">http</span><span class="o">-</span><span class="n">bind</span> <span class="n">http</span><span class="o">:</span><span class="c1">//127.0.0.1:7070/http-bind/</span>
+<span class="n">ProxyPassReverse</span> <span class="o">/</span><span class="n">http</span><span class="o">-</span><span class="n">bind</span> <span class="n">http</span><span class="o">:</span><span class="c1">//127.0.0.1:7070/http-bind/</span>
+</pre></div>
+
+
+<p>注：需要apache有编译proxy模块</p>
+<h3>测试我的项目</h3>
+<p>我的项目实现了许多常用功能, 包括群聊, 状态设置, 个人名片等..</p>
+<p>代码未整理, 整理后再传到GitHub上</p>
+<p>与Spark进行通信, 如图</p>
+<p><img alt="12" src="/static/images/XMPP/openfire_12.jpg" /></p>
+<h3>参考文档</h3>
+<ul>
+<li><a href="https://gist.github.com/makoto/272956">A short tutorial on Echobot by Alfred Westerveld</a></li>
+<li><a href="http://anders.conbere.org/blog/2011/05/03/get_xmpp_-_bosh_working_with_ejabberd_firefox_and_strophe/">Anders Conbere’s guide to BOSH, ejabberd, Firefox, and Strophe</a></li>
+<li><a href="http://www.cnblogs.com/hannover/archive/2010/11/14/1876819.html">WEBIM的简单实现</a></li>
+</ul>
+    <hr />
+  </article>
+  <div class="span12 comment">
+      <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style_32x32 no-print">
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a href="http://www.jiathis.com/share?uid=1801890" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1801890" charset="utf-8"></script>
+<!-- JiaThis Button END -->      <!-- <h3>Comments</h3> -->
+      <!--  -->
+      <!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" id="UYScript" src="http://v1.uyan.cc/js/iframe.js?UYUserId=1801890" async=""></script>
+<!-- UY END -->      <!-- UJian Button BEGIN -->
+<script type="text/javascript">var ujian_config = {target:1,mouseoverColor:'#222222',hoverTextColor:'#FFFFFF'};</script>
+<script type="text/javascript" src="http://v1.ujian.cc/code/ujian.js?type=slide&btn=3&fade=1&picsize=96&uid=1801890"></script>
+<a href="http://www.ujian.cc" style="border:0;"><img src="http://img.ujian.cc/pixel.png" alt="友荐云推荐" style="border:0;padding:0;margin:0;" /></a>
+<!-- UJian Button END -->  </div>
+</div>
+                </div>    </div><!-- End of fluid row-->
+  </div><!-- End of Container-->
+  <!--footer-->
+  <footer id="footer" class="no-print">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span1"></div>
+        <div class="span2" id="socialist">
+          <ul class="nav">
+            <li>Social</li>
+                                    <li><a href="http://weibo.com/1990zoey"><i class="icon-weibo icon-large"></i>新浪微博</a></li>
+                        <li><a href="http://www.renren.com/230222157/profile"><i class="icon-renren icon-large"></i>人人网</a></li>
+                        <li><a href="http://www.douban.com/people/ZoeyYoung/"><i class="icon-leaf icon-large"></i>豆瓣</a></li>
+                                    <li><a href="mailto:ydingmiao@gmail.com">
+              <i class="icon-envelope icon-large"></i>联系我
+            </a></li>
+                      </ul>
+        </div>
+                <div class="span2">
+          <ul class="nav">
+            <li>Links</li>
+                                    <li><a href="http://my.oschina.net/zoey1990">
+              <i class="icon-heart icon-large"></i>OSC
+            </a></li>
+                        <li><a href="http://www.xiami.com/u/2092563">
+              <i class="icon-music icon-large"></i>虾米
+            </a></li>
+                        <li><a href="https://gist.github.com/ZoeyYoung">
+              <i class="icon-github icon-large"></i>GIST
+            </a></li>
+                        <li><a href="https://github.com/ZoeyYoung">
+              <i class="icon-github icon-large"></i>GitHub
+            </a></li>
+                      </ul>
+        </div>
+        <div class="span2" id="site-links">
+          <ul class="nav">
+            <li>Site</li>
+            <li><a href="http://zoeyyoung.github.io">
+              <i class="icon-home icon-large"></i>首页
+            </a></li>
+            <li><a href="http://zoeyyoung.github.io/archives.html">
+              <i class="icon-list icon-large"></i>归档
+            </a></li>
+            <li><a href="http://zoeyyoung.github.io/tags.html">
+              <i class="icon-tags icon-large"></i>标签
+            </a></li>
+                        <li><a href="http://zoeyyoung.github.io/" rel="alternate">
+              <i class="icon-rss-sign icon-large"></i>Atom Feed
+            </a></li>
+          </ul>
+        </div>
+                <div class="sina-weibo span4">
+          <a href="http://weibo.com/u/1861922471?s=6uyXnP" target="_blank"><img border="0" src="http://service.t.sina.com.cn/widget/qmd/1861922471/c4ba5282/1.png"/></a>
+        </div>
+                <div class="span1"></div>
+      </div><!--end of fluid row-->
+      <p style="text-align: center;">
+          <a href="http://zoeyyoung.github.io">OK Computer</a>
+          &copy; ZoeyYoung
+          Powered by
+          <a href="https://github.com/getpelican/pelican">Pelican</a>
+          and
+          <a href="https://twitter.github.com/bootstrap">Twitter Bootstrap</a>
+          .
+          Icons by
+          <a href="http://gregoryloucas.github.io/Fontstrap/">Font Awesome</a>
+          .Theme By <a href="http://zoeyyoung.gitcafe.com/">ZoeyYoung</a>
+      </p>
+    </div>
+  </footer>
+  <!--/footer-->
+  <script src="http://zoeyyoung.github.io/theme/jquery-1.10.0.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+  <script>var _gaq=[['_setAccount','UA-41731595-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+</body>
+</html>
