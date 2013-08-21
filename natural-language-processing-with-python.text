@@ -181,3 +181,18 @@ NLTK 入门
     seed shall all the plain , and , lo , here is seed for ever . And they
     dwelt from Havilah unto Shur , and shalt serve with thee in the way
     side ? And his mother '
+
+计数词汇
+
+    :::python
+    >>> len(text5)
+    45010
+    >>> len(set(text5))
+    6066
+    >>> len(text5) / len(set(text5))
+    7.420046158918563
+    >>> text5.count("lol")
+    704
+    >>> 100 * text5.count("lol") / len(text5)
+    1.5640968673628082
+
