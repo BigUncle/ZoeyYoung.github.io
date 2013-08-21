@@ -173,9 +173,11 @@
 <div class="highlight"><pre><span class="kn">import</span> <span class="nn">pymongo</span>
 <span class="c"># MongoDB中有数据库bookmarks_cloud, 有集合bookmarks</span>
 <span class="n">bookmarks_collection</span> <span class="o">=</span> <span class="n">pymongo</span><span class="o">.</span><span class="n">Connection</span><span class="p">()</span><span class="o">.</span><span class="n">bookmarks_cloud</span><span class="o">.</span><span class="n">bookmarks</span>
-
-<span class="kn">from</span> <span class="nn">bookmarks_cloud.whoosh_fts</span> <span class="kn">import</span> <span class="n">ChineseAnalyzer</span>
 <span class="kn">from</span> <span class="nn">whoosh.fields</span> <span class="kn">import</span> <span class="n">Schema</span><span class="p">,</span> <span class="n">TEXT</span><span class="p">,</span> <span class="n">ID</span><span class="p">,</span> <span class="n">KEYWORD</span>
+<span class="c"># from bookmarks_cloud.whoosh_fts import ChineseAnalyzer</span>
+<span class="c"># jieba已经内置了和whoosh的集成功能</span>
+<span class="kn">from</span> <span class="nn">jieba.analyse</span> <span class="kn">import</span> <span class="n">ChineseAnalyzer</span>
+<span class="n">analyzer</span> <span class="o">=</span> <span class="n">ChineseAnalyzer</span><span class="p">()</span>
 <span class="c"># 我需要在url, title, tags, note, article中进行搜索,</span>
 <span class="c"># 然后根据搜索到的_id再去数据库中获取数据.</span>
 <span class="c"># 这里并没有添加bookmarks文档中所有元素.</span>
@@ -185,8 +187,8 @@
             <span class="n">url</span><span class="o">=</span><span class="n">ID</span><span class="p">(</span><span class="n">unique</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">stored</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
             <span class="n">title</span><span class="o">=</span><span class="n">TEXT</span><span class="p">(</span><span class="n">phrase</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span>
             <span class="n">tags</span><span class="o">=</span><span class="n">KEYWORD</span><span class="p">(</span><span class="n">lowercase</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">commas</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">scorable</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
-            <span class="n">note</span><span class="o">=</span><span class="n">TEXT</span><span class="p">(</span><span class="n">analyzer</span><span class="o">=</span><span class="n">ChineseAnalyzer</span><span class="p">()),</span>
-            <span class="n">article</span><span class="o">=</span><span class="n">TEXT</span><span class="p">(</span><span class="n">stored</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">analyzer</span><span class="o">=</span><span class="n">ChineseAnalyzer</span><span class="p">())</span>
+            <span class="n">note</span><span class="o">=</span><span class="n">TEXT</span><span class="p">(</span><span class="n">analyzer</span><span class="o">=</span><span class="n">analyzer</span><span class="p">),</span>
+            <span class="n">article</span><span class="o">=</span><span class="n">TEXT</span><span class="p">(</span><span class="n">stored</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">analyzer</span><span class="o">=</span><span class="n">analyzer</span><span class="p">)</span>
         <span class="p">)</span>
 <span class="c"># 索引</span>
 <span class="kn">import</span> <span class="nn">os</span>

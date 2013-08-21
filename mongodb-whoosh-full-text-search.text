@@ -77,9 +77,11 @@ MongoDB有提供全文搜索功能, 但[支持的语言](http://docs.mongodb.org
     import pymongo
     # MongoDB中有数据库bookmarks_cloud, 有集合bookmarks
     bookmarks_collection = pymongo.Connection().bookmarks_cloud.bookmarks
-
-    from bookmarks_cloud.whoosh_fts import ChineseAnalyzer
     from whoosh.fields import Schema, TEXT, ID, KEYWORD
+    # from bookmarks_cloud.whoosh_fts import ChineseAnalyzer
+    # jieba已经内置了和whoosh的集成功能
+    from jieba.analyse import ChineseAnalyzer
+    analyzer = ChineseAnalyzer()
     # 我需要在url, title, tags, note, article中进行搜索,
     # 然后根据搜索到的_id再去数据库中获取数据.
     # 这里并没有添加bookmarks文档中所有元素.
@@ -89,8 +91,8 @@ MongoDB有提供全文搜索功能, 但[支持的语言](http://docs.mongodb.org
                 url=ID(unique=True, stored=True),
                 title=TEXT(phrase=False),
                 tags=KEYWORD(lowercase=True, commas=True, scorable=True),
-                note=TEXT(analyzer=ChineseAnalyzer()),
-                article=TEXT(stored=True, analyzer=ChineseAnalyzer())
+                note=TEXT(analyzer=analyzer),
+                article=TEXT(stored=True, analyzer=analyzer)
             )
     # 索引
     import os
