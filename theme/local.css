@@ -5,7 +5,7 @@
 /* img {
   background: url('./images/loading.gif') center center no-repeat;
 } */
-.container { padding: 0px; }
+.container { padding: 0px; max-width: 100%; }
 
 hr {
   margin: 5px 0;
@@ -65,6 +65,7 @@ h1,h2,h3,h4,h5,h6 { color: #F8266F; margin-bottom: 0px; }
   height: 80px;
   background: rgba(0, 0, 0, 0) url("./images/logo_white.svg") center 40px no-repeat;
   background-size: 130px;
+  float: none;
 }
 
 .brand-wrapper {
