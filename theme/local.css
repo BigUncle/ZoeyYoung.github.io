@@ -50,7 +50,6 @@ a { color: #E6DB74; }
 body { background-color: #222; color: #F8F8F2; font: 16px/1.5 \5fae\8f6f\96c5\9ed1,tahoma,arial,\5b8b\4f53; }
 .main-content { background: #383838; padding: 0px 20px; }
 .main-content a:hover { color: #FD961F; text-decoration: none; }
-.main-content li { color: #268BD2; }
 p { font: 14px/1.5 \5fae\8f6f\96c5\9ed1,tahoma,arial,\5b8b\4f53; margin-top: 0.8em; margin-bottom: 0.8em; text-align: left; }
 li { line-height: 1.6em; }
 h1 { font: 18px/1.5 'Alegreya SC', 'Garamond', 'Georgia', \5fae\8f6f\96c5\9ed1,tahoma,arial,\5b8b\4f53; }
