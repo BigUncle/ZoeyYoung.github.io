@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>SoundDemo</title>
+<script type="text/javascript" src="script/jquery-1.10.0.min.js"></script>
+<script type="text/javascript" src="script/soundmanager2-nodebug-jsmin.js"></script>
+<script type="text/javascript">
+  soundManager.setup({
+    url: 'swf/',
+    onready: function() {
+      soundManager.createSound({
+        id: 'msg',
+        autoLoad: true,
+        autoPlay: false,
+        url: 'sound/msg.mp3'
+      });
+    }
+  });
+  $(document).ready(function () {
+    $('#play').click(function () {
+      soundManager.play('msg');
+    });
+  });
+</script>
+</head>
+<body>
+<input type='button' id='play' value='Play' />
+</body>
+</html>

@@ -1,0 +1,82 @@
+body {
+    font-family: 'Alegreya SC', 'Garamond', 'Georgia', '\5fae\8f6f\96c5\9ed1', tahoma, arial, '\5b8b\4f53';
+}
+.nav {
+    position:fixed;
+    z-index:99999;
+    top:100px;
+    left:-65px;
+    font-size:18px;
+    font-weight:bold;
+    letter-spacing:0.6px;
+    white-space:nowrap;
+    line-height:40px;
+    text-shadow:rgba(255, 255, 255, 0.5) 0 1px 1px;
+}
+.nav li {
+    list-style:none;
+    height:40px;
+    opacity:0.8;
+}
+.nav li a {
+    height:40px;
+    width:40px;
+    display:block;
+    position:relative;
+}
+.nav li a span {
+    width:0;
+    overflow:hidden;
+    position:absolute;
+    left:10px;
+    transition:0.25s;
+}
+.nav li a:hover {
+    text-decoration:none;
+}
+.nav li a:hover span {
+    width:auto;
+    padding:0 20px;
+    overflow:visible;
+}
+.nav form {
+    display:inline;
+}
+.nav input {
+    background:inherit;
+    border:0;
+    color:white;
+    outline:none;
+}
+.nav .n-cloud span, .nav .n-cloud {
+    background-color:#A3D92A;
+    color:#3d4f0c;
+}
+.nav .n-list span, .nav .n-list {
+    background-color:#FCDF33;
+    color:#223a44;
+}
+.nav .n-tags span, .nav .n-tags {
+    background-color:#FB852D;
+    color:#5a3517;
+}
+.nav .n-random span, .nav .n-random {
+    background-color:#FF6EAC;
+    color:#604e18;
+}
+.nav .n-search span, .nav .n-search {
+    background-color:#4BB1DC;
+    color:#460f35;
+}
+.nav .n-add span, .nav .n-add {
+    background-color:#AA41D4;
+    color:#3d4f0c;
+}
+.nav .n-logout span, .nav .n-logout {
+    background-color:#FF7665;
+    color:#223a44;
+}
+ul {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
