@@ -11,7 +11,7 @@
   <script src="http://zoeyyoung.github.io/theme/html5.js"></script>
   <![endif]-->
   <!-- Le styles -->
-  <link href="http://netdna.bootstrapcdn.com/bootswatch/3.0.0/journal/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link href="http://netdna.bootstrapcdn.com/bootswatch/3.0.0/cosmo/bootstrap.min.css" rel="stylesheet" media="screen">
   <link href="http://zoeyyoung.github.io/theme/print.css" rel="stylesheet" media="print" />
   <link href="http://zoeyyoung.github.io/theme/local.css" rel="stylesheet" media="screen" />
   <link href="http://zoeyyoung.github.io/theme/pygments.css" rel="stylesheet" />
@@ -143,28 +143,69 @@ You'll love the slick user interface, extraordinary features and amazing perform
 
 <p>貌似默认没有对齐":"，在配置文件中添加了...</p>
 <ul>
-<li>SmartMarkdown for Sublime Text 2</li>
+<li><a href="https://github.com/Monnoroch/ColorHighlighter">Color Highlighter</a> 还不支持ST3</li>
+</ul>
+<p><img alt="ColorHighlighter" src="https://github-camo.global.ssl.fastly.net/a1de8f4978332bcec21a5741747db8d5de448534/687474703a2f2f662e636c2e6c792f6974656d732f30623437314b3154305833623365316d326a31722f53637265656e25323053686f74253230323031332d30382d3037253230617425323031322e35322e3031253230504d2e6a7067" /></p>
+<ul>
+<li>SideBarEnhancements</li>
+</ul>
+<p>ST3版本需手动安装: https://github.com/titoBouzout/SideBarEnhancements/tree/st3</p>
+<ul>
+<li><a href="https://github.com/bgreenlee/sublime-github">Sublime GitHub</a></li>
+</ul>
+<p>Sublime Text 2/3 plugin that provides a number of useful commands for GitHub.</p>
+<p>ST3版本可直接用Package Control安装</p>
+<ul>
+<li>
+<p><a href="https://sublimegit.net/">Sublime Git</a></p>
+</li>
+<li>
+<p>SmartMarkdown for Sublime Text 2</p>
+</li>
 </ul>
 <p>可使用Tab和Shift Tab折叠标题</p>
 <ul>
-<li>BracketHighlighter</li>
+<li><a href="http://www.sublimerge.com/">Sublimerge Pro</a></li>
+</ul>
+<blockquote>
+<p>The diff and merge tool for Sublime Text 2 and 3</p>
+</blockquote>
+<p><img alt="Sublimerge" src="http://www.sublimerge.com/Images/sublimerge-pro-windows.png" /></p>
+<ul>
+<li><a href="https://github.com/facelessuser/BracketHighlighter">BracketHighlighter</a></li>
 </ul>
 <p>高亮显示匹配的括号、引号和标签</p>
-<p><a href="https://github.com/facelessuser/BracketHighlighter">插件地址</a></p>
-<blockquote>
-<p>ST3 support is found here (at the present time): https://github.com/facelessuser/BracketHighlighter/tree/BH2ST3</p>
-</blockquote>
-<p>ST3 不能通过Package Control安装这个插件.</p>
+<p>ST3版本需手动安装: https://github.com/facelessuser/BracketHighlighter/tree/BH2ST3</p>
 <ul>
-<li>TrailingSpacer</li>
+<li><a href="https://github.com/SublimeText/TrailingSpaces">TrailingSpacer</a></li>
 </ul>
-<p>高亮显示多余的空格和Tab</p>
-<p><a href="https://github.com/SublimeText/TrailingSpaces">插件地址</a></p>
+<p>高亮显示多余的空格和Tab, ST3版本可直接用Package Control安装</p>
+<p>相关Settings - User</p>
+<div class="highlight"><pre><span class="p">{</span>
+    <span class="p">...</span>
+    <span class="s">&quot;draw_white_space&quot;</span><span class="o">:</span> <span class="s">&quot;all&quot;</span><span class="p">,</span>
+    <span class="s">&quot;ensure_newline_at_eof_on_save&quot;</span><span class="o">:</span> <span class="nb">true</span><span class="p">,</span>
+    <span class="s">&quot;trim_automatic_white_space&quot;</span><span class="o">:</span> <span class="nb">true</span><span class="p">,</span>
+    <span class="s">&quot;trim_trailing_white_space_on_save&quot;</span><span class="o">:</span> <span class="nb">true</span><span class="p">,</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+</pre></div>
+
+
 <ul>
 <li>Fetch</li>
 </ul>
 <p>抓取文件</p>
 <p><a href="https://tutsplus.com/lesson/fetch-files-with-ease/">插件视频</a></p>
+<ul>
+<li><a href="https://github.com/leonid-shevtsov/ClickableUrls_SublimeText2">Clickable Urls</a></li>
+</ul>
+<p>ST3版本可直接用Package Control安装</p>
+<p>默认快捷键是<code>ctrl+alt+enter</code>, 但是发现有冲突, 固修改为:</p>
+<div class="highlight"><pre><span class="p">{</span> <span class="s">&quot;keys&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;ctrl+alt+u&quot;</span><span class="p">],</span> <span class="s">&quot;command&quot;</span><span class="p">:</span> <span class="s">&quot;open_url&quot;</span> <span class="p">}</span>
+</pre></div>
+
+
 <h3>Themes</h3>
 <p>我使用Soda主题</p>
 <p><a href="https://github.com/buymeasoda/soda-theme/">Soda</a></p>

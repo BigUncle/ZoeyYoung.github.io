@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>[学习] NLTK Python自然语言处理 - OK Computer</title>
+  <meta name="description" content="杨丁苗的个人博客">
+  <meta name="author" content="ZoeyYoung">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+  <!--[if lt IE 9]>
+  <script src="http://zoeyyoung.github.io/theme/html5.js"></script>
+  <![endif]-->
+  <!-- Le styles -->
+  <link href="http://netdna.bootstrapcdn.com/bootswatch/3.0.0/cosmo/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link href="http://zoeyyoung.github.io/theme/print.css" rel="stylesheet" media="print" />
+  <link href="http://zoeyyoung.github.io/theme/local.css" rel="stylesheet" media="screen" />
+  <link href="http://zoeyyoung.github.io/theme/pygments.css" rel="stylesheet" />
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet" />
+  <!--[if IE 7]>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome-ie7.min.css" rel="stylesheet" />
+  <![endif]-->
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div id="header" class="col-md-2 no-print">
+        <div class="brand-wrapper">
+          <a href="http://zoeyyoung.github.io" class="navbar-brand">OK Computer</a>
+          <p style="text-align: center; font-size: 12px; margin-top: 0;">It's better to burn out <br/> than to fade away.</p>
+        </div>
+        <ul id="blog-nav" class="nav">
+          <li>SITE</li>
+          <li><a href="http://zoeyyoung.github.io">首页</a></li>
+          <li><a href="http://zoeyyoung.github.io/archives.html">归档</a></li>
+          <li><a href="http://zoeyyoung.github.io/tags.html">标签</a></li>
+          <li><hr/></li>
+          <li>CATEGORIES</li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/java.html ">Java</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/linux.html ">Linux</a>
+          </li>
+                    <li  class="active" >
+            <a href="http://zoeyyoung.github.io/category/nlp.html ">NLP</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/nosql.html ">NoSQL</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/python.html ">Python</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/ruby.html ">Ruby</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/tips.html ">Tips</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/qian-duan.html ">前端</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/gong-zuo-ji-lu.html ">工作记录</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/wo-de-xiang-mu.html ">我的项目</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/suan-fa.html ">算法</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/du-shu.html ">读书</a>
+          </li>
+                    <li><hr/></li>
+                    <li>PAGES<li>
+          
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/about-me.html">关于我</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/golden-slumber.html">Golden Slumber</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/on-the-road.html">在路上</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/software.html">我使用的软件</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/translate.html">翻译</a>
+          </li>
+                            </ul>
+      </div>
+      <div class="main-content col-md-10">
+          <div class='article'>
+  <article class="col-md-12">
+    <h1>[学习] NLTK Python自然语言处理</h1>
+    <div class="article-metadata">
+<time class="published" datetime="2013 八月 20 周二">2013 八月 20 周二 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/nlp.html">NLP</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/windows.html">Windows</a>
+        <a href="http://zoeyyoung.github.io/tag/python.html">Python</a>
+        <a href="http://zoeyyoung.github.io/tag/nltk.html">NLTK</a>
+        <a href="http://zoeyyoung.github.io/tag/nlp.html">NLP</a>
+    </span>
+<!-- <p></p> -->
+</div>    <p>主要记录NLP相关, Python语言基础就略过了.</p>
+<p>在Python3 Win7 64位下进行测试</p>
+<p>先安装<a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#pyyaml">PyYAML</a></p>
+<p>再安装<a href="http://nltk.org/install.html">NLTK</a></p>
+<p><a href="http://nltk.org/nltk3-alpha/">Python 3版本</a></p>
+<p><a href="https://github.com/nltk/nltk3-alpha">Github上nltk3-alpha</a></p>
+<div class="highlight"><pre>python setup.py install
+</pre></div>
+
+
+<p>其它依赖的包有NumPy、Matplotlib等.</p>
+<p>NLTK 入门</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">nltk</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">()</span>
+<span class="n">NLTK</span> <span class="n">Downloader</span>
+<span class="o">---------------------------------------------------------------------------</span>
+    <span class="n">d</span><span class="p">)</span> <span class="n">Download</span>   <span class="n">l</span><span class="p">)</span> <span class="n">List</span>    <span class="n">u</span><span class="p">)</span> <span class="n">Update</span>   <span class="n">c</span><span class="p">)</span> <span class="n">Config</span>   <span class="n">h</span><span class="p">)</span> <span class="n">Help</span>   <span class="n">q</span><span class="p">)</span> <span class="n">Quit</span>
+<span class="o">---------------------------------------------------------------------------</span>
+<span class="n">Downloader</span><span class="o">&gt;</span> <span class="n">c</span>
+<span class="n">Data</span> <span class="n">Server</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">URL</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">nltk</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">nltk_data</span><span class="o">/&gt;</span>
+  <span class="o">-</span> <span class="mi">3</span> <span class="n">Package</span> <span class="n">Collections</span> <span class="n">Available</span>
+  <span class="o">-</span> <span class="mi">78</span> <span class="n">Individual</span> <span class="n">Packages</span> <span class="n">Available</span>
+<span class="n">Local</span> <span class="n">Machine</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">Data</span> <span class="n">directory</span><span class="p">:</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">Zoey</span>\<span class="n">AppData</span>\<span class="n">Roaming</span>\<span class="n">nltk_data</span>
+<span class="o">---------------------------------------------------------------------------</span>
+    <span class="n">s</span><span class="p">)</span> <span class="n">Show</span> <span class="n">Config</span>   <span class="n">u</span><span class="p">)</span> <span class="n">Set</span> <span class="n">Server</span> <span class="n">URL</span>   <span class="n">d</span><span class="p">)</span> <span class="n">Set</span> <span class="n">Data</span> <span class="n">Dir</span>   <span class="n">m</span><span class="p">)</span> <span class="n">Main</span> <span class="n">Menu</span>
+<span class="o">---------------------------------------------------------------------------</span>
+<span class="n">Config</span><span class="o">&gt;</span> <span class="n">d</span>
+  <span class="n">New</span> <span class="n">Directory</span><span class="o">&gt;</span> <span class="n">D</span><span class="p">:</span>\<span class="n">nltk_data</span>
+<span class="o">---------------------------------------------------------------------------</span>
+    <span class="n">s</span><span class="p">)</span> <span class="n">Show</span> <span class="n">Config</span>   <span class="n">u</span><span class="p">)</span> <span class="n">Set</span> <span class="n">Server</span> <span class="n">URL</span>   <span class="n">d</span><span class="p">)</span> <span class="n">Set</span> <span class="n">Data</span> <span class="n">Dir</span>   <span class="n">m</span><span class="p">)</span> <span class="n">Main</span> <span class="n">Menu</span>
+<span class="o">---------------------------------------------------------------------------</span>
+<span class="n">Config</span><span class="o">&gt;</span> <span class="n">m</span>
+<span class="o">---------------------------------------------------------------------------</span>
+    <span class="n">d</span><span class="p">)</span> <span class="n">Download</span>   <span class="n">l</span><span class="p">)</span> <span class="n">List</span>    <span class="n">u</span><span class="p">)</span> <span class="n">Update</span>   <span class="n">c</span><span class="p">)</span> <span class="n">Config</span>   <span class="n">h</span><span class="p">)</span> <span class="n">Help</span>   <span class="n">q</span><span class="p">)</span> <span class="n">Quit</span>
+<span class="o">---------------------------------------------------------------------------</span>
+<span class="n">Downloader</span><span class="o">&gt;</span> <span class="n">d</span>
+
+<span class="n">Download</span> <span class="n">which</span> <span class="n">package</span> <span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="nb">list</span><span class="p">;</span> <span class="n">x</span><span class="o">=</span><span class="n">cancel</span><span class="p">)</span><span class="err">?</span>
+  <span class="n">Identifier</span><span class="o">&gt;</span> <span class="n">book</span>
+      <span class="n">Downloading</span> <span class="n">collection</span> <span class="s">&#39;book&#39;</span>
+        <span class="o">|</span>
+        <span class="o">|</span> <span class="o">...</span>
+        <span class="o">|</span>
+      <span class="n">Done</span> <span class="n">downloading</span> <span class="n">collection</span> <span class="n">book</span>
+</pre></div>
+
+
+<p>如果不能正常下载, 则需手动下载, 放入相应的文件夹内.</p>
+<div class="highlight"><pre><span class="n">Searched</span> <span class="ow">in</span><span class="p">:</span>
+  <span class="o">-</span> <span class="s">&#39;C:/</span><span class="se">\\</span><span class="s">Users</span><span class="se">\\</span><span class="s">Zoey/nltk_data&#39;</span>
+  <span class="o">-</span> <span class="s">&#39;C:</span><span class="se">\\</span><span class="s">nltk_data&#39;</span>
+  <span class="o">-</span> <span class="s">&#39;D:</span><span class="se">\\</span><span class="s">nltk_data&#39;</span>
+  <span class="o">-</span> <span class="s">&#39;E:</span><span class="se">\\</span><span class="s">nltk_data&#39;</span>
+  <span class="o">-</span> <span class="s">&#39;C:</span><span class="se">\\</span><span class="s">Python33</span><span class="se">\\</span><span class="s">nltk_data&#39;</span>
+  <span class="o">-</span> <span class="s">&#39;C:</span><span class="se">\\</span><span class="s">Python33</span><span class="se">\\</span><span class="s">lib</span><span class="se">\\</span><span class="s">nltk_data&#39;</span>
+  <span class="o">-</span> <span class="s">&#39;C:</span><span class="se">\\</span><span class="s">Users</span><span class="se">\\</span><span class="s">Zoey</span><span class="se">\\</span><span class="s">AppData</span><span class="se">\\</span><span class="s">Roaming</span><span class="se">\\</span><span class="s">nltk_data&#39;</span>
+</pre></div>
+
+
+<p>似乎不是任意文件夹都可以. 一开始放在F盘提示找不到.</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">nltk.book</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="o">***</span> <span class="n">Introductory</span> <span class="n">Examples</span> <span class="k">for</span> <span class="n">the</span> <span class="n">NLTK</span> <span class="n">Book</span> <span class="o">***</span>
+<span class="n">Loading</span> <span class="n">text1</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">text9</span> <span class="ow">and</span> <span class="n">sent1</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">sent9</span>
+<span class="n">Type</span> <span class="n">the</span> <span class="n">name</span> <span class="n">of</span> <span class="n">the</span> <span class="n">text</span> <span class="ow">or</span> <span class="n">sentence</span> <span class="n">to</span> <span class="n">view</span> <span class="n">it</span><span class="o">.</span>
+<span class="n">Type</span><span class="p">:</span> <span class="s">&#39;texts()&#39;</span> <span class="ow">or</span> <span class="s">&#39;sents()&#39;</span> <span class="n">to</span> <span class="nb">list</span> <span class="n">the</span> <span class="n">materials</span><span class="o">.</span>
+<span class="n">text1</span><span class="p">:</span> <span class="n">Moby</span> <span class="n">Dick</span> <span class="n">by</span> <span class="n">Herman</span> <span class="n">Melville</span> <span class="mi">1851</span>
+<span class="n">text2</span><span class="p">:</span> <span class="n">Sense</span> <span class="ow">and</span> <span class="n">Sensibility</span> <span class="n">by</span> <span class="n">Jane</span> <span class="n">Austen</span> <span class="mi">1811</span>
+<span class="n">text3</span><span class="p">:</span> <span class="n">The</span> <span class="n">Book</span> <span class="n">of</span> <span class="n">Genesis</span>
+<span class="n">text4</span><span class="p">:</span> <span class="n">Inaugural</span> <span class="n">Address</span> <span class="n">Corpus</span>
+<span class="n">text5</span><span class="p">:</span> <span class="n">Chat</span> <span class="n">Corpus</span>
+<span class="n">text6</span><span class="p">:</span> <span class="n">Monty</span> <span class="n">Python</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">Holy</span> <span class="n">Grail</span>
+<span class="n">text7</span><span class="p">:</span> <span class="n">Wall</span> <span class="n">Street</span> <span class="n">Journal</span>
+<span class="n">text8</span><span class="p">:</span> <span class="n">Personals</span> <span class="n">Corpus</span>
+<span class="n">text9</span><span class="p">:</span> <span class="n">The</span> <span class="n">Man</span> <span class="n">Who</span> <span class="n">Was</span> <span class="n">Thursday</span> <span class="n">by</span> <span class="n">G</span> <span class="o">.</span> <span class="n">K</span> <span class="o">.</span> <span class="n">Chesterton</span> <span class="mi">1908</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">text1</span>
+<span class="o">&lt;</span><span class="n">Text</span><span class="p">:</span> <span class="n">Moby</span> <span class="n">Dick</span> <span class="n">by</span> <span class="n">Herman</span> <span class="n">Melville</span> <span class="mi">1851</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">text2</span>
+<span class="o">&lt;</span><span class="n">Text</span><span class="p">:</span> <span class="n">Sense</span> <span class="ow">and</span> <span class="n">Sensibility</span> <span class="n">by</span> <span class="n">Jane</span> <span class="n">Austen</span> <span class="mi">1811</span><span class="o">&gt;</span>
+</pre></div>
+
+
+<p>搜索文本</p>
+<p>词语索引 <code>concordance</code></p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">text1</span><span class="o">.</span><span class="n">concordance</span><span class="p">(</span><span class="s">&quot;monstrous&quot;</span><span class="p">)</span>
+<span class="n">Building</span> <span class="n">index</span><span class="o">...</span>
+<span class="n">Displaying</span> <span class="mi">11</span> <span class="n">of</span> <span class="mi">11</span> <span class="n">matches</span><span class="p">:</span>
+<span class="n">ong</span> <span class="n">the</span> <span class="n">former</span> <span class="p">,</span> <span class="n">one</span> <span class="n">was</span> <span class="n">of</span> <span class="n">a</span> <span class="n">most</span> <span class="n">monstrous</span> <span class="n">size</span> <span class="o">.</span> <span class="o">...</span> <span class="n">This</span> <span class="n">came</span> <span class="n">towards</span> <span class="n">us</span> <span class="p">,</span>
+<span class="n">ON</span> <span class="n">OF</span> <span class="n">THE</span> <span class="n">PSALMS</span> <span class="o">.</span> <span class="s">&quot; Touching that monstrous bulk of the whale or ork we have r</span>
+<span class="o">...</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">text2</span><span class="o">.</span><span class="n">concordance</span><span class="p">(</span><span class="s">&quot;monstrous&quot;</span><span class="p">)</span>
+<span class="n">Displaying</span> <span class="mi">11</span> <span class="n">of</span> <span class="mi">11</span> <span class="n">matches</span><span class="p">:</span>
+<span class="o">.</span> <span class="s">&quot; Now , Palmer , you shall see a monstrous pretty girl .&quot;</span> <span class="n">He</span> <span class="n">immediately</span> <span class="n">went</span>
+<span class="n">your</span> <span class="n">sister</span> <span class="ow">is</span> <span class="n">to</span> <span class="n">marry</span> <span class="n">him</span> <span class="o">.</span> <span class="n">I</span> <span class="n">am</span> <span class="n">monstrous</span> <span class="n">glad</span> <span class="n">of</span> <span class="n">it</span> <span class="p">,</span> <span class="k">for</span> <span class="n">then</span> <span class="n">I</span> <span class="n">shall</span> <span class="n">have</span>
+<span class="n">ou</span> <span class="n">may</span> <span class="n">tell</span> <span class="n">your</span> <span class="n">sister</span> <span class="o">.</span> <span class="n">She</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">monstrous</span> <span class="n">lucky</span> <span class="n">girl</span> <span class="n">to</span> <span class="n">get</span> <span class="n">him</span> <span class="p">,</span> <span class="n">upon</span> <span class="n">my</span> <span class="n">ho</span>
+<span class="n">k</span> <span class="n">how</span> <span class="n">you</span> <span class="n">will</span> <span class="n">like</span> <span class="n">them</span> <span class="o">.</span> <span class="n">Lucy</span> <span class="ow">is</span> <span class="n">monstrous</span> <span class="n">pretty</span> <span class="p">,</span> <span class="ow">and</span> <span class="n">so</span> <span class="n">good</span> <span class="n">humoured</span> <span class="ow">and</span>
+ <span class="n">Jennings</span> <span class="p">,</span> <span class="s">&quot; I am sure I shall be monstrous glad of Miss Marianne &#39; s company</span>
+ <span class="n">usual</span> <span class="n">noisy</span> <span class="n">cheerfulness</span> <span class="p">,</span> <span class="s">&quot; I am monstrous glad to see you -- sorry I could n</span>
+<span class="n">t</span> <span class="n">however</span> <span class="p">,</span> <span class="k">as</span> <span class="n">it</span> <span class="n">turns</span> <span class="n">out</span> <span class="p">,</span> <span class="n">I</span> <span class="n">am</span> <span class="n">monstrous</span> <span class="n">glad</span> <span class="n">there</span> <span class="n">was</span> <span class="n">never</span> <span class="nb">any</span> <span class="n">thing</span> <span class="ow">in</span>
+<span class="n">so</span> <span class="n">scornfully</span> <span class="err">!</span> <span class="k">for</span> <span class="n">they</span> <span class="n">say</span> <span class="n">he</span> <span class="ow">is</span> <span class="n">monstrous</span> <span class="n">fond</span> <span class="n">of</span> <span class="n">her</span> <span class="p">,</span> <span class="k">as</span> <span class="n">well</span> <span class="n">he</span> <span class="n">may</span> <span class="o">.</span> <span class="n">I</span> <span class="n">s</span>
+<span class="n">possible</span> <span class="n">that</span> <span class="n">she</span> <span class="n">should</span> <span class="o">.</span><span class="s">&quot; &quot;</span> <span class="n">I</span> <span class="n">am</span> <span class="n">monstrous</span> <span class="n">glad</span> <span class="n">of</span> <span class="n">it</span> <span class="o">.</span> <span class="n">Good</span> <span class="n">gracious</span> <span class="err">!</span> <span class="n">I</span> <span class="n">hav</span>
+<span class="n">thing</span> <span class="n">of</span> <span class="n">the</span> <span class="n">kind</span> <span class="o">.</span> <span class="n">So</span> <span class="n">then</span> <span class="n">he</span> <span class="n">was</span> <span class="n">monstrous</span> <span class="n">happy</span> <span class="p">,</span> <span class="ow">and</span> <span class="n">talked</span> <span class="n">on</span> <span class="n">some</span> <span class="n">time</span> <span class="n">ab</span>
+<span class="n">e</span> <span class="n">very</span> <span class="n">genteel</span> <span class="n">people</span> <span class="o">.</span> <span class="n">He</span> <span class="n">makes</span> <span class="n">a</span> <span class="n">monstrous</span> <span class="n">deal</span> <span class="n">of</span> <span class="n">money</span> <span class="p">,</span> <span class="ow">and</span> <span class="n">they</span> <span class="n">keep</span> <span class="n">thei</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">text3</span><span class="o">.</span><span class="n">concordance</span><span class="p">(</span><span class="s">&quot;lived&quot;</span><span class="p">)</span>
+<span class="n">Building</span> <span class="n">index</span><span class="o">...</span>
+<span class="n">Displaying</span> <span class="mi">25</span> <span class="n">of</span> <span class="mi">38</span> <span class="n">matches</span><span class="p">:</span>
+<span class="n">ay</span> <span class="n">when</span> <span class="n">they</span> <span class="n">were</span> <span class="n">created</span> <span class="o">.</span> <span class="n">And</span> <span class="n">Adam</span> <span class="n">lived</span> <span class="n">an</span> <span class="n">hundred</span> <span class="ow">and</span> <span class="n">thirty</span> <span class="n">years</span> <span class="p">,</span> <span class="ow">and</span> <span class="n">be</span>
+<span class="n">ughters</span> <span class="p">:</span> <span class="n">And</span> <span class="nb">all</span> <span class="n">the</span> <span class="n">days</span> <span class="n">that</span> <span class="n">Adam</span> <span class="n">lived</span> <span class="n">were</span> <span class="n">nine</span> <span class="n">hundred</span> <span class="ow">and</span> <span class="n">thirty</span> <span class="n">yea</span> <span class="ow">and</span>
+<span class="o">...</span>
+</pre></div>
+
+
+<p>词语索引使我们看到词语的上下文, 例如上面text1得到的词语"monstrous"的上下文为"most_size", "that_bulk"等.</p>
+<p>要查找有相似上下文的词语, 使用 <code>similar</code> 函数</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">text1</span><span class="o">.</span><span class="n">similar</span><span class="p">(</span><span class="s">&quot;monstrous&quot;</span><span class="p">)</span>
+<span class="n">Building</span> <span class="n">word</span><span class="o">-</span><span class="n">context</span> <span class="n">index</span><span class="o">...</span>
+<span class="n">abundant</span> <span class="n">candid</span> <span class="n">careful</span> <span class="n">christian</span> <span class="n">contemptible</span> <span class="n">curious</span> <span class="n">delightfully</span>
+<span class="n">determined</span> <span class="n">doleful</span> <span class="n">domineering</span> <span class="n">exasperate</span> <span class="n">fearless</span> <span class="n">few</span> <span class="n">gamesome</span>
+<span class="n">horrible</span> <span class="n">impalpable</span> <span class="n">imperial</span> <span class="n">lamentable</span> <span class="n">lazy</span> <span class="n">loving</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">text2</span><span class="o">.</span><span class="n">similar</span><span class="p">(</span><span class="s">&quot;monstrous&quot;</span><span class="p">)</span>
+<span class="n">Building</span> <span class="n">word</span><span class="o">-</span><span class="n">context</span> <span class="n">index</span><span class="o">...</span>
+<span class="n">very</span> <span class="n">exceedingly</span> <span class="n">heartily</span> <span class="n">so</span> <span class="n">a</span> <span class="n">amazingly</span> <span class="k">as</span> <span class="n">extremely</span> <span class="n">good</span> <span class="n">great</span>
+<span class="n">remarkably</span> <span class="n">sweet</span> <span class="n">vast</span>
+</pre></div>
+
+
+<p>函数 <code>common_contexts</code> 允许我们研究两个或两个以上的词的共同的上下文.</p>
+<p>例如"monstrous"与"very", 其中"very"是上面<code>text2.similar("monstrous")</code>函数检索出来的具有相似上下文的词语, 因此可以得到如下结果:</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">text2</span><span class="o">.</span><span class="n">common_contexts</span><span class="p">([</span><span class="s">&quot;monstrous&quot;</span><span class="p">,</span> <span class="s">&quot;very&quot;</span><span class="p">])</span>
+<span class="n">a_lucky</span> <span class="n">a_pretty</span> <span class="n">am_glad</span> <span class="n">be_glad</span> <span class="n">is_pretty</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">text2</span><span class="o">.</span><span class="n">common_contexts</span><span class="p">([</span><span class="s">&quot;monstrous&quot;</span><span class="p">,</span> <span class="s">&quot;he&quot;</span><span class="p">])</span>
+<span class="n">No</span> <span class="n">common</span> <span class="n">contexts</span> <span class="n">were</span> <span class="n">found</span>
+</pre></div>
+
+
+<p>而"he"并不存在于<code>text2.similar("monstrous")</code>函数检索出来的结果中, 因此得到提示没有找到共同上下文.</p>
+<p>使用另一对词试试:</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">text2</span><span class="o">.</span><span class="n">common_contexts</span><span class="p">([</span><span class="s">&quot;glad&quot;</span><span class="p">,</span> <span class="s">&quot;happy&quot;</span><span class="p">])</span>
+<span class="n">be_to</span> <span class="n">so_to</span> <span class="n">very_to</span> <span class="n">was_to</span>
+</pre></div>
+
+
+<p>用离散图表示一个单词在文本中出现的位置:</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">text4</span><span class="o">.</span><span class="n">dispersion_plot</span><span class="p">([</span><span class="s">&quot;citizens&quot;</span><span class="p">,</span> <span class="s">&quot;democracy&quot;</span><span class="p">,</span> <span class="s">&quot;freedom&quot;</span><span class="p">,</span> <span class="s">&quot;duties&quot;</span><span class="p">,</span> <span class="s">&quot;America&quot;</span><span class="p">])</span>
+</pre></div>
+
+
+<p><img alt="美国总统就职演说词汇分布图: 可以用来研究随时间推移语言使用上的变化" src="http://nltk.org/images/inaugural.png" /></p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">text2</span><span class="o">.</span><span class="n">dispersion_plot</span><span class="p">([</span><span class="s">&quot;Elinor&quot;</span><span class="p">,</span> <span class="s">&quot;Marianne&quot;</span><span class="p">,</span> <span class="s">&quot;Edward&quot;</span><span class="p">,</span> <span class="s">&quot;Willoughby&quot;</span><span class="p">])</span>  <span class="c"># ex6</span>
+</pre></div>
+
+
+<p>产生随机文本(这里不理解, 怎么产生的? 似乎是随机抽取句子短语. 总之不是抽取连续的一段.)</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">text3</span><span class="o">.</span><span class="n">generate</span><span class="p">()</span>
+<span class="n">Building</span> <span class="n">ngram</span> <span class="n">index</span><span class="o">...</span>
+<span class="n">In</span> <span class="n">the</span> <span class="n">mount</span> <span class="n">Gilead</span> <span class="o">.</span> <span class="n">And</span> <span class="n">Pharaoh</span> <span class="n">said</span> <span class="n">unto</span> <span class="n">the</span> <span class="n">land</span> <span class="n">of</span> <span class="n">Egy</span> <span class="n">And</span> <span class="n">there</span>
+<span class="n">was</span> <span class="n">none</span> <span class="n">that</span> <span class="n">could</span> <span class="n">interpret</span> <span class="n">them</span> <span class="n">unto</span> <span class="n">his</span> <span class="n">father</span> <span class="ow">and</span> <span class="n">his</span> <span class="n">brother</span> <span class="ow">is</span>
+<span class="n">dead</span> <span class="p">,</span> <span class="ow">and</span> <span class="n">duke</span> <span class="n">Amalek</span> <span class="p">:</span> <span class="n">these</span> <span class="n">are</span> <span class="n">the</span> <span class="n">sons</span> <span class="n">of</span> <span class="n">Shem</span> <span class="p">,</span> <span class="n">after</span> <span class="n">their</span>
+<span class="n">tongues</span> <span class="p">,</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">field</span> <span class="n">before</span> <span class="n">it</span> <span class="n">was</span> <span class="n">good</span> <span class="p">,</span> <span class="ow">and</span> <span class="n">go</span> <span class="p">,</span> <span class="ow">and</span> <span class="n">called</span> <span class="nb">all</span>
+<span class="n">his</span> <span class="n">sons</span> <span class="k">with</span> <span class="n">him</span> <span class="p">,</span> <span class="n">that</span> <span class="n">he</span> <span class="n">may</span> <span class="n">bless</span> <span class="n">me</span> <span class="o">.</span> <span class="n">And</span> <span class="n">it</span> <span class="n">came</span> <span class="n">to</span> <span class="k">pass</span> <span class="p">,</span> <span class="k">as</span>
+<span class="n">the</span> <span class="n">LORD</span> <span class="p">;</span> <span class="ow">and</span> <span class="n">let</span> <span class="n">her</span> <span class="n">be</span> <span class="n">burnt</span> <span class="o">.</span> <span class="n">When</span> <span class="n">the</span> <span class="n">chief</span> <span class="n">butler</span> <span class="ow">and</span> <span class="n">of</span> <span class="n">cattle</span>
+<span class="n">after</span> <span class="n">their</span> <span class="n">kind</span> <span class="p">,</span> <span class="ow">and</span> <span class="n">be</span> <span class="n">clean</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">text3</span><span class="o">.</span><span class="n">generate</span><span class="p">()</span>
+<span class="n">In</span> <span class="n">the</span> <span class="n">six</span> <span class="n">hundredth</span> <span class="ow">and</span> <span class="n">first</span> <span class="n">year</span> <span class="p">,</span> <span class="ow">and</span> <span class="n">smite</span> <span class="n">me</span> <span class="p">,</span> <span class="n">He</span> <span class="n">that</span> <span class="ow">is</span>
+<span class="n">uncircumcised</span> <span class="p">;</span> <span class="k">for</span> <span class="n">the</span> <span class="n">Egyptians</span> <span class="n">came</span> <span class="n">unto</span> <span class="n">him</span> <span class="p">,</span> <span class="n">I</span> <span class="n">lay</span> <span class="n">yesternight</span>
+<span class="k">with</span> <span class="n">my</span> <span class="n">sister</span> <span class="p">:</span> <span class="n">that</span> <span class="n">it</span> <span class="n">was</span> <span class="n">dark</span> <span class="p">,</span> <span class="n">behold</span> <span class="p">,</span> <span class="n">also</span> <span class="n">his</span> <span class="n">blood</span> <span class="err">?</span> <span class="n">Come</span> <span class="p">,</span>
+<span class="ow">and</span> <span class="n">I</span> <span class="n">saw</span> <span class="n">him</span> <span class="n">afar</span> <span class="n">off</span> <span class="o">.</span> <span class="n">And</span> <span class="p">,</span> <span class="n">behold</span> <span class="p">,</span> <span class="n">seven</span> <span class="n">other</span> <span class="n">years</span> <span class="o">.</span> <span class="n">And</span> <span class="ow">in</span> <span class="n">thy</span>
+<span class="n">seed</span> <span class="n">shall</span> <span class="nb">all</span> <span class="n">the</span> <span class="n">plain</span> <span class="p">,</span> <span class="ow">and</span> <span class="p">,</span> <span class="n">lo</span> <span class="p">,</span> <span class="n">here</span> <span class="ow">is</span> <span class="n">seed</span> <span class="k">for</span> <span class="n">ever</span> <span class="o">.</span> <span class="n">And</span> <span class="n">they</span>
+<span class="n">dwelt</span> <span class="kn">from</span> <span class="nn">Havilah</span> <span class="nn">unto</span> <span class="nn">Shur</span> <span class="p">,</span> <span class="ow">and</span> <span class="n">shalt</span> <span class="n">serve</span> <span class="k">with</span> <span class="n">thee</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">way</span>
+<span class="n">side</span> <span class="err">?</span> <span class="n">And</span> <span class="n">his</span> <span class="n">mother</span> <span class="s">&#39;</span>
+</pre></div>
+
+
+<p>计数词汇</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">text2</span><span class="p">)</span>  <span class="c"># text2 中有多少个词</span>
+<span class="mi">141576</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">text2</span><span class="p">))</span>  <span class="c"># 有多少个不同的词</span>
+<span class="mi">6833</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">text5</span><span class="p">)</span>
+<span class="mi">45010</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">text5</span><span class="p">))</span>
+<span class="mi">6066</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">text5</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">text5</span><span class="p">))</span>
+<span class="mf">7.420046158918563</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">text5</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&quot;lol&quot;</span><span class="p">)</span>
+<span class="mi">704</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">text5</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&quot;lol&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">text5</span><span class="p">)</span>
+<span class="mf">1.5640968673628082</span>
+</pre></div>
+
+
+<p>频率分布</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">fdist</span> <span class="o">=</span> <span class="n">FreqDist</span><span class="p">(</span><span class="n">text2</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">fdist</span>
+<span class="o">&lt;</span><span class="n">FreqDist</span> <span class="k">with</span> <span class="mi">6833</span> <span class="n">samples</span> <span class="ow">and</span> <span class="mi">141576</span> <span class="n">outcomes</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">vocabulary</span> <span class="o">=</span> <span class="n">fdist</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">vocabulary</span>
+<span class="o">&lt;</span><span class="nb">map</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x000000001FFA3DD8</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">vocabulary</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">vocabulary</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">vocabulary</span><span class="p">[:</span><span class="mi">50</span><span class="p">]</span>
+<span class="p">[</span><span class="s">&#39;,&#39;</span><span class="p">,</span> <span class="s">&#39;to&#39;</span><span class="p">,</span> <span class="s">&#39;.&#39;</span><span class="p">,</span> <span class="s">&#39;the&#39;</span><span class="p">,</span> <span class="s">&#39;of&#39;</span><span class="p">,</span> <span class="s">&#39;and&#39;</span><span class="p">,</span> <span class="s">&#39;her&#39;</span><span class="p">,</span> <span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="s">&#39;in&#39;</span><span class="p">,</span> <span class="s">&#39;was&#39;</span><span class="p">,</span> <span class="s">&#39;it&#39;</span><span class="p">,</span> <span class="s">&#39;&quot;&#39;</span><span class="p">,</span> <span class="s">&#39;;&#39;</span><span class="p">,</span> <span class="s">&#39;she&#39;</span><span class="p">,</span> <span class="s">&#39;be&#39;</span><span class="p">,</span> <span class="s">&#39;that&#39;</span><span class="p">,</span> <span class="s">&#39;for&#39;</span><span class="p">,</span> <span class="s">&#39;not&#39;</span><span class="p">,</span> <span class="s">&#39;as&#39;</span><span class="p">,</span> <span class="s">&#39;you&#39;</span><span class="p">,</span> <span class="s">&#39;with&#39;</span><span class="p">,</span> <span class="s">&#39;had&#39;</span><span class="p">,</span> <span class="s">&#39;his&#39;</span><span class="p">,</span> <span class="s">&#39;he&#39;</span><span class="p">,</span> <span class="s">&quot;&#39;&quot;</span><span class="p">,</span> <span class="s">&#39;have&#39;</span><span class="p">,</span> <span class="s">&#39;at&#39;</span><span class="p">,</span> <span class="s">&#39;by&#39;</span><span class="p">,</span> <span class="s">&#39;is&#39;</span><span class="p">,</span> <span class="s">&#39;.&quot;&#39;</span><span class="p">,</span> <span class="s">&#39;s&#39;</span><span class="p">,</span> <span class="s">&#39;Elinor&#39;</span><span class="p">,</span> <span class="s">&#39;on&#39;</span><span class="p">,</span> <span class="s">&#39;all&#39;</span><span class="p">,</span> <span class="s">&#39;him&#39;</span><span class="p">,</span> <span class="s">&#39;so&#39;</span><span class="p">,</span> <span class="s">&#39;but&#39;</span><span class="p">,</span> <span class="s">&#39;which&#39;</span><span class="p">,</span> <span class="s">&#39;could&#39;</span><span class="p">,</span> <span class="s">&#39;Marianne&#39;</span><span class="p">,</span> <span class="s">&#39;my&#39;</span><span class="p">,</span> <span class="s">&#39;Mrs&#39;</span><span class="p">,</span> <span class="s">&#39;from&#39;</span><span class="p">,</span> <span class="s">&#39;would&#39;</span><span class="p">,</span> <span class="s">&#39;very&#39;</span><span class="p">,</span> <span class="s">&#39;no&#39;</span><span class="p">,</span> <span class="s">&#39;their&#39;</span><span class="p">,</span> <span class="s">&#39;them&#39;</span><span class="p">,</span> <span class="s">&#39;--&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">fdist</span><span class="p">[</span><span class="s">&#39;Marianne&#39;</span><span class="p">]</span>
+<span class="mi">566</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">fdist</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="n">cumulative</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="c"># 50个最常用词的累积频率图</span>
+</pre></div>
+
+
+<p>查看只出现一次的词</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">fdist</span><span class="o">.</span><span class="n">hapaxes</span><span class="p">()</span>
+</pre></div>
+
+
+<p>寻找文本特征词汇</p>
+<p>聊天语料库中长度超过７个字符出现次数超过７次的词:</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">fdist5</span> <span class="o">=</span> <span class="n">FreqDist</span><span class="p">(</span><span class="n">text5</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">sorted</span><span class="p">([</span><span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">text5</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">7</span> <span class="ow">and</span> <span class="n">fdist5</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">7</span><span class="p">])</span>
+<span class="p">[</span><span class="s">&#39;#14-19teens&#39;</span><span class="p">,</span> <span class="s">&#39;#talkcity_adults&#39;</span><span class="p">,</span> <span class="s">&#39;((((((((((&#39;</span><span class="p">,</span> <span class="s">&#39;........&#39;</span><span class="p">,</span> <span class="s">&#39;Question&#39;</span><span class="p">,</span> <span class="s">&#39;actually&#39;</span><span class="p">,</span> <span class="s">&#39;anything&#39;</span><span class="p">,</span> <span class="s">&#39;computer&#39;</span><span class="p">,</span> <span class="s">&#39;cute.-ass&#39;</span><span class="p">,</span> <span class="s">&#39;everyone&#39;</span><span class="p">,</span> <span class="s">&#39;football&#39;</span><span class="p">,</span> <span class="s">&#39;innocent&#39;</span><span class="p">,</span> <span class="s">&#39;listening&#39;</span><span class="p">,</span> <span class="s">&#39;remember&#39;</span><span class="p">,</span> <span class="s">&#39;seriously&#39;</span><span class="p">,</span> <span class="s">&#39;something&#39;</span><span class="p">,</span> <span class="s">&#39;together&#39;</span><span class="p">,</span> <span class="s">&#39;tomorrow&#39;</span><span class="p">,</span> <span class="s">&#39;watching&#39;</span><span class="p">]</span>
+</pre></div>
+
+
+<p>词语搭配和双连词 Collocations and Bigrams</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">bigrams</span><span class="p">([</span><span class="s">&#39;more&#39;</span><span class="p">,</span> <span class="s">&#39;is&#39;</span><span class="p">,</span> <span class="s">&#39;said&#39;</span><span class="p">,</span> <span class="s">&#39;than&#39;</span><span class="p">,</span> <span class="s">&#39;done&#39;</span><span class="p">])</span>
+<span class="p">[(</span><span class="s">&#39;more&#39;</span><span class="p">,</span> <span class="s">&#39;is&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;is&#39;</span><span class="p">,</span> <span class="s">&#39;said&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;said&#39;</span><span class="p">,</span> <span class="s">&#39;than&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;than&#39;</span><span class="p">,</span> <span class="s">&#39;done&#39;</span><span class="p">)]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">text4</span><span class="o">.</span><span class="n">collocations</span><span class="p">()</span>
+<span class="n">Building</span> <span class="n">collocations</span> <span class="nb">list</span>
+<span class="n">United</span> <span class="n">States</span><span class="p">;</span> <span class="n">fellow</span> <span class="n">citizens</span><span class="p">;</span> <span class="n">four</span> <span class="n">years</span><span class="p">;</span> <span class="n">years</span> <span class="n">ago</span><span class="p">;</span> <span class="n">Federal</span>
+<span class="n">Government</span><span class="p">;</span> <span class="n">General</span> <span class="n">Government</span><span class="p">;</span> <span class="n">American</span> <span class="n">people</span><span class="p">;</span> <span class="n">Vice</span> <span class="n">President</span><span class="p">;</span> <span class="n">Old</span>
+<span class="n">World</span><span class="p">;</span> <span class="n">Almighty</span> <span class="n">God</span><span class="p">;</span> <span class="n">Fellow</span> <span class="n">citizens</span><span class="p">;</span> <span class="n">Chief</span> <span class="n">Magistrate</span><span class="p">;</span> <span class="n">Chief</span> <span class="n">Justice</span><span class="p">;</span>
+<span class="n">God</span> <span class="n">bless</span><span class="p">;</span> <span class="n">every</span> <span class="n">citizen</span><span class="p">;</span> <span class="n">Indian</span> <span class="n">tribes</span><span class="p">;</span> <span class="n">public</span> <span class="n">debt</span><span class="p">;</span> <span class="n">one</span> <span class="n">another</span><span class="p">;</span>
+<span class="n">foreign</span> <span class="n">nations</span><span class="p">;</span> <span class="n">political</span> <span class="n">parties</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">text5</span><span class="o">.</span><span class="n">collocations</span><span class="p">()</span>  <span class="c"># ex7</span>
+<span class="n">Building</span> <span class="n">collocations</span> <span class="nb">list</span>
+<span class="n">wanna</span> <span class="n">chat</span><span class="p">;</span> <span class="n">PART</span> <span class="n">JOIN</span><span class="p">;</span> <span class="n">MODE</span> <span class="c">#14-19teens; JOIN PART; PART PART;</span>
+<span class="n">cute</span><span class="o">.-</span><span class="n">ass</span> <span class="n">MP3</span><span class="p">;</span> <span class="n">MP3</span> <span class="n">player</span><span class="p">;</span> <span class="n">JOIN</span> <span class="n">JOIN</span><span class="p">;</span> <span class="n">times</span> <span class="o">..</span> <span class="o">.</span><span class="p">;</span> <span class="n">ACTION</span> <span class="n">watches</span><span class="p">;</span> <span class="n">guys</span>
+<span class="n">wanna</span><span class="p">;</span> <span class="n">song</span> <span class="n">lasts</span><span class="p">;</span> <span class="n">last</span> <span class="n">night</span><span class="p">;</span> <span class="n">ACTION</span> <span class="n">sits</span><span class="p">;</span> <span class="o">-...</span><span class="p">)</span><span class="o">...-</span> <span class="n">S</span><span class="o">.</span><span class="n">M</span><span class="o">.</span><span class="n">R</span><span class="o">.</span><span class="p">;</span> <span class="n">Lime</span>
+<span class="n">Player</span><span class="p">;</span> <span class="n">Player</span> <span class="mi">12</span><span class="o">%</span><span class="p">;</span> <span class="n">dont</span> <span class="n">know</span><span class="p">;</span> <span class="n">lez</span> <span class="n">gurls</span><span class="p">;</span> <span class="nb">long</span> <span class="n">time</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">text8</span><span class="o">.</span><span class="n">collocations</span><span class="p">()</span>
+<span class="n">Building</span> <span class="n">collocations</span> <span class="nb">list</span>
+<span class="n">would</span> <span class="n">like</span><span class="p">;</span> <span class="n">medium</span> <span class="n">build</span><span class="p">;</span> <span class="n">social</span> <span class="n">drinker</span><span class="p">;</span> <span class="n">quiet</span> <span class="n">nights</span><span class="p">;</span> <span class="n">non</span> <span class="n">smoker</span><span class="p">;</span>
+<span class="nb">long</span> <span class="n">term</span><span class="p">;</span> <span class="n">age</span> <span class="nb">open</span><span class="p">;</span> <span class="n">Would</span> <span class="n">like</span><span class="p">;</span> <span class="n">easy</span> <span class="n">going</span><span class="p">;</span> <span class="n">financially</span> <span class="n">secure</span><span class="p">;</span> <span class="n">fun</span>
+<span class="n">times</span><span class="p">;</span> <span class="n">similar</span> <span class="n">interests</span><span class="p">;</span> <span class="n">Age</span> <span class="nb">open</span><span class="p">;</span> <span class="n">weekends</span> <span class="n">away</span><span class="p">;</span> <span class="n">poss</span> <span class="n">rship</span><span class="p">;</span> <span class="n">well</span>
+<span class="n">presented</span><span class="p">;</span> <span class="n">never</span> <span class="n">married</span><span class="p">;</span> <span class="n">single</span> <span class="n">mum</span><span class="p">;</span> <span class="n">permanent</span> <span class="n">relationship</span><span class="p">;</span> <span class="n">slim</span>
+<span class="n">build</span>
+</pre></div>
+
+
+<p>FreqDist</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">fdist</span> <span class="o">=</span> <span class="n">FreqDist</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">text1</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">fdist</span>
+<span class="o">&lt;</span><span class="n">FreqDist</span> <span class="k">with</span> <span class="mi">19</span> <span class="n">samples</span> <span class="ow">and</span> <span class="mi">260819</span> <span class="n">outcomes</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">fdist</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="o">&lt;</span><span class="nb">map</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x00000000034F5DA0</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">list</span><span class="p">(</span><span class="n">fdist</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
+</pre></div>
+
+
+<p>ex14 sent3中"the"出现的索引值</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sent3</span><span class="p">)</span> <span class="k">if</span> <span class="n">j</span><span class="o">==</span><span class="s">&#39;the&#39;</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+</pre></div>
+
+
+<p>ex15 text5中以字母b开头的词, 按字母顺序显示</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">text5</span> <span class="k">if</span> <span class="n">w</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;b&#39;</span><span class="p">)]))</span>
+</pre></div>
+
+
+<p>ex16 语言基础</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+<span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">18</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">))</span>
+<span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">12</span><span class="p">]</span>
+</pre></div>
+
+
+<p>ex17</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">sunsetlist</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">text9</span><span class="p">)</span> <span class="k">if</span> <span class="n">j</span><span class="o">==</span><span class="s">&#39;sunset&#39;</span><span class="p">]</span>
+<span class="c"># [629, 642, 1432, 1650, 13335, 13381, 16313, 27014, 49340, 52092, 60857, 60862, 64721, 64736]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">punclist</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">text9</span><span class="p">)</span> <span class="k">if</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;.&#39;</span><span class="p">,</span> <span class="s">&#39;!&#39;</span><span class="p">,</span> <span class="s">&#39;?&#39;</span><span class="p">]]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">se</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">sunsetlist</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">punclist</span><span class="p">):</span>  <span class="c"># 每次都从头遍历感觉不妥.</span>
+            <span class="k">if</span> <span class="n">v</span> <span class="o">&gt;</span> <span class="n">i</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">punclist</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="n">se</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">punclist</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
+                <span class="k">break</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">se</span><span class="p">)</span>
+<span class="p">[(</span><span class="mi">613</span><span class="p">,</span> <span class="mi">643</span><span class="p">),</span> <span class="p">(</span><span class="mi">1411</span><span class="p">,</span> <span class="mi">1433</span><span class="p">),</span> <span class="p">(</span><span class="mi">1628</span><span class="p">,</span> <span class="mi">1656</span><span class="p">),</span> <span class="p">(</span><span class="mi">13325</span><span class="p">,</span> <span class="mi">13336</span><span class="p">),</span> <span class="p">(</span><span class="mi">13352</span><span class="p">,</span> <span class="mi">13384</span><span class="p">),</span> <span class="p">(</span><span class="mi">16304</span><span class="p">,</span> <span class="mi">16328</span><span class="p">),</span> <span class="p">(</span><span class="mi">27010</span><span class="p">,</span> <span class="mi">27021</span><span class="p">),</span> <span class="p">(</span><span class="mi">49311</span><span class="p">,</span> <span class="mi">49341</span><span class="p">),</span> <span class="p">(</span><span class="mi">52086</span><span class="p">,</span> <span class="mi">52108</span><span class="p">),</span> <span class="p">(</span><span class="mi">60786</span><span class="p">,</span> <span class="mi">60864</span><span class="p">),</span> <span class="p">(</span><span class="mi">64698</span><span class="p">,</span> <span class="mi">64737</span><span class="p">)]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">se</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">text9</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span> <span class="o">+</span> <span class="n">text9</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">CHAPTER</span> <span class="n">I</span> <span class="n">THE</span> <span class="n">TWO</span> <span class="n">POETS</span> <span class="n">OF</span> <span class="n">SAFFRON</span> <span class="n">PARK</span> <span class="n">THE</span> <span class="n">suburb</span> <span class="n">of</span> <span class="n">Saffron</span> <span class="n">Park</span> <span class="n">lay</span> <span class="n">on</span> <span class="n">the</span> <span class="n">sunset</span> <span class="n">side</span> <span class="n">of</span> <span class="n">London</span> <span class="p">,</span> <span class="k">as</span> <span class="n">red</span> <span class="ow">and</span> <span class="n">ragged</span> <span class="k">as</span> <span class="n">a</span> <span class="n">cloud</span> <span class="n">of</span> <span class="n">sunset</span><span class="o">.</span>
+<span class="n">This</span> <span class="n">particular</span> <span class="n">evening</span> <span class="p">,</span> <span class="k">if</span> <span class="n">it</span> <span class="ow">is</span> <span class="n">remembered</span> <span class="k">for</span> <span class="n">nothing</span> <span class="k">else</span> <span class="p">,</span> <span class="n">will</span> <span class="n">be</span> <span class="n">remembered</span> <span class="ow">in</span> <span class="n">that</span> <span class="n">place</span> <span class="k">for</span> <span class="n">its</span> <span class="n">strange</span> <span class="n">sunset</span><span class="o">.</span>
+<span class="n">For</span> <span class="n">a</span> <span class="nb">long</span> <span class="n">time</span> <span class="n">the</span> <span class="n">red</span> <span class="o">-</span> <span class="n">haired</span> <span class="n">revolutionary</span> <span class="n">had</span> <span class="n">reigned</span> <span class="n">without</span> <span class="n">a</span> <span class="n">rival</span> <span class="p">;</span> <span class="n">it</span> <span class="n">was</span> <span class="n">upon</span> <span class="n">the</span> <span class="n">night</span> <span class="n">of</span> <span class="n">the</span> <span class="n">sunset</span> <span class="n">that</span> <span class="n">his</span> <span class="n">solitude</span> <span class="n">suddenly</span> <span class="n">ended</span><span class="o">.</span>
+<span class="n">He</span> <span class="n">walked</span> <span class="n">on</span> <span class="n">the</span> <span class="n">Embankment</span> <span class="n">once</span> <span class="n">under</span> <span class="n">a</span> <span class="n">dark</span> <span class="n">red</span> <span class="n">sunset</span><span class="o">.</span>
+<span class="n">The</span> <span class="n">sky</span> <span class="p">,</span> <span class="n">indeed</span> <span class="p">,</span> <span class="n">was</span> <span class="n">so</span> <span class="n">swarthy</span> <span class="p">,</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">light</span> <span class="n">on</span> <span class="n">the</span> <span class="n">river</span> <span class="n">relatively</span> <span class="n">so</span> <span class="n">lurid</span> <span class="p">,</span> <span class="n">that</span> <span class="n">the</span> <span class="n">water</span> <span class="n">almost</span> <span class="n">seemed</span> <span class="n">of</span> <span class="n">fiercer</span> <span class="n">flame</span> <span class="n">than</span> <span class="n">the</span> <span class="n">sunset</span> <span class="n">it</span> <span class="n">mirrored</span><span class="o">.</span>
+<span class="n">Every</span> <span class="n">trace</span> <span class="n">of</span> <span class="n">the</span> <span class="n">passionate</span> <span class="n">plumage</span> <span class="n">of</span> <span class="n">the</span> <span class="n">cloudy</span> <span class="n">sunset</span> <span class="n">had</span> <span class="n">been</span> <span class="n">swept</span> <span class="n">away</span> <span class="p">,</span> <span class="ow">and</span> <span class="n">a</span> <span class="n">naked</span> <span class="n">moon</span> <span class="n">stood</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">naked</span> <span class="n">sky</span><span class="o">.</span>
+<span class="n">The</span> <span class="n">sealed</span> <span class="ow">and</span> <span class="n">sullen</span> <span class="n">sunset</span> <span class="n">behind</span> <span class="n">the</span> <span class="n">dark</span> <span class="n">dome</span> <span class="n">of</span> <span class="n">St</span><span class="o">.</span>
+<span class="n">Nevertheless</span> <span class="p">,</span> <span class="n">the</span> <span class="n">ride</span> <span class="n">had</span> <span class="n">been</span> <span class="n">a</span> <span class="nb">long</span> <span class="n">one</span> <span class="p">,</span> <span class="ow">and</span> <span class="n">by</span> <span class="n">the</span> <span class="n">time</span> <span class="n">they</span> <span class="n">reached</span> <span class="n">the</span> <span class="n">real</span> <span class="n">town</span> <span class="n">the</span> <span class="n">west</span> <span class="n">was</span> <span class="n">warming</span> <span class="k">with</span> <span class="n">the</span> <span class="n">colour</span> <span class="ow">and</span> <span class="n">quality</span> <span class="n">of</span> <span class="n">sunset</span><span class="o">.</span>
+<span class="n">Up</span> <span class="n">this</span> <span class="n">side</span> <span class="n">street</span> <span class="n">the</span> <span class="n">last</span> <span class="n">sunset</span> <span class="n">light</span> <span class="n">shone</span> <span class="k">as</span> <span class="n">sharp</span> <span class="ow">and</span> <span class="n">narrow</span> <span class="k">as</span> <span class="n">the</span> <span class="n">shaft</span> <span class="n">of</span> <span class="n">artificial</span> <span class="n">light</span> <span class="n">at</span> <span class="n">the</span> <span class="n">theatre</span><span class="o">.</span>
+<span class="n">His</span> <span class="n">silk</span> <span class="n">hat</span> <span class="n">was</span> <span class="n">broken</span> <span class="n">over</span> <span class="n">his</span> <span class="n">nose</span> <span class="n">by</span> <span class="n">a</span> <span class="n">swinging</span> <span class="n">bough</span> <span class="p">,</span> <span class="n">his</span> <span class="n">coat</span> <span class="o">-</span> <span class="n">tails</span> <span class="n">were</span> <span class="n">torn</span> <span class="n">to</span> <span class="n">the</span> <span class="n">shoulder</span> <span class="n">by</span> <span class="n">arresting</span> <span class="n">thorns</span> <span class="p">,</span> <span class="n">the</span> <span class="n">clay</span> <span class="n">of</span> <span class="n">England</span> <span class="n">was</span> <span class="n">splashed</span> <span class="n">up</span> <span class="n">to</span> <span class="n">his</span> <span class="n">collar</span> <span class="p">;</span> <span class="n">but</span> <span class="n">he</span> <span class="n">still</span> <span class="n">carried</span> <span class="n">his</span> <span class="n">yellow</span> <span class="n">beard</span> <span class="n">forward</span> <span class="k">with</span> <span class="n">a</span> <span class="n">silent</span> <span class="ow">and</span> <span class="n">furious</span> <span class="n">determination</span> <span class="p">,</span> <span class="ow">and</span> <span class="n">his</span> <span class="n">eyes</span> <span class="n">were</span> <span class="n">still</span> <span class="n">fixed</span> <span class="n">on</span> <span class="n">that</span> <span class="n">floating</span> <span class="n">ball</span> <span class="n">of</span> <span class="n">gas</span> <span class="p">,</span> <span class="n">which</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">full</span> <span class="n">flush</span> <span class="n">of</span> <span class="n">sunset</span> <span class="n">seemed</span> <span class="n">coloured</span> <span class="n">like</span> <span class="n">a</span> <span class="n">sunset</span> <span class="n">cloud</span><span class="o">.</span>
+<span class="n">Then</span> <span class="n">his</span> <span class="n">carriage</span> <span class="n">took</span> <span class="n">a</span> <span class="n">turn</span> <span class="n">of</span> <span class="n">the</span> <span class="n">path</span> <span class="p">,</span> <span class="ow">and</span> <span class="n">he</span> <span class="n">saw</span> <span class="n">suddenly</span> <span class="ow">and</span> <span class="n">quietly</span> <span class="p">,</span> <span class="n">like</span> <span class="n">a</span> <span class="nb">long</span> <span class="p">,</span> <span class="n">low</span> <span class="p">,</span> <span class="n">sunset</span> <span class="n">cloud</span> <span class="p">,</span> <span class="n">a</span> <span class="nb">long</span> <span class="p">,</span> <span class="n">low</span> <span class="n">house</span> <span class="p">,</span> <span class="n">mellow</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">mild</span> <span class="n">light</span> <span class="n">of</span> <span class="n">sunset</span><span class="o">.</span>
+</pre></div>
+
+
+<p>ex28</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">percent</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+    <span class="n">pc</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">text</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">pc</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;%&quot;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">percent</span><span class="p">(</span><span class="s">&quot;the&quot;</span><span class="p">,</span> <span class="n">text1</span><span class="p">)</span>
+<span class="s">&#39;5.260736372733581%&#39;</span>
+</pre></div>
+
+
+<p>ex29</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">s1</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">s2</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;c&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">set</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">set</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
+<span class="bp">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">set</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">set</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
+<span class="bp">False</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">set</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
+<span class="p">{</span><span class="s">&#39;c&#39;</span><span class="p">}</span>
+</pre></div>
+
+
+<p><a href="http://www.cnblogs.com/yuxc/archive/2011/07/10/2102559.html">参考文档</a></p>
+    <hr />
+  </article>
+  <div class="col-md-12 comment">
+      <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style_32x32 no-print">
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a href="http://www.jiathis.com/share?uid=1801890" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1801890" charset="utf-8"></script>
+<!-- JiaThis Button END -->      <!-- <h3>Comments</h3> -->
+      <!--  -->
+      <!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" id="UYScript" src="http://v1.uyan.cc/js/iframe.js?UYUserId=1801890" async=""></script>
+<!-- UY END -->      <!-- UJian Button BEGIN -->
+<script type="text/javascript">var ujian_config = {target:1,mouseoverColor:'#222222',hoverTextColor:'#FFFFFF'};</script>
+<script type="text/javascript" src="http://v1.ujian.cc/code/ujian.js?type=slide&btn=3&fade=1&picsize=96&uid=1801890"></script>
+<a href="http://www.ujian.cc" style="border:0;"><img src="http://img.ujian.cc/pixel.png" alt="友荐云推荐" style="border:0;padding:0;margin:0;" /></a>
+<!-- UJian Button END -->  </div>
+</div>
+                </div>    </div><!-- End of fluid row-->
+  </div><!-- End of Container-->
+  <!--footer-->
+  <footer id="footer" class="no-print">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-2" id="socialist">
+          <ul class="nav">
+            <li>Social</li>
+                                    <li><a href="http://weibo.com/1990zoey"><i class="icon-weibo icon-large"></i>新浪微博</a></li>
+                        <li><a href="http://www.renren.com/230222157/profile"><i class="icon-renren icon-large"></i>人人网</a></li>
+                        <li><a href="http://www.douban.com/people/ZoeyYoung/"><i class="icon-leaf icon-large"></i>豆瓣</a></li>
+                                    <li><a href="mailto:ydingmiao@gmail.com">
+              <i class="icon-envelope icon-large"></i>联系我
+            </a></li>
+                      </ul>
+        </div>
+                <div class="col-md-2">
+          <ul class="nav">
+            <li>Links</li>
+                                    <li><a href="http://my.oschina.net/zoey1990">
+              <i class="icon-heart icon-large"></i>OSC
+            </a></li>
+                        <li><a href="http://www.xiami.com/u/2092563">
+              <i class="icon-music icon-large"></i>虾米
+            </a></li>
+                        <li><a href="https://gist.github.com/ZoeyYoung">
+              <i class="icon-github icon-large"></i>GIST
+            </a></li>
+                        <li><a href="https://github.com/ZoeyYoung">
+              <i class="icon-github icon-large"></i>GitHub
+            </a></li>
+                      </ul>
+        </div>
+        <div class="col-md-2" id="site-links">
+          <ul class="nav">
+            <li>Site</li>
+            <li><a href="http://zoeyyoung.github.io">
+              <i class="icon-home icon-large"></i>首页
+            </a></li>
+            <li><a href="http://zoeyyoung.github.io/archives.html">
+              <i class="icon-list icon-large"></i>归档
+            </a></li>
+            <li><a href="http://zoeyyoung.github.io/tags.html">
+              <i class="icon-tags icon-large"></i>标签
+            </a></li>
+                        <li><a href="http://zoeyyoung.github.io/" rel="alternate">
+              <i class="icon-rss-sign icon-large"></i>Atom Feed
+            </a></li>
+          </ul>
+        </div>
+                <div class="sina-weibo col-md-4">
+          <a href="http://weibo.com/u/1861922471?s=6uyXnP" target="_blank"><img border="0" src="http://service.t.sina.com.cn/widget/qmd/1861922471/c4ba5282/1.png"/></a>
+        </div>
+                <div class="col-md-1"></div>
+      </div><!--end of fluid row-->
+      <p style="text-align: center;">
+          <a href="http://zoeyyoung.github.io">OK Computer</a>
+          &copy; ZoeyYoung
+          Powered by
+          <a href="https://github.com/getpelican/pelican">Pelican</a>
+          and
+          <a href="https://twitter.github.com/bootstrap">Twitter Bootstrap</a>
+          .
+          Icons by
+          <a href="http://gregoryloucas.github.io/Fontstrap/">Font Awesome</a>
+          .Theme By <a href="http://zoeyyoung.gitcafe.com/">ZoeyYoung</a>
+      </p>
+    </div>
+  </footer>
+  <!--/footer-->
+  <script src="http://zoeyyoung.github.io/theme/jquery.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script>var _gaq=[['_setAccount','UA-41731595-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='http//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+</body>
+</html>

@@ -49,31 +49,67 @@ ST2有一个`super`键, 在OSX中是`⌘`, 在Windows/Linux中是`Ctrl`. 下面�
 
 貌似默认没有对齐":"，在配置文件中添加了...
 
+* [Color Highlighter](https://github.com/Monnoroch/ColorHighlighter) 还不支持ST3
+
+![ColorHighlighter](https://github-camo.global.ssl.fastly.net/a1de8f4978332bcec21a5741747db8d5de448534/687474703a2f2f662e636c2e6c792f6974656d732f30623437314b3154305833623365316d326a31722f53637265656e25323053686f74253230323031332d30382d3037253230617425323031322e35322e3031253230504d2e6a7067)
+
+* SideBarEnhancements
+
+ST3版本需手动安装: https://github.com/titoBouzout/SideBarEnhancements/tree/st3
+
+* [Sublime GitHub](https://github.com/bgreenlee/sublime-github)
+
+Sublime Text 2/3 plugin that provides a number of useful commands for GitHub.
+
+ST3版本可直接用Package Control安装
+
+* [Sublime Git](https://sublimegit.net/)
+
 * SmartMarkdown for Sublime Text 2
 
 可使用Tab和Shift Tab折叠标题
 
-* BracketHighlighter
+* [Sublimerge Pro](http://www.sublimerge.com/)
+
+> The diff and merge tool for Sublime Text 2 and 3
+
+![Sublimerge](http://www.sublimerge.com/Images/sublimerge-pro-windows.png)
+
+* [BracketHighlighter](https://github.com/facelessuser/BracketHighlighter)
 
 高亮显示匹配的括号、引号和标签
 
-[插件地址](https://github.com/facelessuser/BracketHighlighter)
+ST3版本需手动安装: https://github.com/facelessuser/BracketHighlighter/tree/BH2ST3
 
-> ST3 support is found here (at the present time): https://github.com/facelessuser/BracketHighlighter/tree/BH2ST3
+* [TrailingSpacer](https://github.com/SublimeText/TrailingSpaces)
 
-ST3 不能通过Package Control安装这个插件.
+高亮显示多余的空格和Tab, ST3版本可直接用Package Control安装
 
-* TrailingSpacer
+相关Settings - User
 
-高亮显示多余的空格和Tab
-
-[插件地址](https://github.com/SublimeText/TrailingSpaces)
+    {
+        ...
+        "draw_white_space": "all",
+        "ensure_newline_at_eof_on_save": true,
+        "trim_automatic_white_space": true,
+        "trim_trailing_white_space_on_save": true,
+        ...
+    }
 
 * Fetch
 
 抓取文件
 
 [插件视频](https://tutsplus.com/lesson/fetch-files-with-ease/)
+
+* [Clickable Urls](https://github.com/leonid-shevtsov/ClickableUrls_SublimeText2)
+
+ST3版本可直接用Package Control安装
+
+默认快捷键是`ctrl+alt+enter`, 但是发现有冲突, 固修改为:
+
+    :::python
+    { "keys": ["ctrl+alt+u"], "command": "open_url" }
 
 ### Themes
 

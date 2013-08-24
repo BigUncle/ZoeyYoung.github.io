@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>[学习] NLTK Python自然语言处理 - OK Computer</title>
+  <meta name="description" content="杨丁苗的个人博客">
+  <meta name="author" content="ZoeyYoung">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+  <!--[if lt IE 9]>
+  <script src="http://zoeyyoung.github.io/theme/html5.js"></script>
+  <![endif]-->
+  <!-- Le styles -->
+  <link href="http://netdna.bootstrapcdn.com/bootswatch/3.0.0/cosmo/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link href="http://zoeyyoung.github.io/theme/print.css" rel="stylesheet" media="print" />
+  <link href="http://zoeyyoung.github.io/theme/local.css" rel="stylesheet" media="screen" />
+  <link href="http://zoeyyoung.github.io/theme/pygments.css" rel="stylesheet" />
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet" />
+  <!--[if IE 7]>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome-ie7.min.css" rel="stylesheet" />
+  <![endif]-->
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div id="header" class="col-md-2 no-print">
+        <div class="brand-wrapper">
+          <a href="http://zoeyyoung.github.io" class="navbar-brand">OK Computer</a>
+          <p style="text-align: center; font-size: 12px; margin-top: 0;">It's better to burn out <br/> than to fade away.</p>
+        </div>
+        <ul id="blog-nav" class="nav">
+          <li>SITE</li>
+          <li><a href="http://zoeyyoung.github.io">首页</a></li>
+          <li><a href="http://zoeyyoung.github.io/archives.html">归档</a></li>
+          <li><a href="http://zoeyyoung.github.io/tags.html">标签</a></li>
+          <li><hr/></li>
+          <li>CATEGORIES</li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/java.html ">Java</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/linux.html ">Linux</a>
+          </li>
+                    <li  class="active" >
+            <a href="http://zoeyyoung.github.io/category/nlp.html ">NLP</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/nosql.html ">NoSQL</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/python.html ">Python</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/ruby.html ">Ruby</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/tips.html ">Tips</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/qian-duan.html ">前端</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/gong-zuo-ji-lu.html ">工作记录</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/wo-de-xiang-mu.html ">我的项目</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/suan-fa.html ">算法</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/du-shu.html ">读书</a>
+          </li>
+                    <li><hr/></li>
+                    <li>PAGES<li>
+          
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/about-me.html">关于我</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/golden-slumber.html">Golden Slumber</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/on-the-road.html">在路上</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/software.html">我使用的软件</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/translate.html">翻译</a>
+          </li>
+                            </ul>
+      </div>
+      <div class="main-content col-md-10">
+          <div class='article'>
+  <article class="col-md-12">
+    <h1>[学习] NLTK Python自然语言处理</h1>
+    <div class="article-metadata">
+<time class="published" datetime="2013 八月 23 周五">2013 八月 23 周五 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/nlp.html">NLP</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/windows.html">Windows</a>
+        <a href="http://zoeyyoung.github.io/tag/python.html">Python</a>
+        <a href="http://zoeyyoung.github.io/tag/nltk.html">NLTK</a>
+        <a href="http://zoeyyoung.github.io/tag/nlp.html">NLP</a>
+    </span>
+<!-- <p></p> -->
+</div>    <p>Gutenberg Corpus</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">from</span> <span class="n">nltk</span><span class="p">.</span><span class="n">corpus</span> <span class="n">import</span> <span class="n">gutenberg</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">gutenberg</span><span class="p">.</span><span class="n">fileids</span><span class="p">()</span>
+<span class="p">[</span><span class="err">&#39;</span><span class="n">austen</span><span class="o">-</span><span class="n">emma</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">austen</span><span class="o">-</span><span class="n">persuasion</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">austen</span><span class="o">-</span><span class="n">sense</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">bible</span><span class="o">-</span><span class="n">kjv</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">blake</span><span class="o">-</span><span class="n">poems</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">bryant</span><span class="o">-</span><span class="n">stories</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">burgess</span><span class="o">-</span><span class="n">busterbrown</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">carroll</span><span class="o">-</span><span class="n">alice</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">chesterton</span><span class="o">-</span><span class="n">ball</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">chesterton</span><span class="o">-</span><span class="n">brown</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">chesterton</span><span class="o">-</span><span class="n">thursday</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">edgeworth</span><span class="o">-</span><span class="n">parents</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">melville</span><span class="o">-</span><span class="n">moby_dick</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">milton</span><span class="o">-</span><span class="n">paradise</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">shakespeare</span><span class="o">-</span><span class="n">caesar</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">shakespeare</span><span class="o">-</span><span class="n">hamlet</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">shakespeare</span><span class="o">-</span><span class="n">macbeth</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">whitman</span><span class="o">-</span><span class="n">leaves</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">emma</span> <span class="o">=</span> <span class="n">gutenberg</span><span class="p">.</span><span class="n">words</span><span class="p">(</span><span class="err">&#39;</span><span class="n">austen</span><span class="o">-</span><span class="n">emma</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">len</span><span class="p">(</span><span class="n">emma</span><span class="p">)</span>
+<span class="mi">192427</span>
+</pre></div>
+
+
+<p>创建nltk.Text对象</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">type</span><span class="p">(</span><span class="n">text1</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">class</span> <span class="err">&#39;</span><span class="n">nltk</span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="n">Text</span><span class="err">&#39;</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">emma</span> <span class="o">=</span> <span class="n">nltk</span><span class="p">.</span><span class="n">Text</span><span class="p">(</span><span class="n">gutenberg</span><span class="p">.</span><span class="n">words</span><span class="p">(</span><span class="err">&#39;</span><span class="n">austen</span><span class="o">-</span><span class="n">emma</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">))</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">emma</span><span class="p">.</span><span class="n">concordance</span><span class="p">(</span><span class="s">&quot;surprize&quot;</span><span class="p">)</span>
+
+
+
+<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">fileid</span> <span class="n">in</span> <span class="n">gutenberg</span><span class="p">.</span><span class="n">fileids</span><span class="p">()</span><span class="o">:</span>
+    <span class="n">num_chars</span> <span class="o">=</span> <span class="n">len</span><span class="p">(</span><span class="n">gutenberg</span><span class="p">.</span><span class="n">raw</span><span class="p">(</span><span class="n">fileid</span><span class="p">))</span>
+    <span class="n">num_words</span> <span class="o">=</span> <span class="n">len</span><span class="p">(</span><span class="n">gutenberg</span><span class="p">.</span><span class="n">words</span><span class="p">(</span><span class="n">fileid</span><span class="p">))</span>
+    <span class="n">num_sents</span> <span class="o">=</span> <span class="n">len</span><span class="p">(</span><span class="n">gutenberg</span><span class="p">.</span><span class="n">sents</span><span class="p">(</span><span class="n">fileid</span><span class="p">))</span>
+    <span class="n">num_vocab</span> <span class="o">=</span> <span class="n">len</span><span class="p">(</span><span class="n">set</span><span class="p">([</span><span class="n">w</span><span class="p">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">w</span> <span class="n">in</span> <span class="n">gutenberg</span><span class="p">.</span><span class="n">words</span><span class="p">(</span><span class="n">fileid</span><span class="p">)]))</span>
+    <span class="n">print</span><span class="p">(</span><span class="kt">int</span><span class="p">(</span><span class="n">num_chars</span><span class="o">/</span><span class="n">num_words</span><span class="p">),</span> <span class="kt">int</span><span class="p">(</span><span class="n">num_words</span><span class="o">/</span><span class="n">num_sents</span><span class="p">),</span> <span class="kt">int</span><span class="p">(</span><span class="n">num_words</span><span class="o">/</span><span class="n">num_vocab</span><span class="p">),</span> <span class="n">fileid</span><span class="p">)</span>
+<span class="mi">4</span> <span class="mi">21</span> <span class="mi">26</span> <span class="n">austen</span><span class="o">-</span><span class="n">emma</span><span class="p">.</span><span class="n">txt</span>
+<span class="mi">4</span> <span class="mi">23</span> <span class="mi">16</span> <span class="n">austen</span><span class="o">-</span><span class="n">persuasion</span><span class="p">.</span><span class="n">txt</span>
+<span class="mi">4</span> <span class="mi">23</span> <span class="mi">22</span> <span class="n">austen</span><span class="o">-</span><span class="n">sense</span><span class="p">.</span><span class="n">txt</span>
+<span class="mi">4</span> <span class="mi">33</span> <span class="mi">79</span> <span class="n">bible</span><span class="o">-</span><span class="n">kjv</span><span class="p">.</span><span class="n">txt</span>
+<span class="mi">4</span> <span class="mi">18</span> <span class="mi">5</span> <span class="n">blake</span><span class="o">-</span><span class="n">poems</span><span class="p">.</span><span class="n">txt</span>
+<span class="mi">4</span> <span class="mi">17</span> <span class="mi">14</span> <span class="n">bryant</span><span class="o">-</span><span class="n">stories</span><span class="p">.</span><span class="n">txt</span>
+<span class="mi">4</span> <span class="mi">17</span> <span class="mi">12</span> <span class="n">burgess</span><span class="o">-</span><span class="n">busterbrown</span><span class="p">.</span><span class="n">txt</span>
+<span class="mi">4</span> <span class="mi">16</span> <span class="mi">12</span> <span class="n">carroll</span><span class="o">-</span><span class="n">alice</span><span class="p">.</span><span class="n">txt</span>
+<span class="mi">4</span> <span class="mi">17</span> <span class="mi">11</span> <span class="n">chesterton</span><span class="o">-</span><span class="n">ball</span><span class="p">.</span><span class="n">txt</span>
+<span class="mi">4</span> <span class="mi">19</span> <span class="mi">11</span> <span class="n">chesterton</span><span class="o">-</span><span class="n">brown</span><span class="p">.</span><span class="n">txt</span>
+<span class="mi">4</span> <span class="mi">16</span> <span class="mi">10</span> <span class="n">chesterton</span><span class="o">-</span><span class="n">thursday</span><span class="p">.</span><span class="n">txt</span>
+<span class="mi">4</span> <span class="mi">17</span> <span class="mi">24</span> <span class="n">edgeworth</span><span class="o">-</span><span class="n">parents</span><span class="p">.</span><span class="n">txt</span>
+<span class="mi">4</span> <span class="mi">24</span> <span class="mi">15</span> <span class="n">melville</span><span class="o">-</span><span class="n">moby_dick</span><span class="p">.</span><span class="n">txt</span>
+<span class="mi">4</span> <span class="mi">52</span> <span class="mi">10</span> <span class="n">milton</span><span class="o">-</span><span class="n">paradise</span><span class="p">.</span><span class="n">txt</span>
+<span class="mi">4</span> <span class="mi">11</span> <span class="mi">8</span> <span class="n">shakespeare</span><span class="o">-</span><span class="n">caesar</span><span class="p">.</span><span class="n">txt</span>
+<span class="mi">4</span> <span class="mi">12</span> <span class="mi">7</span> <span class="n">shakespeare</span><span class="o">-</span><span class="n">hamlet</span><span class="p">.</span><span class="n">txt</span>
+<span class="mi">4</span> <span class="mi">12</span> <span class="mi">6</span> <span class="n">shakespeare</span><span class="o">-</span><span class="n">macbeth</span><span class="p">.</span><span class="n">txt</span>
+<span class="mi">4</span> <span class="mi">35</span> <span class="mi">12</span> <span class="n">whitman</span><span class="o">-</span><span class="n">leaves</span><span class="p">.</span><span class="n">txt</span>
+
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">macbeth_sentences</span> <span class="o">=</span> <span class="n">gutenberg</span><span class="p">.</span><span class="n">sents</span><span class="p">(</span><span class="err">&#39;</span><span class="n">shakespeare</span><span class="o">-</span><span class="n">macbeth</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">macbeth_sentences</span><span class="p">[</span><span class="mi">1037</span><span class="p">]</span>
+<span class="p">[</span><span class="err">&#39;</span><span class="n">Good</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">night</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">and</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">better</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">health</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Attend</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">his</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Maiesty</span><span class="err">&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">longest_len</span> <span class="o">=</span> <span class="n">max</span><span class="p">([</span><span class="n">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="n">in</span> <span class="n">macbeth_sentences</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="n">in</span> <span class="n">macbeth_sentences</span> <span class="k">if</span> <span class="n">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">==</span> <span class="n">longest_len</span><span class="p">]</span>
+<span class="p">[[</span><span class="err">&#39;</span><span class="n">Doubtfull</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">it</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">stood</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">As</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">two</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">spent</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Swimmers</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">that</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">doe</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">cling</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">together</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">And</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">choake</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">their</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Art</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;:&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">The</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">mercilesse</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Macdonwald</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;(&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Worthie</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">to</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">be</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;a&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Rebell</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="k">for</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">to</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">that</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">The</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">multiplying</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Villanies</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">of</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Nature</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Doe</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">swarme</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">vpon</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">him</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;)&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">from</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">the</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Westerne</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Isles</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Of</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Kernes</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">and</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Gallowgrosses</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">is</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">supply</span><span class="err">&#39;</span><span class="p">,</span> <span class="s">&quot;&#39;&quot;</span><span class="p">,</span> <span class="sc">&#39;d&#39;</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">And</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Fortune</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">on</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">his</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">damned</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Quarry</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">smiling</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Shew</span><span class="err">&#39;</span><span class="p">,</span> <span class="s">&quot;&#39;&quot;</span><span class="p">,</span> <span class="sc">&#39;d&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">like</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;a&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Rebells</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Whore</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;:&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">but</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">all</span><span class="err">&#39;</span><span class="p">,</span> <span class="s">&quot;&#39;&quot;</span><span class="p">,</span> <span class="sc">&#39;s&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">too</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">weake</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;:&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">For</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">braue</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Macbeth</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;(&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">well</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">hee</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">deserues</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">that</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Name</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;)&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Disdayning</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Fortune</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">with</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">his</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">brandisht</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Steele</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Which</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">smoak</span><span class="err">&#39;</span><span class="p">,</span> <span class="s">&quot;&#39;&quot;</span><span class="p">,</span> <span class="sc">&#39;d&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">with</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">bloody</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">execution</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;(&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Like</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Valours</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Minion</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;)&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">caru</span><span class="err">&#39;</span><span class="p">,</span> <span class="s">&quot;&#39;&quot;</span><span class="p">,</span> <span class="sc">&#39;d&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">out</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">his</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">passage</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Till</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">hee</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">fac</span><span class="err">&#39;</span><span class="p">,</span> <span class="s">&quot;&#39;&quot;</span><span class="p">,</span> <span class="sc">&#39;d&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">the</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Slaue</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;:&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Which</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">neu</span><span class="err">&#39;</span><span class="p">,</span> <span class="s">&quot;&#39;&quot;</span><span class="p">,</span> <span class="sc">&#39;r&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">shooke</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">hands</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">nor</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">bad</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">farwell</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">to</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">him</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Till</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">he</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">vnseam</span><span class="err">&#39;</span><span class="p">,</span> <span class="s">&quot;&#39;&quot;</span><span class="p">,</span> <span class="sc">&#39;d&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">him</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">from</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">the</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Naue</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">toth</span><span class="err">&#39;</span><span class="p">,</span> <span class="s">&quot;&#39;&quot;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Chops</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">And</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">fix</span><span class="err">&#39;</span><span class="p">,</span> <span class="s">&quot;&#39;&quot;</span><span class="p">,</span> <span class="sc">&#39;d&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">his</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Head</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">vpon</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">our</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Battlements</span><span class="err">&#39;</span><span class="p">]]</span>
+</pre></div>
+    <hr />
+  </article>
+  <div class="col-md-12 comment">
+      <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style_32x32 no-print">
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a href="http://www.jiathis.com/share?uid=1801890" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1801890" charset="utf-8"></script>
+<!-- JiaThis Button END -->      <!-- <h3>Comments</h3> -->
+      <!--  -->
+      <!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" id="UYScript" src="http://v1.uyan.cc/js/iframe.js?UYUserId=1801890" async=""></script>
+<!-- UY END -->      <!-- UJian Button BEGIN -->
+<script type="text/javascript">var ujian_config = {target:1,mouseoverColor:'#222222',hoverTextColor:'#FFFFFF'};</script>
+<script type="text/javascript" src="http://v1.ujian.cc/code/ujian.js?type=slide&btn=3&fade=1&picsize=96&uid=1801890"></script>
+<a href="http://www.ujian.cc" style="border:0;"><img src="http://img.ujian.cc/pixel.png" alt="友荐云推荐" style="border:0;padding:0;margin:0;" /></a>
+<!-- UJian Button END -->  </div>
+</div>
+                </div>    </div><!-- End of fluid row-->
+  </div><!-- End of Container-->
+  <!--footer-->
+  <footer id="footer" class="no-print">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-2" id="socialist">
+          <ul class="nav">
+            <li>Social</li>
+                                    <li><a href="http://weibo.com/1990zoey"><i class="icon-weibo icon-large"></i>新浪微博</a></li>
+                        <li><a href="http://www.renren.com/230222157/profile"><i class="icon-renren icon-large"></i>人人网</a></li>
+                        <li><a href="http://www.douban.com/people/ZoeyYoung/"><i class="icon-leaf icon-large"></i>豆瓣</a></li>
+                                    <li><a href="mailto:ydingmiao@gmail.com">
+              <i class="icon-envelope icon-large"></i>联系我
+            </a></li>
+                      </ul>
+        </div>
+                <div class="col-md-2">
+          <ul class="nav">
+            <li>Links</li>
+                                    <li><a href="http://my.oschina.net/zoey1990">
+              <i class="icon-heart icon-large"></i>OSC
+            </a></li>
+                        <li><a href="http://www.xiami.com/u/2092563">
+              <i class="icon-music icon-large"></i>虾米
+            </a></li>
+                        <li><a href="https://gist.github.com/ZoeyYoung">
+              <i class="icon-github icon-large"></i>GIST
+            </a></li>
+                        <li><a href="https://github.com/ZoeyYoung">
+              <i class="icon-github icon-large"></i>GitHub
+            </a></li>
+                      </ul>
+        </div>
+        <div class="col-md-2" id="site-links">
+          <ul class="nav">
+            <li>Site</li>
+            <li><a href="http://zoeyyoung.github.io">
+              <i class="icon-home icon-large"></i>首页
+            </a></li>
+            <li><a href="http://zoeyyoung.github.io/archives.html">
+              <i class="icon-list icon-large"></i>归档
+            </a></li>
+            <li><a href="http://zoeyyoung.github.io/tags.html">
+              <i class="icon-tags icon-large"></i>标签
+            </a></li>
+                        <li><a href="http://zoeyyoung.github.io/" rel="alternate">
+              <i class="icon-rss-sign icon-large"></i>Atom Feed
+            </a></li>
+          </ul>
+        </div>
+                <div class="sina-weibo col-md-4">
+          <a href="http://weibo.com/u/1861922471?s=6uyXnP" target="_blank"><img border="0" src="http://service.t.sina.com.cn/widget/qmd/1861922471/c4ba5282/1.png"/></a>
+        </div>
+                <div class="col-md-1"></div>
+      </div><!--end of fluid row-->
+      <p style="text-align: center;">
+          <a href="http://zoeyyoung.github.io">OK Computer</a>
+          &copy; ZoeyYoung
+          Powered by
+          <a href="https://github.com/getpelican/pelican">Pelican</a>
+          and
+          <a href="https://twitter.github.com/bootstrap">Twitter Bootstrap</a>
+          .
+          Icons by
+          <a href="http://gregoryloucas.github.io/Fontstrap/">Font Awesome</a>
+          .Theme By <a href="http://zoeyyoung.gitcafe.com/">ZoeyYoung</a>
+      </p>
+    </div>
+  </footer>
+  <!--/footer-->
+  <script src="http://zoeyyoung.github.io/theme/jquery.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script>var _gaq=[['_setAccount','UA-41731595-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='http//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+</body>
+</html>
