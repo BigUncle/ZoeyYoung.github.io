@@ -121,15 +121,15 @@
 <li>得到1024个小文件中的出现次数最多的IP, 再依据常规的排序算法得到总体上出现次数最多的IP.</li>
 </ol>
 <h4>生成数据</h4>
-<p>生成1亿个IP地址, 分两种情况, 一种IP重复量大, 一种IP重复量小, 写入文件中:</p>
+<p>生成1亿个IP地址(这里分两种情况, 一种IP重复率大, 一种IP重复率小), 先生成重复率小的, 写入文件中:</p>
 <div class="highlight"><pre><span class="kn">import</span> <span class="nn">random</span>
 <span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">ctime</span>
 <span class="kn">import</span> <span class="nn">gc</span>
 <span class="k">def</span> <span class="nf">generage_random_IP</span><span class="p">(</span><span class="n">file_loc</span><span class="p">,</span> <span class="n">number</span><span class="p">):</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_loc</span><span class="p">,</span> <span class="s">&#39;a+&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="c"># (1) 重复量大, 即使直接遍历也不会超出内存限制</span>
+        <span class="c"># (1) 重复率大, 即使直接遍历也不会超出内存限制</span>
         <span class="c"># IPs = &#39;\n&#39;.join([&#39;255.255.&#39; + str(random.randint(0,255)) + &#39;.&#39; + str(random.randint(0,255)) for i in xrange(number)])</span>
-        <span class="c"># (2) 重复量小, 会真正导致后面大数据</span>
+        <span class="c"># (2) 重复率小, 会真正导致后面大数据</span>
         <span class="n">IPs</span> <span class="o">=</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s">&#39;.&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">number</span><span class="p">)])</span>
         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">IPs</span><span class="p">)</span>
     <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
@@ -226,7 +226,7 @@
 
 <p>11209 function calls (11206 primitive calls) in 0.016 seconds</p>
 <p>大概需要0.01s左右</p>
-<p>IP的重复率比较大的情况下, 即使直接遍历文件, 内存占用也不会超过128M, 并且节省了文件分割的时间. 用时大概2分钟.</p>
+<p>上面是IP重复率小的情况, 另外一种情况, IP的重复率比较大的情况下, 即使直接遍历文件, 内存占用也不会超过128M, 并且节省了文件分割的时间. 用时大概1分半分钟.</p>
 <div class="highlight"><pre><span class="k">def</span> <span class="nf">count_IPs_once</span><span class="p">(</span><span class="n">file_loc</span><span class="p">):</span>
     <span class="n">IPs</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_loc</span><span class="p">,</span> <span class="s">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -268,16 +268,10 @@ var jiathis_config={
 }
 </script>
 <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1801890" charset="utf-8"></script>
-<!-- JiaThis Button END -->      <!-- <h3>Comments</h3> -->
-      <!--  -->
-      <!-- UY BEGIN -->
+<!-- JiaThis Button END -->      <!-- UY BEGIN -->
 <div id="uyan_frame"></div>
 <script type="text/javascript" id="UYScript" src="http://v1.uyan.cc/js/iframe.js?UYUserId=1801890" async=""></script>
-<!-- UY END -->      <!-- UJian Button BEGIN -->
-<script type="text/javascript">var ujian_config = {target:1};</script>
-<script type="text/javascript" src="http://v1.ujian.cc/code/ujian.js?type=slide&fade=1&uid=1801890"></script>
-<a href="http://www.ujian.cc" style="border:0;"><img src="http://img.ujian.cc/pixel.png" alt="友荐云推荐" style="border:0;padding:0;margin:0;" /></a>
-<!-- UJian Button END -->  </div>
+<!-- UY END -->  </div>
 </div>
                 </div>    </div><!-- End of fluid row-->
   </div><!-- End of Container-->
