@@ -1,16 +1,16 @@
-Title: 我的Sublime Text 2配置
+Title: 我的 Sublime Text 2/3 配置
 Date: 2013-06-30
-Tags: Windows,Tips,Sublime Text 2,配置
+Tags: Windows,Tips,Sublime Text 2,Sublime Text 3,配置
 Slug: sublime-text-2
 Author: Zoey Young
-Summary: 我的Sublime Text 2配置
+Summary: 我的 Sublime Text 2/3 配置
 
 > Sublime Text is a sophisticated text editor for code, markup and prose.
 You'll love the slick user interface, extraordinary features and amazing performance.
 
 — Description from the Sublime Text website.
 
-我使用[Sublime Text 2](http://www.sublimetext.com/)已经有半年以上的时间了, 基本在文本编辑和一般的开发都在该编辑器中进行, 刚开始根据一些文章的介绍配置了许多东西, 但到后来都不记得自己到底配置过啥, 或者为啥而配置. 因此这里进行一些整理与总结.
+我使用[Sublime Text 2/3](http://www.sublimetext.com/)已经有半年以上的时间了, 基本在文本编辑和一般的开发都在该编辑器中进行, 刚开始根据一些文章的介绍配置了许多东西, 但到后来都不记得自己到底配置过啥, 或者为啥而配置. 因此这里进行一些整理与总结.
 内容太多, 不时整理下.
 
 ### 快捷键

@@ -111,16 +111,26 @@
     </span>
 <!-- <p></p> -->
 </div>    <p>重装系统后, 重新配置了下Python环境, 并不复杂, 但是得打开好几个网站, 我习惯先看下官网有啥更新说明, 因此记录下, 以免每次都要找</p>
+<p>Ubuntu下用<code>apt-get</code>安装时, 会提示需要的其它包, 因此有时按提示装就好了.</p>
 <p><a href="http://www.python.org/download/">安装Python</a>, 下载安装Python 2.7.X, 安装目录C:\Python27</p>
-<p><a href="https://pypi.python.org/pypi/setuptools">安装setuptools</a>, Windows下, 下载<strong><a href="https://pypi.python.org/pypi/setuptools/0.9.6#windows">ez_setup.py</a></strong>文件并运行</p>
-<p>在环境变量PATH中追加: <code>C:\Python27;C:\Python27\Scripts</code> 或 <code>C:\Python33;C:\Python33\Scripts</code></p>
-<p><a href="https://pypi.python.org/pypi/pip">安装pip</a>, 可以在<a href="https://github.com/pypa/pip">Github</a>上下载开发版, 然后解压, 进入根目录, 使用命令行安装</p>
+<h4><a href="https://pypi.python.org/pypi/setuptools">安装setuptools</a></h4>
+<p>Windows下: 下载<strong><a href="https://pypi.python.org/pypi/setuptools/0.9.6#windows">ez_setup.py</a></strong>文件并运行</p>
+<p>Ubuntu下:<code>$ sudo apt-get install python-setuptools</code></p>
+<p>Windows下: 在环境变量PATH中追加: <code>C:\Python27;C:\Python27\Scripts</code> 或 <code>C:\Python33;C:\Python33\Scripts</code></p>
+<h4><a href="https://pypi.python.org/pypi/pip">安装pip</a></h4>
+<p>Windows下: 可以在<a href="https://github.com/pypa/pip">Github</a>上下载开发版, 然后解压, 进入根目录, 使用命令行安装</p>
 <div class="highlight"><pre>python setup.py insatll
 </pre></div>
 
 
+<p>Ubuntu下:</p>
+<div class="highlight"><pre>$ sudo apt-get install python-dev
+$ sudo apt-get install python-pip
+</pre></div>
+
+
 <p>使用<strong>requirements.txt</strong></p>
-<div class="highlight"><pre><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="p">.</span><span class="n">txt</span>
+<div class="highlight"><pre>pip install -r requirements.txt
 </pre></div>
 
 

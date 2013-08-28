@@ -1643,16 +1643,26 @@ master &lt;span class="o"&gt;=&lt;/span&gt; true
 
 
 &lt;p&gt;还有问题再补充...基本上我重装就按这个步骤了...&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sat, 06 Jul 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-07-06:mongodb.html</guid><category>Windows</category><category>Python</category><category>pip</category><category>virtualenv</category></item><item><title>[安装] Python相关</title><link>http://zoeyyoung.github.io/python-env-install.html</link><description>&lt;p&gt;重装系统后, 重新配置了下Python环境, 并不复杂, 但是得打开好几个网站, 我习惯先看下官网有啥更新说明, 因此记录下, 以免每次都要找&lt;/p&gt;
+&lt;p&gt;Ubuntu下用&lt;code&gt;apt-get&lt;/code&gt;安装时, 会提示需要的其它包, 因此有时按提示装就好了.&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://www.python.org/download/"&gt;安装Python&lt;/a&gt;, 下载安装Python 2.7.X, 安装目录C:\Python27&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://pypi.python.org/pypi/setuptools"&gt;安装setuptools&lt;/a&gt;, Windows下, 下载&lt;strong&gt;&lt;a href="https://pypi.python.org/pypi/setuptools/0.9.6#windows"&gt;ez_setup.py&lt;/a&gt;&lt;/strong&gt;文件并运行&lt;/p&gt;
-&lt;p&gt;在环境变量PATH中追加: &lt;code&gt;C:\Python27;C:\Python27\Scripts&lt;/code&gt; 或 &lt;code&gt;C:\Python33;C:\Python33\Scripts&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://pypi.python.org/pypi/pip"&gt;安装pip&lt;/a&gt;, 可以在&lt;a href="https://github.com/pypa/pip"&gt;Github&lt;/a&gt;上下载开发版, 然后解压, 进入根目录, 使用命令行安装&lt;/p&gt;
+&lt;h4&gt;&lt;a href="https://pypi.python.org/pypi/setuptools"&gt;安装setuptools&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;Windows下: 下载&lt;strong&gt;&lt;a href="https://pypi.python.org/pypi/setuptools/0.9.6#windows"&gt;ez_setup.py&lt;/a&gt;&lt;/strong&gt;文件并运行&lt;/p&gt;
+&lt;p&gt;Ubuntu下:&lt;code&gt;$ sudo apt-get install python-setuptools&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Windows下: 在环境变量PATH中追加: &lt;code&gt;C:\Python27;C:\Python27\Scripts&lt;/code&gt; 或 &lt;code&gt;C:\Python33;C:\Python33\Scripts&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;a href="https://pypi.python.org/pypi/pip"&gt;安装pip&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;Windows下: 可以在&lt;a href="https://github.com/pypa/pip"&gt;Github&lt;/a&gt;上下载开发版, 然后解压, 进入根目录, 使用命令行安装&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;python setup.py insatll
 &lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;p&gt;Ubuntu下:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;$ sudo apt-get install python-dev
+$ sudo apt-get install python-pip
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;使用&lt;strong&gt;requirements.txt&lt;/strong&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="n"&gt;requirements&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;pip install -r requirements.txt
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -1737,12 +1747,12 @@ error: command &lt;span class="s1"&gt;&amp;#39;gcc&amp;#39;&lt;/span&gt; failed 
 &lt;p&gt;囧&lt;/p&gt;
 &lt;h3&gt;所以, 真正的解决方法是...&lt;/h3&gt;
 &lt;p&gt;到&lt;a href="https://pypi.python.org/pypi/greenlet"&gt;pypi greenlet&lt;/a&gt;上去下载&lt;strong&gt;greenlet-0.4.1.win-amd64-py2.7.exe&lt;/strong&gt;直接安装&lt;/p&gt;
-&lt;p&gt;然后将&lt;strong&gt;C:\Python27\Lib\site-packages&lt;/strong&gt;目录下的&lt;strong&gt;greenlet.pyd&lt;/strong&gt;和&lt;strong&gt;greenlet-0.4.1-py2.7.egg-info&lt;/strong&gt;两个文件拷贝到我的virtualenv目录的&lt;strong&gt;X:\virtualenvDir\Lib\site-packages&lt;/strong&gt;下才解决了问题&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 02 Jul 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-07-02:unable-to-find-vcvarsall-bat.html</guid><category>Motor</category><category>MongoDB</category><category>Python</category><category>Windows</category><category>问题</category></item><item><title>我的Sublime Text 2配置</title><link>http://zoeyyoung.github.io/sublime-text-2.html</link><description>&lt;blockquote&gt;
+&lt;p&gt;然后将&lt;strong&gt;C:\Python27\Lib\site-packages&lt;/strong&gt;目录下的&lt;strong&gt;greenlet.pyd&lt;/strong&gt;和&lt;strong&gt;greenlet-0.4.1-py2.7.egg-info&lt;/strong&gt;两个文件拷贝到我的virtualenv目录的&lt;strong&gt;X:\virtualenvDir\Lib\site-packages&lt;/strong&gt;下才解决了问题&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 02 Jul 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-07-02:unable-to-find-vcvarsall-bat.html</guid><category>Motor</category><category>MongoDB</category><category>Python</category><category>Windows</category><category>问题</category></item><item><title>我的 Sublime Text 2/3 配置</title><link>http://zoeyyoung.github.io/sublime-text-2.html</link><description>&lt;blockquote&gt;
 &lt;p&gt;Sublime Text is a sophisticated text editor for code, markup and prose.
 You'll love the slick user interface, extraordinary features and amazing performance.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;— Description from the Sublime Text website.&lt;/p&gt;
-&lt;p&gt;我使用&lt;a href="http://www.sublimetext.com/"&gt;Sublime Text 2&lt;/a&gt;已经有半年以上的时间了, 基本在文本编辑和一般的开发都在该编辑器中进行, 刚开始根据一些文章的介绍配置了许多东西, 但到后来都不记得自己到底配置过啥, 或者为啥而配置. 因此这里进行一些整理与总结.
+&lt;p&gt;我使用&lt;a href="http://www.sublimetext.com/"&gt;Sublime Text 2/3&lt;/a&gt;已经有半年以上的时间了, 基本在文本编辑和一般的开发都在该编辑器中进行, 刚开始根据一些文章的介绍配置了许多东西, 但到后来都不记得自己到底配置过啥, 或者为啥而配置. 因此这里进行一些整理与总结.
 内容太多, 不时整理下.&lt;/p&gt;
 &lt;h3&gt;快捷键&lt;/h3&gt;
 &lt;p&gt;ST2有一个&lt;code&gt;super&lt;/code&gt;键, 在OSX中是&lt;code&gt;⌘&lt;/code&gt;, 在Windows/Linux中是&lt;code&gt;Ctrl&lt;/code&gt;. 下面都用&lt;code&gt;super&lt;/code&gt;来表示.&lt;/p&gt;
@@ -1867,7 +1877,7 @@ You'll love the slick user interface, extraordinary features and amazing perform
 &lt;p&gt;&lt;a href="https://github.com/joshnh/CSS-Snippets"&gt;Sublime Text 2 CSS Snippets&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://webtempest.com/sublime-text-2-how-to-create-snippets/"&gt;How to Create Snippets&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://www.qianduan.net/essential-to-sublime-the-text-2-plugins.html"&gt;一些必不可少的Sublime Text 2插件&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://dengo.org/archives/923"&gt;Sublime Text 3能用支持的插件推荐&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sun, 30 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-30:sublime-text-2.html</guid><category>Windows</category><category>Tips</category><category>Sublime Text 2</category><category>配置</category></item><item><title>在 Windows 下 Git 的使用</title><link>http://zoeyyoung.github.io/windows-git-https.html</link><description>&lt;p&gt;这个问题很基础, 但是第一次使用时很困扰&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://dengo.org/archives/923"&gt;Sublime Text 3能用支持的插件推荐&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sun, 30 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-30:sublime-text-2.html</guid><category>Windows</category><category>Tips</category><category>Sublime Text 2</category><category>Sublime Text 3</category><category>配置</category></item><item><title>在 Windows 下 Git 的使用</title><link>http://zoeyyoung.github.io/windows-git-https.html</link><description>&lt;p&gt;这个问题很基础, 但是第一次使用时很困扰&lt;/p&gt;
 &lt;p&gt;按照&lt;a href="https://gitcafe.com/GitCafe/Help/blob/master/Setup_Git.md"&gt;帮助&lt;/a&gt;安装了Windows下的Git客户端, 例如我下载安装了&lt;strong&gt;Git-1.8.3-preview20130601.exe&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;(还有其它软件, 比如&lt;a href="http://code.google.com/p/tortoisegit/"&gt;TortoiseGit&lt;/a&gt;)&lt;/p&gt;
 &lt;p&gt;在GitCafe上&lt;strong&gt;创建&lt;/strong&gt;仓库后, 会有提示怎么初始化仓库的说明&lt;/p&gt;

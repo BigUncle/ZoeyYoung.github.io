@@ -847,16 +847,26 @@ Ah, and here&amp;#39;s some more text, by the way.
 
 
 &lt;p&gt;&lt;a href="http://www.crifan.com/python_try_lxml_parse_html/"&gt;【记录】Python中尝试用lxml去解析html&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sun, 14 Jul 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-07-14:python-lxml-html.html</guid><category>Windows</category><category>Python</category><category>lxml</category></item><item><title>[安装] Python相关</title><link>http://zoeyyoung.github.io/python-env-install.html</link><description>&lt;p&gt;重装系统后, 重新配置了下Python环境, 并不复杂, 但是得打开好几个网站, 我习惯先看下官网有啥更新说明, 因此记录下, 以免每次都要找&lt;/p&gt;
+&lt;p&gt;Ubuntu下用&lt;code&gt;apt-get&lt;/code&gt;安装时, 会提示需要的其它包, 因此有时按提示装就好了.&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://www.python.org/download/"&gt;安装Python&lt;/a&gt;, 下载安装Python 2.7.X, 安装目录C:\Python27&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://pypi.python.org/pypi/setuptools"&gt;安装setuptools&lt;/a&gt;, Windows下, 下载&lt;strong&gt;&lt;a href="https://pypi.python.org/pypi/setuptools/0.9.6#windows"&gt;ez_setup.py&lt;/a&gt;&lt;/strong&gt;文件并运行&lt;/p&gt;
-&lt;p&gt;在环境变量PATH中追加: &lt;code&gt;C:\Python27;C:\Python27\Scripts&lt;/code&gt; 或 &lt;code&gt;C:\Python33;C:\Python33\Scripts&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://pypi.python.org/pypi/pip"&gt;安装pip&lt;/a&gt;, 可以在&lt;a href="https://github.com/pypa/pip"&gt;Github&lt;/a&gt;上下载开发版, 然后解压, 进入根目录, 使用命令行安装&lt;/p&gt;
+&lt;h4&gt;&lt;a href="https://pypi.python.org/pypi/setuptools"&gt;安装setuptools&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;Windows下: 下载&lt;strong&gt;&lt;a href="https://pypi.python.org/pypi/setuptools/0.9.6#windows"&gt;ez_setup.py&lt;/a&gt;&lt;/strong&gt;文件并运行&lt;/p&gt;
+&lt;p&gt;Ubuntu下:&lt;code&gt;$ sudo apt-get install python-setuptools&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Windows下: 在环境变量PATH中追加: &lt;code&gt;C:\Python27;C:\Python27\Scripts&lt;/code&gt; 或 &lt;code&gt;C:\Python33;C:\Python33\Scripts&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;a href="https://pypi.python.org/pypi/pip"&gt;安装pip&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;Windows下: 可以在&lt;a href="https://github.com/pypa/pip"&gt;Github&lt;/a&gt;上下载开发版, 然后解压, 进入根目录, 使用命令行安装&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;python setup.py insatll
 &lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;p&gt;Ubuntu下:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;$ sudo apt-get install python-dev
+$ sudo apt-get install python-pip
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;使用&lt;strong&gt;requirements.txt&lt;/strong&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="n"&gt;requirements&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;pip install -r requirements.txt
 &lt;/pre&gt;&lt;/div&gt;
 
 
