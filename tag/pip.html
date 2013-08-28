@@ -95,8 +95,167 @@
           
     <div class='row'>
         <div class="col-md-12">
-            <a href="http://zoeyyoung.github.io/python-chardet.html"><h1>[常用] 在Python中检测网页编码</h1></a>
+            <a href="http://zoeyyoung.github.io/get-most-visit-ip.html"><h1>海量日志数据, 提取出某日访问百度次数最多的那个IP</h1></a>
             <div class="article-metadata">
+<time class="published" datetime="2013 八月 27 周二">2013 八月 27 周二 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/suan-fa.html">算法</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/python.html">Python</a>
+        <a href="http://zoeyyoung.github.io/tag/pip.html">pip</a>
+        <a href="http://zoeyyoung.github.io/tag/suan-fa.html">算法</a>
+        <a href="http://zoeyyoung.github.io/tag/hai-liang-shu-ju.html">海量数据</a>
+    </span>
+<!-- <p></p> -->
+</div>            <p>问题: 海量日志数据, 提取出某日访问百度次数最多的那个IP.</p>
+<blockquote>
+<p>首先是这一天, 并且是访问百度的日志中的IP取出来, 逐个写入到一个大文件中. 注意到IP是32位的, 最多有2^32个不同的IP(事实上不可能, 得扣去特殊的IP), 在重复量小的情况下, 内存放不下这些不同的IP. 同样可以采用映射的方法, 比如模1000, 把整个大文件映射为1000个小文件, 再找出每个小文件中出现频率最大的IP(可以采用hash_map进行频率统计, 然后再找出频率最大的几个)及相应的频率. 然后再在这1000个最大的IP中, 找出那个频率最大的IP, 即为所求.</p>
+</blockquote>
+<p>具体做法如下：</p>
+<ol>
+<li>按照IP地址的Hash(IP)%1024值, 把海量IP日志分别存储到1024个小文件中.</li>
+<li>对于每一个小文件, 构建一个以IP为key, 出现次数为value的HashMap, 同时记录当前出现次数最多的那个IP地址;</li>
+<li>得到1024个小文件中的出现次数最多的IP, 再依据常规的排序算法得到总体上出现次数最多的IP.</li>
+</ol>
+<h4>生成数据</h4>
+<p>生成1亿个IP地址, 分两种情况, 一种IP重复量大, 一种IP重复量小, 写入文件中:</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">ctime</span>
+<span class="kn">import</span> <span class="nn">gc</span>
+<span class="k">def</span> <span class="nf">generage_random_IP</span><span class="p">(</span><span class="n">file_loc</span><span class="p">,</span> <span class="n">number</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_loc</span><span class="p">,</span> <span class="s">&#39;a+&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="c"># (1) 重复量大, 即使直接遍历也不会超出内存限制</span>
+        <span class="c"># IPs = &#39;\n&#39;.join([&#39;255.255.&#39; + str(random.randint(0,255)) + &#39;.&#39; + str(random.randint(0,255)) for i in xrange(number)])</span>
+        <span class="c"># (2) 重复量小, 会真正导致后面大数据</span>
+        <span class="n">IPs</span> <span class="o">=</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s">&#39;.&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">number</span><span class="p">)])</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">IPs</span><span class="p">)</span>
+    <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+    <span class="n">IPs</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ctime</span><span class="p">())</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&#39;  &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;: &quot;</span> <span class="o">+</span> <span class="n">ctime</span><span class="p">())</span>
+        <span class="n">generage_random_IP</span><span class="p">(</span><span class="s">&#39;IPs100000000.txt&#39;</span><span class="p">,</span> <span class="mi">2000000</span><span class="p">)</span> <span class="c"># 50 * 2000000 根据内存限制调整</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ctime</span><span class="p">())</span>
+</pre></div>
+
+
+<p>测试了下, 时间基本上是花在生成随机数上面. 大概需要十几分钟.</p>
+<p>分割文件</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">ctime</span>
+<span class="k">def</span> <span class="nf">devide_IPs</span><span class="p">(</span><span class="n">file_loc</span><span class="p">):</span>
+    <span class="n">IPs</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_loc</span><span class="p">,</span> <span class="s">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span>
+            <span class="c"># key = str(hash(line) % 1024)  # 这里似乎是求余花的时间比较多, hash花的时间不比split多</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">IPs</span><span class="p">:</span>
+                <span class="n">IPs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">IPs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">100000</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">IPs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;ips&#39;</span> <span class="o">+</span> <span class="n">k</span> <span class="o">+</span> <span class="s">&#39;.txt&#39;</span><span class="p">,</span> <span class="s">&#39;a+&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f2</span><span class="p">:</span>
+                        <span class="n">f2</span><span class="o">.</span><span class="n">writelines</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+                        <span class="k">del</span> <span class="n">IPs</span><span class="p">[</span><span class="n">k</span><span class="p">][:]</span>
+                <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ctime</span><span class="p">())</span>
+    <span class="n">devide_IPs</span><span class="p">(</span><span class="s">&#39;IPs100000000.txt&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ctime</span><span class="p">())</span>
+</pre></div>
+
+
+<p>200513318 function calls (200513315 primitive calls) in 348.061 seconds</p>
+<p>大概需要6、7分钟</p>
+<p>教训: 不要乱添加打印语句, 时间都耗在上面了. 刚开始每读一行都输出, 运行了一个多小时还没完...</p>
+<p>计算IP数, 将每个文件中IP重复最多的IP的列表写入文件.</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">ctime</span>
+<span class="k">def</span> <span class="nf">count_IPs</span><span class="p">(</span><span class="n">file_loc</span><span class="p">):</span>
+    <span class="n">IPs</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_loc</span><span class="p">,</span> <span class="s">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">IPs</span><span class="p">:</span>
+                    <span class="n">IPs</span><span class="p">[</span><span class="n">line</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">IPs</span><span class="p">[</span><span class="n">line</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="c"># IPs[line] = IPs.get(line, 0) + 1</span>
+        <span class="n">max_ip</span><span class="p">,</span> <span class="n">max_value</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">IPs</span><span class="o">.</span><span class="n">iteritems</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>  <span class="c"># 这句比较耗时</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">max_ip</span><span class="p">:</span> <span class="n">max_value</span><span class="p">}</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ctime</span><span class="p">())</span>
+    <span class="n">max_IPs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">256</span><span class="p">):</span>
+        <span class="n">max_IP</span> <span class="o">=</span> <span class="n">count_IPs</span><span class="p">(</span><span class="s">&#39;ips&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;.txt&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">max_IP</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">max_IPs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">max_IP</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ctime</span><span class="p">())</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;count_IPs&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">max_IPs</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+</pre></div>
+
+
+<p>98757714 function calls (98756943 primitive calls) in 179.475 seconds</p>
+<p>大概需要3分钟</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">ctime</span>
+<span class="k">def</span> <span class="nf">get_max_IP</span><span class="p">():</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;count_IPs&#39;</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">max_IPs</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="c"># print(max_IPs)</span>
+    <span class="k">print</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">max_IPs</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ctime</span><span class="p">())</span>
+    <span class="n">get_max_IP</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ctime</span><span class="p">())</span>
+</pre></div>
+
+
+<p>11209 function calls (11206 primitive calls) in 0.016 seconds</p>
+<p>大概需要0.01s左右</p>
+<p>IP的重复率比较大的情况下, 即使直接遍历文件, 内存占用也不会超过128M, 并且节省了文件分割的时间. 用时大概2分钟.</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">count_IPs_once</span><span class="p">(</span><span class="n">file_loc</span><span class="p">):</span>
+    <span class="n">IPs</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_loc</span><span class="p">,</span> <span class="s">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">IPs</span><span class="p">:</span>
+                <span class="n">IPs</span><span class="p">[</span><span class="n">line</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">IPs</span><span class="p">[</span><span class="n">line</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">print</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">IPs</span><span class="o">.</span><span class="n">iteritems</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ctime</span><span class="p">())</span>
+    <span class="n">count_IPs_once</span><span class="p">(</span><span class="s">&#39;IPs100000000.txt&#39;</span><span class="p">)</span>  <span class="c"># 注意: IP重复量小的情况下, 内存会超过限制</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ctime</span><span class="p">())</span>
+</pre></div>
+
+
+<p>66773 function calls (66770 primitive calls) in 91.358 seconds</p>
+<p>总结: 大数据与文件的大小其实关系不大, 真正有关系的是计数时存入字典的IP量, 如果不重复的IP很多的话, 这个数据占用的内存就会持续增加. 如果IP重复量大, 则并不会占用太多内存.</p>
+<p>参考: <a href="http://blog.csdn.net/quicktest/article/details/7453189">Python处理海量数据的实战研究</a></p>
+            <a class="btn btn-default btn-xs xsmall" href="http://zoeyyoung.github.io/get-most-visit-ip.html"><i class="icon-comment"></i> 评论 </a>
+            <hr />
+        </div>
+    </div>
+         <div class='row'>
+      <div class='col-md-12'>
+        <a href="http://zoeyyoung.github.io/python-chardet.html"><h1>[常用] 在Python中检测网页编码</h1></a>
+        <div class="article-metadata">
 <time class="published" datetime="2013 七月 14 周日">2013 七月 14 周日 </time>
 <a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
 <span>
@@ -111,112 +270,11 @@
         <a href="http://zoeyyoung.github.io/tag/chardet.html">chardet</a>
     </span>
 <!-- <p></p> -->
-</div>            <p>在使用Python抓取网页并进行分析时出现这个错误:</p>
-<div class="highlight"><pre><span class="nl">UnicodeDecodeError:</span> <span class="err">&#39;</span><span class="n">utf8</span><span class="err">&#39;</span> <span class="n">codec</span> <span class="n">can</span><span class="err">&#39;</span><span class="n">t</span> <span class="n">decode</span> <span class="n">byte</span> <span class="mh">0xd6</span>
-</pre></div>
-
-
-<p>原因是部分中文网站编码不是<code>utf8</code>, 因此需要进行编码判断</p>
-<h4>问题描述:</h4>
-<p>引自<a href="http://www.cnblogs.com/tdlian/archive/2011/11/25/2263054.html">如何高效、准确、自动识别网页编码</a></p>
-<p>在引入编码自动识别前, 我们有两种途径获取网页的编码信息:</p>
-<p>其一、通过服务器返回的 header 里的 charset 变量获取</p>
-<p>其二、通过页面里的 meta 信息获取</p>
-<p>正常情况下, 如果服务器或者页面有提供这两个参数, 而且参数是正确的, 那我们抓取网页时就不存在编码的问题了.</p>
-<p>但是现实总是会难为我们这些程序员, 抓取网页时, 经常会出现以下几种情况:</p>
-<ol>
-<li>这两个参数缺失了</li>
-<li>这两个参数虽然都提供了，但是不一致</li>
-<li>这两个参数提供了，但是与网页实际的编码不一致</li>
-</ol>
-<p>为了尽可能的自动的获取所有网页的编码，所以引入了编码自动识别</p>
-<h4>Chardet</h4>
-<p>搜索<strong>chardet</strong>马上就找到了Python的<a href="https://pypi.python.org/pypi/chardet">chardet</a>第三方库</p>
-<p>可以通过pip安装</p>
-<div class="highlight"><pre>pip install chardet
-</pre></div>
-
-
-<p>主页描述:</p>
-<p>chardet guesses the encoding of text files.</p>
-<p>Detects...</p>
-<ul>
-<li>ASCII, UTF-8, UTF-16 (2 variants), UTF-32 (4 variants)</li>
-<li>Big5, GB2312, EUC-TW, HZ-GB-2312, ISO-2022-CN (Traditional and Simplified Chinese)</li>
-<li>EUC-JP, SHIFT_JIS, ISO-2022-JP (Japanese)</li>
-<li>EUC-KR, ISO-2022-KR (Korean)</li>
-<li>KOI8-R, MacCyrillic, IBM855, IBM866, ISO-8859-5, windows-1251 (Cyrillic)</li>
-<li>ISO-8859-2, windows-1250 (Hungarian)</li>
-<li>ISO-8859-5, windows-1251 (Bulgarian)</li>
-<li>windows-1252 (English)</li>
-<li>ISO-8859-7, windows-1253 (Greek)</li>
-<li>ISO-8859-8, windows-1255 (Visual and Logical Hebrew)</li>
-<li>TIS-620 (Thai)</li>
-</ul>
-<p>Requires Python 2.1 or later.</p>
-<p>我使用的是Python 2.7.X</p>
-<p>网页编码判断:</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">chardet</span>
-<span class="kn">import</span> <span class="nn">urllib2</span>
-
-<span class="c">#可根据需要，选择不同的数据</span>
-<span class="n">html</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">&#39;http://www.zol.com.cn/&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="n">chardet</span><span class="o">.</span><span class="n">detect</span><span class="p">(</span><span class="n">html</span><span class="p">))</span>
-</pre></div>
-
-
-<p>运行结果:</p>
-<div class="highlight"><pre><span class="p">{</span><span class="s">&#39;confidence&#39;</span><span class="p">:</span> <span class="mf">0.99</span><span class="p">,</span> <span class="s">&#39;encoding&#39;</span><span class="p">:</span> <span class="s">&#39;GB2312&#39;</span><span class="p">}</span>
-</pre></div>
-
-
-<p><code>chardet.detect()</code>返回字典, 其中<code>confidence</code>是检测精确度, <code>encoding</code>是编码形式</p>
-<p>另一种方式:</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">urllib2</span>
-<span class="kn">from</span> <span class="nn">chardet.universaldetector</span> <span class="kn">import</span> <span class="n">UniversalDetector</span>
-<span class="n">html</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">&#39;http://www.zol.com.cn/&#39;</span><span class="p">)</span>
-<span class="c">#创建一个检测对象</span>
-<span class="n">detector</span> <span class="o">=</span> <span class="n">UniversalDetector</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">html</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
-    <span class="c">#分块进行测试，直到达到阈值</span>
-    <span class="n">detector</span><span class="o">.</span><span class="n">feed</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">detector</span><span class="o">.</span><span class="n">done</span><span class="p">:</span> <span class="k">break</span>
-<span class="c">#关闭检测对象</span>
-<span class="n">detector</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-<span class="n">html</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-<span class="c">#输出检测结果</span>
-<span class="k">print</span> <span class="n">detector</span><span class="o">.</span><span class="n">result</span>
-</pre></div>
-
-
-<p>运行结果：</p>
-<div class="highlight"><pre><span class="p">{</span><span class="s">&#39;confidence&#39;</span><span class="p">:</span> <span class="mf">0.99</span><span class="p">,</span> <span class="s">&#39;encoding&#39;</span><span class="p">:</span> <span class="s">&#39;GB2312&#39;</span><span class="p">}</span>
-</pre></div>
-
-
-<p>如果要对一个大文件进行编码识别, 使用后一种方法, 可以只读一部分去判别编码方式, 从而提高检测速度.</p>
-<h4>BeautifulSoup4 UnicodeDammit</h4>
-<p>可以使用BeautifulSoup4的<a href="http://www.crummy.com/software/BeautifulSoup/bs4/doc/#unicode-dammit">UnicodeDammit</a>模块</p>
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">UnicodeDammit</span>
-<span class="n">dammit</span> <span class="o">=</span> <span class="n">UnicodeDammit</span><span class="p">(</span><span class="s">&quot;Sacr</span><span class="se">\xc3\xa9</span><span class="s"> bleu!&quot;</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">dammit</span><span class="o">.</span><span class="n">unicode_markup</span><span class="p">)</span>
-<span class="c"># Sacré bleu!</span>
-<span class="n">dammit</span><span class="o">.</span><span class="n">original_encoding</span>
-<span class="c"># &#39;utf-8&#39;</span>
-</pre></div>
-
-
-<h4>总结</h4>
-<p>不管使用上面哪种模块, 都不能保证百分百正确...部分网站太吭爹了...</p>
-<p>下面是我最后的写法, 结合两种方式, 之前测试出现乱码的网站都能检测出来了, 就是代码看着不是很干净:</p>
-<script src="https://gist.github.com/ZoeyYoung/6121052.js"></script>
-
-<h4>参考文档</h4>
-<p><a href="http://segmentfault.com/q/1010000000185278">python编码检测原理以及chardet模块应用</a></p>
-<p><a href="http://www.dewen.org/q/626/">如何高效、准确、自动识别网页编码</a></p>
-            <a class="btn btn-default btn-xs xsmall" href="http://zoeyyoung.github.io/python-chardet.html"><i class="icon-comment"></i> 评论 </a>
-            <hr />
-        </div>
+</div>        <p>在Python中检测网页编码, 包括使用Chardet和BeautifulSoup4的UnicodeDammit</p>
+        <a class="btn btn-default btn-xs xsmall" href="http://zoeyyoung.github.io/python-chardet.html">
+        <i class="icon-plus-sign"></i> 阅读全文 </a>
+        <hr />
+      </div>
     </div>
          <div class='row'>
       <div class='col-md-12'>

@@ -95,8 +95,167 @@
           
     <div class='row'>
         <div class="col-md-12">
-            <a href="http://zoeyyoung.github.io/beautiful-2-3.html"><h1>《编程之美》2.3 寻找发帖“水王”</h1></a>
+            <a href="http://zoeyyoung.github.io/get-most-visit-ip.html"><h1>海量日志数据, 提取出某日访问百度次数最多的那个IP</h1></a>
             <div class="article-metadata">
+<time class="published" datetime="2013 八月 27 周二">2013 八月 27 周二 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/suan-fa.html">算法</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/python.html">Python</a>
+        <a href="http://zoeyyoung.github.io/tag/pip.html">pip</a>
+        <a href="http://zoeyyoung.github.io/tag/suan-fa.html">算法</a>
+        <a href="http://zoeyyoung.github.io/tag/hai-liang-shu-ju.html">海量数据</a>
+    </span>
+<!-- <p></p> -->
+</div>            <p>问题: 海量日志数据, 提取出某日访问百度次数最多的那个IP.</p>
+<blockquote>
+<p>首先是这一天, 并且是访问百度的日志中的IP取出来, 逐个写入到一个大文件中. 注意到IP是32位的, 最多有2^32个不同的IP(事实上不可能, 得扣去特殊的IP), 在重复量小的情况下, 内存放不下这些不同的IP. 同样可以采用映射的方法, 比如模1000, 把整个大文件映射为1000个小文件, 再找出每个小文件中出现频率最大的IP(可以采用hash_map进行频率统计, 然后再找出频率最大的几个)及相应的频率. 然后再在这1000个最大的IP中, 找出那个频率最大的IP, 即为所求.</p>
+</blockquote>
+<p>具体做法如下：</p>
+<ol>
+<li>按照IP地址的Hash(IP)%1024值, 把海量IP日志分别存储到1024个小文件中.</li>
+<li>对于每一个小文件, 构建一个以IP为key, 出现次数为value的HashMap, 同时记录当前出现次数最多的那个IP地址;</li>
+<li>得到1024个小文件中的出现次数最多的IP, 再依据常规的排序算法得到总体上出现次数最多的IP.</li>
+</ol>
+<h4>生成数据</h4>
+<p>生成1亿个IP地址, 分两种情况, 一种IP重复量大, 一种IP重复量小, 写入文件中:</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">ctime</span>
+<span class="kn">import</span> <span class="nn">gc</span>
+<span class="k">def</span> <span class="nf">generage_random_IP</span><span class="p">(</span><span class="n">file_loc</span><span class="p">,</span> <span class="n">number</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_loc</span><span class="p">,</span> <span class="s">&#39;a+&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="c"># (1) 重复量大, 即使直接遍历也不会超出内存限制</span>
+        <span class="c"># IPs = &#39;\n&#39;.join([&#39;255.255.&#39; + str(random.randint(0,255)) + &#39;.&#39; + str(random.randint(0,255)) for i in xrange(number)])</span>
+        <span class="c"># (2) 重复量小, 会真正导致后面大数据</span>
+        <span class="n">IPs</span> <span class="o">=</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s">&#39;.&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">number</span><span class="p">)])</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">IPs</span><span class="p">)</span>
+    <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+    <span class="n">IPs</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ctime</span><span class="p">())</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&#39;  &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;: &quot;</span> <span class="o">+</span> <span class="n">ctime</span><span class="p">())</span>
+        <span class="n">generage_random_IP</span><span class="p">(</span><span class="s">&#39;IPs100000000.txt&#39;</span><span class="p">,</span> <span class="mi">2000000</span><span class="p">)</span> <span class="c"># 50 * 2000000 根据内存限制调整</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ctime</span><span class="p">())</span>
+</pre></div>
+
+
+<p>测试了下, 时间基本上是花在生成随机数上面. 大概需要十几分钟.</p>
+<p>分割文件</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">ctime</span>
+<span class="k">def</span> <span class="nf">devide_IPs</span><span class="p">(</span><span class="n">file_loc</span><span class="p">):</span>
+    <span class="n">IPs</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_loc</span><span class="p">,</span> <span class="s">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span>
+            <span class="c"># key = str(hash(line) % 1024)  # 这里似乎是求余花的时间比较多, hash花的时间不比split多</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">IPs</span><span class="p">:</span>
+                <span class="n">IPs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">IPs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">100000</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">IPs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;ips&#39;</span> <span class="o">+</span> <span class="n">k</span> <span class="o">+</span> <span class="s">&#39;.txt&#39;</span><span class="p">,</span> <span class="s">&#39;a+&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f2</span><span class="p">:</span>
+                        <span class="n">f2</span><span class="o">.</span><span class="n">writelines</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+                        <span class="k">del</span> <span class="n">IPs</span><span class="p">[</span><span class="n">k</span><span class="p">][:]</span>
+                <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ctime</span><span class="p">())</span>
+    <span class="n">devide_IPs</span><span class="p">(</span><span class="s">&#39;IPs100000000.txt&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ctime</span><span class="p">())</span>
+</pre></div>
+
+
+<p>200513318 function calls (200513315 primitive calls) in 348.061 seconds</p>
+<p>大概需要6、7分钟</p>
+<p>教训: 不要乱添加打印语句, 时间都耗在上面了. 刚开始每读一行都输出, 运行了一个多小时还没完...</p>
+<p>计算IP数, 将每个文件中IP重复最多的IP的列表写入文件.</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">ctime</span>
+<span class="k">def</span> <span class="nf">count_IPs</span><span class="p">(</span><span class="n">file_loc</span><span class="p">):</span>
+    <span class="n">IPs</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_loc</span><span class="p">,</span> <span class="s">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">IPs</span><span class="p">:</span>
+                    <span class="n">IPs</span><span class="p">[</span><span class="n">line</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">IPs</span><span class="p">[</span><span class="n">line</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="c"># IPs[line] = IPs.get(line, 0) + 1</span>
+        <span class="n">max_ip</span><span class="p">,</span> <span class="n">max_value</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">IPs</span><span class="o">.</span><span class="n">iteritems</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>  <span class="c"># 这句比较耗时</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">max_ip</span><span class="p">:</span> <span class="n">max_value</span><span class="p">}</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ctime</span><span class="p">())</span>
+    <span class="n">max_IPs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">256</span><span class="p">):</span>
+        <span class="n">max_IP</span> <span class="o">=</span> <span class="n">count_IPs</span><span class="p">(</span><span class="s">&#39;ips&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;.txt&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">max_IP</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">max_IPs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">max_IP</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ctime</span><span class="p">())</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;count_IPs&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">max_IPs</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+</pre></div>
+
+
+<p>98757714 function calls (98756943 primitive calls) in 179.475 seconds</p>
+<p>大概需要3分钟</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">ctime</span>
+<span class="k">def</span> <span class="nf">get_max_IP</span><span class="p">():</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;count_IPs&#39;</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">max_IPs</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="c"># print(max_IPs)</span>
+    <span class="k">print</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">max_IPs</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ctime</span><span class="p">())</span>
+    <span class="n">get_max_IP</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ctime</span><span class="p">())</span>
+</pre></div>
+
+
+<p>11209 function calls (11206 primitive calls) in 0.016 seconds</p>
+<p>大概需要0.01s左右</p>
+<p>IP的重复率比较大的情况下, 即使直接遍历文件, 内存占用也不会超过128M, 并且节省了文件分割的时间. 用时大概2分钟.</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">count_IPs_once</span><span class="p">(</span><span class="n">file_loc</span><span class="p">):</span>
+    <span class="n">IPs</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_loc</span><span class="p">,</span> <span class="s">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">IPs</span><span class="p">:</span>
+                <span class="n">IPs</span><span class="p">[</span><span class="n">line</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">IPs</span><span class="p">[</span><span class="n">line</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">print</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">IPs</span><span class="o">.</span><span class="n">iteritems</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ctime</span><span class="p">())</span>
+    <span class="n">count_IPs_once</span><span class="p">(</span><span class="s">&#39;IPs100000000.txt&#39;</span><span class="p">)</span>  <span class="c"># 注意: IP重复量小的情况下, 内存会超过限制</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ctime</span><span class="p">())</span>
+</pre></div>
+
+
+<p>66773 function calls (66770 primitive calls) in 91.358 seconds</p>
+<p>总结: 大数据与文件的大小其实关系不大, 真正有关系的是计数时存入字典的IP量, 如果不重复的IP很多的话, 这个数据占用的内存就会持续增加. 如果IP重复量大, 则并不会占用太多内存.</p>
+<p>参考: <a href="http://blog.csdn.net/quicktest/article/details/7453189">Python处理海量数据的实战研究</a></p>
+            <a class="btn btn-default btn-xs xsmall" href="http://zoeyyoung.github.io/get-most-visit-ip.html"><i class="icon-comment"></i> 评论 </a>
+            <hr />
+        </div>
+    </div>
+         <div class='row'>
+      <div class='col-md-12'>
+        <a href="http://zoeyyoung.github.io/beautiful-2-3.html"><h1>《编程之美》2.3 寻找发帖“水王”</h1></a>
+        <div class="article-metadata">
 <time class="published" datetime="2013 六月 03 周一">2013 六月 03 周一 </time>
 <a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
 <span>
@@ -112,77 +271,11 @@
         <a href="http://zoeyyoung.github.io/tag/bian-cheng-zhi-mei.html">编程之美</a>
     </span>
 <!-- <p></p> -->
-</div>            <blockquote>
-<p>Tango是微软亚洲研究院的一个试验项目。研究院的员工和实习生们都很喜欢在Tango上面交流灌水。传说，Tango有一大“水王”，他不但喜欢发贴，还会回复其他ID发的每个帖子。坊间风闻该“水王”发帖数目超过了帖子总数的一半。如果你有一个当前论坛上所有帖子（包括回帖）的列表，其中帖子作者的ID也在表中，你能快速找出这个传说中的Tango水王吗？</p>
-</blockquote>
-<p>前提是“水王”的ID在ID列表中的次数超过一半，刚好等于一半是不行的</p>
-<div class="highlight"><pre><span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
-    <span class="n">candidate</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-    <span class="n">nTimes</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span>
-        <span class="k">if</span> <span class="n">nTimes</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">candidate</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-            <span class="n">nTimes</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">elif</span> <span class="n">candidate</span> <span class="o">==</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
-            <span class="n">nTimes</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">nTimes</span> <span class="o">-=</span><span class="mi">1</span>
-    <span class="k">return</span> <span class="n">candidate</span>
-
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">find</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
-</pre></div>
-
-
-<blockquote>
-<p>扩展问题：随着Tango的发展，管理员发现，“超级水王”没有了。统计结果表明，有3个发帖很多的ID，他们的发帖数目都超过了帖子总数目N的1/4。你能从发帖ID列表中快速找出他们的ID吗？</p>
-</blockquote>
-<div class="highlight"><pre><span class="c">#-*-coding:utf-8-*-</span>
-<span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
-    <span class="n">candidate</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span>
-    <span class="n">nTimes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span>
-        <span class="n">is_candidate</span> <span class="o">=</span> <span class="bp">False</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
-            <span class="c"># 第一种情况：A[i]不在候选项中，且有计数器为0的项，则设置A[i]为新的候选项</span>
-            <span class="k">if</span> <span class="n">nTimes</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">in</span> <span class="n">candidate</span><span class="p">:</span>
-                <span class="n">is_candidate</span> <span class="o">=</span> <span class="bp">True</span>
-                <span class="n">candidate</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-                <span class="n">nTimes</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-                <span class="k">break</span>
-            <span class="c"># 第二种情况：A[i]在候选项中，则把对应计数器加1</span>
-            <span class="k">elif</span> <span class="n">candidate</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
-                <span class="n">is_candidate</span> <span class="o">=</span> <span class="bp">True</span>
-                <span class="n">nTimes</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-                <span class="k">break</span>
-        <span class="c"># 第三种情况：A[i]不在候选项中，且没有计数器为0的项，则所有计数器减1</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">is_candidate</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
-                <span class="n">nTimes</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
-        <span class="c"># print(A[i], candidate, nTimes)</span>
-    <span class="k">return</span> <span class="n">candidate</span>
-
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="c"># A = [1, 2, 3, 2, 1, 2, 3, 3, 1, 2, 3, 6, 1, 1, 2, 3, 1, 2, 3, 8]</span>
-    <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
-    <span class="c"># 验证用</span>
-    <span class="c"># print(set([x for x in A if A.count(x) &gt; len(A) / 4]))</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">find</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
-</pre></div>
-
-
-<p>另外一种Python的简洁写法:</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="nb">set</span><span class="p">([</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">a</span> <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">&gt;</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">])</span>
-<span class="nb">set</span><span class="p">([</span><span class="mi">1</span><span class="p">])</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="nb">set</span><span class="p">([</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">b</span> <span class="k">if</span> <span class="n">b</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">&gt;</span><span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span><span class="p">])</span>
-<span class="nb">set</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
-</pre></div>
-            <a class="btn btn-default btn-xs xsmall" href="http://zoeyyoung.github.io/beautiful-2-3.html"><i class="icon-comment"></i> 评论 </a>
-            <hr />
-        </div>
+</div>        <p>《编程之美》2.3 寻找发帖“水王”</p>
+        <a class="btn btn-default btn-xs xsmall" href="http://zoeyyoung.github.io/beautiful-2-3.html">
+        <i class="icon-plus-sign"></i> 阅读全文 </a>
+        <hr />
+      </div>
     </div>
             <ul class="pagination pagination-sm no-print">
     <li class="prev disabled"><a href="#">&larr; 上一页</a></li>

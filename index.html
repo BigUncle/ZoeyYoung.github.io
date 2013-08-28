@@ -95,8 +95,167 @@
           
     <div class='row'>
         <div class="col-md-12">
-            <a href="http://zoeyyoung.github.io/natural-language-processing-with-python-ch2.html"><h1>[学习] NLTK Python自然语言处理</h1></a>
+            <a href="http://zoeyyoung.github.io/get-most-visit-ip.html"><h1>海量日志数据, 提取出某日访问百度次数最多的那个IP</h1></a>
             <div class="article-metadata">
+<time class="published" datetime="2013 八月 27 周二">2013 八月 27 周二 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/suan-fa.html">算法</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/python.html">Python</a>
+        <a href="http://zoeyyoung.github.io/tag/pip.html">pip</a>
+        <a href="http://zoeyyoung.github.io/tag/suan-fa.html">算法</a>
+        <a href="http://zoeyyoung.github.io/tag/hai-liang-shu-ju.html">海量数据</a>
+    </span>
+<!-- <p></p> -->
+</div>            <p>问题: 海量日志数据, 提取出某日访问百度次数最多的那个IP.</p>
+<blockquote>
+<p>首先是这一天, 并且是访问百度的日志中的IP取出来, 逐个写入到一个大文件中. 注意到IP是32位的, 最多有2^32个不同的IP(事实上不可能, 得扣去特殊的IP), 在重复量小的情况下, 内存放不下这些不同的IP. 同样可以采用映射的方法, 比如模1000, 把整个大文件映射为1000个小文件, 再找出每个小文件中出现频率最大的IP(可以采用hash_map进行频率统计, 然后再找出频率最大的几个)及相应的频率. 然后再在这1000个最大的IP中, 找出那个频率最大的IP, 即为所求.</p>
+</blockquote>
+<p>具体做法如下：</p>
+<ol>
+<li>按照IP地址的Hash(IP)%1024值, 把海量IP日志分别存储到1024个小文件中.</li>
+<li>对于每一个小文件, 构建一个以IP为key, 出现次数为value的HashMap, 同时记录当前出现次数最多的那个IP地址;</li>
+<li>得到1024个小文件中的出现次数最多的IP, 再依据常规的排序算法得到总体上出现次数最多的IP.</li>
+</ol>
+<h4>生成数据</h4>
+<p>生成1亿个IP地址, 分两种情况, 一种IP重复量大, 一种IP重复量小, 写入文件中:</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">ctime</span>
+<span class="kn">import</span> <span class="nn">gc</span>
+<span class="k">def</span> <span class="nf">generage_random_IP</span><span class="p">(</span><span class="n">file_loc</span><span class="p">,</span> <span class="n">number</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_loc</span><span class="p">,</span> <span class="s">&#39;a+&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="c"># (1) 重复量大, 即使直接遍历也不会超出内存限制</span>
+        <span class="c"># IPs = &#39;\n&#39;.join([&#39;255.255.&#39; + str(random.randint(0,255)) + &#39;.&#39; + str(random.randint(0,255)) for i in xrange(number)])</span>
+        <span class="c"># (2) 重复量小, 会真正导致后面大数据</span>
+        <span class="n">IPs</span> <span class="o">=</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s">&#39;.&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">number</span><span class="p">)])</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">IPs</span><span class="p">)</span>
+    <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+    <span class="n">IPs</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ctime</span><span class="p">())</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&#39;  &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;: &quot;</span> <span class="o">+</span> <span class="n">ctime</span><span class="p">())</span>
+        <span class="n">generage_random_IP</span><span class="p">(</span><span class="s">&#39;IPs100000000.txt&#39;</span><span class="p">,</span> <span class="mi">2000000</span><span class="p">)</span> <span class="c"># 50 * 2000000 根据内存限制调整</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ctime</span><span class="p">())</span>
+</pre></div>
+
+
+<p>测试了下, 时间基本上是花在生成随机数上面. 大概需要十几分钟.</p>
+<p>分割文件</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">ctime</span>
+<span class="k">def</span> <span class="nf">devide_IPs</span><span class="p">(</span><span class="n">file_loc</span><span class="p">):</span>
+    <span class="n">IPs</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_loc</span><span class="p">,</span> <span class="s">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span>
+            <span class="c"># key = str(hash(line) % 1024)  # 这里似乎是求余花的时间比较多, hash花的时间不比split多</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">IPs</span><span class="p">:</span>
+                <span class="n">IPs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">IPs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">100000</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">IPs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;ips&#39;</span> <span class="o">+</span> <span class="n">k</span> <span class="o">+</span> <span class="s">&#39;.txt&#39;</span><span class="p">,</span> <span class="s">&#39;a+&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f2</span><span class="p">:</span>
+                        <span class="n">f2</span><span class="o">.</span><span class="n">writelines</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+                        <span class="k">del</span> <span class="n">IPs</span><span class="p">[</span><span class="n">k</span><span class="p">][:]</span>
+                <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ctime</span><span class="p">())</span>
+    <span class="n">devide_IPs</span><span class="p">(</span><span class="s">&#39;IPs100000000.txt&#39;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ctime</span><span class="p">())</span>
+</pre></div>
+
+
+<p>200513318 function calls (200513315 primitive calls) in 348.061 seconds</p>
+<p>大概需要6、7分钟</p>
+<p>教训: 不要乱添加打印语句, 时间都耗在上面了. 刚开始每读一行都输出, 运行了一个多小时还没完...</p>
+<p>计算IP数, 将每个文件中IP重复最多的IP的列表写入文件.</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">ctime</span>
+<span class="k">def</span> <span class="nf">count_IPs</span><span class="p">(</span><span class="n">file_loc</span><span class="p">):</span>
+    <span class="n">IPs</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_loc</span><span class="p">,</span> <span class="s">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">IPs</span><span class="p">:</span>
+                    <span class="n">IPs</span><span class="p">[</span><span class="n">line</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">IPs</span><span class="p">[</span><span class="n">line</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="c"># IPs[line] = IPs.get(line, 0) + 1</span>
+        <span class="n">max_ip</span><span class="p">,</span> <span class="n">max_value</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">IPs</span><span class="o">.</span><span class="n">iteritems</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>  <span class="c"># 这句比较耗时</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">max_ip</span><span class="p">:</span> <span class="n">max_value</span><span class="p">}</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ctime</span><span class="p">())</span>
+    <span class="n">max_IPs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">256</span><span class="p">):</span>
+        <span class="n">max_IP</span> <span class="o">=</span> <span class="n">count_IPs</span><span class="p">(</span><span class="s">&#39;ips&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;.txt&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">max_IP</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">max_IPs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">max_IP</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ctime</span><span class="p">())</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;count_IPs&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">max_IPs</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+</pre></div>
+
+
+<p>98757714 function calls (98756943 primitive calls) in 179.475 seconds</p>
+<p>大概需要3分钟</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">ctime</span>
+<span class="k">def</span> <span class="nf">get_max_IP</span><span class="p">():</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;count_IPs&#39;</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">max_IPs</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="c"># print(max_IPs)</span>
+    <span class="k">print</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">max_IPs</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ctime</span><span class="p">())</span>
+    <span class="n">get_max_IP</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ctime</span><span class="p">())</span>
+</pre></div>
+
+
+<p>11209 function calls (11206 primitive calls) in 0.016 seconds</p>
+<p>大概需要0.01s左右</p>
+<p>IP的重复率比较大的情况下, 即使直接遍历文件, 内存占用也不会超过128M, 并且节省了文件分割的时间. 用时大概2分钟.</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">count_IPs_once</span><span class="p">(</span><span class="n">file_loc</span><span class="p">):</span>
+    <span class="n">IPs</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_loc</span><span class="p">,</span> <span class="s">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">IPs</span><span class="p">:</span>
+                <span class="n">IPs</span><span class="p">[</span><span class="n">line</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">IPs</span><span class="p">[</span><span class="n">line</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">print</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">IPs</span><span class="o">.</span><span class="n">iteritems</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ctime</span><span class="p">())</span>
+    <span class="n">count_IPs_once</span><span class="p">(</span><span class="s">&#39;IPs100000000.txt&#39;</span><span class="p">)</span>  <span class="c"># 注意: IP重复量小的情况下, 内存会超过限制</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">ctime</span><span class="p">())</span>
+</pre></div>
+
+
+<p>66773 function calls (66770 primitive calls) in 91.358 seconds</p>
+<p>总结: 大数据与文件的大小其实关系不大, 真正有关系的是计数时存入字典的IP量, 如果不重复的IP很多的话, 这个数据占用的内存就会持续增加. 如果IP重复量大, 则并不会占用太多内存.</p>
+<p>参考: <a href="http://blog.csdn.net/quicktest/article/details/7453189">Python处理海量数据的实战研究</a></p>
+            <a class="btn btn-default btn-xs xsmall" href="http://zoeyyoung.github.io/get-most-visit-ip.html"><i class="icon-comment"></i> 评论 </a>
+            <hr />
+        </div>
+    </div>
+         <div class='row'>
+      <div class='col-md-12'>
+        <a href="http://zoeyyoung.github.io/natural-language-processing-with-python-ch2.html"><h1>[学习] NLTK Python自然语言处理</h1></a>
+        <div class="article-metadata">
 <time class="published" datetime="2013 八月 23 周五">2013 八月 23 周五 </time>
 <a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
 <span>
@@ -111,60 +270,11 @@
         <a href="http://zoeyyoung.github.io/tag/nlp.html">NLP</a>
     </span>
 <!-- <p></p> -->
-</div>            <p>Gutenberg Corpus</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">from</span> <span class="n">nltk</span><span class="p">.</span><span class="n">corpus</span> <span class="n">import</span> <span class="n">gutenberg</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">gutenberg</span><span class="p">.</span><span class="n">fileids</span><span class="p">()</span>
-<span class="p">[</span><span class="err">&#39;</span><span class="n">austen</span><span class="o">-</span><span class="n">emma</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">austen</span><span class="o">-</span><span class="n">persuasion</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">austen</span><span class="o">-</span><span class="n">sense</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">bible</span><span class="o">-</span><span class="n">kjv</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">blake</span><span class="o">-</span><span class="n">poems</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">bryant</span><span class="o">-</span><span class="n">stories</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">burgess</span><span class="o">-</span><span class="n">busterbrown</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">carroll</span><span class="o">-</span><span class="n">alice</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">chesterton</span><span class="o">-</span><span class="n">ball</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">chesterton</span><span class="o">-</span><span class="n">brown</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">chesterton</span><span class="o">-</span><span class="n">thursday</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">edgeworth</span><span class="o">-</span><span class="n">parents</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">melville</span><span class="o">-</span><span class="n">moby_dick</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">milton</span><span class="o">-</span><span class="n">paradise</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">shakespeare</span><span class="o">-</span><span class="n">caesar</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">shakespeare</span><span class="o">-</span><span class="n">hamlet</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">shakespeare</span><span class="o">-</span><span class="n">macbeth</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">whitman</span><span class="o">-</span><span class="n">leaves</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">emma</span> <span class="o">=</span> <span class="n">gutenberg</span><span class="p">.</span><span class="n">words</span><span class="p">(</span><span class="err">&#39;</span><span class="n">austen</span><span class="o">-</span><span class="n">emma</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">len</span><span class="p">(</span><span class="n">emma</span><span class="p">)</span>
-<span class="mi">192427</span>
-</pre></div>
-
-
-<p>创建nltk.Text对象</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">type</span><span class="p">(</span><span class="n">text1</span><span class="p">)</span>
-<span class="o">&lt;</span><span class="n">class</span> <span class="err">&#39;</span><span class="n">nltk</span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="n">Text</span><span class="err">&#39;</span><span class="o">&gt;</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">emma</span> <span class="o">=</span> <span class="n">nltk</span><span class="p">.</span><span class="n">Text</span><span class="p">(</span><span class="n">gutenberg</span><span class="p">.</span><span class="n">words</span><span class="p">(</span><span class="err">&#39;</span><span class="n">austen</span><span class="o">-</span><span class="n">emma</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">))</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">emma</span><span class="p">.</span><span class="n">concordance</span><span class="p">(</span><span class="s">&quot;surprize&quot;</span><span class="p">)</span>
-
-
-
-<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">fileid</span> <span class="n">in</span> <span class="n">gutenberg</span><span class="p">.</span><span class="n">fileids</span><span class="p">()</span><span class="o">:</span>
-    <span class="n">num_chars</span> <span class="o">=</span> <span class="n">len</span><span class="p">(</span><span class="n">gutenberg</span><span class="p">.</span><span class="n">raw</span><span class="p">(</span><span class="n">fileid</span><span class="p">))</span>
-    <span class="n">num_words</span> <span class="o">=</span> <span class="n">len</span><span class="p">(</span><span class="n">gutenberg</span><span class="p">.</span><span class="n">words</span><span class="p">(</span><span class="n">fileid</span><span class="p">))</span>
-    <span class="n">num_sents</span> <span class="o">=</span> <span class="n">len</span><span class="p">(</span><span class="n">gutenberg</span><span class="p">.</span><span class="n">sents</span><span class="p">(</span><span class="n">fileid</span><span class="p">))</span>
-    <span class="n">num_vocab</span> <span class="o">=</span> <span class="n">len</span><span class="p">(</span><span class="n">set</span><span class="p">([</span><span class="n">w</span><span class="p">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">w</span> <span class="n">in</span> <span class="n">gutenberg</span><span class="p">.</span><span class="n">words</span><span class="p">(</span><span class="n">fileid</span><span class="p">)]))</span>
-    <span class="n">print</span><span class="p">(</span><span class="kt">int</span><span class="p">(</span><span class="n">num_chars</span><span class="o">/</span><span class="n">num_words</span><span class="p">),</span> <span class="kt">int</span><span class="p">(</span><span class="n">num_words</span><span class="o">/</span><span class="n">num_sents</span><span class="p">),</span> <span class="kt">int</span><span class="p">(</span><span class="n">num_words</span><span class="o">/</span><span class="n">num_vocab</span><span class="p">),</span> <span class="n">fileid</span><span class="p">)</span>
-<span class="mi">4</span> <span class="mi">21</span> <span class="mi">26</span> <span class="n">austen</span><span class="o">-</span><span class="n">emma</span><span class="p">.</span><span class="n">txt</span>
-<span class="mi">4</span> <span class="mi">23</span> <span class="mi">16</span> <span class="n">austen</span><span class="o">-</span><span class="n">persuasion</span><span class="p">.</span><span class="n">txt</span>
-<span class="mi">4</span> <span class="mi">23</span> <span class="mi">22</span> <span class="n">austen</span><span class="o">-</span><span class="n">sense</span><span class="p">.</span><span class="n">txt</span>
-<span class="mi">4</span> <span class="mi">33</span> <span class="mi">79</span> <span class="n">bible</span><span class="o">-</span><span class="n">kjv</span><span class="p">.</span><span class="n">txt</span>
-<span class="mi">4</span> <span class="mi">18</span> <span class="mi">5</span> <span class="n">blake</span><span class="o">-</span><span class="n">poems</span><span class="p">.</span><span class="n">txt</span>
-<span class="mi">4</span> <span class="mi">17</span> <span class="mi">14</span> <span class="n">bryant</span><span class="o">-</span><span class="n">stories</span><span class="p">.</span><span class="n">txt</span>
-<span class="mi">4</span> <span class="mi">17</span> <span class="mi">12</span> <span class="n">burgess</span><span class="o">-</span><span class="n">busterbrown</span><span class="p">.</span><span class="n">txt</span>
-<span class="mi">4</span> <span class="mi">16</span> <span class="mi">12</span> <span class="n">carroll</span><span class="o">-</span><span class="n">alice</span><span class="p">.</span><span class="n">txt</span>
-<span class="mi">4</span> <span class="mi">17</span> <span class="mi">11</span> <span class="n">chesterton</span><span class="o">-</span><span class="n">ball</span><span class="p">.</span><span class="n">txt</span>
-<span class="mi">4</span> <span class="mi">19</span> <span class="mi">11</span> <span class="n">chesterton</span><span class="o">-</span><span class="n">brown</span><span class="p">.</span><span class="n">txt</span>
-<span class="mi">4</span> <span class="mi">16</span> <span class="mi">10</span> <span class="n">chesterton</span><span class="o">-</span><span class="n">thursday</span><span class="p">.</span><span class="n">txt</span>
-<span class="mi">4</span> <span class="mi">17</span> <span class="mi">24</span> <span class="n">edgeworth</span><span class="o">-</span><span class="n">parents</span><span class="p">.</span><span class="n">txt</span>
-<span class="mi">4</span> <span class="mi">24</span> <span class="mi">15</span> <span class="n">melville</span><span class="o">-</span><span class="n">moby_dick</span><span class="p">.</span><span class="n">txt</span>
-<span class="mi">4</span> <span class="mi">52</span> <span class="mi">10</span> <span class="n">milton</span><span class="o">-</span><span class="n">paradise</span><span class="p">.</span><span class="n">txt</span>
-<span class="mi">4</span> <span class="mi">11</span> <span class="mi">8</span> <span class="n">shakespeare</span><span class="o">-</span><span class="n">caesar</span><span class="p">.</span><span class="n">txt</span>
-<span class="mi">4</span> <span class="mi">12</span> <span class="mi">7</span> <span class="n">shakespeare</span><span class="o">-</span><span class="n">hamlet</span><span class="p">.</span><span class="n">txt</span>
-<span class="mi">4</span> <span class="mi">12</span> <span class="mi">6</span> <span class="n">shakespeare</span><span class="o">-</span><span class="n">macbeth</span><span class="p">.</span><span class="n">txt</span>
-<span class="mi">4</span> <span class="mi">35</span> <span class="mi">12</span> <span class="n">whitman</span><span class="o">-</span><span class="n">leaves</span><span class="p">.</span><span class="n">txt</span>
-
-
-<span class="o">&gt;&gt;&gt;</span> <span class="n">macbeth_sentences</span> <span class="o">=</span> <span class="n">gutenberg</span><span class="p">.</span><span class="n">sents</span><span class="p">(</span><span class="err">&#39;</span><span class="n">shakespeare</span><span class="o">-</span><span class="n">macbeth</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">macbeth_sentences</span><span class="p">[</span><span class="mi">1037</span><span class="p">]</span>
-<span class="p">[</span><span class="err">&#39;</span><span class="n">Good</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">night</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">and</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">better</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">health</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Attend</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">his</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Maiesty</span><span class="err">&#39;</span><span class="p">]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">longest_len</span> <span class="o">=</span> <span class="n">max</span><span class="p">([</span><span class="n">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="n">in</span> <span class="n">macbeth_sentences</span><span class="p">])</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="n">in</span> <span class="n">macbeth_sentences</span> <span class="k">if</span> <span class="n">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">==</span> <span class="n">longest_len</span><span class="p">]</span>
-<span class="p">[[</span><span class="err">&#39;</span><span class="n">Doubtfull</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">it</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">stood</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">As</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">two</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">spent</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Swimmers</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">that</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">doe</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">cling</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">together</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">And</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">choake</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">their</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Art</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;:&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">The</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">mercilesse</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Macdonwald</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;(&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Worthie</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">to</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">be</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;a&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Rebell</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="k">for</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">to</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">that</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">The</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">multiplying</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Villanies</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">of</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Nature</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Doe</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">swarme</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">vpon</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">him</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;)&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">from</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">the</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Westerne</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Isles</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Of</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Kernes</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">and</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Gallowgrosses</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">is</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">supply</span><span class="err">&#39;</span><span class="p">,</span> <span class="s">&quot;&#39;&quot;</span><span class="p">,</span> <span class="sc">&#39;d&#39;</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">And</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Fortune</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">on</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">his</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">damned</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Quarry</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">smiling</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Shew</span><span class="err">&#39;</span><span class="p">,</span> <span class="s">&quot;&#39;&quot;</span><span class="p">,</span> <span class="sc">&#39;d&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">like</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;a&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Rebells</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Whore</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;:&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">but</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">all</span><span class="err">&#39;</span><span class="p">,</span> <span class="s">&quot;&#39;&quot;</span><span class="p">,</span> <span class="sc">&#39;s&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">too</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">weake</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;:&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">For</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">braue</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Macbeth</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;(&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">well</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">hee</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">deserues</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">that</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Name</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;)&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Disdayning</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Fortune</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">with</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">his</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">brandisht</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Steele</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Which</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">smoak</span><span class="err">&#39;</span><span class="p">,</span> <span class="s">&quot;&#39;&quot;</span><span class="p">,</span> <span class="sc">&#39;d&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">with</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">bloody</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">execution</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;(&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Like</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Valours</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Minion</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;)&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">caru</span><span class="err">&#39;</span><span class="p">,</span> <span class="s">&quot;&#39;&quot;</span><span class="p">,</span> <span class="sc">&#39;d&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">out</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">his</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">passage</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Till</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">hee</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">fac</span><span class="err">&#39;</span><span class="p">,</span> <span class="s">&quot;&#39;&quot;</span><span class="p">,</span> <span class="sc">&#39;d&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">the</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Slaue</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;:&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Which</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">neu</span><span class="err">&#39;</span><span class="p">,</span> <span class="s">&quot;&#39;&quot;</span><span class="p">,</span> <span class="sc">&#39;r&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">shooke</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">hands</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">nor</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">bad</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">farwell</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">to</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">him</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Till</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">he</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">vnseam</span><span class="err">&#39;</span><span class="p">,</span> <span class="s">&quot;&#39;&quot;</span><span class="p">,</span> <span class="sc">&#39;d&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">him</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">from</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">the</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Naue</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">toth</span><span class="err">&#39;</span><span class="p">,</span> <span class="s">&quot;&#39;&quot;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Chops</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">And</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">fix</span><span class="err">&#39;</span><span class="p">,</span> <span class="s">&quot;&#39;&quot;</span><span class="p">,</span> <span class="sc">&#39;d&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">his</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Head</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">vpon</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">our</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Battlements</span><span class="err">&#39;</span><span class="p">]]</span>
-</pre></div>
-            <a class="btn btn-default btn-xs xsmall" href="http://zoeyyoung.github.io/natural-language-processing-with-python-ch2.html"><i class="icon-comment"></i> 评论 </a>
-            <hr />
-        </div>
+</div>        <p>第2章 获得文本语料和词汇资源</p>
+        <a class="btn btn-default btn-xs xsmall" href="http://zoeyyoung.github.io/natural-language-processing-with-python-ch2.html">
+        <i class="icon-plus-sign"></i> 阅读全文 </a>
+        <hr />
+      </div>
     </div>
          <div class='row'>
       <div class='col-md-12'>
@@ -232,28 +342,6 @@
 <!-- <p></p> -->
 </div>        <p>MongoDB云服务使用</p>
         <a class="btn btn-default btn-xs xsmall" href="http://zoeyyoung.github.io/mongodb-cloud-service.html">
-        <i class="icon-plus-sign"></i> 阅读全文 </a>
-        <hr />
-      </div>
-    </div>
-         <div class='row'>
-      <div class='col-md-12'>
-        <a href="http://zoeyyoung.github.io/fixed-colorful-menu.html"><h1>彩色固定位置菜单</h1></a>
-        <div class="article-metadata">
-<time class="published" datetime="2013 八月 06 周二">2013 八月 06 周二 </time>
-<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
-<span>
-    <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/qian-duan.html">前端</a>
-</span>
-<span>
-    <i class="icon-tags"></i>
-        <a href="http://zoeyyoung.github.io/tag/qian-duan.html">前端</a>
-        <a href="http://zoeyyoung.github.io/tag/menu.html">Menu</a>
-    </span>
-<!-- <p></p> -->
-</div>        <p>彩色固定位置菜单</p>
-        <a class="btn btn-default btn-xs xsmall" href="http://zoeyyoung.github.io/fixed-colorful-menu.html">
         <i class="icon-plus-sign"></i> 阅读全文 </a>
         <hr />
       </div>
