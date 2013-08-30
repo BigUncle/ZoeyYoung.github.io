@@ -95,8 +95,170 @@
           
     <div class='row'>
         <div class="col-md-12">
-            <a href="http://zoeyyoung.github.io/python-dict-list-min-max-value.html"><h1>[基础] 在Python中获得字典列表中最大值与最小值</h1></a>
+            <a href="http://zoeyyoung.github.io/python-bisect.html"><h1>[基础] Python 中的二分算法</h1></a>
             <div class="article-metadata">
+<time class="published" datetime="2013 八月 30 周五">2013 八月 30 周五 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/python.html">Python</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/python.html">Python</a>
+        <a href="http://zoeyyoung.github.io/tag/ji-chu.html">基础</a>
+    </span>
+<!-- <p></p> -->
+</div>            <p><a href="http://docs.python.org/3.3/library/bisect.html">文档</a></p>
+<p>insort前缀为插入, bisect前缀为返回索引</p>
+<p><a href="http://hg.python.org/cpython/file/3.3/Lib/bisect.py">源码: bisect.py</a></p>
+<p>关键部分:</p>
+<p><code>insort_left</code> | <code>bisect_left</code></p>
+<div class="highlight"><pre><span class="k">while</span> <span class="n">lo</span> <span class="o">&lt;</span> <span class="n">hi</span><span class="p">:</span>
+    <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">lo</span><span class="o">+</span><span class="n">hi</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span>
+    <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">:</span> <span class="n">lo</span> <span class="o">=</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span> <span class="n">hi</span> <span class="o">=</span> <span class="n">mid</span>
+</pre></div>
+
+
+<p><code>insort_right</code> | <code>bisect_right</code></p>
+<div class="highlight"><pre><span class="k">while</span> <span class="n">lo</span> <span class="o">&lt;</span> <span class="n">hi</span><span class="p">:</span>
+    <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">lo</span><span class="o">+</span><span class="n">hi</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]:</span> <span class="n">hi</span> <span class="o">=</span> <span class="n">mid</span>
+    <span class="k">else</span><span class="p">:</span> <span class="n">lo</span> <span class="o">=</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span>
+</pre></div>
+
+
+<p>主要区别在于<code>x == a[mid]</code>时, 是<code>hi = mid</code>[高变低, 左趋], 还是<code>lo = mid+1</code>[低变高, 右趋], 其余都是一样的.</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">bisect</span> <span class="kn">import</span> <span class="n">bisect_left</span><span class="p">,</span> <span class="n">bisect_right</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">bisect_left</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c"># 小于所有数时, 返回0</span>
+<span class="mi">0</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">bisect_right</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="mi">0</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">bisect_left</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c"># 最左的等于x的索引</span>
+<span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">bisect_right</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c"># 最右的不等于x的索引</span>
+<span class="mi">3</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">bisect_left</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>  <span class="c"># 大于所有数有, 返回值为len(a)</span>
+<span class="mi">9</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">bisect_right</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="mi">9</span>
+</pre></div>
+
+
+<p>分析:</p>
+<div class="highlight"><pre><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+
+<span class="err">假设要寻找</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">2</span> <span class="err">应该插入的位置</span>
+<span class="err">初始化</span><span class="o">:</span>
+
+<span class="n">lo</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">hi</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="n">mid</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="n">x</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span>
+<span class="n">hi</span> <span class="o">=</span> <span class="n">mid</span>
+
+<span class="n">lo</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">hi</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">mid</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span>
+<span class="n">left</span>        <span class="o">|</span> <span class="n">right</span>
+<span class="n">hi</span> <span class="o">=</span> <span class="n">mid</span>    <span class="o">|</span> <span class="n">lo</span> <span class="o">=</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span>
+<span class="n">lo</span> <span class="o">=</span> <span class="mi">0</span>      <span class="o">|</span> <span class="n">lo</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">hi</span> <span class="o">=</span> <span class="mi">2</span>      <span class="o">|</span> <span class="n">hi</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">mid</span> <span class="o">=</span> <span class="mi">1</span>     <span class="o">|</span> <span class="n">mid</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>  <span class="o">|</span> <span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">x</span> <span class="o">==</span> <span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">|</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span>
+<span class="n">hi</span> <span class="o">=</span> <span class="n">mid</span>    <span class="o">|</span> <span class="n">hi</span> <span class="o">=</span> <span class="n">mid</span>
+
+<span class="n">lo</span> <span class="o">=</span> <span class="mi">0</span>      <span class="o">|</span> <span class="n">lo</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">hi</span> <span class="o">=</span> <span class="mi">1</span>      <span class="o">|</span> <span class="n">hi</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">mid</span> <span class="o">=</span> <span class="mi">0</span>     <span class="o">|</span> <span class="n">lo</span> <span class="o">==</span> <span class="n">hi</span>
+<span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>  <span class="o">|</span> <span class="err">返回</span><span class="n">lo</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">x</span> <span class="o">&gt;</span> <span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span>  <span class="o">|</span>
+<span class="n">lo</span> <span class="o">=</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span>  <span class="o">|</span>
+
+<span class="n">lo</span> <span class="o">=</span> <span class="mi">1</span>      <span class="o">|</span>
+<span class="n">hi</span> <span class="o">=</span> <span class="mi">1</span>      <span class="o">|</span>
+<span class="n">lo</span> <span class="o">==</span> <span class="n">hi</span>    <span class="o">|</span>
+<span class="err">返回</span><span class="n">lo</span> <span class="o">=</span> <span class="mi">1</span>  <span class="o">|</span>
+</pre></div>
+
+
+<p>搜索已排序列表</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="s">&#39;Locate the leftmost value exactly equal to x&#39;</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">bisect_left</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="ow">and</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">x</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">i</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span>
+
+<span class="k">def</span> <span class="nf">find_lt</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="s">&#39;Find rightmost value less than x&#39;</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">bisect_left</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">i</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span>
+
+<span class="k">def</span> <span class="nf">find_le</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="s">&#39;Find rightmost value less than or equal to x&#39;</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">bisect_right</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">i</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span>
+
+<span class="k">def</span> <span class="nf">find_gt</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="s">&#39;Find leftmost value greater than x&#39;</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">bisect_right</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span>
+
+<span class="k">def</span> <span class="nf">find_ge</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="s">&#39;Find leftmost item greater than or equal to x&#39;</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">bisect_left</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span>
+</pre></div>
+
+
+<p>numeric table lookups</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">grade</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="n">breakpoints</span><span class="o">=</span><span class="p">[</span><span class="mi">60</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span> <span class="n">grades</span><span class="o">=</span><span class="s">&#39;FDCBA&#39;</span><span class="p">):</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">bisect_right</span><span class="p">(</span><span class="n">breakpoints</span><span class="p">,</span> <span class="n">score</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">grades</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">grade</span><span class="p">(</span><span class="n">score</span><span class="p">)</span> <span class="k">for</span> <span class="n">score</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">33</span><span class="p">,</span> <span class="mi">99</span><span class="p">,</span> <span class="mi">77</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">100</span><span class="p">]]</span>
+<span class="p">[</span><span class="s">&#39;F&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">]</span>
+</pre></div>
+
+
+<p>二分查找方法并没有类似sort方法的key参数, 对于已排序的列表, 可以单独将要查找的键值解析成列表, 索引一一对应, 搜索结果返回索引然后再通过索引在原列表中获得值.</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">data</span> <span class="o">=</span> <span class="p">[(</span><span class="err">&#39;</span><span class="n">red</span><span class="err">&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="err">&#39;</span><span class="n">blue</span><span class="err">&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="err">&#39;</span><span class="n">yellow</span><span class="err">&#39;</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="p">(</span><span class="err">&#39;</span><span class="n">black</span><span class="err">&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">data</span><span class="p">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">lambda</span> <span class="n">r</span><span class="o">:</span> <span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="n">in</span> <span class="n">data</span><span class="p">]</span>  <span class="err">#</span> <span class="n">precomputed</span> <span class="n">list</span> <span class="n">of</span> <span class="n">keys</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">data</span><span class="p">[</span><span class="n">bisect_left</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
+<span class="p">(</span><span class="err">&#39;</span><span class="n">black</span><span class="err">&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">data</span><span class="p">[</span><span class="n">bisect_left</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
+<span class="p">(</span><span class="err">&#39;</span><span class="n">blue</span><span class="err">&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">data</span><span class="p">[</span><span class="n">bisect_left</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="mi">5</span><span class="p">)]</span>
+<span class="p">(</span><span class="err">&#39;</span><span class="n">red</span><span class="err">&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">data</span><span class="p">[</span><span class="n">bisect_left</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="mi">8</span><span class="p">)]</span>
+<span class="p">(</span><span class="err">&#39;</span><span class="n">yellow</span><span class="err">&#39;</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+</pre></div>
+            <a class="btn btn-default btn-xs xsmall" href="http://zoeyyoung.github.io/python-bisect.html"><i class="icon-comment"></i> 评论 </a>
+            <hr />
+        </div>
+    </div>
+         <div class='row'>
+      <div class='col-md-12'>
+        <a href="http://zoeyyoung.github.io/python-dict-list-min-max-value.html"><h1>[基础] 在Python中获得字典列表中最大值与最小值</h1></a>
+        <div class="article-metadata">
 <time class="published" datetime="2013 八月 06 周二">2013 八月 06 周二 </time>
 <a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
 <span>
@@ -108,61 +270,11 @@
         <a href="http://zoeyyoung.github.io/tag/python.html">Python</a>
     </span>
 <!-- <p></p> -->
-</div>            <p>假设有字典列表:</p>
-<div class="highlight"><pre><span class="n">dict_list</span> <span class="o">=</span> <span class="p">[{</span><span class="s">&#39;price&#39;</span><span class="p">:</span> <span class="mi">99</span><span class="p">,</span> <span class="s">&#39;barcode&#39;</span><span class="p">:</span> <span class="s">&#39;2342355&#39;</span><span class="p">},</span> <span class="p">{</span><span class="s">&#39;price&#39;</span><span class="p">:</span> <span class="mi">88</span><span class="p">,</span> <span class="s">&#39;barcode&#39;</span><span class="p">:</span> <span class="s">&#39;2345566&#39;</span><span class="p">},</span> <span class="p">{</span><span class="s">&#39;price&#39;</span><span class="p">:</span> <span class="mi">77</span><span class="p">,</span> <span class="s">&#39;barcode&#39;</span><span class="p">:</span> <span class="s">&#39;2342377&#39;</span><span class="p">}]</span>
-</pre></div>
-
-
-<p>要求<code>price</code>的最大值与最小值</p>
-<p>最原始的方法:</p>
-<div class="highlight"><pre><span class="n">min_price</span><span class="p">,</span> <span class="n">max_price</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">0</span>
-<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">dict_list</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="s">&#39;price&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">min_price</span><span class="p">:</span>
-        <span class="n">min_price</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="s">&#39;price&#39;</span><span class="p">]</span>
-    <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="s">&#39;price&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">max_price</span><span class="p">:</span>
-        <span class="n">max_price</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="s">&#39;price&#39;</span><span class="p">]</span>
-<span class="k">print</span><span class="p">(</span><span class="n">max_price</span><span class="p">,</span> <span class="n">min_price</span><span class="p">)</span>
-</pre></div>
-
-
-<p>刚学Python时会这么写...</p>
-<p>先使用列表推导式(list comprehension), 再使用内置函数求最大值最小值:</p>
-<div class="highlight"><pre><span class="n">seq</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s">&#39;price&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">dict_list</span><span class="p">]</span>
-<span class="k">print</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">seq</span><span class="p">),</span> <span class="nb">min</span><span class="p">(</span><span class="n">seq</span><span class="p">))</span>
-</pre></div>
-
-
-<p>这种方式要遍历列表多次.</p>
-<p>使用生成器表达式(generator expression)</p>
-<div class="highlight"><pre><span class="n">min_price</span><span class="p">,</span> <span class="n">max_price</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">0</span>
-<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s">&#39;the_key&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">dict_list</span><span class="p">):</span>
-    <span class="n">min_price</span><span class="p">,</span><span class="n">max_price</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">min_price</span><span class="p">),</span><span class="nb">max</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">max_price</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">max_price</span><span class="p">,</span> <span class="n">min_price</span><span class="p">)</span>
-</pre></div>
-
-
-<p>更简单的写法:</p>
-<div class="highlight"><pre><span class="n">max_price</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s">&#39;price&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">dict_list</span><span class="p">)</span>
-<span class="n">min_price</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s">&#39;price&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">dict_list</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">max_price</span><span class="p">,</span> <span class="n">min_price</span><span class="p">)</span>
-</pre></div>
-
-
-<blockquote>
-<p>This avoids the overhead of sorting the list -- and, by using a generator expression, instead of a list comprehension -- actually avoids creating any lists, as well. Efficient, direct, readable... Pythonic!</p>
-</blockquote>
-<p>返回整个dict, 不仅仅是price:</p>
-<div class="highlight"><pre><span class="n">max_priced_item</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dict_list</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="p">[</span><span class="s">&#39;price&#39;</span><span class="p">])</span>
-<span class="n">min_priced_item</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">dict_list</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="p">[</span><span class="s">&#39;price&#39;</span><span class="p">])</span>
-<span class="k">print</span><span class="p">(</span><span class="n">max_priced_item</span><span class="p">,</span> <span class="n">min_priced_item</span><span class="p">)</span>
-<span class="c"># {&#39;price&#39;: 99, &#39;barcode&#39;: &#39;2342355&#39;} {&#39;price&#39;: 77, &#39;barcode&#39;: &#39;2342377&#39;}</span>
-</pre></div>
-
-
-<p>总结自: <a href="http://stackoverflow.com/questions/5320871/in-list-of-dicts-find-min-value-of-a-common-dict-field">In List of Dicts, find min() value of a common Dict field</a></p>
-            <a class="btn btn-default btn-xs xsmall" href="http://zoeyyoung.github.io/python-dict-list-min-max-value.html"><i class="icon-comment"></i> 评论 </a>
-            <hr />
-        </div>
+</div>        <p>假设有字典列表:<code>dict_list = [{'price': 99, 'barcode': '2342355'}, {'price': 88, 'barcode': '2345566'}, {'price': 77, 'barcode': '2342377'}]</code>, 要求<code>price</code>的最大值与最小值</p>
+        <a class="btn btn-default btn-xs xsmall" href="http://zoeyyoung.github.io/python-dict-list-min-max-value.html">
+        <i class="icon-plus-sign"></i> 阅读全文 </a>
+        <hr />
+      </div>
     </div>
          <div class='row'>
       <div class='col-md-12'>
@@ -228,29 +340,6 @@
 <!-- <p></p> -->
 </div>        <p>给Python初学者的一些技巧</p>
         <a class="btn btn-default btn-xs xsmall" href="http://zoeyyoung.github.io/python-shortcuts-for-the-python-beginner.html">
-        <i class="icon-plus-sign"></i> 阅读全文 </a>
-        <hr />
-      </div>
-    </div>
-         <div class='row'>
-      <div class='col-md-12'>
-        <a href="http://zoeyyoung.github.io/python-matplotlib.html"><h1>[待学习] matplotlib相关</h1></a>
-        <div class="article-metadata">
-<time class="published" datetime="2013 七月 15 周一">2013 七月 15 周一 </time>
-<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
-<span>
-    <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/python.html">Python</a>
-</span>
-<span>
-    <i class="icon-tags"></i>
-        <a href="http://zoeyyoung.github.io/tag/windows.html">Windows</a>
-        <a href="http://zoeyyoung.github.io/tag/python.html">Python</a>
-        <a href="http://zoeyyoung.github.io/tag/lxml.html">lxml</a>
-    </span>
-<!-- <p></p> -->
-</div>        <p>matplotlib相关</p>
-        <a class="btn btn-default btn-xs xsmall" href="http://zoeyyoung.github.io/python-matplotlib.html">
         <i class="icon-plus-sign"></i> 阅读全文 </a>
         <hr />
       </div>
