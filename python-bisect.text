@@ -1,0 +1,152 @@
+Title: [基础] Python 中的二分算法
+Date: 2013-07-06
+Tags: Python,基础
+Slug: python-bisect
+Author: Zoey Young
+Summary: Python 中的二分算法.
+
+[文档](http://docs.python.org/3.3/library/bisect.html)
+
+insort前缀为插入, bisect前缀为返回索引
+
+[源码: bisect.py](http://hg.python.org/cpython/file/3.3/Lib/bisect.py)
+
+关键部分:
+
+`insort_left` | `bisect_left`
+
+    :::python
+    while lo < hi:
+        mid = (lo+hi)//2
+        if a[mid] < x: lo = mid+1
+        else: hi = mid
+
+`insort_right` | `bisect_right`
+
+    :::python
+    while lo < hi:
+        mid = (lo+hi)//2
+        if x < a[mid]: hi = mid
+        else: lo = mid+1
+
+主要区别在于`x == a[mid]`时, 是`hi = mid`[高变低, 左趋], 还是`lo = mid+1`[低变高, 右趋], 其余都是一样的.
+
+    :::python
+    >>> a = [1, 2, 2, 4, 5, 6, 7, 8, 9]
+    >>> from bisect import bisect_left, bisect_right
+    >>> bisect_left(a, 0) # 小于所有数时, 返回0
+    0
+    >>> bisect_right(a, 0)
+    0
+    >>> bisect_left(a, 2)  # 最左的等于x的索引
+    1
+    >>> bisect_right(a, 2)  # 最右的不等于x的索引
+    3
+    >>> bisect_left(a, 10)  # 大于所有数有, 返回值为len(a)
+    9
+    >>> bisect_right(a, 10)
+    9
+
+分析:
+
+    a = [1, 2, 2, 4, 5, 6, 7, 8, 9]
+
+    假设要寻找 x = 2 应该插入的位置
+    初始化:
+
+    lo = 0
+    hi = 9
+    mid = 4
+    a[mid] = 5
+
+    x < a[mid]
+    hi = mid
+
+    lo = 0
+    hi = 4
+    mid = 2
+    a[mid] = 2
+
+    x = a[mid]
+    left        | right
+    hi = mid    | lo = mid+1
+    lo = 0      | lo = 3
+    hi = 2      | hi = 4
+    mid = 1     | mid = 3
+    a[mid] = 2  | a[mid] = 4
+    x == a[mid] | x < a[mid]
+    hi = mid    | hi = mid
+
+    lo = 0      | lo = 3
+    hi = 1      | hi = 3
+    mid = 0     | lo == hi
+    a[mid] = 1  | 返回lo = 3
+    x > a[mid]  |
+    lo = mid+1  |
+
+    lo = 1      |
+    hi = 1      |
+    lo == hi    |
+    返回lo = 1  |
+
+搜索已排序列表
+
+    :::python
+    def index(a, x):
+        'Locate the leftmost value exactly equal to x'
+        i = bisect_left(a, x)
+        if i != len(a) and a[i] == x:
+            return i
+        raise ValueError
+
+    def find_lt(a, x):
+        'Find rightmost value less than x'
+        i = bisect_left(a, x)
+        if i:
+            return a[i-1]
+        raise ValueError
+
+    def find_le(a, x):
+        'Find rightmost value less than or equal to x'
+        i = bisect_right(a, x)
+        if i:
+            return a[i-1]
+        raise ValueError
+
+    def find_gt(a, x):
+        'Find leftmost value greater than x'
+        i = bisect_right(a, x)
+        if i != len(a):
+            return a[i]
+        raise ValueError
+
+    def find_ge(a, x):
+        'Find leftmost item greater than or equal to x'
+        i = bisect_left(a, x)
+        if i != len(a):
+            return a[i]
+        raise ValueError
+
+numeric table lookups
+
+    :::python
+    >>> def grade(score, breakpoints=[60, 70, 80, 90], grades='FDCBA'):
+        i = bisect_right(breakpoints, score)
+        return grades[i]
+
+    >>> [grade(score) for score in [33, 99, 77, 70, 89, 90, 100]]
+    ['F', 'A', 'C', 'C', 'B', 'A', 'A']
+
+二分查找方法并没有类似sort方法的key参数, 对于已排序的列表, 可以单独将要查找的键值解析成列表, 索引一一对应, 搜索结果返回索引然后再通过索引在原列表中获得值.
+
+    >>> data = [('red', 5), ('blue', 1), ('yellow', 8), ('black', 0)]
+    >>> data.sort(key=lambda r: r[1])
+    >>> keys = [r[1] for r in data]  # precomputed list of keys
+    >>> data[bisect_left(keys, 0)]
+    ('black', 0)
+    >>> data[bisect_left(keys, 1)]
+    ('blue', 1)
+    >>> data[bisect_left(keys, 5)]
+    ('red', 5)
+    >>> data[bisect_left(keys, 8)]
+    ('yellow', 8)
