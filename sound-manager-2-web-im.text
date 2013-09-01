@@ -1,4 +1,4 @@
-Title: 使用JS播放声音——SoundManager 2
+Title: [实例] 使用JS播放声音——SoundManager 2
 Date: 2012-11-08
 Tags: JavaScript
 Slug: sound-manager-2-web-im
@@ -14,7 +14,7 @@ Summary: 使用JS播放声音——SoundManager 2
 
 官方文档写得很详细，好东西
 
-写个[Demo](http://zoeyyoung.gitcafe.com/lib/sm2demo/index.html)
+写个[Demo](http://zoeyyoung.github.io/lib/sm2demo/index.html)
 
 需要的文件有：下载soundmanager2包中的script文件夹和swf文件夹
 

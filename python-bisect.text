@@ -42,7 +42,7 @@ insort前缀为插入, bisect前缀为返回索引
     1
     >>> bisect_right(a, 2)  # 最右的不等于x的索引
     3
-    >>> bisect_left(a, 10)  # 大于所有数有, 返回值为len(a)
+    >>> bisect_left(a, 10)  # 大于所有数时, 返回值为len(a)
     9
     >>> bisect_right(a, 10)
     9
@@ -127,7 +127,7 @@ insort前缀为插入, bisect前缀为返回索引
             return a[i]
         raise ValueError
 
-numeric table lookups
+numeric table lookups (这个看起来很有用)
 
     :::python
     >>> def grade(score, breakpoints=[60, 70, 80, 90], grades='FDCBA'):
@@ -139,6 +139,7 @@ numeric table lookups
 
 二分查找方法并没有类似sort方法的key参数, 对于已排序的列表, 可以单独将要查找的键值解析成列表, 索引一一对应, 搜索结果返回索引然后再通过索引在原列表中获得值.
 
+    :::python
     >>> data = [('red', 5), ('blue', 1), ('yellow', 8), ('black', 0)]
     >>> data.sort(key=lambda r: r[1])
     >>> keys = [r[1] for r in data]  # precomputed list of keys

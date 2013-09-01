@@ -1,4 +1,4 @@
-Title: 彩色固定位置菜单
+Title: [实例] 彩色固定位置菜单
 Date: 2013-08-06
 Tags: 前端,Menu
 Slug: fixed-colorful-menu
@@ -11,4 +11,4 @@ Summary: 彩色固定位置菜单
 
 ![menu](/static/images/menu.gif)
 
-[Demo](http://zoeyyoung.gitcafe.com/lib/menudemo/menu.html)
+[Demo](http://zoeyyoung.github.io/lib/menudemo/menu.html)
