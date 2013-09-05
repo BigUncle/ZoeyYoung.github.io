@@ -4,33 +4,39 @@
 &lt;p&gt;Windows程序员 和 企业程序员亮了...&lt;/p&gt;
 &lt;p&gt;Python 3下测试&lt;/p&gt;
 &lt;p&gt;64位 Win7下测试:&lt;/p&gt;
-&lt;p&gt;Expert Programmer 0.010347517229714675
-Windows Programmer 0.061831563425221246
-Python Expert 0.06522446660547114
-First Year Python 0.06550025698835915
-First Year Pascal 0.0690858603855318
-Lazy Python 0.08069138900155508
-First Year C 0.08128952324964653
-Lazier Python 0.08429218180653777
-Newbie 0.10587148611523918
-Enterprise Programmer 0.12307353151268216
-First Year SICP 0.17105219080523565
-Python Hacker 0.17289134072386964
-Web Designer 51.60132410583651&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Expert&lt;/span&gt; &lt;span class="n"&gt;Programmer&lt;/span&gt; &lt;span class="mf"&gt;0.010347517229714675&lt;/span&gt;
+&lt;span class="n"&gt;Windows&lt;/span&gt; &lt;span class="n"&gt;Programmer&lt;/span&gt; &lt;span class="mf"&gt;0.061831563425221246&lt;/span&gt;
+&lt;span class="n"&gt;Python&lt;/span&gt; &lt;span class="n"&gt;Expert&lt;/span&gt; &lt;span class="mf"&gt;0.06522446660547114&lt;/span&gt;
+&lt;span class="n"&gt;First&lt;/span&gt; &lt;span class="n"&gt;Year&lt;/span&gt; &lt;span class="n"&gt;Python&lt;/span&gt; &lt;span class="mf"&gt;0.06550025698835915&lt;/span&gt;
+&lt;span class="n"&gt;First&lt;/span&gt; &lt;span class="n"&gt;Year&lt;/span&gt; &lt;span class="n"&gt;Pascal&lt;/span&gt; &lt;span class="mf"&gt;0.0690858603855318&lt;/span&gt;
+&lt;span class="n"&gt;Lazy&lt;/span&gt; &lt;span class="n"&gt;Python&lt;/span&gt; &lt;span class="mf"&gt;0.08069138900155508&lt;/span&gt;
+&lt;span class="n"&gt;First&lt;/span&gt; &lt;span class="n"&gt;Year&lt;/span&gt; &lt;span class="n"&gt;C&lt;/span&gt; &lt;span class="mf"&gt;0.08128952324964653&lt;/span&gt;
+&lt;span class="n"&gt;Lazier&lt;/span&gt; &lt;span class="n"&gt;Python&lt;/span&gt; &lt;span class="mf"&gt;0.08429218180653777&lt;/span&gt;
+&lt;span class="n"&gt;Newbie&lt;/span&gt; &lt;span class="mf"&gt;0.10587148611523918&lt;/span&gt;
+&lt;span class="n"&gt;Enterprise&lt;/span&gt; &lt;span class="n"&gt;Programmer&lt;/span&gt; &lt;span class="mf"&gt;0.12307353151268216&lt;/span&gt;
+&lt;span class="n"&gt;First&lt;/span&gt; &lt;span class="n"&gt;Year&lt;/span&gt; &lt;span class="n"&gt;SICP&lt;/span&gt; &lt;span class="mf"&gt;0.17105219080523565&lt;/span&gt;
+&lt;span class="n"&gt;Python&lt;/span&gt; &lt;span class="n"&gt;Hacker&lt;/span&gt; &lt;span class="mf"&gt;0.17289134072386964&lt;/span&gt;
+&lt;span class="n"&gt;Web&lt;/span&gt; &lt;span class="n"&gt;Designer&lt;/span&gt; &lt;span class="mf"&gt;51.60132410583651&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;32位 Ubuntu下测试:&lt;/p&gt;
-&lt;p&gt;Expert Programmer 0.03371856439916883
-Python Expert 0.08991506800084607
-First Year C 0.0977142803996685
-First Year Python 0.10037733459903393
-First Year Pascal 0.10648313619894907
-Windows Programmer 0.11215310560073703
-Newbie 0.11447444600053132
-Lazy Python 0.11950725499918917
-Lazier Python 0.12218411840149201
-Enterprise Programmer 0.1422563709988026
-First Year SICP 0.20282029940135543
-Python Hacker 0.20943743179814192
-Web Designer 217.28668789780204&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Expert&lt;/span&gt; &lt;span class="n"&gt;Programmer&lt;/span&gt; &lt;span class="mf"&gt;0.03371856439916883&lt;/span&gt;
+&lt;span class="n"&gt;Python&lt;/span&gt; &lt;span class="n"&gt;Expert&lt;/span&gt; &lt;span class="mf"&gt;0.08991506800084607&lt;/span&gt;
+&lt;span class="n"&gt;First&lt;/span&gt; &lt;span class="n"&gt;Year&lt;/span&gt; &lt;span class="n"&gt;C&lt;/span&gt; &lt;span class="mf"&gt;0.0977142803996685&lt;/span&gt;
+&lt;span class="n"&gt;First&lt;/span&gt; &lt;span class="n"&gt;Year&lt;/span&gt; &lt;span class="n"&gt;Python&lt;/span&gt; &lt;span class="mf"&gt;0.10037733459903393&lt;/span&gt;
+&lt;span class="n"&gt;First&lt;/span&gt; &lt;span class="n"&gt;Year&lt;/span&gt; &lt;span class="n"&gt;Pascal&lt;/span&gt; &lt;span class="mf"&gt;0.10648313619894907&lt;/span&gt;
+&lt;span class="n"&gt;Windows&lt;/span&gt; &lt;span class="n"&gt;Programmer&lt;/span&gt; &lt;span class="mf"&gt;0.11215310560073703&lt;/span&gt;
+&lt;span class="n"&gt;Newbie&lt;/span&gt; &lt;span class="mf"&gt;0.11447444600053132&lt;/span&gt;
+&lt;span class="n"&gt;Lazy&lt;/span&gt; &lt;span class="n"&gt;Python&lt;/span&gt; &lt;span class="mf"&gt;0.11950725499918917&lt;/span&gt;
+&lt;span class="n"&gt;Lazier&lt;/span&gt; &lt;span class="n"&gt;Python&lt;/span&gt; &lt;span class="mf"&gt;0.12218411840149201&lt;/span&gt;
+&lt;span class="n"&gt;Enterprise&lt;/span&gt; &lt;span class="n"&gt;Programmer&lt;/span&gt; &lt;span class="mf"&gt;0.1422563709988026&lt;/span&gt;
+&lt;span class="n"&gt;First&lt;/span&gt; &lt;span class="n"&gt;Year&lt;/span&gt; &lt;span class="n"&gt;SICP&lt;/span&gt; &lt;span class="mf"&gt;0.20282029940135543&lt;/span&gt;
+&lt;span class="n"&gt;Python&lt;/span&gt; &lt;span class="n"&gt;Hacker&lt;/span&gt; &lt;span class="mf"&gt;0.20943743179814192&lt;/span&gt;
+&lt;span class="n"&gt;Web&lt;/span&gt; &lt;span class="n"&gt;Designer&lt;/span&gt; &lt;span class="mf"&gt;217.28668789780204&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;结论是直接调用语言内置的math.factorial最快&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;math&lt;/span&gt;
 &lt;span class="n"&gt;fact&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;math&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;factorial&lt;/span&gt;
