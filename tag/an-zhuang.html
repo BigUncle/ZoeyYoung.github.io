@@ -99,8 +99,60 @@
           
     <div class='row'>
         <div class="col-md-12">
-            <a href="http://zoeyyoung.github.io/windows-git-https.html"><h1>在 Windows 下 Git 的使用</h1></a>
+            <a href="http://zoeyyoung.github.io/after-install-ubuntu.html"><h1>装完 Ubuntu 后</h1></a>
             <div class="article-metadata">
+<time class="published" datetime="2013 八月 05 周一">2013 八月 05 周一 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/linux.html">Linux</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/ubuntu.html">Ubuntu</a>
+        <a href="http://zoeyyoung.github.io/tag/linux.html">Linux</a>
+        <a href="http://zoeyyoung.github.io/tag/an-zhuang.html">安装</a>
+    </span>
+<!-- <p></p> -->
+</div>            <p>1、升级系统</p>
+<p>sudo apt-get update &amp;&amp; sudo apt-get upgrade</p>
+<p>2、在软件中心, 卸载软件:</p>
+<p>libreoffice、thunderbird、ibus、Firefox Ubufox扩展、桌面共享、Empathy、扫描易、蓝牙、ubuntu one、各种辅助功能等。</p>
+<p>3、安装如下软件：</p>
+<p><a href="http://ubuntu-tweak.com/source/ubuntu-tweak-stable/">ubuntu-tweak</a></p>
+<div class="highlight"><pre>sudo add-apt-repository ppa:tualatrix<span class="n">/ppa</span>
+sudo apt-get update
+sudo apt-get install ubuntu-tweak
+</pre></div>
+
+
+<p>新立得: synaptic</p>
+<div class="highlight"><pre><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">synaptic</span>
+</pre></div>
+
+
+<p>fcitx、fcitx-table-wubi、wps。</p>
+<p>其中wps是wps官网下载，然后dpkg安装；ubuntu-tweak是手动添加源，再apt安装；其他则用命令来完成：sudo apt-get install synaptic fcitx fcitx-table-wubi。</p>
+<p>没装搜狗软件法是因为我基本不用拼音。</p>
+<p>4、彻底清除无用的软件包</p>
+<p>在新立得中，搜索libreoffice、bluz、ubuntu one相关包，能卸载的全部卸载。</p>
+<p>打开ubuntu tweak，清理垃圾文件。</p>
+<p>5、其他修改：</p>
+<p>a、去掉grub菜单中一些没用的东西：</p>
+<p>/etc/grub.d/中只保留00_header、10_linux、30_os-prober，其他删掉；</p>
+<p>修改/etc/default/grub文件，将GRUB_DEFAULT和GRUB_TIMEOUT项改成我想要的参数，比如我想让我的gentoo默认3秒启动。</p>
+<p>最后运行：sudo update-grub。</p>
+<p>b、安装firefox的flash插件</p>
+<p>在http://get.adobe.com/cn/flashplayer/中下载tar.gz格式文件，将解压出来的so文件，放到~/.mozilla/plugins/目录中，其中plugins目录需要新建。</p>
+<p>c、用ubuntu tweak进行一些设置，比如把启动器设置成自动隐藏等操作。</p>
+            <a class="btn btn-default btn-xs xsmall" href="http://zoeyyoung.github.io/after-install-ubuntu.html"><i class="icon-comment"></i> 评论 </a>
+            <hr />
+        </div>
+    </div>
+         <div class='row'>
+      <div class='col-md-12'>
+        <a href="http://zoeyyoung.github.io/windows-git-https.html"><h1>在 Windows 下 Git 的使用</h1></a>
+        <div class="article-metadata">
 <time class="published" datetime="2013 六月 29 周六">2013 六月 29 周六 </time>
 <a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
 <span>
@@ -117,96 +169,11 @@
         <a href="http://zoeyyoung.github.io/tag/an-zhuang.html">安装</a>
     </span>
 <!-- <p></p> -->
-</div>            <p>这个问题很基础, 但是第一次使用时很困扰</p>
-<p>按照<a href="https://gitcafe.com/GitCafe/Help/blob/master/Setup_Git.md">帮助</a>安装了Windows下的Git客户端, 例如我下载安装了<strong>Git-1.8.3-preview20130601.exe</strong></p>
-<p>(还有其它软件, 比如<a href="http://code.google.com/p/tortoisegit/">TortoiseGit</a>)</p>
-<p>在GitCafe上<strong>创建</strong>仓库后, 会有提示怎么初始化仓库的说明</p>
-<p>其中有一步是:</p>
-<div class="highlight"><pre>git remote add origin <span class="s1">&#39;git@gitcafe.com:ZoeyYoung/Hello_Git.git&#39;</span>
-</pre></div>
-
-
-<p>但是这里提供的地址<code>git@gitcafe.com:ZoeyYoung/Hello_Git.git</code>是SSH的</p>
-<p><img alt="ssh" src="/static/images/gitcafe_ssh.jpg" /></p>
-<p>所以需要配置SSH, <a href="https://gitcafe.com/GitCafe/Help/tree/master/SSH">相关帮助</a></p>
-<p>如果不配置则会出现<code>Permission_denied: Error: Permission denied (publickey)</code>问题</p>
-<div class="highlight"><pre>Permission denied (publickey).
-fatal: Could not read from remote repository.
-
-Please make sure you have the correct access rights
-and the repository exists.
-</pre></div>
-
-
-<p>但是配置好SSH后, 尝试了下在Windows自带cmd下还是会出现上面的问题</p>
-<p>原因是SSH的地址是<code>~/.ssh</code>, 而cmd下并不识别这个地址...因此只能在Git Bash下使用(跟安装时选择的只在Git Bash下使用可能也有关, 没尝试)</p>
-<p>而我觉得比较方便的方式是使用<code>https</code>地址</p>
-<p><img alt="https" src="/static/images/gitcafe_https.jpg" /></p>
-<p>即把上面的语句改为</p>
-<div class="highlight"><pre>git remote add origin <span class="s1">&#39;https://gitcafe.com/ZoeyYoung/Hello_Git.git&#39;</span>
-</pre></div>
-
-
-<p>这样就不用配置SSH, 并且可以直接在cmd命令行下使用</p>
-<div class="highlight"><pre>D:\Hello_Git<span class="p">&gt;</span><span class="n">git</span> push -u origin master
-Counting objects: <span class="m">5</span><span class="p">,</span> done.
-Writing objects: <span class="m">100</span>% (<span class="m">3</span><span class="n">/3),</span> <span class="m">253</span> bytes <span class="p">|</span> <span class="n">0</span> bytes<span class="n">/s,</span> done.
-Total <span class="m">3</span> (delta <span class="m">0</span>)<span class="p">,</span> reused <span class="m">0</span> (delta <span class="m">0</span>)
-Username <span class="k">for</span> <span class="s1">&#39;https://gitcafe.com&#39;</span>: ZoeyYoung
-Password <span class="k">for</span> <span class="s1">&#39;https://ZoeyYoung@gitcafe.com&#39;</span>:
-To https:<span class="n">//gitcafe.com/ZoeyYoung/Hello_Git.git</span>
-<span class="m">35</span>fadd<span class="m">4</span>..<span class="m">254</span>fb<span class="m">27</span>  master -<span class="p">&gt;</span> <span class="n">master</span>
-Branch master <span class="k">set</span> <span class="nv">up</span> to track remote branch master from origin.
-</pre></div>
-
-
-<p>只需输入用户名和密码即可.</p>
-<p>注意到这点是因为感觉配置SSH很麻烦 - -</p>
-<p>而且我用pelican写博客后编译上传时, 可以直接在cmd下编译上传, 运行如下<strong>publish.bat</strong>文件即可</p>
-<div class="highlight"><pre>pelican -s pelicanconf.py content -o output
-<span class="k">cd</span> output
-git add .
-git commit -m <span class="s2">&quot;Update&quot;</span>
-git push
-<span class="k">cd</span> ../
-</pre></div>
-
-
-<p>如果使用SSH方式得在cmd下编译, 然后跑到Git Bash下提交</p>
-<h3>已经SSH了, 可以——</h3>
-<p>如果已经配置了SSH地址, 再想配置成HTTPS地址, 会提示</p>
-<div class="highlight"><pre><span class="n">fatal</span><span class="o">:</span> <span class="n">remote</span> <span class="n">origin</span> <span class="n">already</span> <span class="n">exists</span><span class="o">.</span>
-</pre></div>
-
-
-<p>这时可以修改<strong>D:/Hello_Git/.git/config</strong>文件中的如下片段</p>
-<div class="highlight"><pre><span class="k">[remote &quot;origin&quot;]</span>
-<span class="na">url</span> <span class="o">=</span> <span class="s">git@gitcafe.com:ZoeyYoung/Hello_Git.git</span>
-</pre></div>
-
-
-<p>为</p>
-<div class="highlight"><pre><span class="k">[remote &quot;origin&quot;]</span>
-<span class="na">url</span> <span class="o">=</span> <span class="s">https://gitcafe.com/ZoeyYoung/Hello_Git.git</span>
-</pre></div>
-
-
-<p>即可</p>
-<h3>今天犯了个低级错误</h3>
-<p>忘了add、commit就急着push, 会出现</p>
-<div class="highlight"><pre><span class="n">error</span><span class="o">:</span> <span class="n">src</span> <span class="n">refspec</span> <span class="n">master</span> <span class="n">does</span> <span class="n">not</span> <span class="n">match</span> <span class="n">any</span><span class="o">.</span>
-<span class="n">error</span><span class="o">:</span> <span class="n">failed</span> <span class="n">to</span> <span class="n">push</span> <span class="n">some</span> <span class="n">refs</span> <span class="n">to</span> <span class="s1">&#39;https://gitcafe.com/ZoeyYoung/Hello_Git.git&#39;</span>
-</pre></div>
-
-
-<h3>其它要参考文章</h3>
-<ul>
-<li><a href="http://www.fantxi.com/blog/archives/tortoisegit-github/">TortoiseGit GitHub 使用小计</a></li>
-<li><a href="http://zengrong.net/post/1722.htm">使用Git、Git GUI和TortoiseGit</a></li>
-</ul>
-            <a class="btn btn-default btn-xs xsmall" href="http://zoeyyoung.github.io/windows-git-https.html"><i class="icon-comment"></i> 评论 </a>
-            <hr />
-        </div>
+</div>        <p>在 Windows 下 Git 的使用, 使用 HTTPS 而不是 SSH</p>
+        <a class="btn btn-default btn-xs xsmall" href="http://zoeyyoung.github.io/windows-git-https.html">
+        <i class="icon-plus-sign"></i> 阅读全文 </a>
+        <hr />
+      </div>
     </div>
          <div class='row'>
       <div class='col-md-12'>

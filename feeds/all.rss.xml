@@ -140,7 +140,50 @@
 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;red&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;bisect_left&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;yellow&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Fri, 30 Aug 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-08-30:python-bisect.html</guid><category>Python</category><category>基础</category></item><item><title>海量日志数据, 提取出某日访问百度次数最多的那个IP</title><link>http://zoeyyoung.github.io/get-most-visit-ip.html</link><description>&lt;p&gt;问题: 海量日志数据, 提取出某日访问百度次数最多的那个IP.&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Fri, 30 Aug 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-08-30:python-bisect.html</guid><category>Python</category><category>基础</category></item><item><title>[基础] Python 计算出现最多的前100个单词</title><link>http://zoeyyoung.github.io/python-heapq-counter.html</link><description>&lt;p&gt;有一个1G大小的一个文件, 里面每一行是一个词, 词的大小不超过16字节, 内存限制大小是1M. 返回频数最高的100个词.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;方案1: 顺序读文件中, 对于每个词x, 取hash(x)%5000，然后按照该值存到5000个小文件(记为x0, x1, ..., x4999)中。这样每个文件大概是200k左右. 如果其中有的文件超过了1M大小, 还可以按照类似的方法继续往下分, 直到分解得到的小文件的大小都不超过1M. 对每个小文件, 统计每个文件中出现的词以及相应的频率(可以采用trie树/hash_map等), 并取出出现频率最大的100个词(可以用含100个结点的最小堆), 并把100词及相应的频率存入文件, 这样又得到了5000个文件. 下一步就是把这5000个文件进行归并(类似于归并排序)的过程了.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;可以使用内置的堆和计数器, 比较了一下速度上没有多大差别.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;heapq&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;nlargest&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;memory_profiler&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;profile&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;collections&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Counter&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;use_heapq&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+    &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;words&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;rb&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;words&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;w&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;words&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;w&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="p"&gt;[:&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+            &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+    &lt;span class="n"&gt;top100&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;nlargest&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;w&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;top100&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;w&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;use_counter&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;words&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;rb&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;words&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;cnt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Counter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;words&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cnt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;most_common&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;cProfile&lt;/span&gt;
+&lt;span class="n"&gt;cProfile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;use_heapq()&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;cProfile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;use_counter()&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;查看源码发现, 其实&lt;code&gt;Counter&lt;/code&gt;的&lt;code&gt;monst_common&lt;/code&gt;也是使用的&lt;code&gt;heapq&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;most_common&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="sd"&gt;&amp;#39;&amp;#39;&amp;#39;List the n most common elements and their counts from the most&lt;/span&gt;
+&lt;span class="sd"&gt;        common to the least.  If n is None, then list all element counts.&lt;/span&gt;
+
+&lt;span class="sd"&gt;        &amp;gt;&amp;gt;&amp;gt; Counter(&amp;#39;abcdeabcdabcaba&amp;#39;).most_common(3)&lt;/span&gt;
+&lt;span class="sd"&gt;        [(&amp;#39;a&amp;#39;, 5), (&amp;#39;b&amp;#39;, 4), (&amp;#39;c&amp;#39;, 3)]&lt;/span&gt;
+
+&lt;span class="sd"&gt;        &amp;#39;&amp;#39;&amp;#39;&lt;/span&gt;
+        &lt;span class="c"&gt;# Emulate Bag.sortedByCount from Smalltalk&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;sorted&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;_itemgetter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;reverse&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;_heapq&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;nlargest&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;_itemgetter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Fri, 30 Aug 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-08-30:python-heapq-counter.html</guid><category>Python</category><category>基础</category></item><item><title>海量日志数据, 提取出某日访问百度次数最多的那个IP</title><link>http://zoeyyoung.github.io/get-most-visit-ip.html</link><description>&lt;p&gt;问题: 海量日志数据, 提取出某日访问百度次数最多的那个IP.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;首先是这一天, 并且是访问百度的日志中的IP取出来, 逐个写入到一个大文件中. 注意到IP是32位的, 最多有2^32个不同的IP(事实上不可能, 得扣去特殊的IP), 在重复量小的情况下, 内存放不下这些不同的IP. 同样可以采用映射的方法, 比如模1000, 把整个大文件映射为1000个小文件, 再找出每个小文件中出现频率最大的IP(可以采用hash_map进行频率统计, 然后再找出频率最大的几个)及相应的频率. 然后再在这1000个最大的IP中, 找出那个频率最大的IP, 即为所求.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -874,7 +917,37 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;总结自: &lt;a href="http://stackoverflow.com/questions/5320871/in-list-of-dicts-find-min-value-of-a-common-dict-field"&gt;In List of Dicts, find min() value of a common Dict field&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 06 Aug 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-08-06:python-dict-list-min-max-value.html</guid><category>Python</category></item><item><title>[解决] Python lxml wrapping elements</title><link>http://zoeyyoung.github.io/python-lxml-wrapping-elements.html</link><description>&lt;p&gt;与这个问题有点类似: &lt;a href="http://stackoverflow.com/questions/6038616/python-lxml-wrapping-elements"&gt;Stack Overflow: Python lxml wrapping elements&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;总结自: &lt;a href="http://stackoverflow.com/questions/5320871/in-list-of-dicts-find-min-value-of-a-common-dict-field"&gt;In List of Dicts, find min() value of a common Dict field&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 06 Aug 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-08-06:python-dict-list-min-max-value.html</guid><category>Python</category></item><item><title>装完 Ubuntu 后</title><link>http://zoeyyoung.github.io/after-install-ubuntu.html</link><description>&lt;p&gt;1、升级系统&lt;/p&gt;
+&lt;p&gt;sudo apt-get update &amp;amp;&amp;amp; sudo apt-get upgrade&lt;/p&gt;
+&lt;p&gt;2、在软件中心, 卸载软件:&lt;/p&gt;
+&lt;p&gt;libreoffice、thunderbird、ibus、Firefox Ubufox扩展、桌面共享、Empathy、扫描易、蓝牙、ubuntu one、各种辅助功能等。&lt;/p&gt;
+&lt;p&gt;3、安装如下软件：&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://ubuntu-tweak.com/source/ubuntu-tweak-stable/"&gt;ubuntu-tweak&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo add-apt-repository ppa:tualatrix&lt;span class="n"&gt;/ppa&lt;/span&gt;
+sudo apt-get update
+sudo apt-get install ubuntu-tweak
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;新立得: synaptic&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;synaptic&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;fcitx、fcitx-table-wubi、wps。&lt;/p&gt;
+&lt;p&gt;其中wps是wps官网下载，然后dpkg安装；ubuntu-tweak是手动添加源，再apt安装；其他则用命令来完成：sudo apt-get install synaptic fcitx fcitx-table-wubi。&lt;/p&gt;
+&lt;p&gt;没装搜狗软件法是因为我基本不用拼音。&lt;/p&gt;
+&lt;p&gt;4、彻底清除无用的软件包&lt;/p&gt;
+&lt;p&gt;在新立得中，搜索libreoffice、bluz、ubuntu one相关包，能卸载的全部卸载。&lt;/p&gt;
+&lt;p&gt;打开ubuntu tweak，清理垃圾文件。&lt;/p&gt;
+&lt;p&gt;5、其他修改：&lt;/p&gt;
+&lt;p&gt;a、去掉grub菜单中一些没用的东西：&lt;/p&gt;
+&lt;p&gt;/etc/grub.d/中只保留00_header、10_linux、30_os-prober，其他删掉；&lt;/p&gt;
+&lt;p&gt;修改/etc/default/grub文件，将GRUB_DEFAULT和GRUB_TIMEOUT项改成我想要的参数，比如我想让我的gentoo默认3秒启动。&lt;/p&gt;
+&lt;p&gt;最后运行：sudo update-grub。&lt;/p&gt;
+&lt;p&gt;b、安装firefox的flash插件&lt;/p&gt;
+&lt;p&gt;在http://get.adobe.com/cn/flashplayer/中下载tar.gz格式文件，将解压出来的so文件，放到~/.mozilla/plugins/目录中，其中plugins目录需要新建。&lt;/p&gt;
+&lt;p&gt;c、用ubuntu tweak进行一些设置，比如把启动器设置成自动隐藏等操作。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Mon, 05 Aug 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-08-05:after-install-ubuntu.html</guid><category>Ubuntu</category><category>Linux</category><category>安装</category></item><item><title>[解决] Python lxml wrapping elements</title><link>http://zoeyyoung.github.io/python-lxml-wrapping-elements.html</link><description>&lt;p&gt;与这个问题有点类似: &lt;a href="http://stackoverflow.com/questions/6038616/python-lxml-wrapping-elements"&gt;Stack Overflow: Python lxml wrapping elements&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;有的网页中正文没有使用&lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt;进行包装, 结果提取正文时只提取了某一段, 而不是作为整体的正文, 一开始直接将&lt;code&gt;&amp;lt;body&amp;gt;&lt;/code&gt;元素变成&lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt;, 发现会有其它副作用, 因为其它代码中有通过标签是否是body作为判断的代码. 因此考虑默认为&lt;code&gt;&amp;lt;body&amp;gt;&lt;/code&gt;的子元素加一层&lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt;包装.&lt;/p&gt;
 &lt;p&gt;假设有如下HTML片段:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
@@ -4028,7 +4101,7 @@ sudo apt-get install oracle-java7-installer
 安装即用, 不像 Stylish 之类全能样式扩展那样需要额外费心设置, 由于是指定 CSS, 而非 JavaScript 遍历 DOM 修改样式, 所以不占扩展进程, 无须等待页面载入并修改重绘, 不增加额外开销.
 缺点和其他浏览器强制字体一样, web font 和定义了衬线体的网页会失效.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;没认真看说明...&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Mon, 01 Oct 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-10-01:github-webfont.html</guid><category>GitHub</category><category>Tips</category><category>Chrome</category></item><item><title>Terminator</title><link>http://zoeyyoung.github.io/terminator-software.html</link><description>&lt;p&gt;&lt;img alt="terminator" src="/static/images/terminator.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;没认真看说明...&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Mon, 01 Oct 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-10-01:github-webfont.html</guid><category>GitHub</category><category>Tips</category><category>Chrome</category></item><item><title>Terminator</title><link>http://zoeyyoung.github.io/terminator-software.html</link><description>&lt;p&gt;&lt;img alt="terminator" src="http://b.hiphotos.bdimg.com/album/s%3D550%3Bq%3D90%3Bc%3Dxiangce%2C100%2C100/sign=e56eeee9d31b0ef468e8985bedff20e7/7c1ed21b0ef41bd5ecc24e3350da81cb38db3d67.jpg?referer=389d99a2b219ebc4996f42a97b3e&amp;amp;x=.jpg" /&gt;&lt;/p&gt;
 &lt;h2&gt;安装Terminator&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;aptitude&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;terminator&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;

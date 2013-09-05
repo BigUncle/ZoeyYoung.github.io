@@ -1,0 +1,55 @@
+Title: 装完 Ubuntu 后
+Date: 2013-08-05
+Tags: Ubuntu,Linux,安装
+Slug: after-install-ubuntu
+Author: Zoey Young
+Summary: 装完 Ubuntu 后
+
+1、升级系统
+
+sudo apt-get update && sudo apt-get upgrade
+
+2、在软件中心, 卸载软件:
+
+libreoffice、thunderbird、ibus、Firefox Ubufox扩展、桌面共享、Empathy、扫描易、蓝牙、ubuntu one、各种辅助功能等。
+
+3、安装如下软件：
+
+[ubuntu-tweak](http://ubuntu-tweak.com/source/ubuntu-tweak-stable/)
+
+    :::bat
+    sudo add-apt-repository ppa:tualatrix/ppa
+    sudo apt-get update
+    sudo apt-get install ubuntu-tweak
+
+新立得: synaptic
+
+    sudo apt-get install synaptic
+
+fcitx、fcitx-table-wubi、wps。
+
+其中wps是wps官网下载，然后dpkg安装；ubuntu-tweak是手动添加源，再apt安装；其他则用命令来完成：sudo apt-get install synaptic fcitx fcitx-table-wubi。
+
+没装搜狗软件法是因为我基本不用拼音。
+
+4、彻底清除无用的软件包
+
+在新立得中，搜索libreoffice、bluz、ubuntu one相关包，能卸载的全部卸载。
+
+打开ubuntu tweak，清理垃圾文件。
+
+5、其他修改：
+
+a、去掉grub菜单中一些没用的东西：
+
+/etc/grub.d/中只保留00_header、10_linux、30_os-prober，其他删掉；
+
+修改/etc/default/grub文件，将GRUB_DEFAULT和GRUB_TIMEOUT项改成我想要的参数，比如我想让我的gentoo默认3秒启动。
+
+最后运行：sudo update-grub。
+
+b、安装firefox的flash插件
+
+在http://get.adobe.com/cn/flashplayer/中下载tar.gz格式文件，将解压出来的so文件，放到~/.mozilla/plugins/目录中，其中plugins目录需要新建。
+
+c、用ubuntu tweak进行一些设置，比如把启动器设置成自动隐藏等操作。

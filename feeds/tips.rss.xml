@@ -280,7 +280,7 @@ git push
 安装即用, 不像 Stylish 之类全能样式扩展那样需要额外费心设置, 由于是指定 CSS, 而非 JavaScript 遍历 DOM 修改样式, 所以不占扩展进程, 无须等待页面载入并修改重绘, 不增加额外开销.
 缺点和其他浏览器强制字体一样, web font 和定义了衬线体的网页会失效.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;没认真看说明...&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Mon, 01 Oct 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-10-01:github-webfont.html</guid><category>GitHub</category><category>Tips</category><category>Chrome</category></item><item><title>Terminator</title><link>http://zoeyyoung.github.io/terminator-software.html</link><description>&lt;p&gt;&lt;img alt="terminator" src="/static/images/terminator.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;没认真看说明...&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Mon, 01 Oct 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-10-01:github-webfont.html</guid><category>GitHub</category><category>Tips</category><category>Chrome</category></item><item><title>Terminator</title><link>http://zoeyyoung.github.io/terminator-software.html</link><description>&lt;p&gt;&lt;img alt="terminator" src="http://b.hiphotos.bdimg.com/album/s%3D550%3Bq%3D90%3Bc%3Dxiangce%2C100%2C100/sign=e56eeee9d31b0ef468e8985bedff20e7/7c1ed21b0ef41bd5ecc24e3350da81cb38db3d67.jpg?referer=389d99a2b219ebc4996f42a97b3e&amp;amp;x=.jpg" /&gt;&lt;/p&gt;
 &lt;h2&gt;安装Terminator&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;aptitude&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;terminator&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
