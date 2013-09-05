@@ -13,6 +13,89 @@ Windows程序员 和 企业程序员亮了...
 
 Python 3下测试
 
+[测试代码](http://pan.baidu.com/share/link?shareid=1766399277&uk=1412733551)
+
+修改自: https://github.com/radiosilence/Algo-Bench
+
+    :::python
+    import sys
+    import math
+    import timeit
+    from functools import reduce
+
+    def bench(name, num, callback, setup):
+        # print("========================================================")
+        print("Starting algorithm %s for %s!" % (name, num))
+        # print("========================================================")
+        stmt = callback + '(' + str(num) + ')'
+        repeat = 5
+        number = 20
+        # print("timeit.repeat('%s', setup='%s', repeat=%d, number=%d)" % (stmt, setup, repeat, number))
+        result = timeit.repeat(stmt, setup=setup, repeat=repeat, number=number)
+        avg = reduce(lambda x, y: x + y, result) / len(result)
+        # print(avg)
+        # print("========================================================\n")
+        return (name, avg)
+
+    if __name__ == '__main__':
+        try:
+            r = int(sys.argv[1])
+        except IndexError:
+            r = 3000
+
+        sys.setrecursionlimit(r * 2)
+
+        print("Recursion limit:", sys.getrecursionlimit())
+
+        results = []
+
+        s1 = 'from algos.newbie import factorial as newbie'
+        results.append(bench("Newbie", r, 'newbie', s1))
+
+        s2 = 'from algos.firstyear_pascal import factorial as firstyear_pascal'
+        results.append(bench("First Year Pascal", r, 'firstyear_pascal', s2))
+
+        s3 = 'from algos.firstyear_c import fact as firstyear_c'
+        results.append(bench("First Year C", r, 'firstyear_c', s3))
+
+        s4 = 'from algos.firstyear_sicp import fact as firstyear_sicp'
+        results.append(bench("First Year SICP", r, 'firstyear_sicp', s4))
+
+        s5 = 'from algos.firstyear_python import Factorial as firstyear_python'
+        results.append(bench("First Year Python", r, 'firstyear_python', s5))
+
+        s6 = 'from algos.lazy_python import fact as lazy_python'
+        results.append(bench("Lazy Python", r, 'lazy_python', s6))
+
+        s7 = 'from algos.lazier_python import f as lazier_python'
+        results.append(bench("Lazier Python", r, 'lazier_python', s7))
+
+        s8 = 'from algos.python_expert import fact as python_expert'
+        results.append(bench("Python Expert", r, 'python_expert', s8))
+
+        s9 = 'from algos.python_hacker import fact as python_hacker'
+        results.append(bench("Python Hacker", r, 'python_hacker', s9))
+
+        s10 = 'from algos.expert_programmer import fact as expert_programmer'
+        results.append(bench("Expert Programmer", r, 'expert_programmer', s10))
+
+        s11 = 'from algos.web_designer import factorial as web_designer'
+        results.append(bench("Web Designer", r, 'web_designer', s11))
+
+        # s12 = 'from algos.unix_programmer import fact as unix_programmer'
+        # results.append(bench("Unix Programmer", r, 'unix_programmer', s12))
+
+        s13 = 'from algos.windows_programmer import fact as windows_programmer'
+        results.append(bench("Windows Programmer", r, 'windows_programmer', s13))
+
+        s14 = 'from algos.enterprise_programmer import f as enterprise_programmer'
+        results.append(bench("Enterprise Programmer", r, 'enterprise_programmer', s14))
+
+        results = sorted(results, key=lambda x:x[1])
+        for i in results:
+            print(i[0], i[1])
+
+
 64位 Win7下测试:
 
     Expert Programmer 0.010347517229714675
@@ -61,9 +144,5 @@ Python Expert, 这里可以学习reduce的使用:
 `functools.reduce(function, iterable[, initializer])`
 
 例如: `reduce(lambda x, y: x+y, [1, 2, 3, 4, 5])` 计算 `((((1+2)+3)+4)+5)`
-
-[测试代码](http://pan.baidu.com/share/link?shareid=1766399277&uk=1412733551)
-
-修改自: https://github.com/radiosilence/Algo-Bench
 
 还要了解下尾调用和尾递归

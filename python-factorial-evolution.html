@@ -116,6 +116,87 @@
 <p>该代码片段为各种程序员所写的阶乘算法代码, 甚至包括网页设计师的, 很有意思</p>
 <p>Windows程序员 和 企业程序员亮了...</p>
 <p>Python 3下测试</p>
+<p><a href="http://pan.baidu.com/share/link?shareid=1766399277&amp;uk=1412733551">测试代码</a></p>
+<p>修改自: https://github.com/radiosilence/Algo-Bench</p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">timeit</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="nb">reduce</span>
+
+<span class="k">def</span> <span class="nf">bench</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">setup</span><span class="p">):</span>
+    <span class="c"># print(&quot;========================================================&quot;)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;Starting algorithm </span><span class="si">%s</span><span class="s"> for </span><span class="si">%s</span><span class="s">!&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">num</span><span class="p">))</span>
+    <span class="c"># print(&quot;========================================================&quot;)</span>
+    <span class="n">stmt</span> <span class="o">=</span> <span class="n">callback</span> <span class="o">+</span> <span class="s">&#39;(&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;)&#39;</span>
+    <span class="n">repeat</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="n">number</span> <span class="o">=</span> <span class="mi">20</span>
+    <span class="c"># print(&quot;timeit.repeat(&#39;%s&#39;, setup=&#39;%s&#39;, repeat=%d, number=%d)&quot; % (stmt, setup, repeat, number))</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">stmt</span><span class="p">,</span> <span class="n">setup</span><span class="o">=</span><span class="n">setup</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="n">repeat</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="n">number</span><span class="p">)</span>
+    <span class="n">avg</span> <span class="o">=</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+    <span class="c"># print(avg)</span>
+    <span class="c"># print(&quot;========================================================\n&quot;)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">avg</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="mi">3000</span>
+
+    <span class="n">sys</span><span class="o">.</span><span class="n">setrecursionlimit</span><span class="p">(</span><span class="n">r</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;Recursion limit:&quot;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">getrecursionlimit</span><span class="p">())</span>
+
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">s1</span> <span class="o">=</span> <span class="s">&#39;from algos.newbie import factorial as newbie&#39;</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bench</span><span class="p">(</span><span class="s">&quot;Newbie&quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="s">&#39;newbie&#39;</span><span class="p">,</span> <span class="n">s1</span><span class="p">))</span>
+
+    <span class="n">s2</span> <span class="o">=</span> <span class="s">&#39;from algos.firstyear_pascal import factorial as firstyear_pascal&#39;</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bench</span><span class="p">(</span><span class="s">&quot;First Year Pascal&quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="s">&#39;firstyear_pascal&#39;</span><span class="p">,</span> <span class="n">s2</span><span class="p">))</span>
+
+    <span class="n">s3</span> <span class="o">=</span> <span class="s">&#39;from algos.firstyear_c import fact as firstyear_c&#39;</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bench</span><span class="p">(</span><span class="s">&quot;First Year C&quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="s">&#39;firstyear_c&#39;</span><span class="p">,</span> <span class="n">s3</span><span class="p">))</span>
+
+    <span class="n">s4</span> <span class="o">=</span> <span class="s">&#39;from algos.firstyear_sicp import fact as firstyear_sicp&#39;</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bench</span><span class="p">(</span><span class="s">&quot;First Year SICP&quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="s">&#39;firstyear_sicp&#39;</span><span class="p">,</span> <span class="n">s4</span><span class="p">))</span>
+
+    <span class="n">s5</span> <span class="o">=</span> <span class="s">&#39;from algos.firstyear_python import Factorial as firstyear_python&#39;</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bench</span><span class="p">(</span><span class="s">&quot;First Year Python&quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="s">&#39;firstyear_python&#39;</span><span class="p">,</span> <span class="n">s5</span><span class="p">))</span>
+
+    <span class="n">s6</span> <span class="o">=</span> <span class="s">&#39;from algos.lazy_python import fact as lazy_python&#39;</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bench</span><span class="p">(</span><span class="s">&quot;Lazy Python&quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="s">&#39;lazy_python&#39;</span><span class="p">,</span> <span class="n">s6</span><span class="p">))</span>
+
+    <span class="n">s7</span> <span class="o">=</span> <span class="s">&#39;from algos.lazier_python import f as lazier_python&#39;</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bench</span><span class="p">(</span><span class="s">&quot;Lazier Python&quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="s">&#39;lazier_python&#39;</span><span class="p">,</span> <span class="n">s7</span><span class="p">))</span>
+
+    <span class="n">s8</span> <span class="o">=</span> <span class="s">&#39;from algos.python_expert import fact as python_expert&#39;</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bench</span><span class="p">(</span><span class="s">&quot;Python Expert&quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="s">&#39;python_expert&#39;</span><span class="p">,</span> <span class="n">s8</span><span class="p">))</span>
+
+    <span class="n">s9</span> <span class="o">=</span> <span class="s">&#39;from algos.python_hacker import fact as python_hacker&#39;</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bench</span><span class="p">(</span><span class="s">&quot;Python Hacker&quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="s">&#39;python_hacker&#39;</span><span class="p">,</span> <span class="n">s9</span><span class="p">))</span>
+
+    <span class="n">s10</span> <span class="o">=</span> <span class="s">&#39;from algos.expert_programmer import fact as expert_programmer&#39;</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bench</span><span class="p">(</span><span class="s">&quot;Expert Programmer&quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="s">&#39;expert_programmer&#39;</span><span class="p">,</span> <span class="n">s10</span><span class="p">))</span>
+
+    <span class="n">s11</span> <span class="o">=</span> <span class="s">&#39;from algos.web_designer import factorial as web_designer&#39;</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bench</span><span class="p">(</span><span class="s">&quot;Web Designer&quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="s">&#39;web_designer&#39;</span><span class="p">,</span> <span class="n">s11</span><span class="p">))</span>
+
+    <span class="c"># s12 = &#39;from algos.unix_programmer import fact as unix_programmer&#39;</span>
+    <span class="c"># results.append(bench(&quot;Unix Programmer&quot;, r, &#39;unix_programmer&#39;, s12))</span>
+
+    <span class="n">s13</span> <span class="o">=</span> <span class="s">&#39;from algos.windows_programmer import fact as windows_programmer&#39;</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bench</span><span class="p">(</span><span class="s">&quot;Windows Programmer&quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="s">&#39;windows_programmer&#39;</span><span class="p">,</span> <span class="n">s13</span><span class="p">))</span>
+
+    <span class="n">s14</span> <span class="o">=</span> <span class="s">&#39;from algos.enterprise_programmer import f as enterprise_programmer&#39;</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bench</span><span class="p">(</span><span class="s">&quot;Enterprise Programmer&quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="s">&#39;enterprise_programmer&#39;</span><span class="p">,</span> <span class="n">s14</span><span class="p">))</span>
+
+    <span class="n">results</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+
+
 <p>64位 Win7下测试:</p>
 <div class="highlight"><pre><span class="n">Expert</span> <span class="n">Programmer</span> <span class="mf">0.010347517229714675</span>
 <span class="n">Windows</span> <span class="n">Programmer</span> <span class="mf">0.061831563425221246</span>
@@ -165,8 +246,6 @@
 
 <p><code>functools.reduce(function, iterable[, initializer])</code></p>
 <p>例如: <code>reduce(lambda x, y: x+y, [1, 2, 3, 4, 5])</code> 计算 <code>((((1+2)+3)+4)+5)</code></p>
-<p><a href="http://pan.baidu.com/share/link?shareid=1766399277&amp;uk=1412733551">测试代码</a></p>
-<p>修改自: https://github.com/radiosilence/Algo-Bench</p>
 <p>还要了解下尾调用和尾递归</p>
     <hr />
   </article>
