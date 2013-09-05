@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OK Computer</title><link>http://zoeyyoung.github.io/</link><description>It's better to burn out &lt;br/&gt; than to fade away.</description><atom:link href="http://zoeyyoung.github.io/feeds/linux.rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 05 Aug 2013 00:00:00 +0800</lastBuildDate><item><title>装完 Ubuntu 后</title><link>http://zoeyyoung.github.io/after-install-ubuntu.html</link><description>&lt;p&gt;1、升级系统&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OK Computer</title><link>http://zoeyyoung.github.io/</link><description>It's better to burn out &lt;br/&gt; than to fade away.</description><atom:link href="http://zoeyyoung.github.io/feeds/linux.rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 05 Aug 2013 00:00:00 +0800</lastBuildDate><item><title>装完 Ubuntu 后</title><link>http://zoeyyoung.github.io/after-install-ubuntu.html</link><description>&lt;h3&gt;升级系统&lt;/h3&gt;
 &lt;p&gt;sudo apt-get update &amp;amp;&amp;amp; sudo apt-get upgrade&lt;/p&gt;
-&lt;p&gt;2、在软件中心, 卸载软件:&lt;/p&gt;
-&lt;p&gt;libreoffice、thunderbird、ibus、Firefox Ubufox扩展、桌面共享、Empathy、扫描易、蓝牙、ubuntu one、各种辅助功能等。&lt;/p&gt;
-&lt;p&gt;3、安装如下软件：&lt;/p&gt;
+&lt;h3&gt;要安装的&lt;/h3&gt;
 &lt;p&gt;&lt;a href="http://ubuntu-tweak.com/source/ubuntu-tweak-stable/"&gt;ubuntu-tweak&lt;/a&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;sudo add-apt-repository ppa:tualatrix&lt;span class="n"&gt;/ppa&lt;/span&gt;
 sudo apt-get update
@@ -19,17 +17,14 @@ sudo apt-get install ubuntu-tweak
 &lt;p&gt;fcitx、fcitx-table-wubi、wps。&lt;/p&gt;
 &lt;p&gt;其中wps是wps官网下载，然后dpkg安装；ubuntu-tweak是手动添加源，再apt安装；其他则用命令来完成：sudo apt-get install synaptic fcitx fcitx-table-wubi。&lt;/p&gt;
 &lt;p&gt;没装搜狗软件法是因为我基本不用拼音。&lt;/p&gt;
+&lt;h3&gt;要卸载的&lt;/h3&gt;
+&lt;p&gt;libreoffice、thunderbird、ibus、Firefox Ubufox扩展、桌面共享、Empathy、扫描易、蓝牙、ubuntu one、各种辅助功能等。&lt;/p&gt;
 &lt;p&gt;4、彻底清除无用的软件包&lt;/p&gt;
 &lt;p&gt;在新立得中，搜索libreoffice、bluz、ubuntu one相关包，能卸载的全部卸载。&lt;/p&gt;
 &lt;p&gt;打开ubuntu tweak，清理垃圾文件。&lt;/p&gt;
-&lt;p&gt;5、其他修改：&lt;/p&gt;
-&lt;p&gt;a、去掉grub菜单中一些没用的东西：&lt;/p&gt;
-&lt;p&gt;/etc/grub.d/中只保留00_header、10_linux、30_os-prober，其他删掉；&lt;/p&gt;
-&lt;p&gt;修改/etc/default/grub文件，将GRUB_DEFAULT和GRUB_TIMEOUT项改成我想要的参数，比如我想让我的gentoo默认3秒启动。&lt;/p&gt;
-&lt;p&gt;最后运行：sudo update-grub。&lt;/p&gt;
-&lt;p&gt;b、安装firefox的flash插件&lt;/p&gt;
-&lt;p&gt;在http://get.adobe.com/cn/flashplayer/中下载tar.gz格式文件，将解压出来的so文件，放到~/.mozilla/plugins/目录中，其中plugins目录需要新建。&lt;/p&gt;
-&lt;p&gt;c、用ubuntu tweak进行一些设置，比如把启动器设置成自动隐藏等操作。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Mon, 05 Aug 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-08-05:after-install-ubuntu.html</guid><category>Ubuntu</category><category>Linux</category><category>安装</category></item><item><title>Ubuntu下安装JDK</title><link>http://zoeyyoung.github.io/ubuntu-jdk-install.html</link><description>&lt;p&gt;https://help.ubuntu.com/community/Java : 整得比较全面，各种安装方法都有&lt;/p&gt;
+&lt;h3&gt;开发相关&lt;/h3&gt;
+&lt;p&gt;sudo apt-get install git&lt;/p&gt;
+&lt;h3&gt;其他&lt;/h3&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Mon, 05 Aug 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-08-05:after-install-ubuntu.html</guid><category>Ubuntu</category><category>Linux</category><category>安装</category></item><item><title>Ubuntu下安装JDK</title><link>http://zoeyyoung.github.io/ubuntu-jdk-install.html</link><description>&lt;p&gt;https://help.ubuntu.com/community/Java : 整得比较全面，各种安装方法都有&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://www.webupd8.org/2012/01/install-oracle-java-jdk-7-in-ubuntu-via.html"&gt;INSTALL ORACLE JAVA 7 IN UBUNTU VIA PPA REPOSITORY&lt;/a&gt; : 之前整了篇手动安装的比较麻烦，还是PPA方便&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;sudo add-apt-repository ppa:webupd8team/java
 sudo apt-get update

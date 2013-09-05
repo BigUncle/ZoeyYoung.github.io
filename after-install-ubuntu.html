@@ -113,11 +113,9 @@
         <a href="http://zoeyyoung.github.io/tag/an-zhuang.html">安装</a>
     </span>
 <!-- <p></p> -->
-</div>    <p>1、升级系统</p>
+</div>    <h3>升级系统</h3>
 <p>sudo apt-get update &amp;&amp; sudo apt-get upgrade</p>
-<p>2、在软件中心, 卸载软件:</p>
-<p>libreoffice、thunderbird、ibus、Firefox Ubufox扩展、桌面共享、Empathy、扫描易、蓝牙、ubuntu one、各种辅助功能等。</p>
-<p>3、安装如下软件：</p>
+<h3>要安装的</h3>
 <p><a href="http://ubuntu-tweak.com/source/ubuntu-tweak-stable/">ubuntu-tweak</a></p>
 <div class="highlight"><pre>sudo add-apt-repository ppa:tualatrix<span class="n">/ppa</span>
 sudo apt-get update
@@ -133,17 +131,14 @@ sudo apt-get install ubuntu-tweak
 <p>fcitx、fcitx-table-wubi、wps。</p>
 <p>其中wps是wps官网下载，然后dpkg安装；ubuntu-tweak是手动添加源，再apt安装；其他则用命令来完成：sudo apt-get install synaptic fcitx fcitx-table-wubi。</p>
 <p>没装搜狗软件法是因为我基本不用拼音。</p>
+<h3>要卸载的</h3>
+<p>libreoffice、thunderbird、ibus、Firefox Ubufox扩展、桌面共享、Empathy、扫描易、蓝牙、ubuntu one、各种辅助功能等。</p>
 <p>4、彻底清除无用的软件包</p>
 <p>在新立得中，搜索libreoffice、bluz、ubuntu one相关包，能卸载的全部卸载。</p>
 <p>打开ubuntu tweak，清理垃圾文件。</p>
-<p>5、其他修改：</p>
-<p>a、去掉grub菜单中一些没用的东西：</p>
-<p>/etc/grub.d/中只保留00_header、10_linux、30_os-prober，其他删掉；</p>
-<p>修改/etc/default/grub文件，将GRUB_DEFAULT和GRUB_TIMEOUT项改成我想要的参数，比如我想让我的gentoo默认3秒启动。</p>
-<p>最后运行：sudo update-grub。</p>
-<p>b、安装firefox的flash插件</p>
-<p>在http://get.adobe.com/cn/flashplayer/中下载tar.gz格式文件，将解压出来的so文件，放到~/.mozilla/plugins/目录中，其中plugins目录需要新建。</p>
-<p>c、用ubuntu tweak进行一些设置，比如把启动器设置成自动隐藏等操作。</p>
+<h3>开发相关</h3>
+<p>sudo apt-get install git</p>
+<h3>其他</h3>
     <hr />
   </article>
   <div class="col-md-12 comment">

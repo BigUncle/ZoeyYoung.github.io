@@ -1,0 +1,69 @@
+Title: [整理] Python程序员的进化史
+Date: 2013-09-05
+Tags: Python, 基础
+Slug: python-factorial-evolution
+Author: Zoey Young
+Summary: 测试GIST [Evolution of a Python programmer.py](https://gist.github.com/fmeyer/289467/) 中的代码, 该代码片段为各种程序员所写的阶乘算法代码, 甚至包括网页设计师的, 很有意思
+
+测试GIST [Evolution of a Python programmer.py](https://gist.github.com/fmeyer/289467/) 中的代码
+
+该代码片段为各种程序员所写的阶乘算法代码, 甚至包括网页设计师的, 很有意思
+
+Windows程序员 和 企业程序员亮了...
+
+Python 3下测试
+
+64位 Win7下测试:
+
+Expert Programmer 0.010347517229714675
+Windows Programmer 0.061831563425221246
+Python Expert 0.06522446660547114
+First Year Python 0.06550025698835915
+First Year Pascal 0.0690858603855318
+Lazy Python 0.08069138900155508
+First Year C 0.08128952324964653
+Lazier Python 0.08429218180653777
+Newbie 0.10587148611523918
+Enterprise Programmer 0.12307353151268216
+First Year SICP 0.17105219080523565
+Python Hacker 0.17289134072386964
+Web Designer 51.60132410583651
+
+32位 Ubuntu下测试:
+
+Expert Programmer 0.03371856439916883
+Python Expert 0.08991506800084607
+First Year C 0.0977142803996685
+First Year Python 0.10037733459903393
+First Year Pascal 0.10648313619894907
+Windows Programmer 0.11215310560073703
+Newbie 0.11447444600053132
+Lazy Python 0.11950725499918917
+Lazier Python 0.12218411840149201
+Enterprise Programmer 0.1422563709988026
+First Year SICP 0.20282029940135543
+Python Hacker 0.20943743179814192
+Web Designer 217.28668789780204
+
+结论是直接调用语言内置的math.factorial最快
+
+    :::python
+    import math
+    fact = math.factorial
+
+Python Expert, 这里可以学习reduce的使用:
+
+    :::python
+    import operator as op
+    from functools import reduce
+    fact = lambda x: reduce(op.mul, range(2, x + 1), 1)
+
+`functools.reduce(function, iterable[, initializer])`
+
+例如: `reduce(lambda x, y: x+y, [1, 2, 3, 4, 5])` 计算 `((((1+2)+3)+4)+5)`
+
+[测试代码](http://pan.baidu.com/share/link?shareid=1766399277&uk=1412733551)
+
+修改自: https://github.com/radiosilence/Algo-Bench
+
+还要了解下尾调用和尾递归
