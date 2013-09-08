@@ -1,9 +1,9 @@
-Title: [算法] 两个字符串是否包含的问题
+Title: [算法] 长字符串包含短字符串所有字母的问题
 Date: 2013-09-06
 Tags: 笔试,面试
 Slug: alphabet-contain
 Author: Zoey Young
-Summary: 题目: 假设有一个各种字母组成的字符串，假设这还有另外一个字符串，而且这个字符串里的字母数相对少一些。从算法是讲，什么方法能最快的查出所有小字符串里的字母在大字符串里都有？
+Summary: 题目: 假设有一个各种字母组成的字符串, 假设这还有另外一个字符串, 而且这个字符串里的字母数相对少一些. 从算法是讲, 什么方法能最快的查出所有小字符串里的字母在大字符串里都有?
 
 题目: 假设有一个各种字母组成的字符串, 假设这还有另外一个字符串, 而且这个字符串里的字母数相对少一些. 从算法上讲, 什么方法能最快的查出所有小字符串里的字母在大字符串里都有?
 
@@ -19,20 +19,23 @@ Summary: 题目: 假设有一个各种字母组成的字符串，假设这还有
 
 答案是false, 因为第二个字符串里的Z字母不在第一个字符串里.
 
+还考虑了一种情况, 就是一个字母如果在短字符串里出现两次, 那也应该在长字符串里出现两次以上才算包含. 因此在每次命中时要考虑是否需要移除.
+
 有如下几种解法:
 
     :::python
-    # O(n*m)
+    # O(n*m) 的轮询方法
     # 直接遍历
     def normal_contain(str_l, str_s):
         list_str_l = list(str_l)
         for s in str_s:
             if s in list_str_l:
-                list_str_l.remove(s)
+                list_str_l.remove(s) # 需要移除.
             else:
                 return False
         return True
 
+    # O(mlogm)+O(nlogn)+O(m+n)
     # 排序后遍历
     def sorted_contain(str_l, str_s):
         str_l, str_s = sorted(str_l), sorted(str_s)
@@ -40,10 +43,41 @@ Summary: 题目: 假设有一个各种字母组成的字符串，假设这还有
         i = j = 0
         while i < len_str_s and j < len_str_l:
             if str_s[i] == str_l[j]:
-                i, j = i+1, j+1
-            else:
-                j += 1
+                i += 1
+            j += 1
         return i == len_str_s
+
+    # O(n+m)
+    # 类计数排序, 计算每个字母出现次数, 再比较
+    def count_contain(str_l, str_s):
+        c_l = [0 for i in range(52)]
+        c_s = [0 for i in range(52)]
+        for s in str_l:
+            index = (ord(s) - 97 + 26) if s > 'Z' else (ord(s) - 65)
+            c_l[index] += 1
+        for s in str_s:
+            index = (ord(s) - 97 + 26) if s > 'Z' else (ord(s) - 65)
+            c_s[index] += 1
+        for x, y in zip(c_l, c_s):
+            if x < y:
+                return False
+        return True
+
+    # O(n+m)
+    # 类计数排序, 计算每个字母出现次数, 只计算短的, 再遍历长的, 与上面方法类似
+    def count_once_contain(str_l, str_s):
+        c_s = [0 for i in range(52)]
+        for s in str_s:
+            index = (ord(s) - 97 + 26) if s > 'Z' else (ord(s) - 65)
+            c_s[index] += 1
+        for s in str_l:
+            index = (ord(s) - 97 + 26) if s > 'Z' else (ord(s) - 65)
+            if c_s[index] != 0:
+                c_s[index] -= 1
+        for i in c_s:
+            if i != 0:
+                return False
+        return True
 
     # hash 计数
     def hash_contain(str_l, str_s):
@@ -64,6 +98,7 @@ Summary: 题目: 假设有一个各种字母组成的字符串，假设这还有
                 return False
         return True
 
+    # O(n+m) 最好情况下O(n): 短字符串第一字符就不存在的情况
     # 素数法
     PRIME_52 = [
         2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41,
@@ -92,15 +127,7 @@ Summary: 题目: 假设有一个各种字母组成的字符串，假设这还有
     print(normal_contain('ABCDEFGHLMNOPQRS', 'DCGSRQPOM'))
     print(normal_contain('ABCDEFGHLMNOPQRS', 'DCGSRQPOZ'))
     print(normal_contain('AABCDEFGHLMNOPQRS', 'AADCGSRQPOM'))
-    print(sorted_contain('ABCDEFGHLMNOPQRS', 'DCGSRQPOM'))
-    print(sorted_contain('ABCDEFGHLMNOPQRS', 'DCGSRQPOZ'))
-    print(sorted_contain('AABCDEFGHLMNOPQRS', 'AADCGSRQPOM'))
-    print(hash_contain('ABCDEFGHLMNOPQRS', 'DCGSRQPOM'))
-    print(hash_contain('ABCDEFGHLMNOPQRS', 'DCGSRQPOZ'))
-    print(hash_contain('AABCDEFGHLMNOPQRS', 'AADCGSRQPOM'))
-    print(prime_contain('ABCDEFGHLMNOPQRS', 'DCGSRQPOM'))
-    print(prime_contain('ABCDEFGHLMNOPQRS', 'DCGSRQPOZ'))
-    print(prime_contain('AABCDEFGHLMNOPQRS', 'AADCGSRQPOM'))
+    ...其它类似
 
 测试, 一般情况下:
 
@@ -109,6 +136,8 @@ Summary: 题目: 假设有一个各种字母组成的字符串，假设这还有
     import timeit
     print("normal_contain", timeit.Timer(partial(normal_contain, 'ABCDEFGHLMNOPQRS', 'DCGSRQPOM')).repeat(5))
     print("sorted_contain", timeit.Timer(partial(sorted_contain, 'ABCDEFGHLMNOPQRS', 'DCGSRQPOM')).repeat(5))
+    print("count_contain", timeit.Timer(partial(count_contain, 'ABCDEFGHLMNOPQRS', 'DCGSRQPOM')).repeat(5))
+    print("count_once_contain", timeit.Timer(partial(count_once_contain, 'ABCDEFGHLMNOPQRS', 'DCGSRQPOM')).repeat(5))
     print("hash_contain", timeit.Timer(partial(hash_contain, 'ABCDEFGHLMNOPQRS', 'DCGSRQPOM')).repeat(5))
     print("prime_contain", timeit.Timer(partial(prime_contain, 'ABCDEFGHLMNOPQRS', 'DCGSRQPOM')).repeat(5))
 
@@ -117,6 +146,8 @@ Summary: 题目: 假设有一个各种字母组成的字符串，假设这还有
     :::python
     ('normal_contain', [6.362308025360107, 5.744957208633423, 5.661204814910889, 7.36407208442688, 5.63322901725769])
     ('sorted_contain', [6.286291122436523, 6.277117967605591, 6.292449951171875, 6.091110944747925, 6.123614072799683])
+    ('count_contain', [19.607484102249146, 19.857337951660156, 19.512460947036743, 19.593682050704956, 21.601970911026])
+    ('count_once_contain', [12.48820185661316, 12.146281003952026, 12.24548888206482, 12.143928050994873, 12.187535047531128])
     ('hash_contain', [6.700244903564453, 6.618301868438721, 7.309581995010376, 6.515559196472168, 6.350136995315552])
     ('prime_contain', [10.870138883590698, 12.051301002502441, 10.84837794303894, 10.468207120895386, 14.259312152862549])
 
@@ -127,6 +158,8 @@ Summary: 题目: 假设有一个各种字母组成的字符串，假设这还有
     import timeit
     print("normal_contain", timeit.Timer(partial(normal_contain, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'ZYXWVUTSRQPONMLKJIHGFEDCBA')).repeat(5))
     print("sorted_contain", timeit.Timer(partial(sorted_contain, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'ZYXWVUTSRQPONMLKJIHGFEDCBA')).repeat(5))
+    print("count_contain", timeit.Timer(partial(count_contain, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'ZYXWVUTSRQPONMLKJIHGFEDCBA')).repeat(5))
+    print("count_once_contain", timeit.Timer(partial(count_once_contain, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'ZYXWVUTSRQPONMLKJIHGFEDCBA')).repeat(5))
     print("hash_contain", timeit.Timer(partial(hash_contain, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'ZYXWVUTSRQPONMLKJIHGFEDCBA')).repeat(5))
     print("prime_contain", timeit.Timer(partial(prime_contain, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'ZYXWVUTSRQPONMLKJIHGFEDCBA')).repeat(5))
 
@@ -135,11 +168,21 @@ Summary: 题目: 假设有一个各种字母组成的字符串，假设这还有
     :::python
     ('normal_contain', [18.63632297515869, 18.41497802734375, 18.31280493736267, 18.751588106155396, 18.217451095581055])
     ('sorted_contain', [9.113880157470703, 9.531869888305664, 9.468177080154419, 9.110601902008057, 9.284788131713867])
+    ('count_contain', [29.499480962753296, 27.319715976715088, 26.55077290534973, 27.066306114196777, 25.907553911209106])
+    ('count_once_contain', [20.320783853530884, 19.26248002052307, 20.954636812210083, 20.640650987625122, 19.9475679397583])
     ('hash_contain', [14.959026098251343, 14.773585081100464, 14.640642881393433, 14.979124069213867, 14.67639708518982])
     ('prime_contain', [26.744000911712646, 25.518390893936157, 25.43153190612793, 25.511915922164917, 25.730863094329834])
 
 先排序后再轮询最快.
 
-素数法比较有意思. 但是最慢的.
+我觉得计数法看起来比较简单.
+
+素数法比较有意思.
+
+这两个方法之所以比较慢是因为调用了ord和zip内置函数. 在单次执行的情况下都是非常快的. 但执行1000000的时间就略长了.
+
+感觉使用其它语言写的话, 应该会有区别.
 
 更多说明: [一次谷歌面试趣事](http://www.aqee.net/google-interviewing-story/)
+
+[程序员编程艺术：第二章、字符串是否包含及匹配/查找/转换/拷贝问题](http://blog.csdn.net/v_JULY_v/article/details/6347454)
