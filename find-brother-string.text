@@ -1,0 +1,52 @@
+Title: [算法] 找兄弟单词
+Date: 2013-09-06
+Tags: 笔试,面试
+Slug: find-brother-string
+Author: Zoey Young
+Summary: 找兄弟单词
+
+题目：一个单词单词字母交换，可得另一个单词，如army->mary，成为兄弟单词。提供一个单词，在字典中找到它的兄弟。描述数据结构和查询过程。
+
+使用hash_map和链表
+
+定义key, 使得兄弟单词有相同的key, 不是兄弟的单词有不同的key
+
+两种方式:
+
+1. 将单词按字母从小到大重新排序后作为其key, 比如bad的key为abd，good的key为dgoo
+2. 将每一个字母对应一个质数, 然后让对应的质数相乘, 将得到的值进行hash, 这样兄弟单词的值就是一样的了, 并且不同单词的质数相乘积肯定不同
+
+创建hash_map时时间复杂度为O(n), 查找兄弟单词时时间复杂度是O(1).
+
+如果是海量词典的话, 可以用B+树.
+
+下面是简单用于测试两个单词是否是兄弟的代码.
+
+    :::python
+    prime_l = [
+        2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41,
+        43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101,
+        103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167,
+        173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239
+    ]
+
+    def prime_match(str1, str2):
+        if len(str1) != len(str2):
+            return False
+        p1 = p2 = 1
+        for s in str1:
+            index = (ord(s) - ord('a') + 26) if s > 'Z' else (ord(s) - ord('A'))
+            p1 *= prime_l[index]
+        for s in str2:
+            index = (ord(s) - ord('a') + 26) if s > 'Z' else (ord(s) - ord('A'))
+            p2 *= prime_l[index]
+        return p1 == p2
+
+    def sorted_match(str1, str2):
+        if len(str1) != len(str2):
+            return False
+        return sorted(str1) == sorted(str2)
+
+    print(prime_match('bad', 'abD'), sorted_match('bad', 'abD'))
+    print(prime_match('army', 'mary'), sorted_match('army', 'mary'))
+    print(prime_match('army', 'maryb'), sorted_match('army', 'maryb'))

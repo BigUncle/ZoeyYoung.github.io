@@ -1,0 +1,145 @@
+Title: [算法] 两个字符串是否包含的问题
+Date: 2013-09-06
+Tags: 笔试,面试
+Slug: alphabet-contain
+Author: Zoey Young
+Summary: 题目: 假设有一个各种字母组成的字符串，假设这还有另外一个字符串，而且这个字符串里的字母数相对少一些。从算法是讲，什么方法能最快的查出所有小字符串里的字母在大字符串里都有？
+
+题目: 假设有一个各种字母组成的字符串, 假设这还有另外一个字符串, 而且这个字符串里的字母数相对少一些. 从算法上讲, 什么方法能最快的查出所有小字符串里的字母在大字符串里都有?
+
+比如, 如果是下面两个字符串:
+
+    String 1: ABCDEFGHLMNOPQRS
+    String 2: DCGSRQPOM
+
+答案是true, 所有在string2里的字母string1也都有. 如果是下面两个字符串:
+
+    String 1: ABCDEFGHLMNOPQRS
+    String 2: DCGSRQPOZ
+
+答案是false, 因为第二个字符串里的Z字母不在第一个字符串里.
+
+有如下几种解法:
+
+    :::python
+    # O(n*m)
+    # 直接遍历
+    def normal_contain(str_l, str_s):
+        list_str_l = list(str_l)
+        for s in str_s:
+            if s in list_str_l:
+                list_str_l.remove(s)
+            else:
+                return False
+        return True
+
+    # 排序后遍历
+    def sorted_contain(str_l, str_s):
+        str_l, str_s = sorted(str_l), sorted(str_s)
+        len_str_l, len_str_s = len(str_l), len(str_s)
+        i = j = 0
+        while i < len_str_s and j < len_str_l:
+            if str_s[i] == str_l[j]:
+                i, j = i+1, j+1
+            else:
+                j += 1
+        return i == len_str_s
+
+    # hash 计数
+    def hash_contain(str_l, str_s):
+        # from collections import Counter
+        # dict_str_l = Counter(str_l)
+        dict_str_l = {}
+        for s in str_l:
+            if s in dict_str_l:
+                dict_str_l[s] += 1
+            else:
+                dict_str_l[s] = 1
+        for s in str_s:
+            if s in dict_str_l:
+                dict_str_l[s] -= 1
+                if dict_str_l[s] == 0:
+                    dict_str_l.pop(s)
+            else:
+                return False
+        return True
+
+    # 素数法
+    PRIME_52 = [
+        2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41,
+        43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101,
+        103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167,
+        173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239
+    ]
+
+    def prime_contain(str_l, str_s):
+        p1 = p2 = 1
+        # ord('a') = 97 ord('A') = 65
+        for s in str_l:
+            index = (ord(s) - 97 + 26) if s > 'Z' else (ord(s) - 65)
+            p1 *= PRIME_52[index]
+        for s in str_s:
+            index = (ord(s) - 97 + 26) if s > 'Z' else (ord(s) -65)
+            if p1 % PRIME_52[index] == 0:
+                p1 /= PRIME_52[index]
+            else:
+                return False
+        return True
+
+测试正确性使用:
+
+    :::python
+    print(normal_contain('ABCDEFGHLMNOPQRS', 'DCGSRQPOM'))
+    print(normal_contain('ABCDEFGHLMNOPQRS', 'DCGSRQPOZ'))
+    print(normal_contain('AABCDEFGHLMNOPQRS', 'AADCGSRQPOM'))
+    print(sorted_contain('ABCDEFGHLMNOPQRS', 'DCGSRQPOM'))
+    print(sorted_contain('ABCDEFGHLMNOPQRS', 'DCGSRQPOZ'))
+    print(sorted_contain('AABCDEFGHLMNOPQRS', 'AADCGSRQPOM'))
+    print(hash_contain('ABCDEFGHLMNOPQRS', 'DCGSRQPOM'))
+    print(hash_contain('ABCDEFGHLMNOPQRS', 'DCGSRQPOZ'))
+    print(hash_contain('AABCDEFGHLMNOPQRS', 'AADCGSRQPOM'))
+    print(prime_contain('ABCDEFGHLMNOPQRS', 'DCGSRQPOM'))
+    print(prime_contain('ABCDEFGHLMNOPQRS', 'DCGSRQPOZ'))
+    print(prime_contain('AABCDEFGHLMNOPQRS', 'AADCGSRQPOM'))
+
+测试, 一般情况下:
+
+    :::python
+    from functools import partial
+    import timeit
+    print("normal_contain", timeit.Timer(partial(normal_contain, 'ABCDEFGHLMNOPQRS', 'DCGSRQPOM')).repeat(5))
+    print("sorted_contain", timeit.Timer(partial(sorted_contain, 'ABCDEFGHLMNOPQRS', 'DCGSRQPOM')).repeat(5))
+    print("hash_contain", timeit.Timer(partial(hash_contain, 'ABCDEFGHLMNOPQRS', 'DCGSRQPOM')).repeat(5))
+    print("prime_contain", timeit.Timer(partial(prime_contain, 'ABCDEFGHLMNOPQRS', 'DCGSRQPOM')).repeat(5))
+
+结果:
+
+    :::python
+    ('normal_contain', [6.362308025360107, 5.744957208633423, 5.661204814910889, 7.36407208442688, 5.63322901725769])
+    ('sorted_contain', [6.286291122436523, 6.277117967605591, 6.292449951171875, 6.091110944747925, 6.123614072799683])
+    ('hash_contain', [6.700244903564453, 6.618301868438721, 7.309581995010376, 6.515559196472168, 6.350136995315552])
+    ('prime_contain', [10.870138883590698, 12.051301002502441, 10.84837794303894, 10.468207120895386, 14.259312152862549])
+
+测试, 极端情况下:
+
+    :::python
+    from functools import partial
+    import timeit
+    print("normal_contain", timeit.Timer(partial(normal_contain, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'ZYXWVUTSRQPONMLKJIHGFEDCBA')).repeat(5))
+    print("sorted_contain", timeit.Timer(partial(sorted_contain, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'ZYXWVUTSRQPONMLKJIHGFEDCBA')).repeat(5))
+    print("hash_contain", timeit.Timer(partial(hash_contain, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'ZYXWVUTSRQPONMLKJIHGFEDCBA')).repeat(5))
+    print("prime_contain", timeit.Timer(partial(prime_contain, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'ZYXWVUTSRQPONMLKJIHGFEDCBA')).repeat(5))
+
+结果:
+
+    :::python
+    ('normal_contain', [18.63632297515869, 18.41497802734375, 18.31280493736267, 18.751588106155396, 18.217451095581055])
+    ('sorted_contain', [9.113880157470703, 9.531869888305664, 9.468177080154419, 9.110601902008057, 9.284788131713867])
+    ('hash_contain', [14.959026098251343, 14.773585081100464, 14.640642881393433, 14.979124069213867, 14.67639708518982])
+    ('prime_contain', [26.744000911712646, 25.518390893936157, 25.43153190612793, 25.511915922164917, 25.730863094329834])
+
+先排序后再轮询最快.
+
+素数法比较有意思. 但是最慢的.
+
+更多说明: [一次谷歌面试趣事](http://www.aqee.net/google-interviewing-story/)
