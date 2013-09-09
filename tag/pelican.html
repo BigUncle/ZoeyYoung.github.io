@@ -103,53 +103,106 @@
       </div>
       <div class="main-content col-md-10">
           
-<!--     <div class='row'>
+    <div class='row'>
         <div class="col-md-10">
-            <a href="http://zoeyyoung.github.io/getting-start-with-pelican.html"><h1>在 Windows 下使用 Pelican + GitCafe Page 创建 Blog</h1></a>
+            <a href="http://zoeyyoung.github.io/pelican-theme.html"><h1>[实例] 自动动手制作Pelican主题</h1></a>
             <div class="article-metadata">
-<time class="published" datetime="2013 六月 13 周四">2013 六月 13 周四 </time>
+<time class="published" datetime="2013 六月 25 周二">2013 六月 25 周二 </time>
 <a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
 <span>
     <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/tips.html">Tips</a>
+    <a href="http://zoeyyoung.github.io/category/qian-duan.html">前端</a>
 </span>
 <span>
     <i class="icon-tags"></i>
-        <a href="http://zoeyyoung.github.io/tag/pelican.html">pelican</a>
+        <a href="http://zoeyyoung.github.io/tag/pelican.html">Pelican</a>
+        <a href="http://zoeyyoung.github.io/tag/theme.html">Theme</a>
     </span>
 <!-- <p></p> -->
-</div>            <p>参考该<a href="http://riku.gitcafe.com/category/post.html">博客</a>的两篇文章</p>
-<h3>安装</h3>
-<p><a href="http://docs.getpelican.com/en/latest/getting_started.html">官方文档</a></p>
-<p>我使用virtualenv安装(需要先安装virtualenv):</p>
-<div class="highlight"><pre>D:\<span class="p">&gt;</span><span class="n">virtualenv</span> pelican
-D:\<span class="p">&gt;</span><span class="n">cd</span> pelican<span class="n">/Scripts</span>
-D:\pelican\Scripts<span class="p">&gt;</span><span class="n">activate</span>.bat
-D:\pelican\Scripts<span class="p">&gt;</span><span class="n">pip</span> install pelican
-D:\pelican\Scripts<span class="p">&gt;</span><span class="n">pip</span> install Markdown
-D:\pelican\Scripts<span class="p">&gt;</span><span class="n">cd</span> ..
-D:\pelican<span class="p">&gt;</span><span class="n">pelican</span>-quickstart
+</div>            <h3>我创建的主题</h3>
+<p><a href="https://github.com/ZoeyYoung/my-pelican-theme">第1个主题</a></p>
+<p><img alt="截图" src="/static/images/screenshot.jpg" /></p>
+<h3>使用主题</h3>
+<div class="highlight"><pre><span class="c"># Specify name of a built-in theme</span>
+<span class="n">THEME</span> <span class="o">=</span> <span class="s">&quot;notmyidea&quot;</span>
+<span class="c"># Specify name of a theme installed via the pelican-themes tool</span>
+<span class="n">THEME</span> <span class="o">=</span> <span class="s">&quot;chunk&quot;</span>
+<span class="c"># Specify a customized theme, via path relative to the settings file</span>
+<span class="n">THEME</span> <span class="o">=</span> <span class="s">&quot;themes/mycustomtheme&quot;</span>
+<span class="c"># Specify a customized theme, via absolute path</span>
+<span class="n">THEME</span> <span class="o">=</span> <span class="s">&quot;~/projects/mysite/themes/mycustomtheme&quot;</span>
 </pre></div>
 
 
-<p>配置文件: <strong>pelicanconf.py</strong></p>
-<p><strong>特别注意</strong> 以为创建与账户名同名的项目名称要小写，结果半天都没生成(GitHub是要小写的)，最后删除项目重新创建与 <strong>ZoeyYoung</strong> 项目才终于正确生成页面了.</p>
-<p>快速发布, 在<strong>pelican目录</strong>下</p>
-<p>创建<strong>publish.bat</strong>文件:</p>
-<div class="highlight"><pre>pelican -s pelicanconf.py content -o output
-<span class="k">cd</span> output
-git add .
-git commit -m <span class="s2">&quot;Update&quot;</span>
-git push
-<span class="k">cd</span> ../
+<h3>目录结构</h3>
+<div class="highlight"><pre><span class="err">├──</span> <span class="n">static</span>                    <span class="o">//</span> <span class="err">会被复制到</span> <span class="n">output</span><span class="o">/</span><span class="n">theme</span> <span class="err">文件夹</span>
+<span class="err">│</span>   <span class="err">├──</span> <span class="n">css</span>
+<span class="err">│</span>   <span class="err">└──</span> <span class="n">images</span>
+<span class="err">└──</span> <span class="n">templates</span>
+    <span class="err">├──</span> <span class="n">archives</span><span class="o">.</span><span class="n">html</span>         <span class="o">//</span> <span class="n">to</span> <span class="n">display</span> <span class="n">archives</span>
+    <span class="err">├──</span> <span class="n">period_archives</span><span class="o">.</span><span class="n">html</span>  <span class="o">//</span> <span class="n">to</span> <span class="n">display</span> <span class="n">time</span><span class="o">-</span><span class="n">period</span> <span class="n">archives</span>
+    <span class="err">├──</span> <span class="n">article</span><span class="o">.</span><span class="n">html</span>          <span class="o">//</span> <span class="n">processed</span> <span class="k">for</span> <span class="n">each</span> <span class="n">article</span>
+    <span class="err">├──</span> <span class="n">author</span><span class="o">.</span><span class="n">html</span>           <span class="o">//</span> <span class="n">processed</span> <span class="k">for</span> <span class="n">each</span> <span class="n">author</span>
+    <span class="err">├──</span> <span class="n">authors</span><span class="o">.</span><span class="n">html</span>          <span class="o">//</span> <span class="n">must</span> <span class="nb">list</span> <span class="nb">all</span> <span class="n">the</span> <span class="n">authors</span>
+    <span class="err">├──</span> <span class="n">categories</span><span class="o">.</span><span class="n">html</span>       <span class="o">//</span> <span class="err">列出所有分类目录</span>
+    <span class="err">├──</span> <span class="n">category</span><span class="o">.</span><span class="n">html</span>         <span class="o">//</span> <span class="n">processed</span> <span class="k">for</span> <span class="n">each</span> <span class="n">category</span>
+    <span class="err">├──</span> <span class="n">index</span><span class="o">.</span><span class="n">html</span>            <span class="o">//</span> <span class="n">the</span> <span class="n">index</span><span class="o">.</span> <span class="n">List</span> <span class="nb">all</span> <span class="n">the</span> <span class="n">articles</span>
+    <span class="err">├──</span> <span class="n">page</span><span class="o">.</span><span class="n">html</span>             <span class="o">//</span> <span class="n">processed</span> <span class="k">for</span> <span class="n">each</span> <span class="n">page</span>
+    <span class="err">├──</span> <span class="n">tag</span><span class="o">.</span><span class="n">html</span>              <span class="o">//</span> <span class="n">processed</span> <span class="k">for</span> <span class="n">each</span> <span class="n">tag</span>
+    <span class="err">└──</span> <span class="n">tags</span><span class="o">.</span><span class="n">html</span>             <span class="o">//</span> <span class="err">列出所有标签</span><span class="p">,</span> <span class="err">可以是标签云</span>
 </pre></div>
 
 
-<p>在命令行提示符下运行, 输入用户名, 密码, 则发布成功</p>
-<p><code>Permission denied (publickey).</code>的问题, 改成以<code>https</code>形式提交就解决了</p>
-<p>比如我的: https://gitcafe.com/ZoeyYoung/ZoeyYoung.git</p>
-<p>Ubuntu下应该没这个问题吧...</p>
-            <a class="btn btn-default btn-xs xsmall" href="http://zoeyyoung.github.io/getting-start-with-pelican.html"><i class="icon-comment"></i> 评论 </a>
+<p>快速的方案是拷贝已有的主题进行修改</p>
+<h3>模板 和 变量</h3>
+<h4>共同的变量</h4>
+<p>即在每个模板中能使用的变量, 其中在配置文件中定义的变量在所有模板中都能使用</p>
+<p>例如: 作者 {{ AUTHOR }}</p>
+<table border="1" class="docutils">
+    <colgroup>
+        <col width="20%">
+        <col width="80%">
+    </colgroup>
+    <thead valign="bottom">
+        <tr class="row-odd"><th class="head">变量</th>
+        <th class="head">描述</th>
+        </tr>
+    </thead>
+    <tbody valign="top">
+        <tr class="row-even">
+            <td>output_file</td>
+            <td>当前生成的文件的文件名. 例如, 当Pelican渲染主页时, output_file的值为"index.html".</td>
+        </tr>
+        <tr class="row-odd">
+            <td>articles</td>
+            <td>文章列表, 根据日期降序排序. 所有元素为<cite>Article</cite>对象, 可以访问其属性(如: title, summary, author等). 有时会被覆盖(例如在tags页中). 这时需要使用<cite>all_articles</cite>变量代替.</td>
+        </tr>
+        <tr class="row-even">
+            <td>dates</td>
+            <td>与articles同样的列表, 但是根据日期升序排序.</td>
+        </tr>
+        <tr class="row-odd">
+            <td>tags</td>
+            <td>(tag, articles)列表元组, 包含所有标签.</td>
+        </tr>
+        <tr class="row-even">
+            <td>categories</td>
+            <td>(category, articles)列表元组, 包含所有分类目录, 以及各自的文章(values)列表</td>
+        </tr>
+        <tr class="row-odd">
+            <td>pages</td>
+            <td>页面列表</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>每个模板页中还有特殊的变量, 很简单, 具体看官方文档</p>
+<p><a href="http://docs.getpelican.com/en/latest/themes.html">How to create themes for Pelican</a></p>
+<h3>pelican-themes脚本的使用</h3>
+<p><a href="http://docs.getpelican.com/en/latest/pelican-themes.html">pelican-themes</a></p>
+<p>不是非要使用...</p>
+<p>我是没用上 - -</p>
+            <a class="btn btn-default btn-xs xsmall" href="http://zoeyyoung.github.io/pelican-theme.html"><i class="icon-comment"></i> 评论 </a>
             <hr />
         </div>
     </div>
@@ -159,8 +212,7 @@ git push
     <li class="active"><a href="http://zoeyyoung.github.io/tag/pelican.html">1</a></li>
 
     <li class="next disabled"><a href="#">&rarr; 下一页</a></li>
-</ul>      -->
-  
+</ul>       
                 </div>    </div><!-- End of fluid row-->
   </div><!-- End of Container-->
   <!--footer-->
