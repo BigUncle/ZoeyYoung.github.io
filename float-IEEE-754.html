@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>[基础] 浮点数 - OK Computer</title>
+  <meta name="description" content="杨丁苗的个人博客">
+  <meta name="author" content="ZoeyYoung">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+  <!--[if lt IE 9]>
+  <script src="http://zoeyyoung.github.io/theme/html5.js"></script>
+  <![endif]-->
+  <!-- Le styles -->
+  <link href="http://netdna.bootstrapcdn.com/bootswatch/3.0.0/cyborg/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link href="http://zoeyyoung.github.io/theme/print.css" rel="stylesheet" media="print" />
+  <link href="http://zoeyyoung.github.io/theme/local.css" rel="stylesheet" media="screen" />
+  <link href="http://zoeyyoung.github.io/theme/pygments.css" rel="stylesheet" />
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet" />
+  <!--[if IE 7]>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome-ie7.min.css" rel="stylesheet" />
+  <![endif]-->
+  <script type="text/javascript" src="http://tajs.qq.com/stats?sId=27017681" charset="UTF-8"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div id="header" class="col-md-2 no-print">
+        <div class="brand-wrapper">
+          <a href="http://zoeyyoung.github.io" class="navbar-brand">OK Computer</a>
+          <p style="text-align: center; font-size: 12px; margin-top: 0;">It's better to burn out <br/> than to fade away.</p>
+        </div>
+        <ul id="blog-nav" class="nav">
+          <li>SITE</li>
+          <li><a href="http://zoeyyoung.github.io">首页</a></li>
+          <li><a href="http://zoeyyoung.github.io/archives.html">归档</a></li>
+          <li><a href="http://zoeyyoung.github.io/tags.html">标签</a></li>
+          <li><hr/></li>
+          <li>CATEGORIES</li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/java.html ">Java</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/linux.html ">Linux</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/nlp.html ">NLP</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/nosql.html ">NoSQL</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/python.html ">Python</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/ruby.html ">Ruby</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/tips.html ">Tips</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/qian-duan.html ">前端</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/dong-nao.html ">动脑</a>
+          </li>
+                    <li  class="active" >
+            <a href="http://zoeyyoung.github.io/category/ji-chu.html ">基础</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/gong-zuo-ji-lu.html ">工作记录</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/wo-de-xiang-mu.html ">我的项目</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/suan-fa.html ">算法</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/du-shu.html ">读书</a>
+          </li>
+                    <li><hr/></li>
+                    <li>PAGES<li>
+          
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/about-me.html">关于我</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/golden-slumber.html">Golden Slumber</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/neil-young.html">Neil Young</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/on-the-road.html">在路上</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/software.html">我使用的软件</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/translate.html">翻译</a>
+          </li>
+                            </ul>
+      </div>
+      <div class="main-content col-md-10">
+          <div class='article'>
+  <article class="col-md-10">
+    <h1>[基础] 浮点数</h1>
+    <div class="article-metadata">
+<time class="published" datetime="2013 九月 09 周一">2013 九月 09 周一 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/ji-chu.html">基础</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/ji-chu.html">基础</a>
+        <a href="http://zoeyyoung.github.io/tag/mian-shi.html">面试</a>
+        <a href="http://zoeyyoung.github.io/tag/bi-shi.html">笔试</a>
+        <a href="http://zoeyyoung.github.io/tag/ji-suan-ji.html">计算机</a>
+    </span>
+<!-- <p></p> -->
+</div>    <p>N bit可以表示的信息量是 2^N</p>
+<p>32位</p>
+<p>S--------E-------M</p>
+<p>1位-----8位-----23位</p>
+<p>64位</p>
+<p>S--------E-------M</p>
+<p>1位-----11位----52位</p>
+<p>表示的浮点数: (-1)^S * 2^(E-127) * (1.M)B</p>
+<p>E可以分成三种情况:</p>
+<ol>
+<li>E不全为0或不全为1. 这时, 浮点数就采用上面的规则表示, 即指数E的计算值减去127(或1023), 得到真实值, 再将有效数字M前加上第一位的1.</li>
+<li>E全为0时, 浮点数的指数E等于1-127 (或者1-1023), 有效数字M不再加上第一位的1, 而是还原为0.xxxxxx的小数. 这样做是为了表示±0, 以及接近于0的很小的数字.</li>
+<li>E全为1. 这时, 如果有效数字M全为0, 表示±无穷大(正负取决于符号位s); 如果有效数字M不全为0, 表示这个数不是一个数(NaN).</li>
+</ol>
+<p>区间是怎么求出来的:</p>
+<p>32 位可表示的浮点数:</p>
+<p>2^(-23) * 2^(1-127) = 1.4012984643248170709237295832899e-45 (考虑到最小值为最低位为1的情况, 且E全为0)</p>
+<p>2 * 2^127 = 3.4028236692093846346337460743177e+38 (1.M 表示的数小于2)</p>
+<p>表示范围: -3.402823E38 ~ -1.401298E-45 不可见 1.401298E-45 ~ 3.402823E38</p>
+<p>64 位:</p>
+<p>2^(-52) * 2^(1-1023) = 4.9406564584124654417656879286822e-324</p>
+<p>2 * 2^1023 = 1.797693134862315907729305190789e+308</p>
+<p>表示范围: -1.797693134862316E+308 ~ -4.94065E-324 不可见 4.94065E-324 ~ 1.797693134862316E+308</p>
+<blockquote>
+<p>在浮点数的表示范围内，有多于 99.999...% 的数在计算机中是 <strong>不能表示</strong> 的.</p>
+</blockquote>
+<p>要把小数装入计算机，总共分3步:</p>
+<ul>
+<li>第一步：转换成二进制</li>
+<li>第二步：用二进制科学计算法表示</li>
+<li>第三步：表示成 IEEE 754 形式</li>
+</ul>
+<p>在上面的第一步和第三步都有可能 <strong>丢失精度</strong>.</p>
+<p>0.1 到 0.9 的 9 个小数中, 只有 0.5 可以用二进制精确的表示.</p>
+<p>如果把 0.0 再算上, 那么就有两个数可以精确表示, 一个奇数 0.5, 一个偶数 0.0.</p>
+<p>如果一个十进制数可以用二进制精确表示, 那么它的最后一位肯定是 5.</p>
+<p>备注：这是个必要条件, 而不是充分条件. 一位热心网友设计出了下面的解决精度的方案. 我就不解释了, 同学们自己思考一下吧.</p>
+<blockquote>
+<p>我有一个观点, 针对小数精度不够的问题(例如 0.1), 软件可以人为的在数据最后一位补 5, 也就是 0.15, 这样牺牲一位, 但是可以保证数据精度, 还原再把那个尾巴 5 去掉.</p>
+</blockquote>
+<p><a href="http://www.ruanyifeng.com/blog/2010/06/ieee_floating-point_representation.html">浮点数的二进制表示</a></p>
+<p><a href="http://geeklu.com/2011/03/ieee754-floating-point-arithmetic/">浮点数解惑</a></p>
+<p><a href="http://babbage.cs.qc.cuny.edu/IEEE-754/index.xhtml">换算工具</a></p>
+<p><a href="http://justjavac.com/codepuzzle/2012/11/02/codepuzzle-float-from-surprised-to-ponder.html">代码之谜（四）- 浮点数（从惊讶到思考）</a></p>
+<p><a href="http://justjavac.com/codepuzzle/2012/11/11/codepuzzle-float-who-stole-your-accuracy.html">代码之谜（五）- 浮点数（谁偷了你的精度？）</a></p>
+<p>用定点数精确表示小数</p>
+    <hr />
+  </article>
+  <div class="col-md-12 comment">
+      <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style_32x32 no-print">
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a href="http://www.jiathis.com/share?uid=1801890" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1801890" charset="utf-8"></script>
+<!-- JiaThis Button END -->      <!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" id="UYScript" src="http://v1.uyan.cc/js/iframe.js?UYUserId=1801890" async=""></script>
+<!-- UY END -->  </div>
+</div>
+                </div>    </div><!-- End of fluid row-->
+  </div><!-- End of Container-->
+  <!--footer-->
+  <footer id="footer" class="no-print">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-2" id="socialist">
+          <ul class="nav">
+            <li>Social</li>
+                                    <li><a href="http://weibo.com/1990zoey"><i class="icon-weibo icon-large"></i>新浪微博</a></li>
+                        <li><a href="http://www.renren.com/230222157/profile"><i class="icon-renren icon-large"></i>人人网</a></li>
+                        <li><a href="http://www.douban.com/people/ZoeyYoung/"><i class="icon-leaf icon-large"></i>豆瓣</a></li>
+                                    <li><a href="mailto:ydingmiao@gmail.com">
+              <i class="icon-envelope icon-large"></i>联系我
+            </a></li>
+                      </ul>
+        </div>
+                <div class="col-md-2">
+          <ul class="nav">
+            <li>Links</li>
+                                    <li><a href="http://my.oschina.net/zoey1990">
+              <i class="icon-heart icon-large"></i>OSC
+            </a></li>
+                        <li><a href="http://www.xiami.com/u/2092563">
+              <i class="icon-music icon-large"></i>虾米
+            </a></li>
+                        <li><a href="https://gist.github.com/ZoeyYoung">
+              <i class="icon-github icon-large"></i>GIST
+            </a></li>
+                        <li><a href="https://github.com/ZoeyYoung">
+              <i class="icon-github icon-large"></i>GitHub
+            </a></li>
+                      </ul>
+        </div>
+        <div class="col-md-2" id="site-links">
+          <ul class="nav">
+            <li>Site</li>
+            <li><a href="http://zoeyyoung.github.io">
+              <i class="icon-home icon-large"></i>首页
+            </a></li>
+            <li><a href="http://zoeyyoung.github.io/archives.html">
+              <i class="icon-list icon-large"></i>归档
+            </a></li>
+            <li><a href="http://zoeyyoung.github.io/tags.html">
+              <i class="icon-tags icon-large"></i>标签
+            </a></li>
+                        <li><a href="http://zoeyyoung.github.io/" rel="alternate">
+              <i class="icon-rss-sign icon-large"></i>Atom Feed
+            </a></li>
+          </ul>
+        </div>
+                <div class="sina-weibo col-md-4">
+          <a href="http://weibo.com/u/1861922471?s=6uyXnP" target="_blank"><img border="0" src="http://service.t.sina.com.cn/widget/qmd/1861922471/c4ba5282/1.png"/></a>
+        </div>
+                <div class="col-md-1"></div>
+      </div><!--end of fluid row-->
+      <p style="text-align: center;">
+          <a href="http://zoeyyoung.github.io">OK Computer</a>
+          &copy; ZoeyYoung
+          Powered by
+          <a href="https://github.com/getpelican/pelican">Pelican</a>
+          and
+          <a href="https://twitter.github.com/bootstrap">Twitter Bootstrap</a>
+          .
+          Icons by
+          <a href="http://gregoryloucas.github.io/Fontstrap/">Font Awesome</a>
+          .Theme By <a href="http://zoeyyoung.gitcafe.com/">ZoeyYoung</a>
+      </p>
+    </div>
+  </footer>
+  <!--/footer-->
+  <script src="http://zoeyyoung.github.io/theme/jquery.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script>var _gaq=[['_setAccount','UA-41731595-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='http//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+</body>
+</html>

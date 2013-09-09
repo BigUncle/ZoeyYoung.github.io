@@ -25,7 +25,8 @@ Summary: Python 计算单词数
         with open('words', 'rb') as words:
             for w in words:
                 w = w[:-1]
-                data[w] = data.get(w, 0)+1
+                # data[w] = data.get(w, 0)+1
+                data[w] = 1 if w not in data else (data[w]+1)
         top100 = nlargest(100, data, key=lambda x:data[x])
         for w in top100:
             print(w, data[w])

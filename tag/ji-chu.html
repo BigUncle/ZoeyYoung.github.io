@@ -64,6 +64,9 @@
             <a href="http://zoeyyoung.github.io/category/dong-nao.html ">动脑</a>
           </li>
                     <li >
+            <a href="http://zoeyyoung.github.io/category/ji-chu.html ">基础</a>
+          </li>
+                    <li >
             <a href="http://zoeyyoung.github.io/category/gong-zuo-ji-lu.html ">工作记录</a>
           </li>
                     <li >
@@ -100,10 +103,80 @@
       </div>
       <div class="main-content col-md-10">
           
-    <div class='row'>
-        <div class="col-md-12">
-            <a href="http://zoeyyoung.github.io/python-factorial-evolution.html"><h1>[整理] Python程序员的进化史</h1></a>
+<!--     <div class='row'>
+        <div class="col-md-10">
+            <a href="http://zoeyyoung.github.io/float-IEEE-754.html"><h1>[基础] 浮点数</h1></a>
             <div class="article-metadata">
+<time class="published" datetime="2013 九月 09 周一">2013 九月 09 周一 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/ji-chu.html">基础</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/ji-chu.html">基础</a>
+        <a href="http://zoeyyoung.github.io/tag/mian-shi.html">面试</a>
+        <a href="http://zoeyyoung.github.io/tag/bi-shi.html">笔试</a>
+        <a href="http://zoeyyoung.github.io/tag/ji-suan-ji.html">计算机</a>
+    </span>
+<!-- <p></p> -->
+</div>            <p>N bit可以表示的信息量是 2^N</p>
+<p>32位</p>
+<p>S--------E-------M</p>
+<p>1位-----8位-----23位</p>
+<p>64位</p>
+<p>S--------E-------M</p>
+<p>1位-----11位----52位</p>
+<p>表示的浮点数: (-1)^S * 2^(E-127) * (1.M)B</p>
+<p>E可以分成三种情况:</p>
+<ol>
+<li>E不全为0或不全为1. 这时, 浮点数就采用上面的规则表示, 即指数E的计算值减去127(或1023), 得到真实值, 再将有效数字M前加上第一位的1.</li>
+<li>E全为0时, 浮点数的指数E等于1-127 (或者1-1023), 有效数字M不再加上第一位的1, 而是还原为0.xxxxxx的小数. 这样做是为了表示±0, 以及接近于0的很小的数字.</li>
+<li>E全为1. 这时, 如果有效数字M全为0, 表示±无穷大(正负取决于符号位s); 如果有效数字M不全为0, 表示这个数不是一个数(NaN).</li>
+</ol>
+<p>区间是怎么求出来的:</p>
+<p>32 位可表示的浮点数:</p>
+<p>2^(-23) * 2^(1-127) = 1.4012984643248170709237295832899e-45 (考虑到最小值为最低位为1的情况, 且E全为0)</p>
+<p>2 * 2^127 = 3.4028236692093846346337460743177e+38 (1.M 表示的数小于2)</p>
+<p>表示范围: -3.402823E38 ~ -1.401298E-45 不可见 1.401298E-45 ~ 3.402823E38</p>
+<p>64 位:</p>
+<p>2^(-52) * 2^(1-1023) = 4.9406564584124654417656879286822e-324</p>
+<p>2 * 2^1023 = 1.797693134862315907729305190789e+308</p>
+<p>表示范围: -1.797693134862316E+308 ~ -4.94065E-324 不可见 4.94065E-324 ~ 1.797693134862316E+308</p>
+<blockquote>
+<p>在浮点数的表示范围内，有多于 99.999...% 的数在计算机中是 <strong>不能表示</strong> 的.</p>
+</blockquote>
+<p>要把小数装入计算机，总共分3步:</p>
+<ul>
+<li>第一步：转换成二进制</li>
+<li>第二步：用二进制科学计算法表示</li>
+<li>第三步：表示成 IEEE 754 形式</li>
+</ul>
+<p>在上面的第一步和第三步都有可能 <strong>丢失精度</strong>.</p>
+<p>0.1 到 0.9 的 9 个小数中, 只有 0.5 可以用二进制精确的表示.</p>
+<p>如果把 0.0 再算上, 那么就有两个数可以精确表示, 一个奇数 0.5, 一个偶数 0.0.</p>
+<p>如果一个十进制数可以用二进制精确表示, 那么它的最后一位肯定是 5.</p>
+<p>备注：这是个必要条件, 而不是充分条件. 一位热心网友设计出了下面的解决精度的方案. 我就不解释了, 同学们自己思考一下吧.</p>
+<blockquote>
+<p>我有一个观点, 针对小数精度不够的问题(例如 0.1), 软件可以人为的在数据最后一位补 5, 也就是 0.15, 这样牺牲一位, 但是可以保证数据精度, 还原再把那个尾巴 5 去掉.</p>
+</blockquote>
+<p><a href="http://www.ruanyifeng.com/blog/2010/06/ieee_floating-point_representation.html">浮点数的二进制表示</a></p>
+<p><a href="http://geeklu.com/2011/03/ieee754-floating-point-arithmetic/">浮点数解惑</a></p>
+<p><a href="http://babbage.cs.qc.cuny.edu/IEEE-754/index.xhtml">换算工具</a></p>
+<p><a href="http://justjavac.com/codepuzzle/2012/11/02/codepuzzle-float-from-surprised-to-ponder.html">代码之谜（四）- 浮点数（从惊讶到思考）</a></p>
+<p><a href="http://justjavac.com/codepuzzle/2012/11/11/codepuzzle-float-who-stole-your-accuracy.html">代码之谜（五）- 浮点数（谁偷了你的精度？）</a></p>
+<p>用定点数精确表示小数</p>
+            <a class="btn btn-default btn-xs xsmall" href="http://zoeyyoung.github.io/float-IEEE-754.html"><i class="icon-comment"></i> 评论 </a>
+            <hr />
+        </div>
+    </div>
+      -->
+<!--  -->
+    <div class='row'>
+      <div class='col-md-10'>
+        <a href="http://zoeyyoung.github.io/python-factorial-evolution.html"><h1>[整理] Python程序员的进化史</h1></a>
+        <div class="article-metadata">
 <time class="published" datetime="2013 九月 05 周四">2013 九月 05 周四 </time>
 <a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
 <span>
@@ -116,147 +189,16 @@
         <a href="http://zoeyyoung.github.io/tag/ji-chu.html">基础</a>
     </span>
 <!-- <p></p> -->
-</div>            <p>测试GIST <a href="https://gist.github.com/fmeyer/289467/">Evolution of a Python programmer.py</a> 中的代码</p>
-<p>该代码片段为各种程序员所写的阶乘算法代码, 甚至包括网页设计师的, 很有意思</p>
-<p>Windows程序员 和 企业程序员亮了...</p>
-<p>Python 3下测试</p>
-<p><a href="http://pan.baidu.com/share/link?shareid=1766399277&amp;uk=1412733551">测试代码</a></p>
-<p>修改自: https://github.com/radiosilence/Algo-Bench</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">import</span> <span class="nn">timeit</span>
-<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="nb">reduce</span>
-
-<span class="k">def</span> <span class="nf">bench</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">setup</span><span class="p">):</span>
-    <span class="c"># print(&quot;========================================================&quot;)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">&quot;Starting algorithm </span><span class="si">%s</span><span class="s"> for </span><span class="si">%s</span><span class="s">!&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">num</span><span class="p">))</span>
-    <span class="c"># print(&quot;========================================================&quot;)</span>
-    <span class="n">stmt</span> <span class="o">=</span> <span class="n">callback</span> <span class="o">+</span> <span class="s">&#39;(&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;)&#39;</span>
-    <span class="n">repeat</span> <span class="o">=</span> <span class="mi">5</span>
-    <span class="n">number</span> <span class="o">=</span> <span class="mi">20</span>
-    <span class="c"># print(&quot;timeit.repeat(&#39;%s&#39;, setup=&#39;%s&#39;, repeat=%d, number=%d)&quot; % (stmt, setup, repeat, number))</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">stmt</span><span class="p">,</span> <span class="n">setup</span><span class="o">=</span><span class="n">setup</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="n">repeat</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="n">number</span><span class="p">)</span>
-    <span class="n">avg</span> <span class="o">=</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-    <span class="c"># print(avg)</span>
-    <span class="c"># print(&quot;========================================================\n&quot;)</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">avg</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="mi">3000</span>
-
-    <span class="n">sys</span><span class="o">.</span><span class="n">setrecursionlimit</span><span class="p">(</span><span class="n">r</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
-
-    <span class="k">print</span><span class="p">(</span><span class="s">&quot;Recursion limit:&quot;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">getrecursionlimit</span><span class="p">())</span>
-
-    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
-
-    <span class="n">s1</span> <span class="o">=</span> <span class="s">&#39;from algos.newbie import factorial as newbie&#39;</span>
-    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bench</span><span class="p">(</span><span class="s">&quot;Newbie&quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="s">&#39;newbie&#39;</span><span class="p">,</span> <span class="n">s1</span><span class="p">))</span>
-
-    <span class="n">s2</span> <span class="o">=</span> <span class="s">&#39;from algos.firstyear_pascal import factorial as firstyear_pascal&#39;</span>
-    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bench</span><span class="p">(</span><span class="s">&quot;First Year Pascal&quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="s">&#39;firstyear_pascal&#39;</span><span class="p">,</span> <span class="n">s2</span><span class="p">))</span>
-
-    <span class="n">s3</span> <span class="o">=</span> <span class="s">&#39;from algos.firstyear_c import fact as firstyear_c&#39;</span>
-    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bench</span><span class="p">(</span><span class="s">&quot;First Year C&quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="s">&#39;firstyear_c&#39;</span><span class="p">,</span> <span class="n">s3</span><span class="p">))</span>
-
-    <span class="n">s4</span> <span class="o">=</span> <span class="s">&#39;from algos.firstyear_sicp import fact as firstyear_sicp&#39;</span>
-    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bench</span><span class="p">(</span><span class="s">&quot;First Year SICP&quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="s">&#39;firstyear_sicp&#39;</span><span class="p">,</span> <span class="n">s4</span><span class="p">))</span>
-
-    <span class="n">s5</span> <span class="o">=</span> <span class="s">&#39;from algos.firstyear_python import Factorial as firstyear_python&#39;</span>
-    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bench</span><span class="p">(</span><span class="s">&quot;First Year Python&quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="s">&#39;firstyear_python&#39;</span><span class="p">,</span> <span class="n">s5</span><span class="p">))</span>
-
-    <span class="n">s6</span> <span class="o">=</span> <span class="s">&#39;from algos.lazy_python import fact as lazy_python&#39;</span>
-    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bench</span><span class="p">(</span><span class="s">&quot;Lazy Python&quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="s">&#39;lazy_python&#39;</span><span class="p">,</span> <span class="n">s6</span><span class="p">))</span>
-
-    <span class="n">s7</span> <span class="o">=</span> <span class="s">&#39;from algos.lazier_python import f as lazier_python&#39;</span>
-    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bench</span><span class="p">(</span><span class="s">&quot;Lazier Python&quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="s">&#39;lazier_python&#39;</span><span class="p">,</span> <span class="n">s7</span><span class="p">))</span>
-
-    <span class="n">s8</span> <span class="o">=</span> <span class="s">&#39;from algos.python_expert import fact as python_expert&#39;</span>
-    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bench</span><span class="p">(</span><span class="s">&quot;Python Expert&quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="s">&#39;python_expert&#39;</span><span class="p">,</span> <span class="n">s8</span><span class="p">))</span>
-
-    <span class="n">s9</span> <span class="o">=</span> <span class="s">&#39;from algos.python_hacker import fact as python_hacker&#39;</span>
-    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bench</span><span class="p">(</span><span class="s">&quot;Python Hacker&quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="s">&#39;python_hacker&#39;</span><span class="p">,</span> <span class="n">s9</span><span class="p">))</span>
-
-    <span class="n">s10</span> <span class="o">=</span> <span class="s">&#39;from algos.expert_programmer import fact as expert_programmer&#39;</span>
-    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bench</span><span class="p">(</span><span class="s">&quot;Expert Programmer&quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="s">&#39;expert_programmer&#39;</span><span class="p">,</span> <span class="n">s10</span><span class="p">))</span>
-
-    <span class="n">s11</span> <span class="o">=</span> <span class="s">&#39;from algos.web_designer import factorial as web_designer&#39;</span>
-    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bench</span><span class="p">(</span><span class="s">&quot;Web Designer&quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="s">&#39;web_designer&#39;</span><span class="p">,</span> <span class="n">s11</span><span class="p">))</span>
-
-    <span class="c"># s12 = &#39;from algos.unix_programmer import fact as unix_programmer&#39;</span>
-    <span class="c"># results.append(bench(&quot;Unix Programmer&quot;, r, &#39;unix_programmer&#39;, s12))</span>
-
-    <span class="n">s13</span> <span class="o">=</span> <span class="s">&#39;from algos.windows_programmer import fact as windows_programmer&#39;</span>
-    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bench</span><span class="p">(</span><span class="s">&quot;Windows Programmer&quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="s">&#39;windows_programmer&#39;</span><span class="p">,</span> <span class="n">s13</span><span class="p">))</span>
-
-    <span class="n">s14</span> <span class="o">=</span> <span class="s">&#39;from algos.enterprise_programmer import f as enterprise_programmer&#39;</span>
-    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bench</span><span class="p">(</span><span class="s">&quot;Enterprise Programmer&quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="s">&#39;enterprise_programmer&#39;</span><span class="p">,</span> <span class="n">s14</span><span class="p">))</span>
-
-    <span class="n">results</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-</pre></div>
-
-
-<p>64位 Win7下测试:</p>
-<div class="highlight"><pre><span class="n">Expert</span> <span class="n">Programmer</span> <span class="mf">0.010347517229714675</span>
-<span class="n">Windows</span> <span class="n">Programmer</span> <span class="mf">0.061831563425221246</span>
-<span class="n">Python</span> <span class="n">Expert</span> <span class="mf">0.06522446660547114</span>
-<span class="n">First</span> <span class="n">Year</span> <span class="n">Python</span> <span class="mf">0.06550025698835915</span>
-<span class="n">First</span> <span class="n">Year</span> <span class="n">Pascal</span> <span class="mf">0.0690858603855318</span>
-<span class="n">Lazy</span> <span class="n">Python</span> <span class="mf">0.08069138900155508</span>
-<span class="n">First</span> <span class="n">Year</span> <span class="n">C</span> <span class="mf">0.08128952324964653</span>
-<span class="n">Lazier</span> <span class="n">Python</span> <span class="mf">0.08429218180653777</span>
-<span class="n">Newbie</span> <span class="mf">0.10587148611523918</span>
-<span class="n">Enterprise</span> <span class="n">Programmer</span> <span class="mf">0.12307353151268216</span>
-<span class="n">First</span> <span class="n">Year</span> <span class="n">SICP</span> <span class="mf">0.17105219080523565</span>
-<span class="n">Python</span> <span class="n">Hacker</span> <span class="mf">0.17289134072386964</span>
-<span class="n">Web</span> <span class="n">Designer</span> <span class="mf">51.60132410583651</span>
-</pre></div>
-
-
-<p>32位 Ubuntu下测试:</p>
-<div class="highlight"><pre><span class="n">Expert</span> <span class="n">Programmer</span> <span class="mf">0.03371856439916883</span>
-<span class="n">Python</span> <span class="n">Expert</span> <span class="mf">0.08991506800084607</span>
-<span class="n">First</span> <span class="n">Year</span> <span class="n">C</span> <span class="mf">0.0977142803996685</span>
-<span class="n">First</span> <span class="n">Year</span> <span class="n">Python</span> <span class="mf">0.10037733459903393</span>
-<span class="n">First</span> <span class="n">Year</span> <span class="n">Pascal</span> <span class="mf">0.10648313619894907</span>
-<span class="n">Windows</span> <span class="n">Programmer</span> <span class="mf">0.11215310560073703</span>
-<span class="n">Newbie</span> <span class="mf">0.11447444600053132</span>
-<span class="n">Lazy</span> <span class="n">Python</span> <span class="mf">0.11950725499918917</span>
-<span class="n">Lazier</span> <span class="n">Python</span> <span class="mf">0.12218411840149201</span>
-<span class="n">Enterprise</span> <span class="n">Programmer</span> <span class="mf">0.1422563709988026</span>
-<span class="n">First</span> <span class="n">Year</span> <span class="n">SICP</span> <span class="mf">0.20282029940135543</span>
-<span class="n">Python</span> <span class="n">Hacker</span> <span class="mf">0.20943743179814192</span>
-<span class="n">Web</span> <span class="n">Designer</span> <span class="mf">217.28668789780204</span>
-</pre></div>
-
-
-<p>结论是直接调用语言内置的math.factorial最快</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">math</span>
-<span class="n">fact</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">factorial</span>
-</pre></div>
-
-
-<p>Python Expert, 这里可以学习reduce的使用:</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">operator</span> <span class="kn">as</span> <span class="nn">op</span>
-<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="nb">reduce</span>
-<span class="n">fact</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">reduce</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">mul</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
-</pre></div>
-
-
-<p><code>functools.reduce(function, iterable[, initializer])</code></p>
-<p>例如: <code>reduce(lambda x, y: x+y, [1, 2, 3, 4, 5])</code> 计算 <code>((((1+2)+3)+4)+5)</code></p>
-<p>还要了解下尾调用和尾递归</p>
-            <a class="btn btn-default btn-xs xsmall" href="http://zoeyyoung.github.io/python-factorial-evolution.html"><i class="icon-comment"></i> 评论 </a>
-            <hr />
-        </div>
+</div>        <p>测试GIST <a href="https://gist.github.com/fmeyer/289467/">Evolution of a Python programmer.py</a> 中的代码, 该代码片段为各种程序员所写的阶乘算法代码, 甚至包括网页设计师的, 很有意思</p>
+        <a class="btn btn-default btn-xs xsmall" href="http://zoeyyoung.github.io/python-factorial-evolution.html">
+        <i class="icon-plus-sign"></i> 阅读全文 </a>
+        <hr />
+      </div>
     </div>
-         <div class='row'>
-      <div class='col-md-12'>
+    <!--   -->
+<!--  -->
+    <div class='row'>
+      <div class='col-md-10'>
         <a href="http://zoeyyoung.github.io/python-bisect.html"><h1>[算法] Python 中的二分算法</h1></a>
         <div class="article-metadata">
 <time class="published" datetime="2013 八月 30 周五">2013 八月 30 周五 </time>
@@ -277,8 +219,10 @@
         <hr />
       </div>
     </div>
-         <div class='row'>
-      <div class='col-md-12'>
+    <!--   -->
+<!--  -->
+    <div class='row'>
+      <div class='col-md-10'>
         <a href="http://zoeyyoung.github.io/python-heapq-counter.html"><h1>[算法] Python 计算出现最多的前100个单词</h1></a>
         <div class="article-metadata">
 <time class="published" datetime="2013 八月 30 周五">2013 八月 30 周五 </time>
@@ -306,7 +250,8 @@
     <li class="active"><a href="http://zoeyyoung.github.io/tag/ji-chu.html">1</a></li>
 
     <li class="next disabled"><a href="#">&rarr; 下一页</a></li>
-</ul>       
+</ul>    <!--   -->
+  
                 </div>    </div><!-- End of fluid row-->
   </div><!-- End of Container-->
   <!--footer-->

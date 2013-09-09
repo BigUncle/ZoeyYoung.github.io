@@ -64,6 +64,9 @@
             <a href="http://zoeyyoung.github.io/category/dong-nao.html ">动脑</a>
           </li>
                     <li >
+            <a href="http://zoeyyoung.github.io/category/ji-chu.html ">基础</a>
+          </li>
+                    <li >
             <a href="http://zoeyyoung.github.io/category/gong-zuo-ji-lu.html ">工作记录</a>
           </li>
                     <li >
@@ -100,8 +103,8 @@
       </div>
       <div class="main-content col-md-10">
           
-    <div class='row'>
-        <div class="col-md-12">
+<!--     <div class='row'>
+        <div class="col-md-10">
             <a href="http://zoeyyoung.github.io/python-heapq-counter.html"><h1>[算法] Python 计算出现最多的前100个单词</h1></a>
             <div class="article-metadata">
 <time class="published" datetime="2013 八月 30 周五">2013 八月 30 周五 </time>
@@ -133,7 +136,8 @@
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;words&#39;</span><span class="p">,</span> <span class="s">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">words</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
             <span class="n">w</span> <span class="o">=</span> <span class="n">w</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-            <span class="n">data</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span>
+            <span class="c"># data[w] = data.get(w, 0)+1</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">w</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">w</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">top100</span> <span class="o">=</span> <span class="n">nlargest</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">data</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
     <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">top100</span><span class="p">:</span>
         <span class="k">print</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="n">w</span><span class="p">])</span>
@@ -167,8 +171,10 @@
             <hr />
         </div>
     </div>
-         <div class='row'>
-      <div class='col-md-12'>
+      -->
+<!--  -->
+    <div class='row'>
+      <div class='col-md-10'>
         <a href="http://zoeyyoung.github.io/get-most-visit-ip.html"><h1>海量日志数据, 提取出某日访问百度次数最多的那个IP</h1></a>
         <div class="article-metadata">
 <time class="published" datetime="2013 八月 27 周二">2013 八月 27 周二 </time>
@@ -191,8 +197,10 @@
         <hr />
       </div>
     </div>
-         <div class='row'>
-      <div class='col-md-12'>
+    <!--   -->
+<!--  -->
+    <div class='row'>
+      <div class='col-md-10'>
         <a href="http://zoeyyoung.github.io/python-quick-sort.html"><h1>[算法] Python 快速排序</h1></a>
         <div class="article-metadata">
 <time class="published" datetime="2013 八月 20 周二">2013 八月 20 周二 </time>
@@ -213,8 +221,10 @@
         <hr />
       </div>
     </div>
-         <div class='row'>
-      <div class='col-md-12'>
+    <!--   -->
+<!--  -->
+    <div class='row'>
+      <div class='col-md-10'>
         <a href="http://zoeyyoung.github.io/beautiful-2-3.html"><h1>[笔记]《编程之美》2.3 寻找发帖“水王”</h1></a>
         <div class="article-metadata">
 <time class="published" datetime="2013 六月 03 周一">2013 六月 03 周一 </time>
@@ -244,7 +254,8 @@
     <li class="active"><a href="http://zoeyyoung.github.io/tag/suan-fa.html">1</a></li>
 
     <li class="next disabled"><a href="#">&rarr; 下一页</a></li>
-</ul>       
+</ul>    <!--   -->
+  
                 </div>    </div><!-- End of fluid row-->
   </div><!-- End of Container-->
   <!--footer-->

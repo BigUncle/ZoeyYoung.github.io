@@ -85,15 +85,13 @@ Summary: 题目: 假设有一个各种字母组成的字符串, 假设这还有�
         # dict_str_l = Counter(str_l)
         dict_str_l = {}
         for s in str_l:
-            if s in dict_str_l:
-                dict_str_l[s] += 1
-            else:
-                dict_str_l[s] = 1
+            dict_str_l[s] = 1 if s not in dict_str_l else (dict_str_l[s]+1)
         for s in str_s:
             if s in dict_str_l:
-                dict_str_l[s] -= 1
-                if dict_str_l[s] == 0:
+                if dict_str_l[s] == 1:
                     dict_str_l.pop(s)
+                else:
+                    dict_str_l[s] -= 1
             else:
                 return False
         return True
