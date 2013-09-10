@@ -103,10 +103,9 @@
       </div>
       <div class="main-content col-md-10">
           
-    <div class='row'>
-        <div class="col-md-10">
-            <a href="http://zoeyyoung.github.io/get-most-visit-ip.html"><h1>海量日志数据, 提取出某日访问百度次数最多的那个IP</h1></a>
-            <div class="article-metadata">
+    <div class="col-md-10">
+        <a href="http://zoeyyoung.github.io/get-most-visit-ip.html"><h1>海量日志数据, 提取出某日访问百度次数最多的那个IP</h1></a>
+        <div class="article-metadata">
 <time class="published" datetime="2013 八月 27 周二">2013 八月 27 周二 </time>
 <a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
 <span>
@@ -121,7 +120,7 @@
         <a href="http://zoeyyoung.github.io/tag/hai-liang-shu-ju.html">海量数据</a>
     </span>
 <!-- <p></p> -->
-</div>            <p>问题: 海量日志数据, 提取出某日访问百度次数最多的那个IP.</p>
+</div>        <p>问题: 海量日志数据, 提取出某日访问百度次数最多的那个IP.</p>
 <blockquote>
 <p>首先是这一天, 并且是访问百度的日志中的IP取出来, 逐个写入到一个大文件中. 注意到IP是32位的, 最多有2^32个不同的IP(事实上不可能, 得扣去特殊的IP), 在重复量小的情况下, 内存放不下这些不同的IP. 同样可以采用映射的方法, 比如模1000, 把整个大文件映射为1000个小文件, 再找出每个小文件中出现频率最大的IP(可以采用hash_map进行频率统计, 然后再找出频率最大的几个)及相应的频率. 然后再在这1000个最大的IP中, 找出那个频率最大的IP, 即为所求.</p>
 </blockquote>
@@ -258,9 +257,8 @@
 <p>66773 function calls (66770 primitive calls) in 91.358 seconds</p>
 <p>总结: 大数据与文件的大小其实关系不大, 真正有关系的是计数时存入字典的IP量, 如果不重复的IP很多的话, 这个数据占用的内存就会持续增加. 如果IP重复量大, 则并不会占用太多内存.</p>
 <p>参考: <a href="http://blog.csdn.net/quicktest/article/details/7453189">Python处理海量数据的实战研究</a></p>
-            <a class="btn btn-default btn-xs xsmall" href="http://zoeyyoung.github.io/get-most-visit-ip.html"><i class="icon-comment"></i> 评论 </a>
-            <hr />
-        </div>
+        <a class="btn btn-default btn-xs xsmall" href="http://zoeyyoung.github.io/get-most-visit-ip.html"><i class="icon-comment"></i> 评论 </a>
+        <hr />
     </div>
             <ul class="pagination pagination-sm no-print">
     <li class="prev disabled"><a href="#">&larr; 上一页</a></li>
