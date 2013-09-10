@@ -105,8 +105,91 @@
           
     <div class='row'>
         <div class="col-md-10">
-            <a href="http://zoeyyoung.github.io/float-IEEE-754.html"><h1>[基础] 浮点数</h1></a>
+            <a href="http://zoeyyoung.github.io/10w-bitarry-python.html"><h1>[算法] 找出1到10w中没有出现的两个数字</h1></a>
             <div class="article-metadata">
+<time class="published" datetime="2013 九月 10 周二">2013 九月 10 周二 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/suan-fa.html">算法</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/bi-shi.html">笔试</a>
+        <a href="http://zoeyyoung.github.io/tag/mian-shi.html">面试</a>
+        <a href="http://zoeyyoung.github.io/tag/python.html">Python</a>
+    </span>
+<!-- <p></p> -->
+</div>            <p>这个没啥好想的了...这里主要是了解<a href="https://github.com/ilanschnell/bitarray">bitarray模块</a>的使用, 顺便与bitstring模块进行比较. bitstring模块速度比bitarray模块慢很多, 内存占用也比较多.</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">bitarray</span> <span class="kn">import</span> <span class="n">bitarray</span>
+<span class="k">def</span> <span class="nf">use_bitarray</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
+    <span class="n">ba</span> <span class="o">=</span> <span class="n">bitarray</span><span class="p">(</span><span class="mi">100001</span><span class="p">)</span>
+    <span class="n">ba</span><span class="o">.</span><span class="n">setall</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">seq</span><span class="p">:</span>
+        <span class="n">ba</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ba</span><span class="o">.</span><span class="n">to01</span><span class="p">())):</span>
+        <span class="k">if</span> <span class="n">ba</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">bitstring</span> <span class="kn">import</span> <span class="n">BitArray</span>
+<span class="k">def</span> <span class="nf">use_bitstring</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
+    <span class="n">BA</span> <span class="o">=</span> <span class="n">BitArray</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="mi">100001</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">seq</span><span class="p">:</span>
+        <span class="n">BA</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">BA</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">BA</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+<span class="c"># 初始化10w个数, 打乱, 移除两个数</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="n">seq</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100001</span><span class="p">)]</span>
+<span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+<span class="n">seq</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="n">seq</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+
+<span class="k">with</span> <span class="n">Timer</span><span class="p">()</span> <span class="k">as</span> <span class="n">t</span><span class="p">:</span>
+    <span class="n">use_bitarray</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+<span class="k">print</span> <span class="s">&quot;=&gt; use_bitarray: </span><span class="si">%s</span><span class="s"> s&quot;</span> <span class="o">%</span> <span class="n">t</span><span class="o">.</span><span class="n">secs</span>
+
+<span class="k">with</span> <span class="n">Timer</span><span class="p">()</span> <span class="k">as</span> <span class="n">t</span><span class="p">:</span>
+    <span class="n">use_bitstring</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+<span class="k">print</span> <span class="s">&quot;=&gt; use_bitstring: </span><span class="si">%s</span><span class="s"> s&quot;</span> <span class="o">%</span> <span class="n">t</span><span class="o">.</span><span class="n">secs</span>
+
+<span class="kn">import</span> <span class="nn">cProfile</span>
+<span class="n">cProfile</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s">&#39;use_bitarray(seq)&#39;</span><span class="p">)</span> <span class="c"># 0.084 seconds</span>
+<span class="n">cProfile</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s">&#39;use_bitstring(seq)&#39;</span><span class="p">)</span> <span class="c"># 1.533 seconds</span>
+</pre></div>
+            <a class="btn btn-default btn-xs xsmall" href="http://zoeyyoung.github.io/10w-bitarry-python.html"><i class="icon-comment"></i> 评论 </a>
+            <hr />
+        </div>
+    </div>
+         <div class='row'>
+      <div class='col-md-10'>
+        <a href="http://zoeyyoung.github.io/design-patten-book.html"><h1>[设计模式] 《设计模式：可复用面向对象软件的基础》</h1></a>
+        <div class="article-metadata">
+<time class="published" datetime="2013 九月 09 周一">2013 九月 09 周一 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/ji-chu.html">基础</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/she-ji-mo-shi.html">设计模式</a>
+        <a href="http://zoeyyoung.github.io/tag/shu-ji.html">书籍</a>
+        <a href="http://zoeyyoung.github.io/tag/bi-ji.html">笔记</a>
+    </span>
+<!-- <p></p> -->
+</div>        <p>《设计模式：可复用面向对象软件的基础》</p>
+        <a class="btn btn-default btn-xs xsmall" href="http://zoeyyoung.github.io/design-patten-book.html">
+        <i class="icon-plus-sign"></i> 阅读全文 </a>
+        <hr />
+      </div>
+    </div>
+         <div class='row'>
+      <div class='col-md-10'>
+        <a href="http://zoeyyoung.github.io/float-IEEE-754.html"><h1>[基础] 浮点数</h1></a>
+        <div class="article-metadata">
 <time class="published" datetime="2013 九月 09 周一">2013 九月 09 周一 </time>
 <a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
 <span>
@@ -121,55 +204,33 @@
         <a href="http://zoeyyoung.github.io/tag/ji-suan-ji.html">计算机</a>
     </span>
 <!-- <p></p> -->
-</div>            <p>N bit可以表示的信息量是 2^N</p>
-<p>32位</p>
-<p>S--------E-------M</p>
-<p>1位-----8位-----23位</p>
-<p>64位</p>
-<p>S--------E-------M</p>
-<p>1位-----11位----52位</p>
-<p>表示的浮点数: (-1)^S * 2^(E-127) * (1.M)B</p>
-<p>E可以分成三种情况:</p>
-<ol>
-<li>E不全为0或不全为1. 这时, 浮点数就采用上面的规则表示, 即指数E的计算值减去127(或1023), 得到真实值, 再将有效数字M前加上第一位的1.</li>
-<li>E全为0时, 浮点数的指数E等于1-127 (或者1-1023), 有效数字M不再加上第一位的1, 而是还原为0.xxxxxx的小数. 这样做是为了表示±0, 以及接近于0的很小的数字.</li>
-<li>E全为1. 这时, 如果有效数字M全为0, 表示±无穷大(正负取决于符号位s); 如果有效数字M不全为0, 表示这个数不是一个数(NaN).</li>
-</ol>
-<p>区间是怎么求出来的:</p>
-<p>32 位可表示的浮点数:</p>
-<p>2^(-23) * 2^(1-127) = 1.4012984643248170709237295832899e-45 (考虑到最小值为最低位为1的情况, 且E全为0)</p>
-<p>2 * 2^127 = 3.4028236692093846346337460743177e+38 (1.M 表示的数小于2)</p>
-<p>表示范围: -3.402823E38 ~ -1.401298E-45 不可见 1.401298E-45 ~ 3.402823E38</p>
-<p>64 位:</p>
-<p>2^(-52) * 2^(1-1023) = 4.9406564584124654417656879286822e-324</p>
-<p>2 * 2^1023 = 1.797693134862315907729305190789e+308</p>
-<p>表示范围: -1.797693134862316E+308 ~ -4.94065E-324 不可见 4.94065E-324 ~ 1.797693134862316E+308</p>
-<blockquote>
-<p>在浮点数的表示范围内，有多于 99.999...% 的数在计算机中是 <strong>不能表示</strong> 的.</p>
-</blockquote>
-<p>要把小数装入计算机，总共分3步:</p>
-<ul>
-<li>第一步：转换成二进制</li>
-<li>第二步：用二进制科学计算法表示</li>
-<li>第三步：表示成 IEEE 754 形式</li>
-</ul>
-<p>在上面的第一步和第三步都有可能 <strong>丢失精度</strong>.</p>
-<p>0.1 到 0.9 的 9 个小数中, 只有 0.5 可以用二进制精确的表示.</p>
-<p>如果把 0.0 再算上, 那么就有两个数可以精确表示, 一个奇数 0.5, 一个偶数 0.0.</p>
-<p>如果一个十进制数可以用二进制精确表示, 那么它的最后一位肯定是 5.</p>
-<p>备注：这是个必要条件, 而不是充分条件. 一位热心网友设计出了下面的解决精度的方案. 我就不解释了, 同学们自己思考一下吧.</p>
-<blockquote>
-<p>我有一个观点, 针对小数精度不够的问题(例如 0.1), 软件可以人为的在数据最后一位补 5, 也就是 0.15, 这样牺牲一位, 但是可以保证数据精度, 还原再把那个尾巴 5 去掉.</p>
-</blockquote>
-<p><a href="http://www.ruanyifeng.com/blog/2010/06/ieee_floating-point_representation.html">浮点数的二进制表示</a></p>
-<p><a href="http://geeklu.com/2011/03/ieee754-floating-point-arithmetic/">浮点数解惑</a></p>
-<p><a href="http://babbage.cs.qc.cuny.edu/IEEE-754/index.xhtml">换算工具</a></p>
-<p><a href="http://justjavac.com/codepuzzle/2012/11/02/codepuzzle-float-from-surprised-to-ponder.html">代码之谜（四）- 浮点数（从惊讶到思考）</a></p>
-<p><a href="http://justjavac.com/codepuzzle/2012/11/11/codepuzzle-float-who-stole-your-accuracy.html">代码之谜（五）- 浮点数（谁偷了你的精度？）</a></p>
-<p>用定点数精确表示小数</p>
-            <a class="btn btn-default btn-xs xsmall" href="http://zoeyyoung.github.io/float-IEEE-754.html"><i class="icon-comment"></i> 评论 </a>
-            <hr />
-        </div>
+</div>        <p>浮点数相关笔记</p>
+        <a class="btn btn-default btn-xs xsmall" href="http://zoeyyoung.github.io/float-IEEE-754.html">
+        <i class="icon-plus-sign"></i> 阅读全文 </a>
+        <hr />
+      </div>
+    </div>
+         <div class='row'>
+      <div class='col-md-10'>
+        <a href="http://zoeyyoung.github.io/rotate-list-list.html"><h1>[题目] 把一段字符串用"右起竖排"的古文格式输出</h1></a>
+        <div class="article-metadata">
+<time class="published" datetime="2013 九月 09 周一">2013 九月 09 周一 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/dong-nao.html">动脑</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/bi-shi.html">笔试</a>
+        <a href="http://zoeyyoung.github.io/tag/mian-shi.html">面试</a>
+    </span>
+<!-- <p></p> -->
+</div>        <p>把一段字符串用"右起竖排"的古文格式输出</p>
+        <a class="btn btn-default btn-xs xsmall" href="http://zoeyyoung.github.io/rotate-list-list.html">
+        <i class="icon-plus-sign"></i> 阅读全文 </a>
+        <hr />
+      </div>
     </div>
          <div class='row'>
       <div class='col-md-10'>
@@ -193,72 +254,6 @@
         <hr />
       </div>
     </div>
-         <div class='row'>
-      <div class='col-md-10'>
-        <a href="http://zoeyyoung.github.io/find-brother-string.html"><h1>[算法] 找兄弟单词</h1></a>
-        <div class="article-metadata">
-<time class="published" datetime="2013 九月 06 周五">2013 九月 06 周五 </time>
-<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
-<span>
-    <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/suan-fa.html">算法</a>
-</span>
-<span>
-    <i class="icon-tags"></i>
-        <a href="http://zoeyyoung.github.io/tag/bi-shi.html">笔试</a>
-        <a href="http://zoeyyoung.github.io/tag/mian-shi.html">面试</a>
-    </span>
-<!-- <p></p> -->
-</div>        <p>找兄弟单词</p>
-        <a class="btn btn-default btn-xs xsmall" href="http://zoeyyoung.github.io/find-brother-string.html">
-        <i class="icon-plus-sign"></i> 阅读全文 </a>
-        <hr />
-      </div>
-    </div>
-         <div class='row'>
-      <div class='col-md-10'>
-        <a href="http://zoeyyoung.github.io/random-question.html"><h1>随机数相关</h1></a>
-        <div class="article-metadata">
-<time class="published" datetime="2013 九月 06 周五">2013 九月 06 周五 </time>
-<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
-<span>
-    <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/dong-nao.html">动脑</a>
-</span>
-<span>
-    <i class="icon-tags"></i>
-        <a href="http://zoeyyoung.github.io/tag/bi-shi.html">笔试</a>
-        <a href="http://zoeyyoung.github.io/tag/mian-shi.html">面试</a>
-    </span>
-<!-- <p></p> -->
-</div>        <p>随机数相关</p>
-        <a class="btn btn-default btn-xs xsmall" href="http://zoeyyoung.github.io/random-question.html">
-        <i class="icon-plus-sign"></i> 阅读全文 </a>
-        <hr />
-      </div>
-    </div>
-         <div class='row'>
-      <div class='col-md-10'>
-        <a href="http://zoeyyoung.github.io/some-question.html"><h1>一点题目</h1></a>
-        <div class="article-metadata">
-<time class="published" datetime="2013 九月 06 周五">2013 九月 06 周五 </time>
-<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
-<span>
-    <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/dong-nao.html">动脑</a>
-</span>
-<span>
-    <i class="icon-tags"></i>
-        <a href="http://zoeyyoung.github.io/tag/bi-shi.html">笔试</a>
-        <a href="http://zoeyyoung.github.io/tag/mian-shi.html">面试</a>
-    </span>
-<!-- <p></p> -->
-</div>        <p>集中放一点比较普通的题目</p>
-        <a class="btn btn-default btn-xs xsmall" href="http://zoeyyoung.github.io/some-question.html">
-        <i class="icon-plus-sign"></i> 阅读全文 </a>
-        <hr />
-      </div>
-    </div>
             <ul class="pagination pagination-sm no-print">
     <li class="prev disabled"><a href="#">&larr; 上一页</a></li>
 
@@ -275,6 +270,7 @@
     <li class=""><a href="http://zoeyyoung.github.io/index11.html">11</a></li>
     <li class=""><a href="http://zoeyyoung.github.io/index12.html">12</a></li>
     <li class=""><a href="http://zoeyyoung.github.io/index13.html">13</a></li>
+    <li class=""><a href="http://zoeyyoung.github.io/index14.html">14</a></li>
 
     <li class="next"><a href="http://zoeyyoung.github.io/index2.html">下一页 &rarr;</a></li>
 </ul>       

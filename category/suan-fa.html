@@ -105,8 +105,68 @@
           
     <div class='row'>
         <div class="col-md-10">
-            <a href="http://zoeyyoung.github.io/alphabet-contain.html"><h1>[算法] 长字符串包含短字符串所有字母的问题</h1></a>
+            <a href="http://zoeyyoung.github.io/10w-bitarry-python.html"><h1>[算法] 找出1到10w中没有出现的两个数字</h1></a>
             <div class="article-metadata">
+<time class="published" datetime="2013 九月 10 周二">2013 九月 10 周二 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/suan-fa.html">算法</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/bi-shi.html">笔试</a>
+        <a href="http://zoeyyoung.github.io/tag/mian-shi.html">面试</a>
+        <a href="http://zoeyyoung.github.io/tag/python.html">Python</a>
+    </span>
+<!-- <p></p> -->
+</div>            <p>这个没啥好想的了...这里主要是了解<a href="https://github.com/ilanschnell/bitarray">bitarray模块</a>的使用, 顺便与bitstring模块进行比较. bitstring模块速度比bitarray模块慢很多, 内存占用也比较多.</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">bitarray</span> <span class="kn">import</span> <span class="n">bitarray</span>
+<span class="k">def</span> <span class="nf">use_bitarray</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
+    <span class="n">ba</span> <span class="o">=</span> <span class="n">bitarray</span><span class="p">(</span><span class="mi">100001</span><span class="p">)</span>
+    <span class="n">ba</span><span class="o">.</span><span class="n">setall</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">seq</span><span class="p">:</span>
+        <span class="n">ba</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ba</span><span class="o">.</span><span class="n">to01</span><span class="p">())):</span>
+        <span class="k">if</span> <span class="n">ba</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">bitstring</span> <span class="kn">import</span> <span class="n">BitArray</span>
+<span class="k">def</span> <span class="nf">use_bitstring</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
+    <span class="n">BA</span> <span class="o">=</span> <span class="n">BitArray</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="mi">100001</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">seq</span><span class="p">:</span>
+        <span class="n">BA</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">BA</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">BA</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+<span class="c"># 初始化10w个数, 打乱, 移除两个数</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="n">seq</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100001</span><span class="p">)]</span>
+<span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+<span class="n">seq</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="n">seq</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+
+<span class="k">with</span> <span class="n">Timer</span><span class="p">()</span> <span class="k">as</span> <span class="n">t</span><span class="p">:</span>
+    <span class="n">use_bitarray</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+<span class="k">print</span> <span class="s">&quot;=&gt; use_bitarray: </span><span class="si">%s</span><span class="s"> s&quot;</span> <span class="o">%</span> <span class="n">t</span><span class="o">.</span><span class="n">secs</span>
+
+<span class="k">with</span> <span class="n">Timer</span><span class="p">()</span> <span class="k">as</span> <span class="n">t</span><span class="p">:</span>
+    <span class="n">use_bitstring</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+<span class="k">print</span> <span class="s">&quot;=&gt; use_bitstring: </span><span class="si">%s</span><span class="s"> s&quot;</span> <span class="o">%</span> <span class="n">t</span><span class="o">.</span><span class="n">secs</span>
+
+<span class="kn">import</span> <span class="nn">cProfile</span>
+<span class="n">cProfile</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s">&#39;use_bitarray(seq)&#39;</span><span class="p">)</span> <span class="c"># 0.084 seconds</span>
+<span class="n">cProfile</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s">&#39;use_bitstring(seq)&#39;</span><span class="p">)</span> <span class="c"># 1.533 seconds</span>
+</pre></div>
+            <a class="btn btn-default btn-xs xsmall" href="http://zoeyyoung.github.io/10w-bitarry-python.html"><i class="icon-comment"></i> 评论 </a>
+            <hr />
+        </div>
+    </div>
+         <div class='row'>
+      <div class='col-md-10'>
+        <a href="http://zoeyyoung.github.io/alphabet-contain.html"><h1>[算法] 长字符串包含短字符串所有字母的问题</h1></a>
+        <div class="article-metadata">
 <time class="published" datetime="2013 九月 06 周五">2013 九月 06 周五 </time>
 <a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
 <span>
@@ -119,181 +179,11 @@
         <a href="http://zoeyyoung.github.io/tag/mian-shi.html">面试</a>
     </span>
 <!-- <p></p> -->
-</div>            <p>题目: 假设有一个各种字母组成的字符串, 假设这还有另外一个字符串, 而且这个字符串里的字母数相对少一些. 从算法上讲, 什么方法能最快的查出所有小字符串里的字母在大字符串里都有?</p>
-<p>比如, 如果是下面两个字符串:</p>
-<div class="highlight"><pre><span class="n">String</span> <span class="mi">1</span><span class="o">:</span> <span class="n">ABCDEFGHLMNOPQRS</span>
-<span class="n">String</span> <span class="mi">2</span><span class="o">:</span> <span class="n">DCGSRQPOM</span>
-</pre></div>
-
-
-<p>答案是true, 所有在string2里的字母string1也都有. 如果是下面两个字符串:</p>
-<div class="highlight"><pre><span class="n">String</span> <span class="mi">1</span><span class="o">:</span> <span class="n">ABCDEFGHLMNOPQRS</span>
-<span class="n">String</span> <span class="mi">2</span><span class="o">:</span> <span class="n">DCGSRQPOZ</span>
-</pre></div>
-
-
-<p>答案是false, 因为第二个字符串里的Z字母不在第一个字符串里.</p>
-<p>还考虑了一种情况, 就是一个字母如果在短字符串里出现两次, 那也应该在长字符串里出现两次以上才算包含. 因此在每次命中时要考虑是否需要移除.</p>
-<p>有如下几种解法:</p>
-<div class="highlight"><pre><span class="c"># O(n*m) 的轮询方法</span>
-<span class="c"># 直接遍历</span>
-<span class="k">def</span> <span class="nf">normal_contain</span><span class="p">(</span><span class="n">str_l</span><span class="p">,</span> <span class="n">str_s</span><span class="p">):</span>
-    <span class="n">list_str_l</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">str_l</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">str_s</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">list_str_l</span><span class="p">:</span>
-            <span class="n">list_str_l</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="c"># 需要移除.</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">False</span>
-    <span class="k">return</span> <span class="bp">True</span>
-
-<span class="c"># O(mlogm)+O(nlogn)+O(m+n)</span>
-<span class="c"># 排序后遍历</span>
-<span class="k">def</span> <span class="nf">sorted_contain</span><span class="p">(</span><span class="n">str_l</span><span class="p">,</span> <span class="n">str_s</span><span class="p">):</span>
-    <span class="n">str_l</span><span class="p">,</span> <span class="n">str_s</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">str_l</span><span class="p">),</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">str_s</span><span class="p">)</span>
-    <span class="n">len_str_l</span><span class="p">,</span> <span class="n">len_str_s</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">str_l</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">str_s</span><span class="p">)</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len_str_s</span> <span class="ow">and</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">len_str_l</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">str_s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">str_l</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
-            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="k">return</span> <span class="n">i</span> <span class="o">==</span> <span class="n">len_str_s</span>
-
-<span class="c"># O(n+m)</span>
-<span class="c"># 类计数排序, 计算每个字母出现次数, 再比较</span>
-<span class="k">def</span> <span class="nf">count_contain</span><span class="p">(</span><span class="n">str_l</span><span class="p">,</span> <span class="n">str_s</span><span class="p">):</span>
-    <span class="n">c_l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">52</span><span class="p">)]</span>
-    <span class="n">c_s</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">52</span><span class="p">)]</span>
-    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">str_l</span><span class="p">:</span>
-        <span class="n">index</span> <span class="o">=</span> <span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">-</span> <span class="mi">97</span> <span class="o">+</span> <span class="mi">26</span><span class="p">)</span> <span class="k">if</span> <span class="n">s</span> <span class="o">&gt;</span> <span class="s">&#39;Z&#39;</span> <span class="k">else</span> <span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">-</span> <span class="mi">65</span><span class="p">)</span>
-        <span class="n">c_l</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">str_s</span><span class="p">:</span>
-        <span class="n">index</span> <span class="o">=</span> <span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">-</span> <span class="mi">97</span> <span class="o">+</span> <span class="mi">26</span><span class="p">)</span> <span class="k">if</span> <span class="n">s</span> <span class="o">&gt;</span> <span class="s">&#39;Z&#39;</span> <span class="k">else</span> <span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">-</span> <span class="mi">65</span><span class="p">)</span>
-        <span class="n">c_s</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">c_l</span><span class="p">,</span> <span class="n">c_s</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">False</span>
-    <span class="k">return</span> <span class="bp">True</span>
-
-<span class="c"># O(n+m)</span>
-<span class="c"># 类计数排序, 计算每个字母出现次数, 只计算短的, 再遍历长的, 与上面方法类似</span>
-<span class="k">def</span> <span class="nf">count_once_contain</span><span class="p">(</span><span class="n">str_l</span><span class="p">,</span> <span class="n">str_s</span><span class="p">):</span>
-    <span class="n">c_s</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">52</span><span class="p">)]</span>
-    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">str_s</span><span class="p">:</span>
-        <span class="n">index</span> <span class="o">=</span> <span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">-</span> <span class="mi">97</span> <span class="o">+</span> <span class="mi">26</span><span class="p">)</span> <span class="k">if</span> <span class="n">s</span> <span class="o">&gt;</span> <span class="s">&#39;Z&#39;</span> <span class="k">else</span> <span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">-</span> <span class="mi">65</span><span class="p">)</span>
-        <span class="n">c_s</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">str_l</span><span class="p">:</span>
-        <span class="n">index</span> <span class="o">=</span> <span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">-</span> <span class="mi">97</span> <span class="o">+</span> <span class="mi">26</span><span class="p">)</span> <span class="k">if</span> <span class="n">s</span> <span class="o">&gt;</span> <span class="s">&#39;Z&#39;</span> <span class="k">else</span> <span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">-</span> <span class="mi">65</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">c_s</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">c_s</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">c_s</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">False</span>
-    <span class="k">return</span> <span class="bp">True</span>
-
-<span class="c"># hash 计数</span>
-<span class="k">def</span> <span class="nf">hash_contain</span><span class="p">(</span><span class="n">str_l</span><span class="p">,</span> <span class="n">str_s</span><span class="p">):</span>
-    <span class="c"># from collections import Counter</span>
-    <span class="c"># dict_str_l = Counter(str_l)</span>
-    <span class="n">dict_str_l</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">str_l</span><span class="p">:</span>
-        <span class="n">dict_str_l</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">s</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">dict_str_l</span> <span class="k">else</span> <span class="p">(</span><span class="n">dict_str_l</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">str_s</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">dict_str_l</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">dict_str_l</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="n">dict_str_l</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">dict_str_l</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">False</span>
-    <span class="k">return</span> <span class="bp">True</span>
-
-<span class="c"># O(n+m) 最好情况下O(n): 短字符串第一字符就不存在的情况</span>
-<span class="c"># 素数法</span>
-<span class="n">PRIME_52</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span>
-    <span class="mi">43</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">53</span><span class="p">,</span> <span class="mi">59</span><span class="p">,</span> <span class="mi">61</span><span class="p">,</span> <span class="mi">67</span><span class="p">,</span> <span class="mi">71</span><span class="p">,</span> <span class="mi">73</span><span class="p">,</span> <span class="mi">79</span><span class="p">,</span> <span class="mi">83</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">97</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span>
-    <span class="mi">103</span><span class="p">,</span> <span class="mi">107</span><span class="p">,</span> <span class="mi">109</span><span class="p">,</span> <span class="mi">113</span><span class="p">,</span> <span class="mi">127</span><span class="p">,</span> <span class="mi">131</span><span class="p">,</span> <span class="mi">137</span><span class="p">,</span> <span class="mi">139</span><span class="p">,</span> <span class="mi">149</span><span class="p">,</span> <span class="mi">151</span><span class="p">,</span> <span class="mi">157</span><span class="p">,</span> <span class="mi">163</span><span class="p">,</span> <span class="mi">167</span><span class="p">,</span>
-    <span class="mi">173</span><span class="p">,</span> <span class="mi">179</span><span class="p">,</span> <span class="mi">181</span><span class="p">,</span> <span class="mi">191</span><span class="p">,</span> <span class="mi">193</span><span class="p">,</span> <span class="mi">197</span><span class="p">,</span> <span class="mi">199</span><span class="p">,</span> <span class="mi">211</span><span class="p">,</span> <span class="mi">223</span><span class="p">,</span> <span class="mi">227</span><span class="p">,</span> <span class="mi">229</span><span class="p">,</span> <span class="mi">233</span><span class="p">,</span> <span class="mi">239</span>
-<span class="p">]</span>
-
-<span class="k">def</span> <span class="nf">prime_contain</span><span class="p">(</span><span class="n">str_l</span><span class="p">,</span> <span class="n">str_s</span><span class="p">):</span>
-    <span class="n">p1</span> <span class="o">=</span> <span class="n">p2</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="c"># ord(&#39;a&#39;) = 97 ord(&#39;A&#39;) = 65</span>
-    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">str_l</span><span class="p">:</span>
-        <span class="n">index</span> <span class="o">=</span> <span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">-</span> <span class="mi">97</span> <span class="o">+</span> <span class="mi">26</span><span class="p">)</span> <span class="k">if</span> <span class="n">s</span> <span class="o">&gt;</span> <span class="s">&#39;Z&#39;</span> <span class="k">else</span> <span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">-</span> <span class="mi">65</span><span class="p">)</span>
-        <span class="n">p1</span> <span class="o">*=</span> <span class="n">PRIME_52</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
-    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">str_s</span><span class="p">:</span>
-        <span class="n">index</span> <span class="o">=</span> <span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">-</span> <span class="mi">97</span> <span class="o">+</span> <span class="mi">26</span><span class="p">)</span> <span class="k">if</span> <span class="n">s</span> <span class="o">&gt;</span> <span class="s">&#39;Z&#39;</span> <span class="k">else</span> <span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">-</span><span class="mi">65</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">p1</span> <span class="o">%</span> <span class="n">PRIME_52</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">p1</span> <span class="o">/=</span> <span class="n">PRIME_52</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">False</span>
-    <span class="k">return</span> <span class="bp">True</span>
-</pre></div>
-
-
-<p>测试正确性使用:</p>
-<div class="highlight"><pre><span class="k">print</span><span class="p">(</span><span class="n">normal_contain</span><span class="p">(</span><span class="s">&#39;ABCDEFGHLMNOPQRS&#39;</span><span class="p">,</span> <span class="s">&#39;DCGSRQPOM&#39;</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">normal_contain</span><span class="p">(</span><span class="s">&#39;ABCDEFGHLMNOPQRS&#39;</span><span class="p">,</span> <span class="s">&#39;DCGSRQPOZ&#39;</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">normal_contain</span><span class="p">(</span><span class="s">&#39;AABCDEFGHLMNOPQRS&#39;</span><span class="p">,</span> <span class="s">&#39;AADCGSRQPOM&#39;</span><span class="p">))</span>
-<span class="o">...</span><span class="err">其它类似</span>
-</pre></div>
-
-
-<p>测试, 一般情况下:</p>
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
-<span class="kn">import</span> <span class="nn">timeit</span>
-<span class="k">print</span><span class="p">(</span><span class="s">&quot;normal_contain&quot;</span><span class="p">,</span> <span class="n">timeit</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">normal_contain</span><span class="p">,</span> <span class="s">&#39;ABCDEFGHLMNOPQRS&#39;</span><span class="p">,</span> <span class="s">&#39;DCGSRQPOM&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="s">&quot;sorted_contain&quot;</span><span class="p">,</span> <span class="n">timeit</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">sorted_contain</span><span class="p">,</span> <span class="s">&#39;ABCDEFGHLMNOPQRS&#39;</span><span class="p">,</span> <span class="s">&#39;DCGSRQPOM&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="s">&quot;count_contain&quot;</span><span class="p">,</span> <span class="n">timeit</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">count_contain</span><span class="p">,</span> <span class="s">&#39;ABCDEFGHLMNOPQRS&#39;</span><span class="p">,</span> <span class="s">&#39;DCGSRQPOM&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="s">&quot;count_once_contain&quot;</span><span class="p">,</span> <span class="n">timeit</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">count_once_contain</span><span class="p">,</span> <span class="s">&#39;ABCDEFGHLMNOPQRS&#39;</span><span class="p">,</span> <span class="s">&#39;DCGSRQPOM&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="s">&quot;hash_contain&quot;</span><span class="p">,</span> <span class="n">timeit</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">hash_contain</span><span class="p">,</span> <span class="s">&#39;ABCDEFGHLMNOPQRS&#39;</span><span class="p">,</span> <span class="s">&#39;DCGSRQPOM&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="s">&quot;prime_contain&quot;</span><span class="p">,</span> <span class="n">timeit</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">prime_contain</span><span class="p">,</span> <span class="s">&#39;ABCDEFGHLMNOPQRS&#39;</span><span class="p">,</span> <span class="s">&#39;DCGSRQPOM&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
-</pre></div>
-
-
-<p>结果:</p>
-<div class="highlight"><pre><span class="p">(</span><span class="s">&#39;normal_contain&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">6.362308025360107</span><span class="p">,</span> <span class="mf">5.744957208633423</span><span class="p">,</span> <span class="mf">5.661204814910889</span><span class="p">,</span> <span class="mf">7.36407208442688</span><span class="p">,</span> <span class="mf">5.63322901725769</span><span class="p">])</span>
-<span class="p">(</span><span class="s">&#39;sorted_contain&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">6.286291122436523</span><span class="p">,</span> <span class="mf">6.277117967605591</span><span class="p">,</span> <span class="mf">6.292449951171875</span><span class="p">,</span> <span class="mf">6.091110944747925</span><span class="p">,</span> <span class="mf">6.123614072799683</span><span class="p">])</span>
-<span class="p">(</span><span class="s">&#39;count_contain&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">19.607484102249146</span><span class="p">,</span> <span class="mf">19.857337951660156</span><span class="p">,</span> <span class="mf">19.512460947036743</span><span class="p">,</span> <span class="mf">19.593682050704956</span><span class="p">,</span> <span class="mf">21.601970911026</span><span class="p">])</span>
-<span class="p">(</span><span class="s">&#39;count_once_contain&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">12.48820185661316</span><span class="p">,</span> <span class="mf">12.146281003952026</span><span class="p">,</span> <span class="mf">12.24548888206482</span><span class="p">,</span> <span class="mf">12.143928050994873</span><span class="p">,</span> <span class="mf">12.187535047531128</span><span class="p">])</span>
-<span class="p">(</span><span class="s">&#39;hash_contain&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">6.700244903564453</span><span class="p">,</span> <span class="mf">6.618301868438721</span><span class="p">,</span> <span class="mf">7.309581995010376</span><span class="p">,</span> <span class="mf">6.515559196472168</span><span class="p">,</span> <span class="mf">6.350136995315552</span><span class="p">])</span>
-<span class="p">(</span><span class="s">&#39;prime_contain&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">10.870138883590698</span><span class="p">,</span> <span class="mf">12.051301002502441</span><span class="p">,</span> <span class="mf">10.84837794303894</span><span class="p">,</span> <span class="mf">10.468207120895386</span><span class="p">,</span> <span class="mf">14.259312152862549</span><span class="p">])</span>
-</pre></div>
-
-
-<p>测试, 极端情况下:</p>
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
-<span class="kn">import</span> <span class="nn">timeit</span>
-<span class="k">print</span><span class="p">(</span><span class="s">&quot;normal_contain&quot;</span><span class="p">,</span> <span class="n">timeit</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">normal_contain</span><span class="p">,</span> <span class="s">&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZ&#39;</span><span class="p">,</span> <span class="s">&#39;ZYXWVUTSRQPONMLKJIHGFEDCBA&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="s">&quot;sorted_contain&quot;</span><span class="p">,</span> <span class="n">timeit</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">sorted_contain</span><span class="p">,</span> <span class="s">&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZ&#39;</span><span class="p">,</span> <span class="s">&#39;ZYXWVUTSRQPONMLKJIHGFEDCBA&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="s">&quot;count_contain&quot;</span><span class="p">,</span> <span class="n">timeit</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">count_contain</span><span class="p">,</span> <span class="s">&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZ&#39;</span><span class="p">,</span> <span class="s">&#39;ZYXWVUTSRQPONMLKJIHGFEDCBA&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="s">&quot;count_once_contain&quot;</span><span class="p">,</span> <span class="n">timeit</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">count_once_contain</span><span class="p">,</span> <span class="s">&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZ&#39;</span><span class="p">,</span> <span class="s">&#39;ZYXWVUTSRQPONMLKJIHGFEDCBA&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="s">&quot;hash_contain&quot;</span><span class="p">,</span> <span class="n">timeit</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">hash_contain</span><span class="p">,</span> <span class="s">&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZ&#39;</span><span class="p">,</span> <span class="s">&#39;ZYXWVUTSRQPONMLKJIHGFEDCBA&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="s">&quot;prime_contain&quot;</span><span class="p">,</span> <span class="n">timeit</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">prime_contain</span><span class="p">,</span> <span class="s">&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZ&#39;</span><span class="p">,</span> <span class="s">&#39;ZYXWVUTSRQPONMLKJIHGFEDCBA&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
-</pre></div>
-
-
-<p>结果:</p>
-<div class="highlight"><pre><span class="p">(</span><span class="s">&#39;normal_contain&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">18.63632297515869</span><span class="p">,</span> <span class="mf">18.41497802734375</span><span class="p">,</span> <span class="mf">18.31280493736267</span><span class="p">,</span> <span class="mf">18.751588106155396</span><span class="p">,</span> <span class="mf">18.217451095581055</span><span class="p">])</span>
-<span class="p">(</span><span class="s">&#39;sorted_contain&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">9.113880157470703</span><span class="p">,</span> <span class="mf">9.531869888305664</span><span class="p">,</span> <span class="mf">9.468177080154419</span><span class="p">,</span> <span class="mf">9.110601902008057</span><span class="p">,</span> <span class="mf">9.284788131713867</span><span class="p">])</span>
-<span class="p">(</span><span class="s">&#39;count_contain&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">29.499480962753296</span><span class="p">,</span> <span class="mf">27.319715976715088</span><span class="p">,</span> <span class="mf">26.55077290534973</span><span class="p">,</span> <span class="mf">27.066306114196777</span><span class="p">,</span> <span class="mf">25.907553911209106</span><span class="p">])</span>
-<span class="p">(</span><span class="s">&#39;count_once_contain&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">20.320783853530884</span><span class="p">,</span> <span class="mf">19.26248002052307</span><span class="p">,</span> <span class="mf">20.954636812210083</span><span class="p">,</span> <span class="mf">20.640650987625122</span><span class="p">,</span> <span class="mf">19.9475679397583</span><span class="p">])</span>
-<span class="p">(</span><span class="s">&#39;hash_contain&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">14.959026098251343</span><span class="p">,</span> <span class="mf">14.773585081100464</span><span class="p">,</span> <span class="mf">14.640642881393433</span><span class="p">,</span> <span class="mf">14.979124069213867</span><span class="p">,</span> <span class="mf">14.67639708518982</span><span class="p">])</span>
-<span class="p">(</span><span class="s">&#39;prime_contain&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">26.744000911712646</span><span class="p">,</span> <span class="mf">25.518390893936157</span><span class="p">,</span> <span class="mf">25.43153190612793</span><span class="p">,</span> <span class="mf">25.511915922164917</span><span class="p">,</span> <span class="mf">25.730863094329834</span><span class="p">])</span>
-</pre></div>
-
-
-<p>先排序后再轮询最快.</p>
-<p>我觉得计数法看起来比较简单.</p>
-<p>素数法比较有意思.</p>
-<p>这两个方法之所以比较慢是因为调用了ord和zip内置函数. 在单次执行的情况下都是非常快的. 但执行1000000的时间就略长了.</p>
-<p>感觉使用其它语言写的话, 应该会有区别.</p>
-<p>更多说明: <a href="http://www.aqee.net/google-interviewing-story/">一次谷歌面试趣事</a></p>
-<p><a href="http://blog.csdn.net/v_JULY_v/article/details/6347454">程序员编程艺术：第二章、字符串是否包含及匹配/查找/转换/拷贝问题</a></p>
-            <a class="btn btn-default btn-xs xsmall" href="http://zoeyyoung.github.io/alphabet-contain.html"><i class="icon-comment"></i> 评论 </a>
-            <hr />
-        </div>
+</div>        <p>题目: 假设有一个各种字母组成的字符串, 假设这还有另外一个字符串, 而且这个字符串里的字母数相对少一些. 从算法是讲, 什么方法能最快的查出所有小字符串里的字母在大字符串里都有?</p>
+        <a class="btn btn-default btn-xs xsmall" href="http://zoeyyoung.github.io/alphabet-contain.html">
+        <i class="icon-plus-sign"></i> 阅读全文 </a>
+        <hr />
+      </div>
     </div>
          <div class='row'>
       <div class='col-md-10'>
@@ -358,30 +248,6 @@
 <!-- <p></p> -->
 </div>        <p>Python 计算单词数</p>
         <a class="btn btn-default btn-xs xsmall" href="http://zoeyyoung.github.io/python-heapq-counter.html">
-        <i class="icon-plus-sign"></i> 阅读全文 </a>
-        <hr />
-      </div>
-    </div>
-         <div class='row'>
-      <div class='col-md-10'>
-        <a href="http://zoeyyoung.github.io/get-most-visit-ip.html"><h1>海量日志数据, 提取出某日访问百度次数最多的那个IP</h1></a>
-        <div class="article-metadata">
-<time class="published" datetime="2013 八月 27 周二">2013 八月 27 周二 </time>
-<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
-<span>
-    <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/suan-fa.html">算法</a>
-</span>
-<span>
-    <i class="icon-tags"></i>
-        <a href="http://zoeyyoung.github.io/tag/python.html">Python</a>
-        <a href="http://zoeyyoung.github.io/tag/pip.html">pip</a>
-        <a href="http://zoeyyoung.github.io/tag/suan-fa.html">算法</a>
-        <a href="http://zoeyyoung.github.io/tag/hai-liang-shu-ju.html">海量数据</a>
-    </span>
-<!-- <p></p> -->
-</div>        <p>海量日志数据, 提取出某日访问百度次数最多的那个IP</p>
-        <a class="btn btn-default btn-xs xsmall" href="http://zoeyyoung.github.io/get-most-visit-ip.html">
         <i class="icon-plus-sign"></i> 阅读全文 </a>
         <hr />
       </div>

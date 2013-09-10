@@ -1,0 +1,62 @@
+Title: [题目] 把一段字符串用"右起竖排"的古文格式输出
+Date: 2013-09-09
+Tags: 笔试,面试
+Slug: rotate-list-list
+Author: Zoey Young
+Summary: 把一段字符串用"右起竖排"的古文格式输出
+
+从 [从两道趣味题目看PYTHON的简洁性](http://www.pythonpub.com/article/848) 这篇博文看到的题目, 没按博主的方法, 自己写了两种.
+
+把一段字符串用"右起竖排"的古文格式输出
+
+直接将字符串装入二元列表:
+
+    :::python
+    def rotate_1(string, offset=6):
+        len_str = len(string)
+        cols = int((len_str+offset-1) / offset)
+        A = [['']*cols for row in range(offset)]
+        for col in range(cols):
+            for row in range(offset):
+                index = (cols-1-col)*offset+row
+                A[row][col] = string[index] if index < len_str else '  '
+        return A
+
+先顺序装入, 再将二元列表顺时针旋转90度:
+
+    :::python
+    def rotate_2(string, offset=6):
+        len_str = len(string)
+        rows = int((len_str+offset-1) / offset)
+        A = [['']*offset for row in range(rows)]
+        for col in range(offset):
+            for row in range(rows):
+                index = row*offset+col
+                A[row][col] = string[index] if index < len_str else '  '
+        return list(map(lambda x: x[::-1], zip(*A)))
+
+调用:
+
+    :::python
+    A = rotate_1('静夜思 李白床前明月光，疑似地上霜。举头望明月，低头思故乡。')
+    print('\n'.join(['┊'.join(row) for row in A]))
+    print('='*20)
+    A = rotate_2('静夜思 李白床前明月光，疑似地上霜。举头望明月，低头思故乡。')
+    print('\n'.join(['┊'.join(row) for row in A]))
+
+输出:
+
+    低┊举┊疑┊床┊静
+    头┊头┊似┊前┊夜
+    思┊望┊地┊明┊思
+    故┊明┊上┊月┊
+    乡┊月┊霜┊光┊李
+    。┊，┊。┊，┊白
+    ====================
+    低┊举┊疑┊床┊静
+    头┊头┊似┊前┊夜
+    思┊望┊地┊明┊思
+    故┊明┊上┊月┊
+    乡┊月┊霜┊光┊李
+    。┊，┊。┊，┊白
+

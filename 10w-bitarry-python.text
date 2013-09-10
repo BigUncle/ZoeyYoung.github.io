@@ -1,0 +1,48 @@
+Title: [算法] 找出1到10w中没有出现的两个数字
+Date: 2013-09-10
+Tags: 笔试,面试,Python
+Slug: 10w-bitarry-python
+Author: Zoey Young
+Summary: 找出1到10w中没有出现的两个数字
+
+这个没啥好想的了...这里主要是了解[bitarray模块](https://github.com/ilanschnell/bitarray)的使用, 顺便与bitstring模块进行比较. bitstring模块速度比bitarray模块慢很多, 内存占用也比较多.
+
+    :::python
+    from bitarray import bitarray
+    def use_bitarray(seq):
+        ba = bitarray(100001)
+        ba.setall(0)
+        for i in seq:
+            ba[i] = 1
+        for i in range(1, len(ba.to01())):
+            if ba[i] == 0:
+                print(i)
+
+    from bitstring import BitArray
+    def use_bitstring(seq):
+        BA = BitArray(length=100001)
+        for i in seq:
+            BA.set(1, i)
+        for i in range(1, len(BA)):
+            if BA[i] == 0:
+                print(i)
+
+    # 初始化10w个数, 打乱, 移除两个数
+    import random
+    seq = [i for i in range(100001)]
+    random.shuffle(seq)
+    seq.pop()
+    seq.pop()
+
+    with Timer() as t:
+        use_bitarray(seq)
+    print "=> use_bitarray: %s s" % t.secs
+
+    with Timer() as t:
+        use_bitstring(seq)
+    print "=> use_bitstring: %s s" % t.secs
+
+    import cProfile
+    cProfile.run('use_bitarray(seq)') # 0.084 seconds
+    cProfile.run('use_bitstring(seq)') # 1.533 seconds
+
