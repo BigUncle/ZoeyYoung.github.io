@@ -48,7 +48,7 @@ ul#sitelinks.nav.nav-list > li > a >i { color: #1f334b; }
 /* Styling for elements */
 a { color: #E6DB74; }
 body { background-color: #222; color: #F8F8F2; font: 16px/1.5 \5fae\8f6f\96c5\9ed1,tahoma,arial,\5b8b\4f53; }
-.main-content { padding: 0 20px; }
+.main-content { padding: 0 20px; background: #383838; }
 .main-content a:hover { color: #FD961F; text-decoration: none; }
 p { font: 14px/1.5 \5fae\8f6f\96c5\9ed1,tahoma,arial,\5b8b\4f53; }
 li { line-height: 1.6em; }
