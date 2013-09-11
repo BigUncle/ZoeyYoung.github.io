@@ -104,6 +104,180 @@
       <div class="main-content col-md-8">
           
     <div>
+        <a href="http://zoeyyoung.github.io/python-bisect.html"><h1>[算法] Python 中的二分算法</h1></a>
+        <div class="article-metadata">
+<time class="published" datetime="2013 九月 11 周三">2013 九月 11 周三 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/suan-fa.html">算法</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/python.html">Python</a>
+        <a href="http://zoeyyoung.github.io/tag/ji-chu.html">基础</a>
+    </span>
+<!-- <p></p> -->
+</div>        <p>初始化于: 2013-08-30
+上次修改: 2013-09-11</p>
+<p>之前大于小于等于有点晕, 通过看Python源码, 已经不纠结于大于号小于号的问题了. 其实就两种方式, 就可以适应问题不同的变化.</p>
+<p><a href="http://docs.python.org/3.3/library/bisect.html">文档</a></p>
+<p>insort前缀为插入, bisect前缀为返回索引</p>
+<p><a href="http://hg.python.org/cpython/file/3.3/Lib/bisect.py">源码: bisect.py</a></p>
+<p>关键部分:</p>
+<p><code>insort_left</code> | <code>bisect_left</code></p>
+<div class="highlight"><pre><span class="k">while</span> <span class="n">lo</span> <span class="o">&lt;</span> <span class="n">hi</span><span class="p">:</span>
+    <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">lo</span><span class="o">+</span><span class="n">hi</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span> <span class="c"># 向下取整 mid = lo + ((hi-lo)&gt;&gt;1)</span>
+    <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">:</span> <span class="n">lo</span> <span class="o">=</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span> <span class="n">hi</span> <span class="o">=</span> <span class="n">mid</span>
+</pre></div>
+
+
+<p><code>insort_right</code> | <code>bisect_right</code></p>
+<p>—— 这里要注意返回的索引位置并非等于x的. 是最右的等于x的索引加1</p>
+<div class="highlight"><pre><span class="k">while</span> <span class="n">lo</span> <span class="o">&lt;</span> <span class="n">hi</span><span class="p">:</span>
+    <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">lo</span><span class="o">+</span><span class="n">hi</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]:</span> <span class="n">hi</span> <span class="o">=</span> <span class="n">mid</span>
+    <span class="k">else</span><span class="p">:</span> <span class="n">lo</span> <span class="o">=</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span>
+</pre></div>
+
+
+<p>最左最右的主要区别在于<code>x == a[mid]</code>时, 是<code>hi = mid</code>[高变低, 左趋], 还是<code>lo = mid+1</code>[低变高, 右趋], 其余都是一样的. 不直接返回mid是因为并不能确定mid指向的是左还是右还是中间.</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">bisect</span> <span class="kn">import</span> <span class="n">bisect_left</span><span class="p">,</span> <span class="n">bisect_right</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">bisect_left</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c"># 小于所有数时, 返回0</span>
+<span class="mi">0</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">bisect_right</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="mi">0</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">bisect_left</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c"># 最左的等于x的索引</span>
+<span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">bisect_right</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c"># 最右的等于x的索引+1</span>
+<span class="mi">3</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">bisect_left</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>  <span class="c"># 不存在时, 返回第一个刚好大于的位置</span>
+<span class="mi">3</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">bisect_right</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="mi">3</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">bisect_left</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>  <span class="c"># 大于所有数时, 返回值为len(a)</span>
+<span class="mi">9</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">bisect_right</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="mi">9</span>
+</pre></div>
+
+
+<p>分析:</p>
+<div class="highlight"><pre><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+
+<span class="err">假设要寻找</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">2</span> <span class="err">应该插入的位置</span>
+<span class="err">初始化</span><span class="o">:</span>
+
+<span class="n">lo</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">hi</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="n">mid</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="n">x</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span>
+<span class="n">hi</span> <span class="o">=</span> <span class="n">mid</span>
+
+<span class="n">lo</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">hi</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">mid</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span>
+<span class="n">left</span>        <span class="o">|</span> <span class="n">right</span>
+<span class="n">hi</span> <span class="o">=</span> <span class="n">mid</span>    <span class="o">|</span> <span class="n">lo</span> <span class="o">=</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span>
+<span class="n">lo</span> <span class="o">=</span> <span class="mi">0</span>      <span class="o">|</span> <span class="n">lo</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">hi</span> <span class="o">=</span> <span class="mi">2</span>      <span class="o">|</span> <span class="n">hi</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">mid</span> <span class="o">=</span> <span class="mi">1</span>     <span class="o">|</span> <span class="n">mid</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>  <span class="o">|</span> <span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">x</span> <span class="o">==</span> <span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">|</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span>
+<span class="n">hi</span> <span class="o">=</span> <span class="n">mid</span>    <span class="o">|</span> <span class="n">hi</span> <span class="o">=</span> <span class="n">mid</span>
+
+<span class="n">lo</span> <span class="o">=</span> <span class="mi">0</span>      <span class="o">|</span> <span class="n">lo</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">hi</span> <span class="o">=</span> <span class="mi">1</span>      <span class="o">|</span> <span class="n">hi</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">mid</span> <span class="o">=</span> <span class="mi">0</span>     <span class="o">|</span> <span class="n">lo</span> <span class="o">==</span> <span class="n">hi</span>
+<span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>  <span class="o">|</span> <span class="err">返回</span><span class="n">lo</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">x</span> <span class="o">&gt;</span> <span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span>  <span class="o">|</span>
+<span class="n">lo</span> <span class="o">=</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span>  <span class="o">|</span>
+
+<span class="n">lo</span> <span class="o">=</span> <span class="mi">1</span>      <span class="o">|</span>
+<span class="n">hi</span> <span class="o">=</span> <span class="mi">1</span>      <span class="o">|</span>
+<span class="n">lo</span> <span class="o">==</span> <span class="n">hi</span>    <span class="o">|</span>
+<span class="err">返回</span><span class="n">lo</span> <span class="o">=</span> <span class="mi">1</span>  <span class="o">|</span>
+</pre></div>
+
+
+<p>应用: 搜索已排序列表</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="s">&#39;Locate the leftmost value exactly equal to x&#39;</span>
+    <span class="s">&#39;二分查找返回key(可能有重复)第一次出现的下标&#39;</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">bisect_left</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="ow">and</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">x</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">i</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span>
+
+<span class="k">def</span> <span class="nf">find_lt</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="s">&#39;Find rightmost value less than x&#39;</span>
+    <span class="s">&#39;二分查找返回刚好小于key的元素下标&#39;</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">bisect_left</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">i</span><span class="p">:</span> <span class="c"># i不等于0</span>
+        <span class="k">return</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span>
+
+<span class="k">def</span> <span class="nf">find_le</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="s">&#39;Find rightmost value less than or equal to x&#39;</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">bisect_right</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">i</span><span class="p">:</span> <span class="c"># 如果要找最右的等于x的, 条件为: if i and a[i-1] == x</span>
+        <span class="k">return</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span>
+
+<span class="k">def</span> <span class="nf">find_gt</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="s">&#39;Find leftmost value greater than x&#39;</span>
+    <span class="s">&#39;二分查找返回刚好大于x的元素下标&#39;</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">bisect_right</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">):</span> <span class="c"># 如果i等于len(a), 则不存在大于x的值</span>
+        <span class="k">return</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span>
+
+<span class="k">def</span> <span class="nf">find_ge</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="s">&#39;Find leftmost item greater than or equal to x&#39;</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">bisect_left</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span>
+</pre></div>
+
+
+<p>numeric table lookups (这个看起来很有用)</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">grade</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="n">breakpoints</span><span class="o">=</span><span class="p">[</span><span class="mi">60</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span> <span class="n">grades</span><span class="o">=</span><span class="s">&#39;FDCBA&#39;</span><span class="p">):</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">bisect_right</span><span class="p">(</span><span class="n">breakpoints</span><span class="p">,</span> <span class="n">score</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">grades</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">grade</span><span class="p">(</span><span class="n">score</span><span class="p">)</span> <span class="k">for</span> <span class="n">score</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">33</span><span class="p">,</span> <span class="mi">99</span><span class="p">,</span> <span class="mi">77</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">100</span><span class="p">]]</span>
+<span class="p">[</span><span class="s">&#39;F&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">]</span>
+</pre></div>
+
+
+<p>二分查找方法并没有类似sort方法的key参数, 对于已排序的列表, 可以单独将要查找的键值解析成列表, 索引一一对应, 搜索结果返回索引然后再通过索引在原列表中获得值.</p>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">data</span> <span class="o">=</span> <span class="p">[(</span><span class="s">&#39;red&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;blue&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;yellow&#39;</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;black&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">data</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">r</span><span class="p">:</span> <span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">data</span><span class="p">]</span>  <span class="c"># precomputed list of keys</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">data</span><span class="p">[</span><span class="n">bisect_left</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
+<span class="p">(</span><span class="s">&#39;black&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">data</span><span class="p">[</span><span class="n">bisect_left</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
+<span class="p">(</span><span class="s">&#39;blue&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">data</span><span class="p">[</span><span class="n">bisect_left</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="mi">5</span><span class="p">)]</span>
+<span class="p">(</span><span class="s">&#39;red&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">data</span><span class="p">[</span><span class="n">bisect_left</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="mi">8</span><span class="p">)]</span>
+<span class="p">(</span><span class="s">&#39;yellow&#39;</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+</pre></div>
+
+
+<p>参考博文:</p>
+<p><a href="http://www.ahathinking.com/archives/179.html">二分查找，你真的会吗？</a> —— 大概看了下, 没有参考博客中的实现. 因为while的判断条件情况太多种了, 反而不易理解.</p>
+        <hr />
+    </div>
+         <div>
         <a href="http://zoeyyoung.github.io/float-IEEE-754.html"><h1>[基础] 浮点数</h1></a>
         <div class="article-metadata">
 <time class="published" datetime="2013 九月 09 周一">2013 九月 09 周一 </time>
@@ -120,52 +294,7 @@
         <a href="http://zoeyyoung.github.io/tag/ji-suan-ji.html">计算机</a>
     </span>
 <!-- <p></p> -->
-</div>        <p>N bit可以表示的信息量是 2^N</p>
-<p>32位</p>
-<p>S--------E-------M</p>
-<p>1位-----8位-----23位</p>
-<p>64位</p>
-<p>S--------E-------M</p>
-<p>1位-----11位----52位</p>
-<p>表示的浮点数: (-1)^S * 2^(E-127) * (1.M)B</p>
-<p>E可以分成三种情况:</p>
-<ol>
-<li>E不全为0或不全为1. 这时, 浮点数就采用上面的规则表示, 即指数E的计算值减去127(或1023), 得到真实值, 再将有效数字M前加上第一位的1.</li>
-<li>E全为0时, 浮点数的指数E等于1-127 (或者1-1023), 有效数字M不再加上第一位的1, 而是还原为0.xxxxxx的小数. 这样做是为了表示±0, 以及接近于0的很小的数字.</li>
-<li>E全为1. 这时, 如果有效数字M全为0, 表示±无穷大(正负取决于符号位s); 如果有效数字M不全为0, 表示这个数不是一个数(NaN).</li>
-</ol>
-<p>区间是怎么求出来的:</p>
-<p>32 位可表示的浮点数:</p>
-<p>2^(-23) * 2^(1-127) = 1.4012984643248170709237295832899e-45 (考虑到最小值为最低位为1的情况, 且E全为0)</p>
-<p>2 * 2^127 = 3.4028236692093846346337460743177e+38 (1.M 表示的数小于2)</p>
-<p>表示范围: -3.402823E38 ~ -1.401298E-45 不可见 1.401298E-45 ~ 3.402823E38</p>
-<p>64 位:</p>
-<p>2^(-52) * 2^(1-1023) = 4.9406564584124654417656879286822e-324</p>
-<p>2 * 2^1023 = 1.797693134862315907729305190789e+308</p>
-<p>表示范围: -1.797693134862316E+308 ~ -4.94065E-324 不可见 4.94065E-324 ~ 1.797693134862316E+308</p>
-<blockquote>
-<p>在浮点数的表示范围内，有多于 99.999...% 的数在计算机中是 <strong>不能表示</strong> 的.</p>
-</blockquote>
-<p>要把小数装入计算机，总共分3步:</p>
-<ul>
-<li>第一步：转换成二进制</li>
-<li>第二步：用二进制科学计算法表示</li>
-<li>第三步：表示成 IEEE 754 形式</li>
-</ul>
-<p>在上面的第一步和第三步都有可能 <strong>丢失精度</strong>.</p>
-<p>0.1 到 0.9 的 9 个小数中, 只有 0.5 可以用二进制精确的表示.</p>
-<p>如果把 0.0 再算上, 那么就有两个数可以精确表示, 一个奇数 0.5, 一个偶数 0.0.</p>
-<p>如果一个十进制数可以用二进制精确表示, 那么它的最后一位肯定是 5.</p>
-<p>备注：这是个必要条件, 而不是充分条件. 一位热心网友设计出了下面的解决精度的方案. 我就不解释了, 同学们自己思考一下吧.</p>
-<blockquote>
-<p>我有一个观点, 针对小数精度不够的问题(例如 0.1), 软件可以人为的在数据最后一位补 5, 也就是 0.15, 这样牺牲一位, 但是可以保证数据精度, 还原再把那个尾巴 5 去掉.</p>
-</blockquote>
-<p><a href="http://www.ruanyifeng.com/blog/2010/06/ieee_floating-point_representation.html">浮点数的二进制表示</a></p>
-<p><a href="http://geeklu.com/2011/03/ieee754-floating-point-arithmetic/">浮点数解惑</a></p>
-<p><a href="http://babbage.cs.qc.cuny.edu/IEEE-754/index.xhtml">换算工具</a></p>
-<p><a href="http://justjavac.com/codepuzzle/2012/11/02/codepuzzle-float-from-surprised-to-ponder.html">代码之谜（四）- 浮点数（从惊讶到思考）</a></p>
-<p><a href="http://justjavac.com/codepuzzle/2012/11/11/codepuzzle-float-who-stole-your-accuracy.html">代码之谜（五）- 浮点数（谁偷了你的精度？）</a></p>
-<p>用定点数精确表示小数</p>
+</div>        <p>浮点数相关笔记</p>
         <hr />
     </div>
          <div>
@@ -184,24 +313,6 @@
     </span>
 <!-- <p></p> -->
 </div>        <p>测试GIST <a href="https://gist.github.com/fmeyer/289467/">Evolution of a Python programmer.py</a> 中的代码, 该代码片段为各种程序员所写的阶乘算法代码, 甚至包括网页设计师的, 很有意思</p>
-        <hr />
-    </div>
-         <div>
-        <a href="http://zoeyyoung.github.io/python-bisect.html"><h1>[算法] Python 中的二分算法</h1></a>
-        <div class="article-metadata">
-<time class="published" datetime="2013 八月 30 周五">2013 八月 30 周五 </time>
-<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
-<span>
-    <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/suan-fa.html">算法</a>
-</span>
-<span>
-    <i class="icon-tags"></i>
-        <a href="http://zoeyyoung.github.io/tag/python.html">Python</a>
-        <a href="http://zoeyyoung.github.io/tag/ji-chu.html">基础</a>
-    </span>
-<!-- <p></p> -->
-</div>        <p>Python 中的二分算法.</p>
         <hr />
     </div>
          <div>

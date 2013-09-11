@@ -1,9 +1,12 @@
 Title: [算法] Python 中的二分算法
-Date: 2013-08-30
+Date: 2013-09-11
 Tags: Python,基础
 Slug: python-bisect
 Author: Zoey Young
 Summary: Python 中的二分算法.
+
+初始化于: 2013-08-30
+上次修改: 2013-09-11
 
 之前大于小于等于有点晕, 通过看Python源码, 已经不纠结于大于号小于号的问题了. 其实就两种方式, 就可以适应问题不同的变化.
 
