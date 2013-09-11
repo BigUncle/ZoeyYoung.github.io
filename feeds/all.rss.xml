@@ -570,19 +570,21 @@
 
 &lt;p&gt;&lt;code&gt;functools.reduce(function, iterable[, initializer])&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;例如: &lt;code&gt;reduce(lambda x, y: x+y, [1, 2, 3, 4, 5])&lt;/code&gt; 计算 &lt;code&gt;((((1+2)+3)+4)+5)&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;还要了解下尾调用和尾递归&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Thu, 05 Sep 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-09-05:python-factorial-evolution.html</guid><category>Python</category><category>基础</category></item><item><title>[算法] Python 中的二分算法</title><link>http://zoeyyoung.github.io/python-bisect.html</link><description>&lt;p&gt;&lt;a href="http://docs.python.org/3.3/library/bisect.html"&gt;文档&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;还要了解下尾调用和尾递归&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Thu, 05 Sep 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-09-05:python-factorial-evolution.html</guid><category>Python</category><category>基础</category></item><item><title>[算法] Python 中的二分算法</title><link>http://zoeyyoung.github.io/python-bisect.html</link><description>&lt;p&gt;之前大于小于等于有点晕, 通过看Python源码, 已经不纠结于大于号小于号的问题了. 其实就两种方式, 就可以适应问题不同的变化.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://docs.python.org/3.3/library/bisect.html"&gt;文档&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;insort前缀为插入, bisect前缀为返回索引&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://hg.python.org/cpython/file/3.3/Lib/bisect.py"&gt;源码: bisect.py&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;关键部分:&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;insort_left&lt;/code&gt; | &lt;code&gt;bisect_left&lt;/code&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="n"&gt;lo&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;hi&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="n"&gt;mid&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lo&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;hi&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;
+    &lt;span class="n"&gt;mid&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lo&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;hi&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="c"&gt;# 向下取整 mid = lo + ((hi-lo)&amp;gt;&amp;gt;1)&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;mid&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;lo&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mid&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
     &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;hi&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mid&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;&lt;code&gt;insort_right&lt;/code&gt; | &lt;code&gt;bisect_right&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;—— 这里要注意返回的索引位置并非等于x的. 是最右的等于x的索引加1&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="n"&gt;lo&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;hi&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="n"&gt;mid&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lo&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;hi&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;mid&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt; &lt;span class="n"&gt;hi&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mid&lt;/span&gt;
@@ -590,7 +592,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;主要区别在于&lt;code&gt;x == a[mid]&lt;/code&gt;时, 是&lt;code&gt;hi = mid&lt;/code&gt;[高变低, 左趋], 还是&lt;code&gt;lo = mid+1&lt;/code&gt;[低变高, 右趋], 其余都是一样的.&lt;/p&gt;
+&lt;p&gt;最左最右的主要区别在于&lt;code&gt;x == a[mid]&lt;/code&gt;时, 是&lt;code&gt;hi = mid&lt;/code&gt;[高变低, 左趋], 还是&lt;code&gt;lo = mid+1&lt;/code&gt;[低变高, 右趋], 其余都是一样的. 不直接返回mid是因为并不能确定mid指向的是左还是右还是中间.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;bisect&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;bisect_left&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;bisect_right&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;bisect_left&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c"&gt;# 小于所有数时, 返回0&lt;/span&gt;
@@ -599,7 +601,11 @@
 &lt;span class="mi"&gt;0&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;bisect_left&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c"&gt;# 最左的等于x的索引&lt;/span&gt;
 &lt;span class="mi"&gt;1&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;bisect_right&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c"&gt;# 最右的不等于x的索引&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;bisect_right&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c"&gt;# 最右的等于x的索引+1&lt;/span&gt;
+&lt;span class="mi"&gt;3&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;bisect_left&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c"&gt;# 不存在时, 返回第一个刚好大于的位置&lt;/span&gt;
+&lt;span class="mi"&gt;3&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;bisect_right&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="mi"&gt;3&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;bisect_left&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c"&gt;# 大于所有数时, 返回值为len(a)&lt;/span&gt;
 &lt;span class="mi"&gt;9&lt;/span&gt;
@@ -651,9 +657,10 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;搜索已排序列表&lt;/p&gt;
+&lt;p&gt;应用: 搜索已排序列表&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;index&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="s"&gt;&amp;#39;Locate the leftmost value exactly equal to x&amp;#39;&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;二分查找返回key(可能有重复)第一次出现的下标&amp;#39;&lt;/span&gt;
     &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;bisect_left&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;
@@ -661,22 +668,24 @@
 
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;find_lt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="s"&gt;&amp;#39;Find rightmost value less than x&amp;#39;&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;二分查找返回刚好小于key的元素下标&amp;#39;&lt;/span&gt;
     &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;bisect_left&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="c"&gt;# i不等于0&lt;/span&gt;
         &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
     &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="ne"&gt;ValueError&lt;/span&gt;
 
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;find_le&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="s"&gt;&amp;#39;Find rightmost value less than or equal to x&amp;#39;&lt;/span&gt;
     &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;bisect_right&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="c"&gt;# 如果要找最右的等于x的, 条件为: if i and a[i-1] == x&lt;/span&gt;
         &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
     &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="ne"&gt;ValueError&lt;/span&gt;
 
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;find_gt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="s"&gt;&amp;#39;Find leftmost value greater than x&amp;#39;&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;二分查找返回刚好大于x的元素下标&amp;#39;&lt;/span&gt;
     &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;bisect_right&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt; &lt;span class="c"&gt;# 如果i等于len(a), 则不存在大于x的值&lt;/span&gt;
         &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
     &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="ne"&gt;ValueError&lt;/span&gt;
 
@@ -711,7 +720,11 @@
 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;red&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;bisect_left&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;yellow&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Fri, 30 Aug 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-08-30:python-bisect.html</guid><category>Python</category><category>基础</category></item><item><title>[算法] Python 计算出现最多的前100个单词</title><link>http://zoeyyoung.github.io/python-heapq-counter.html</link><description>&lt;p&gt;有一个1G大小的一个文件, 里面每一行是一个词, 词的大小不超过16字节, 内存限制大小是1M. 返回频数最高的100个词.&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;参考博文:&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.ahathinking.com/archives/179.html"&gt;二分查找，你真的会吗？&lt;/a&gt; —— 大概看了下, 没有参考博客中的实现. 因为while的判断条件情况太多种了, 反而不易理解.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Fri, 30 Aug 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-08-30:python-bisect.html</guid><category>Python</category><category>基础</category></item><item><title>[算法] Python 计算出现最多的前100个单词</title><link>http://zoeyyoung.github.io/python-heapq-counter.html</link><description>&lt;p&gt;有一个1G大小的一个文件, 里面每一行是一个词, 词的大小不超过16字节, 内存限制大小是1M. 返回频数最高的100个词.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;方案1: 顺序读文件中, 对于每个词x, 取hash(x)%5000，然后按照该值存到5000个小文件(记为x0, x1, ..., x4999)中。这样每个文件大概是200k左右. 如果其中有的文件超过了1M大小, 还可以按照类似的方法继续往下分, 直到分解得到的小文件的大小都不超过1M. 对每个小文件, 统计每个文件中出现的词以及相应的频率(可以采用trie树/hash_map等), 并取出出现频率最大的100个词(可以用含100个结点的最小堆), 并把100词及相应的频率存入文件, 这样又得到了5000个文件. 下一步就是把这5000个文件进行归并(类似于归并排序)的过程了.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -5337,7 +5350,78 @@ sudo apt-get install oracle-java7-installer
 &lt;ul&gt;
 &lt;li&gt;当灵感出现时，立即抓住它，不要拖延。你可以有很多idea，但如果不实践，他们都等于零&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;a href="http://www.cnblogs.com/meng-meng/archive/2011/11/15/2249852.html"&gt;每一个有理想的程序员都应该读的一本书-《rework》&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Thu, 21 Jun 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-06-21:rework.html</guid><category>读书</category><category>Book</category></item><item><title>《黑客与画家》</title><link>http://zoeyyoung.github.io/hakers-and-painters.html</link><description>&lt;p&gt;最近在看的书, 摘录一些有趣的言论&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.cnblogs.com/meng-meng/archive/2011/11/15/2249852.html"&gt;每一个有理想的程序员都应该读的一本书-《rework》&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Thu, 21 Jun 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-06-21:rework.html</guid><category>读书</category><category>Book</category></item><item><title>[设计模式] 《Head First 设计模式》笔记之工厂模式</title><link>http://zoeyyoung.github.io/design-patten-factory.html</link><description>&lt;p&gt;工厂模式&lt;/p&gt;
+&lt;p&gt;——烘烤OO的精华&lt;/p&gt;
+&lt;p&gt;关键——"松耦合"&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;实例化&lt;/strong&gt;这个活动不应该总是公开地进行&lt;/p&gt;
+&lt;p&gt;初始化经常造成&lt;strong&gt;"耦合"&lt;/strong&gt;问题&lt;/p&gt;
+&lt;p&gt;有一些要实例化的具体类, 究竟实例化哪个类, 要在运行时由一些条件来决定, 一有变化或扩展, 必须重新打开这段代码进行检查和修改. 这部分就是代码中&lt;strong&gt;变化的&lt;/strong&gt;部分, 因此要考虑把它们从&lt;strong&gt;不变的&lt;/strong&gt;部分分离出来.&lt;/p&gt;
+&lt;p&gt;针对接口编程, 可以隔离掉以后系统可能发生的一大堆改变.&lt;/p&gt;
+&lt;p&gt;设计原则: 对扩展开放, 对修改关闭.&lt;/p&gt;
+&lt;p&gt;找出会变化的方面, 把它们从不变的部分分离出来.&lt;/p&gt;
+&lt;p&gt;将创建对象的代码从普通方法中抽离, 放入另一个对象(工厂)中, 这个新对象只管如何创建具体对象.&lt;/p&gt;
+&lt;p&gt;工厂(factory)处理创建对象的细节.&lt;/p&gt;
+&lt;p&gt;所有的工厂都是用来封装对象的创建.&lt;/p&gt;
+&lt;p&gt;一开始的疑问:&lt;/p&gt;
+&lt;p&gt;单独出来有什么好处, 有变化时还是得修改工厂对象.&lt;/p&gt;
+&lt;p&gt;没考虑到的情况是: &lt;strong&gt;可能还有其它地方会利用这个工厂来创建对象,, 这个工厂可以有许多客户. 因此, 当以后实现改变时, 只需修改这个类, 而不会导致所有创建相关对象的地方都要修改.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;将创建对象的代码集中在一个对象或方法中, 可以避免代码中的重复, 并且更方便以后的维护. 这也意味着客户在实例化对象时, 只会依赖于接口, 而不是具体类.&lt;/p&gt;
+&lt;p&gt;设计原则: 针对接口编程, 而不是针对实现编程.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;我的理解&lt;/strong&gt;: 在我们系统中的很多地方可能都需要用到相同的一段代码——这段代码用来创建对象, 返回的对象的类型是一些具体类型的&lt;strong&gt;抽象类型&lt;/strong&gt;, 创建的对象的&lt;strong&gt;具体类型&lt;/strong&gt;在运行时才能确定, 这段代码应该略复杂, 可能会有许多if...else语句, 并且当系统需求变化, 比如加入新的具体类型时, 这段代码就需要修改——这里应该很自然想到代码复用, 如果没有把这段代码提取出来, 当系统需求变化的时候, 许多地方都要同时修改, 这时候利用工厂就理所当然了. 另外一种理解就是, 既然有很多地方都要以相同的方式创建产品, 那把这些代码在一处管理总比到处都要管理来得强, 虽然你仍然需要实例化真正的对象(而不是抽象对象).&lt;/p&gt;
+&lt;p&gt;把工厂定义成静态方法的缺点: 不能通过继承来改变创建方法的行为.&lt;/p&gt;
+&lt;p&gt;简单工厂其实不是一个设计模式, 反而比较像是一种编程习惯.&lt;/p&gt;
+&lt;p&gt;简单工厂由一个对象负责所有具体类的实例化(把全部的事情，在一个地方都处理完了), 任务太重.&lt;/p&gt;
+&lt;h3&gt;工厂方法模式&lt;/h3&gt;
+&lt;p&gt;定义: 工厂方法模式定义了一个创建对象的接口, 但由子类决定要实例化的类是哪一个. 工厂方法让类把实例化推迟到子类.&lt;/p&gt;
+&lt;p&gt;工厂方法用来处理对象的创建, 并将这样的行为封装在&lt;strong&gt;子类&lt;/strong&gt;中. 这样, 客户程序中关于超类的代码就和子类对象创建代码解耦了.&lt;/p&gt;
+&lt;p&gt;工厂方法是抽象的, 依赖子类来处理对象的创建.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;abstract&lt;/span&gt; &lt;span class="n"&gt;Product&lt;/span&gt; &lt;span class="nf"&gt;factoryMethod&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;type&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;我的理解: 所有的产品都属于一个抽象产品类型A, 存在多个具体工厂的原因可能是可以对这些产品进行分类, 比如说有产品A1、A2、A3、A4、A5、A6都是A的子类, A1、A2、A3属于组1, A4、A5、A6属于组2, 具体工厂1生产组1, 具体工厂2生产组2, 工厂1只知道怎么生产组1的产品, 工厂2只知道怎么生产组2的产品, 这样就把产品的创建分配给多个子类了, 解决了简单工厂模式任务太重的缺点. 具体应用时要知道你要使用哪个具体工厂.&lt;/p&gt;
+&lt;p&gt;还有一个“抽象的”(这里说抽象的原因应该是它可能或大多数情况下会被继承, 但并不意味着一定是个抽象类)创建者类, 包含抽象工厂方法, 它实现了所有操纵产品的方法, 但不实现工厂方法(也可以定义一个默认的工厂方法来产生某些具体的产品, 这么一来, 即使创建者没有任何子类, 依然可以创建产品).&lt;/p&gt;
+&lt;p&gt;相似的原则——依赖倒置原则: 要依赖抽象, 不要依赖具体类.&lt;/p&gt;
+&lt;p&gt;不能让高层组件依赖低层组件, 而且, 不管高层或低层组件, "两者"都应该依赖于抽象.&lt;/p&gt;
+&lt;p&gt;我的理解: 上面的"抽象"工厂(高级组件), 不应该直接创建具体的产品(低层组件), 而应该只拥有抽象的产品(Product), 具体的产品由工厂方法创建, 高层组件并不关心具体生产出来的是什么产品, 因此它是依赖抽象的, 而低层组件只知道自己是抽象的产品的子类, 因此低层组件也只依赖于抽象.&lt;/p&gt;
+&lt;p&gt;倒置在哪?&lt;/p&gt;
+&lt;p&gt;本来高层组件依赖低层组件(许多箭头从上而下), 现在高层组件和低层组件都依赖同一个抽象, 这个抽象对于低层组件来说是高层的(箭头从下而上), 此时, 高层组件只有一条从上而下指向抽象的箭头.&lt;/p&gt;
+&lt;p&gt;倒置思考方式&lt;/p&gt;
+&lt;p&gt;一般: 先考虑高层, 然后考虑低层&lt;/p&gt;
+&lt;p&gt;倒置后: 先考虑有许多低层组件, 然后抽象出一个接口, 而高层组件只需依赖这个抽象, 而不管低层组件怎样.&lt;/p&gt;
+&lt;p&gt;指导方针(尽量, 而不是一定要遵循):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;变量不可以持有具体类的引用&lt;/p&gt;
+&lt;p&gt;如果使用new, 就会持有具体类的引用. 可以改用工厂来避开这样的做法.(这里的一个原因是类一般都是可变的, 用工厂可封装改变, 特例: 字符串不可变)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;不要让类派生自具体类。&lt;/p&gt;
+&lt;p&gt;如果派生自具体类, 就会依赖具体类. 应该派生自一个抽象(接口或抽象类).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;不要覆盖基类中已实现的方法.&lt;/p&gt;
+&lt;p&gt;基类中已实现的方法, 应该由所有的子类共享。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;抽象工厂模式 Abstract Factory&lt;/h3&gt;
+&lt;p&gt;对象创建型模式&lt;/p&gt;
+&lt;p&gt;创建产品家族&lt;/p&gt;
+&lt;p&gt;定义: 抽象工厂模式提供一个接口, 用于创建相关或相互依赖对象的家族, 而不需要明确指定具体类.&lt;/p&gt;
+&lt;p&gt;抽象工厂的方法经常以工厂方法的方式实现. 抽象工厂的任务是定义一个负责创建一组产品的接口. 这个接口内的每个方法都负责创建一个具体产品, 同时我们利用实现抽象工厂的子类来提供这些具体的做法. 所以, 在抽象工厂中利用工厂方法实现生产方法是相当自然的做法.&lt;/p&gt;
+&lt;p&gt;工厂方法和抽象工厂区别&lt;/p&gt;
+&lt;p&gt;工厂方法使用的是类, 而抽象工厂使用的是对象.&lt;/p&gt;
+&lt;p&gt;都负责创建对象, 但工厂方法用的是继承, 而抽象工厂通过对象的组合.&lt;/p&gt;
+&lt;p&gt;利用工厂方法创建对象, 需要扩展一个类(继承成子类), 并覆盖(或实现)它的工厂方法.&lt;/p&gt;
+&lt;p&gt;当需要创建产品家族和想让制造的相关产品集合起来时, 可以使用抽象工厂.&lt;/p&gt;
+&lt;p&gt;简单工厂, 虽然不是真正的设计模式, 但仍不失为一个简单的方法, 可以将客户程序从具体类解耦.&lt;/p&gt;
+&lt;p&gt;工厂方法使用继承: 把对象的创建委托给子类, 子类实现工厂方法来创建对象.&lt;/p&gt;
+&lt;p&gt;抽象工厂使用对象组合: 对象的创建被实现在工厂接口所暴露出来的方法中.&lt;/p&gt;
+&lt;p&gt;所有工厂模式都通过减少应用程序和具体类之间的依赖促进松耦合.&lt;/p&gt;
+&lt;p&gt;工厂方法允许类将实例化延迟到子类进行.&lt;/p&gt;
+&lt;p&gt;抽象工厂创建相关的对象家族, 而不需要依赖它们的具体类.&lt;/p&gt;
+&lt;p&gt;依赖倒置原则, 指导我们避免依赖具体类型, 而要尽量依赖抽象.&lt;/p&gt;
+&lt;p&gt;工厂是很有威力的技巧, 帮助我们针对抽象编程, 而不要针对具体类编程.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Wed, 13 Jun 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-06-13:design-patten-factory.html</guid><category>读书</category><category>Book</category></item><item><title>《黑客与画家》</title><link>http://zoeyyoung.github.io/hakers-and-painters.html</link><description>&lt;p&gt;最近在看的书, 摘录一些有趣的言论&lt;/p&gt;
 &lt;p&gt;文章似乎写得比较早了, 有些人似乎拿现在的观念去批驳书中的某些观点&lt;/p&gt;
 &lt;p&gt;但是正如书中经常提到的, 随大流的问题～～所以有自己的观点应该没有错&lt;/p&gt;
 &lt;p&gt;不过我比较不喜欢在不是很了解一个东西的时候就发表评论&lt;/p&gt;

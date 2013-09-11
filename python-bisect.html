@@ -117,19 +117,21 @@
         <a href="http://zoeyyoung.github.io/tag/ji-chu.html">基础</a>
     </span>
 <!-- <p></p> -->
-</div>  <p><a href="http://docs.python.org/3.3/library/bisect.html">文档</a></p>
+</div>  <p>之前大于小于等于有点晕, 通过看Python源码, 已经不纠结于大于号小于号的问题了. 其实就两种方式, 就可以适应问题不同的变化.</p>
+<p><a href="http://docs.python.org/3.3/library/bisect.html">文档</a></p>
 <p>insort前缀为插入, bisect前缀为返回索引</p>
 <p><a href="http://hg.python.org/cpython/file/3.3/Lib/bisect.py">源码: bisect.py</a></p>
 <p>关键部分:</p>
 <p><code>insort_left</code> | <code>bisect_left</code></p>
 <div class="highlight"><pre><span class="k">while</span> <span class="n">lo</span> <span class="o">&lt;</span> <span class="n">hi</span><span class="p">:</span>
-    <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">lo</span><span class="o">+</span><span class="n">hi</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span>
+    <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">lo</span><span class="o">+</span><span class="n">hi</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span> <span class="c"># 向下取整 mid = lo + ((hi-lo)&gt;&gt;1)</span>
     <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">:</span> <span class="n">lo</span> <span class="o">=</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span>
     <span class="k">else</span><span class="p">:</span> <span class="n">hi</span> <span class="o">=</span> <span class="n">mid</span>
 </pre></div>
 
 
 <p><code>insort_right</code> | <code>bisect_right</code></p>
+<p>—— 这里要注意返回的索引位置并非等于x的. 是最右的等于x的索引加1</p>
 <div class="highlight"><pre><span class="k">while</span> <span class="n">lo</span> <span class="o">&lt;</span> <span class="n">hi</span><span class="p">:</span>
     <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">lo</span><span class="o">+</span><span class="n">hi</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span>
     <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]:</span> <span class="n">hi</span> <span class="o">=</span> <span class="n">mid</span>
@@ -137,7 +139,7 @@
 </pre></div>
 
 
-<p>主要区别在于<code>x == a[mid]</code>时, 是<code>hi = mid</code>[高变低, 左趋], 还是<code>lo = mid+1</code>[低变高, 右趋], 其余都是一样的.</p>
+<p>最左最右的主要区别在于<code>x == a[mid]</code>时, 是<code>hi = mid</code>[高变低, 左趋], 还是<code>lo = mid+1</code>[低变高, 右趋], 其余都是一样的. 不直接返回mid是因为并不能确定mid指向的是左还是右还是中间.</p>
 <div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">bisect</span> <span class="kn">import</span> <span class="n">bisect_left</span><span class="p">,</span> <span class="n">bisect_right</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">bisect_left</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c"># 小于所有数时, 返回0</span>
@@ -146,7 +148,11 @@
 <span class="mi">0</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">bisect_left</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c"># 最左的等于x的索引</span>
 <span class="mi">1</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">bisect_right</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c"># 最右的不等于x的索引</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">bisect_right</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c"># 最右的等于x的索引+1</span>
+<span class="mi">3</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">bisect_left</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>  <span class="c"># 不存在时, 返回第一个刚好大于的位置</span>
+<span class="mi">3</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">bisect_right</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 <span class="mi">3</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">bisect_left</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>  <span class="c"># 大于所有数时, 返回值为len(a)</span>
 <span class="mi">9</span>
@@ -198,9 +204,10 @@
 </pre></div>
 
 
-<p>搜索已排序列表</p>
+<p>应用: 搜索已排序列表</p>
 <div class="highlight"><pre><span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
     <span class="s">&#39;Locate the leftmost value exactly equal to x&#39;</span>
+    <span class="s">&#39;二分查找返回key(可能有重复)第一次出现的下标&#39;</span>
     <span class="n">i</span> <span class="o">=</span> <span class="n">bisect_left</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="ow">and</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">x</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">i</span>
@@ -208,22 +215,24 @@
 
 <span class="k">def</span> <span class="nf">find_lt</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
     <span class="s">&#39;Find rightmost value less than x&#39;</span>
+    <span class="s">&#39;二分查找返回刚好小于key的元素下标&#39;</span>
     <span class="n">i</span> <span class="o">=</span> <span class="n">bisect_left</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">i</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">i</span><span class="p">:</span> <span class="c"># i不等于0</span>
         <span class="k">return</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     <span class="k">raise</span> <span class="ne">ValueError</span>
 
 <span class="k">def</span> <span class="nf">find_le</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
     <span class="s">&#39;Find rightmost value less than or equal to x&#39;</span>
     <span class="n">i</span> <span class="o">=</span> <span class="n">bisect_right</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">i</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">i</span><span class="p">:</span> <span class="c"># 如果要找最右的等于x的, 条件为: if i and a[i-1] == x</span>
         <span class="k">return</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     <span class="k">raise</span> <span class="ne">ValueError</span>
 
 <span class="k">def</span> <span class="nf">find_gt</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
     <span class="s">&#39;Find leftmost value greater than x&#39;</span>
+    <span class="s">&#39;二分查找返回刚好大于x的元素下标&#39;</span>
     <span class="n">i</span> <span class="o">=</span> <span class="n">bisect_right</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">):</span> <span class="c"># 如果i等于len(a), 则不存在大于x的值</span>
         <span class="k">return</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
     <span class="k">raise</span> <span class="ne">ValueError</span>
 
@@ -259,6 +268,10 @@
 <span class="o">&gt;&gt;&gt;</span> <span class="n">data</span><span class="p">[</span><span class="n">bisect_left</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="mi">8</span><span class="p">)]</span>
 <span class="p">(</span><span class="s">&#39;yellow&#39;</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
 </pre></div>
+
+
+<p>参考博文:</p>
+<p><a href="http://www.ahathinking.com/archives/179.html">二分查找，你真的会吗？</a> —— 大概看了下, 没有参考博客中的实现. 因为while的判断条件情况太多种了, 反而不易理解.</p>
 </article>
 <div class="comment">
     <!-- JiaThis Button BEGIN -->
