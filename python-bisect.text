@@ -15,6 +15,8 @@ Summary: Python 中的二分算法.
 
 基本条件: 排序后数组
 
+在其它语言中, 如果`low + high`的和大于Integer的最大值,比如`2 ** 31 - 1`, 计算便会发生溢出, 使它成为一个负数,然后被2除时结果仍为负数. 在Java语言中, 这个Bug导致一个ArrayIndexOutOfBoundsException异常被抛出, 而在C语言中, 你会得到一个无法预测的越界的数组下标. 推荐的解决方法是修改中间值的计算过程, 方法之一是用减法而不是加法——来实现：`mid = low + ((high - low) / 2);` 或者,如果你想炫耀一下自己掌握的移位运算的知识, 可以使用更快的移位运算操作, 在Python中是`mid = (low + high) >> 1`, Java中是`int mid = (low + high) >>> 1`。
+
 之前大于小于等于有点晕, 通过看Python源码, 已经不纠结于大于小于等于的问题了. 其实就两种方式, 就可以适应问题不同的变化.
 
 [文档](http://docs.python.org/3.3/library/bisect.html): insort前缀为插入, bisect前缀为返回索引
@@ -276,7 +278,7 @@ Summary: Python 中的二分算法.
     arr = [11, 13, 1, 2, 4, 7, 9]
     print(binsearch_smallest(arr))
 
-### 参考博文:
+### 相关文章:
 
 [二分查找，你真的会吗？](http://www.ahathinking.com/archives/179.html) —— 大概看了下, 没有参考博客中的实现. 因为while的判断条件情况太多种了, 反而不易理解.
 

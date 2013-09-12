@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>[算法] 求数组的子数组之和的最大值 - OK Computer</title>
+  <meta name="description" content="杨丁苗的个人博客">
+  <meta name="author" content="ZoeyYoung">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+  <!--[if lt IE 9]>
+  <script src="http://zoeyyoung.github.io/theme/html5.js"></script>
+  <![endif]-->
+  <!-- Le styles -->
+  <link href="http://netdna.bootstrapcdn.com/bootswatch/3.0.0/cyborg/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link href="http://zoeyyoung.github.io/theme/print.css" rel="stylesheet" media="print" />
+  <link href="http://zoeyyoung.github.io/theme/local.css" rel="stylesheet" media="screen" />
+  <link href="http://zoeyyoung.github.io/theme/pygments.css" rel="stylesheet" />
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet" />
+  <!--[if IE 7]>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome-ie7.min.css" rel="stylesheet" />
+  <![endif]-->
+  <script type="text/javascript" src="http://tajs.qq.com/stats?sId=27017681" charset="UTF-8"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div id="header" class="col-md-2 no-print">
+        <div class="brand-wrapper">
+          <a href="http://zoeyyoung.github.io" class="navbar-brand">OK Computer</a>
+          <p style="text-align: center; font-size: 12px; margin-top: 0;">It's better to burn out <br/> than to fade away.</p>
+        </div>
+        <ul id="blog-nav" class="nav">
+          <li>SITE</li>
+          <li><a href="http://zoeyyoung.github.io">首页</a></li>
+          <li><a href="http://zoeyyoung.github.io/archives.html">归档</a></li>
+          <li><a href="http://zoeyyoung.github.io/tags.html">标签</a></li>
+          <li><hr/></li>
+          <li>CATEGORIES</li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/java.html ">Java</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/linux.html ">Linux</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/nlp.html ">NLP</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/nosql.html ">NoSQL</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/python.html ">Python</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/ruby.html ">Ruby</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/tips.html ">Tips</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/qian-duan.html ">前端</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/dong-nao.html ">动脑</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/ji-chu.html ">基础</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/gong-zuo-ji-lu.html ">工作记录</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/wo-de-xiang-mu.html ">我的项目</a>
+          </li>
+                    <li  class="active" >
+            <a href="http://zoeyyoung.github.io/category/suan-fa-shu-ju-jie-gou.html ">算法&数据结构</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/du-shu.html ">读书</a>
+          </li>
+                    <li><hr/></li>
+                    <li>PAGES<li>
+          
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/about-me.html">关于我</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/golden-slumber.html">Golden Slumber</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/neil-young.html">Neil Young</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/on-the-road.html">在路上</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/software.html">我使用的软件</a>
+          </li>
+                    <li>
+            <a href="http://zoeyyoung.github.io/pages/translate.html">翻译</a>
+          </li>
+                            </ul>
+      </div>
+      <div class="main-content col-md-8">
+          <article>
+  <h1>[算法] 求数组的子数组之和的最大值</h1>
+  <div class="article-metadata">
+<time class="published" datetime="2013 五月 31 周五">2013 五月 31 周五 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/suan-fa-shu-ju-jie-gou.html">算法&数据结构</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/python.html">Python</a>
+        <a href="http://zoeyyoung.github.io/tag/suan-fa.html">算法</a>
+        <a href="http://zoeyyoung.github.io/tag/mian-shi.html">面试</a>
+        <a href="http://zoeyyoung.github.io/tag/bi-shi.html">笔试</a>
+    </span>
+<!-- <p></p> -->
+</div>  <p>题目描述:</p>
+<p>输入一个整形数组, 数组里有正数也有负数. 数组中连续的一个或多个整数组成一个子数组, 每个子数组都有一个和. 求所有子数组的和的最大值.</p>
+<p>例子:
+[1, -2, 3, 5, -3, 2] 返回: 8
+[0, -2, 3, 5, -1, 2] 返回: 9
+[-9, -2, -3, -5, -3] 返回: -2</p>
+<p>扩展问题2: 返回了最大子数组的位置(均有返回)</p>
+<p>N^3的方法就不写了, 我都想不出这种方法...</p>
+<p>解法一, n^2</p>
+<div class="highlight"><pre><span class="n">def</span> <span class="n">find_maximum_subarray</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">max</span> <span class="o">=</span> <span class="o">-</span><span class="kt">float</span><span class="p">(</span><span class="s">&quot;inf&quot;</span><span class="p">)</span>
+    <span class="n">low</span> <span class="o">=</span> <span class="n">high</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="n">in</span> <span class="n">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">len</span><span class="p">(</span><span class="n">A</span><span class="p">))</span><span class="o">:</span>
+        <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="n">in</span> <span class="n">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">len</span><span class="p">(</span><span class="n">A</span><span class="p">))</span><span class="o">:</span>
+            <span class="n">sum</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">sum</span> <span class="o">&gt;</span> <span class="n">max</span><span class="o">:</span>
+                <span class="n">max</span> <span class="o">=</span> <span class="n">sum</span>
+                <span class="n">low</span> <span class="o">=</span> <span class="n">i</span>
+                <span class="n">high</span> <span class="o">=</span> <span class="n">j</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">,</span> <span class="n">max</span><span class="p">)</span>
+</pre></div>
+
+
+<p>解法二, 分治方法 nlgn</p>
+<p>主要思想: 采用二分策略, 将序列分成左右两份. 那么最长子序列有三种可能出现的情况, 即</p>
+<ol>
+<li>只出现在左部分.</li>
+<li>只出现在右部分.</li>
+<li>出现在中间, 同时涉及到左右两部分.</li>
+</ol>
+<p>分情况讨论之.</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">find_max_crossing_subarray</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">mid</span><span class="p">,</span> <span class="n">high</span><span class="p">):</span>
+    <span class="n">left_sum</span> <span class="o">=</span> <span class="o">-</span><span class="nb">float</span><span class="p">(</span><span class="s">&#39;inf&#39;</span><span class="p">)</span>
+    <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">mid</span><span class="p">,</span> <span class="n">low</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="nb">sum</span> <span class="o">=</span> <span class="nb">sum</span> <span class="o">+</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">sum</span> <span class="o">&gt;</span> <span class="n">left_sum</span><span class="p">:</span>
+            <span class="n">left_sum</span> <span class="o">=</span> <span class="nb">sum</span>
+            <span class="n">max_left</span> <span class="o">=</span> <span class="n">i</span>
+    <span class="n">right_sum</span> <span class="o">=</span> <span class="o">-</span><span class="nb">float</span><span class="p">(</span><span class="s">&#39;inf&#39;</span><span class="p">)</span>
+    <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">high</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="nb">sum</span> <span class="o">=</span> <span class="nb">sum</span> <span class="o">+</span> <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">sum</span> <span class="o">&gt;</span> <span class="n">right_sum</span><span class="p">:</span>
+            <span class="n">right_sum</span> <span class="o">=</span> <span class="nb">sum</span>
+            <span class="n">max_right</span> <span class="o">=</span> <span class="n">j</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">max_left</span><span class="p">,</span> <span class="n">max_right</span><span class="p">,</span> <span class="n">left_sum</span> <span class="o">+</span> <span class="n">right_sum</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">find_maximum_subarray</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">high</span> <span class="o">==</span> <span class="n">low</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">,</span> <span class="n">A</span><span class="p">[</span><span class="n">low</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">low</span> <span class="o">+</span> <span class="n">high</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="p">(</span><span class="n">left_low</span><span class="p">,</span> <span class="n">left_high</span><span class="p">,</span> <span class="n">left_sum</span><span class="p">)</span> <span class="o">=</span> <span class="n">find_maximum_subarray</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">mid</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">right_low</span><span class="p">,</span> <span class="n">right_high</span><span class="p">,</span> <span class="n">right_sum</span><span class="p">)</span> <span class="o">=</span> <span class="n">find_maximum_subarray</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">high</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">cross_low</span><span class="p">,</span> <span class="n">cross_high</span><span class="p">,</span> <span class="n">cross_sum</span><span class="p">)</span> <span class="o">=</span> <span class="n">find_max_crossing_subarray</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">mid</span><span class="p">,</span> <span class="n">high</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">left_sum</span> <span class="o">&gt;=</span> <span class="n">right_sum</span> <span class="ow">and</span> <span class="n">left_sum</span> <span class="o">&gt;=</span> <span class="n">cross_sum</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">left_low</span><span class="p">,</span> <span class="n">left_high</span><span class="p">,</span> <span class="n">left_sum</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">right_sum</span> <span class="o">&gt;=</span> <span class="n">left_sum</span> <span class="ow">and</span> <span class="n">right_sum</span> <span class="o">&gt;=</span> <span class="n">cross_sum</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">right_low</span><span class="p">,</span> <span class="n">right_high</span><span class="p">,</span> <span class="n">right_sum</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">cross_low</span><span class="p">,</span> <span class="n">cross_high</span><span class="p">,</span> <span class="n">cross_sum</span><span class="p">)</span>
+</pre></div>
+
+
+<p>解法三, 线性时间 n</p>
+<p>从头遍历数组元素, 并累加求和, 如果和小于0就自当前元素从新开始, 否则就一直累加, 取其中最大值便为解.</p>
+<div class="highlight"><pre><span class="cp">#-*-coding:utf-8-*-</span>
+<span class="n">def</span> <span class="n">find_maximum_subarray</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">max_so_far</span> <span class="o">=</span> <span class="n">max_ending_here</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">high</span> <span class="o">=</span> <span class="n">low</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="n">in</span> <span class="n">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">len</span><span class="p">(</span><span class="n">A</span><span class="p">))</span><span class="o">:</span>
+        <span class="err">#</span> <span class="n">max_ending_here</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">max_ending_here</span> <span class="o">+</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="err">#</span> <span class="n">max_so_far</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">max_so_far</span><span class="p">,</span> <span class="n">max_ending_here</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">max_ending_here</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">:</span>
+            <span class="n">max_ending_here</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">t_low</span> <span class="o">=</span> <span class="n">i</span> <span class="err">#</span> <span class="err">记录当前的起始位置</span>
+        <span class="nl">else:</span>
+            <span class="n">max_ending_here</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">max_ending_here</span> <span class="o">&gt;</span> <span class="n">max_so_far</span><span class="o">:</span>
+            <span class="n">max_so_far</span> <span class="o">=</span> <span class="n">max_ending_here</span>
+            <span class="n">low</span><span class="p">,</span> <span class="n">high</span> <span class="o">=</span> <span class="n">t_low</span><span class="p">,</span> <span class="n">i</span> <span class="err">#</span> <span class="err">记录并更新最大子数组位置</span>
+    <span class="n">print</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">,</span> <span class="n">max_so_far</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">max_so_far</span>
+</pre></div>
+
+
+<p>过程:</p>
+<div class="highlight"><pre><span class="k">[13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7]</span>
+<span class="err">max_ending_here:</span> <span class="err">13</span> <span class="err">10</span> <span class="err">-15</span> <span class="err">20</span> <span class="err">17</span>  <span class="err">1</span> <span class="err">-22</span> <span class="err">18</span> <span class="err">38</span> <span class="err">31</span> <span class="err">43</span> <span class="err">38</span> <span class="err">16</span> <span class="err">31</span> <span class="err">27</span> <span class="err">34</span>
+<span class="err">max_so_far</span>     <span class="err">:</span> <span class="err">13</span> <span class="err">13</span>  <span class="err">13</span> <span class="err">20</span> <span class="err">20</span> <span class="err">20</span>  <span class="err">20</span> <span class="err">20</span> <span class="err">38</span> <span class="err">38</span> <span class="err">43</span> <span class="err">43</span> <span class="err">43</span> <span class="err">43</span> <span class="err">43</span> <span class="err">43</span>
+</pre></div>
+
+
+<p>扩展问题1:</p>
+<p>这篇博文分析了书中的错误: http://www.ahathinking.com/archives/120.html</p>
+<div class="highlight"><pre><span class="cp">#-*-coding:utf-8-*-</span>
+<span class="cp"># 不跨界的情况</span>
+<span class="n">def</span> <span class="n">find_maximum_not_crossing_subarray</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">max_so_far</span> <span class="o">=</span> <span class="n">max_ending_here</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="n">in</span> <span class="n">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">len</span><span class="p">(</span><span class="n">A</span><span class="p">))</span><span class="o">:</span>
+        <span class="k">if</span> <span class="n">max_ending_here</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">:</span>
+            <span class="n">max_ending_here</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="nl">else:</span>
+            <span class="n">max_ending_here</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">max_ending_here</span> <span class="o">&gt;</span> <span class="n">max_so_far</span><span class="o">:</span>
+            <span class="n">max_so_far</span> <span class="o">=</span> <span class="n">max_ending_here</span>
+    <span class="k">return</span> <span class="n">max_so_far</span>
+
+<span class="cp"># 跨界的情况, 找最小, 剩下的就是最大的了</span>
+<span class="n">def</span> <span class="n">find_maximum_crossing_subarray</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">sum_A</span> <span class="o">=</span> <span class="n">min_so_far</span> <span class="o">=</span> <span class="n">min_ending_here</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="n">in</span> <span class="n">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">len</span><span class="p">(</span><span class="n">A</span><span class="p">))</span><span class="o">:</span>
+        <span class="n">sum_A</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">min_ending_here</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">:</span>
+            <span class="n">min_ending_here</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="nl">else:</span>
+            <span class="n">min_ending_here</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">min_ending_here</span> <span class="o">&lt;</span> <span class="n">min_so_far</span><span class="o">:</span>
+            <span class="n">min_so_far</span> <span class="o">=</span> <span class="n">min_ending_here</span>
+    <span class="k">return</span> <span class="n">sum_A</span> <span class="o">-</span> <span class="n">min_so_far</span>
+
+<span class="n">def</span> <span class="n">find_maximum_subarray</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">max_not_crossing</span> <span class="o">=</span> <span class="n">find_maximum_not_crossing_subarray</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">print</span><span class="p">(</span><span class="err">&#39;</span><span class="n">max_not_crossing</span><span class="o">:</span> <span class="o">%</span><span class="n">d</span><span class="err">&#39;</span> <span class="o">%</span> <span class="n">max_not_crossing</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">max_not_crossing</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">:</span>
+        <span class="k">return</span> <span class="n">max_not_crossing</span>
+    <span class="n">max_crossing</span> <span class="o">=</span> <span class="n">find_maximum_crossing_subarray</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">print</span><span class="p">(</span><span class="err">&#39;</span><span class="n">max_crossing</span><span class="o">:</span> <span class="o">%</span><span class="n">d</span><span class="err">&#39;</span> <span class="o">%</span> <span class="n">max_crossing</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">max_crossing</span> <span class="o">&gt;</span> <span class="n">max_not_crossing</span><span class="o">:</span>
+        <span class="k">return</span> <span class="n">max_crossing</span>
+    <span class="k">return</span> <span class="n">max_not_crossing</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="o">:</span>
+    <span class="err">#</span> <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">13</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">16</span><span class="p">,</span> <span class="o">-</span><span class="mi">23</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">22</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+    <span class="err">#</span> <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">]</span>
+    <span class="err">#</span> <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+    <span class="err">#</span> <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+    <span class="err">#</span> <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">]</span>
+    <span class="n">print</span><span class="p">(</span><span class="n">find_maximum_subarray</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
+</pre></div>
+
+
+<p>相关文章:</p>
+<p><a href="http://en.wikipedia.org/wiki/Maximum_subarray_problem">维基百科</a></p>
+<p><a href="http://blog.csdn.net/v_JULY_v/article/details/6444021">程序员编程艺术：第七章、求连续子数组的最大和</a></p>
+<p>书籍: 《编程之美》2.14 求数组的子数组之和的最大值</p>
+<p>扩展问题:</p>
+<p>1、如果数组是二维数组, 同样要你求最大子数组的和列?</p>
+<p>2、如果是要你求子数组的最大乘积列?</p>
+</article>
+<div class="comment">
+    <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style_32x32 no-print">
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a href="http://www.jiathis.com/share?uid=1801890" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1801890" charset="utf-8"></script>
+<!-- JiaThis Button END -->    <!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" id="UYScript" src="http://v1.uyan.cc/js/iframe.js?UYUserId=1801890" async=""></script>
+<!-- UY END --></div>
+                </div>    </div><!-- End of fluid row-->
+  </div><!-- End of Container-->
+  <!--footer-->
+  <footer id="footer" class="no-print">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-2" id="socialist">
+          <ul class="nav">
+            <li>Social</li>
+                                    <li><a href="http://weibo.com/1990zoey"><i class="icon-weibo icon-large"></i>新浪微博</a></li>
+                        <li><a href="http://www.renren.com/230222157/profile"><i class="icon-renren icon-large"></i>人人网</a></li>
+                        <li><a href="http://www.douban.com/people/ZoeyYoung/"><i class="icon-leaf icon-large"></i>豆瓣</a></li>
+                                    <li><a href="mailto:ydingmiao@gmail.com">
+              <i class="icon-envelope icon-large"></i>联系我
+            </a></li>
+                      </ul>
+        </div>
+                <div class="col-md-2">
+          <ul class="nav">
+            <li>Links</li>
+                                    <li><a href="http://my.oschina.net/zoey1990">
+              <i class="icon-heart icon-large"></i>OSC
+            </a></li>
+                        <li><a href="http://www.xiami.com/u/2092563">
+              <i class="icon-music icon-large"></i>虾米
+            </a></li>
+                        <li><a href="https://gist.github.com/ZoeyYoung">
+              <i class="icon-github icon-large"></i>GIST
+            </a></li>
+                        <li><a href="https://github.com/ZoeyYoung">
+              <i class="icon-github icon-large"></i>GitHub
+            </a></li>
+                      </ul>
+        </div>
+        <div class="col-md-2" id="site-links">
+          <ul class="nav">
+            <li>Site</li>
+            <li><a href="http://zoeyyoung.github.io">
+              <i class="icon-home icon-large"></i>首页
+            </a></li>
+            <li><a href="http://zoeyyoung.github.io/archives.html">
+              <i class="icon-list icon-large"></i>归档
+            </a></li>
+            <li><a href="http://zoeyyoung.github.io/tags.html">
+              <i class="icon-tags icon-large"></i>标签
+            </a></li>
+                        <li><a href="http://zoeyyoung.github.io/" rel="alternate">
+              <i class="icon-rss-sign icon-large"></i>Atom Feed
+            </a></li>
+          </ul>
+        </div>
+                <div class="sina-weibo col-md-4">
+          <a href="http://weibo.com/u/1861922471?s=6uyXnP" target="_blank"><img border="0" src="http://service.t.sina.com.cn/widget/qmd/1861922471/c4ba5282/1.png"/></a>
+        </div>
+                <div class="col-md-1"></div>
+      </div><!--end of fluid row-->
+      <p style="text-align: center;">
+          <a href="http://zoeyyoung.github.io">OK Computer</a>
+          &copy; ZoeyYoung
+          Powered by
+          <a href="https://github.com/getpelican/pelican">Pelican</a>
+          and
+          <a href="https://twitter.github.com/bootstrap">Twitter Bootstrap</a>
+          .
+          Icons by
+          <a href="http://gregoryloucas.github.io/Fontstrap/">Font Awesome</a>
+          .Theme By <a href="http://zoeyyoung.gitcafe.com/">ZoeyYoung</a>
+      </p>
+    </div>
+  </footer>
+  <!--/footer-->
+  <script src="http://zoeyyoung.github.io/theme/jquery.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script>var _gaq=[['_setAccount','UA-41731595-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='http//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+</body>
+</html>
