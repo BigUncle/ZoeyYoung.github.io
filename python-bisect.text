@@ -6,29 +6,41 @@ Author: Zoey Young
 Summary: Python 中的二分算法.
 
 初始化于: 2013-08-30
+
 上次修改: 2013-09-11
 
-之前大于小于等于有点晕, 通过看Python源码, 已经不纠结于大于号小于号的问题了. 其实就两种方式, 就可以适应问题不同的变化.
+[维基: Binary search algorithm](http://en.wikipedia.org/wiki/Binary_search_algorithm)
 
-[文档](http://docs.python.org/3.3/library/bisect.html)
+时间复杂度: O(log n)
 
-insort前缀为插入, bisect前缀为返回索引
+基本条件: 排序后数组
+
+之前大于小于等于有点晕, 通过看Python源码, 已经不纠结于大于小于等于的问题了. 其实就两种方式, 就可以适应问题不同的变化.
+
+[文档](http://docs.python.org/3.3/library/bisect.html): insort前缀为插入, bisect前缀为返回索引
 
 [源码: bisect.py](http://hg.python.org/cpython/file/3.3/Lib/bisect.py)
 
 关键部分:
 
+初始化(这里要注意索引hi为搜索范围+1).
+
+    :::python
+    if lo < 0:
+        raise ValueError('lo must be non-negative')
+    if hi is None:
+        hi = len(a)
+
 `insort_left` | `bisect_left`
 
     :::python
     while lo < hi:
-        mid = (lo+hi)//2 # 向下取整 mid = lo + ((hi-lo)>>1)
+        mid = (lo+hi)//2 # 向下取整 有的语言需防溢出: mid = lo + ((hi-lo)>>1)
         if a[mid] < x: lo = mid+1
         else: hi = mid
 
 `insort_right` | `bisect_right`
-
-—— 这里要注意返回的索引位置并非等于x的. 是最右的等于x的索引加1
+ —— 这里要注意返回的索引位置并非等于x的. 是最右的等于x的索引加1
 
     :::python
     while lo < hi:
@@ -49,7 +61,7 @@ insort前缀为插入, bisect前缀为返回索引
     1
     >>> bisect_right(a, 2)  # 最右的等于x的索引+1
     3
-    >>> bisect_left(a, 3)  # 不存在时, 返回第一个刚好大于的位置
+    >>> bisect_left(a, 3)  # 不存在时, 返回第一个刚好大于x的位置
     3
     >>> bisect_right(a, 3)
     3
@@ -60,6 +72,7 @@ insort前缀为插入, bisect前缀为返回索引
 
 分析:
 
+    :::python
     a = [1, 2, 2, 4, 5, 6, 7, 8, 9]
 
     假设要寻找 x = 2 应该插入的位置
@@ -141,7 +154,7 @@ insort前缀为插入, bisect前缀为返回索引
             return a[i]
         raise ValueError
 
-numeric table lookups (这个看起来很有用)
+下面这个实例看起来很有用: numeric table lookups
 
     :::python
     >>> def grade(score, breakpoints=[60, 70, 80, 90], grades='FDCBA'):
@@ -166,6 +179,111 @@ numeric table lookups (这个看起来很有用)
     >>> data[bisect_left(keys, 8)]
     ('yellow', 8)
 
-参考博文:
+### 在轮转后的有序数组上应用二分查找法
+
+问题描述: 如果有序序列发生偏移即把序列的后面一部分截取放在前面, 比如:
+
+11 13 1 2 4 7 9
+
+此时再给定一个数, 查找其在序列中是否存在(返回其位置), 请问如何实现?
+
+思路: 考虑顺序情况下的做法, 再考虑轮转后的特殊情况
+
+存在重复元素时会返回最左的索引:
+
+    :::python
+    def binsearch_left(a, key, lo=0, hi=None):
+        if lo < 0:
+            raise ValueError('lo must be non-negative')
+        if hi is None:
+            hi = len(a)
+        while lo < hi:
+            mid = (lo + hi) // 2
+            if a[mid] < key:
+                if a[mid] < a[lo] and a[hi-1] < key:
+                    hi = mid
+                else:
+                    lo = mid+1
+            else:
+                if a[hi-1] < a[mid] and key < a[lo]:
+                    lo = mid+1
+                else:
+                    hi = mid
+        return lo if lo != len(a) and a[lo] == key else -1
+
+    arr = [7, 11, 13, 17, 2, 3, 5]
+    print([binsearch_left(arr, x) for x in arr])  # [0, 1, 2, 3, 4, 5, 6]
+    arr = [11, 13, 1, 2, 4, 7, 9]
+    print([binsearch_left(arr, x) for x in arr])  # [0, 1, 2, 3, 4, 5, 6]
+    arr = [11, 13, 15, 15, 1, 1, 1, 2, 2, 4, 7, 9]
+    print([binsearch_left(arr, x) for x in arr])  # [0, 1, 2, 2, 4, 4, 4, 7, 7, 9, 10, 11]
+
+存在重复元素时会返回最右的索引:
+
+    :::python
+    def binsearch(a, key, lo=0, hi=None):
+        if lo < 0:
+            raise ValueError('lo must be non-negative')
+        if hi is None:
+            hi = len(a)
+        while lo < hi:
+            mid = (lo + hi) // 2
+            if key < a[mid]:
+                if a[hi-1] < a[mid] and key < a[lo]:
+                    lo = mid+1
+                else:
+                    hi = mid
+            elif a[mid] < key:
+                if a[mid] < a[lo] and a[hi-1] < key:
+                    hi = mid
+                else:
+                    lo = mid+1
+            else:
+                return mid
+        return lo if lo != len(a) and a[lo] == key else -1
+
+    arr = [7, 11, 13, 17, 2, 3, 5]
+    print([binsearch(arr, x) for x in arr])  # [0, 1, 2, 3, 4, 5, 6]
+    arr = [11, 13, 1, 2, 4, 7, 9]
+    print([binsearch(arr, x) for x in arr])  # [0, 1, 2, 3, 4, 5, 6]
+    arr = [11, 13, 15, 15, 1, 1, 1, 2, 2, 4, 7, 9]
+    print([binsearch(arr, x) for x in arr])  # [0, 1, 3, 3, 6, 6, 6, 8, 8, 9, 10, 11]
+
+同上题描述, 找出序列中最小元素位置:
+
+    :::python
+    def binsearch_smallest(a, lo=0, hi=None):
+        if lo < 0:
+            raise ValueError('lo must be non-negative')
+        if hi is None:
+            hi = len(a) - 1 # 这里与上面不同
+        while lo < hi:
+            mid = (lo + hi) // 2
+            if a[hi] < a[mid]:
+                lo = mid+1
+            else:
+                hi = mid
+        return lo
+
+    arr = [7, 11, 13, 13, 2, 2, 3, 5]
+    print(binsearch_smallest(arr))
+    arr = [7, 11, 13, 17, 2, 2, 2, 3, 5]
+    print(binsearch_smallest(arr))
+    arr = [7, 11, 13, 17, 2, 2, 3, 3, 5]
+    print(binsearch_smallest(arr))
+    arr = [1, 2, 3, 3, 5, 7, 11, 13, 13]
+    print(binsearch_smallest(arr))
+    arr = [11, 13, 1, 2, 4, 7, 9]
+    print(binsearch_smallest(arr))
+
+### 参考博文:
 
 [二分查找，你真的会吗？](http://www.ahathinking.com/archives/179.html) —— 大概看了下, 没有参考博客中的实现. 因为while的判断条件情况太多种了, 反而不易理解.
+
+[为什么python标准库没有实现链表](http://blog.suchasplus.com/2011/03/why-python-Standard-library-does-not-implement-the-list.html)
+
+[TimeComplexity](https://wiki.python.org/moin/TimeComplexity)
+
+[二分查找法的实现和应用汇总](http://www.cnblogs.com/ider/archive/2012/04/01/binary_search.html)
+
+[二分查找算法及变种的编码实现](http://segmentfault.com/q/1010000000181714) —— 里面有些问题还不懂...

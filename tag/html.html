@@ -104,9 +104,9 @@
       <div class="main-content col-md-8">
           
     <div>
-        <a href="http://zoeyyoung.github.io/ext-quicktips-init.html"><h1>Ext.QuickTips.init()</h1></a>
+        <a href="http://zoeyyoung.github.io/print-style-sheet.html"><h1>创建打印样式表</h1></a>
         <div class="article-metadata">
-<time class="published" datetime="2012 十一月 09 周五">2012 十一月 09 周五 </time>
+<time class="published" datetime="2013 六月 24 周一">2013 六月 24 周一 </time>
 <a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
 <span>
     <i class="icon-folder-open"></i>
@@ -114,45 +114,131 @@
 </span>
 <span>
     <i class="icon-tags"></i>
-        <a href="http://zoeyyoung.github.io/tag/extjs.html">ExtJS</a>
-        <a href="http://zoeyyoung.github.io/tag/qian-duan.html">前端</a>
-        <a href="http://zoeyyoung.github.io/tag/javascript.html">JavaScript</a>
-        <a href="http://zoeyyoung.github.io/tag/html.html">Html</a>
-        <a href="http://zoeyyoung.github.io/tag/dai-ma.html">代码</a>
+        <a href="http://zoeyyoung.github.io/tag/css.html">CSS</a>
+        <a href="http://zoeyyoung.github.io/tag/html.html">HTML</a>
     </span>
 <!-- <p></p> -->
-</div>        <p>先说我测试的Ext版本: ext-4.1.1a-gpl（感觉独立于版本存在的教程都有点...）</p>
-<p>虽然API里面有例子, 写这个有点多余, 但是网上搜索到的文章存在误导, 例如:</p>
-<div class="highlight"><pre><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span> <span class="na">ext:qtip=</span><span class="s">&quot;my tooltip&quot;</span><span class="nt">&gt;</span>Link<span class="nt">&lt;/a&gt;</span>
+</div>        <p>Chrome浏览器有一项非常好用的功能, 就是直接将网页保存为PDF(Ctrl+P), 虽然部分人觉得没有用, 但我经常使用这个功能</p>
+<p>比如说, 有的博文写得不错, 想保存, 但是以什么样的方式保存是个问题</p>
+<p>以前我会用为知, EverNote之类的笔记软件保存, 但是我又有格式强迫症, 总觉得保存下来的网页不够漂亮, 因为会保存一些不必要的格式</p>
+<p>所以还是存为PDF对我来说可看性强一点</p>
+<p>许多网站并没有<strong>Print Style Sheet</strong>这个东西, 直接后果是我存为PDF时会连导航栏, 底部信息等跟文章无关的东西一并保存了, 需要打印的话这些也会一起打印出来</p>
+<p>因此, 对于信息类的网站, 有一个<strong>Print Style Sheet</strong>我认为是非常有必要的</p>
+<p>而这个东西的创建又极其的简单, 只要在原有的样式表中添加一个<code>media="print"</code>的样式表</p>
+<div class="highlight"><pre><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;print.css&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">media=</span><span class="s">&quot;print&quot;</span> <span class="nt">/&gt;</span>
 </pre></div>
 
 
-<p>上面代码中<code>"my tooltip"</code>的属性名为<code>ext:qtip</code>(估计是原来的名称), 试了半天没显示出什么tooltip, 看了下官方的教程, 应该把属性名改为<code>data-qtip</code>.</p>
-<p>能够正确显示tooltip的代码如下 ：</p>
-<div class="highlight"><pre><span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="nt">&lt;html&gt;</span>
-<span class="nt">&lt;head&gt;</span>
-    <span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;Content-Type&quot;</span> <span class="na">content=</span><span class="s">&quot;text/html; charset=UTF-8&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;title&gt;</span>Ext.QuickTips<span class="nt">&lt;/title&gt;</span>
-    <span class="nt">&lt;link</span> <span class="na">class=</span><span class="s">&quot;others library&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href=</span><span class="s">&quot;/js/sandbox/extjs/resources/css/ext-all.css&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;script </span><span class="na">class=</span><span class="s">&quot;others library&quot;</span> <span class="na">src=</span><span class="s">&quot;/js/sandbox/extjs/ext-all.js&quot;</span> <span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-<span class="nt">&lt;/head&gt;</span>
-<span class="nt">&lt;body&gt;</span>
-    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span> <span class="na">data-qtip=</span><span class="s">&quot;my tooltip1&quot;</span><span class="nt">&gt;</span>Link1<span class="nt">&lt;/a&gt;</span>
-    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span> <span class="na">data-qtip=</span><span class="s">&quot;my tooltip2&quot;</span><span class="nt">&gt;</span>Link2<span class="nt">&lt;/a&gt;</span>
-    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;button&quot;</span> <span class="na">data-qtip=</span><span class="s">&quot;my tooltip3&quot;</span> <span class="na">value=</span><span class="s">&quot;Button&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
-        <span class="nx">Ext</span><span class="p">.</span><span class="nx">require</span><span class="p">([</span><span class="s1">&#39;Ext.tip.*&#39;</span><span class="p">]);</span>
-        <span class="nx">Ext</span><span class="p">.</span><span class="nx">onReady</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-          <span class="nx">Ext</span><span class="p">.</span><span class="nx">QuickTips</span><span class="p">.</span><span class="nx">init</span><span class="p">();</span>
-        <span class="p">});</span>
-    <span class="nt">&lt;/script&gt;</span>
-<span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span>
+<p>原有的样式表的<code>media="screen"</code>, 否则打印样式表会继承原有的样式表(非必须)</p>
+<div class="highlight"><pre><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;screen.css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">media=</span><span class="s">&quot;screen&quot;</span> <span class="nt">/&gt;</span>
 </pre></div>
 
 
-<p><a href="http://runjs.cn/code/hoqeicfy">查看代码</a></p>
+<p>需要注意的是, Chrome的打印功能本身对页面进行了处理, 因此一些样式不设置也不影响</p>
+<p>但是对于内容的显示与否, Chrome的打印样式并未做处理</p>
+<p>下面是创建样式的主要步骤(同参考文档, 详细解说可看参考文档):</p>
+<h3>1. Remove the Navigation</h3>
+<p>更简单的说, 就是移除一切不需要显示的, 设置<code>display: none;</code></p>
+<div class="highlight"><pre><span class="nf">#nav</span><span class="o">,</span> <span class="nf">#sidebar</span> <span class="p">{</span> <span class="k">display</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+
+
+<p>一个小技巧, 就是为所有不需要打印的元素添加一个类</p>
+<div class="highlight"><pre><span class="nc">.no-print</span> <span class="p">{</span> <span class="k">display</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+
+
+<h3>2. Enlarge the Content Area</h3>
+<p>扩大正文区域, 一般我们文章显示宽度并非100%, 这边修改正文区域为100%, 并移除浮动</p>
+<div class="highlight"><pre><span class="nf">#content</span> <span class="p">{</span> <span class="k">width</span><span class="o">:</span> <span class="m">100</span><span class="o">%</span><span class="p">;</span> <span class="k">margin</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span> <span class="k">float</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+
+
+<h3>3. Reset the Background Colors</h3>
+<p>重置背景色, 打印一般为白底黑字, 但一些网页的背景颜色是深色, 而字体是浅色, 所以要重置</p>
+<div class="highlight"><pre><span class="nt">body</span> <span class="p">{</span> <span class="k">background</span><span class="o">:</span> <span class="nb">white</span><span class="p">;</span> <span class="p">}</span>
+<span class="nf">#content</span> <span class="p">{</span> <span class="k">background</span><span class="o">:</span> <span class="k">transparent</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+
+
+<h3>4. Reset Text Colors</h3>
+<p>既然要重置背景色, 当然字体颜色也要重置了, 否则打印字体颜色为白色的字, 那就没法阅读了</p>
+<div class="highlight"><pre><span class="nf">#author</span> <span class="p">{</span> <span class="k">color</span><span class="o">:</span> <span class="m">#111</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+
+
+<h3>5. Display the Destination of Links</h3>
+<p>网页中的链接在打印的文章中是无法点击的, 这时打印出链接会更直观的表示出这里是链接, 而不是直接略过了, 当然并不是所有链接都需要打印出, 通常是正文中的链接才需要打印出</p>
+<div class="highlight"><pre><span class="nt">a</span><span class="nd">:link:after</span> <span class="p">{</span> <span class="k">content</span><span class="o">:</span> <span class="s2">&quot; (&quot;</span> <span class="n">attr</span><span class="p">(</span><span class="n">href</span><span class="p">)</span> <span class="s2">&quot;) &quot;</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+
+
+<h3>6. Make Links Stand Out from Regular Text</h3>
+<p>给链接添加样式, 比如加粗, 或加下划线</p>
+<div class="highlight"><pre><span class="nt">a</span><span class="nd">:link</span> <span class="p">{</span> <span class="k">font-weight</span><span class="o">:</span> <span class="k">bold</span><span class="p">;</span> <span class="k">text-decoration</span><span class="o">:</span> <span class="k">underline</span><span class="p">;</span> <span class="k">color</span><span class="o">:</span> <span class="m">#06c</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+
+
+<h3>7. What About Font Size?</h3>
+<p>设置字体大小, 差不多就行了</p>
+<div class="highlight"><pre><span class="nt">p</span> <span class="p">{</span> <span class="k">font-size</span><span class="o">:</span> <span class="m">12pt</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+
+
+<h3>8. What About Fonts?</h3>
+<p>设置字体</p>
+<div class="highlight"><pre><span class="nt">body</span> <span class="p">{</span> <span class="k">font-family</span><span class="o">:</span> <span class="n">Georgia</span><span class="o">,</span> <span class="err">‘</span><span class="n">Times</span> <span class="n">New</span> <span class="n">Roman</span><span class="err">’</span><span class="o">,</span> <span class="k">serif</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+
+
+<h3>9. My Blog Has a Lot of Comments. What Should I Do?</h3>
+<p>对于评论的处理, 显示还是不显示? 让读者自己选择吧, 使用分页, 将评论的页面单独出来, 打印或保存时都可以选择打印部分页</p>
+<div class="highlight"><pre><span class="nf">#comments</span> <span class="p">{</span> <span class="k">page</span><span class="o">-</span><span class="n">break</span><span class="o">-</span><span class="n">before</span><span class="o">:</span> <span class="k">always</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+
+
+<h3>10. Show a Print-Only Message</h3>
+<p>只在打印中显示的信息, 方法就是设置一段在正常页面不显示的段落, 然后在打印页面中显示出来, 利用<code>display</code>属性</p>
+<p>我的<code>print.css</code></p>
+<script src="https://gist.github.com/ZoeyYoung/5850742.js"></script>
+
+<p>添加样式前:</p>
+<p><img alt="顶部导航也显示在打印页中" src="/static/images/print-style-sheet.jpg" /></p>
+<p><img alt="评论与文章是连续显示的" src="/static/images/print-style-sheet2.jpg" /></p>
+<p><img alt="底部导航也显示在打印页中" src="/static/images/print-style-sheet3.jpg" /></p>
+<p>添加样式后:</p>
+<p><img alt="首页不显示导航了" src="/static/images/print-style-sheet4.jpg" /></p>
+<p><img alt="评论页单独出来了" src="/static/images/print-style-sheet5.jpg" /></p>
+<p>Chrome的开发人员工具中还有模拟media的功能</p>
+<p><img alt="media" src="/static/images/chrome-dev-tool.jpg" /></p>
+<p>将<strong>Emulate CSS media</strong>修改为<strong>print</strong>后页面显示为</p>
+<p><img alt="Emulate CSS media:print" src="/static/images/print-style-sheet6.jpg" /></p>
+<h3>参考文档:</h3>
+<ul>
+<li><a href="http://www.webdesignerdepot.com/2010/01/10-tips-for-better-print-style-sheets/">10 Tips for Better Print Style Sheets</a></li>
+</ul>
+<h3>存在问题</h3>
+<ul>
+<li>在Chrome中经常会直接显示打印的效果...用Ctrl+F5刷新才显示正常, 为什么? 在IE下没发现这个问题..</li>
+</ul>
+        <hr />
+    </div>
+         <div>
+        <a href="http://zoeyyoung.github.io/theme-design.html"><h1>博客主题中通用的代码片段</h1></a>
+        <div class="article-metadata">
+<time class="published" datetime="2013 六月 21 周五">2013 六月 21 周五 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/qian-duan.html">前端</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/css.html">CSS</a>
+        <a href="http://zoeyyoung.github.io/tag/html.html">HTML</a>
+    </span>
+<!-- <p></p> -->
+</div>        <p>博客主题中通用的代码片段</p>
         <hr />
     </div>
             <ul class="pagination pagination-sm no-print">
