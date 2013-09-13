@@ -104,6 +104,81 @@
       <div class="main-content col-md-8">
           
     <div>
+        <a href="http://zoeyyoung.github.io/find-max-multiply.html"><h1>[算法] 子数组的最大乘积</h1></a>
+        <div class="article-metadata">
+<time class="published" datetime="2013 六月 04 周二">2013 六月 04 周二 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/suan-fa-shu-ju-jie-gou.html">算法&数据结构</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/bi-shi.html">笔试</a>
+        <a href="http://zoeyyoung.github.io/tag/mian-shi.html">面试</a>
+        <a href="http://zoeyyoung.github.io/tag/python.html">Python</a>
+        <a href="http://zoeyyoung.github.io/tag/bian-cheng-zhi-mei.html">编程之美</a>
+    </span>
+<!-- <p></p> -->
+</div>        <p>《编程之美》2.13 子数组的最大乘积</p>
+<p>题目: 给定一个长度为N的整数数组, 只允许用乘法, 不能用除法, 计算任意(N-1)个数的组合乘积中最大的一组, 并写出算法的时间复杂度.</p>
+<p>一开始想到的就是给的第二种解法. 有谁会一开始就去算乘积吗?</p>
+<ul>
+<li>数组中有多于一个零则最大乘积为0</li>
+<li>数组中只有一个零, 而有奇数个负数, 则最大乘积必定为0</li>
+<li>数组中只有一个零, 而有偶数个负数, 则最大乘积为除去0的元素的乘积</li>
+<li>数组中没有零, 而有奇数个负数, 则最大乘积为除去绝对值最小的负数的乘积</li>
+<li>数组中没有零, 而有偶数个负数, 则最大乘积为除去最小的正数的乘积</li>
+</ul>
+<p>时间复杂度: O(n)</p>
+<div class="highlight"><pre><span class="c">#!/usr/bin/env python</span>
+<span class="c"># -*- coding: utf-8 -*-</span>
+<span class="k">def</span> <span class="nf">find_max_multiply</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">negative_c</span> <span class="o">=</span> <span class="n">zero_c</span> <span class="o">=</span> <span class="n">n_min</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">p_min</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s">&#39;inf&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">zero_c</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span>  <span class="c"># 多于一个零则最大乘积为0</span>
+            <span class="n">zero_c</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">zero_index</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="k">elif</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">negative_c</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">n_min</span><span class="p">:</span>
+                <span class="n">n_min</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="n">n_index</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="k">elif</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">p_min</span><span class="p">:</span>
+                <span class="n">p_min</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="n">p_index</span> <span class="o">=</span> <span class="n">i</span>
+    <span class="k">if</span> <span class="n">zero_c</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>  <span class="c"># 数组中只有一个零</span>
+        <span class="k">if</span> <span class="n">negative_c</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="c"># 偶数个负数</span>
+            <span class="n">exclude_index</span> <span class="o">=</span> <span class="n">zero_index</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c"># 奇数个负数</span>
+            <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>  <span class="c"># 数组中没有零</span>
+        <span class="k">if</span> <span class="n">negative_c</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="c"># 偶数个负数</span>
+            <span class="n">exclude_index</span> <span class="o">=</span> <span class="n">p_index</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c"># 奇数个负数</span>
+            <span class="n">exclude_index</span> <span class="o">=</span> <span class="n">n_index</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">exclude_index</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">result</span> <span class="o">*=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>  <span class="c"># 数组中有多于一个零则最大乘积为0</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>  <span class="c"># 数组中只有一个零, 而有奇数个负数, 则最大乘积必定为0</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>  <span class="c"># 数组中只有一个零, 而有偶数个负数, 则最大乘积为除去0的元素的乘积</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>  <span class="c"># 数组中没有零, 而有偶数个负数, 则最大乘积为除去最小的正数的乘积</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mi">7</span><span class="p">],</span>  <span class="c"># 数组中没有零, 而有偶数个负数, 则最大乘积为除去最小的正数的乘积</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mi">7</span><span class="p">]]</span>  <span class="c"># 数组中没有零, 而有奇数个负数, 则最大乘积为除去绝对值最小的负数的乘积</span>
+    <span class="k">print</span><span class="p">([</span><span class="n">find_max_multiply</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">A</span><span class="p">])</span>
+</pre></div>
+        <hr />
+    </div>
+         <div>
         <a href="http://zoeyyoung.github.io/beautiful-2-3.html"><h1>[笔记]《编程之美》2.3 寻找发帖“水王”</h1></a>
         <div class="article-metadata">
 <time class="published" datetime="2013 六月 03 周一">2013 六月 03 周一 </time>
@@ -121,74 +196,7 @@
         <a href="http://zoeyyoung.github.io/tag/bian-cheng-zhi-mei.html">编程之美</a>
     </span>
 <!-- <p></p> -->
-</div>        <blockquote>
-<p>Tango是微软亚洲研究院的一个试验项目。研究院的员工和实习生们都很喜欢在Tango上面交流灌水。传说，Tango有一大“水王”，他不但喜欢发贴，还会回复其他ID发的每个帖子。坊间风闻该“水王”发帖数目超过了帖子总数的一半。如果你有一个当前论坛上所有帖子（包括回帖）的列表，其中帖子作者的ID也在表中，你能快速找出这个传说中的Tango水王吗？</p>
-</blockquote>
-<p>前提是“水王”的ID在ID列表中的次数超过一半，刚好等于一半是不行的</p>
-<div class="highlight"><pre><span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
-    <span class="n">candidate</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-    <span class="n">nTimes</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span>
-        <span class="k">if</span> <span class="n">nTimes</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">candidate</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-            <span class="n">nTimes</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">elif</span> <span class="n">candidate</span> <span class="o">==</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
-            <span class="n">nTimes</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">nTimes</span> <span class="o">-=</span><span class="mi">1</span>
-    <span class="k">return</span> <span class="n">candidate</span>
-
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">find</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
-</pre></div>
-
-
-<blockquote>
-<p>扩展问题：随着Tango的发展，管理员发现，“超级水王”没有了。统计结果表明，有3个发帖很多的ID，他们的发帖数目都超过了帖子总数目N的1/4。你能从发帖ID列表中快速找出他们的ID吗？</p>
-</blockquote>
-<div class="highlight"><pre><span class="c">#-*-coding:utf-8-*-</span>
-<span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
-    <span class="n">candidate</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span>
-    <span class="n">nTimes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span>
-        <span class="n">is_candidate</span> <span class="o">=</span> <span class="bp">False</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
-            <span class="c"># 第一种情况：A[i]不在候选项中，且有计数器为0的项，则设置A[i]为新的候选项</span>
-            <span class="k">if</span> <span class="n">nTimes</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">in</span> <span class="n">candidate</span><span class="p">:</span>
-                <span class="n">is_candidate</span> <span class="o">=</span> <span class="bp">True</span>
-                <span class="n">candidate</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-                <span class="n">nTimes</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-                <span class="k">break</span>
-            <span class="c"># 第二种情况：A[i]在候选项中，则把对应计数器加1</span>
-            <span class="k">elif</span> <span class="n">candidate</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
-                <span class="n">is_candidate</span> <span class="o">=</span> <span class="bp">True</span>
-                <span class="n">nTimes</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-                <span class="k">break</span>
-        <span class="c"># 第三种情况：A[i]不在候选项中，且没有计数器为0的项，则所有计数器减1</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">is_candidate</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
-                <span class="n">nTimes</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
-        <span class="c"># print(A[i], candidate, nTimes)</span>
-    <span class="k">return</span> <span class="n">candidate</span>
-
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="c"># A = [1, 2, 3, 2, 1, 2, 3, 3, 1, 2, 3, 6, 1, 1, 2, 3, 1, 2, 3, 8]</span>
-    <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
-    <span class="c"># 验证用</span>
-    <span class="c"># print(set([x for x in A if A.count(x) &gt; len(A) / 4]))</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">find</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
-</pre></div>
-
-
-<p>另外一种Python的简洁写法:</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="nb">set</span><span class="p">([</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">a</span> <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">&gt;</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">])</span>
-<span class="nb">set</span><span class="p">([</span><span class="mi">1</span><span class="p">])</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="nb">set</span><span class="p">([</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">b</span> <span class="k">if</span> <span class="n">b</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">&gt;</span><span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span><span class="p">])</span>
-<span class="nb">set</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
-</pre></div>
+</div>        <p>《编程之美》2.3 寻找发帖“水王”</p>
         <hr />
     </div>
             <ul class="pagination pagination-sm no-print">

@@ -1,0 +1,66 @@
+Title: [算法] 子数组的最大乘积
+Date: 2013-06-04
+Tags: 笔试,面试,Python,编程之美
+Slug: find-max-multiply
+Author: Zoey Young
+Summary: 子数组的最大乘积
+
+《编程之美》2.13 子数组的最大乘积
+
+题目: 给定一个长度为N的整数数组, 只允许用乘法, 不能用除法, 计算任意(N-1)个数的组合乘积中最大的一组, 并写出算法的时间复杂度.
+
+一开始想到的就是给的第二种解法. 有谁会一开始就去算乘积吗?
+
+* 数组中有多于一个零则最大乘积为0
+* 数组中只有一个零, 而有奇数个负数, 则最大乘积必定为0
+* 数组中只有一个零, 而有偶数个负数, 则最大乘积为除去0的元素的乘积
+* 数组中没有零, 而有奇数个负数, 则最大乘积为除去绝对值最小的负数的乘积
+* 数组中没有零, 而有偶数个负数, 则最大乘积为除去最小的正数的乘积
+
+时间复杂度: O(n)
+
+    :::python
+    #!/usr/bin/env python
+    # -*- coding: utf-8 -*-
+    def find_max_multiply(A):
+        negative_c = zero_c = n_min = 0
+        p_min = float('inf')
+        for i in range(len(A)):
+            if A[i] == 0:
+                if zero_c == 1: return 0  # 多于一个零则最大乘积为0
+                zero_c += 1
+                zero_index = i
+            elif A[i] < 0:
+                negative_c += 1
+                if A[i] < n_min:
+                    n_min = A[i]
+                    n_index = i
+            elif A[i] < p_min:
+                    p_min = A[i]
+                    p_index = i
+        if zero_c == 1:  # 数组中只有一个零
+            if negative_c % 2 == 0:  # 偶数个负数
+                exclude_index = zero_index
+            else:  # 奇数个负数
+                return 0
+        else:  # 数组中没有零
+            if negative_c % 2 == 0:  # 偶数个负数
+                exclude_index = p_index
+            else:  # 奇数个负数
+                exclude_index = n_index
+
+        result = 1
+        for i in range(0, len(A)):
+            if i == exclude_index:
+                continue
+            result *= A[i]
+        return result
+
+    if __name__ == "__main__":
+        A = [[1, 2, 3, 4, 5, 0, 0],  # 数组中有多于一个零则最大乘积为0
+            [1, 2, 3, -4, -5, -6, 0],  # 数组中只有一个零, 而有奇数个负数, 则最大乘积必定为0
+            [1, 2, 3, 4, 5, 6, 0],  # 数组中只有一个零, 而有偶数个负数, 则最大乘积为除去0的元素的乘积
+            [1, 2, 3, 4, 5, 6, 7],  # 数组中没有零, 而有偶数个负数, 则最大乘积为除去最小的正数的乘积
+            [1, 2, 3, 4, 5, -6, -7],  # 数组中没有零, 而有偶数个负数, 则最大乘积为除去最小的正数的乘积
+            [1, 2, 3, 4, 5, 6, -7]]  # 数组中没有零, 而有奇数个负数, 则最大乘积为除去绝对值最小的负数的乘积
+        print([find_max_multiply(a) for a in A])
