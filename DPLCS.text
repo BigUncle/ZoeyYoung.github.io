@@ -1,0 +1,58 @@
+Title: [算法] 动态规划算法解最长公共子序列LCS问题
+Date: 2013-09-13
+Tags: 笔试,面试,Python
+Slug: DPLCS
+Author: Zoey Young
+Summary: 动态规划算法解最长公共子序列LCS问题
+
+[模拟算法: LCS](http://www.cs.usfca.edu/~galles/visualization/DPLCS.html)
+
+[动态规划算法解最长公共子序列LCS问题](http://blog.csdn.net/v_JULY_v/article/details/6110269)
+
+算法导论15章
+
+不用数组:
+
+    :::python
+    def LCS(S1, S2, x, y):
+        if (x == -1) or (y == -1):
+            return 0
+        if S1[x] == S2[y]:
+            return 1 + LCS(S1, S2, x-1, y-1)
+        return max(LCS(S1, S2, x, y-1), LCS(S1, S2, x-1, y))
+
+    print(LCS('ABCBDAB', 'BDCABA', 6, 5))
+
+使用二维数组:
+
+    :::python
+    # O(mn)
+    def LCS_length(X, Y):
+        m = len(X)
+        n = len(Y)
+        c = [[0 for i in range(n+1)] for i in range(m+1)]
+        for i in range(m):
+            for j in range(n):
+                if X[i] == Y[j]:
+                    c[i+1][j+1] = c[i][j]+1
+                else:
+                    c[i+1][j+1] = max(c[i+1][j], c[i][j+1])
+        return c
+
+    # O(m+n)
+    def print_LCS(c, X, i, j):
+        if i == 0 or j == 0:
+            return
+        if c[i][j] == c[i-1][j-1]+1:
+            print_LCS(c, X, i-1, j-1)
+            print(X[i-1])
+        elif c[i][j] == c[i-1][j]:
+            print_LCS(c, X, i-1, j)
+        else:
+            print_LCS(c, X, i, j-1)
+
+    X = 'ABCBDAB'
+    Y = 'BDCABA'
+    c = LCS_length(X, Y)
+    print('\n'.join([str(row) for row in c]))
+    print_LCS(c, X, len(X), len(Y))

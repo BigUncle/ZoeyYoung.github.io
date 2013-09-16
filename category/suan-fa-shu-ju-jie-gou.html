@@ -104,6 +104,90 @@
       <div class="main-content col-md-8">
           
     <div>
+        <a href="http://zoeyyoung.github.io/DPLCS.html"><h1>[算法] 动态规划算法解最长公共子序列LCS问题</h1></a>
+        <div class="article-metadata">
+<time class="published" datetime="2013 九月 13 周五">2013 九月 13 周五 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/suan-fa-shu-ju-jie-gou.html">算法&数据结构</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/bi-shi.html">笔试</a>
+        <a href="http://zoeyyoung.github.io/tag/mian-shi.html">面试</a>
+        <a href="http://zoeyyoung.github.io/tag/python.html">Python</a>
+    </span>
+<!-- <p></p> -->
+</div>        <p><a href="http://www.cs.usfca.edu/~galles/visualization/DPLCS.html">模拟算法: LCS</a></p>
+<p><a href="http://blog.csdn.net/v_JULY_v/article/details/6110269">动态规划算法解最长公共子序列LCS问题</a></p>
+<p>算法导论15章</p>
+<p>不用数组:</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">LCS</span><span class="p">(</span><span class="n">S1</span><span class="p">,</span> <span class="n">S2</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">S1</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">==</span> <span class="n">S2</span><span class="p">[</span><span class="n">y</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">LCS</span><span class="p">(</span><span class="n">S1</span><span class="p">,</span> <span class="n">S2</span><span class="p">,</span> <span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">LCS</span><span class="p">(</span><span class="n">S1</span><span class="p">,</span> <span class="n">S2</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">LCS</span><span class="p">(</span><span class="n">S1</span><span class="p">,</span> <span class="n">S2</span><span class="p">,</span> <span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">LCS</span><span class="p">(</span><span class="s">&#39;ABCBDAB&#39;</span><span class="p">,</span> <span class="s">&#39;BDCABA&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</pre></div>
+
+
+<p>使用二维数组:</p>
+<div class="highlight"><pre><span class="c"># O(mn)</span>
+<span class="k">def</span> <span class="nf">LCS_length</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">):</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">Y</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+                <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">c</span>
+
+<span class="c"># O(m+n)</span>
+<span class="k">def</span> <span class="nf">print_LCS</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span>
+    <span class="k">if</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">print_LCS</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">elif</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]:</span>
+        <span class="n">print_LCS</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">print_LCS</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="s">&#39;ABCBDAB&#39;</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="s">&#39;BDCABA&#39;</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">LCS_length</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">c</span><span class="p">]))</span>
+<span class="n">print_LCS</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">Y</span><span class="p">))</span>
+</pre></div>
+        <hr />
+    </div>
+         <div>
+        <a href="http://zoeyyoung.github.io/sorting-algorithm.html"><h1>[算法] 排序算法</h1></a>
+        <div class="article-metadata">
+<time class="published" datetime="2013 九月 13 周五">2013 九月 13 周五 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/suan-fa-shu-ju-jie-gou.html">算法&数据结构</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/bi-shi.html">笔试</a>
+        <a href="http://zoeyyoung.github.io/tag/mian-shi.html">面试</a>
+        <a href="http://zoeyyoung.github.io/tag/python.html">Python</a>
+    </span>
+<!-- <p></p> -->
+</div>        <p>排序算法学习资源</p>
+        <hr />
+    </div>
+         <div>
         <a href="http://zoeyyoung.github.io/python-bisect.html"><h1>[算法] Python 中的二分算法</h1></a>
         <div class="article-metadata">
 <time class="published" datetime="2013 九月 11 周三">2013 九月 11 周三 </time>
@@ -118,270 +202,7 @@
         <a href="http://zoeyyoung.github.io/tag/ji-chu.html">基础</a>
     </span>
 <!-- <p></p> -->
-</div>        <p>初始化于: 2013-08-30</p>
-<p>上次修改: 2013-09-11</p>
-<p><a href="http://en.wikipedia.org/wiki/Binary_search_algorithm">维基: Binary search algorithm</a></p>
-<p>时间复杂度: O(log n)</p>
-<p>基本条件: 排序后数组</p>
-<p>在其它语言中, 如果<code>low + high</code>的和大于Integer的最大值,比如<code>2 ** 31 - 1</code>, 计算便会发生溢出, 使它成为一个负数,然后被2除时结果仍为负数. 在Java语言中, 这个Bug导致一个ArrayIndexOutOfBoundsException异常被抛出, 而在C语言中, 你会得到一个无法预测的越界的数组下标. 推荐的解决方法是修改中间值的计算过程, 方法之一是用减法而不是加法——来实现：<code>mid = low + ((high - low) / 2);</code> 或者,如果你想炫耀一下自己掌握的移位运算的知识, 可以使用更快的移位运算操作, 在Python中是<code>mid = (low + high) &gt;&gt; 1</code>, Java中是<code>int mid = (low + high) &gt;&gt;&gt; 1</code>。</p>
-<p>之前大于小于等于有点晕, 通过看Python源码, 已经不纠结于大于小于等于的问题了. 其实就两种方式, 就可以适应问题不同的变化.</p>
-<p><a href="http://docs.python.org/3.3/library/bisect.html">文档</a>: insort前缀为插入, bisect前缀为返回索引</p>
-<p><a href="http://hg.python.org/cpython/file/3.3/Lib/bisect.py">源码: bisect.py</a></p>
-<p>关键部分:</p>
-<p>初始化(这里要注意索引hi为搜索范围+1).</p>
-<div class="highlight"><pre><span class="k">if</span> <span class="n">lo</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;lo must be non-negative&#39;</span><span class="p">)</span>
-<span class="k">if</span> <span class="n">hi</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-    <span class="n">hi</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-</pre></div>
-
-
-<p><code>insort_left</code> | <code>bisect_left</code></p>
-<div class="highlight"><pre><span class="k">while</span> <span class="n">lo</span> <span class="o">&lt;</span> <span class="n">hi</span><span class="p">:</span>
-    <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">lo</span><span class="o">+</span><span class="n">hi</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span> <span class="c"># 向下取整 有的语言需防溢出: mid = lo + ((hi-lo)&gt;&gt;1)</span>
-    <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">:</span> <span class="n">lo</span> <span class="o">=</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span>
-    <span class="k">else</span><span class="p">:</span> <span class="n">hi</span> <span class="o">=</span> <span class="n">mid</span>
-</pre></div>
-
-
-<p><code>insort_right</code> | <code>bisect_right</code>
- —— 这里要注意返回的索引位置并非等于x的. 是最右的等于x的索引加1</p>
-<div class="highlight"><pre><span class="k">while</span> <span class="n">lo</span> <span class="o">&lt;</span> <span class="n">hi</span><span class="p">:</span>
-    <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">lo</span><span class="o">+</span><span class="n">hi</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span>
-    <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]:</span> <span class="n">hi</span> <span class="o">=</span> <span class="n">mid</span>
-    <span class="k">else</span><span class="p">:</span> <span class="n">lo</span> <span class="o">=</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span>
-</pre></div>
-
-
-<p>最左最右的主要区别在于<code>x == a[mid]</code>时, 是<code>hi = mid</code>[高变低, 左趋], 还是<code>lo = mid+1</code>[低变高, 右趋], 其余都是一样的. 不直接返回mid是因为并不能确定mid指向的是左还是右还是中间.</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">bisect</span> <span class="kn">import</span> <span class="n">bisect_left</span><span class="p">,</span> <span class="n">bisect_right</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">bisect_left</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c"># 小于所有数时, 返回0</span>
-<span class="mi">0</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">bisect_right</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="mi">0</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">bisect_left</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c"># 最左的等于x的索引</span>
-<span class="mi">1</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">bisect_right</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c"># 最右的等于x的索引+1</span>
-<span class="mi">3</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">bisect_left</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>  <span class="c"># 不存在时, 返回第一个刚好大于x的位置</span>
-<span class="mi">3</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">bisect_right</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="mi">3</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">bisect_left</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>  <span class="c"># 大于所有数时, 返回值为len(a)</span>
-<span class="mi">9</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">bisect_right</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<span class="mi">9</span>
-</pre></div>
-
-
-<p>分析:</p>
-<div class="highlight"><pre><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
-
-<span class="err">假设要寻找</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">2</span> <span class="err">应该插入的位置</span>
-<span class="err">初始化</span><span class="p">:</span>
-
-<span class="n">lo</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">hi</span> <span class="o">=</span> <span class="mi">9</span>
-<span class="n">mid</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
-
-<span class="n">x</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span>
-<span class="n">hi</span> <span class="o">=</span> <span class="n">mid</span>
-
-<span class="n">lo</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">hi</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="n">mid</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
-
-<span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span>
-<span class="n">left</span>        <span class="o">|</span> <span class="n">right</span>
-<span class="n">hi</span> <span class="o">=</span> <span class="n">mid</span>    <span class="o">|</span> <span class="n">lo</span> <span class="o">=</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span>
-<span class="n">lo</span> <span class="o">=</span> <span class="mi">0</span>      <span class="o">|</span> <span class="n">lo</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="n">hi</span> <span class="o">=</span> <span class="mi">2</span>      <span class="o">|</span> <span class="n">hi</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="n">mid</span> <span class="o">=</span> <span class="mi">1</span>     <span class="o">|</span> <span class="n">mid</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>  <span class="o">|</span> <span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="n">x</span> <span class="o">==</span> <span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">|</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span>
-<span class="n">hi</span> <span class="o">=</span> <span class="n">mid</span>    <span class="o">|</span> <span class="n">hi</span> <span class="o">=</span> <span class="n">mid</span>
-
-<span class="n">lo</span> <span class="o">=</span> <span class="mi">0</span>      <span class="o">|</span> <span class="n">lo</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="n">hi</span> <span class="o">=</span> <span class="mi">1</span>      <span class="o">|</span> <span class="n">hi</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="n">mid</span> <span class="o">=</span> <span class="mi">0</span>     <span class="o">|</span> <span class="n">lo</span> <span class="o">==</span> <span class="n">hi</span>
-<span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>  <span class="o">|</span> <span class="err">返回</span><span class="n">lo</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="n">x</span> <span class="o">&gt;</span> <span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span>  <span class="o">|</span>
-<span class="n">lo</span> <span class="o">=</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span>  <span class="o">|</span>
-
-<span class="n">lo</span> <span class="o">=</span> <span class="mi">1</span>      <span class="o">|</span>
-<span class="n">hi</span> <span class="o">=</span> <span class="mi">1</span>      <span class="o">|</span>
-<span class="n">lo</span> <span class="o">==</span> <span class="n">hi</span>    <span class="o">|</span>
-<span class="err">返回</span><span class="n">lo</span> <span class="o">=</span> <span class="mi">1</span>  <span class="o">|</span>
-</pre></div>
-
-
-<p>应用: 搜索已排序列表</p>
-<div class="highlight"><pre><span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-    <span class="s">&#39;Locate the leftmost value exactly equal to x&#39;</span>
-    <span class="s">&#39;二分查找返回key(可能有重复)第一次出现的下标&#39;</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="n">bisect_left</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="ow">and</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">x</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">i</span>
-    <span class="k">raise</span> <span class="ne">ValueError</span>
-
-<span class="k">def</span> <span class="nf">find_lt</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-    <span class="s">&#39;Find rightmost value less than x&#39;</span>
-    <span class="s">&#39;二分查找返回刚好小于key的元素下标&#39;</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="n">bisect_left</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">i</span><span class="p">:</span> <span class="c"># i不等于0</span>
-        <span class="k">return</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-    <span class="k">raise</span> <span class="ne">ValueError</span>
-
-<span class="k">def</span> <span class="nf">find_le</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-    <span class="s">&#39;Find rightmost value less than or equal to x&#39;</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="n">bisect_right</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">i</span><span class="p">:</span> <span class="c"># 如果要找最右的等于x的, 条件为: if i and a[i-1] == x</span>
-        <span class="k">return</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-    <span class="k">raise</span> <span class="ne">ValueError</span>
-
-<span class="k">def</span> <span class="nf">find_gt</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-    <span class="s">&#39;Find leftmost value greater than x&#39;</span>
-    <span class="s">&#39;二分查找返回刚好大于x的元素下标&#39;</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="n">bisect_right</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">):</span> <span class="c"># 如果i等于len(a), 则不存在大于x的值</span>
-        <span class="k">return</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-    <span class="k">raise</span> <span class="ne">ValueError</span>
-
-<span class="k">def</span> <span class="nf">find_ge</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-    <span class="s">&#39;Find leftmost item greater than or equal to x&#39;</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="n">bisect_left</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-    <span class="k">raise</span> <span class="ne">ValueError</span>
-</pre></div>
-
-
-<p>下面这个实例看起来很有用: numeric table lookups</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">grade</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="n">breakpoints</span><span class="o">=</span><span class="p">[</span><span class="mi">60</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span> <span class="n">grades</span><span class="o">=</span><span class="s">&#39;FDCBA&#39;</span><span class="p">):</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="n">bisect_right</span><span class="p">(</span><span class="n">breakpoints</span><span class="p">,</span> <span class="n">score</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">grades</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-
-<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">grade</span><span class="p">(</span><span class="n">score</span><span class="p">)</span> <span class="k">for</span> <span class="n">score</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">33</span><span class="p">,</span> <span class="mi">99</span><span class="p">,</span> <span class="mi">77</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">100</span><span class="p">]]</span>
-<span class="p">[</span><span class="s">&#39;F&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">]</span>
-</pre></div>
-
-
-<p>二分查找方法并没有类似sort方法的key参数, 对于已排序的列表, 可以单独将要查找的键值解析成列表, 索引一一对应, 搜索结果返回索引然后再通过索引在原列表中获得值.</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">data</span> <span class="o">=</span> <span class="p">[(</span><span class="s">&#39;red&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;blue&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;yellow&#39;</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;black&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">data</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">r</span><span class="p">:</span> <span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">data</span><span class="p">]</span>  <span class="c"># precomputed list of keys</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">data</span><span class="p">[</span><span class="n">bisect_left</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
-<span class="p">(</span><span class="s">&#39;black&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">data</span><span class="p">[</span><span class="n">bisect_left</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
-<span class="p">(</span><span class="s">&#39;blue&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">data</span><span class="p">[</span><span class="n">bisect_left</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="mi">5</span><span class="p">)]</span>
-<span class="p">(</span><span class="s">&#39;red&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">data</span><span class="p">[</span><span class="n">bisect_left</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="mi">8</span><span class="p">)]</span>
-<span class="p">(</span><span class="s">&#39;yellow&#39;</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
-</pre></div>
-
-
-<h3>在轮转后的有序数组上应用二分查找法</h3>
-<p>问题描述: 如果有序序列发生偏移即把序列的后面一部分截取放在前面, 比如:</p>
-<p>11 13 1 2 4 7 9</p>
-<p>此时再给定一个数, 查找其在序列中是否存在(返回其位置), 请问如何实现?</p>
-<p>思路: 考虑顺序情况下的做法, 再考虑轮转后的特殊情况</p>
-<p>存在重复元素时会返回最左的索引:</p>
-<div class="highlight"><pre><span class="k">def</span> <span class="nf">binsearch_left</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">lo</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">hi</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">lo</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;lo must be non-negative&#39;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">hi</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="n">hi</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-    <span class="k">while</span> <span class="n">lo</span> <span class="o">&lt;</span> <span class="n">hi</span><span class="p">:</span>
-        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">lo</span> <span class="o">+</span> <span class="n">hi</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
-        <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">key</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">lo</span><span class="p">]</span> <span class="ow">and</span> <span class="n">a</span><span class="p">[</span><span class="n">hi</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">key</span><span class="p">:</span>
-                <span class="n">hi</span> <span class="o">=</span> <span class="n">mid</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">lo</span> <span class="o">=</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="n">hi</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="ow">and</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">lo</span><span class="p">]:</span>
-                <span class="n">lo</span> <span class="o">=</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">hi</span> <span class="o">=</span> <span class="n">mid</span>
-    <span class="k">return</span> <span class="n">lo</span> <span class="k">if</span> <span class="n">lo</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="ow">and</span> <span class="n">a</span><span class="p">[</span><span class="n">lo</span><span class="p">]</span> <span class="o">==</span> <span class="n">key</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
-
-<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
-<span class="k">print</span><span class="p">([</span><span class="n">binsearch_left</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">arr</span><span class="p">])</span>  <span class="c"># [0, 1, 2, 3, 4, 5, 6]</span>
-<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
-<span class="k">print</span><span class="p">([</span><span class="n">binsearch_left</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">arr</span><span class="p">])</span>  <span class="c"># [0, 1, 2, 3, 4, 5, 6]</span>
-<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
-<span class="k">print</span><span class="p">([</span><span class="n">binsearch_left</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">arr</span><span class="p">])</span>  <span class="c"># [0, 1, 2, 2, 4, 4, 4, 7, 7, 9, 10, 11]</span>
-</pre></div>
-
-
-<p>存在重复元素时会返回最右的索引:</p>
-<div class="highlight"><pre><span class="k">def</span> <span class="nf">binsearch</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">lo</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">hi</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">lo</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;lo must be non-negative&#39;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">hi</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="n">hi</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-    <span class="k">while</span> <span class="n">lo</span> <span class="o">&lt;</span> <span class="n">hi</span><span class="p">:</span>
-        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">lo</span> <span class="o">+</span> <span class="n">hi</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
-        <span class="k">if</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]:</span>
-            <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="n">hi</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="ow">and</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">lo</span><span class="p">]:</span>
-                <span class="n">lo</span> <span class="o">=</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">hi</span> <span class="o">=</span> <span class="n">mid</span>
-        <span class="k">elif</span> <span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">key</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">lo</span><span class="p">]</span> <span class="ow">and</span> <span class="n">a</span><span class="p">[</span><span class="n">hi</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">key</span><span class="p">:</span>
-                <span class="n">hi</span> <span class="o">=</span> <span class="n">mid</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">lo</span> <span class="o">=</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">mid</span>
-    <span class="k">return</span> <span class="n">lo</span> <span class="k">if</span> <span class="n">lo</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="ow">and</span> <span class="n">a</span><span class="p">[</span><span class="n">lo</span><span class="p">]</span> <span class="o">==</span> <span class="n">key</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
-
-<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
-<span class="k">print</span><span class="p">([</span><span class="n">binsearch</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">arr</span><span class="p">])</span>  <span class="c"># [0, 1, 2, 3, 4, 5, 6]</span>
-<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
-<span class="k">print</span><span class="p">([</span><span class="n">binsearch</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">arr</span><span class="p">])</span>  <span class="c"># [0, 1, 2, 3, 4, 5, 6]</span>
-<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
-<span class="k">print</span><span class="p">([</span><span class="n">binsearch</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">arr</span><span class="p">])</span>  <span class="c"># [0, 1, 3, 3, 6, 6, 6, 8, 8, 9, 10, 11]</span>
-</pre></div>
-
-
-<p>同上题描述, 找出序列中最小元素位置:</p>
-<div class="highlight"><pre><span class="k">def</span> <span class="nf">binsearch_smallest</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">lo</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">hi</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">lo</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;lo must be non-negative&#39;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">hi</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="n">hi</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="c"># 这里与上面不同</span>
-    <span class="k">while</span> <span class="n">lo</span> <span class="o">&lt;</span> <span class="n">hi</span><span class="p">:</span>
-        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">lo</span> <span class="o">+</span> <span class="n">hi</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
-        <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="n">hi</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">mid</span><span class="p">]:</span>
-            <span class="n">lo</span> <span class="o">=</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">hi</span> <span class="o">=</span> <span class="n">mid</span>
-    <span class="k">return</span> <span class="n">lo</span>
-
-<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
-<span class="k">print</span><span class="p">(</span><span class="n">binsearch_smallest</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span>
-<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
-<span class="k">print</span><span class="p">(</span><span class="n">binsearch_smallest</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span>
-<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
-<span class="k">print</span><span class="p">(</span><span class="n">binsearch_smallest</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span>
-<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">13</span><span class="p">]</span>
-<span class="k">print</span><span class="p">(</span><span class="n">binsearch_smallest</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span>
-<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
-<span class="k">print</span><span class="p">(</span><span class="n">binsearch_smallest</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span>
-</pre></div>
-
-
-<h3>相关文章:</h3>
-<p><a href="http://www.ahathinking.com/archives/179.html">二分查找，你真的会吗？</a> —— 大概看了下, 没有参考博客中的实现. 因为while的判断条件情况太多种了, 反而不易理解.</p>
-<p><a href="http://blog.suchasplus.com/2011/03/why-python-Standard-library-does-not-implement-the-list.html">为什么python标准库没有实现链表</a></p>
-<p><a href="https://wiki.python.org/moin/TimeComplexity">TimeComplexity</a></p>
-<p><a href="http://www.cnblogs.com/ider/archive/2012/04/01/binary_search.html">二分查找法的实现和应用汇总</a></p>
-<p><a href="http://segmentfault.com/q/1010000000181714">二分查找算法及变种的编码实现</a> —— 里面有些问题还不懂...</p>
+</div>        <p>Python 中的二分算法.</p>
         <hr />
     </div>
          <div>
@@ -516,53 +337,13 @@
 </div>        <p>子数组的最大乘积</p>
         <hr />
     </div>
-         <div>
-        <a href="http://zoeyyoung.github.io/beautiful-2-3.html"><h1>[笔记]《编程之美》2.3 寻找发帖“水王”</h1></a>
-        <div class="article-metadata">
-<time class="published" datetime="2013 六月 03 周一">2013 六月 03 周一 </time>
-<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
-<span>
-    <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/suan-fa-shu-ju-jie-gou.html">算法&数据结构</a>
-</span>
-<span>
-    <i class="icon-tags"></i>
-        <a href="http://zoeyyoung.github.io/tag/suan-fa.html">算法</a>
-        <a href="http://zoeyyoung.github.io/tag/bi-shi.html">笔试</a>
-        <a href="http://zoeyyoung.github.io/tag/mian-shi.html">面试</a>
-        <a href="http://zoeyyoung.github.io/tag/shu-ji.html">书籍</a>
-        <a href="http://zoeyyoung.github.io/tag/bian-cheng-zhi-mei.html">编程之美</a>
-    </span>
-<!-- <p></p> -->
-</div>        <p>《编程之美》2.3 寻找发帖“水王”</p>
-        <hr />
-    </div>
-         <div>
-        <a href="http://zoeyyoung.github.io/find-maximum-subarray.html"><h1>[算法] 求数组的子数组之和的最大值</h1></a>
-        <div class="article-metadata">
-<time class="published" datetime="2013 五月 31 周五">2013 五月 31 周五 </time>
-<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
-<span>
-    <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/suan-fa-shu-ju-jie-gou.html">算法&数据结构</a>
-</span>
-<span>
-    <i class="icon-tags"></i>
-        <a href="http://zoeyyoung.github.io/tag/python.html">Python</a>
-        <a href="http://zoeyyoung.github.io/tag/suan-fa.html">算法</a>
-        <a href="http://zoeyyoung.github.io/tag/mian-shi.html">面试</a>
-        <a href="http://zoeyyoung.github.io/tag/bi-shi.html">笔试</a>
-    </span>
-<!-- <p></p> -->
-</div>        <p>输入一个整形数组, 数组里有正数也有负数. 数组中连续的一个或多个整数组成一个子数组, 每个子数组都有一个和. 求所有子数组的和的最大值.</p>
-        <hr />
-    </div>
             <ul class="pagination pagination-sm no-print">
     <li class="prev disabled"><a href="#">&larr; 上一页</a></li>
 
     <li class="active"><a href="http://zoeyyoung.github.io/category/suan-fa-shu-ju-jie-gou.html">1</a></li>
+    <li class=""><a href="http://zoeyyoung.github.io/category/suan-fa-shu-ju-jie-gou2.html">2</a></li>
 
-    <li class="next disabled"><a href="#">&rarr; 下一页</a></li>
+    <li class="next"><a href="http://zoeyyoung.github.io/category/suan-fa-shu-ju-jie-gou2.html">下一页 &rarr;</a></li>
 </ul>       
                 </div>    </div><!-- End of fluid row-->
   </div><!-- End of Container-->
