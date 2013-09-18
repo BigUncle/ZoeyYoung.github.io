@@ -717,7 +717,7 @@
 
 
 &lt;p&gt;相关文章:&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://www.ahathinking.com/archives/182.html"&gt;兄弟单词 — 两种算法实现&lt;/a&gt; 用C++语言实现的. 利用了Trie数来节省空间. 数据少的情况下没啥用.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Fri, 06 Sep 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-09-06:find-brother-word.html</guid><category>笔试</category><category>面试</category></item><item><title>随机选择 取样问题</title><link>http://zoeyyoung.github.io/random-question.html</link><description>&lt;p&gt;问题:&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.ahathinking.com/archives/182.html"&gt;兄弟单词 — 两种算法实现&lt;/a&gt; 用C++语言实现的. 利用了Trie数来节省空间. 数据少的情况下没啥用.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Fri, 06 Sep 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-09-06:find-brother-word.html</guid><category>笔试</category><category>面试</category></item><item><title>[算法] 随机选择 取样问题</title><link>http://zoeyyoung.github.io/random-question.html</link><description>&lt;p&gt;问题:&lt;/p&gt;
 &lt;p&gt;输入: 包含两个整数m和n, 其中&lt;code&gt;m&amp;lt;n&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;输出: 0~n-1范围内的m个随机整数的有序列表, 不允许重复.&lt;/p&gt;
 &lt;p&gt;从概率的角度说, 希望得到没有重复的有序选择, 其中每个选择出现的概率相等.&lt;/p&gt;

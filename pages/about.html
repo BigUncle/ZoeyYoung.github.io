@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
-  <title>[实例] 使用SVG制作简单LOGO - OK Computer</title>
+  <title>OK Computer</title>
   <meta name="description" content="杨丁苗的个人博客">
   <meta name="author" content="ZoeyYoung">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -57,7 +57,7 @@
                     <li >
             <a href="http://zoeyyoung.github.io/category/tips.html ">Tips</a>
           </li>
-                    <li  class="active" >
+                    <li >
             <a href="http://zoeyyoung.github.io/category/qian-duan.html ">前端</a>
           </li>
                     <li >
@@ -102,107 +102,77 @@
                             </ul>
       </div>
       <div class="main-content col-md-8">
-          <article>
-  <h1>[实例] 使用SVG制作简单LOGO</h1>
-  <div class="article-metadata">
-<time class="published" datetime="2013 六月 26 周三">2013 六月 26 周三 </time>
-<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
-<span>
-    <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/qian-duan.html">前端</a>
-</span>
-<span>
-    <i class="icon-tags"></i>
-        <a href="http://zoeyyoung.github.io/tag/qian-duan.html">前端</a>
-        <a href="http://zoeyyoung.github.io/tag/logo.html">Logo</a>
-        <a href="http://zoeyyoung.github.io/tag/svg.html">SVG</a>
-    </span>
-<!-- <p></p> -->
-</div>  <h3>什么是SVG?</h3>
-<p><a href="http://zh.wikipedia.org/wiki/SVG">维基</a></p>
-<p><img alt="位图和矢量图" src="/static/images/Bitmap_VS_SVG.svg.png" /></p>
-<blockquote>
-<p>这张图片展示了位图和矢量图的区别。位图是由点构成的，矢量图则是由一些形状元素构成。该图中显示放大位图可以看到点，而放大矢量图看到的仍然是形状。SVG属于矢量图，因此能够无级缩放，而不会导致马赛克。</p>
-</blockquote>
-<h3>开始制作</h3>
-<p>首先在<a href="http://www.google.com/fonts/">Google Font</a>选择一款字体, 其它地方也可以..</p>
-<p>我选了<strong>Lobster</strong></p>
-<p><img alt="Lobster" src="/static/images/Lobster.jpg" /></p>
-<p>使用<a href="http://inkscape.org/download/">Inkscape</a>制作<strong>.svg</strong>文件</p>
-<p>参考<a href="http://inkscape.org/doc/advanced/tutorial-advanced.zh_CN.html">教程</a>中创建文本部分</p>
-<p>快捷键</p>
-<ul>
-<li><code>Alt+&lt;</code> 和 <code>Alt+&gt;</code> 改变当前行的字间距</li>
-<li><code>Alt+arrows</code> 键移动光标右侧的文字</li>
-<li><code>Alt+Left</code> 和 <code>Alt+Right</code> 将文字左右移动</li>
-<li><code>Alt+Up</code> 和 <code>Alt+Down</code> 将文字上下移动</li>
-</ul>
-<p>可单独调整每个文字的大小</p>
-<p>制作后的效果:</p>
-<p><img alt="Inkscape" src="/static/images/Inkscape.jpg" /></p>
-<p>这里我只使用了最基础的功能, 因为也是第一次用...还有很多功能值得探索</p>
-<p>在<strong>Document Properties</strong>中可调整画布大小</p>
-<p><img alt="Inkscape" src="/static/images/Inkscape2.jpg" /></p>
-<p>将文件存为<strong>logo.svg</strong></p>
-<p>接下来可以在网站中设置CSS来实现特殊的效果了</p>
-<div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;brand-wrapper&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://zoeyyoung.gitcafe.com&quot;</span> <span class="na">class=</span><span class="s">&quot;brand&quot;</span><span class="nt">&gt;</span>OK Computer<span class="nt">&lt;/a&gt;</span>
-    <span class="nt">&lt;p</span> <span class="na">style=</span><span class="s">&quot;text-align: center;&quot;</span><span class="nt">&gt;</span>It&#39;s better to burn out <span class="nt">&lt;br&gt;</span> than to fade away.<span class="nt">&lt;/p&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
-</pre></div>
+          <section id="content" class="body col-md-10">
+    <h2 class="content-title">关于</h2>
+        <div class="pull-right"><img alt="zoey" src="/static/images/zoey.jpg"></div>
 
-
-<p>CSS:</p>
-<div class="highlight"><pre><span class="nt">body</span> <span class="p">{</span>
-    <span class="k">background-color</span><span class="o">:</span> <span class="m">#EAF4FF</span><span class="p">;</span>
-    <span class="k">font</span><span class="o">:</span> <span class="m">16px</span><span class="o">/</span><span class="m">1</span><span class="o">.</span><span class="m">5</span> <span class="err">\</span><span class="m">5</span><span class="n">fae</span><span class="err">\</span><span class="m">8</span><span class="n">f6f</span><span class="err">\</span><span class="m">96</span><span class="n">c5</span><span class="err">\</span><span class="m">9</span><span class="n">ed1</span><span class="o">,</span><span class="n">tahoma</span><span class="o">,</span><span class="n">arial</span><span class="o">,</span><span class="err">\</span><span class="m">5</span><span class="n">b8b</span><span class="err">\</span><span class="m">4</span><span class="n">f53</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="nc">.brand</span> <span class="p">{</span>
-    <span class="k">text-indent</span><span class="o">:</span> <span class="m">-9999px</span><span class="p">;</span>
-    <span class="k">display</span><span class="o">:</span> <span class="k">block</span><span class="p">;</span>
-    <span class="k">height</span><span class="o">:</span> <span class="m">130px</span><span class="p">;</span>
-    <span class="k">background</span><span class="o">:</span> <span class="n">rgba</span><span class="p">(</span><span class="m">0</span><span class="o">,</span> <span class="m">0</span><span class="o">,</span> <span class="m">0</span><span class="o">,</span> <span class="m">0</span><span class="p">)</span> <span class="sx">url(&quot;logo.svg&quot;)</span> <span class="k">center</span> <span class="m">70px</span> <span class="k">no-repeat</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="nc">.brand-wrapper</span> <span class="p">{</span>
-    <span class="k">margin</span><span class="o">:</span> <span class="m">20px</span> <span class="k">auto</span><span class="p">;</span>
-    <span class="k">width</span><span class="o">:</span> <span class="m">230px</span><span class="p">;</span>
-    <span class="k">height</span><span class="o">:</span> <span class="m">230px</span><span class="p">;</span>
-    <span class="k">border</span><span class="o">:</span> <span class="m">2px</span> <span class="k">dashed</span> <span class="m">#000</span><span class="p">;</span>
-    <span class="k">border</span><span class="o">-</span><span class="n">radius</span><span class="o">:</span> <span class="m">100</span><span class="o">%</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<p>这里用到了设置Logo经常用使用的方法, <code>text-indent: -9999px;</code>, 然后设置背景图片.</p>
-<p><code>brand-wrapper</code>用来制作圆形边框, 通过微调可实现不同的效果</p>
-<p><img alt="Logo" src="/static/images/logo.jpg" /></p>
-<p><a href="http://zoeyyoung.gitcafe.com/lib/brand.html">Demo</a></p>
-<p>这样一个简单的LOGO就完成了, 而且放大网页并不影响显示效果.</p>
-</article>
-<div class="comment">
-    <!-- JiaThis Button BEGIN -->
-<div class="jiathis_style_32x32 no-print">
-  <a class="jiathis_button_qzone"></a>
-  <a class="jiathis_button_tsina"></a>
-  <a class="jiathis_button_tqq"></a>
-  <a class="jiathis_button_renren"></a>
-  <a class="jiathis_button_kaixin001"></a>
-  <a href="http://www.jiathis.com/share?uid=1801890" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
-  <a class="jiathis_counter_style"></a>
+<h2>关于博客</h2>
+<p>本博客使用静态博客引擎生成, 即在本地写Markdown文档, 运行命令生成html, 再上传到服务器. 好处是, 当我要对某篇文档进行修改时, 直接在本地找到文档进行修改, 然后编译上传即可, 并且可以同时修改多篇文档, 一次性上传更新. 因此, 当我发现文章中的观点或程序存在问题时, 我都会即时修改. 或者在学习到同样的问题, 发现以前理解得不够深时也会修改. 因为学习就是一种循序渐进的过程, 我想写博客也应该这样.</p>
+<h2>关于我 —— 女程序员</h2>
+<p>90年1月出生, 阴历89年, 所以喜欢把自己归于80后</p>
+<p>摩羯座, 如果有工作的话应该就是工作狂了...</p>
+<p>不过暂时没有工作...</p>
+<p>理想的生活是有个稳定的工作, 然后住的地方离工作的地方不远</p>
+<p>喜欢摇滚、说唱, 尤其是60、70年代的老摇滚</p>
+<p>Neil Young、Eminem、Pink Floyd、Nirvana...</p>
+<p>空间名取于Radiohead的专辑《OK Computer》</p>
+<p>喜欢看推理小说, 但是其实看得还不多, 几十来本</p>
+<p>最初看的是福尔摩斯, 然后小学初中大爱柯南</p>
+<p>偏向喜欢日本的推理小说, 就因为欧美的名字太难记了</p>
+<p>像东野圭吾、 西泽保彦、 西村京太郎...等与生活比较接近的</p>
+<p>江户川乱步的看了些短篇, 但是不是很喜欢他的部分风格, 喜欢意外结局</p>
+<p>不过阿婆的波罗系列和马普尔系列的电视剧都很不错, 看完电视剧再看书反而觉得比较轻松, 因为人物的识别度提高了 - -|||</p>
+<p>喜欢漫画, 跟过一段时间柯南, 但后来觉得柯南太幼稚, 改投金田一</p>
+<p>现在只跟海贼王了...</p>
+<p>影视方面当然也偏向悬疑推理剧了...</p>
+<p>青春爱情文艺片之类的偶尔能看看...剧情长点的基本坚持不了</p>
+<hr />
+<p>下面个人简历上的...可能比较久没更新了...新学的东西也不知道应该怎么加上去...</p>
+<p>因为太杂了, 又不是有太多实际的应用..不算精通, 只能算潜尝...</p>
+<p>不喜欢填表格其实, 但好多东西都要填表格, 然后同样的东西一遍遍的填</p>
+<p>以前填的手机号什么的...我在想我都换了两次手机号了...</p>
+<p>不变的还是邮箱和QQ号...</p>
+<hr />
+<h2>教育背景</h2>
+<p>本科: 南京理工大学 211院校     专业: 计算机科学与技术院系 网络工程专业</p>
+<p>时间: 2007年9月至2011年7月     专业GPA: 3.36（满分4分制）, 保送研究生</p>
+<p>现就读 南京理工大学 计算机科学与技术学院 软件工程专业 硕士 研二</p>
+<hr />
+<h2>IT &amp;&amp; 外语技能</h2>
+<ol>
+<li>熟悉C、Java、Python, 熟悉SQL语言, 使用过MongoDB;</li>
+<li>熟悉MySQL、SQL Server等数据库系统; Eclipse等可视化辅助软件开发工具; 通常使用Sublime Text 2进行简单程序开发;</li>
+<li>熟悉J2EE架构，能够使用sprint、struts2、hibernate等框架进行动态网页的开发；</li>
+<li>有过Python的Flask框架与Tornado框架开发经验;</li>
+<li>熟悉javascript、ajax、html、xhmtl、css等Web前端开发技术，能够熟练使用xhtml、css进行页面设计，并且熟悉ExtJS、jQuery和Dwr框架；</li>
+<li>英语水平：CET-6</li>
+</ol>
+<hr />
+<h2>工作经历</h2>
+<p><strong>无锡永中软件有限公司</strong> 2012年7月 至 2013年2月
+工作类型：实习 公司培训：2012-8 至 2012-9 NIIT
+工作职责：独立进行Web端即时通讯开发
+实习期间, 前期开发了基于XMPP、jQuery、jQuery UI的Web IM项目
+后期对公司原有的基于Dwr、ExtJS的项目进行改进, 重构, 并且实现新的规格需求</p>
+<p>实习期间参加无锡市新区总工会举办的"承接与创新杯"2012年新区职工劳动技能大赛的“软件设计”项目排名第2，获得“新区岗位能手”、“无锡市五一创新能手”、“无锡市五一巾帼标兵”称号</p>
+<p>同时获得职业证书</p>
+<p><strong>职业资格证书</strong> 证书号：1210030000308259</p>
+<p>工种：计算机程序设计员 级别：三级/高级技能 理论成绩：84  实操成绩：94</p>
+<hr />
+<h2>项目经验</h2>
+<ol>
+<li>08-10年，C++课程设计与ASP.NET课程设计均获优秀</li>
+<li>09-10下学年，作为组长和队友一起完成“奖学金管理系统”，项目在MyEclipse下采用J2EE SSH架构，获“优秀”</li>
+<li>11年上半年，独立使用J2EE开发学校“中外合作办学项目”管理系统，项目在MyEclipse下采用Struts2和Hibernate框架进行开发
+注：其中优秀比例为5%</li>
+<li>12年下半年，在永中软件公司进行WEB端即时通讯开发，独立开发了基于XMPP的版本的WEB端即时通讯，基于公司原有WEB端即时通讯进行了大量改进，主要使用语言为Java与javascript，运用到的JS框架有jQuery、ExtJS、Dwr，后台采用J2EE的SSH框架</li>
+<li>其余项目在本博客中有展示.</li>
+</ol>
+<hr />
+<div>
+<script type="text/javascript" src="http://www.douban.com/service/badge/ZoeyYoung/?show=collection&amp;select=random&amp;n=40&amp;columns=10&amp;hidelogo=yes" ></script>
 </div>
-<script type="text/javascript" >
-var jiathis_config={
-  data_track_clickback:true,
-  summary:"",
-  hideMore:false
-}
-</script>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1801890" charset="utf-8"></script>
-<!-- JiaThis Button END -->    <!-- UY BEGIN -->
-<div id="uyan_frame"></div>
-<script type="text/javascript" id="UYScript" src="http://v1.uyan.cc/js/iframe.js?UYUserId=1801890" async=""></script>
-<!-- UY END --></div>
+</section>
                 </div>    </div><!-- End of fluid row-->
   </div><!-- End of Container-->
   <!--footer-->
