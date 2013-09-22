@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OK Computer</title><link>http://zoeyyoung.github.io/</link><description>It's better to burn out &lt;br/&gt; than to fade away.</description><atom:link href="http://zoeyyoung.github.io/feeds/linux.rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 05 Aug 2013 00:00:00 +0800</lastBuildDate><item><title>装完 Ubuntu 后</title><link>http://zoeyyoung.github.io/after-install-ubuntu.html</link><description>&lt;h3&gt;升级系统&lt;/h3&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OK Computer</title><link>http://zoeyyoung.github.io/</link><description>It's better to burn out &lt;br/&gt; than to fade away.</description><atom:link href="http://zoeyyoung.github.io/feeds/linux.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 22 Sep 2013 00:00:00 +0800</lastBuildDate><item><title>Ubuntu 命令</title><link>http://zoeyyoung.github.io/ubuntu-shell.html</link><description>&lt;p&gt;升级Ubuntu: &lt;code&gt;sudo update-manager -d&lt;/code&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sun, 22 Sep 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-09-22:ubuntu-shell.html</guid><category>Ubuntu</category><category>Linux</category><category>命令</category></item><item><title>[安装配置] 装完 Ubuntu 后</title><link>http://zoeyyoung.github.io/after-install-ubuntu.html</link><description>&lt;h3&gt;升级系统&lt;/h3&gt;
 &lt;p&gt;sudo apt-get update &amp;amp;&amp;amp; sudo apt-get upgrade&lt;/p&gt;
 &lt;h3&gt;要安装的&lt;/h3&gt;
 &lt;p&gt;&lt;a href="http://ubuntu-tweak.com/source/ubuntu-tweak-stable/"&gt;ubuntu-tweak&lt;/a&gt;&lt;/p&gt;
@@ -24,8 +24,8 @@ sudo apt-get install ubuntu-tweak
 &lt;p&gt;打开ubuntu tweak，清理垃圾文件。&lt;/p&gt;
 &lt;h3&gt;开发相关&lt;/h3&gt;
 &lt;p&gt;sudo apt-get install git&lt;/p&gt;
-&lt;h3&gt;其他&lt;/h3&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Mon, 05 Aug 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-08-05:after-install-ubuntu.html</guid><category>Ubuntu</category><category>Linux</category><category>安装</category></item><item><title>Ubuntu下安装JDK</title><link>http://zoeyyoung.github.io/ubuntu-jdk-install.html</link><description>&lt;p&gt;https://help.ubuntu.com/community/Java : 整得比较全面，各种安装方法都有&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://www.webupd8.org/2012/01/install-oracle-java-jdk-7-in-ubuntu-via.html"&gt;INSTALL ORACLE JAVA 7 IN UBUNTU VIA PPA REPOSITORY&lt;/a&gt; : 之前整了篇手动安装的比较麻烦，还是PPA方便&lt;/p&gt;
+&lt;h3&gt;其他&lt;/h3&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Mon, 05 Aug 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-08-05:after-install-ubuntu.html</guid><category>Ubuntu</category><category>Linux</category><category>安装</category></item><item><title>[安装配置] Ubuntu下安装JDK</title><link>http://zoeyyoung.github.io/ubuntu-jdk-install.html</link><description>&lt;p&gt;&lt;a href="https://help.ubuntu.com/community/Java"&gt;Ubuntu帮助: Java&lt;/a&gt;: 整得比较全面, 各种安装方法都有&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.webupd8.org/2012/01/install-oracle-java-jdk-7-in-ubuntu-via.html"&gt;INSTALL ORACLE JAVA 7 IN UBUNTU VIA PPA REPOSITORY&lt;/a&gt;: 之前整了篇手动安装的比较麻烦, 还是PPA方便&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;sudo add-apt-repository ppa:webupd8team/java
 sudo apt-get update
 sudo apt-get install oracle-java7-installer

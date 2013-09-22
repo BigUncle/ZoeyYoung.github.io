@@ -110,7 +110,18 @@
 &lt;li&gt;抽象工厂创建相关的对象家族, 而不需要依赖它们的具体类.&lt;/li&gt;
 &lt;li&gt;依赖倒置原则, 指导我们避免依赖具体类型, 而要尽量依赖抽象.&lt;/li&gt;
 &lt;li&gt;工厂是很有威力的技巧, 帮助我们针对抽象编程, 而不要针对具体类编程.&lt;/li&gt;
-&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sun, 22 Sep 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-09-22:design-patten-factory.html</guid><category>读书</category><category>Book</category></item><item><title>[算法] 位图排序</title><link>http://zoeyyoung.github.io/bitmap.html</link><description>&lt;p&gt;初始化于: 2013-09-10&lt;/p&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sun, 22 Sep 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-09-22:design-patten-factory.html</guid><category>读书</category><category>Book</category></item><item><title>[设计模式] 观察者模式</title><link>http://zoeyyoung.github.io/design-patten-observer.html</link><description>&lt;h3&gt;参考书籍&lt;/h3&gt;
+&lt;p&gt;《Head First 设计模式》2 观察者(Observer)模式 —— 让你的对象知悉现况[本文主要是基于这本的笔记]&lt;/p&gt;
+&lt;p&gt;《设计模式：可复用面向对象软件的基础》5.7 OBSERVER(观察者) —— 对象行为型模式&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;观察者模式是JDK中使用最多的模式之一.&lt;/p&gt;
+&lt;p&gt;(手机中的后台通知. 天气通知. 新闻订阅. RSS订阅. 报纸和杂志的订阅.)&lt;/p&gt;
+&lt;p&gt;出版者(Subject)+订阅者(Observer)=观察者模式&lt;/p&gt;
+&lt;p&gt;定义: 观察者模式定义了对象之间的一对多依赖关系, 这样一来, 当一个对象改变状态时, 它的所有依赖者都会收到通知并自动更新.&lt;/p&gt;
+&lt;p&gt;Java内置的观察者模式&lt;/p&gt;
+&lt;p&gt;java.util.Observer &amp;lt;&lt;interface&gt;&amp;gt;&lt;/p&gt;
+&lt;p&gt;java.util.Observable &amp;lt;&lt;class&gt;&amp;gt;&lt;/p&gt;
+&lt;p&gt;相关描述查看&lt;a href="http://docs.oracle.com/javase/7/docs/api/"&gt;API文档&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sun, 22 Sep 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-09-22:design-patten-observer.html</guid><category>读书</category><category>Book</category></item><item><title>Ubuntu 命令</title><link>http://zoeyyoung.github.io/ubuntu-shell.html</link><description>&lt;p&gt;升级Ubuntu: &lt;code&gt;sudo update-manager -d&lt;/code&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sun, 22 Sep 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-09-22:ubuntu-shell.html</guid><category>Ubuntu</category><category>Linux</category><category>命令</category></item><item><title>[算法] 位图排序</title><link>http://zoeyyoung.github.io/bitmap.html</link><description>&lt;p&gt;初始化于: 2013-09-10&lt;/p&gt;
 &lt;p&gt;更新: 2013-09-18&lt;/p&gt;
 &lt;p&gt;《编程珠玑(第2版)》第1章 开篇&lt;/p&gt;
 &lt;p&gt;问题描述:&lt;/p&gt;
@@ -2007,7 +2018,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;总结自: &lt;a href="http://stackoverflow.com/questions/5320871/in-list-of-dicts-find-min-value-of-a-common-dict-field"&gt;In List of Dicts, find min() value of a common Dict field&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 06 Aug 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-08-06:python-dict-list-min-max-value.html</guid><category>Python</category></item><item><title>装完 Ubuntu 后</title><link>http://zoeyyoung.github.io/after-install-ubuntu.html</link><description>&lt;h3&gt;升级系统&lt;/h3&gt;
+&lt;p&gt;总结自: &lt;a href="http://stackoverflow.com/questions/5320871/in-list-of-dicts-find-min-value-of-a-common-dict-field"&gt;In List of Dicts, find min() value of a common Dict field&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 06 Aug 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-08-06:python-dict-list-min-max-value.html</guid><category>Python</category></item><item><title>[安装配置] 装完 Ubuntu 后</title><link>http://zoeyyoung.github.io/after-install-ubuntu.html</link><description>&lt;h3&gt;升级系统&lt;/h3&gt;
 &lt;p&gt;sudo apt-get update &amp;amp;&amp;amp; sudo apt-get upgrade&lt;/p&gt;
 &lt;h3&gt;要安装的&lt;/h3&gt;
 &lt;p&gt;&lt;a href="http://ubuntu-tweak.com/source/ubuntu-tweak-stable/"&gt;ubuntu-tweak&lt;/a&gt;&lt;/p&gt;
@@ -4947,8 +4958,8 @@ Demo/sound/
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://hi.baidu.com/ccutshyhao/item/4923810efa6a428e03ce1b0e"&gt;Ext:在Ext中播放声音(mp3等)&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://yiminghe.iteye.com/blog/1201423"&gt;tip：如何原生播放声音&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Thu, 08 Nov 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-11-08:sound-manager-2-web-im.html</guid><category>JavaScript</category></item><item><title>Ubuntu下安装JDK</title><link>http://zoeyyoung.github.io/ubuntu-jdk-install.html</link><description>&lt;p&gt;https://help.ubuntu.com/community/Java : 整得比较全面，各种安装方法都有&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://www.webupd8.org/2012/01/install-oracle-java-jdk-7-in-ubuntu-via.html"&gt;INSTALL ORACLE JAVA 7 IN UBUNTU VIA PPA REPOSITORY&lt;/a&gt; : 之前整了篇手动安装的比较麻烦，还是PPA方便&lt;/p&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Thu, 08 Nov 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-11-08:sound-manager-2-web-im.html</guid><category>JavaScript</category></item><item><title>[安装配置] Ubuntu下安装JDK</title><link>http://zoeyyoung.github.io/ubuntu-jdk-install.html</link><description>&lt;p&gt;&lt;a href="https://help.ubuntu.com/community/Java"&gt;Ubuntu帮助: Java&lt;/a&gt;: 整得比较全面, 各种安装方法都有&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.webupd8.org/2012/01/install-oracle-java-jdk-7-in-ubuntu-via.html"&gt;INSTALL ORACLE JAVA 7 IN UBUNTU VIA PPA REPOSITORY&lt;/a&gt;: 之前整了篇手动安装的比较麻烦, 还是PPA方便&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;sudo add-apt-repository ppa:webupd8team/java
 sudo apt-get update
 sudo apt-get install oracle-java7-installer

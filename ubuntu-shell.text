@@ -1,0 +1,9 @@
+Title: Ubuntu 命令
+Date: 2013-09-22
+Tags: Ubuntu,Linux,命令
+Slug: ubuntu-shell
+Author: Zoey Young
+Summary: Ubuntu 命令
+
+升级Ubuntu: `sudo update-manager -d`
+
