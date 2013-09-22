@@ -1,6 +1,10 @@
 body {
   position: relative; /* For scrollyspy */
   font: 14px/1.5 \5fae\8f6f\96c5\9ed1,tahoma,arial,\5b8b\4f53;
+  background-image: url(background.png)
+}
+.main {
+  margin: 20px 0;
 }
 h1 { font: 32px/1.5 'Alegreya SC', 'Garamond', 'Georgia', \5fae\8f6f\96c5\9ed1,tahoma,arial,\5b8b\4f53; font-weight: bold;}
 h2 { font: 24px/1.5 'Alegreya SC', 'Garamond', 'Georgia', \5fae\8f6f\96c5\9ed1,tahoma,arial,\5b8b\4f53; font-weight: bold;}
