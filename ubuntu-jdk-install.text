@@ -14,4 +14,6 @@ Summary: Ubuntu下使用PPA安装JDK
     sudo apt-get update
     sudo apt-get install oracle-java7-installer
 
-不能保证一直有效, 所以还是得打开网址查看一下
+具体版本查看: [https://launchpad.net/~webupd8team/+archive/java](https://launchpad.net/~webupd8team/+archive/java)
+
+

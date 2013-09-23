@@ -7,3 +7,11 @@ Summary: Ubuntu 命令
 
 升级Ubuntu: `sudo update-manager -d`
 
+查看版本: `lsb_release -a`
+
+    No LSB modules are available.
+    Distributor ID: Ubuntu
+    Description:    Ubuntu Saucy Salamander (development branch)
+    Release:    13.10
+    Codename:   saucy
+

@@ -168,6 +168,13 @@
 <span class="k">print</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">c</span><span class="p">]))</span>
 <span class="n">print_LCS</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">Y</span><span class="p">))</span>
 </pre></div>
+
+
+<p>《编程之美》3.3 计算字符串的相似度</p>
+<h3>应用场景</h3>
+<p><a href="http://www.jmatrix.org/algorithm/166.html">字符串相似度计算</a></p>
+<p>LCS与GST的一个重要区别就是LCS得到的最大公共子串是严格有序的, 对于一些顺序调换的情况, 它计算出的相似度是比较低的, 相反, GST并不要求其子串严格有序, 只要存在相等子串, 即使位置不对也可找到, 因此相对来说, 它计算出的相似度更高.</p>
+<p>在分析生物学领域, DNA分子常被表示成一个字符串, 两个DNA分子之间的相似性常用它们共同包含的碱基对的序列长度来度量, 这是最长公共子序列应用最广泛的领域, LCS还可以应用于数据压缩、文件比较、语言识别等方面. GST算法在信息检索、文本编辑、信息提取等领域有重要的应用.</p>
 </article>
 <div class="comment">
     <!-- JiaThis Button BEGIN -->
