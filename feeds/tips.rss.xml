@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OK Computer</title><link>http://zoeyyoung.github.io/</link><description>It's better to burn out &lt;br/&gt; than to fade away.</description><atom:link href="http://zoeyyoung.github.io/feeds/tips.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 30 Jun 2013 00:00:00 +0800</lastBuildDate><item><title>我的 Sublime Text 2/3 配置</title><link>http://zoeyyoung.github.io/sublime-text-2.html</link><description>&lt;blockquote&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OK Computer</title><link>http://zoeyyoung.github.io/</link><description>It's better to burn out &lt;br/&gt; than to fade away.</description><atom:link href="http://zoeyyoung.github.io/feeds/tips.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 30 Jun 2013 00:00:00 +0800</lastBuildDate><item><title>[安装配置] 我的 Sublime Text 2/3 配置</title><link>http://zoeyyoung.github.io/sublime-text-2.html</link><description>&lt;blockquote&gt;
 &lt;p&gt;Sublime Text is a sophisticated text editor for code, markup and prose.
 You'll love the slick user interface, extraordinary features and amazing performance.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -129,7 +129,7 @@ You'll love the slick user interface, extraordinary features and amazing perform
 &lt;p&gt;&lt;a href="https://github.com/joshnh/CSS-Snippets"&gt;Sublime Text 2 CSS Snippets&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://webtempest.com/sublime-text-2-how-to-create-snippets/"&gt;How to Create Snippets&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://www.qianduan.net/essential-to-sublime-the-text-2-plugins.html"&gt;一些必不可少的Sublime Text 2插件&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://dengo.org/archives/923"&gt;Sublime Text 3能用支持的插件推荐&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sun, 30 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-30:sublime-text-2.html</guid><category>Windows</category><category>Tips</category><category>Sublime Text 2</category><category>Sublime Text 3</category><category>配置</category></item><item><title>在 Windows 下 Git 的使用</title><link>http://zoeyyoung.github.io/windows-git-https.html</link><description>&lt;p&gt;这个问题很基础, 但是第一次使用时很困扰&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://dengo.org/archives/923"&gt;Sublime Text 3能用支持的插件推荐&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sun, 30 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-30:sublime-text-2.html</guid><category>Windows</category><category>Tips</category><category>Sublime Text 2</category><category>Sublime Text 3</category><category>配置</category></item><item><title>[安装配置] 在 Windows 下 Git 的使用</title><link>http://zoeyyoung.github.io/windows-git-https.html</link><description>&lt;p&gt;这个问题很基础, 但是第一次使用时很困扰&lt;/p&gt;
 &lt;p&gt;按照&lt;a href="https://gitcafe.com/GitCafe/Help/blob/master/Setup_Git.md"&gt;帮助&lt;/a&gt;安装了Windows下的Git客户端, 例如我下载安装了&lt;strong&gt;Git-1.8.3-preview20130601.exe&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;(还有其它软件, 比如&lt;a href="http://code.google.com/p/tortoisegit/"&gt;TortoiseGit&lt;/a&gt;)&lt;/p&gt;
 &lt;p&gt;在GitCafe上&lt;strong&gt;创建&lt;/strong&gt;仓库后, 会有提示怎么初始化仓库的说明&lt;/p&gt;
@@ -215,8 +215,8 @@ git push
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://www.fantxi.com/blog/archives/tortoisegit-github/"&gt;TortoiseGit GitHub 使用小计&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://zengrong.net/post/1722.htm"&gt;使用Git、Git GUI和TortoiseGit&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sat, 29 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-29:windows-git-https.html</guid><category>Git</category><category>Windows</category><category>Git Bash</category><category>SSH</category><category>配置</category><category>安装</category></item><item><title>使用GIST管理常用代码</title><link>http://zoeyyoung.github.io/gist.html</link><description>&lt;p&gt;&lt;a href="https://gist.github.com/ZoeyYoung"&gt;我的GIST&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Sublime Text 2 + GIST 插件, 用得很爽&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Thu, 20 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-20:gist.html</guid><category>GIST</category><category>GitHub</category></item><item><title>在 Windows 下使用 Pelican + GitCafe Page 创建 Blog</title><link>http://zoeyyoung.github.io/getting-start-with-pelican.html</link><description>&lt;p&gt;参考该&lt;a href="http://riku.gitcafe.com/category/post.html"&gt;博客&lt;/a&gt;的两篇文章&lt;/p&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sat, 29 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-29:windows-git-https.html</guid><category>Git</category><category>Windows</category><category>Git Bash</category><category>SSH</category><category>配置</category><category>安装</category></item><item><title>[记录] 使用GIST管理常用代码</title><link>http://zoeyyoung.github.io/gist.html</link><description>&lt;p&gt;&lt;a href="https://gist.github.com/ZoeyYoung"&gt;我的GIST&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Sublime Text 2 + GIST 插件, 用得很爽&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Thu, 20 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-20:gist.html</guid><category>GIST</category><category>GitHub</category></item><item><title>[记录] 在 Windows 下使用 Pelican + GitCafe Page 创建 Blog</title><link>http://zoeyyoung.github.io/getting-start-with-pelican.html</link><description>&lt;p&gt;参考该&lt;a href="http://riku.gitcafe.com/category/post.html"&gt;博客&lt;/a&gt;的两篇文章&lt;/p&gt;
 &lt;h3&gt;安装&lt;/h3&gt;
 &lt;p&gt;&lt;a href="http://docs.getpelican.com/en/latest/getting_started.html"&gt;官方文档&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;我使用virtualenv安装(需要先安装virtualenv):&lt;/p&gt;
@@ -246,7 +246,7 @@ git push
 &lt;p&gt;在命令行提示符下运行, 输入用户名, 密码, 则发布成功&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;Permission denied (publickey).&lt;/code&gt;的问题, 改成以&lt;code&gt;https&lt;/code&gt;形式提交就解决了&lt;/p&gt;
 &lt;p&gt;比如我的: https://gitcafe.com/ZoeyYoung/ZoeyYoung.git&lt;/p&gt;
-&lt;p&gt;Ubuntu下应该没这个问题吧...&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Thu, 13 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-13:getting-start-with-pelican.html</guid><category>pelican</category></item><item><title>修改Windows中默认用户文件夹的存放位置</title><link>http://zoeyyoung.github.io/change-default-folder.html</link><description>&lt;p&gt;优化类软件都有这功能，不过还是给自己定制一下，直接导入比较方便。&lt;/p&gt;
+&lt;p&gt;Ubuntu下应该没这个问题吧...&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Thu, 13 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-13:getting-start-with-pelican.html</guid><category>pelican</category></item><item><title>[安装配置] 修改Windows中默认用户文件夹的存放位置</title><link>http://zoeyyoung.github.io/change-default-folder.html</link><description>&lt;p&gt;优化类软件都有这功能，不过还是给自己定制一下，直接导入比较方便。&lt;/p&gt;
 &lt;h3&gt;一般步骤&lt;/h3&gt;
 &lt;p&gt;打开注册表编辑器(Win+R regedit)，进入分支：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;HKEY_CURRENT_USER&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;Software&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;Microsoft&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;Windows&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;CurrentVersion&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;Explorer&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;User&lt;/span&gt; &lt;span class="n"&gt;Shell&lt;/span&gt; &lt;span class="n"&gt;Folders&lt;/span&gt;
@@ -271,7 +271,7 @@ git push
 
 
 &lt;p&gt;注：上面文件夹路径中要使用双斜杠(\)，使用单斜杠无效。&lt;/p&gt;
-&lt;p&gt;设置后要重新启动&lt;strong&gt;explorer&lt;/strong&gt;才能生效&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Thu, 01 Nov 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-11-01:change-default-folder.html</guid><category>Windows</category><category>Tips</category><category>文件夹</category></item><item><title>[已解决] GitHub图标变方块</title><link>http://zoeyyoung.github.io/github-webfont.html</link><description>&lt;p&gt;&lt;img alt="图标变方块" src="/static/images/方块.png" /&gt;&lt;/p&gt;
+&lt;p&gt;设置后要重新启动&lt;strong&gt;explorer&lt;/strong&gt;才能生效&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Thu, 01 Nov 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-11-01:change-default-folder.html</guid><category>Windows</category><category>Tips</category><category>文件夹</category></item><item><title>[解决] GitHub图标变方块</title><link>http://zoeyyoung.github.io/github-webfont.html</link><description>&lt;p&gt;&lt;img alt="图标变方块" src="/static/images/方块.png" /&gt;&lt;/p&gt;
 &lt;p&gt;之前在Chrome中使用GitHub的时候看着图标一直是方块的, 以为原来就是那样设计的- -&lt;/p&gt;
 &lt;p&gt;后来感觉不应该, 在IE中打开才发现原来是有图标的, 然后才发现原来是使用如下插件设置了字体的关系, 只能删除了...&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://chrome.google.com/webstore/detail/force-microsoft-yahei-fon/ojlocjfaheiilmgjdgnoehhdigfedhjl"&gt;Force Microsoft Yahei Font&lt;/a&gt;&lt;/p&gt;
@@ -280,7 +280,7 @@ git push
 安装即用, 不像 Stylish 之类全能样式扩展那样需要额外费心设置, 由于是指定 CSS, 而非 JavaScript 遍历 DOM 修改样式, 所以不占扩展进程, 无须等待页面载入并修改重绘, 不增加额外开销.
 缺点和其他浏览器强制字体一样, web font 和定义了衬线体的网页会失效.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;没认真看说明...&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Mon, 01 Oct 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-10-01:github-webfont.html</guid><category>GitHub</category><category>Tips</category><category>Chrome</category></item><item><title>Terminator</title><link>http://zoeyyoung.github.io/terminator-software.html</link><description>&lt;p&gt;&lt;img alt="terminator" src="/static/images/terminator.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;没认真看说明...&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Mon, 01 Oct 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-10-01:github-webfont.html</guid><category>GitHub</category><category>Tips</category><category>Chrome</category></item><item><title>[软件] Terminator</title><link>http://zoeyyoung.github.io/terminator-software.html</link><description>&lt;p&gt;&lt;img alt="terminator" src="/static/images/terminator.jpg" /&gt;&lt;/p&gt;
 &lt;h2&gt;安装Terminator&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;aptitude&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;terminator&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -295,7 +295,7 @@ git push
 &lt;span class="n"&gt;Ctrl&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;Shift&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;N&lt;/span&gt; &lt;span class="err"&gt;或者&lt;/span&gt; &lt;span class="n"&gt;Ctrl&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;Tab&lt;/span&gt; &lt;span class="err"&gt;在分割的各窗口之间切换&lt;/span&gt;
 &lt;span class="n"&gt;Ctrl&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;Shift&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;X&lt;/span&gt; &lt;span class="err"&gt;将分割的某一个窗口放大至全屏使用&lt;/span&gt;
 &lt;span class="n"&gt;Ctrl&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;Shift&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;Z&lt;/span&gt; &lt;span class="err"&gt;从放大至全屏的某一窗口回到多窗格界面&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sun, 08 Jul 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-07-08:terminator-software.html</guid><category>Ubuntu</category><category>Linux</category></item><item><title>将“清空回车站”添加到桌面右键菜单</title><link>http://zoeyyoung.github.io/recyle-reg.html</link><description>&lt;blockquote&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sun, 08 Jul 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-07-08:terminator-software.html</guid><category>Ubuntu</category><category>Linux</category></item><item><title>[技巧] 将"清空回车站"添加到桌面右键菜单</title><link>http://zoeyyoung.github.io/recyle-reg.html</link><description>&lt;blockquote&gt;
 &lt;p&gt;我不要谋生, 我要生活。 —— 王尔德&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3&gt;题外话&lt;/h3&gt;
@@ -317,7 +317,7 @@ git push
 &lt;p&gt;运行后，会写注册表，结果如下图：&lt;/p&gt;
 &lt;p&gt;&lt;img alt="recyle" src="/static/images/recyle.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;还有一种方法就是&lt;a href="http://jingyan.baidu.com/article/8275fc86dcd94946a03cf6ae.html"&gt;在任务栏添加回车站&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;尝试了下可行，但是占用任务栏位置，因此，还是决定放在桌面右键里面&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sat, 30 Jun 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-06-30:recyle-reg.html</guid><category>Windows</category><category>注册表</category><category>右键</category><category>桌面</category><category>菜单</category></item><item><title>DeskPins 窗口置顶</title><link>http://zoeyyoung.github.io/software-deskpins.html</link><description>&lt;p&gt;工欲善其事,必先利其器！&lt;/p&gt;
+&lt;p&gt;尝试了下可行，但是占用任务栏位置，因此，还是决定放在桌面右键里面&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sat, 30 Jun 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-06-30:recyle-reg.html</guid><category>Windows</category><category>注册表</category><category>右键</category><category>桌面</category><category>菜单</category></item><item><title>[软件] DeskPins 窗口置顶</title><link>http://zoeyyoung.github.io/software-deskpins.html</link><description>&lt;p&gt;工欲善其事,必先利其器！&lt;/p&gt;
 &lt;p&gt;介绍一款窗口置顶软件&lt;strong&gt;DeskPins&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;DeskPins可一键将Windows桌面常用窗口钉在最前端，类似于视频软件的&lt;strong&gt;“始终保持在最前”&lt;/strong&gt;的功能&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Deskpins" src="/static/images/deskpins.jpg" /&gt;&lt;/p&gt;
@@ -330,7 +330,7 @@ git push
 &lt;p&gt;想边看视频边浏览其他文件，但有时弹出视频窗口并不能置前（比如土豆有默认的弹出小窗口播放，但没有置前的功能），这时该软件就派上用场了（如图右下角）&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;相同功能的软件我也有用过（忘记叫什么了，是需要安装的），没有DeskPins这么绿色小巧（单文件软件，&lt;strong&gt;无需安装&lt;/strong&gt;），使用也方便，绝对是利器！&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Fri, 22 Jun 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-06-22:software-deskpins.html</guid><category>Software</category><category>软件</category></item><item><title>不小心把窗口拉到桌面外</title><link>http://zoeyyoung.github.io/move-window-back.html</link><description>&lt;p&gt;不知为啥我经常遇到这个问题...&lt;/p&gt;
+&lt;p&gt;相同功能的软件我也有用过（忘记叫什么了，是需要安装的），没有DeskPins这么绿色小巧（单文件软件，&lt;strong&gt;无需安装&lt;/strong&gt;），使用也方便，绝对是利器！&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Fri, 22 Jun 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-06-22:software-deskpins.html</guid><category>Software</category><category>软件</category></item><item><title>[解决] 不小心把窗口拉到桌面外</title><link>http://zoeyyoung.github.io/move-window-back.html</link><description>&lt;p&gt;不知为啥我经常遇到这个问题...&lt;/p&gt;
 &lt;p&gt;有种情况是使用两个屏幕时, 移除一个屏幕时没把窗口拉回来, 它就呆那了...&lt;/p&gt;
 &lt;h3&gt;解法方案&lt;/h3&gt;
 &lt;p&gt;因为鼠标点不到屏幕外, 只能用键盘了..这时快捷键就派上用场了..&lt;/p&gt;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OK Computer</title><link>http://zoeyyoung.github.io/</link><description>It's better to burn out &lt;br/&gt; than to fade away.</description><atom:link href="http://zoeyyoung.github.io/feeds/linux.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 22 Sep 2013 00:00:00 +0800</lastBuildDate><item><title>Ubuntu 命令</title><link>http://zoeyyoung.github.io/ubuntu-shell.html</link><description>&lt;p&gt;升级Ubuntu: &lt;code&gt;sudo update-manager -d&lt;/code&gt;&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OK Computer</title><link>http://zoeyyoung.github.io/</link><description>It's better to burn out &lt;br/&gt; than to fade away.</description><atom:link href="http://zoeyyoung.github.io/feeds/linux.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 22 Sep 2013 00:00:00 +0800</lastBuildDate><item><title>[备忘] Ubuntu 命令</title><link>http://zoeyyoung.github.io/ubuntu-shell.html</link><description>&lt;p&gt;升级Ubuntu: &lt;code&gt;sudo update-manager -d&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;查看版本: &lt;code&gt;lsb_release -a&lt;/code&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;No&lt;/span&gt; &lt;span class="n"&gt;LSB&lt;/span&gt; &lt;span class="n"&gt;modules&lt;/span&gt; &lt;span class="n"&gt;are&lt;/span&gt; &lt;span class="n"&gt;available&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
 &lt;span class="n"&gt;Distributor&lt;/span&gt; &lt;span class="n"&gt;ID&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Ubuntu&lt;/span&gt;
@@ -41,7 +41,7 @@ sudo apt-get install oracle-java7-installer
 
 &lt;p&gt;具体版本查看: &lt;a href="https://launchpad.net/~webupd8team/+archive/java"&gt;https://launchpad.net/~webupd8team/+archive/java&lt;/a&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;sudo apt-get install eclipse
-&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 06 Nov 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-11-06:ubuntu-jdk-install.html</guid><category>Java</category><category>Ubuntu</category><category>JDK</category><category>安装</category><category>Oracle</category></item><item><title>Ubuntu 下 Address already in use 解决方法</title><link>http://zoeyyoung.github.io/ubuntu-address-already-in-use.html</link><description>&lt;p&gt;&lt;strong&gt;横线下是正文，上面是背景废话&lt;/strong&gt;&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 06 Nov 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-11-06:ubuntu-jdk-install.html</guid><category>Java</category><category>Ubuntu</category><category>JDK</category><category>安装</category><category>Oracle</category></item><item><title>[备忘] Ubuntu 下 Address already in use 解决方法</title><link>http://zoeyyoung.github.io/ubuntu-address-already-in-use.html</link><description>&lt;p&gt;&lt;strong&gt;横线下是正文，上面是背景废话&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;刚刚要在机子上测试ruhoh博客时，因为之前注销系统的时候直接把终端关掉了，而没有先停止服务&lt;/p&gt;
 &lt;p&gt;所以执行&lt;strong&gt;rackup -p9292&lt;/strong&gt;时，就出现了之个错误，本来想就直接用之前的吧，但是更新的博客内容没有出现，所以还是得重启服务，但是肯定不想重启机子的&lt;/p&gt;
 &lt;p&gt;知道肯定可以用命令解决，但是对Linux下进程管理的命令不熟，所以上网搜索之，没有搜到具体解决方法，可能是关键词不对，最后自己解决了&lt;/p&gt;
@@ -58,7 +58,7 @@ sudo apt-get install oracle-java7-installer
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;注意到最后一列是PID/Program name，所以使用&lt;strong&gt;kill 19863&lt;/strong&gt;，杀掉进程即可&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Fri, 06 Jul 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-07-06:ubuntu-address-already-in-use.html</guid><category>Ubuntu</category><category>Linux</category><category>进程</category><category>local</category><category>终端</category></item><item><title>Ubuntu 下安装 fcitx 以及五笔拼音输入法</title><link>http://zoeyyoung.github.io/ubuntu-install-fcitx.html</link><description>&lt;p&gt;用Ubuntu时最不舒服的就是打字, 输入法没Windows中好用, 或许还是习惯的问题&lt;/p&gt;
+&lt;p&gt;注意到最后一列是PID/Program name，所以使用&lt;strong&gt;kill 19863&lt;/strong&gt;，杀掉进程即可&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Fri, 06 Jul 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-07-06:ubuntu-address-already-in-use.html</guid><category>Ubuntu</category><category>Linux</category><category>进程</category><category>local</category><category>终端</category></item><item><title>[安装配置] Ubuntu 下安装 fcitx 以及五笔拼音输入法</title><link>http://zoeyyoung.github.io/ubuntu-install-fcitx.html</link><description>&lt;p&gt;用Ubuntu时最不舒服的就是打字, 输入法没Windows中好用, 或许还是习惯的问题&lt;/p&gt;
 &lt;p&gt;还好, 还是能找到五笔输入法. 但是五笔拼音现在用的感觉还是不怎么好用&lt;/p&gt;
 &lt;p&gt;目前是使用fcitx, 整理一下教程及安装方法, 以节省每次都得查阅的麻烦&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://fcitx-im.org/wiki/Fcitx"&gt;官网&lt;/a&gt;&lt;/p&gt;

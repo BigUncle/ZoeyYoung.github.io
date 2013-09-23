@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OK Computer</title><link>http://zoeyyoung.github.io/</link><description>It's better to burn out &lt;br/&gt; than to fade away.</description><atom:link href="http://zoeyyoung.github.io/feeds/ruby.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 24 Jun 2012 00:00:00 +0800</lastBuildDate><item><title>RVM</title><link>http://zoeyyoung.github.io/ruby-rvm.html</link><description>&lt;p&gt;rvm是一个命令行工具，可以提供一个便捷的多版本ruby环境的管理和切换。&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OK Computer</title><link>http://zoeyyoung.github.io/</link><description>It's better to burn out &lt;br/&gt; than to fade away.</description><atom:link href="http://zoeyyoung.github.io/feeds/ruby.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 24 Jun 2012 00:00:00 +0800</lastBuildDate><item><title>[安装配置] RVM</title><link>http://zoeyyoung.github.io/ruby-rvm.html</link><description>&lt;p&gt;rvm是一个命令行工具，可以提供一个便捷的多版本ruby环境的管理和切换。&lt;/p&gt;
 &lt;p&gt;https://rvm.io/&lt;/p&gt;
 &lt;p&gt;如果你打算学习ruby/rails, rvm是必不可少的工具之一。&lt;/p&gt;
 &lt;p&gt;这里所有的命令都是在用户权限下操作的，任何命令最好都不要用sudo.&lt;/p&gt;

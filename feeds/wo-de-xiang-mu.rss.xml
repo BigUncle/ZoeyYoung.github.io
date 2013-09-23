@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OK Computer</title><link>http://zoeyyoung.github.io/</link><description>It's better to burn out &lt;br/&gt; than to fade away.</description><atom:link href="http://zoeyyoung.github.io/feeds/wo-de-xiang-mu.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 24 Jul 2013 00:00:00 +0800</lastBuildDate><item><title>书签云项目</title><link>http://zoeyyoung.github.io/bookmarks-cloud-tornado-project.html</link><description>&lt;p&gt;基于Tornado的项目，使用MongoDB&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OK Computer</title><link>http://zoeyyoung.github.io/</link><description>It's better to burn out &lt;br/&gt; than to fade away.</description><atom:link href="http://zoeyyoung.github.io/feeds/wo-de-xiang-mu.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 24 Jul 2013 00:00:00 +0800</lastBuildDate><item><title>[项目] 书签云项目</title><link>http://zoeyyoung.github.io/bookmarks-cloud-tornado-project.html</link><description>&lt;p&gt;基于Tornado的项目，使用MongoDB&lt;/p&gt;
 &lt;h3&gt;简介：&lt;/h3&gt;
 &lt;p&gt;类似美味书签，通过定制，更适合有效管理个人书签&lt;/p&gt;
 &lt;p&gt;保存平时浏览的链接，做简单的笔记或评论&lt;/p&gt;
@@ -60,7 +60,7 @@
 &lt;p&gt;添加了分页, 使用不推荐的skip()方法, 而且代码写得比较丑陋, 还需要修改&lt;/p&gt;
 &lt;p&gt;2013/5/22&lt;/p&gt;
 &lt;p&gt;&lt;img alt="在此输入图片描述" src="http://static.oschina.net/uploads/space/2013/0522/022628_htUT_567775.png" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="在此输入图片描述" src="http://static.oschina.net/uploads/space/2013/0522/022643_KfAp_567775.png" /&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Wed, 24 Jul 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-07-24:bookmarks-cloud-tornado-project.html</guid><category>Tornado</category><category>MongoDB</category><category>Python</category><category>项目</category><category>标签</category><category>书签</category><category>链接</category></item><item><title>LinksBox项目的Chrome浏览器插件</title><link>http://zoeyyoung.github.io/chrome-ext-dev.html</link><description>&lt;p&gt;&lt;img alt="1" src="/static/images/ChromeExt/截图.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="在此输入图片描述" src="http://static.oschina.net/uploads/space/2013/0522/022643_KfAp_567775.png" /&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Wed, 24 Jul 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-07-24:bookmarks-cloud-tornado-project.html</guid><category>Tornado</category><category>MongoDB</category><category>Python</category><category>项目</category><category>标签</category><category>书签</category><category>链接</category></item><item><title>[项目] 书签云项目的Chrome浏览器插件</title><link>http://zoeyyoung.github.io/chrome-ext-dev.html</link><description>&lt;p&gt;&lt;img alt="1" src="/static/images/ChromeExt/截图.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img alt="2" src="/static/images/ChromeExt/截图2.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;创建&lt;strong&gt;manifest.json&lt;/strong&gt;文件&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;{&lt;/span&gt;
@@ -120,7 +120,7 @@
 &lt;p&gt;项目地址: https://github.com/ZoeyYoung/www-Links-Chrome-Extension&lt;/p&gt;
 &lt;p&gt;2013/07/24&lt;/p&gt;
 &lt;p&gt;更新可直接通过选中文本作为笔记&lt;/p&gt;
-&lt;p&gt;并直接获取网页的HTML字符串, 不在后台重新抓取&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Mon, 17 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-17:chrome-ext-dev.html</guid><category>Chrome</category><category>Chrome插件</category><category>开发</category></item><item><title>基于XMPP的Web IM</title><link>http://zoeyyoung.github.io/xmpp-im-project.html</link><description>&lt;p&gt;平台：Windows 7&lt;/p&gt;
+&lt;p&gt;并直接获取网页的HTML字符串, 不在后台重新抓取&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Mon, 17 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-17:chrome-ext-dev.html</guid><category>Chrome</category><category>Chrome插件</category><category>开发</category></item><item><title>[项目] 基于XMPP的Web IM</title><link>http://zoeyyoung.github.io/xmpp-im-project.html</link><description>&lt;p&gt;平台：Windows 7&lt;/p&gt;
 &lt;h3&gt;安装准备&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;下载&lt;a href="http://www.igniterealtime.org/downloads/index.jsp"&gt;Openfire&lt;/a&gt;&lt;/li&gt;
@@ -207,13 +207,13 @@
 &lt;li&gt;&lt;a href="https://gist.github.com/makoto/272956"&gt;A short tutorial on Echobot by Alfred Westerveld&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://anders.conbere.org/blog/2011/05/03/get_xmpp_-_bosh_working_with_ejabberd_firefox_and_strophe/"&gt;Anders Conbere’s guide to BOSH, ejabberd, Firefox, and Strophe&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.cnblogs.com/hannover/archive/2010/11/14/1876819.html"&gt;WEBIM的简单实现&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sat, 15 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-15:xmpp-im-project.html</guid><category>XMPP</category><category>Openfire</category><category>jQuery</category><category>jQuery UI</category><category>strophejs</category><category>Web</category><category>Nginx</category></item><item><title>LinksBox</title><link>http://zoeyyoung.github.io/linksbox-flask-project.html</link><description>&lt;p&gt;基于Flask, 数据库使用sqlite&lt;/p&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sat, 15 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-15:xmpp-im-project.html</guid><category>XMPP</category><category>Openfire</category><category>jQuery</category><category>jQuery UI</category><category>strophejs</category><category>Web</category><category>Nginx</category></item><item><title>[项目] LinksBox</title><link>http://zoeyyoung.github.io/linksbox-flask-project.html</link><description>&lt;p&gt;基于Flask, 数据库使用sqlite&lt;/p&gt;
 &lt;p&gt;多用户, 类似微博, 可关注(取消关注)别人的收藏夹&lt;/p&gt;
 &lt;p&gt;首页，显示所有链接&lt;/p&gt;
 &lt;p&gt;&lt;img alt="1" src="/static/images/Flask.png" /&gt;&lt;/p&gt;
 &lt;p&gt;添加链接&lt;/p&gt;
 &lt;p&gt;&lt;img alt="2" src="/static/images/Flask2.png" /&gt;&lt;/p&gt;
-&lt;p&gt;注: 一开始想实现的功能比较复杂, 后面想保持简单, 因此用Tornado实现了另一个个人使用的版本, 个人使用中...&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Thu, 13 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-13:linksbox-flask-project.html</guid><category>Flask</category><category>Python</category><category>Web</category></item><item><title>Web IM</title><link>http://zoeyyoung.github.io/web-im-project.html</link><description>&lt;p&gt;在永中实习期间的项目, 独立维护, 对公司原有的代码进行了大量的修改, 解决了大量Bug, 并对原有代码进行了重构、优化&lt;/p&gt;
+&lt;p&gt;注: 一开始想实现的功能比较复杂, 后面想保持简单, 因此用Tornado实现了另一个个人使用的版本, 个人使用中...&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Thu, 13 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-13:linksbox-flask-project.html</guid><category>Flask</category><category>Python</category><category>Web</category></item><item><title>[项目] Web IM</title><link>http://zoeyyoung.github.io/web-im-project.html</link><description>&lt;p&gt;在永中实习期间的项目, 独立维护, 对公司原有的代码进行了大量的修改, 解决了大量Bug, 并对原有代码进行了重构、优化&lt;/p&gt;
 &lt;p&gt;项目主要使用到了ExtJS, jQuery, 使用DWR进行数据推送与Ajax数据获取&lt;/p&gt;
 &lt;p&gt;在这里只给出截图&lt;/p&gt;
 &lt;p&gt;联系人界面, 可收进, 展开, 模仿新浪微博&lt;/p&gt;
@@ -243,7 +243,7 @@
 &lt;p&gt;历史记录&lt;/p&gt;
 &lt;p&gt;&lt;img alt="12" src="/static/images/IM/12.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;右键菜单&lt;/p&gt;
-&lt;p&gt;&lt;img alt="13" src="/static/images/IM/13.jpg" /&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Thu, 13 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-13:web-im-project.html</guid><category>ExtJS</category><category>jQuery</category><category>DWR</category><category>Java EE</category><category>Spring</category></item><item><title>数据挖掘——Wine Data Set</title><link>http://zoeyyoung.github.io/data-mining-wine-data-set-project.html</link><description>&lt;h1&gt;数据源&lt;/h1&gt;
+&lt;p&gt;&lt;img alt="13" src="/static/images/IM/13.jpg" /&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Thu, 13 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-13:web-im-project.html</guid><category>ExtJS</category><category>jQuery</category><category>DWR</category><category>Java EE</category><category>Spring</category></item><item><title>[项目] 数据挖掘——Wine Data Set</title><link>http://zoeyyoung.github.io/data-mining-wine-data-set-project.html</link><description>&lt;h1&gt;数据源&lt;/h1&gt;
 &lt;p&gt;&lt;a href="http://archive.ics.uci.edu/ml/datasets/Wine"&gt;来源&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;数据源的完整名称是&lt;strong&gt;Wine Data Set&lt;/strong&gt;，是对3种不同的酒进行分类。这三种酒包括13种不同的属性，分别为：Alcohol, Malic acid, Ash, Alcalinity of ash, Magnesium, Total phenols, Flavanoids, Nonflavanoid phenols, Proanthocyanins, Color intensity, Hue, OD280/OD315 of diluted wines, Proline. 在“wine.data”文件中, 每行代表一种酒的样本, 共有178个样本; 一共有14列, 其中, 第一列为类标志属性, 共有三类, 分别记为“1”, “2”, “3”; 后面的13列为每个样本的对应属性的样本值. 其中第1类有59个样本，第2类有71个样本，第3类有48个样本。&lt;/p&gt;
 &lt;h1&gt;算法介绍&lt;/h1&gt;
@@ -331,7 +331,7 @@
 &lt;p&gt;算法的实现在KNN.java与NaiveBayes.java中。&lt;/p&gt;
 &lt;p&gt;Data.java用来获取数据并含有对数据进行预处理的算法。&lt;/p&gt;
 &lt;p&gt;ModelAssessment用来保存模型评估相关数据，暂时只保存正确率、错误率与算法执行时间。其它包中文件为数据库与Servlet相关。&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://github.com/ZoeyYoung/wine-data-set"&gt;源代码&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Fri, 18 Nov 2011 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2011-11-18:data-mining-wine-data-set-project.html</guid><category>Servlet</category><category>数据挖掘</category></item><item><title>中外合作办学管理平台的设计和实现</title><link>http://zoeyyoung.github.io/cfce-project.html</link><description>&lt;h2&gt;研究背景&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://github.com/ZoeyYoung/wine-data-set"&gt;源代码&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Fri, 18 Nov 2011 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2011-11-18:data-mining-wine-data-set-project.html</guid><category>Servlet</category><category>数据挖掘</category></item><item><title>[项目] 中外合作办学管理平台的设计和实现</title><link>http://zoeyyoung.github.io/cfce-project.html</link><description>&lt;h2&gt;研究背景&lt;/h2&gt;
 &lt;p&gt;中外合作办学是指中国教育机构与外国教育机构依法在中国境内合作举办以中国公民为主要招生对象的教育教学活动。&lt;/p&gt;
 &lt;p&gt;本系统以我校卡耐基梅隆合作办学为背景，采用Java EE进行开发，设计B/S结构的信息管理系统，能够做到统一的项目宣传和信息服务功能。&lt;/p&gt;
 &lt;p&gt;&lt;img alt="1" src="/static/images/CFCE/网站设计1.png" /&gt;&lt;/p&gt;

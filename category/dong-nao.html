@@ -37,9 +37,6 @@
           <li><hr/></li>
           <li>CATEGORIES</li>
                     <li >
-            <a href="http://zoeyyoung.github.io/category/java.html ">Java</a>
-          </li>
-                    <li >
             <a href="http://zoeyyoung.github.io/category/linux.html ">Linux</a>
           </li>
                     <li >
@@ -107,76 +104,7 @@
       <div class="main-content col-md-8">
           
     <div>
-        <a href="http://zoeyyoung.github.io/rotate-list-list.html"><h1>[题目] 把一段字符串用"右起竖排"的古文格式输出</h1></a>
-        <div class="article-metadata">
-<time class="published" datetime="2013 九月 09 周一">2013 九月 09 周一 </time>
-<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
-<span>
-    <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/dong-nao.html">动脑</a>
-</span>
-<span>
-    <i class="icon-tags"></i>
-        <a href="http://zoeyyoung.github.io/tag/bi-shi.html">笔试</a>
-        <a href="http://zoeyyoung.github.io/tag/mian-shi.html">面试</a>
-    </span>
-<!-- <p></p> -->
-</div>        <p>从 <a href="http://www.pythonpub.com/article/848">从两道趣味题目看PYTHON的简洁性</a> 这篇博文看到的题目, 没按博主的方法, 自己写了两种.</p>
-<p>把一段字符串用"右起竖排"的古文格式输出</p>
-<p>直接将字符串装入二元列表:</p>
-<div class="highlight"><pre><span class="k">def</span> <span class="nf">rotate_1</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">6</span><span class="p">):</span>
-    <span class="n">len_str</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
-    <span class="n">cols</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">len_str</span><span class="o">+</span><span class="n">offset</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">offset</span><span class="p">)</span>
-    <span class="n">A</span> <span class="o">=</span> <span class="p">[[</span><span class="s">&#39;&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">cols</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">offset</span><span class="p">)]</span>
-    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cols</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">offset</span><span class="p">):</span>
-            <span class="n">index</span> <span class="o">=</span> <span class="p">(</span><span class="n">cols</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">col</span><span class="p">)</span><span class="o">*</span><span class="n">offset</span><span class="o">+</span><span class="n">row</span>
-            <span class="n">A</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">string</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="k">if</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="n">len_str</span> <span class="k">else</span> <span class="s">&#39;  &#39;</span>
-    <span class="k">return</span> <span class="n">A</span>
-</pre></div>
-
-
-<p>先顺序装入, 再将二元列表顺时针旋转90度:</p>
-<div class="highlight"><pre><span class="k">def</span> <span class="nf">rotate_2</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">6</span><span class="p">):</span>
-    <span class="n">len_str</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
-    <span class="n">rows</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">len_str</span><span class="o">+</span><span class="n">offset</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">offset</span><span class="p">)</span>
-    <span class="n">A</span> <span class="o">=</span> <span class="p">[[</span><span class="s">&#39;&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">offset</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rows</span><span class="p">)]</span>
-    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">offset</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rows</span><span class="p">):</span>
-            <span class="n">index</span> <span class="o">=</span> <span class="n">row</span><span class="o">*</span><span class="n">offset</span><span class="o">+</span><span class="n">col</span>
-            <span class="n">A</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">string</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="k">if</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="n">len_str</span> <span class="k">else</span> <span class="s">&#39;  &#39;</span>
-    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">A</span><span class="p">)))</span>
-</pre></div>
-
-
-<p>调用:</p>
-<div class="highlight"><pre><span class="n">A</span> <span class="o">=</span> <span class="n">rotate_1</span><span class="p">(</span><span class="s">&#39;静夜思 李白床前明月光，疑似地上霜。举头望明月，低头思故乡。&#39;</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s">&#39;┊&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">A</span><span class="p">]))</span>
-<span class="k">print</span><span class="p">(</span><span class="s">&#39;=&#39;</span><span class="o">*</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">A</span> <span class="o">=</span> <span class="n">rotate_2</span><span class="p">(</span><span class="s">&#39;静夜思 李白床前明月光，疑似地上霜。举头望明月，低头思故乡。&#39;</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s">&#39;┊&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">A</span><span class="p">]))</span>
-</pre></div>
-
-
-<p>输出:</p>
-<div class="highlight"><pre><span class="err">低┊举┊疑┊床┊静</span>
-<span class="err">头┊头┊似┊前┊夜</span>
-<span class="err">思┊望┊地┊明┊思</span>
-<span class="err">故┊明┊上┊月┊</span>
-<span class="err">乡┊月┊霜┊光┊李</span>
-<span class="err">。┊，┊。┊，┊白</span>
-<span class="o">====================</span>
-<span class="err">低┊举┊疑┊床┊静</span>
-<span class="err">头┊头┊似┊前┊夜</span>
-<span class="err">思┊望┊地┊明┊思</span>
-<span class="err">故┊明┊上┊月┊</span>
-<span class="err">乡┊月┊霜┊光┊李</span>
-<span class="err">。┊，┊。┊，┊白</span>
-</pre></div>
-        <hr />
-    </div>
-         <div>
-        <a href="http://zoeyyoung.github.io/some-question.html"><h1>一点题目</h1></a>
+        <a href="http://zoeyyoung.github.io/monkey-peach.html"><h1>[灵机一动] 猴子分桃</h1></a>
         <div class="article-metadata">
 <time class="published" datetime="2013 九月 06 周五">2013 九月 06 周五 </time>
 <a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
@@ -190,7 +118,14 @@
         <a href="http://zoeyyoung.github.io/tag/mian-shi.html">面试</a>
     </span>
 <!-- <p></p> -->
-</div>        <p>集中放一点比较普通的题目</p>
+</div>        <p>五只猴子分桃. 半夜, 第一只猴子先起来, 它把桃分成了相等的五堆, 多出一只. 于是, 它吃掉了一个, 拿走了一堆; 第二只猴子起来一看, 只有四堆桃。于是把四堆合在一起, 分成相等的五堆, 又多出一个。于是, 它也吃掉了一个, 拿走了一堆；.....其他几只猴子也都是这样分的. 问: 这堆桃至少有多少个?</p>
+<p>思路:</p>
+<p>假设每次剩下X个桃子, 每次取走的桃子数为: <code>(X-1)/5+1 = (X+4)/5</code></p>
+<p>给这堆桃加上4个, 则每次都可以平均分成5份.</p>
+<p>(每次都正好多出一个, 每只猴子拿走一堆加多出的1个, 正好是加上4个后再平均分成5份后的一堆. 因此加上的这4个每次都适用.)</p>
+<p>假设最后一只猴子拿走5个(包括吃掉的1个).</p>
+<p>则总桃子数应该为: <code>5*5*5*5*5 = 5^5 = 3125</code></p>
+<p>减去开始加上的4个: <code>3125 - 4 = 3121 个</code></p>
         <hr />
     </div>
             <ul class="pagination pagination-sm no-print">

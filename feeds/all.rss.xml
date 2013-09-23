@@ -121,7 +121,7 @@
 &lt;p&gt;Java内置的观察者模式&lt;/p&gt;
 &lt;p&gt;java.util.Observer &amp;lt;&lt;interface&gt;&amp;gt;&lt;/p&gt;
 &lt;p&gt;java.util.Observable &amp;lt;&lt;class&gt;&amp;gt;&lt;/p&gt;
-&lt;p&gt;相关描述查看&lt;a href="http://docs.oracle.com/javase/7/docs/api/"&gt;API文档&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sun, 22 Sep 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-09-22:design-patten-observer.html</guid><category>读书</category><category>Book</category></item><item><title>Ubuntu 命令</title><link>http://zoeyyoung.github.io/ubuntu-shell.html</link><description>&lt;p&gt;升级Ubuntu: &lt;code&gt;sudo update-manager -d&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;相关描述查看&lt;a href="http://docs.oracle.com/javase/7/docs/api/"&gt;API文档&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sun, 22 Sep 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-09-22:design-patten-observer.html</guid><category>读书</category><category>Book</category></item><item><title>[备忘] Ubuntu 命令</title><link>http://zoeyyoung.github.io/ubuntu-shell.html</link><description>&lt;p&gt;升级Ubuntu: &lt;code&gt;sudo update-manager -d&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;查看版本: &lt;code&gt;lsb_release -a&lt;/code&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;No&lt;/span&gt; &lt;span class="n"&gt;LSB&lt;/span&gt; &lt;span class="n"&gt;modules&lt;/span&gt; &lt;span class="n"&gt;are&lt;/span&gt; &lt;span class="n"&gt;available&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
 &lt;span class="n"&gt;Distributor&lt;/span&gt; &lt;span class="n"&gt;ID&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Ubuntu&lt;/span&gt;
@@ -727,7 +727,7 @@
 &lt;span class="err"&gt;故┊明┊上┊月┊&lt;/span&gt;
 &lt;span class="err"&gt;乡┊月┊霜┊光┊李&lt;/span&gt;
 &lt;span class="err"&gt;。┊，┊。┊，┊白&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Mon, 09 Sep 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-09-09:rotate-list-list.html</guid><category>笔试</category><category>面试</category></item><item><title>[算法] 长字符串包含短字符串所有字母的问题</title><link>http://zoeyyoung.github.io/alphabet-contain.html</link><description>&lt;p&gt;题目: 假设有一个各种字母组成的字符串, 假设这还有另外一个字符串, 而且这个字符串里的字母数相对少一些. 从算法上讲, 什么方法能最快的查出所有小字符串里的字母在大字符串里都有?&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Mon, 09 Sep 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-09-09:rotate-list-list.html</guid><category>笔试</category><category>面试</category><category>Python</category></item><item><title>[算法] 长字符串包含短字符串所有字母的问题</title><link>http://zoeyyoung.github.io/alphabet-contain.html</link><description>&lt;p&gt;题目: 假设有一个各种字母组成的字符串, 假设这还有另外一个字符串, 而且这个字符串里的字母数相对少一些. 从算法上讲, 什么方法能最快的查出所有小字符串里的字母在大字符串里都有?&lt;/p&gt;
 &lt;p&gt;比如, 如果是下面两个字符串:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;ABCDEFGHLMNOPQRS&lt;/span&gt;
 &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;DCGSRQPOM&lt;/span&gt;
@@ -940,7 +940,14 @@
 
 
 &lt;p&gt;相关文章:&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://www.ahathinking.com/archives/182.html"&gt;兄弟单词 — 两种算法实现&lt;/a&gt; 用C++语言实现的. 利用了Trie数来节省空间. 数据少的情况下没啥用.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Fri, 06 Sep 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-09-06:find-brother-word.html</guid><category>笔试</category><category>面试</category></item><item><title>[算法] 随机选择 取样问题</title><link>http://zoeyyoung.github.io/random-question.html</link><description>&lt;p&gt;问题:&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.ahathinking.com/archives/182.html"&gt;兄弟单词 — 两种算法实现&lt;/a&gt; 用C++语言实现的. 利用了Trie数来节省空间. 数据少的情况下没啥用.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Fri, 06 Sep 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-09-06:find-brother-word.html</guid><category>笔试</category><category>面试</category></item><item><title>[灵机一动] 猴子分桃</title><link>http://zoeyyoung.github.io/monkey-peach.html</link><description>&lt;p&gt;五只猴子分桃. 半夜, 第一只猴子先起来, 它把桃分成了相等的五堆, 多出一只. 于是, 它吃掉了一个, 拿走了一堆; 第二只猴子起来一看, 只有四堆桃。于是把四堆合在一起, 分成相等的五堆, 又多出一个。于是, 它也吃掉了一个, 拿走了一堆；.....其他几只猴子也都是这样分的. 问: 这堆桃至少有多少个?&lt;/p&gt;
+&lt;p&gt;思路:&lt;/p&gt;
+&lt;p&gt;假设每次剩下X个桃子, 每次取走的桃子数为: &lt;code&gt;(X-1)/5+1 = (X+4)/5&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;给这堆桃加上4个, 则每次都可以平均分成5份.&lt;/p&gt;
+&lt;p&gt;(每次都正好多出一个, 每只猴子拿走一堆加多出的1个, 正好是加上4个后再平均分成5份后的一堆. 因此加上的这4个每次都适用.)&lt;/p&gt;
+&lt;p&gt;假设最后一只猴子拿走5个(包括吃掉的1个).&lt;/p&gt;
+&lt;p&gt;则总桃子数应该为: &lt;code&gt;5*5*5*5*5 = 5^5 = 3125&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;减去开始加上的4个: &lt;code&gt;3125 - 4 = 3121 个&lt;/code&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Fri, 06 Sep 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-09-06:monkey-peach.html</guid><category>笔试</category><category>面试</category></item><item><title>[算法] 随机选择 取样问题</title><link>http://zoeyyoung.github.io/random-question.html</link><description>&lt;p&gt;问题:&lt;/p&gt;
 &lt;p&gt;输入: 包含两个整数m和n, 其中&lt;code&gt;m&amp;lt;n&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;输出: 0~n-1范围内的m个随机整数的有序列表, 不允许重复.&lt;/p&gt;
 &lt;p&gt;从概率的角度说, 希望得到没有重复的有序选择, 其中每个选择出现的概率相等.&lt;/p&gt;
@@ -1048,14 +1055,7 @@
 &lt;span class="n"&gt;Counter&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1000897&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1000782&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1000596&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1000015&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;999929&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;999900&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;999892&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;999541&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;999483&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;998965&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
 &lt;span class="n"&gt;Counter&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1000671&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1000606&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1000393&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1000262&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1000011&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;999800&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;999791&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;999708&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;999502&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;999256&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
 &lt;span class="n"&gt;Counter&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1001850&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1000861&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1000659&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1000632&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1000218&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1000086&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;999399&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;999035&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;998689&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;998571&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Fri, 06 Sep 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-09-06:random-question.html</guid><category>笔试</category><category>面试</category></item><item><title>一点题目</title><link>http://zoeyyoung.github.io/some-question.html</link><description>&lt;p&gt;五只猴子分桃. 半夜, 第一只猴子先起来, 它把桃分成了相等的五堆, 多出一只. 于是, 它吃掉了一个, 拿走了一堆; 第二只猴子起来一看, 只有四堆桃。于是把四堆合在一起, 分成相等的五堆, 又多出一个。于是, 它也吃掉了一个, 拿走了一堆；.....其他几只猴子也都是这样分的. 问: 这堆桃至少有多少个?&lt;/p&gt;
-&lt;p&gt;思路:&lt;/p&gt;
-&lt;p&gt;假设每次剩下X个桃子, 每次取走的桃子数为: (X-1)/5+1 = (X+4)/5&lt;/p&gt;
-&lt;p&gt;给这堆桃加上4个, 则每次都可以平均分成5份.&lt;/p&gt;
-&lt;p&gt;(每次都正好多出一个, 每只猴子拿走一堆加多出的1个, 正好是加上4个后再平均分成5份后的一堆. 因此加上的这4个每次都适用.)&lt;/p&gt;
-&lt;p&gt;假设最后一只猴子拿走5个(包括吃掉的1个).&lt;/p&gt;
-&lt;p&gt;则总桃子数应该为: 5&lt;em&gt;5&lt;/em&gt;5&lt;em&gt;5&lt;/em&gt;5 = 5^5 = 3125&lt;/p&gt;
-&lt;p&gt;减去开始加上的4个: 3125 - 4 = 3121 个&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Fri, 06 Sep 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-09-06:some-question.html</guid><category>笔试</category><category>面试</category></item><item><title>[整理] Python程序员的进化史</title><link>http://zoeyyoung.github.io/python-factorial-evolution.html</link><description>&lt;p&gt;测试GIST &lt;a href="https://gist.github.com/fmeyer/289467/"&gt;Evolution of a Python programmer.py&lt;/a&gt; 中的代码&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Fri, 06 Sep 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-09-06:random-question.html</guid><category>笔试</category><category>面试</category></item><item><title>[整理] Python程序员的进化史</title><link>http://zoeyyoung.github.io/python-factorial-evolution.html</link><description>&lt;p&gt;测试GIST &lt;a href="https://gist.github.com/fmeyer/289467/"&gt;Evolution of a Python programmer.py&lt;/a&gt; 中的代码&lt;/p&gt;
 &lt;p&gt;该代码片段为各种程序员所写的阶乘算法代码, 甚至包括网页设计师的, 很有意思&lt;/p&gt;
 &lt;p&gt;Windows程序员 和 企业程序员亮了...&lt;/p&gt;
 &lt;p&gt;Python 3下测试&lt;/p&gt;
@@ -1236,7 +1236,7 @@
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;sorted&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;_itemgetter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;reverse&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;_heapq&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;nlargest&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;_itemgetter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Fri, 30 Aug 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-08-30:python-heapq-counter.html</guid><category>Python</category><category>基础</category><category>算法</category></item><item><title>海量日志数据, 提取出某日访问百度次数最多的那个IP</title><link>http://zoeyyoung.github.io/get-most-visit-ip.html</link><description>&lt;p&gt;问题: 海量日志数据, 提取出某日访问百度次数最多的那个IP.&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Fri, 30 Aug 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-08-30:python-heapq-counter.html</guid><category>Python</category><category>基础</category><category>算法</category></item><item><title>[算法] 海量日志数据, 提取出某日访问百度次数最多的那个IP</title><link>http://zoeyyoung.github.io/get-most-visit-ip.html</link><description>&lt;p&gt;问题: 海量日志数据, 提取出某日访问百度次数最多的那个IP.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;首先是这一天, 并且是访问百度的日志中的IP取出来, 逐个写入到一个大文件中. 注意到IP是32位的, 最多有2^32个不同的IP(事实上不可能, 得扣去特殊的IP), 在重复量小的情况下, 内存放不下这些不同的IP. 同样可以采用映射的方法, 比如模1000, 把整个大文件映射为1000个小文件, 再找出每个小文件中出现频率最大的IP(可以采用hash_map进行频率统计, 然后再找出频率最大的几个)及相应的频率. 然后再在这1000个最大的IP中, 找出那个频率最大的IP, 即为所求.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1905,7 +1905,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;495004 function calls (297004 primitive calls) in 1.193 seconds&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 20 Aug 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-08-20:python-quick-sort.html</guid><category>Python</category><category>算法</category></item><item><title>MongoDB使用Whoosh进行全文搜索</title><link>http://zoeyyoung.github.io/mongodb-whoosh-full-text-search.html</link><description>&lt;p&gt;在我的书签云项目中采用了MongoDB数据库.&lt;/p&gt;
+&lt;p&gt;495004 function calls (297004 primitive calls) in 1.193 seconds&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 20 Aug 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-08-20:python-quick-sort.html</guid><category>Python</category><category>算法</category></item><item><title>[记录] MongoDB使用Whoosh进行全文搜索</title><link>http://zoeyyoung.github.io/mongodb-whoosh-full-text-search.html</link><description>&lt;p&gt;在我的书签云项目中采用了MongoDB数据库.&lt;/p&gt;
 &lt;p&gt;假设我有如下格式的文档(省略了与搜索无关的字段):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;519cd22917a0b7429bc2a1c0&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
@@ -2024,7 +2024,7 @@
 &lt;h3&gt;参考文档&lt;/h3&gt;
 &lt;p&gt;&lt;a href="http://blog.csdn.net/wenxuansoft/article/details/8169842"&gt;实现Django的全文检索功能（一）：选择Whoosh全文检索引擎&lt;/a&gt; ChineseAnalyzer是使用这篇文章中的, 其中修改使用了&lt;code&gt;jieba.cut_for_search(value)&lt;/code&gt;, 而不是博主使用的&lt;code&gt;jieba.cut()&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://github.com/qoda/python-searchengine/blob/master/searchengine/search.py"&gt;python-searchengine&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://gelnior.wordpress.com/2012/05/23/whoosh-full-text-search-for-python/"&gt;Whoosh: full-text search with Python&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Thu, 08 Aug 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-08-08:mongodb-whoosh-full-text-search.html</guid><category>MongoDB</category><category>NoSQL</category><category>Whoosh</category></item><item><title>MongoDB云服务使用</title><link>http://zoeyyoung.github.io/mongodb-cloud-service.html</link><description>&lt;p&gt;试用了下都可以用, 但连接速度很慢很慢.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://gelnior.wordpress.com/2012/05/23/whoosh-full-text-search-for-python/"&gt;Whoosh: full-text search with Python&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Thu, 08 Aug 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-08-08:mongodb-whoosh-full-text-search.html</guid><category>MongoDB</category><category>NoSQL</category><category>Whoosh</category></item><item><title>[尝试] MongoDB云服务使用</title><link>http://zoeyyoung.github.io/mongodb-cloud-service.html</link><description>&lt;p&gt;试用了下都可以用, 但连接速度很慢很慢.&lt;/p&gt;
 &lt;h3&gt;使用&lt;a href="http://www.mongohq.com"&gt;MongoHQ&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;创建数据库bookmarks_cloud&lt;/p&gt;
 &lt;p&gt;从本地导入数据&lt;/p&gt;
@@ -2257,7 +2257,7 @@ b&lt;span class="s1"&gt;&amp;#39;&amp;lt;html xmlns:html=&amp;quot;http://www.w3
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;因为&lt;code&gt;Text&lt;/code&gt;不包含在&lt;code&gt;elem.iterchildren()&lt;/code&gt;里.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Mon, 05 Aug 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-08-05:python-lxml-wrapping-elements.html</guid><category>Python</category><category>lxml</category><category>wrapping</category><category>html</category></item><item><title>MongoDB中数组更新操作</title><link>http://zoeyyoung.github.io/mongodb-array-update-with-query.html</link><description>&lt;p&gt;要做的事情: 在每个文档, 标签tags是以数组Array的形式存在的, 我现在有个标签命名为&lt;strong&gt;python&lt;/strong&gt;, 我想全部改成&lt;strong&gt;Python&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;因为&lt;code&gt;Text&lt;/code&gt;不包含在&lt;code&gt;elem.iterchildren()&lt;/code&gt;里.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Mon, 05 Aug 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-08-05:python-lxml-wrapping-elements.html</guid><category>Python</category><category>lxml</category><category>wrapping</category><category>html</category></item><item><title>[记录] MongoDB中数组更新操作</title><link>http://zoeyyoung.github.io/mongodb-array-update-with-query.html</link><description>&lt;p&gt;要做的事情: 在每个文档, 标签tags是以数组Array的形式存在的, 我现在有个标签命名为&lt;strong&gt;python&lt;/strong&gt;, 我想全部改成&lt;strong&gt;Python&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://docs.mongodb.org/manual/reference/operator/positional/#op._S"&gt;$ (query)&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;语法: &lt;code&gt;{ "&amp;lt;array&amp;gt;.$" : value }&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;使用mongo shell, 首先插入三条记录:&lt;/p&gt;
@@ -2523,9 +2523,9 @@ As of jQuery 1.7, the &lt;code&gt;.live()&lt;/code&gt; method is deprecated. Use
 &lt;p&gt;代码也是的, 之前总直接保存在笔记本里, 结果原来写的代码压根不记得了, 也不想去看不想去改. 这回应用中好好利用了Git, 修改了一定代码后就及时提交, 并写提交的内容, 相当于跟着代码的生命周期在走. 感觉很爽. 以后即使电脑上文件丢失也不怕了.&lt;/p&gt;
 &lt;p&gt;想到这点是因为之前移动硬盘坏过, 我把文件都恢复出来了, 结果一堆图片还有文件都是损坏掉的, 只能看到文件名了...又没备份, 只能直接删掉了...共删了几个G的东西...还好没啥重要的, 其实好多文件我都忘了它的存在了..但万一是重要文件就该心疼了...&lt;/p&gt;
 &lt;p&gt;所以这回我也意识到要经常备份我的数据库了...上次修改了一个配置, 结果打开应用数据是空的. 我以为完蛋了..数据难道被我误删了...还好不是...是安装时配置参数的问题.万一呢...吓了我一跳...所有书签都保存在里面呢...要是丢了就呵呵了...&lt;/p&gt;
-&lt;p&gt;还有这个博客托管在GitCafe, 前面文章也写到了.&lt;/p&gt;
-&lt;p&gt;每次直接修改本地文件, 然后Git提交, 感觉非常好. 当然了...一般人还是用富文本比较直接...这种方式估计只有程序员会这么做, 或者一些对计算机, 编程感兴趣的人&lt;/p&gt;
-&lt;p&gt;End&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sat, 27 Jul 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-07-27:jquery-hover.html</guid><category>前端</category><category>JavaScript</category><category>jQuery</category></item><item><title>书签云项目</title><link>http://zoeyyoung.github.io/bookmarks-cloud-tornado-project.html</link><description>&lt;p&gt;基于Tornado的项目，使用MongoDB&lt;/p&gt;
+&lt;p&gt;还有这个博客托管在Github, 前面文章也写到了.&lt;/p&gt;
+&lt;p&gt;每次直接修改本地文件, 然后Git提交, 感觉非常好. 当然了...一般人还是用富文本比较直接...这种方式估计只有程序员会这么做, 或者一些对计算机, 编程感兴趣的人...&lt;/p&gt;
+&lt;p&gt;End&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sat, 27 Jul 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-07-27:jquery-hover.html</guid><category>前端</category><category>JavaScript</category><category>jQuery</category></item><item><title>[项目] 书签云项目</title><link>http://zoeyyoung.github.io/bookmarks-cloud-tornado-project.html</link><description>&lt;p&gt;基于Tornado的项目，使用MongoDB&lt;/p&gt;
 &lt;h3&gt;简介：&lt;/h3&gt;
 &lt;p&gt;类似美味书签，通过定制，更适合有效管理个人书签&lt;/p&gt;
 &lt;p&gt;保存平时浏览的链接，做简单的笔记或评论&lt;/p&gt;
@@ -3106,7 +3106,7 @@ Ah, and here&amp;#39;s some more text, by the way.
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;a href="http://www.crifan.com/python_try_lxml_parse_html/"&gt;【记录】Python中尝试用lxml去解析html&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sun, 14 Jul 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-07-14:python-lxml-html.html</guid><category>Windows</category><category>Python</category><category>lxml</category></item><item><title>MongoDB相关记录</title><link>http://zoeyyoung.github.io/mongodb.html</link><description>&lt;p&gt;&lt;a href="http://www.mongodb.org/downloads"&gt;下载地址&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.crifan.com/python_try_lxml_parse_html/"&gt;【记录】Python中尝试用lxml去解析html&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sun, 14 Jul 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-07-14:python-lxml-html.html</guid><category>Windows</category><category>Python</category><category>lxml</category></item><item><title>[安装配置] MongoDB相关记录</title><link>http://zoeyyoung.github.io/mongodb.html</link><description>&lt;p&gt;&lt;a href="http://www.mongodb.org/downloads"&gt;下载地址&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://docs.mongodb.org/manual/installation/"&gt;安装mongodb&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;Windows&lt;/h3&gt;
 &lt;p&gt;&lt;a href="http://docs.mongodb.org/manual/tutorial/install-mongodb-on-windows/"&gt;Windows下安装&lt;/a&gt;&lt;/p&gt;
@@ -3189,7 +3189,7 @@ master &lt;span class="o"&gt;=&lt;/span&gt; true
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;还有问题再补充...基本上我重装就按这个步骤了...&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sat, 06 Jul 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-07-06:mongodb.html</guid><category>Windows</category><category>Python</category><category>pip</category><category>virtualenv</category></item><item><title>[安装] Python相关</title><link>http://zoeyyoung.github.io/python-env-install.html</link><description>&lt;p&gt;重装系统后, 重新配置了下Python环境, 并不复杂, 但是得打开好几个网站, 我习惯先看下官网有啥更新说明, 因此记录下, 以免每次都要找&lt;/p&gt;
+&lt;p&gt;还有问题再补充...基本上我重装就按这个步骤了...&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sat, 06 Jul 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-07-06:mongodb.html</guid><category>Windows</category><category>Python</category><category>pip</category><category>virtualenv</category></item><item><title>[安装配置] Python相关</title><link>http://zoeyyoung.github.io/python-env-install.html</link><description>&lt;p&gt;重装系统后, 重新配置了下Python环境, 并不复杂, 但是得打开好几个网站, 我习惯先看下官网有啥更新说明, 因此记录下, 以免每次都要找&lt;/p&gt;
 &lt;p&gt;Ubuntu下用&lt;code&gt;apt-get&lt;/code&gt;安装时, 会提示需要的其它包, 因此有时按提示装就好了.&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://www.python.org/download/"&gt;安装Python&lt;/a&gt;, 下载安装Python 2.7.X, 安装目录C:\Python27&lt;/p&gt;
 &lt;h4&gt;&lt;a href="https://pypi.python.org/pypi/setuptools"&gt;安装setuptools&lt;/a&gt;&lt;/h4&gt;
@@ -3294,7 +3294,7 @@ error: command &lt;span class="s1"&gt;&amp;#39;gcc&amp;#39;&lt;/span&gt; failed 
 &lt;p&gt;囧&lt;/p&gt;
 &lt;h3&gt;所以, 真正的解决方法是...&lt;/h3&gt;
 &lt;p&gt;到&lt;a href="https://pypi.python.org/pypi/greenlet"&gt;pypi greenlet&lt;/a&gt;上去下载&lt;strong&gt;greenlet-0.4.1.win-amd64-py2.7.exe&lt;/strong&gt;直接安装&lt;/p&gt;
-&lt;p&gt;然后将&lt;strong&gt;C:\Python27\Lib\site-packages&lt;/strong&gt;目录下的&lt;strong&gt;greenlet.pyd&lt;/strong&gt;和&lt;strong&gt;greenlet-0.4.1-py2.7.egg-info&lt;/strong&gt;两个文件拷贝到我的virtualenv目录的&lt;strong&gt;X:\virtualenvDir\Lib\site-packages&lt;/strong&gt;下才解决了问题&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 02 Jul 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-07-02:unable-to-find-vcvarsall-bat.html</guid><category>Motor</category><category>MongoDB</category><category>Python</category><category>Windows</category><category>问题</category></item><item><title>我的 Sublime Text 2/3 配置</title><link>http://zoeyyoung.github.io/sublime-text-2.html</link><description>&lt;blockquote&gt;
+&lt;p&gt;然后将&lt;strong&gt;C:\Python27\Lib\site-packages&lt;/strong&gt;目录下的&lt;strong&gt;greenlet.pyd&lt;/strong&gt;和&lt;strong&gt;greenlet-0.4.1-py2.7.egg-info&lt;/strong&gt;两个文件拷贝到我的virtualenv目录的&lt;strong&gt;X:\virtualenvDir\Lib\site-packages&lt;/strong&gt;下才解决了问题&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 02 Jul 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-07-02:unable-to-find-vcvarsall-bat.html</guid><category>Motor</category><category>MongoDB</category><category>Python</category><category>Windows</category><category>问题</category></item><item><title>[安装配置] 我的 Sublime Text 2/3 配置</title><link>http://zoeyyoung.github.io/sublime-text-2.html</link><description>&lt;blockquote&gt;
 &lt;p&gt;Sublime Text is a sophisticated text editor for code, markup and prose.
 You'll love the slick user interface, extraordinary features and amazing performance.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -3424,7 +3424,7 @@ You'll love the slick user interface, extraordinary features and amazing perform
 &lt;p&gt;&lt;a href="https://github.com/joshnh/CSS-Snippets"&gt;Sublime Text 2 CSS Snippets&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://webtempest.com/sublime-text-2-how-to-create-snippets/"&gt;How to Create Snippets&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://www.qianduan.net/essential-to-sublime-the-text-2-plugins.html"&gt;一些必不可少的Sublime Text 2插件&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://dengo.org/archives/923"&gt;Sublime Text 3能用支持的插件推荐&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sun, 30 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-30:sublime-text-2.html</guid><category>Windows</category><category>Tips</category><category>Sublime Text 2</category><category>Sublime Text 3</category><category>配置</category></item><item><title>在 Windows 下 Git 的使用</title><link>http://zoeyyoung.github.io/windows-git-https.html</link><description>&lt;p&gt;这个问题很基础, 但是第一次使用时很困扰&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://dengo.org/archives/923"&gt;Sublime Text 3能用支持的插件推荐&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sun, 30 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-30:sublime-text-2.html</guid><category>Windows</category><category>Tips</category><category>Sublime Text 2</category><category>Sublime Text 3</category><category>配置</category></item><item><title>[安装配置] 在 Windows 下 Git 的使用</title><link>http://zoeyyoung.github.io/windows-git-https.html</link><description>&lt;p&gt;这个问题很基础, 但是第一次使用时很困扰&lt;/p&gt;
 &lt;p&gt;按照&lt;a href="https://gitcafe.com/GitCafe/Help/blob/master/Setup_Git.md"&gt;帮助&lt;/a&gt;安装了Windows下的Git客户端, 例如我下载安装了&lt;strong&gt;Git-1.8.3-preview20130601.exe&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;(还有其它软件, 比如&lt;a href="http://code.google.com/p/tortoisegit/"&gt;TortoiseGit&lt;/a&gt;)&lt;/p&gt;
 &lt;p&gt;在GitCafe上&lt;strong&gt;创建&lt;/strong&gt;仓库后, 会有提示怎么初始化仓库的说明&lt;/p&gt;
@@ -3572,7 +3572,7 @@ git push
 &lt;p&gt;&lt;a href="http://zoeyyoung.gitcafe.com/lib/brand.html"&gt;Demo&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;这样一个简单的LOGO就完成了, 而且放大网页并不影响显示效果.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Wed, 26 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-26:svg-logo.html</guid><category>前端</category><category>Logo</category><category>SVG</category></item><item><title>[实例] 自动动手制作Pelican主题</title><link>http://zoeyyoung.github.io/pelican-theme.html</link><description>&lt;h3&gt;我创建的主题&lt;/h3&gt;
 &lt;p&gt;&lt;a href="https://github.com/ZoeyYoung/my-pelican-theme"&gt;第1个主题&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="截图" src="/static/images/screenshot.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="第1个主题" src="/static/images/screenshot.jpg" /&gt;&lt;/p&gt;
 &lt;h3&gt;使用主题&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Specify name of a built-in theme&lt;/span&gt;
 &lt;span class="n"&gt;THEME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;notmyidea&amp;quot;&lt;/span&gt;
@@ -3652,7 +3652,7 @@ git push
 &lt;h3&gt;pelican-themes脚本的使用&lt;/h3&gt;
 &lt;p&gt;&lt;a href="http://docs.getpelican.com/en/latest/pelican-themes.html"&gt;pelican-themes&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;不是非要使用...&lt;/p&gt;
-&lt;p&gt;我是没用上 - -&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 25 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-25:pelican-theme.html</guid><category>Pelican</category><category>Theme</category></item><item><title>Web字体</title><link>http://zoeyyoung.github.io/web-font.html</link><description>&lt;p&gt;现代浏览器的优点就是当你觉得某个页面不错的时候, 可以很容易通过开发人员工具学习页面的相关设置(IE可忽略- -, 那个开发人员工具很难用...)&lt;/p&gt;
+&lt;p&gt;我是没用上 - -&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 25 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-25:pelican-theme.html</guid><category>Pelican</category><category>Theme</category></item><item><title>[CSS] Web字体</title><link>http://zoeyyoung.github.io/web-font.html</link><description>&lt;p&gt;现代浏览器的优点就是当你觉得某个页面不错的时候, 可以很容易通过开发人员工具学习页面的相关设置(IE可忽略- -, 那个开发人员工具很难用...)&lt;/p&gt;
 &lt;p&gt;看了几篇相关文章, 都写得比较早了, 有些观点有冲突, 关系到不同平台的问题个人总是比较难以测试&lt;/p&gt;
 &lt;p&gt;我主要在Win7下使用Chrome浏览器, 没怎么注意字体的问题&lt;/p&gt;
 &lt;p&gt;这次在各个浏览器下进行一下测试(Mac, WinXP, Linux因条件因素暂时就不测试)&lt;/p&gt;
@@ -3768,7 +3768,7 @@ git push
 &lt;li&gt;
 &lt;p&gt;&lt;a href="http://justjavac.com/web/2012/04/13/best-web-default-fonts"&gt;最佳 Web 中文默认字体&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 25 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-25:web-font.html</guid><category>CSS</category><category>字体</category><category>Web</category><category>微软雅黑</category><category>浏览器</category></item><item><title>创建打印样式表</title><link>http://zoeyyoung.github.io/print-style-sheet.html</link><description>&lt;p&gt;Chrome浏览器有一项非常好用的功能, 就是直接将网页保存为PDF(Ctrl+P), 虽然部分人觉得没有用, 但我经常使用这个功能&lt;/p&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 25 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-25:web-font.html</guid><category>CSS</category><category>字体</category><category>Web</category><category>微软雅黑</category><category>浏览器</category></item><item><title>[CSS] 创建打印样式表</title><link>http://zoeyyoung.github.io/print-style-sheet.html</link><description>&lt;p&gt;Chrome浏览器有一项非常好用的功能, 就是直接将网页保存为PDF(Ctrl+P), 虽然部分人觉得没有用, 但我经常使用这个功能&lt;/p&gt;
 &lt;p&gt;比如说, 有的博文写得不错, 想保存, 但是以什么样的方式保存是个问题&lt;/p&gt;
 &lt;p&gt;以前我会用为知, EverNote之类的笔记软件保存, 但是我又有格式强迫症, 总觉得保存下来的网页不够漂亮, 因为会保存一些不必要的格式&lt;/p&gt;
 &lt;p&gt;所以还是存为PDF对我来说可看性强一点&lt;/p&gt;
@@ -3870,7 +3870,7 @@ git push
 &lt;h3&gt;存在问题&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;在Chrome中经常会直接显示打印的效果...用Ctrl+F5刷新才显示正常, 为什么? 在IE下没发现这个问题..&lt;/li&gt;
-&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Mon, 24 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-24:print-style-sheet.html</guid><category>CSS</category><category>HTML</category></item><item><title>博客主题中通用的代码片段</title><link>http://zoeyyoung.github.io/theme-design.html</link><description>&lt;p&gt;目前博客主题使用的是Pelican主题中的built-texts, GitHub中提供了许多主题, 但试了几个都不怎么好看, 最后觉得这个还不错, 比较简洁&lt;/p&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Mon, 24 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-24:print-style-sheet.html</guid><category>CSS</category><category>HTML</category></item><item><title>[CSS] 博客主题中通用的代码片段</title><link>http://zoeyyoung.github.io/theme-design.html</link><description>&lt;p&gt;目前博客主题使用的是Pelican主题中的built-texts, GitHub中提供了许多主题, 但试了几个都不怎么好看, 最后觉得这个还不错, 比较简洁&lt;/p&gt;
 &lt;p&gt;当然和Wordpress中的那么多主题资源不能比了...&lt;/p&gt;
 &lt;p&gt;该主题基于Bootstrap, 很容易进行修改&lt;/p&gt;
 &lt;p&gt;我根据需要进行了一些修改, 先给个原始的截图&lt;/p&gt;
@@ -3976,8 +3976,8 @@ git push
 &lt;p&gt;参考文档:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://www.hongkiat.com/blog/css-snippets-for-designers/"&gt;50 Useful CSS Snippets Every Designer Should Have&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Fri, 21 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-21:theme-design.html</guid><category>CSS</category><category>HTML</category></item><item><title>使用GIST管理常用代码</title><link>http://zoeyyoung.github.io/gist.html</link><description>&lt;p&gt;&lt;a href="https://gist.github.com/ZoeyYoung"&gt;我的GIST&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Sublime Text 2 + GIST 插件, 用得很爽&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Thu, 20 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-20:gist.html</guid><category>GIST</category><category>GitHub</category></item><item><title>LinksBox项目的Chrome浏览器插件</title><link>http://zoeyyoung.github.io/chrome-ext-dev.html</link><description>&lt;p&gt;&lt;img alt="1" src="/static/images/ChromeExt/截图.jpg" /&gt;&lt;/p&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Fri, 21 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-21:theme-design.html</guid><category>CSS</category><category>HTML</category></item><item><title>[记录] 使用GIST管理常用代码</title><link>http://zoeyyoung.github.io/gist.html</link><description>&lt;p&gt;&lt;a href="https://gist.github.com/ZoeyYoung"&gt;我的GIST&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Sublime Text 2 + GIST 插件, 用得很爽&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Thu, 20 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-20:gist.html</guid><category>GIST</category><category>GitHub</category></item><item><title>[项目] 书签云项目的Chrome浏览器插件</title><link>http://zoeyyoung.github.io/chrome-ext-dev.html</link><description>&lt;p&gt;&lt;img alt="1" src="/static/images/ChromeExt/截图.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img alt="2" src="/static/images/ChromeExt/截图2.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;创建&lt;strong&gt;manifest.json&lt;/strong&gt;文件&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;{&lt;/span&gt;
@@ -4037,7 +4037,7 @@ git push
 &lt;p&gt;项目地址: https://github.com/ZoeyYoung/www-Links-Chrome-Extension&lt;/p&gt;
 &lt;p&gt;2013/07/24&lt;/p&gt;
 &lt;p&gt;更新可直接通过选中文本作为笔记&lt;/p&gt;
-&lt;p&gt;并直接获取网页的HTML字符串, 不在后台重新抓取&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Mon, 17 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-17:chrome-ext-dev.html</guid><category>Chrome</category><category>Chrome插件</category><category>开发</category></item><item><title>基于XMPP的Web IM</title><link>http://zoeyyoung.github.io/xmpp-im-project.html</link><description>&lt;p&gt;平台：Windows 7&lt;/p&gt;
+&lt;p&gt;并直接获取网页的HTML字符串, 不在后台重新抓取&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Mon, 17 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-17:chrome-ext-dev.html</guid><category>Chrome</category><category>Chrome插件</category><category>开发</category></item><item><title>[项目] 基于XMPP的Web IM</title><link>http://zoeyyoung.github.io/xmpp-im-project.html</link><description>&lt;p&gt;平台：Windows 7&lt;/p&gt;
 &lt;h3&gt;安装准备&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;下载&lt;a href="http://www.igniterealtime.org/downloads/index.jsp"&gt;Openfire&lt;/a&gt;&lt;/li&gt;
@@ -4124,7 +4124,7 @@ git push
 &lt;li&gt;&lt;a href="https://gist.github.com/makoto/272956"&gt;A short tutorial on Echobot by Alfred Westerveld&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://anders.conbere.org/blog/2011/05/03/get_xmpp_-_bosh_working_with_ejabberd_firefox_and_strophe/"&gt;Anders Conbere’s guide to BOSH, ejabberd, Firefox, and Strophe&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.cnblogs.com/hannover/archive/2010/11/14/1876819.html"&gt;WEBIM的简单实现&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sat, 15 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-15:xmpp-im-project.html</guid><category>XMPP</category><category>Openfire</category><category>jQuery</category><category>jQuery UI</category><category>strophejs</category><category>Web</category><category>Nginx</category></item><item><title>在 Windows 下使用 Pelican + GitCafe Page 创建 Blog</title><link>http://zoeyyoung.github.io/getting-start-with-pelican.html</link><description>&lt;p&gt;参考该&lt;a href="http://riku.gitcafe.com/category/post.html"&gt;博客&lt;/a&gt;的两篇文章&lt;/p&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sat, 15 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-15:xmpp-im-project.html</guid><category>XMPP</category><category>Openfire</category><category>jQuery</category><category>jQuery UI</category><category>strophejs</category><category>Web</category><category>Nginx</category></item><item><title>[记录] 在 Windows 下使用 Pelican + GitCafe Page 创建 Blog</title><link>http://zoeyyoung.github.io/getting-start-with-pelican.html</link><description>&lt;p&gt;参考该&lt;a href="http://riku.gitcafe.com/category/post.html"&gt;博客&lt;/a&gt;的两篇文章&lt;/p&gt;
 &lt;h3&gt;安装&lt;/h3&gt;
 &lt;p&gt;&lt;a href="http://docs.getpelican.com/en/latest/getting_started.html"&gt;官方文档&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;我使用virtualenv安装(需要先安装virtualenv):&lt;/p&gt;
@@ -4154,13 +4154,13 @@ git push
 &lt;p&gt;在命令行提示符下运行, 输入用户名, 密码, 则发布成功&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;Permission denied (publickey).&lt;/code&gt;的问题, 改成以&lt;code&gt;https&lt;/code&gt;形式提交就解决了&lt;/p&gt;
 &lt;p&gt;比如我的: https://gitcafe.com/ZoeyYoung/ZoeyYoung.git&lt;/p&gt;
-&lt;p&gt;Ubuntu下应该没这个问题吧...&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Thu, 13 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-13:getting-start-with-pelican.html</guid><category>pelican</category></item><item><title>LinksBox</title><link>http://zoeyyoung.github.io/linksbox-flask-project.html</link><description>&lt;p&gt;基于Flask, 数据库使用sqlite&lt;/p&gt;
+&lt;p&gt;Ubuntu下应该没这个问题吧...&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Thu, 13 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-13:getting-start-with-pelican.html</guid><category>pelican</category></item><item><title>[项目] LinksBox</title><link>http://zoeyyoung.github.io/linksbox-flask-project.html</link><description>&lt;p&gt;基于Flask, 数据库使用sqlite&lt;/p&gt;
 &lt;p&gt;多用户, 类似微博, 可关注(取消关注)别人的收藏夹&lt;/p&gt;
 &lt;p&gt;首页，显示所有链接&lt;/p&gt;
 &lt;p&gt;&lt;img alt="1" src="/static/images/Flask.png" /&gt;&lt;/p&gt;
 &lt;p&gt;添加链接&lt;/p&gt;
 &lt;p&gt;&lt;img alt="2" src="/static/images/Flask2.png" /&gt;&lt;/p&gt;
-&lt;p&gt;注: 一开始想实现的功能比较复杂, 后面想保持简单, 因此用Tornado实现了另一个个人使用的版本, 个人使用中...&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Thu, 13 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-13:linksbox-flask-project.html</guid><category>Flask</category><category>Python</category><category>Web</category></item><item><title>Web IM</title><link>http://zoeyyoung.github.io/web-im-project.html</link><description>&lt;p&gt;在永中实习期间的项目, 独立维护, 对公司原有的代码进行了大量的修改, 解决了大量Bug, 并对原有代码进行了重构、优化&lt;/p&gt;
+&lt;p&gt;注: 一开始想实现的功能比较复杂, 后面想保持简单, 因此用Tornado实现了另一个个人使用的版本, 个人使用中...&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Thu, 13 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-13:linksbox-flask-project.html</guid><category>Flask</category><category>Python</category><category>Web</category></item><item><title>[项目] Web IM</title><link>http://zoeyyoung.github.io/web-im-project.html</link><description>&lt;p&gt;在永中实习期间的项目, 独立维护, 对公司原有的代码进行了大量的修改, 解决了大量Bug, 并对原有代码进行了重构、优化&lt;/p&gt;
 &lt;p&gt;项目主要使用到了ExtJS, jQuery, 使用DWR进行数据推送与Ajax数据获取&lt;/p&gt;
 &lt;p&gt;在这里只给出截图&lt;/p&gt;
 &lt;p&gt;联系人界面, 可收进, 展开, 模仿新浪微博&lt;/p&gt;
@@ -4465,7 +4465,7 @@ git push
 
 &lt;p&gt;扩展问题:&lt;/p&gt;
 &lt;p&gt;1、如果数组是二维数组, 同样要你求最大子数组的和列?&lt;/p&gt;
-&lt;p&gt;2、如果是要你求子数组的最大乘积列?&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Fri, 31 May 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-05-31:find-maximum-subarray.html</guid><category>Python</category><category>算法</category><category>面试</category><category>笔试</category></item><item><title>表情文字转表情图片URL</title><link>http://zoeyyoung.github.io/emotions-mobile-exchange.html</link><description>&lt;p&gt;即时通讯中，移动端和网页端发送信息，移动端使用表情文字(后面怎么换成图片的不大清楚)，而网页端直接插入表情图片，因此相互发送信息时要先对表情信息进行处理。&lt;/p&gt;
+&lt;p&gt;2、如果是要你求子数组的最大乘积列?&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Fri, 31 May 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-05-31:find-maximum-subarray.html</guid><category>Python</category><category>算法</category><category>面试</category><category>笔试</category></item><item><title>[记录] 表情文字转表情图片URL</title><link>http://zoeyyoung.github.io/emotions-mobile-exchange.html</link><description>&lt;p&gt;即时通讯中，移动端和网页端发送信息，移动端使用表情文字(后面怎么换成图片的不大清楚)，而网页端直接插入表情图片，因此相互发送信息时要先对表情信息进行处理。&lt;/p&gt;
 &lt;p&gt;感觉代码写得不大漂亮，但又不知道怎么改，先暂存。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;java.util.HashMap&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;java.util.Map&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
@@ -4635,7 +4635,7 @@ git push
 &lt;span class="o"&gt;}&lt;/span&gt; &lt;span class="cm"&gt;/* Output:&lt;/span&gt;
 &lt;span class="cm"&gt;&amp;lt;img src=&amp;#39;/pathToEmoticons/0.gif&amp;#39;&amp;gt;Hello&amp;lt;img src=&amp;#39;/pathToEmoticons/28.gif&amp;#39;&amp;gt;&lt;/span&gt;
 &lt;span class="cm"&gt; */&lt;/span&gt;&lt;span class="c1"&gt;// :~&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sun, 17 Mar 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-03-17:emotions-mobile-exchange.html</guid><category>Java</category><category>Enum</category></item><item><title>JavaMail邮箱验证用户注册</title><link>http://zoeyyoung.github.io/javamail-verify-user.html</link><description>&lt;p&gt;&lt;a href="http://yimengzhu.iteye.com/blog/1454887"&gt;JavaMail——邮箱验证用户注册&lt;/a&gt; : 有些代码没给，还好自己Servlet基础还是有的，所以还是整出来了&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sun, 17 Mar 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-03-17:emotions-mobile-exchange.html</guid><category>Java</category><category>Enum</category></item><item><title>[记录] JavaMail邮箱验证用户注册</title><link>http://zoeyyoung.github.io/javamail-verify-user.html</link><description>&lt;p&gt;&lt;a href="http://yimengzhu.iteye.com/blog/1454887"&gt;JavaMail——邮箱验证用户注册&lt;/a&gt; : 有些代码没给，还好自己Servlet基础还是有的，所以还是整出来了&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://www.blogjava.net/wangfun/archive/2009/04/15/265748.html"&gt;javamail发送邮件的简单实例&lt;/a&gt; : 对邮件内容的组装和发送做了点封装，稍微做了点修改&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://blog.sina.com.cn/s/blog_6e295d0001011uzg.html"&gt;JSP + Servlet 中文乱码问题解决&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;参考整合上面两篇，做了个Demo，中文乱码问题用第三篇解决&lt;/p&gt;
@@ -4958,7 +4958,7 @@ ${userName}您的邮箱&lt;span class="nt"&gt;&amp;lt;a&lt;/span&gt; &lt;span cl
 &lt;li&gt;通过session来判断不合理，得在同一个浏览器中才能显示注册成功(session作用域和生命周期内)，这里只是作为演示用&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;可以在数据库中设置一个是否激活字段，注册时为未激活，然后在验证后设置为激活&lt;/p&gt;
-&lt;p&gt;还是比较容易集成到系统中的&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Wed, 21 Nov 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-11-21:javamail-verify-user.html</guid><category>Java</category><category>JavaMail</category><category>Mail</category></item><item><title>Ext.QuickTips.init()</title><link>http://zoeyyoung.github.io/ext-quicktips-init.html</link><description>&lt;p&gt;先说我测试的Ext版本: ext-4.1.1a-gpl（感觉独立于版本存在的教程都有点...）&lt;/p&gt;
+&lt;p&gt;还是比较容易集成到系统中的&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Wed, 21 Nov 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-11-21:javamail-verify-user.html</guid><category>Java</category><category>JavaMail</category><category>Mail</category></item><item><title>[备忘] Ext.QuickTips.init()</title><link>http://zoeyyoung.github.io/ext-quicktips-init.html</link><description>&lt;p&gt;先说我测试的Ext版本: ext-4.1.1a-gpl（感觉独立于版本存在的教程都有点...）&lt;/p&gt;
 &lt;p&gt;虽然API里面有例子, 写这个有点多余, 但是网上搜索到的文章存在误导, 例如:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;a&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;ext:qtip=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;my tooltip&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;Link&lt;span class="nt"&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -5069,7 +5069,7 @@ sudo apt-get install oracle-java7-installer
 
 &lt;p&gt;具体版本查看: &lt;a href="https://launchpad.net/~webupd8team/+archive/java"&gt;https://launchpad.net/~webupd8team/+archive/java&lt;/a&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;sudo apt-get install eclipse
-&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 06 Nov 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-11-06:ubuntu-jdk-install.html</guid><category>Java</category><category>Ubuntu</category><category>JDK</category><category>安装</category><category>Oracle</category></item><item><title>修改Windows中默认用户文件夹的存放位置</title><link>http://zoeyyoung.github.io/change-default-folder.html</link><description>&lt;p&gt;优化类软件都有这功能，不过还是给自己定制一下，直接导入比较方便。&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 06 Nov 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-11-06:ubuntu-jdk-install.html</guid><category>Java</category><category>Ubuntu</category><category>JDK</category><category>安装</category><category>Oracle</category></item><item><title>[安装配置] 修改Windows中默认用户文件夹的存放位置</title><link>http://zoeyyoung.github.io/change-default-folder.html</link><description>&lt;p&gt;优化类软件都有这功能，不过还是给自己定制一下，直接导入比较方便。&lt;/p&gt;
 &lt;h3&gt;一般步骤&lt;/h3&gt;
 &lt;p&gt;打开注册表编辑器(Win+R regedit)，进入分支：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;HKEY_CURRENT_USER&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;Software&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;Microsoft&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;Windows&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;CurrentVersion&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;Explorer&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;User&lt;/span&gt; &lt;span class="n"&gt;Shell&lt;/span&gt; &lt;span class="n"&gt;Folders&lt;/span&gt;
@@ -5094,7 +5094,7 @@ sudo apt-get install oracle-java7-installer
 
 
 &lt;p&gt;注：上面文件夹路径中要使用双斜杠(\)，使用单斜杠无效。&lt;/p&gt;
-&lt;p&gt;设置后要重新启动&lt;strong&gt;explorer&lt;/strong&gt;才能生效&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Thu, 01 Nov 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-11-01:change-default-folder.html</guid><category>Windows</category><category>Tips</category><category>文件夹</category></item><item><title>Openfire集成现有系统数据库用户</title><link>http://zoeyyoung.github.io/openfire-xmpp-database.html</link><description>&lt;p&gt;基于Openfire 3.7.1&lt;/p&gt;
+&lt;p&gt;设置后要重新启动&lt;strong&gt;explorer&lt;/strong&gt;才能生效&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Thu, 01 Nov 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-11-01:change-default-folder.html</guid><category>Windows</category><category>Tips</category><category>文件夹</category></item><item><title>[记录] Openfire集成现有系统数据库用户</title><link>http://zoeyyoung.github.io/openfire-xmpp-database.html</link><description>&lt;p&gt;基于Openfire 3.7.1&lt;/p&gt;
 &lt;h3&gt;参考文档：&lt;/h3&gt;
 &lt;p&gt;官方文档&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://www.igniterealtime.org/builds/openfire/docs/latest/documentation/db-integration-guide.html"&gt;Custom Database Integration Guide&lt;/a&gt;&lt;/p&gt;
@@ -5499,7 +5499,7 @@ sudo apt-get install oracle-java7-installer
  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;jdbcGroupProvider.loadMembersSQL&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;SELECT uid FROM groupusers WHERE groupName=? AND admin=0&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;jdbcGroupProvider.userGroupsSQL&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;SELECT groupName from groupusers WHERE uid=?&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="c1"&gt;-----------------------------------------------------------------------------------------------------------&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Wed, 31 Oct 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-10-31:openfire-xmpp-database.html</guid><category>Openfire</category><category>数据库</category><category>XMPP</category><category>MySQL</category></item><item><title>[已解决] GitHub图标变方块</title><link>http://zoeyyoung.github.io/github-webfont.html</link><description>&lt;p&gt;&lt;img alt="图标变方块" src="/static/images/方块.png" /&gt;&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Wed, 31 Oct 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-10-31:openfire-xmpp-database.html</guid><category>Openfire</category><category>数据库</category><category>XMPP</category><category>MySQL</category></item><item><title>[解决] GitHub图标变方块</title><link>http://zoeyyoung.github.io/github-webfont.html</link><description>&lt;p&gt;&lt;img alt="图标变方块" src="/static/images/方块.png" /&gt;&lt;/p&gt;
 &lt;p&gt;之前在Chrome中使用GitHub的时候看着图标一直是方块的, 以为原来就是那样设计的- -&lt;/p&gt;
 &lt;p&gt;后来感觉不应该, 在IE中打开才发现原来是有图标的, 然后才发现原来是使用如下插件设置了字体的关系, 只能删除了...&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://chrome.google.com/webstore/detail/force-microsoft-yahei-fon/ojlocjfaheiilmgjdgnoehhdigfedhjl"&gt;Force Microsoft Yahei Font&lt;/a&gt;&lt;/p&gt;
@@ -5508,7 +5508,7 @@ sudo apt-get install oracle-java7-installer
 安装即用, 不像 Stylish 之类全能样式扩展那样需要额外费心设置, 由于是指定 CSS, 而非 JavaScript 遍历 DOM 修改样式, 所以不占扩展进程, 无须等待页面载入并修改重绘, 不增加额外开销.
 缺点和其他浏览器强制字体一样, web font 和定义了衬线体的网页会失效.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;没认真看说明...&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Mon, 01 Oct 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-10-01:github-webfont.html</guid><category>GitHub</category><category>Tips</category><category>Chrome</category></item><item><title>Terminator</title><link>http://zoeyyoung.github.io/terminator-software.html</link><description>&lt;p&gt;&lt;img alt="terminator" src="/static/images/terminator.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;没认真看说明...&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Mon, 01 Oct 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-10-01:github-webfont.html</guid><category>GitHub</category><category>Tips</category><category>Chrome</category></item><item><title>[软件] Terminator</title><link>http://zoeyyoung.github.io/terminator-software.html</link><description>&lt;p&gt;&lt;img alt="terminator" src="/static/images/terminator.jpg" /&gt;&lt;/p&gt;
 &lt;h2&gt;安装Terminator&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;aptitude&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;terminator&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -5523,7 +5523,7 @@ sudo apt-get install oracle-java7-installer
 &lt;span class="n"&gt;Ctrl&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;Shift&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;N&lt;/span&gt; &lt;span class="err"&gt;或者&lt;/span&gt; &lt;span class="n"&gt;Ctrl&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;Tab&lt;/span&gt; &lt;span class="err"&gt;在分割的各窗口之间切换&lt;/span&gt;
 &lt;span class="n"&gt;Ctrl&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;Shift&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;X&lt;/span&gt; &lt;span class="err"&gt;将分割的某一个窗口放大至全屏使用&lt;/span&gt;
 &lt;span class="n"&gt;Ctrl&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;Shift&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;Z&lt;/span&gt; &lt;span class="err"&gt;从放大至全屏的某一窗口回到多窗格界面&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sun, 08 Jul 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-07-08:terminator-software.html</guid><category>Ubuntu</category><category>Linux</category></item><item><title>Ubuntu 下 Address already in use 解决方法</title><link>http://zoeyyoung.github.io/ubuntu-address-already-in-use.html</link><description>&lt;p&gt;&lt;strong&gt;横线下是正文，上面是背景废话&lt;/strong&gt;&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sun, 08 Jul 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-07-08:terminator-software.html</guid><category>Ubuntu</category><category>Linux</category></item><item><title>[备忘] Ubuntu 下 Address already in use 解决方法</title><link>http://zoeyyoung.github.io/ubuntu-address-already-in-use.html</link><description>&lt;p&gt;&lt;strong&gt;横线下是正文，上面是背景废话&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;刚刚要在机子上测试ruhoh博客时，因为之前注销系统的时候直接把终端关掉了，而没有先停止服务&lt;/p&gt;
 &lt;p&gt;所以执行&lt;strong&gt;rackup -p9292&lt;/strong&gt;时，就出现了之个错误，本来想就直接用之前的吧，但是更新的博客内容没有出现，所以还是得重启服务，但是肯定不想重启机子的&lt;/p&gt;
 &lt;p&gt;知道肯定可以用命令解决，但是对Linux下进程管理的命令不熟，所以上网搜索之，没有搜到具体解决方法，可能是关键词不对，最后自己解决了&lt;/p&gt;
@@ -5540,7 +5540,7 @@ sudo apt-get install oracle-java7-installer
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;注意到最后一列是PID/Program name，所以使用&lt;strong&gt;kill 19863&lt;/strong&gt;，杀掉进程即可&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Fri, 06 Jul 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-07-06:ubuntu-address-already-in-use.html</guid><category>Ubuntu</category><category>Linux</category><category>进程</category><category>local</category><category>终端</category></item><item><title>将“清空回车站”添加到桌面右键菜单</title><link>http://zoeyyoung.github.io/recyle-reg.html</link><description>&lt;blockquote&gt;
+&lt;p&gt;注意到最后一列是PID/Program name，所以使用&lt;strong&gt;kill 19863&lt;/strong&gt;，杀掉进程即可&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Fri, 06 Jul 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-07-06:ubuntu-address-already-in-use.html</guid><category>Ubuntu</category><category>Linux</category><category>进程</category><category>local</category><category>终端</category></item><item><title>[技巧] 将"清空回车站"添加到桌面右键菜单</title><link>http://zoeyyoung.github.io/recyle-reg.html</link><description>&lt;blockquote&gt;
 &lt;p&gt;我不要谋生, 我要生活。 —— 王尔德&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3&gt;题外话&lt;/h3&gt;
@@ -5562,7 +5562,7 @@ sudo apt-get install oracle-java7-installer
 &lt;p&gt;运行后，会写注册表，结果如下图：&lt;/p&gt;
 &lt;p&gt;&lt;img alt="recyle" src="/static/images/recyle.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;还有一种方法就是&lt;a href="http://jingyan.baidu.com/article/8275fc86dcd94946a03cf6ae.html"&gt;在任务栏添加回车站&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;尝试了下可行，但是占用任务栏位置，因此，还是决定放在桌面右键里面&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sat, 30 Jun 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-06-30:recyle-reg.html</guid><category>Windows</category><category>注册表</category><category>右键</category><category>桌面</category><category>菜单</category></item><item><title>RVM</title><link>http://zoeyyoung.github.io/ruby-rvm.html</link><description>&lt;p&gt;rvm是一个命令行工具，可以提供一个便捷的多版本ruby环境的管理和切换。&lt;/p&gt;
+&lt;p&gt;尝试了下可行，但是占用任务栏位置，因此，还是决定放在桌面右键里面&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sat, 30 Jun 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-06-30:recyle-reg.html</guid><category>Windows</category><category>注册表</category><category>右键</category><category>桌面</category><category>菜单</category></item><item><title>[安装配置] RVM</title><link>http://zoeyyoung.github.io/ruby-rvm.html</link><description>&lt;p&gt;rvm是一个命令行工具，可以提供一个便捷的多版本ruby环境的管理和切换。&lt;/p&gt;
 &lt;p&gt;https://rvm.io/&lt;/p&gt;
 &lt;p&gt;如果你打算学习ruby/rails, rvm是必不可少的工具之一。&lt;/p&gt;
 &lt;p&gt;这里所有的命令都是在用户权限下操作的，任何命令最好都不要用sudo.&lt;/p&gt;
@@ -5684,7 +5684,7 @@ sudo apt-get install oracle-java7-installer
 &lt;p&gt;当我第一次安装完成了，就惊呼，这也太爽了吧。&lt;/p&gt;
 &lt;p&gt;ps:rvm是个好东西，做的很智能，（大部分）操作失败后会告诉你原因，然后告诉你需要安装哪些Lib等等，非常适合新手老手使用,简直是居家旅行必备良药。&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://rvm.io/rubies/upgrading/"&gt;升级Ruby Upgrading Rubies&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://reyesyang.info/articles/27-install-rvm-step-by-step-and-why-rvm-is-not-a-function"&gt;手把手安装RVM以及为什么RVM is not a function&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sun, 24 Jun 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-06-24:ruby-rvm.html</guid><category>Ruby</category></item><item><title>《简约至上——交互式设计四策略》</title><link>http://zoeyyoung.github.io/simple-and-usable.html</link><description>&lt;p&gt;书的主题是提出&lt;strong&gt;四&lt;/strong&gt;个令交互式设计成果最大程序简单易用的策略:&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://reyesyang.info/articles/27-install-rvm-step-by-step-and-why-rvm-is-not-a-function"&gt;手把手安装RVM以及为什么RVM is not a function&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sun, 24 Jun 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-06-24:ruby-rvm.html</guid><category>Ruby</category></item><item><title>[笔记]《简约至上——交互式设计四策略》</title><link>http://zoeyyoung.github.io/simple-and-usable.html</link><description>&lt;p&gt;书的主题是提出&lt;strong&gt;四&lt;/strong&gt;个令交互式设计成果最大程序简单易用的策略:&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;合理删除、分层组织、适时隐藏、巧妙转移&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;全书都是一页文字一页配图，挺多不错的想法&lt;/p&gt;
 &lt;p&gt;================&lt;/p&gt;
@@ -5902,7 +5902,7 @@ sudo apt-get install oracle-java7-installer
 
 &lt;p&gt;顽固的复杂性　　180&lt;/p&gt;
 &lt;p&gt;细节　　182&lt;/p&gt;
-&lt;p&gt;简单发生在用户的头脑中　　184&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sun, 24 Jun 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-06-24:simple-and-usable.html</guid><category>读书</category><category>Book</category></item><item><title>DeskPins 窗口置顶</title><link>http://zoeyyoung.github.io/software-deskpins.html</link><description>&lt;p&gt;工欲善其事,必先利其器！&lt;/p&gt;
+&lt;p&gt;简单发生在用户的头脑中　　184&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sun, 24 Jun 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-06-24:simple-and-usable.html</guid><category>读书</category><category>Book</category></item><item><title>[软件] DeskPins 窗口置顶</title><link>http://zoeyyoung.github.io/software-deskpins.html</link><description>&lt;p&gt;工欲善其事,必先利其器！&lt;/p&gt;
 &lt;p&gt;介绍一款窗口置顶软件&lt;strong&gt;DeskPins&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;DeskPins可一键将Windows桌面常用窗口钉在最前端，类似于视频软件的&lt;strong&gt;“始终保持在最前”&lt;/strong&gt;的功能&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Deskpins" src="/static/images/deskpins.jpg" /&gt;&lt;/p&gt;
@@ -5915,7 +5915,7 @@ sudo apt-get install oracle-java7-installer
 &lt;p&gt;想边看视频边浏览其他文件，但有时弹出视频窗口并不能置前（比如土豆有默认的弹出小窗口播放，但没有置前的功能），这时该软件就派上用场了（如图右下角）&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;相同功能的软件我也有用过（忘记叫什么了，是需要安装的），没有DeskPins这么绿色小巧（单文件软件，&lt;strong&gt;无需安装&lt;/strong&gt;），使用也方便，绝对是利器！&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Fri, 22 Jun 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-06-22:software-deskpins.html</guid><category>Software</category><category>软件</category></item><item><title>《Rework》</title><link>http://zoeyyoung.github.io/rework.html</link><description>&lt;p&gt;2012-06-20 很不错的书，看完了&lt;strong&gt;中文版&lt;/strong&gt;，有点想读英文原版，不过暂时先搁浅一下，会回来的&lt;/p&gt;
+&lt;p&gt;相同功能的软件我也有用过（忘记叫什么了，是需要安装的），没有DeskPins这么绿色小巧（单文件软件，&lt;strong&gt;无需安装&lt;/strong&gt;），使用也方便，绝对是利器！&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Fri, 22 Jun 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-06-22:software-deskpins.html</guid><category>Software</category><category>软件</category></item><item><title>[笔记]《Rework》</title><link>http://zoeyyoung.github.io/rework.html</link><description>&lt;p&gt;2012-06-20 很不错的书，看完了&lt;strong&gt;中文版&lt;/strong&gt;，有点想读英文原版，不过暂时先搁浅一下，会回来的&lt;/p&gt;
 &lt;h3&gt;轻装上阵&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;不要被教条所束缚&lt;/li&gt;
@@ -6026,7 +6026,7 @@ sudo apt-get install oracle-java7-installer
 &lt;ul&gt;
 &lt;li&gt;当灵感出现时，立即抓住它，不要拖延。你可以有很多idea，但如果不实践，他们都等于零&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;a href="http://www.cnblogs.com/meng-meng/archive/2011/11/15/2249852.html"&gt;每一个有理想的程序员都应该读的一本书-《rework》&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Thu, 21 Jun 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-06-21:rework.html</guid><category>读书</category><category>Book</category></item><item><title>《黑客与画家》</title><link>http://zoeyyoung.github.io/hakers-and-painters.html</link><description>&lt;p&gt;最近在看的书, 摘录一些有趣的言论&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.cnblogs.com/meng-meng/archive/2011/11/15/2249852.html"&gt;每一个有理想的程序员都应该读的一本书-《rework》&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Thu, 21 Jun 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-06-21:rework.html</guid><category>读书</category><category>Book</category></item><item><title>[笔记]《黑客与画家》</title><link>http://zoeyyoung.github.io/hakers-and-painters.html</link><description>&lt;p&gt;最近在看的书, 摘录一些有趣的言论&lt;/p&gt;
 &lt;p&gt;文章似乎写得比较早了, 有些人似乎拿现在的观念去批驳书中的某些观点&lt;/p&gt;
 &lt;p&gt;但是正如书中经常提到的, 随大流的问题～～所以有自己的观点应该没有错&lt;/p&gt;
 &lt;p&gt;不过我比较不喜欢在不是很了解一个东西的时候就发表评论&lt;/p&gt;
@@ -6102,7 +6102,7 @@ sudo apt-get install oracle-java7-installer
 &lt;p&gt;P210 为了写出优秀软件, 你必须同时具备两种互相冲突的信念.
 一方面, 你要像初生牛犊一样, 对自己的能力信心万丈；另一方面, 你又要像历经沧桑的老人一样, 对自己的能力抱着怀疑态度.&lt;/p&gt;
 &lt;p&gt;这里的难点在于你要意识到, 实际上之两种信念并不矛盾. 你的乐观主义和怀疑倾向分别针对两个不同的对象.
-你必须对解决难题的可能性保持乐观, 同时对当前解法的合理性保持怀疑.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Wed, 13 Jun 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-06-13:hakers-and-painters.html</guid><category>读书</category><category>Book</category></item><item><title>Ubuntu 下安装 fcitx 以及五笔拼音输入法</title><link>http://zoeyyoung.github.io/ubuntu-install-fcitx.html</link><description>&lt;p&gt;用Ubuntu时最不舒服的就是打字, 输入法没Windows中好用, 或许还是习惯的问题&lt;/p&gt;
+你必须对解决难题的可能性保持乐观, 同时对当前解法的合理性保持怀疑.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Wed, 13 Jun 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-06-13:hakers-and-painters.html</guid><category>读书</category><category>Book</category></item><item><title>[安装配置] Ubuntu 下安装 fcitx 以及五笔拼音输入法</title><link>http://zoeyyoung.github.io/ubuntu-install-fcitx.html</link><description>&lt;p&gt;用Ubuntu时最不舒服的就是打字, 输入法没Windows中好用, 或许还是习惯的问题&lt;/p&gt;
 &lt;p&gt;还好, 还是能找到五笔输入法. 但是五笔拼音现在用的感觉还是不怎么好用&lt;/p&gt;
 &lt;p&gt;目前是使用fcitx, 整理一下教程及安装方法, 以节省每次都得查阅的麻烦&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://fcitx-im.org/wiki/Fcitx"&gt;官网&lt;/a&gt;&lt;/p&gt;
@@ -6120,12 +6120,12 @@ sudo apt-get install fcitx-table-
 
 
 &lt;p&gt;2、 在系统设置(System Settings)-&amp;gt;语言支持(Language Support)菜单中，将输入法设置"fcitx"&lt;/p&gt;
-&lt;p&gt;3、 使用fcitx-config设置输入法(有图形界面)，按喜好设置了&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Thu, 07 Jun 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-06-07:ubuntu-install-fcitx.html</guid><category>Ubuntu</category><category>Linux</category><category>fcitx</category><category>输入法</category><category>五笔</category><category>安装</category></item><item><title>不小心把窗口拉到桌面外</title><link>http://zoeyyoung.github.io/move-window-back.html</link><description>&lt;p&gt;不知为啥我经常遇到这个问题...&lt;/p&gt;
+&lt;p&gt;3、 使用fcitx-config设置输入法(有图形界面)，按喜好设置了&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Thu, 07 Jun 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-06-07:ubuntu-install-fcitx.html</guid><category>Ubuntu</category><category>Linux</category><category>fcitx</category><category>输入法</category><category>五笔</category><category>安装</category></item><item><title>[解决] 不小心把窗口拉到桌面外</title><link>http://zoeyyoung.github.io/move-window-back.html</link><description>&lt;p&gt;不知为啥我经常遇到这个问题...&lt;/p&gt;
 &lt;p&gt;有种情况是使用两个屏幕时, 移除一个屏幕时没把窗口拉回来, 它就呆那了...&lt;/p&gt;
 &lt;h3&gt;解法方案&lt;/h3&gt;
 &lt;p&gt;因为鼠标点不到屏幕外, 只能用键盘了..这时快捷键就派上用场了..&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;alt+空格&lt;/code&gt;，然后点&lt;code&gt;M&lt;/code&gt;键，然后用方向键或鼠标把窗口拖回来(方向键要多按一会..)&lt;/p&gt;
-&lt;p&gt;&lt;img alt="将窗口移回" src="/static/images/move-back.jpg" /&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 20 Dec 2011 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2011-12-20:move-window-back.html</guid><category>Windows</category><category>Tips</category><category>窗口</category><category>桌面</category></item><item><title>数据挖掘——Wine Data Set</title><link>http://zoeyyoung.github.io/data-mining-wine-data-set-project.html</link><description>&lt;h1&gt;数据源&lt;/h1&gt;
+&lt;p&gt;&lt;img alt="将窗口移回" src="/static/images/move-back.jpg" /&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 20 Dec 2011 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2011-12-20:move-window-back.html</guid><category>Windows</category><category>Tips</category><category>窗口</category><category>桌面</category></item><item><title>[项目] 数据挖掘——Wine Data Set</title><link>http://zoeyyoung.github.io/data-mining-wine-data-set-project.html</link><description>&lt;h1&gt;数据源&lt;/h1&gt;
 &lt;p&gt;&lt;a href="http://archive.ics.uci.edu/ml/datasets/Wine"&gt;来源&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;数据源的完整名称是&lt;strong&gt;Wine Data Set&lt;/strong&gt;，是对3种不同的酒进行分类。这三种酒包括13种不同的属性，分别为：Alcohol, Malic acid, Ash, Alcalinity of ash, Magnesium, Total phenols, Flavanoids, Nonflavanoid phenols, Proanthocyanins, Color intensity, Hue, OD280/OD315 of diluted wines, Proline. 在“wine.data”文件中, 每行代表一种酒的样本, 共有178个样本; 一共有14列, 其中, 第一列为类标志属性, 共有三类, 分别记为“1”, “2”, “3”; 后面的13列为每个样本的对应属性的样本值. 其中第1类有59个样本，第2类有71个样本，第3类有48个样本。&lt;/p&gt;
 &lt;h1&gt;算法介绍&lt;/h1&gt;
@@ -6213,7 +6213,7 @@ sudo apt-get install fcitx-table-
 &lt;p&gt;算法的实现在KNN.java与NaiveBayes.java中。&lt;/p&gt;
 &lt;p&gt;Data.java用来获取数据并含有对数据进行预处理的算法。&lt;/p&gt;
 &lt;p&gt;ModelAssessment用来保存模型评估相关数据，暂时只保存正确率、错误率与算法执行时间。其它包中文件为数据库与Servlet相关。&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://github.com/ZoeyYoung/wine-data-set"&gt;源代码&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Fri, 18 Nov 2011 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2011-11-18:data-mining-wine-data-set-project.html</guid><category>Servlet</category><category>数据挖掘</category></item><item><title>中外合作办学管理平台的设计和实现</title><link>http://zoeyyoung.github.io/cfce-project.html</link><description>&lt;h2&gt;研究背景&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://github.com/ZoeyYoung/wine-data-set"&gt;源代码&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Fri, 18 Nov 2011 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2011-11-18:data-mining-wine-data-set-project.html</guid><category>Servlet</category><category>数据挖掘</category></item><item><title>[项目] 中外合作办学管理平台的设计和实现</title><link>http://zoeyyoung.github.io/cfce-project.html</link><description>&lt;h2&gt;研究背景&lt;/h2&gt;
 &lt;p&gt;中外合作办学是指中国教育机构与外国教育机构依法在中国境内合作举办以中国公民为主要招生对象的教育教学活动。&lt;/p&gt;
 &lt;p&gt;本系统以我校卡耐基梅隆合作办学为背景，采用Java EE进行开发，设计B/S结构的信息管理系统，能够做到统一的项目宣传和信息服务功能。&lt;/p&gt;
 &lt;p&gt;&lt;img alt="1" src="/static/images/CFCE/网站设计1.png" /&gt;&lt;/p&gt;
@@ -6233,7 +6233,7 @@ sudo apt-get install fcitx-table-
 &lt;h2&gt;页面展示&lt;/h2&gt;
 &lt;p&gt;&lt;img alt="10" src="/static/images/CFCE/后台管理.gif" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img alt="11" src="/static/images/CFCE/主页中文.gif" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="12" src="/static/images/CFCE/主页英文.gif" /&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Wed, 01 Jun 2011 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2011-06-01:cfce-project.html</guid><category>Java EE</category><category>Hibernate</category><category>Struts2</category></item><item><title>8080端口被占用</title><link>http://zoeyyoung.github.io/tomcat-cant-start.html</link><description>&lt;p&gt;用tomcat的时候出现tomcat启动不起来多数情况是由于8080端口被占用&lt;/p&gt;
+&lt;p&gt;&lt;img alt="12" src="/static/images/CFCE/主页英文.gif" /&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Wed, 01 Jun 2011 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2011-06-01:cfce-project.html</guid><category>Java EE</category><category>Hibernate</category><category>Struts2</category></item><item><title>[备忘] 8080端口被占用</title><link>http://zoeyyoung.github.io/tomcat-cant-start.html</link><description>&lt;p&gt;用tomcat的时候出现tomcat启动不起来多数情况是由于8080端口被占用&lt;/p&gt;
 &lt;p&gt;那如何结束占用8080端口的进程呢?&lt;/p&gt;
 &lt;p&gt;1、&lt;code&gt;Win+R&lt;/code&gt; cmd 打开运行窗口&lt;/p&gt;
 &lt;p&gt;输入&lt;code&gt;netstat -ano&lt;/code&gt;会出现类似下图的数据窗口&lt;/p&gt;
@@ -6241,7 +6241,7 @@ sudo apt-get install fcitx-table-
 &lt;p&gt;2、比如我们要结束tomcat的8080端口&lt;/p&gt;
 &lt;p&gt;由图8080的端口PID是2272, 调出windows资源管理器可以看到PID 2272被&lt;strong&gt;reportingservicesservice.exe&lt;/strong&gt;进程占用, 结束该进程, 然后重启Tomcat.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="任务管理器" src="/static/images/pip2272.png" /&gt;&lt;/p&gt;
-&lt;p&gt;3、还有一种情况, 直接结束进程中的&lt;strong&gt;javaw.exe&lt;/strong&gt;即可&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 03 May 2011 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2011-05-03:tomcat-cant-start.html</guid><category>端口</category><category>Tomcat</category><category>进程</category><category>Windows</category></item><item><title>Tomcat配置</title><link>http://zoeyyoung.github.io/tomcat-config.html</link><description>&lt;p&gt;&lt;a href="http://tomcat.apache.org/index.html"&gt;Tomcat主页&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;3、还有一种情况, 直接结束进程中的&lt;strong&gt;javaw.exe&lt;/strong&gt;即可&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 03 May 2011 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2011-05-03:tomcat-cant-start.html</guid><category>端口</category><category>Tomcat</category><category>进程</category><category>Windows</category></item><item><title>[安装配置] Tomcat配置</title><link>http://zoeyyoung.github.io/tomcat-config.html</link><description>&lt;p&gt;&lt;a href="http://tomcat.apache.org/index.html"&gt;Tomcat主页&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;一、安装JDK 1.7&lt;/p&gt;
 &lt;p&gt;1、添加环境变量: 在 &lt;strong&gt;我的电脑-&amp;gt;属性-&amp;gt;高级-&amp;gt;环境变量&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;2、新建系统变量, 变量名: &lt;code&gt;JAVA_HOME&lt;/code&gt;  变量值: &lt;code&gt;C:\Program Files\Java\jdk1.7.0&lt;/code&gt; (JDK的安装目录)&lt;/p&gt;

@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
-  <title>[算法] 找兄弟单词 - OK Computer</title>
+  <title>[灵机一动] 猴子分桃 - OK Computer</title>
   <meta name="description" content="杨丁苗的个人博客">
   <meta name="author" content="ZoeyYoung">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -57,7 +57,7 @@
                     <li >
             <a href="http://zoeyyoung.github.io/category/qian-duan.html ">前端</a>
           </li>
-                    <li >
+                    <li  class="active" >
             <a href="http://zoeyyoung.github.io/category/dong-nao.html ">动脑</a>
           </li>
                     <li >
@@ -69,7 +69,7 @@
                     <li >
             <a href="http://zoeyyoung.github.io/category/wo-de-xiang-mu.html ">我的项目</a>
           </li>
-                    <li  class="active" >
+                    <li >
             <a href="http://zoeyyoung.github.io/category/suan-fa-shu-ju-jie-gou.html ">算法&数据结构</a>
           </li>
                     <li >
@@ -103,13 +103,13 @@
       </div>
       <div class="main-content col-md-8">
           <article>
-  <h1>[算法] 找兄弟单词</h1>
+  <h1>[灵机一动] 猴子分桃</h1>
   <div class="article-metadata">
 <time class="published" datetime="2013 九月 06 周五">2013 九月 06 周五 </time>
 <a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
 <span>
     <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/suan-fa-shu-ju-jie-gou.html">算法&数据结构</a>
+    <a href="http://zoeyyoung.github.io/category/dong-nao.html">动脑</a>
 </span>
 <span>
     <i class="icon-tags"></i>
@@ -117,49 +117,14 @@
         <a href="http://zoeyyoung.github.io/tag/mian-shi.html">面试</a>
     </span>
 <!-- <p></p> -->
-</div>  <p>题目：一个单词单词字母交换，可得另一个单词，如army-&gt;mary，成为兄弟单词。提供一个单词，在字典中找到它的兄弟。描述数据结构和查询过程。</p>
-<p>使用hash_map和链表</p>
-<p>定义key, 使得兄弟单词有相同的key, 不是兄弟的单词有不同的key</p>
-<p>两种方式:</p>
-<ol>
-<li>将单词按字母从小到大重新排序后作为其key, 比如bad的key为abd，good的key为dgoo</li>
-<li>将每一个字母对应一个质数, 然后让对应的质数相乘, 将得到的值进行hash, 这样兄弟单词的值就是一样的了, 并且不同单词的质数相乘积肯定不同</li>
-</ol>
-<p>创建hash_map的时间复杂度为O(n), 查找兄弟单词的时间复杂度是O(1).</p>
-<p>如果是海量词典的话, 可以用B+树.</p>
-<p>下面是简单用于测试两个单词是否是兄弟的代码.</p>
-<div class="highlight"><pre><span class="n">prime_l</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span>
-    <span class="mi">43</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">53</span><span class="p">,</span> <span class="mi">59</span><span class="p">,</span> <span class="mi">61</span><span class="p">,</span> <span class="mi">67</span><span class="p">,</span> <span class="mi">71</span><span class="p">,</span> <span class="mi">73</span><span class="p">,</span> <span class="mi">79</span><span class="p">,</span> <span class="mi">83</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">97</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span>
-    <span class="mi">103</span><span class="p">,</span> <span class="mi">107</span><span class="p">,</span> <span class="mi">109</span><span class="p">,</span> <span class="mi">113</span><span class="p">,</span> <span class="mi">127</span><span class="p">,</span> <span class="mi">131</span><span class="p">,</span> <span class="mi">137</span><span class="p">,</span> <span class="mi">139</span><span class="p">,</span> <span class="mi">149</span><span class="p">,</span> <span class="mi">151</span><span class="p">,</span> <span class="mi">157</span><span class="p">,</span> <span class="mi">163</span><span class="p">,</span> <span class="mi">167</span><span class="p">,</span>
-    <span class="mi">173</span><span class="p">,</span> <span class="mi">179</span><span class="p">,</span> <span class="mi">181</span><span class="p">,</span> <span class="mi">191</span><span class="p">,</span> <span class="mi">193</span><span class="p">,</span> <span class="mi">197</span><span class="p">,</span> <span class="mi">199</span><span class="p">,</span> <span class="mi">211</span><span class="p">,</span> <span class="mi">223</span><span class="p">,</span> <span class="mi">227</span><span class="p">,</span> <span class="mi">229</span><span class="p">,</span> <span class="mi">233</span><span class="p">,</span> <span class="mi">239</span>
-<span class="p">]</span>
-
-<span class="k">def</span> <span class="nf">prime_match</span><span class="p">(</span><span class="n">str1</span><span class="p">,</span> <span class="n">str2</span><span class="p">):</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">str1</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">str2</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">False</span>
-    <span class="n">p1</span> <span class="o">=</span> <span class="n">p2</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">str1</span><span class="p">:</span>
-        <span class="n">index</span> <span class="o">=</span> <span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">-</span> <span class="nb">ord</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">26</span><span class="p">)</span> <span class="k">if</span> <span class="n">s</span> <span class="o">&gt;</span> <span class="s">&#39;Z&#39;</span> <span class="k">else</span> <span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">-</span> <span class="nb">ord</span><span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">))</span>
-        <span class="n">p1</span> <span class="o">*=</span> <span class="n">prime_l</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
-    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">str2</span><span class="p">:</span>
-        <span class="n">index</span> <span class="o">=</span> <span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">-</span> <span class="nb">ord</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">26</span><span class="p">)</span> <span class="k">if</span> <span class="n">s</span> <span class="o">&gt;</span> <span class="s">&#39;Z&#39;</span> <span class="k">else</span> <span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">-</span> <span class="nb">ord</span><span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">))</span>
-        <span class="n">p2</span> <span class="o">*=</span> <span class="n">prime_l</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">p1</span> <span class="o">==</span> <span class="n">p2</span>
-
-<span class="k">def</span> <span class="nf">sorted_match</span><span class="p">(</span><span class="n">str1</span><span class="p">,</span> <span class="n">str2</span><span class="p">):</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">str1</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">str2</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">False</span>
-    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">str1</span><span class="p">)</span> <span class="o">==</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">str2</span><span class="p">)</span>
-
-<span class="k">print</span><span class="p">(</span><span class="n">prime_match</span><span class="p">(</span><span class="s">&#39;bad&#39;</span><span class="p">,</span> <span class="s">&#39;abD&#39;</span><span class="p">),</span> <span class="n">sorted_match</span><span class="p">(</span><span class="s">&#39;bad&#39;</span><span class="p">,</span> <span class="s">&#39;abD&#39;</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">prime_match</span><span class="p">(</span><span class="s">&#39;army&#39;</span><span class="p">,</span> <span class="s">&#39;mary&#39;</span><span class="p">),</span> <span class="n">sorted_match</span><span class="p">(</span><span class="s">&#39;army&#39;</span><span class="p">,</span> <span class="s">&#39;mary&#39;</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">prime_match</span><span class="p">(</span><span class="s">&#39;army&#39;</span><span class="p">,</span> <span class="s">&#39;maryb&#39;</span><span class="p">),</span> <span class="n">sorted_match</span><span class="p">(</span><span class="s">&#39;army&#39;</span><span class="p">,</span> <span class="s">&#39;maryb&#39;</span><span class="p">))</span>
-</pre></div>
-
-
-<p>相关文章:</p>
-<p><a href="http://www.ahathinking.com/archives/182.html">兄弟单词 — 两种算法实现</a> 用C++语言实现的. 利用了Trie数来节省空间. 数据少的情况下没啥用.</p>
+</div>  <p>五只猴子分桃. 半夜, 第一只猴子先起来, 它把桃分成了相等的五堆, 多出一只. 于是, 它吃掉了一个, 拿走了一堆; 第二只猴子起来一看, 只有四堆桃。于是把四堆合在一起, 分成相等的五堆, 又多出一个。于是, 它也吃掉了一个, 拿走了一堆；.....其他几只猴子也都是这样分的. 问: 这堆桃至少有多少个?</p>
+<p>思路:</p>
+<p>假设每次剩下X个桃子, 每次取走的桃子数为: <code>(X-1)/5+1 = (X+4)/5</code></p>
+<p>给这堆桃加上4个, 则每次都可以平均分成5份.</p>
+<p>(每次都正好多出一个, 每只猴子拿走一堆加多出的1个, 正好是加上4个后再平均分成5份后的一堆. 因此加上的这4个每次都适用.)</p>
+<p>假设最后一只猴子拿走5个(包括吃掉的1个).</p>
+<p>则总桃子数应该为: <code>5*5*5*5*5 = 5^5 = 3125</code></p>
+<p>减去开始加上的4个: <code>3125 - 4 = 3121 个</code></p>
 </article>
 <div class="comment">
     <!-- JiaThis Button BEGIN -->

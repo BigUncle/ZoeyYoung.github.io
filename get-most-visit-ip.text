@@ -1,4 +1,4 @@
-Title: 海量日志数据, 提取出某日访问百度次数最多的那个IP
+Title: [算法] 海量日志数据, 提取出某日访问百度次数最多的那个IP
 Date: 2013-08-27
 Tags: Python,pip,算法,海量数据
 Slug: get-most-visit-ip

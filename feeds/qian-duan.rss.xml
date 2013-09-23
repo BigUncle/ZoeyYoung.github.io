@@ -37,8 +37,8 @@ As of jQuery 1.7, the &lt;code&gt;.live()&lt;/code&gt; method is deprecated. Use
 &lt;p&gt;代码也是的, 之前总直接保存在笔记本里, 结果原来写的代码压根不记得了, 也不想去看不想去改. 这回应用中好好利用了Git, 修改了一定代码后就及时提交, 并写提交的内容, 相当于跟着代码的生命周期在走. 感觉很爽. 以后即使电脑上文件丢失也不怕了.&lt;/p&gt;
 &lt;p&gt;想到这点是因为之前移动硬盘坏过, 我把文件都恢复出来了, 结果一堆图片还有文件都是损坏掉的, 只能看到文件名了...又没备份, 只能直接删掉了...共删了几个G的东西...还好没啥重要的, 其实好多文件我都忘了它的存在了..但万一是重要文件就该心疼了...&lt;/p&gt;
 &lt;p&gt;所以这回我也意识到要经常备份我的数据库了...上次修改了一个配置, 结果打开应用数据是空的. 我以为完蛋了..数据难道被我误删了...还好不是...是安装时配置参数的问题.万一呢...吓了我一跳...所有书签都保存在里面呢...要是丢了就呵呵了...&lt;/p&gt;
-&lt;p&gt;还有这个博客托管在GitCafe, 前面文章也写到了.&lt;/p&gt;
-&lt;p&gt;每次直接修改本地文件, 然后Git提交, 感觉非常好. 当然了...一般人还是用富文本比较直接...这种方式估计只有程序员会这么做, 或者一些对计算机, 编程感兴趣的人&lt;/p&gt;
+&lt;p&gt;还有这个博客托管在Github, 前面文章也写到了.&lt;/p&gt;
+&lt;p&gt;每次直接修改本地文件, 然后Git提交, 感觉非常好. 当然了...一般人还是用富文本比较直接...这种方式估计只有程序员会这么做, 或者一些对计算机, 编程感兴趣的人...&lt;/p&gt;
 &lt;p&gt;End&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sat, 27 Jul 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-07-27:jquery-hover.html</guid><category>前端</category><category>JavaScript</category><category>jQuery</category></item><item><title>[实例] 使用SVG制作简单LOGO</title><link>http://zoeyyoung.github.io/svg-logo.html</link><description>&lt;h3&gt;什么是SVG?&lt;/h3&gt;
 &lt;p&gt;&lt;a href="http://zh.wikipedia.org/wiki/SVG"&gt;维基&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img alt="位图和矢量图" src="/static/images/Bitmap_VS_SVG.svg.png" /&gt;&lt;/p&gt;
@@ -101,7 +101,7 @@ As of jQuery 1.7, the &lt;code&gt;.live()&lt;/code&gt; method is deprecated. Use
 &lt;p&gt;&lt;a href="http://zoeyyoung.gitcafe.com/lib/brand.html"&gt;Demo&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;这样一个简单的LOGO就完成了, 而且放大网页并不影响显示效果.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Wed, 26 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-26:svg-logo.html</guid><category>前端</category><category>Logo</category><category>SVG</category></item><item><title>[实例] 自动动手制作Pelican主题</title><link>http://zoeyyoung.github.io/pelican-theme.html</link><description>&lt;h3&gt;我创建的主题&lt;/h3&gt;
 &lt;p&gt;&lt;a href="https://github.com/ZoeyYoung/my-pelican-theme"&gt;第1个主题&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="截图" src="/static/images/screenshot.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="第1个主题" src="/static/images/screenshot.jpg" /&gt;&lt;/p&gt;
 &lt;h3&gt;使用主题&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Specify name of a built-in theme&lt;/span&gt;
 &lt;span class="n"&gt;THEME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;notmyidea&amp;quot;&lt;/span&gt;
@@ -181,7 +181,7 @@ As of jQuery 1.7, the &lt;code&gt;.live()&lt;/code&gt; method is deprecated. Use
 &lt;h3&gt;pelican-themes脚本的使用&lt;/h3&gt;
 &lt;p&gt;&lt;a href="http://docs.getpelican.com/en/latest/pelican-themes.html"&gt;pelican-themes&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;不是非要使用...&lt;/p&gt;
-&lt;p&gt;我是没用上 - -&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 25 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-25:pelican-theme.html</guid><category>Pelican</category><category>Theme</category></item><item><title>Web字体</title><link>http://zoeyyoung.github.io/web-font.html</link><description>&lt;p&gt;现代浏览器的优点就是当你觉得某个页面不错的时候, 可以很容易通过开发人员工具学习页面的相关设置(IE可忽略- -, 那个开发人员工具很难用...)&lt;/p&gt;
+&lt;p&gt;我是没用上 - -&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 25 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-25:pelican-theme.html</guid><category>Pelican</category><category>Theme</category></item><item><title>[CSS] Web字体</title><link>http://zoeyyoung.github.io/web-font.html</link><description>&lt;p&gt;现代浏览器的优点就是当你觉得某个页面不错的时候, 可以很容易通过开发人员工具学习页面的相关设置(IE可忽略- -, 那个开发人员工具很难用...)&lt;/p&gt;
 &lt;p&gt;看了几篇相关文章, 都写得比较早了, 有些观点有冲突, 关系到不同平台的问题个人总是比较难以测试&lt;/p&gt;
 &lt;p&gt;我主要在Win7下使用Chrome浏览器, 没怎么注意字体的问题&lt;/p&gt;
 &lt;p&gt;这次在各个浏览器下进行一下测试(Mac, WinXP, Linux因条件因素暂时就不测试)&lt;/p&gt;
@@ -297,7 +297,7 @@ As of jQuery 1.7, the &lt;code&gt;.live()&lt;/code&gt; method is deprecated. Use
 &lt;li&gt;
 &lt;p&gt;&lt;a href="http://justjavac.com/web/2012/04/13/best-web-default-fonts"&gt;最佳 Web 中文默认字体&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 25 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-25:web-font.html</guid><category>CSS</category><category>字体</category><category>Web</category><category>微软雅黑</category><category>浏览器</category></item><item><title>创建打印样式表</title><link>http://zoeyyoung.github.io/print-style-sheet.html</link><description>&lt;p&gt;Chrome浏览器有一项非常好用的功能, 就是直接将网页保存为PDF(Ctrl+P), 虽然部分人觉得没有用, 但我经常使用这个功能&lt;/p&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 25 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-25:web-font.html</guid><category>CSS</category><category>字体</category><category>Web</category><category>微软雅黑</category><category>浏览器</category></item><item><title>[CSS] 创建打印样式表</title><link>http://zoeyyoung.github.io/print-style-sheet.html</link><description>&lt;p&gt;Chrome浏览器有一项非常好用的功能, 就是直接将网页保存为PDF(Ctrl+P), 虽然部分人觉得没有用, 但我经常使用这个功能&lt;/p&gt;
 &lt;p&gt;比如说, 有的博文写得不错, 想保存, 但是以什么样的方式保存是个问题&lt;/p&gt;
 &lt;p&gt;以前我会用为知, EverNote之类的笔记软件保存, 但是我又有格式强迫症, 总觉得保存下来的网页不够漂亮, 因为会保存一些不必要的格式&lt;/p&gt;
 &lt;p&gt;所以还是存为PDF对我来说可看性强一点&lt;/p&gt;
@@ -399,7 +399,7 @@ As of jQuery 1.7, the &lt;code&gt;.live()&lt;/code&gt; method is deprecated. Use
 &lt;h3&gt;存在问题&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;在Chrome中经常会直接显示打印的效果...用Ctrl+F5刷新才显示正常, 为什么? 在IE下没发现这个问题..&lt;/li&gt;
-&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Mon, 24 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-24:print-style-sheet.html</guid><category>CSS</category><category>HTML</category></item><item><title>博客主题中通用的代码片段</title><link>http://zoeyyoung.github.io/theme-design.html</link><description>&lt;p&gt;目前博客主题使用的是Pelican主题中的built-texts, GitHub中提供了许多主题, 但试了几个都不怎么好看, 最后觉得这个还不错, 比较简洁&lt;/p&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Mon, 24 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-24:print-style-sheet.html</guid><category>CSS</category><category>HTML</category></item><item><title>[CSS] 博客主题中通用的代码片段</title><link>http://zoeyyoung.github.io/theme-design.html</link><description>&lt;p&gt;目前博客主题使用的是Pelican主题中的built-texts, GitHub中提供了许多主题, 但试了几个都不怎么好看, 最后觉得这个还不错, 比较简洁&lt;/p&gt;
 &lt;p&gt;当然和Wordpress中的那么多主题资源不能比了...&lt;/p&gt;
 &lt;p&gt;该主题基于Bootstrap, 很容易进行修改&lt;/p&gt;
 &lt;p&gt;我根据需要进行了一些修改, 先给个原始的截图&lt;/p&gt;
@@ -505,7 +505,7 @@ As of jQuery 1.7, the &lt;code&gt;.live()&lt;/code&gt; method is deprecated. Use
 &lt;p&gt;参考文档:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://www.hongkiat.com/blog/css-snippets-for-designers/"&gt;50 Useful CSS Snippets Every Designer Should Have&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Fri, 21 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-21:theme-design.html</guid><category>CSS</category><category>HTML</category></item><item><title>Ext.QuickTips.init()</title><link>http://zoeyyoung.github.io/ext-quicktips-init.html</link><description>&lt;p&gt;先说我测试的Ext版本: ext-4.1.1a-gpl（感觉独立于版本存在的教程都有点...）&lt;/p&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Fri, 21 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-21:theme-design.html</guid><category>CSS</category><category>HTML</category></item><item><title>[备忘] Ext.QuickTips.init()</title><link>http://zoeyyoung.github.io/ext-quicktips-init.html</link><description>&lt;p&gt;先说我测试的Ext版本: ext-4.1.1a-gpl（感觉独立于版本存在的教程都有点...）&lt;/p&gt;
 &lt;p&gt;虽然API里面有例子, 写这个有点多余, 但是网上搜索到的文章存在误导, 例如:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;a&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;ext:qtip=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;my tooltip&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;Link&lt;span class="nt"&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
