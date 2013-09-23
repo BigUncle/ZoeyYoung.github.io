@@ -57,9 +57,6 @@ Summary: 动态规划算法解最长公共子序列LCS问题
     print('\n'.join([str(row) for row in c]))
     print_LCS(c, X, len(X), len(Y))
 
-
-《编程之美》3.3 计算字符串的相似度
-
 ### 应用场景
 
 [字符串相似度计算](http://www.jmatrix.org/algorithm/166.html)

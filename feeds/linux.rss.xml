@@ -39,7 +39,9 @@ sudo apt-get install oracle-java7-installer
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;具体版本查看: &lt;a href="https://launchpad.net/~webupd8team/+archive/java"&gt;https://launchpad.net/~webupd8team/+archive/java&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 06 Nov 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-11-06:ubuntu-jdk-install.html</guid><category>Java</category><category>Ubuntu</category><category>JDK</category><category>安装</category><category>Oracle</category></item><item><title>Ubuntu 下 Address already in use 解决方法</title><link>http://zoeyyoung.github.io/ubuntu-address-already-in-use.html</link><description>&lt;p&gt;&lt;strong&gt;横线下是正文，上面是背景废话&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;具体版本查看: &lt;a href="https://launchpad.net/~webupd8team/+archive/java"&gt;https://launchpad.net/~webupd8team/+archive/java&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo apt-get install eclipse
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 06 Nov 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-11-06:ubuntu-jdk-install.html</guid><category>Java</category><category>Ubuntu</category><category>JDK</category><category>安装</category><category>Oracle</category></item><item><title>Ubuntu 下 Address already in use 解决方法</title><link>http://zoeyyoung.github.io/ubuntu-address-already-in-use.html</link><description>&lt;p&gt;&lt;strong&gt;横线下是正文，上面是背景废话&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;刚刚要在机子上测试ruhoh博客时，因为之前注销系统的时候直接把终端关掉了，而没有先停止服务&lt;/p&gt;
 &lt;p&gt;所以执行&lt;strong&gt;rackup -p9292&lt;/strong&gt;时，就出现了之个错误，本来想就直接用之前的吧，但是更新的博客内容没有出现，所以还是得重启服务，但是肯定不想重启机子的&lt;/p&gt;
 &lt;p&gt;知道肯定可以用命令解决，但是对Linux下进程管理的命令不熟，所以上网搜索之，没有搜到具体解决方法，可能是关键词不对，最后自己解决了&lt;/p&gt;

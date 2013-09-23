@@ -16,4 +16,5 @@ Summary: Ubuntu下使用PPA安装JDK
 
 具体版本查看: [https://launchpad.net/~webupd8team/+archive/java](https://launchpad.net/~webupd8team/+archive/java)
 
-
+    :::bash
+    sudo apt-get install eclipse
