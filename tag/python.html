@@ -37,6 +37,9 @@
           <li><hr/></li>
           <li>CATEGORIES</li>
                     <li >
+            <a href="http://zoeyyoung.github.io/category/cc.html ">C&C++</a>
+          </li>
+                    <li >
             <a href="http://zoeyyoung.github.io/category/linux.html ">Linux</a>
           </li>
                     <li >
@@ -104,6 +107,92 @@
       <div class="main-content col-md-8">
           
     <div>
+        <a href="http://zoeyyoung.github.io/KMP.html"><h1>[算法] KMP</h1></a>
+        <div class="article-metadata">
+<time class="published" datetime="2013 九月 24 周二">2013 九月 24 周二 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/suan-fa-shu-ju-jie-gou.html">算法&数据结构</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/bi-shi.html">笔试</a>
+        <a href="http://zoeyyoung.github.io/tag/mian-shi.html">面试</a>
+        <a href="http://zoeyyoung.github.io/tag/python.html">Python</a>
+        <a href="http://zoeyyoung.github.io/tag/suan-fa.html">算法</a>
+    </span>
+<!-- <p></p> -->
+</div>        <p>之前写的, 又忘了...只剩大概印象了...算法还是常看常新啊...先存着再说...</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">getNext</span><span class="p">(</span><span class="n">pattern</span><span class="p">):</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">p_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+    <span class="nb">next</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">p_len</span><span class="p">):</span>
+        <span class="k">while</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">pattern</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">pattern</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="nb">next</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">pattern</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">pattern</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="nb">next</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">next</span>
+
+<span class="k">def</span> <span class="nf">kmp_search</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">pattern</span><span class="p">,</span> <span class="nb">next</span><span class="p">):</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">plen</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+    <span class="n">tlen</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">tlen</span><span class="p">):</span>
+        <span class="k">while</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">text</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">pattern</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="nb">next</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">text</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">pattern</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="p">:</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span>
+
+        <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="n">plen</span> <span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot;from &quot;</span><span class="p">,</span> <span class="n">i</span><span class="o">-</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="s">&quot;to &quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="nb">next</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">text</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;aaaaaaaaaaaaaaaaaaaab&quot;</span><span class="p">)</span>
+<span class="n">pattern</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;aaab&quot;</span><span class="p">)</span>
+
+<span class="n">text1</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;abababababababababa&quot;</span><span class="p">)</span>
+<span class="n">pattern1</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;ababab&quot;</span><span class="p">)</span>
+
+<span class="nb">next</span> <span class="o">=</span> <span class="n">getNext</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">next</span><span class="p">)</span>
+<span class="n">kmp_search</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">pattern</span><span class="p">,</span> <span class="nb">next</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+
+<span class="n">next1</span> <span class="o">=</span> <span class="n">getNext</span><span class="p">(</span><span class="n">pattern1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">next1</span><span class="p">)</span>
+<span class="n">kmp_search</span><span class="p">(</span><span class="n">text1</span><span class="p">,</span> <span class="n">pattern1</span><span class="p">,</span> <span class="n">next1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">text1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">pattern1</span><span class="p">)</span>
+</pre></div>
+        <hr />
+    </div>
+         <div>
+        <a href="http://zoeyyoung.github.io/setup-c-env.html"><h1>[安装配置] C/C++环境</h1></a>
+        <div class="article-metadata">
+<time class="published" datetime="2013 九月 24 周二">2013 九月 24 周二 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/cc.html">C&C++</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/bi-shi.html">笔试</a>
+        <a href="http://zoeyyoung.github.io/tag/mian-shi.html">面试</a>
+        <a href="http://zoeyyoung.github.io/tag/python.html">Python</a>
+        <a href="http://zoeyyoung.github.io/tag/suan-fa.html">算法</a>
+    </span>
+<!-- <p></p> -->
+</div>        <p>C/C++环境</p>
+        <hr />
+    </div>
+         <div>
         <a href="http://zoeyyoung.github.io/bitmap.html"><h1>[算法] 位图排序</h1></a>
         <div class="article-metadata">
 <time class="published" datetime="2013 九月 18 周三">2013 九月 18 周三 </time>
@@ -121,58 +210,7 @@
         <a href="http://zoeyyoung.github.io/tag/bian-cheng-zhu-ji.html">《编程珠玑》</a>
     </span>
 <!-- <p></p> -->
-</div>        <p>初始化于: 2013-09-10</p>
-<p>更新: 2013-09-18</p>
-<p>《编程珠玑(第2版)》第1章 开篇</p>
-<p>问题描述:</p>
-<p>输入: 一个最多包含n个正整数的文件, 每个数都小于n, 且n=10^7. 如果在输入文件中有任何整数重复出现就是致使错误. 没有其他数据与该整数相关联.</p>
-<p>输出: 按升序排列的输入整数的列表.</p>
-<p>约束: 最多有(大约)1MB的内存空间可用, 有充足的磁盘存储空间可用. 运行时间最多几分钟, 运行时间为10秒就不需要进一步优化了.</p>
-<p>位图数据结构: 该数据结构描述了一个<strong>有限定义域内</strong>(有范围)的稠密集合, 其中的<strong>每一个元素最多出现一次</strong>(不重复)并且没有其他任何数据与该元素相关联. 即使这些条件没有完全满足(例如, 存在重复元素或额外的数据), 也可以用有限定义域内的键作为一个表项更复杂的表格的索引.</p>
-<p>三个阶段:</p>
-<ol>
-<li>将所有的位都置为0, 从而将集合初始化为空.</li>
-<li>通过读入文件中的每个整数来建立集合, 将每个对应的位置都置为1.</li>
-<li>检验每一位, 如果该位为1, 就输出对应的整数, 由此产生有序的输出文件.</li>
-</ol>
-<p>问题: 找出1到10^7中没有出现的两个数字</p>
-<p>这个没啥好想的了...这里主要是了解<a href="https://github.com/ilanschnell/bitarray">bitarray模块</a>的使用, 顺便与bitstring模块进行比较. bitstring模块速度比bitarray模块慢很多, 内存占用也比较多.</p>
-<div class="highlight"><pre><span class="c">#--coding: utf8 --</span>
-<span class="kn">from</span> <span class="nn">bitarray</span> <span class="kn">import</span> <span class="n">bitarray</span>
-<span class="k">def</span> <span class="nf">use_bitarray</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
-    <span class="n">ba</span> <span class="o">=</span> <span class="n">bitarray</span><span class="p">(</span><span class="mi">10000000</span><span class="p">)</span>
-    <span class="n">ba</span><span class="o">.</span><span class="n">setall</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">seq</span><span class="p">:</span>
-        <span class="n">ba</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ba</span><span class="o">.</span><span class="n">to01</span><span class="p">())):</span>
-        <span class="k">if</span> <span class="n">ba</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-
-<span class="kn">from</span> <span class="nn">bitstring</span> <span class="kn">import</span> <span class="n">BitArray</span>
-<span class="k">def</span> <span class="nf">use_bitstring</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
-    <span class="n">BA</span> <span class="o">=</span> <span class="n">BitArray</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="mi">10000000</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">seq</span><span class="p">:</span>
-        <span class="n">BA</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">BA</span><span class="p">)):</span>
-        <span class="k">if</span> <span class="n">BA</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-
-<span class="c"># 初始化10w个数, 打乱, 移除两个数</span>
-<span class="kn">import</span> <span class="nn">random</span>
-<span class="n">seq</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000000</span><span class="p">)]</span>
-<span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
-<span class="n">seq</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
-<span class="n">seq</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
-
-<span class="kn">import</span> <span class="nn">cProfile</span>
-<span class="n">cProfile</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s">&#39;use_bitarray(seq)&#39;</span><span class="p">)</span> <span class="c"># 8.063 seconds</span>
-<span class="n">cProfile</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s">&#39;use_bitstring(seq)&#39;</span><span class="p">)</span> <span class="c"># 169.849 seconds</span>
-</pre></div>
-
-
-<p>相关文章:</p>
-<p><a href="http://blog.csdn.net/v_JULY_v/article/details/6451990">程序员编程艺术：第十章、如何给10^7个数据量的磁盘文件排序</a></p>
-<p><a href="http://blog.csdn.net/songzitea/article/details/8759635">【编程珠玑】位图排序</a></p>
+</div>        <p>位图排序</p>
         <hr />
     </div>
          <div>
@@ -307,46 +345,6 @@
     </span>
 <!-- <p></p> -->
 </div>        <p>Python 计算单词数</p>
-        <hr />
-    </div>
-         <div>
-        <a href="http://zoeyyoung.github.io/get-most-visit-ip.html"><h1>[算法] 海量日志数据, 提取出某日访问百度次数最多的那个IP</h1></a>
-        <div class="article-metadata">
-<time class="published" datetime="2013 八月 27 周二">2013 八月 27 周二 </time>
-<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
-<span>
-    <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/suan-fa-shu-ju-jie-gou.html">算法&数据结构</a>
-</span>
-<span>
-    <i class="icon-tags"></i>
-        <a href="http://zoeyyoung.github.io/tag/python.html">Python</a>
-        <a href="http://zoeyyoung.github.io/tag/pip.html">pip</a>
-        <a href="http://zoeyyoung.github.io/tag/suan-fa.html">算法</a>
-        <a href="http://zoeyyoung.github.io/tag/hai-liang-shu-ju.html">海量数据</a>
-    </span>
-<!-- <p></p> -->
-</div>        <p>海量日志数据, 提取出某日访问百度次数最多的那个IP</p>
-        <hr />
-    </div>
-         <div>
-        <a href="http://zoeyyoung.github.io/natural-language-processing-with-python-ch2.html"><h1>[学习] NLTK Python自然语言处理</h1></a>
-        <div class="article-metadata">
-<time class="published" datetime="2013 八月 23 周五">2013 八月 23 周五 </time>
-<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
-<span>
-    <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/nlp.html">NLP</a>
-</span>
-<span>
-    <i class="icon-tags"></i>
-        <a href="http://zoeyyoung.github.io/tag/windows.html">Windows</a>
-        <a href="http://zoeyyoung.github.io/tag/python.html">Python</a>
-        <a href="http://zoeyyoung.github.io/tag/nltk.html">NLTK</a>
-        <a href="http://zoeyyoung.github.io/tag/nlp.html">NLP</a>
-    </span>
-<!-- <p></p> -->
-</div>        <p>第2章 获得文本语料和词汇资源</p>
         <hr />
     </div>
             <ul class="pagination pagination-sm no-print">

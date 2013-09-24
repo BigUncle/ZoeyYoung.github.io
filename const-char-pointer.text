@@ -1,0 +1,31 @@
+Title: [C++基础] 字符指针
+Date: 2013-09-24
+Tags: 笔试,面试,C++,基础,编程
+Slug: const-char-pointer
+Author: Zoey Young
+Summary: char*
+
+    :::c++
+    #include <iostream>
+    using namespace std;
+
+    int main() {
+        char str1[] = "test";
+        char str2[] = "test";
+        const char str3[] = "test";
+        const char str4[] = "test";
+        const char* str5 = "test"; // 这对有没有const结果一样
+        const char* str6 = "test";
+        cout << boolalpha << (str1 == str2) << " " << (str3 == str4) << " "
+                << (str5 == str6) << endl;
+    }
+    // false false true
+    // 没有boolalpha则输出: 0 0 1
+
+str1, str2分别为字符数组, str1、str2分别表示指向字符串"abc"的首地址, 因为str1和str2各自都有存储区, 它们的值是各自存储区的首地址, 二者不等, 输出false.
+
+str3与str4类似, 只是为const, 即指向的数据区不能改变. 二者不等, 输出false.
+
+str5与str6为字符指针, 而非字符数组, 他们分别指向常量字符串"abc", "abc"存储在**静态存储区**. 即str5和str6为串"abc"的地址, 所以str5==str6. 二者相等, 输出true.
+
+boolalpha 用符号形式表示真假。

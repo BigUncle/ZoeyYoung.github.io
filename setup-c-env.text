@@ -1,0 +1,8 @@
+Title: [安装配置] C/C++环境
+Date: 2013-09-24
+Tags: 笔试,面试,Python,算法
+Slug: setup-c-env
+Author: Zoey Young
+Summary: C/C++环境
+
+sudo apt-get install eclipse eclipse-cdt

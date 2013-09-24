@@ -37,6 +37,9 @@
           <li><hr/></li>
           <li>CATEGORIES</li>
                     <li >
+            <a href="http://zoeyyoung.github.io/category/cc.html ">C&C++</a>
+          </li>
+                    <li >
             <a href="http://zoeyyoung.github.io/category/linux.html ">Linux</a>
           </li>
                     <li >
@@ -104,6 +107,113 @@
       <div class="main-content col-md-8">
           
     <div>
+        <a href="http://zoeyyoung.github.io/KMP.html"><h1>[算法] KMP</h1></a>
+        <div class="article-metadata">
+<time class="published" datetime="2013 九月 24 周二">2013 九月 24 周二 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/suan-fa-shu-ju-jie-gou.html">算法&数据结构</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/bi-shi.html">笔试</a>
+        <a href="http://zoeyyoung.github.io/tag/mian-shi.html">面试</a>
+        <a href="http://zoeyyoung.github.io/tag/python.html">Python</a>
+        <a href="http://zoeyyoung.github.io/tag/suan-fa.html">算法</a>
+    </span>
+<!-- <p></p> -->
+</div>        <p>之前写的, 又忘了...只剩大概印象了...算法还是常看常新啊...先存着再说...</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">getNext</span><span class="p">(</span><span class="n">pattern</span><span class="p">):</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">p_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+    <span class="nb">next</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">p_len</span><span class="p">):</span>
+        <span class="k">while</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">pattern</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">pattern</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="nb">next</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">pattern</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">pattern</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="nb">next</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">next</span>
+
+<span class="k">def</span> <span class="nf">kmp_search</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">pattern</span><span class="p">,</span> <span class="nb">next</span><span class="p">):</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">plen</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+    <span class="n">tlen</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">tlen</span><span class="p">):</span>
+        <span class="k">while</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">text</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">pattern</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="nb">next</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">text</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">pattern</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="p">:</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span>
+
+        <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="n">plen</span> <span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot;from &quot;</span><span class="p">,</span> <span class="n">i</span><span class="o">-</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="s">&quot;to &quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="nb">next</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">text</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;aaaaaaaaaaaaaaaaaaaab&quot;</span><span class="p">)</span>
+<span class="n">pattern</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;aaab&quot;</span><span class="p">)</span>
+
+<span class="n">text1</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;abababababababababa&quot;</span><span class="p">)</span>
+<span class="n">pattern1</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;ababab&quot;</span><span class="p">)</span>
+
+<span class="nb">next</span> <span class="o">=</span> <span class="n">getNext</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">next</span><span class="p">)</span>
+<span class="n">kmp_search</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">pattern</span><span class="p">,</span> <span class="nb">next</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+
+<span class="n">next1</span> <span class="o">=</span> <span class="n">getNext</span><span class="p">(</span><span class="n">pattern1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">next1</span><span class="p">)</span>
+<span class="n">kmp_search</span><span class="p">(</span><span class="n">text1</span><span class="p">,</span> <span class="n">pattern1</span><span class="p">,</span> <span class="n">next1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">text1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">pattern1</span><span class="p">)</span>
+</pre></div>
+        <hr />
+    </div>
+         <div>
+        <a href="http://zoeyyoung.github.io/const-char-pointer.html"><h1>[C++基础] 字符指针</h1></a>
+        <div class="article-metadata">
+<time class="published" datetime="2013 九月 24 周二">2013 九月 24 周二 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/cc.html">C&C++</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/bi-shi.html">笔试</a>
+        <a href="http://zoeyyoung.github.io/tag/mian-shi.html">面试</a>
+        <a href="http://zoeyyoung.github.io/tag/c.html">C++</a>
+        <a href="http://zoeyyoung.github.io/tag/ji-chu.html">基础</a>
+        <a href="http://zoeyyoung.github.io/tag/bian-cheng.html">编程</a>
+    </span>
+<!-- <p></p> -->
+</div>        <p>char*</p>
+        <hr />
+    </div>
+         <div>
+        <a href="http://zoeyyoung.github.io/setup-c-env.html"><h1>[安装配置] C/C++环境</h1></a>
+        <div class="article-metadata">
+<time class="published" datetime="2013 九月 24 周二">2013 九月 24 周二 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/cc.html">C&C++</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/bi-shi.html">笔试</a>
+        <a href="http://zoeyyoung.github.io/tag/mian-shi.html">面试</a>
+        <a href="http://zoeyyoung.github.io/tag/python.html">Python</a>
+        <a href="http://zoeyyoung.github.io/tag/suan-fa.html">算法</a>
+    </span>
+<!-- <p></p> -->
+</div>        <p>C/C++环境</p>
+        <hr />
+    </div>
+         <div>
         <a href="http://zoeyyoung.github.io/horse-racing-top5.html"><h1>[灵机一动] 赛马问题</h1></a>
         <div class="article-metadata">
 <time class="published" datetime="2013 九月 23 周一">2013 九月 23 周一 </time>
@@ -118,25 +228,7 @@
         <a href="http://zoeyyoung.github.io/tag/mian-shi.html">面试</a>
     </span>
 <!-- <p></p> -->
-</div>        <p>有81匹赛马, 有9个跑道可以利用, 每匹赛马的速度是恒定的, 不计时但记录每次比赛的名次, 请问赛几次可以取得速度排名前5的赛马? 为什么? 可以用计算机程序算法来描述吗?</p>
-<p>9次: 先比赛9次, 记录每次的Top5. 共45匹.</p>
-<p>第10次: 再对前9次的Top1进行比较, 可以淘汰至只剩下14匹. (A1为Top1, 其余的不可能进Top5)</p>
-<div class="highlight"><pre><span class="p">[</span><span class="n">A1</span><span class="p">]</span> <span class="n">B1</span> <span class="n">C1</span> <span class="n">D1</span> <span class="n">E1</span>
-<span class="n">A2</span> <span class="n">B2</span> <span class="n">C2</span> <span class="n">D2</span>
-<span class="n">A3</span> <span class="n">B3</span> <span class="n">C3</span>
-<span class="n">A4</span> <span class="n">B4</span>
-<span class="n">A5</span>
-</pre></div>
-
-
-<p>第11次: 14匹中9匹选Top4, 余9匹.</p>
-<p>第12次: 9匹中选Top4.</p>
-<hr />
-<p>25匹赛马, 5个跑道?</p>
-<p><a href="http://bbs.emath.ac.cn/forum.php?mod=viewthread&amp;tid=2122">讨论</a></p>
-<p><a href="http://blog.csdn.net/harbinzju/article/details/5838898">博文</a></p>
-<p><a href="http://coolshell.cn/articles/1202.html">博文</a></p>
-<p>看起来讨论挺多的, 找时间再看吧...</p>
+</div>        <p>猴子分桃</p>
         <hr />
     </div>
          <div>
@@ -257,60 +349,6 @@
     </span>
 <!-- <p></p> -->
 </div>        <p>把一段字符串用"右起竖排"的古文格式输出</p>
-        <hr />
-    </div>
-         <div>
-        <a href="http://zoeyyoung.github.io/alphabet-contain.html"><h1>[算法] 长字符串包含短字符串所有字母的问题</h1></a>
-        <div class="article-metadata">
-<time class="published" datetime="2013 九月 06 周五">2013 九月 06 周五 </time>
-<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
-<span>
-    <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/suan-fa-shu-ju-jie-gou.html">算法&数据结构</a>
-</span>
-<span>
-    <i class="icon-tags"></i>
-        <a href="http://zoeyyoung.github.io/tag/bi-shi.html">笔试</a>
-        <a href="http://zoeyyoung.github.io/tag/mian-shi.html">面试</a>
-    </span>
-<!-- <p></p> -->
-</div>        <p>题目: 假设有一个各种字母组成的字符串, 假设这还有另外一个字符串, 而且这个字符串里的字母数相对少一些. 从算法是讲, 什么方法能最快的查出所有小字符串里的字母在大字符串里都有?</p>
-        <hr />
-    </div>
-         <div>
-        <a href="http://zoeyyoung.github.io/find-brother-word.html"><h1>[算法] 找兄弟单词</h1></a>
-        <div class="article-metadata">
-<time class="published" datetime="2013 九月 06 周五">2013 九月 06 周五 </time>
-<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
-<span>
-    <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/suan-fa-shu-ju-jie-gou.html">算法&数据结构</a>
-</span>
-<span>
-    <i class="icon-tags"></i>
-        <a href="http://zoeyyoung.github.io/tag/bi-shi.html">笔试</a>
-        <a href="http://zoeyyoung.github.io/tag/mian-shi.html">面试</a>
-    </span>
-<!-- <p></p> -->
-</div>        <p>找兄弟单词</p>
-        <hr />
-    </div>
-         <div>
-        <a href="http://zoeyyoung.github.io/monkey-peach.html"><h1>[灵机一动] 猴子分桃</h1></a>
-        <div class="article-metadata">
-<time class="published" datetime="2013 九月 06 周五">2013 九月 06 周五 </time>
-<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
-<span>
-    <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/dong-nao.html">动脑</a>
-</span>
-<span>
-    <i class="icon-tags"></i>
-        <a href="http://zoeyyoung.github.io/tag/bi-shi.html">笔试</a>
-        <a href="http://zoeyyoung.github.io/tag/mian-shi.html">面试</a>
-    </span>
-<!-- <p></p> -->
-</div>        <p>猴子分桃</p>
         <hr />
     </div>
             <ul class="pagination pagination-sm no-print">
