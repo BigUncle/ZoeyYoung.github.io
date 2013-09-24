@@ -120,8 +120,11 @@
 &lt;p&gt;定义: 观察者模式定义了对象之间的一对多依赖关系, 这样一来, 当一个对象改变状态时, 它的所有依赖者都会收到通知并自动更新.&lt;/p&gt;
 &lt;p&gt;Java内置的观察者模式&lt;/p&gt;
 &lt;p&gt;java.util.Observer &amp;lt;&lt;interface&gt;&amp;gt;&lt;/p&gt;
-&lt;p&gt;java.util.Observable &amp;lt;&lt;class&gt;&amp;gt;&lt;/p&gt;
-&lt;p&gt;相关描述查看&lt;a href="http://docs.oracle.com/javase/7/docs/api/"&gt;API文档&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sun, 22 Sep 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-09-22:design-patten-observer.html</guid><category>读书</category><category>Book</category></item><item><title>[设计模式] 《设计模式：可复用面向对象软件的基础》</title><link>http://zoeyyoung.github.io/design-patten-book.html</link><description>&lt;p&gt;《设计模式：可复用面向对象软件的基础》&lt;/p&gt;
+&lt;p&gt;java.util.Observable &amp;lt;&lt;class&gt;&amp;gt; —— 不是接口, 必须继承. 限制了它的使用和复用. 不能使用组合, 因为存在受保护(protected)的方法.&lt;/p&gt;
+&lt;p&gt;相关描述查看&lt;a href="http://docs.oracle.com/javase/7/docs/api/"&gt;API文档&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;在JavaBeans和Swing中, 也都实现了观察者模式.&lt;/p&gt;
+&lt;p&gt;PropertyChangeListener接口&lt;/p&gt;
+&lt;p&gt;ActionListener&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sun, 22 Sep 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-09-22:design-patten-observer.html</guid><category>读书</category><category>Book</category></item><item><title>[设计模式] 《设计模式：可复用面向对象软件的基础》</title><link>http://zoeyyoung.github.io/design-patten-book.html</link><description>&lt;p&gt;《设计模式：可复用面向对象软件的基础》&lt;/p&gt;
 &lt;p&gt;设计模式依据目的可以分为三类：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;创建型(Creational)&lt;/li&gt;

@@ -25,8 +25,14 @@ Java内置的观察者模式
 
 java.util.Observer <<interface>>
 
-java.util.Observable <<class>>
+java.util.Observable <<class>> —— 不是接口, 必须继承. 限制了它的使用和复用. 不能使用组合, 因为存在受保护(protected)的方法.
 
 相关描述查看[API文档](http://docs.oracle.com/javase/7/docs/api/)
+
+在JavaBeans和Swing中, 也都实现了观察者模式.
+
+PropertyChangeListener接口
+
+ActionListener
 
 

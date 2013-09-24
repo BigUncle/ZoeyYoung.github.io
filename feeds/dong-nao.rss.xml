@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OK Computer</title><link>http://zoeyyoung.github.io/</link><description>It's better to burn out &lt;br/&gt; than to fade away.</description><atom:link href="http://zoeyyoung.github.io/feeds/dong-nao.rss.xml" rel="self"></atom:link><lastBuildDate>Fri, 06 Sep 2013 00:00:00 +0800</lastBuildDate><item><title>[灵机一动] 猴子分桃</title><link>http://zoeyyoung.github.io/monkey-peach.html</link><description>&lt;p&gt;五只猴子分桃. 半夜, 第一只猴子先起来, 它把桃分成了相等的五堆, 多出一只. 于是, 它吃掉了一个, 拿走了一堆; 第二只猴子起来一看, 只有四堆桃。于是把四堆合在一起, 分成相等的五堆, 又多出一个。于是, 它也吃掉了一个, 拿走了一堆；.....其他几只猴子也都是这样分的. 问: 这堆桃至少有多少个?&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OK Computer</title><link>http://zoeyyoung.github.io/</link><description>It's better to burn out &lt;br/&gt; than to fade away.</description><atom:link href="http://zoeyyoung.github.io/feeds/dong-nao.rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 23 Sep 2013 00:00:00 +0800</lastBuildDate><item><title>[灵机一动] 赛马问题</title><link>http://zoeyyoung.github.io/horse-racing-top5.html</link><description>&lt;p&gt;有81匹赛马, 有9个跑道可以利用, 每匹赛马的速度是恒定的, 不计时但记录每次比赛的名次, 请问赛几次可以取得速度排名前5的赛马? 为什么? 可以用计算机程序算法来描述吗?&lt;/p&gt;
+&lt;p&gt;9次: 先比赛9次, 记录每次的Top5. 共45匹.&lt;/p&gt;
+&lt;p&gt;第10次: 再对前9次的Top1进行比较, 可以淘汰至只剩下14匹. (A1为Top1, 其余的不可能进Top5)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;A1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="n"&gt;B1&lt;/span&gt; &lt;span class="n"&gt;C1&lt;/span&gt; &lt;span class="n"&gt;D1&lt;/span&gt; &lt;span class="n"&gt;E1&lt;/span&gt;
+&lt;span class="n"&gt;A2&lt;/span&gt; &lt;span class="n"&gt;B2&lt;/span&gt; &lt;span class="n"&gt;C2&lt;/span&gt; &lt;span class="n"&gt;D2&lt;/span&gt;
+&lt;span class="n"&gt;A3&lt;/span&gt; &lt;span class="n"&gt;B3&lt;/span&gt; &lt;span class="n"&gt;C3&lt;/span&gt;
+&lt;span class="n"&gt;A4&lt;/span&gt; &lt;span class="n"&gt;B4&lt;/span&gt;
+&lt;span class="n"&gt;A5&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;第11次: 14匹中9匹选Top4, 余9匹.&lt;/p&gt;
+&lt;p&gt;第12次: 9匹中选Top4.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;25匹赛马, 5个跑道?&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://bbs.emath.ac.cn/forum.php?mod=viewthread&amp;amp;tid=2122"&gt;讨论&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://blog.csdn.net/harbinzju/article/details/5838898"&gt;博文&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://coolshell.cn/articles/1202.html"&gt;博文&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;看起来讨论挺多的, 找时间再看吧...&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Mon, 23 Sep 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-09-23:horse-racing-top5.html</guid><category>笔试</category><category>面试</category></item><item><title>[灵机一动] 猴子分桃</title><link>http://zoeyyoung.github.io/monkey-peach.html</link><description>&lt;p&gt;五只猴子分桃. 半夜, 第一只猴子先起来, 它把桃分成了相等的五堆, 多出一只. 于是, 它吃掉了一个, 拿走了一堆; 第二只猴子起来一看, 只有四堆桃。于是把四堆合在一起, 分成相等的五堆, 又多出一个。于是, 它也吃掉了一个, 拿走了一堆；.....其他几只猴子也都是这样分的. 问: 这堆桃至少有多少个?&lt;/p&gt;
 &lt;p&gt;思路:&lt;/p&gt;
 &lt;p&gt;假设每次剩下X个桃子, 每次取走的桃子数为: &lt;code&gt;(X-1)/5+1 = (X+4)/5&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;给这堆桃加上4个, 则每次都可以平均分成5份.&lt;/p&gt;

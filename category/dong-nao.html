@@ -104,6 +104,42 @@
       <div class="main-content col-md-8">
           
     <div>
+        <a href="http://zoeyyoung.github.io/horse-racing-top5.html"><h1>[灵机一动] 赛马问题</h1></a>
+        <div class="article-metadata">
+<time class="published" datetime="2013 九月 23 周一">2013 九月 23 周一 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/dong-nao.html">动脑</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/bi-shi.html">笔试</a>
+        <a href="http://zoeyyoung.github.io/tag/mian-shi.html">面试</a>
+    </span>
+<!-- <p></p> -->
+</div>        <p>有81匹赛马, 有9个跑道可以利用, 每匹赛马的速度是恒定的, 不计时但记录每次比赛的名次, 请问赛几次可以取得速度排名前5的赛马? 为什么? 可以用计算机程序算法来描述吗?</p>
+<p>9次: 先比赛9次, 记录每次的Top5. 共45匹.</p>
+<p>第10次: 再对前9次的Top1进行比较, 可以淘汰至只剩下14匹. (A1为Top1, 其余的不可能进Top5)</p>
+<div class="highlight"><pre><span class="p">[</span><span class="n">A1</span><span class="p">]</span> <span class="n">B1</span> <span class="n">C1</span> <span class="n">D1</span> <span class="n">E1</span>
+<span class="n">A2</span> <span class="n">B2</span> <span class="n">C2</span> <span class="n">D2</span>
+<span class="n">A3</span> <span class="n">B3</span> <span class="n">C3</span>
+<span class="n">A4</span> <span class="n">B4</span>
+<span class="n">A5</span>
+</pre></div>
+
+
+<p>第11次: 14匹中9匹选Top4, 余9匹.</p>
+<p>第12次: 9匹中选Top4.</p>
+<hr />
+<p>25匹赛马, 5个跑道?</p>
+<p><a href="http://bbs.emath.ac.cn/forum.php?mod=viewthread&amp;tid=2122">讨论</a></p>
+<p><a href="http://blog.csdn.net/harbinzju/article/details/5838898">博文</a></p>
+<p><a href="http://coolshell.cn/articles/1202.html">博文</a></p>
+<p>看起来讨论挺多的, 找时间再看吧...</p>
+        <hr />
+    </div>
+         <div>
         <a href="http://zoeyyoung.github.io/monkey-peach.html"><h1>[灵机一动] 猴子分桃</h1></a>
         <div class="article-metadata">
 <time class="published" datetime="2013 九月 06 周五">2013 九月 06 周五 </time>
@@ -118,14 +154,7 @@
         <a href="http://zoeyyoung.github.io/tag/mian-shi.html">面试</a>
     </span>
 <!-- <p></p> -->
-</div>        <p>五只猴子分桃. 半夜, 第一只猴子先起来, 它把桃分成了相等的五堆, 多出一只. 于是, 它吃掉了一个, 拿走了一堆; 第二只猴子起来一看, 只有四堆桃。于是把四堆合在一起, 分成相等的五堆, 又多出一个。于是, 它也吃掉了一个, 拿走了一堆；.....其他几只猴子也都是这样分的. 问: 这堆桃至少有多少个?</p>
-<p>思路:</p>
-<p>假设每次剩下X个桃子, 每次取走的桃子数为: <code>(X-1)/5+1 = (X+4)/5</code></p>
-<p>给这堆桃加上4个, 则每次都可以平均分成5份.</p>
-<p>(每次都正好多出一个, 每只猴子拿走一堆加多出的1个, 正好是加上4个后再平均分成5份后的一堆. 因此加上的这4个每次都适用.)</p>
-<p>假设最后一只猴子拿走5个(包括吃掉的1个).</p>
-<p>则总桃子数应该为: <code>5*5*5*5*5 = 5^5 = 3125</code></p>
-<p>减去开始加上的4个: <code>3125 - 4 = 3121 个</code></p>
+</div>        <p>猴子分桃</p>
         <hr />
     </div>
             <ul class="pagination pagination-sm no-print">

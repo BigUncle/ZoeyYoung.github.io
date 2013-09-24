@@ -1,0 +1,35 @@
+Title: [灵机一动] 赛马问题
+Date: 2013-09-23
+Tags: 笔试,面试
+Slug: horse-racing-top5
+Author: Zoey Young
+Summary: 猴子分桃
+
+有81匹赛马, 有9个跑道可以利用, 每匹赛马的速度是恒定的, 不计时但记录每次比赛的名次, 请问赛几次可以取得速度排名前5的赛马? 为什么? 可以用计算机程序算法来描述吗?
+
+9次: 先比赛9次, 记录每次的Top5. 共45匹.
+
+第10次: 再对前9次的Top1进行比较, 可以淘汰至只剩下14匹. (A1为Top1, 其余的不可能进Top5)
+
+    [A1] B1 C1 D1 E1
+    A2 B2 C2 D2
+    A3 B3 C3
+    A4 B4
+    A5
+
+第11次: 14匹中9匹选Top4, 余9匹.
+
+第12次: 9匹中选Top4.
+
+---
+
+25匹赛马, 5个跑道?
+
+[讨论](http://bbs.emath.ac.cn/forum.php?mod=viewthread&tid=2122)
+
+[博文](http://blog.csdn.net/harbinzju/article/details/5838898)
+
+[博文](http://coolshell.cn/articles/1202.html)
+
+看起来讨论挺多的, 找时间再看吧...
+

@@ -127,8 +127,11 @@
 <p>定义: 观察者模式定义了对象之间的一对多依赖关系, 这样一来, 当一个对象改变状态时, 它的所有依赖者都会收到通知并自动更新.</p>
 <p>Java内置的观察者模式</p>
 <p>java.util.Observer &lt;<interface>&gt;</p>
-<p>java.util.Observable &lt;<class>&gt;</p>
+<p>java.util.Observable &lt;<class>&gt; —— 不是接口, 必须继承. 限制了它的使用和复用. 不能使用组合, 因为存在受保护(protected)的方法.</p>
 <p>相关描述查看<a href="http://docs.oracle.com/javase/7/docs/api/">API文档</a></p>
+<p>在JavaBeans和Swing中, 也都实现了观察者模式.</p>
+<p>PropertyChangeListener接口</p>
+<p>ActionListener</p>
 </article>
 <div class="comment">
     <!-- JiaThis Button BEGIN -->
