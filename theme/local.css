@@ -1,69 +1,29 @@
 ::selection { background: #F92659; color:white; }
 ::-moz-selection { background: #F92659; color:white; }
 ::-webkit-selection { background: #F92659; color:white;}
-/* Styling for Nav bar. Bg color, link color etc */
-/* img {
-  background: url('./images/loading.gif') center center no-repeat;
-} */
-.container { padding: 0; max-width: 100%; }
-
-hr {
-  margin: 5px 0;
-}
-
-.article-metadata { font-size: 12px; }
-.nav>li>a {
-  padding: 0;
-}
-.nav>li>a:hover {
-  display: block;
-}
-
-.nav > .active > a,
-.nav > .active > a:hover {
-  font-weight: bold;
-}
-
-/*.pagination>li>a, .pagination>li>span {
-  background-color: #222;
-  border: 1px solid #DDD;
-}*/
-
+body { font: 16px/1.5 \5fae\8f6f\96c5\9ed1,tahoma,arial,\5b8b\4f53; }
+hr { margin: 5px 0; }
+.article-metadata { font-size: 12px; margin: 10px 0;}
+.nav>li>a { padding: 0; }
+.nav>li>a:hover { display: block; }
+.nav > .active > a, .nav > .active > a:hover { font-weight: bold; }
 #blog-nav{
-  width: 80%;
   padding: 5px 0;
-  font-size: 16px;
   margin: 0 auto;
   text-align: center;
 }
-
-ul#sitelinks.nav.nav-list > li > a >i { color: #1f334b; }
-/* Styling for elements */
-body { font: 16px/1.5 \5fae\8f6f\96c5\9ed1,tahoma,arial,\5b8b\4f53; }
-.main-content { padding: 0 20px; background: #383838; }
-.main-content a:hover { text-decoration: none; }
-p { font: 14px/1.5 \5fae\8f6f\96c5\9ed1,tahoma,arial,\5b8b\4f53; }
-li { line-height: 1.6em; }
-h1 { font: 18px/1.5 'Alegreya SC', 'Garamond', 'Georgia', \5fae\8f6f\96c5\9ed1,tahoma,arial,\5b8b\4f53; }
-h2 { font: 16px/1.5 'Alegreya SC', 'Garamond', 'Georgia', \5fae\8f6f\96c5\9ed1,tahoma,arial,\5b8b\4f53; }
-h3 { font: 14px/1.5 'Alegreya SC', 'Garamond', 'Georgia', \5fae\8f6f\96c5\9ed1,tahoma,arial,\5b8b\4f53; }
-.table th, .table td { line-height: 1.3em; }
-
 .navbar-brand {
-  text-indent: -9999px;
-  display: block;
-  height: 80px;
-  background-size: 130px;
-  float: none;
+  text-align: center;
 }
-
-.brand-wrapper {
-  margin: 20px auto;
-  width: 140px;
-  height: 140px;
-}
-
-
+.main-content { padding: 0 20px; }
+.main-content a:hover { text-decoration: none; }
+p { font: \5fae\8f6f\96c5\9ed1,tahoma,arial,\5b8b\4f53; }
+li { line-height: 1.6em; }
+h1 { font: 28px/1.5 'Alegreya SC', 'Garamond', 'Georgia', \5fae\8f6f\96c5\9ed1,tahoma,arial,\5b8b\4f53; }
+h2 { font: 24px/1.5 'Alegreya SC', 'Garamond', 'Georgia', \5fae\8f6f\96c5\9ed1,tahoma,arial,\5b8b\4f53; }
+h3 { font: 20px/1.5 'Alegreya SC', 'Garamond', 'Georgia', \5fae\8f6f\96c5\9ed1,tahoma,arial,\5b8b\4f53; }
+strong { color: #F92659; }
+.table th, .table td { line-height: 1.3em; }
 /* Styling for articles */
 .article { padding-bottom:15px; padding-right: 40px; }
 .article a:hover { text-decoration: none; }
