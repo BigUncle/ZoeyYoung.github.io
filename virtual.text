@@ -1,0 +1,74 @@
+Title: [C++基础] virtual 关键字
+Date: 2013-09-24
+Tags: 笔试,面试,C++,基础,编程
+Slug: virtual
+Author: Zoey Young
+Summary: virtual 关键字
+
+    :::c++
+    #include <iostream>
+    using namespace std;
+
+    class Base {
+    protected:
+        int ID;
+    public:
+        Base() {
+            ID = GenerateID();
+        }
+        virtual int GenerateID() {
+            return 1;
+        }
+        int GetID() {
+            return ID;
+        }
+    };
+
+    class Derived: public Base {
+    public:
+        Derived() {
+        }
+        int GenerateID() {
+            return 2;
+        }
+    };
+
+    int main() {
+        Derived cDerived; // 原来不一定要用new啊...
+        cout << cDerived.GetID();
+        return 0;
+    }
+    // 1
+
+[C++ Virtual详解](http://blog.csdn.net/ring0hx/article/details/1605254)
+
+    :::c++
+    #include <iostream>
+    using namespace std;
+
+    class A {
+    public:
+        virtual void f() { cout << "A::f() "; }
+        void f() const { cout << "A::f() const ";}
+        virtual ~A() {}
+    };
+
+    class B: public A {
+    public:
+        void f() { cout << "B::f() "; }
+        void f() const { cout << "B::f() const "; }
+        virtual ~B() {}
+    };
+
+    void g(const A* a) {
+        a->f();
+    }
+
+    int main(int argc, char *argv[]) {
+        A* p = new B();
+        p->f();
+        g(p);
+        delete(p);
+        return 0;
+    }
+    // B::f() A::f() const
