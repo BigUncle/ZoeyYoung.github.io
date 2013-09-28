@@ -1,0 +1,28 @@
+Title: [收藏] 看看一些著名的软件都用什么编程语言写成
+Date: 2013-09-28
+Tags: ASM,C,C++,Java,资讯,编程
+Slug: the-programming-languages-beacon
+Author: Zoey Young
+Summary: 看看一些著名的软件都用什么编程语言写成
+
+[The Programming Languages Beacon](http://www.lextrait.com/vincent/implementations.html)
+
+大部分是C/C++
+
+许多语言本身就是基于C的
+
+但是这些列出的主要是操作系统和桌面端应用程序
+
+谁都知道这并不是Java的强项, 而在服务器端和手机应用方面Java应该还是占据大市场
+
+作者似乎对YouTube和DropBox是基于Python的表示惊讶与怀疑...
+
+没有提到基于Ruby on Rails的GitHub
+
+还有基于PHP的WordPress
+
+仔细看看...Web相关的很少嘛...
+
+在《C++语言的设计和演化》中C++之父也写到了他长期且强烈持有的一个观点:
+
+> 语言的比较很少是有意义的、更少是公平的. 对于重要语言做一个很好的比较需要付出许多精力, 实际上大大超出了大部分人所愿意的付出, 超出了他们所具有的广泛应用领域中的经验. 为此还需要严格地维持一种超然的不偏不倚的观点和一种平和的理性. 我没有时间, 而且作为C++的设计者, 我的不偏不倚将永远不能得到足够的信任...
