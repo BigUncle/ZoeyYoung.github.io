@@ -257,7 +257,7 @@ Going from C++ to Java isn't just changing syntax. It's a shocking paradigm shif
 
 As Jamie Zawinski said in his famous "java sucks" article: "First the good stuff: Java doesn't have free(). I have to admit right off that, after that, all else is gravy. That one point makes me able to forgive just about anything else, no matter how egregious. Given this one point, everything else in this document fades nearly into insignificance."
 
-就像**Jamie Zawinski**(Netscape牛人, 开发Mozilla浏览器, 好像学历是高中毕业?)在他著名的"Java真烂"那篇文章里说的: "先说那些好东西: Java没有free()函数. 我必须一开始就承认, 其他的东西都没什么了不起. (没有free)是能让我原谅其他所有东西的特性, 不管其他东西有多烂. 讲完这一点后, 我的文章里其他一切几乎都完全没有重要性了."
+就像**Jamie Zawinski**(Netscape牛人, 开发Mozilla浏览器, 好像学历是高中毕业?)在他著名的["Java真烂"](http://www.jwz.org/doc/java.html)那篇文章里说的: "先说那些好东西: Java没有free()函数. 我必须一开始就承认, 其他的东西都没什么了不起. (没有free)是能让我原谅其他所有东西的特性, 不管其他东西有多烂. 讲完这一点后, 我的文章里其他一切几乎都完全没有重要性了."
 
 Jamie's article was written in 1997, which in Java years is a long time ago, and Java has improved a lot since he wrote it; some of the things he complains about are even fixed now.
 

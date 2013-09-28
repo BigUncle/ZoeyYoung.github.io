@@ -9,25 +9,18 @@
 
 hr {
   margin: 5px 0;
-  border-top: 1px solid #333;
-  border-bottom: 1px solid #222;
 }
 
-i { color: #C9C9C9; }
 .article-metadata { font-size: 12px; }
 .nav>li>a {
   padding: 0;
 }
 .nav>li>a:hover {
   display: block;
-  color: #FD961F;
-  background-color: #333;
 }
 
 .nav > .active > a,
 .nav > .active > a:hover {
-  color: #FD961F;
-  background-color: #333;
   font-weight: bold;
 }
 
@@ -46,23 +39,20 @@ i { color: #C9C9C9; }
 
 ul#sitelinks.nav.nav-list > li > a >i { color: #1f334b; }
 /* Styling for elements */
-a { color: #E6DB74; }
-body { background-color: #222; color: #F8F8F2; font: 16px/1.5 \5fae\8f6f\96c5\9ed1,tahoma,arial,\5b8b\4f53; }
+body { font: 16px/1.5 \5fae\8f6f\96c5\9ed1,tahoma,arial,\5b8b\4f53; }
 .main-content { padding: 0 20px; background: #383838; }
-.main-content a:hover { color: #FD961F; text-decoration: none; }
+.main-content a:hover { text-decoration: none; }
 p { font: 14px/1.5 \5fae\8f6f\96c5\9ed1,tahoma,arial,\5b8b\4f53; }
 li { line-height: 1.6em; }
 h1 { font: 18px/1.5 'Alegreya SC', 'Garamond', 'Georgia', \5fae\8f6f\96c5\9ed1,tahoma,arial,\5b8b\4f53; }
 h2 { font: 16px/1.5 'Alegreya SC', 'Garamond', 'Georgia', \5fae\8f6f\96c5\9ed1,tahoma,arial,\5b8b\4f53; }
 h3 { font: 14px/1.5 'Alegreya SC', 'Garamond', 'Georgia', \5fae\8f6f\96c5\9ed1,tahoma,arial,\5b8b\4f53; }
-h1,h2,h3,h4,h5,h6 { color: #F8266F; margin-bottom: 0; }
 .table th, .table td { line-height: 1.3em; }
 
 .navbar-brand {
   text-indent: -9999px;
   display: block;
   height: 80px;
-  background: rgba(0, 0, 0, 0) url("./images/logo_white.svg") center 40px no-repeat;
   background-size: 130px;
   float: none;
 }
@@ -71,28 +61,17 @@ h1,h2,h3,h4,h5,h6 { color: #F8266F; margin-bottom: 0; }
   margin: 20px auto;
   width: 140px;
   height: 140px;
-  border: 2px dashed #FFF;
-  border-radius: 100%;
 }
 
 
 /* Styling for articles */
 .article { padding-bottom:15px; padding-right: 40px; }
-.article a:hover { color: #FD961F; text-decoration: none; }
-
-code {
-  color: #91C72C;
-  font-weight: bold;
-  background-color: #222;
-}
-
+.article a:hover { text-decoration: none; }
 /* Article summary */
 .summary { margin-bottom: 2em; margin-top: 0.8em; font-size: 16px; line-height: 1.2em }
 .summary pre { display: none; }
 
-#footer { background: #4C4C4C; padding: 10px; color: #d6d9dd; }
-#footer a { color: #51D9EF; }
-#footer a:hover { color: #51a4ff;}
+#footer { padding: 10px; }
 
 .nav a [class^="icon-"], .nav a [class*=" icon-"] {
   display: inline-block;
