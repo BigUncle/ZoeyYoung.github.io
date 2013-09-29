@@ -1,9 +1,11 @@
 Title: [安装配置] C/C++环境
 Date: 2013-09-24
-Tags: 笔试,面试,Python,算法
+Tags: 安装配置,C/C++,Ubuntu
 Slug: setup-c-env
 Author: Zoey Young
 Summary: C/C++环境
+
+Ubuntu下使用eclipse开发:
 
 sudo apt-get install eclipse eclipse-cdt
 

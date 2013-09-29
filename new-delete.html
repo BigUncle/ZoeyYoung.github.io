@@ -149,6 +149,40 @@
 <span class="c1">// Base Created</span>
 <span class="c1">// Derived Created</span>
 <span class="c1">// Base Destroyed</span>
+
+
+<span class="cp">#include &lt;iostream&gt;</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Base_J</span> <span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="n">Base_J</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Base Created&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">virtual</span> <span class="o">~</span><span class="n">Base_J</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Base Destroyed&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Derived_J</span><span class="o">:</span> <span class="k">public</span> <span class="n">Base_J</span> <span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="n">Derived_J</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Derived Created&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">virtual</span> <span class="o">~</span><span class="n">Derived_J</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Derived Destroyed&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">Base_J</span><span class="o">*</span> <span class="n">pB</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Derived_J</span><span class="p">();</span>
+    <span class="k">delete</span> <span class="n">pB</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// Base Created</span>
+<span class="c1">// Derived Created</span>
+<span class="c1">// Derived Destroyed</span>
+<span class="c1">// Base Destroyed</span>
 </pre></div>
 </article>
 <div class="comment">
