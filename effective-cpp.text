@@ -1,0 +1,820 @@
+Title: [笔记] 《Effective C++》
+Date: 2013-09-29
+Tags: C++,基础,编程
+Slug: effective-cpp
+Author: Zoey Young
+Summary: 《Effective C++》笔记
+
+常看常新...持续更新...
+
+## 1 让自己习惯C++
+
+**Accustoming Yourself to C++**
+
+### 条款01: 视C++为一个语言联邦
+
+**View C++ as a federation of languages**
+
+一开始只是带类的C(C with Classes)
+
+C++ 主要的次语言: C(基础) & Object-Oriented C++ & Template C++ & STL(template程序库)
+
+要点:
+
+* C++高效编程守则视状况而变化, 取决于你使用C++的哪一部分.
+
+### 条款02: 使用 const, enum, inline 代替 #define
+
+**Prefer consts, enums, and inlines to #defines**
+
+要点:
+
+* 对于单纯常量, 最好以`const`对象或`enums`替换`#defines`
+* 对于形似函数的宏(macros), 最好改用inline函数替换#defines
+
+### 条款03: 尽可能使用 const
+
+**Use const whenever possible**
+
+const 修饰指针时(区别在于`const`与`*`的相对位置)
+
+    const char* p = "hello"; // non-const pointer, const data
+    char* const p = "hello"; // const pointer, non-const data
+    const char* const p = "hello"; // const pointer, const data
+
+const 修饰函数时(返回值、参数、函数自身(成员函数))
+
+当返回值不应该作为左值时应使用const修饰返回值(预防"无意义的赋值动作").
+
+const成员函数
+
+目的: 为了确认该成员函数可作用于const对象身上
+
+一件事实: 两个成员函数如果只是常量性(constness)不同, 可以被重载.
+
+    class Text {
+    public:
+        const std::size_t length() const;
+        // 返回文本的长度
+        // 第一个 const 表示 函数返回一个常量, 不可作为左值使用
+        // 第二个 const 表示 函数不修改 Text 类中的数据成员(除了 static 和 mutable 修饰过的)
+    private:
+        char* data;
+    };
+
+当类的实例被声明为`const`时, 只能调用被第二个`const`修饰过的函数.
+
+要点:
+
+* 将某些东西声明为`const`可帮助编译器侦测出错误用法. const可被施加于任何作用域内的对象、函数参数、函数返回类型、成员函数本体.
+* 编译器强制实施bitwise constness, 但你编写程序时应该使用"概念上的常量性"(conceptual constness)
+* 当const和non-const成员函数有着实质等价的实现时, 令non-const版本调用const版本调用const版本可避免代码重复.
+
+### 条款04: 确定对象被使用前已先被初始化
+
+**Make sure that objects are initialized before they're used.**
+
+永远在使用对象之前先将它初始化.
+
+* 手工初始化内置型non-member对象(C++不保证初始化它们)
+* 使用初始化列表初始化对象的成员变量
+
+在构造函数中对成员变量赋值并不是真正意义的初始化, C++规定, 对象的成员变量的初始化动作发生在进入构造函数本体之前(内置类型不保证会在赋值前获得初始化). 应当使用**初始化列表(member initialization list)**进行初始化(使用拷贝构造函数).
+
+重要的是别混淆了**赋值(assignment)**和**初始化(initialization)**.
+
+如果成员变量是`const`或`references`, 它们就一定需要初始化, 不能被赋值.
+
+最简单的做法就是: 总是使用**初始化列表(member initialization list)**(有时绝对必要, 也高效, 为什么不呢), 并且以class中成员变量的声明次序为次序.
+
+    class Person {
+    public:
+        Person()
+           :name(), // 调用 string 类默认构造函数
+            sex_isMale(true)  // 内置类型, 必须初始化
+        { };
+        Person(const std::string& tname, const bool& isMale)
+           :name(tname), // 调用 string 类的拷贝构造函数
+            sex_isMale(isMale)
+        { };
+    private:
+        std::string name;
+        bool sex_isMale;
+    };
+
+**"跨编译单元之初始化次序"问题**
+
+**static对象**: 其寿命从被构造出来直到程序结束为止, 包括全局对象、定义于namespace作用域内的对象、在classes内、在函数内(这个为local staitc对象, 其余为non-local static对象)、以及在file作用域内被声明为static的对象.
+
+C++对"定义于不同编译单元内的**non-local static对象**的初始化相对次序无明确定义.
+
+怎么做?
+
+**Singleton模式**
+
+以"函数调用"(返回一个reference指向**local static对象**)替换"直接访问non-local static对象"
+
+多线程环境下: 在程序的单线程启动阶段(single-threaded startup portion)手工调用所有reference-returning函数, 可消除与初始化有关的"竞速形势(race conditions)"
+
+## 2 构造/析构/赋值运算
+
+**Constructors, Destructors, and Assignment Operators**
+
+### 条款05: 了解C++默默做的事
+
+如果没有声明任何构造函数, 则编译器自动为类实现默认构造函数.
+
+如果你没有实现, 编译器会自动为类实现复制构造函数, 复制运算符(operator=)函数, 析构函数.
+
+如果类中包含 引用类型的成员 或 const成员, 则编译器不会实现复制运算符函数. 因为更改 引用 或 const 成员是不允许的.
+
+### 6. 如果不想使用编译器自动生成函数, 就该明确拒绝
+
+将不想使用(如果你不声明, 编译器就会自动生成)的函数声明为`private`, 并且不实现它(防止友元类调用).
+
+声明基类, 并在基类中将不想使用的函数声明为 `private`, 且不实现. 继承基类的派生类, 编译器不会自动生成相应函数.
+
+    class Uncopyble {
+    protected:
+        Uncopyble(){}
+        ~Uncopyble(){}
+    private:
+        // 声明但不实现复制构造函数, 其派生类无法调用基类的复制构造函数(由于private)
+        // 因此编译器无法自动生成派生类的复制构造函数(默认的逻辑上, 该函数应当调用基类的复制构造函数)
+        Uncopyble(const Uncopyble&);
+        // 复制操作符函数同理
+        Uncopyble& operator=(const Uncopyble&);
+    };
+
+### 7. 为多态基类声明virtual析构函数
+
+如果基类的析构函数不是虚函数, 那么通过基类指针引用的派生类对象, 在其销毁时, 只能销毁基类部分, 而不能销毁派生类部分.
+
+### 8. 不让异常逃离析构函数
+
+析构函数往往并不由类的使用者亲自调用, 因此在析构函数中抛出的异常难以捕捉.
+
+如果在对象的销毁阶段确实可能抛出异常(比如, 由于网络原因, 关闭远程数据库失败), 应该另外实现一个使用者亲自调用的销毁函数如`close()`, 在该函数中抛出异常, 以此给用户以机会处理异常. 在析构函数中, 检查用户是否调用了销毁函数: 如果用户已经调用过, 则不再调用该函数; 如果用户未曾调用过, 则调用该函数, 在出现异常的情况下, 并吞下异常或直接停止程序(用户没有立场抱怨, 因为我们已经给了他机会).
+
+### 9. 不在构造函数或析构函数中调用virtual函数
+
+派生类初始化时, 先对基类部分初始化, 然后才是派生部分. 基类的构造函数运行时, 派生类还不存在, 此时调用虚函数并试图完成派生类中相应地逻辑: 如果该虚函数有实现, 就仅仅调用虚函数而不是派生类中的函数; 如果没有定义虚函数, 会出现连接错误.
+
+析构函数同理.
+
+### 10. 令 operator= 返回一个对 this 的引用
+
+这样就可以使用连等式来赋值了。
+
+### 11. 在 operator= 中处理自我赋值
+
+在`operator=`中需要考虑参数就是自身的情况, 也要注意语句顺序, 以保证"异常安全性".
+
+### 12. 复制对象时不要忘了对象的每一个部分
+
+如果自己实现复制构造函数和复制运算符函数(而不使用编译器自动生成的版本), 一定要记得将所有的成员都复制过来, 编译器不会因为这是个复制构造函数或`operater=`而帮你检查.
+
+如果你在派生类中自己实现以上两种函数, 一定要记得显式地调用基类的相应函数, 编译器不会帮你调用.
+
+    class Person {
+    public:
+        Person() {}
+        Person(const std::string& tname):name(tname) {}
+    private:
+        std::string name;
+    };
+    class Citizen:public Person{
+    public:
+        Citizen() : Person(), married(false) {}
+        Citizen(Citizen& pcitizen):
+            Person(pcitizen),
+            // 显式调用基类的复制构造函数,
+            // 注意传入的是pcitizen而不是pcitizen.name,
+            // 因为调用的是基类的复制构造函数而不是构造函数,
+            // 而且基类的private也不允许你这样做
+            married(pcitizen.married){} // 派生类部分的初始化
+    private:
+        bool married;
+    };
+
+#### 13. 以对象管理资源
+
+所谓资源, 往往是由`new`运算符产生的, 由指针控制和管理的对象和数组. 它们通常分配在堆(而不是栈)上, 所以程序流程发生变化时, 这些对象和数组不能自动销毁(而分配在栈上的对象是可以的), 需要手动销毁.
+
+RAII: 对象的取得时机就是最好的初始化时机, 两种常用的RAII对象(智能指针): `std::auto_ptr<T>` 和 `std::tr1::shared_ptr<T>`, 前者的复制方案为"转让所有权", 后者的复制方案为"计数器".
+
+一个RAII对象示例
+
+    class FontHandle;
+
+    class Font{
+    public:
+        Font(FontHandle* ft): f(ft) {}
+        ~Font(){delete f;}
+        ...
+    private:
+        FontHandle* f;
+    };
+
+Font类的实例并不分配在堆上, 但其指针成员`f`指向的对象`*f`分配在堆上. 当流程变化时, Font实例被正常销毁, 其析构函数被调用, 析构函数中将指针成员指向的对象销毁. 这就保证了`*f`没有泄露.
+
+#### 14. 在资源管理器中小心  copying 行为
+
+资源管理器的资源: 即指针指向的对象, 由资源管理器维护. 当自己实现智能指针对象时, 考虑一下四种 copying 行为.
+
+* 禁止复制
+* 引用计数(如shared_ptr, 需用到类的静态成员)
+* 深度复制
+* 转让所有权(如auto_ptr)
+
+考虑着四种 copying 行为的目的就是, 避免在析构函数中多次试图销毁指针所指对象,或者完全不销毁.
+
+#### 15. 在资源管理器中提供对原始资源的访问
+
+往往对 RAII 对象实现 `operator->` 和 `operator*` 以实现对资源对象内部成员的访问.
+
+实现显式转换函数, 如 `Font.get()` 返回资源对象.
+
+实现隐式转换函数, 如 `Font::operator FontHandle()` 返回资源对象. 此时, Font对象 可 隐式转换为 FontHandle 对象, 但也会带来部分风险.
+
+    class Font{
+    public:
+        Font(FontHandle* ft): f(ft) {}
+        ~Font() { delete f; }
+        operator FontHandle(){return *f;}
+        FontHandle get(){return *f;}
+        ...
+    private:
+        FontHandle* f;
+    };
+
+#### 16. 成对使用 new 与 delete 时采取相同的形式
+
+事实上, 编译器中实现了两种指针, 指向单个变量/对象的 和 指向变量/对象数组的. 使用`new`和`delete`时应当采取对应的形式.
+
+    std::string* s1 = new std::string("hello");
+    std::string* s2 = new std::string[100];
+    ...
+    delete s1;
+    delete [] s2;
+
+#### 17. 以独立语句将 newed 对象置入智能指针中
+
+考虑这样做:
+
+    Font f1(new FontHandle);
+
+独立语句的含义是: 不将该语句拆开, 也不将其合并到其他语句中, 这样可以确保资源不被泄露, 如:
+
+    // 不将其拆开
+    FontHandle* fh1 = new FontHandle;
+    ... // 发生异常怎么办？
+    Font f1(fh1);
+
+    // 不将其合并
+    AnotherFunction(Font(new FontHandle), otherParameters /*发生异常怎么办？*/);
+
+#### 18. 让接口易于使用, 难于误用
+
+让接口易于使用, 一般来说, 就是尽量保持与内置类型(甚至STL)同样的行为. 比如, 你应当为 `operator+` 函数返回 const值, 以免用户对计算结果进行赋值操作, 内置类型不允许(对`int`型变量, 语句`a+b=c`不能通过编译, 所以你的类型也应该尽量保持同样的性质, 除非你有更好的理由); 又比如, 对象的主要组成部分如果是一个数组, 那么数组的长度的成员名最好使用`size`而不是 `length`, 因为 STL 也这么做了.
+
+让接口难于误用, 包括在类中限制成员的值(比如 Month 类型不可能表示 13 月), 限制类型上的操作, 在工厂函数中返回智能指针.
+
+#### 19. 设计class 犹如 设计type
+
+#### 20. 用 pass-by-reference-const 替换 pass-by-value
+
+为函数传递参数时, 使用 const 引用传递变量. 在定义函数时:
+
+    class Person{...};
+    class Citizen:public Person{...};
+
+    bool validatePerson(Person psn){...} // 值传递, 尽量不要这样做
+    bool validatePerson(const Person& psn){...} // const引用传递
+
+使用const引用类型传递函数参数的好处在于:
+
+* 免去不必要的构造开销: 如果使用值传递, 实参到形参的过程调用了类型的复制构造函数, 而引用不会.
+* 避免不必要的割裂对象: 如果函数的参数类型是基类, 而函数中又调用了派生类中的某种逻辑(即调用了基类中的虚函数), 那么值传递的后果就是, 形参仅仅是个基类对象, 虚函数也仅仅就调用了虚函数自己(而不是派生类中的函数).
+* 对于C++内置类型和STL迭代器, 使用值传递, 以保持一致性.
+
+#### 21. 必须返回对象时, 不要试图返回 reference
+
+考虑一个有理数类:
+
+    class Rational{
+    public:
+        Rational(int numerator=0, int denominator=1): n(numerator), d(denominator) {}
+    private:
+        int n, d;
+    };
+
+任何有理数可用分数表示, n和d分别为分子和分母, 他们都是int型的. 现在考虑为该类实现乘法, 我们希望它能像内置类型一样工作.
+
+    Rational x = 2;
+    Rational y(1,3);
+    Rational z = x*y*y; // z等于2/9
+
+我们可能会令函数返回引用类型(尤其是意识到20条中关于值传递的种种劣迹后):
+
+    class Rational{
+        ...
+    private:
+        // 错误的代码
+        friend const &Rational operator* (const Rational& lhs, const Rational& rhs) {
+            Rational result(lhs.n*rhs.n, lhs.d*lhs.d);
+            return result;
+        }
+        ...
+    };
+
+result对象在`operator*`函数结束后就销毁了, 但我们返回了它的引用! 这个引用指向 result对象 原先的位置(编译器往往用指针实现引用), 而且该位置在栈上! 不仅无效, 而且危险.
+
+我们也可能用 new运算符 建立一个新的对象(以防止在函数结束后被销毁), 并返回该对象的引用:
+
+    // 错误的代码
+    friend const &Rational operator* (const Rational& lhs, const Rational& rhs){
+            Rational* result = new Rational(lhs.n*rhs.n, lhs.d*lhs.d);
+            return *result;
+        }
+
+这次, `*result` 对象不会因为函数结束而销毁了, 它分配在堆上. 但问题是, 谁来负责销毁它? 尤其是上文 `z=x*y*y` 中, 由 `y*y` 计算而得到的临时变量, 几乎不可能正常销毁.
+
+正确的做法是:
+
+    // 正确的代码
+    friend const Rational operator* (const Rational& lhs, const Rational& rhs) {
+        return Rational(lhs.n*rhs.n, lhs.d*lhs.d);
+    }
+
+虽然产生了构造消耗, 但这是值得的. 返回的对象`z`分配在栈上, 也就是说会在适当的时候销毁, 而原先函数中的临时变量也正常销毁了.
+
+#### 22. 将成员变量声明为 private
+
+#### 23. 以 non-member 和 non-friend 函数替换 non-member 函数
+
+类的 public 方法越多, 其封装性就越差, 内部实现弹性就越小. 设计类的时候应由其细心. 对于一些便利函数(这些函数往往只调用函数的其他 public 方法), 可考虑将其放置在类外. C++允许函数单独出现在类外, 即使在C#等语言中, 也可以使其出现在**工具**对象中.
+
+将类外的函数与类声明在同一个命名空间中是不错的选择.
+
+#### 24. 如果函数的所有参数都需要类型转换, 采用 non-member 函数
+
+第21条中的代码已经体现出这一条的意思了. 这一条大致就是希望 Rational 对象能像其他内置对象一样, 直接参与运算. 比如, 希望这样:
+
+    Rational x(2, 5);
+    Rational y = x*2;
+    Rational z = 2*x;
+
+首先, Rational 构造函数没有使用 explicit 修饰, 这意味着 `x*2` 可以正常计算, 因为这会调用 `x.operator*(Rational& a)`, 而整数 2 会隐式转换成 Rational 对象.(等等, 在第21条中我们好像没有定义, `x.operator*(Rational& a)`函数? 对, 这是因为其中的代码已经遵循了本条的忠告, 定义了 non-member 函数.)
+
+如果在 Rational 中定义了 `x.operator*(Rational& a)`, 那么计算 z 时会遇到困难, 因为系统会试图调用 `Int32.operator*(Rational& a)`, 这根本没有定义. 所以, 我们在代码中并没有定义成员函数, 而是定义了友元函数 `Rational operator*(Rational& a, Rational& b)`, 正如在第21条的代码中显示的那样.
+
+#### 25. 考虑写一个不抛出异常的 swap 函数
+
+`std::swap` 函数采取复制构造的方法, 效率比较低.
+
+    namespace std{
+        template <typename T>
+        void swap(T& a, T& b){
+            T temp(a);
+            a = b;
+            b = a;
+        }
+    }
+
+为自己的类实现 swap方法 并 特化`std::swap`
+
+    class Person{
+    private:
+        void* photo;
+    };
+
+    namespace std{
+        template <> // 特化std::swap方法
+        void swap<Person>(Person& a, Person& b){
+            std::swap(a.photo, b.photo);
+        }
+    }
+
+当自己的类较大时, 可在类中定义swap方法, 并在 `std::swap<YourClass>` 中调用该方法。
+
+#### 26. 尽量延后变量定义式的时间
+
+仅当变量第一次具有"具有明显意义的初值"时, 才定义变量, 以避免不必要的构造开销. 避免这样做:
+
+    std::string s; // 调用默认构造函数
+    ...  // 如果发生异常呢, 如果含有某个return语句呢? 第一次调用构造函数的开销被浪费了
+    s = "Hello"; // 再一次调用构造函数, 第一次调用构造函数的开销依然被浪费了
+
+应当这样做:
+
+    std::string s("Hello"); // “hello”是具有明显意义的初值, 只调用了一次构造函数
+
+#### 27. 尽量少做转型动作
+
+四种转型动作
+
+* const_cast: 消除对象的常量性
+* dynamic_cast: 动态转换, 开销较大. 使用的场合往往是: 想要在派生类上执行派生类的某个函数, 但是手头上只有基类的指针指向该对象.
+* reinterpret_cast: 依赖于编译器的低级转型
+* static_cast: 强迫隐式转换, 类似于C风格的转换, 例如将int转换为double等
+
+不要试图在派生类的成员函数中, 通过dynamic_cast将(*this)转换为基类对象, 并调用基类成员函数.
+
+    class Person{
+    public:
+        void showMessage(){}
+    };
+    class Citizen:public Person{
+    public:
+        void showMessage(){
+            dynamic_cast<Person>(*this).showMessage(); // 错误, 这样转型得到的并不是期望的"基类"对象
+        }
+    };
+
+而应当这样做:
+
+    Person::showMessage(); // 这就对了
+
+#### 28. 避免返回 handles 指向对象内部部分
+
+handle 包括指针, 引用, 迭代器, 用来获取某个对象, 以前被翻译成句柄.
+
+在函数的方法中返回对象内部成员的 handle 可能遭致这样的风险: 返回的 handle 比对象本身更长寿, 当对象销毁后, handle 所指向的区域就是不确定的.
+
+string 和 vector 类型的 operator[] 就返回了对象内部成员的 handle, 这只是例外.
+
+#### 29. 为"异常安全"而作的努力是值得的
+
+函数异常安全类型:
+
+* 基本承诺: 如果异常抛出, 程序内的所有元素仍然在有效状态下, 没有任何元素受到损坏(如释放了指针指向资源却没有为其指定新的资源, 该指针通向了不确定性).
+* 强烈保障: 如果异常抛出, 程序内的所有元素保持函数调用前的状态.
+* 不throw异常: 承诺绝不抛出异常.
+* 一个函数异常安全的程度取决于所调用函数中异常安全程度最弱的.
+
+copy & swap 策略: 为对象的数据制造一份副本, 并对副本进行修改. 如果发生异常, 抛弃副本并返回; 如果成功, 则将对象数据与副本数据做 swap 操作, swap 操作承诺绝不抛出异常.
+
+#### 32. 确定你的 public 继承模拟了 is-a 关系
+
+面向对象编程中最重要的一条. 如果派生类D通过public方式继承了基类B, 那么所用用于B的方法 或者 基类B自身具有的方法, 都适用于D.
+
+#### 33. 避免遮掩继承而来的名称
+
+如果派生类D通过public方式继承了基类B, 那么D中的 函数/变量名 会遮掩B中的 函数/变量名, 如同局部作用域与全局作用域的关系一样.比如:
+
+    class B{
+    public:
+        void f() {}
+        void f(int x) {}
+    };
+    class D: public B {
+    public:
+        void f() {} // f不仅会覆盖B::f(), 也会覆盖B::f(int), 因为这是变量名覆盖
+    };
+    class E: public B{
+    public:
+        int f; // 即使f不是函数, 也会覆盖B::f()和B::f(int)
+    };
+
+#### 34. 区别接口继承与实现继承
+
+接口继承, 意味着继承方法的签名, 包括返回类型, 参数列表, 方法名.
+
+实现继承, 意味着继承方法的实现, 即功能.
+
+基类中的纯虚函数意味着, 派生类只继承接口, 而自己进行实现. 所有派生类都必须对基类的纯虚函数进行显式的继承(即使继承后仍然是个纯虚函数). 理论上, 纯虚函数不必须实现(即只有声明没有定义), 但也可以定义纯虚函数的函数体. 如果定义了纯虚函数, 那么调用该函数的唯一方法就是在调用时显式指定基类的名称. 这使得我们有时候可以通过实现纯虚函数来进行某种缺省的实现.
+
+    class Shape {
+    public:
+        virtual void draw() const =0 {};
+        ...
+    };
+    class Circle: public Shape {
+    public:
+        void draw() {
+            ... // 在隐喻的屏幕上绘制圆
+        }
+        ...
+    };
+    class InvisibleShape: public Shape {
+    public:
+        void draw() {
+            Shape::draw(); // 对不可见的物体, 调用缺省的纯虚函数实现
+        }
+        ...
+    };
+
+基类中的非纯虚函数意味着, 派生类需要同时集成接口和一份缺省实现. 如果派生类中未声明该虚函数, 就相当于自动继承了该函数, 如果派生类自己实现了同样签名的函数, 则使用自己的实现. 使用非纯虚函数可能导致的一个风险, 就是由于依赖于 "不去声明基类中的虚函数而自动获得继承", 而忘了该虚函数的存在.
+
+    class airPlane{
+        virtual void fly() {
+            ... // 缺省的实现
+        }
+        ...
+    };
+    class planeTypeA: public airPlane {...}; // A依赖缺省的fly()方法
+    class planeTypeB: public airPlane {...}; // B也一样
+    class planeTypeC: public airPlane {...}; // C的引擎与A和B不一样, 但是忘了实现自己的fly()方法！
+
+一个可选的方法是, 定义一个非虚函数, 令虚函数调用它
+
+    class airPlane {
+    public:
+        virtual void fly() =0;
+    protected:
+        void defaultFly(){
+            // 缺省的实现
+        }
+    };
+    class planeTypeA: public airPlane {
+        void fly() {
+            defaultFly(); // 即使依赖缺省实现, 也要显式调用
+        }
+    };
+    class planeTypeC: public airPlane {
+        void fly() {
+            // C的引擎与A不一样, 不能依赖缺省实现, 这里是单独的一份实现
+        }
+    };
+
+基类中的非虚函数, 表示派生类不仅需要继承接口, 还需要继承一份强制的实现.
+
+#### 35. 考虑虚函数以外的选择
+
+非常精彩的一节! 这一节在 为对象实现"动态的方法" 这个话题上, 提供了四种不同的风格:
+
+##### 接口不含虚函数的Template Method模式
+
+这种模式认为, 虚函数都必须是private的, 基类的"动态逻辑"(即不同派生类不同的逻辑)由非虚函数调用虚函数实现. 假设我们在设计网络游戏《魔兽世界》每个种族的跳跃动作:
+
+    class charactor {
+    public:
+        void jump(){
+            ... // 准备工作, 比如停止施法(如果正在)
+            doJump(); // 跳跃
+        }
+    private:
+        virtual void doJump() =0; // 跳跃
+    };
+
+侏儒的跳跃与人类的肯定不一样, 所以派生类需要实现基类中的纯虚函数.
+
+    class dwarfCharactor: public charactor {
+    private:
+        void doJump() {
+            // 侏儒角色的跳跃动作
+        }
+    };
+    class orcCharactor: public charactor {
+    private:
+        void doJump(){
+            // 兽人角色的跳跃动作
+        }
+    };
+
+这种模式的优点在于, 你可以做一些"事前"或"事后"的事情, 比如跳跃时必须停止施法. 但是这种模式会产生这样的诡异之处: 派生类需要实现一个根本不需要自己调用的函数(而是给基类的函数调用), 也就是说基类保留了"何时调用该函数的权利", 却将函数的细节交给派生类掌管.
+
+##### 函数指针实现的Strategy模式
+
+兽人不一定是指玩家, 也可能是指怪物. 如果游戏中有大大小小各色兽人怪物, 他们的跳跃方式只有在初始化时才能确定, 那么我们可以在类中保存一个函数指针, 在初始化时传入函数地址.
+
+    void defaultJump();
+
+    class charactor{
+    public:
+        charactor(void (*jump)()=defaultJump):
+          jumpFunc(jump)
+          {}
+    private:
+        void (*jumpFunc)();
+    };
+
+    class orcCharactor:public charactor{
+    public:
+        orcCharactor(void (*jump)()=defaultJump):
+          charactor(jump)
+          {}
+    };
+
+通过建立如 setJumpFunc 函数甚至可以在运行时改变角色跳跃的方式。
+
+##### tr1::function实现的Strategy模式
+
+将函数指针实现的Strategy模式中的"函数指针"替换为函数对象`tr1::function`. 假设我们现在要计算角色剩余的生命值(好吧, 还是用书中的例子吧, 编不下去了, 但是这里真的很精彩啊! 为了避免以后忘记, 一定要好好记下来, 嗯).
+
+    class charactor{
+    public:
+        // std::tr1::function<int (const charactor*)>对象healthCalc, 可以接受一个类似函数的对象, 只要该对象能够:
+        // 返回一个与int兼容的对象/变量
+        // 接受一个与const charactor&兼容的对象/变量
+        charactor(std::tr1::function<int (const charactor*)> _healthCalc):healthCalc(_healthCalc){}
+    private:
+        std::tr1::function<int (const charactor&)> healthCalc;
+    };
+    class orcCharactor:public charactor{...};
+
+类 charactor 中包含一个 `std::tr1::function<int (const charactor*)>` 类型的成员对象 healthCalc, 该对象可以通过任何"像函数的东西"来初始化. 如注释中所说, 只要这个东西接受和返回具有相应兼容性的对象, 就可以初始化healthCalc. 比如以下这三样东西:
+
+    short calcHeath(const charactor&); // 计算生命值的函数
+    struct healthCaculator{ // 函数对象
+        int operator()(const charactor&) const;
+    };
+    class gameLevel{
+    public:
+        float healh(const charactor&); // 某个类的成员函数
+    };
+
+一个函数, 一个函数对象, 一个类的成员函数. 他们都可以用来初始化.
+
+    orcCharactor badGuy1(calcHeath); // 用函数初始化
+    orcCharactor badGuy2(healthCaculator); // 用函数对象初始化
+    gameLevel level;
+    orcCharactor badGuy3( // 使用成员函数初始化
+        std::tr1::bind(&gameLevel::healh, level, _l)
+        );
+
+我们分别使用函数和函数对象来进行初始化. 最精彩的在第三个, 使用成员函数初始化. 因为成员函数实际上额外接受一个参数(即调用成员函数的对象自身), 所以它实际上是接受两个参数的函数. 而`std::tr1::bind`方法允许为这样一个函数的其中一个参数绑上默认值, 使这个函数的行为就像是只接受一个参数的函数那样. 这个方法同样适用于具有多个参数的函数(而不仅仅是成员函数, 这里拿成员函数只不过又提醒了我, 成员函数隐式接受调用对象自身作为参数). 这真的很奇妙.
+
+##### 古典Strategy模式
+
+相对简单, 将计算生命值 和 角色 分别体系化, 角色基类 中 存储 指向“计算生命值基类对象”的指针, 并在派生类中实现相应逻辑. 通常使用UML图描述这种关系.
+
+#### 36. 绝不重新定义继承而来的非虚函数
+
+#### 37. 绝不重新定义继承而来的缺省参数值
+
+非虚函数和缺省参数值都是静态绑定的, 对于虚函数中的缺省参数值, 是否会影响到派生类中的对应函数, 取决于调用的形式. 比如:
+
+    class B {
+        virtual void f(int x=8) {}
+    };
+    class D: public B {
+        void f(int x) {}
+    };
+
+这种情况下, 如果通过指向派生类实例的基类指针调用函数f(), 可以不指定参数x, 缺省参数值起作用. 但是如果通过派生类指针调用函数f(), 不指定参数x就无法通过编译.
+
+注意B中的函数f()是虚函数. 不应当在public继承的派生类中重载基类的非虚函数.
+
+#### 38. 通过复合模拟出 has-a 或者 is-implemented-in-terms-of 关系
+
+应用域: has-a关系
+
+实现域: is-implemented-in-terms-of 关系
+
+#### 39. 明智而审慎地使用 private 继承
+
+private 继承的特点是: 基类中的所有public成员都将称为派生类的private成员, 从派生类外无法访问基类的成员. 这说明基类的逻辑被隐藏在幕后, 派生类需要借助基类实现其自身的功能, 即 is-implemented-in-terms-of 关系.
+
+与复合不同之处: private继承的派生类具有"对象尺寸最小化"的特征. 如下, 类B1和类B2都是通过B来实现的(在这里B只是个什么都没有的空类). 但是在几乎所有编译器中, B2对空间的消耗的确比B1稍大一些.
+
+    class B{};
+    class B1: private B {};
+    class B2 {
+        private:
+            B b;
+    };
+
+#### 40. 明智而审慎地使用多重继承
+
+多重继承, 顾名思义, 就是同时继承多个基类. 在访问多重继承派生类的时候, 如果多个基类中的成员具有相同的名称, 需要显示指定访问的是哪个基类中的成员, 如:
+
+    class B1 {
+    public:
+        void f() {};
+    };
+    class B2 {
+    public:
+        void f() {};
+    };
+    class D: public B1, public B2 {};
+
+此时需要:
+
+    D d;
+    d.B1::f();
+
+解决钻石型多重继承: 如果多重继承的两类又同时继承自同一类, 如:
+
+    class B{
+    public:
+        int x;
+    };
+    class B1: public B {};
+    class B2: public B {};
+    class D: public B1, public B2 {};
+
+此时类D中实际上有两份x(B1::x和B2::x), 这两份x又同时继承自B. 在语义上往往只要一份x. C++默认的实现是, 维持两份x, 但是相互复制. 改动一份则两份都受到影响. 一种语义上更自然, 但是却会造成额外开销的方法是, 将B1和B2对B的继承都实现为**virtual public继承**, 这样在类D中就只有一份x了.
+
+使用 virtual继承 会产生额外的开销, 而且 virtual继承 后, 基类的初始化由最底层的派生类实现(也就是说, D要负责对B中成员x的初始化, 而不是由B1和B2负责). 所以, 如果不得不使用virtual继承, 那么就尽量避免在可能被 virtual继承 的基类中放置数据.
+
+#### 41. 隐式接口和编译器多态
+
+隐式接口是泛型编程中的概念, 相对的显式接口则是面向对象编程中的.
+
+显式接口, 包括函数的签名, 或者类的public部分, 它规定了类和函数能够做什么, 外界如果才能驱动函数和类的工作.
+
+隐式接口, 指在一个模板元中, 待给定的类T需要做什么. 比如:
+
+    template <typename T>
+    void compareSize(T& t1, T& t2){
+        return t1.size()>t2.size();
+    }
+
+在这个模板元中, T的隐式接口就是, 必须具有size()方法, 而且该方法返回的对象重载了>运算符, 或者是内置类型. 在模板的"具现化"过程中, 不会发生什么, 但是如果编译到调用compareSize<int>()方法的语句, 就会编译出错(因为int没有实现size()方法).
+
+#### 42. 了解 typename 的双重含义
+
+从属属性: 在模板中依赖于一个template参数(也就是尖括号中typename后面的T啦)的属性(注意, 是属性而不是成员哦).
+
+在使用从属属性的时候, 应当在前面加上一个typename关键字, 否则就会引发潜在的问题, 如下所示. 如果在T::someProperty前没有typename关键字, 也许编译器会把声明指针用的*认为是用作乘法的乘号.
+
+    template <typename T>
+    class C{
+    public:
+        void f(){
+            typename T::someProperty* x;
+        };
+    };
+
+#### 43. 处理模板化基类内的名称
+
+当基类是一个模板类时, 派生类对基类几乎一无所知. 事实就是这样, 下面这段代码, 在严格的编译器中, 无法通过编译. 虽然基类中已经定义了f()函数, 但是派生类却坚持看不到这个函数.(但是我在VS2012中却是可以编译的, 而且就算我把f()改成f2()都是可以编译的(f2()在基类B中可没有定义), 只要不去实例化某个D类的对象, 也就是说编译器对基类的假定相当宽松, 把很多事情交给了编译后期完成).
+
+    template <typename T>
+    class B{
+    public:
+        void f(){}
+    };
+    template <typename T>
+    class D:public B<T>{
+    public:
+        void callf(){
+            f(); // 无法通过编译！
+        }
+    };
+
+这是因为编译器知道, B类可能被特化, 因此严格的编译器拒绝让D中对f()的调用通过编译。
+
+    template <>
+    class B<int>{
+    public:
+        // B模板类的这个特化版本并没有f()方法
+    };
+
+解决这个问题的方法有三种:
+
+**使用this指针**
+
+    template <typename T>
+    class D:public B<T>{
+    public:
+        void callf(){
+            this->f();
+        }
+    };
+
+**使用using语句**
+
+    template <typename T>
+    class D:public B<T>{
+    public:
+        using B<T>::f;
+        void callf(){
+            f();
+        }
+    };
+
+**明确指定调用的函数存在于基类中**
+
+    template <typename T>
+    class D:public B<T>{
+    public:
+        void callf(){
+            B<T>::f();
+        }
+    };
+
+#### 44. 将与参数无关的代码抽离templates
+
+非类型模板参数往往引起"代码膨胀". 如
+
+    template <typename T, int size>
+    class mat{
+    public:
+        mat invert();
+    ...
+    };
+
+就不如:
+
+    template <typename T>
+    class mat{
+    public:
+        mat invert();
+    ...
+    private:
+        int size;
+    };
+
