@@ -22,6 +22,7 @@ li { line-height: 1.6em; }
 h1 { font: 28px/1.5 'Alegreya SC', 'Garamond', 'Georgia', \5fae\8f6f\96c5\9ed1,tahoma,arial,\5b8b\4f53; }
 h2 { font: 24px/1.5 'Alegreya SC', 'Garamond', 'Georgia', \5fae\8f6f\96c5\9ed1,tahoma,arial,\5b8b\4f53; }
 h3 { font: 20px/1.5 'Alegreya SC', 'Garamond', 'Georgia', \5fae\8f6f\96c5\9ed1,tahoma,arial,\5b8b\4f53; }
+h2, h3, h4 { background: antiquewhite; }
 strong { color: #F92659; }
 .table th, .table td { line-height: 1.3em; }
 /* Styling for articles */

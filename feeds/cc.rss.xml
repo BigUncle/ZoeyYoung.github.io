@@ -146,7 +146,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h4&gt;13. 以对象管理资源&lt;/h4&gt;
+&lt;h3&gt;13. 以对象管理资源&lt;/h3&gt;
 &lt;p&gt;所谓资源, 往往是由&lt;code&gt;new&lt;/code&gt;运算符产生的, 由指针控制和管理的对象和数组. 它们通常分配在堆(而不是栈)上, 所以程序流程发生变化时, 这些对象和数组不能自动销毁(而分配在栈上的对象是可以的), 需要手动销毁.&lt;/p&gt;
 &lt;p&gt;RAII: 对象的取得时机就是最好的初始化时机, 两种常用的RAII对象(智能指针): &lt;code&gt;std::auto_ptr&amp;lt;T&amp;gt;&lt;/code&gt; 和 &lt;code&gt;std::tr1::shared_ptr&amp;lt;T&amp;gt;&lt;/code&gt;, 前者的复制方案为"转让所有权", 后者的复制方案为"计数器".&lt;/p&gt;
 &lt;p&gt;一个RAII对象示例&lt;/p&gt;
@@ -731,7 +731,7 @@
 &lt;span class="nl"&gt;private:&lt;/span&gt;
     &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="p"&gt;};&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sun, 29 Sep 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-09-29:effective-cpp.html</guid><category>C++</category><category>基础</category><category>编程</category></item><item><title>[C++基础] 字符指针</title><link>http://zoeyyoung.github.io/const-char-pointer.html</link><description>&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include &amp;lt;iostream&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sun, 29 Sep 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-09-29:effective-cpp.html</guid><category>C++</category><category>基础</category><category>编程</category></item><item><title>[C++基础] 字符指针</title><link>http://zoeyyoung.github.io/char-pointer.html</link><description>&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include &amp;lt;iostream&amp;gt;&lt;/span&gt;
 &lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="k"&gt;namespace&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 
 &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
@@ -754,7 +754,9 @@
 &lt;p&gt;首先, 这题与是否&lt;code&gt;const&lt;/code&gt;无关.&lt;/p&gt;
 &lt;p&gt;str1, str2, str3, str4都是字符数组, 都有各自的存储区, 它们的值是各自存储区的首地址, 因此各不相等, 输出false.&lt;/p&gt;
 &lt;p&gt;str5与str6为字符指针, 而非字符数组, 先请求的是一个指针的地址(初始化为随机地址), 然后赋值时它们都指向常量字符串"test", "test"存储在&lt;strong&gt;静态存储区&lt;/strong&gt;. 即str5和str6为串"test"的地址, 所以&lt;code&gt;str5==str6&lt;/code&gt;. 二者相等, 输出&lt;code&gt;true&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;boolalpha 用符号形式表示真假.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 24 Sep 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-09-24:const-char-pointer.html</guid><category>笔试</category><category>面试</category><category>C++</category><category>基础</category><category>编程</category></item><item><title>[C++基础] new 和 delete</title><link>http://zoeyyoung.github.io/new-delete.html</link><description>&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include &amp;lt;iostream&amp;gt;&lt;/span&gt;
+&lt;p&gt;boolalpha 用符号形式表示真假.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://stackoverflow.com/questions/19088153/addresses-of-two-pointers-are-same"&gt;StackOverflow: Addresses of two pointers are same&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这里面提到跟编译器的实现相关...&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 24 Sep 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-09-24:char-pointer.html</guid><category>笔试</category><category>面试</category><category>C++</category><category>基础</category><category>编程</category></item><item><title>[C++基础] new 和 delete</title><link>http://zoeyyoung.github.io/new-delete.html</link><description>&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include &amp;lt;iostream&amp;gt;&lt;/span&gt;
 &lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="k"&gt;namespace&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 
 &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Base_J&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;

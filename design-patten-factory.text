@@ -17,6 +17,12 @@ Summary: 工厂方法模式 与 抽象工厂模式
 
 《设计模式：可复用面向对象软件的基础》3.3 FACTORY METHOD(工厂方法) —— 对象创建型模式
 
+### 相关博文
+
+[Programcreek: Java Design Pattern: Factory](http://www.programcreek.com/2013/02/java-design-pattern-factory/)
+
+[Programcreek: Java Design Pattern: Abstract Factory](http://www.programcreek.com/2013/02/java-design-pattern-abstract-factory/)
+
 ---
 
 关键目的——"松耦合"

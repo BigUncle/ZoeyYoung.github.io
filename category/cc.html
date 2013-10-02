@@ -272,7 +272,7 @@
 </pre></div>
 
 
-<h4>13. 以对象管理资源</h4>
+<h3>13. 以对象管理资源</h3>
 <p>所谓资源, 往往是由<code>new</code>运算符产生的, 由指针控制和管理的对象和数组. 它们通常分配在堆(而不是栈)上, 所以程序流程发生变化时, 这些对象和数组不能自动销毁(而分配在栈上的对象是可以的), 需要手动销毁.</p>
 <p>RAII: 对象的取得时机就是最好的初始化时机, 两种常用的RAII对象(智能指针): <code>std::auto_ptr&lt;T&gt;</code> 和 <code>std::tr1::shared_ptr&lt;T&gt;</code>, 前者的复制方案为"转让所有权", 后者的复制方案为"计数器".</p>
 <p>一个RAII对象示例</p>
@@ -861,7 +861,7 @@
         <hr />
     </div>
          <div>
-        <a href="http://zoeyyoung.github.io/const-char-pointer.html"><h1>[C++基础] 字符指针</h1></a>
+        <a href="http://zoeyyoung.github.io/char-pointer.html"><h1>[C++基础] 字符指针</h1></a>
         <div class="article-metadata">
 <time class="published" datetime="2013 九月 24 周二">2013 九月 24 周二 </time>
 <a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
