@@ -8,14 +8,26 @@
 &lt;h4&gt;可读性基本定理&lt;/h4&gt;
 &lt;p&gt;代码的写法应当使别人理解它所需的时间最小化【那个"别人"可能就是6个月后的自己...其实可能不到1周后的...】&lt;/p&gt;
 &lt;h4&gt;总是越小越好吗&lt;/h4&gt;
+&lt;p&gt;代码短并不是易理解的标准, 2者基本没有关系. 如下面2段功能一致的代码:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;assert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;bucket&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;FindBucket&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="n"&gt;bucket&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;IsOccupied&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;和&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;bucket&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;FindBucket&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;bucket&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;null&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;assert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="n"&gt;bucket&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;IsOccupied&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;后面的明显比较容易理解.&lt;/p&gt;
 &lt;p&gt;尽管减少代码行数是一个好目标, 但把理解代码所需的时间最小化是一个更好的目标【添加注释有助于理解代码】&lt;/p&gt;
 &lt;h4&gt;理解代码所需的时间是否与其他目标有冲突  —— 不会&lt;/h4&gt;
 &lt;p&gt;可读性基本定理总是先于本书中任何其他条例或原则.&lt;/p&gt;
 &lt;h4&gt;最难的部分&lt;/h4&gt;
 &lt;p&gt;要经常想其他人是否会觉得你的代码容易理解, 需要额外的时间&lt;/p&gt;
 &lt;h2&gt;第一部分 表面层次的改进&lt;/h2&gt;
-&lt;p&gt;(命名、注释以及审美 —— 可以用于代码库每一行的小提示)&lt;/p&gt;
-&lt;p&gt;选择好的名字、写好的注释以及把代码整洁地写成更好的格式&lt;/p&gt;
+&lt;p&gt;(命名、注释以及审美[代码整洁] —— 可以用于代码库每一行的小提示)&lt;/p&gt;
 &lt;h3&gt;第2章 把信息装到名字里(读者仅通过读到名字就可以获得大量信息)&lt;/h3&gt;
 &lt;p&gt;把名字当做一条小小的注释, 可以承载很多信息&lt;/p&gt;
 &lt;h4&gt;选择专业的词&lt;/h4&gt;
@@ -37,14 +49,24 @@
 &lt;p&gt;建议:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;retval这个名字没有包含很多信息. 用一个描述该变量的值的名字来代替它.&lt;/li&gt;
-&lt;li&gt;tmp这个名字只应用于短期存在且临时性为其主要存在因素的变量.&lt;/li&gt;
-&lt;li&gt;循环迭代器: 索引的第一个字母应该与数据的第一个字符匹配【这是个好建议, 不单纯使用i, j, k】&lt;/li&gt;
+&lt;li&gt;tmp这个名字只应用于短期存在且临时性为其主要存在因素的变量.(比如交换变量)&lt;/li&gt;
+&lt;li&gt;循环迭代器: 索引的第一个字母应该与数据的第一个字符匹配【这是个好建议, 不单纯使用i,j,k,it,iter】&lt;/li&gt;
 &lt;li&gt;对于空泛名字的裁定: 如果你需要使用像tmp、it或者retval这样空泛的名字, 那么你要有个好的理由&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4&gt;用具体的名字代替抽象的名字&lt;/h4&gt;
 &lt;p&gt;在给变量、函数或者其他元素命名时, 要把它描述的更具体而不是更抽象&lt;/p&gt;
+&lt;p&gt;例子: &lt;code&gt;–run_locally&lt;/code&gt;(本地运行)&lt;/p&gt;
+&lt;p&gt;本意使程序输出更多的调试信息, 但会运行得更慢. 一般用于在本机上测试, 但当运行在服务器上, 性能很重要的时候, 一般不会使用这个标记&lt;/p&gt;
+&lt;p&gt;带来的问题:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;新成员不明白真正含义, 可能认为是在本地运行的标记&lt;/li&gt;
+&lt;li&gt;偶尔我们需要在远程服务器上查看调试信息, 使用这个看上去比较滑稽&lt;/li&gt;
+&lt;li&gt;有时我们在本地运行性能测试, 不需要日志信息, 所以不能使用&lt;code&gt;–run_locally&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这种情况下，&lt;code&gt;extra_logging&lt;/code&gt;这个意义会更好一点&lt;/p&gt;
 &lt;h4&gt;为名字附带更多信息&lt;/h4&gt;
 &lt;p&gt;(使用前缀或后缀)&lt;/p&gt;
+&lt;p&gt;16进制的id &lt;code&gt;String id&lt;/code&gt; -&amp;gt; &lt;code&gt;String hex_id&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;给变量名带上重要的细节 —— 例如, 在值为毫秒的变量后面加上&lt;code&gt;_ms&lt;/code&gt;, 或者在还需要转义的, 未处理的变量前面加上&lt;code&gt;raw_&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;如果关于一个变量有什么重要事情要读者必需知道, 那么是值得把额外的"词"添加到名字中的&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;带单位的值&lt;/strong&gt;【带上单位就不用去查说明到底用的是什么单位了, 尤其是时间, 经常搞不清是使用秒还是毫秒】&lt;/p&gt;
@@ -55,16 +77,18 @@
 &lt;p&gt;&lt;strong&gt;附加其他重要属性&lt;/strong&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;password&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;plaintext_password&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;纯文本&amp;quot;&lt;/span&gt;&lt;span class="err"&gt;格式密码&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="err"&gt;需要加密&lt;/span&gt;
 &lt;span class="n"&gt;comment&lt;/span&gt;  &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;unescaped_comment&lt;/span&gt;
-&lt;span class="n"&gt;html&lt;/span&gt;     &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;html_utf8&lt;/span&gt;
+&lt;span class="n"&gt;html&lt;/span&gt;     &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;html_utf8&lt;/span&gt;          &lt;span class="err"&gt;已转换为&lt;/span&gt;&lt;span class="n"&gt;utf8&lt;/span&gt;&lt;span class="err"&gt;的&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;
 &lt;span class="n"&gt;data&lt;/span&gt;     &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;data_urlenc&lt;/span&gt;        &lt;span class="err"&gt;以&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;url方式编码&amp;quot;&lt;/span&gt;&lt;span class="err"&gt;的输入数据&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;p&gt;核心思想: 如果这是一个需要理解的关键信息, 那么就放到名字里&lt;/p&gt;
 &lt;h4&gt;名字应该有多长&lt;/h4&gt;
 &lt;p&gt;&lt;strong&gt;为作用域大的名字采用更长的名字&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;在小的作用域里可以使用短的名字&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;输入长名字————不再是个问题(编辑器的"单词补全"功能)&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;首字母缩略词和缩写&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;程序员常用: eval 代替 evaluation, doc 代替 document, str 代替 string&lt;/p&gt;
 &lt;p&gt;使用项目所特有的缩写词非常糟糕.&lt;/p&gt;
 &lt;p&gt;经验原则是: 团队的新成员是否能理解这个名字的含义? 如果能, 那可能就没有问题.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;丢掉没用的词&lt;/strong&gt;&lt;/p&gt;
@@ -91,6 +115,7 @@
 &lt;h4&gt;给布尔值命名&lt;/h4&gt;
 &lt;p&gt;当为布尔变量或者返回布尔值的函数选择名字时, 要确保返回&lt;code&gt;true&lt;/code&gt;和&lt;code&gt;false&lt;/code&gt;的意义很明确.&lt;/p&gt;
 &lt;p&gt;通常来讲, 加上像&lt;code&gt;is&lt;/code&gt;、&lt;code&gt;has&lt;/code&gt;、&lt;code&gt;can&lt;/code&gt;或&lt;code&gt;should&lt;/code&gt;这样的词, 可以把布尔值变得更明确.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;bool read_password = true;&lt;/code&gt;存在二义性, 修改为&lt;code&gt;bool need_password = true;&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;避免使用反义的词. 如&lt;code&gt;disable_ssl&lt;/code&gt;, 应该用&lt;code&gt;use_ssl&lt;/code&gt;更易读.&lt;/p&gt;
 &lt;h4&gt;与使用者的期望匹配&lt;/h4&gt;
 &lt;p&gt;有些名字之所以会让人误解是因为用户对它们的含义有先入为主的印象, 就算你的本意并非如此. 在这种情况下, 最好放弃这个名字而改用一个不会让人误解的名字.&lt;/p&gt;
@@ -100,6 +125,7 @@
 &lt;p&gt;【应该考虑经验用法, 就是一般这个词是怎么用的】&lt;/p&gt;
 &lt;p&gt;分析每个备选名字, 考虑各种让人误解的可能性.&lt;/p&gt;
 &lt;h3&gt;第4章 审美&lt;/h3&gt;
+&lt;p&gt;核心思想: 如何使用好的留白, 对齐和顺序来让你的代码变得更容易阅读&lt;/p&gt;
 &lt;p&gt;让代码变得更易读有三条原则:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;使用一致的布局, 让读者很快就习惯这种风格.&lt;/li&gt;
@@ -135,6 +161,11 @@
 &lt;h4&gt;记录你的思想&lt;/h4&gt;
 &lt;p&gt;写代码时有过重要的想法&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;加入"导演评论"&lt;/strong&gt;【我喜欢】&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;// 出乎意料的是, 对于这些数据用二叉树比哈希表快40%&lt;/span&gt;
+&lt;span class="c1"&gt;// 哈希运算的代价比左/右比较大得多&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;对于为什么代码写成这样而不是那样的内在理由("指导性批注")&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;为代码中的瑕疵写注释&lt;/strong&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;标记&lt;/span&gt;  &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="err"&gt;通常的意义&lt;/span&gt;
@@ -169,7 +200,7 @@
 &lt;h4&gt;润色粗糙的句子&lt;/h4&gt;
 &lt;h4&gt;精确的描述函数的行为&lt;/h4&gt;
 &lt;p&gt;&lt;code&gt;Return the number of lines in this file&lt;/code&gt;和&lt;code&gt;Count how many newline bytes('\n') are in the file&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;用输入/输出例子来说明特别的情况&lt;/p&gt;
+&lt;p&gt;用输入/输出例子来说明特别的情况【这种注释比较喜欢】&lt;/p&gt;
 &lt;p&gt;例子要精心挑选, 可以说明复杂的情况.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;// Example: ...&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -238,6 +269,18 @@
 &lt;h3&gt;第8章 拆分超长的表达式&lt;/h3&gt;
 &lt;p&gt;把你的超长表达式拆分成更容易理解的小块&lt;/p&gt;
 &lt;h4&gt;用做解释的变量&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sc"&gt;&amp;#39;:&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;root&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+    &lt;span class="err"&gt;…&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;拆分为:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;username&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sc"&gt;&amp;#39;:&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;username&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;root&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+    &lt;span class="err"&gt;…&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;引入一个额外的变量 —— "解释变量", 三个好处:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;把巨大的表达式拆成小段&lt;/li&gt;
@@ -245,6 +288,20 @@
 &lt;li&gt;帮助读者识别代码中的主要概念&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4&gt;总结变量&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;user_id&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;owner_id&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+   &lt;span class="err"&gt;…&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;if条件有太多的变量, 可能需要花点时间来理解. 改为:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;final&lt;/span&gt; &lt;span class="n"&gt;boolean&lt;/span&gt; &lt;span class="n"&gt;user_owns_document&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;user_id&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;owner_id&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;user_owns_document&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="err"&gt;…&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;h4&gt;使用德摩根定理&lt;/h4&gt;
 &lt;ol&gt;
 &lt;li&gt;not (a or b or c) &amp;lt;=&amp;gt; (not a) and (not b) and (not c)&lt;/li&gt;
@@ -378,6 +435,7 @@
 &lt;p&gt;把"易于理解"的思想应用于测试以及大数据结构代码的例子&lt;/p&gt;
 &lt;h3&gt;第14章 测试与可读性&lt;/h3&gt;
 &lt;h4&gt;使测试易于阅读和维护&lt;/h4&gt;
+&lt;p&gt;测试代码的可读性与非测试代码的可读性是同样重要的&lt;/p&gt;
 &lt;p&gt;测试应当具有可读性, 以便其他程序员可以舒服地改变或者增加测试&lt;/p&gt;
 &lt;h4&gt;这段测试什么地方不对&lt;/h4&gt;
 &lt;h4&gt;使这个测试更可读&lt;/h4&gt;
@@ -386,7 +444,7 @@
 &lt;p&gt;大多数测试的基本内容都能精炼成"对于这样的输入/输出情形, 期望有这样的行为/输出"&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;实现定制的"微语言"&lt;/strong&gt;&lt;/p&gt;
 &lt;h4&gt;让错误消息具有可读性&lt;/h4&gt;
-&lt;p&gt;了解显示错误的库&lt;/p&gt;
+&lt;p&gt;了解显示错误的库, 更好版本的assert()&lt;/p&gt;
 &lt;p&gt;手工打造错误消息&lt;/p&gt;
 &lt;p&gt;错误消息应当越有帮助越好&lt;/p&gt;
 &lt;h4&gt;选择好的测试输入&lt;/h4&gt;
@@ -394,12 +452,16 @@
 &lt;p&gt;又简单又能完成工作的测试值更好&lt;/p&gt;
 &lt;p&gt;一个功能的多个测试&lt;/p&gt;
 &lt;h4&gt;为测试函数命名&lt;/h4&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;Test_&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;FunctionName&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="nx"&gt;_&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;Situation&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+&lt;p&gt;应该能反应:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;被测试的类&lt;/li&gt;
+&lt;li&gt;被测试的函数&lt;/li&gt;
+&lt;li&gt;被测试的场景或bug&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;Test_&amp;lt;FunctionName&amp;gt;_&amp;lt;Situation&amp;gt;()&lt;/code&gt;&lt;/p&gt;
 &lt;h4&gt;那个测试有什么地方不对&lt;/h4&gt;
 &lt;h4&gt;对测试较好地开发方式&lt;/h4&gt;
+&lt;p&gt;TDD&lt;/p&gt;
 &lt;p&gt;你会开始把代码写得容易测试！&lt;/p&gt;
 &lt;h4&gt;走得太远&lt;/h4&gt;
 &lt;ul&gt;
@@ -411,11 +473,14 @@
 &lt;h4&gt;问题&lt;/h4&gt;
 &lt;p&gt;跟踪过去一分钟和一个小时里Web服务器传输了多少字节&lt;/p&gt;
 &lt;h4&gt;定义类接口&lt;/h4&gt;
-&lt;h4&gt;尝试1：一个幼稚的方案&lt;/h4&gt;
-&lt;h4&gt;尝试2：传送带设计方案&lt;/h4&gt;
-&lt;h4&gt;尝试3：时间桶设计方案&lt;/h4&gt;
+&lt;p&gt;改进命名 -》 改进注释&lt;/p&gt;
+&lt;h4&gt;尝试1: 一个幼稚的方案&lt;/h4&gt;
+&lt;p&gt;只是提取代码中重复的部分&lt;/p&gt;
+&lt;h4&gt;尝试2: 传送带设计方案&lt;/h4&gt;
+&lt;h4&gt;尝试3: 时间桶设计方案&lt;/h4&gt;
 &lt;h4&gt;比较三种方案&lt;/h4&gt;
-&lt;h2&gt;附录 深入阅读&lt;/h2&gt;
+&lt;p&gt;总得来说就是一步步优化, 可以学习一下这章中使用到的数据结构.&lt;/p&gt;
+&lt;h2&gt;附录 深入阅读【一些书】&lt;/h2&gt;
 &lt;p&gt;关于写高质量代码的书&lt;/p&gt;
 &lt;p&gt;关于各种编程话题的书&lt;/p&gt;
 &lt;p&gt;历史上重要的书目&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Thu, 03 Oct 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-10-03:the-art-of-readable-code.html</guid><category>读书</category><category>Book</category></item><item><title>[笔记]《简约至上——交互式设计四策略》</title><link>http://zoeyyoung.github.io/simple-and-usable.html</link><description>&lt;p&gt;书的主题是提出&lt;strong&gt;四&lt;/strong&gt;个令交互式设计成果最大程序简单易用的策略:&lt;/p&gt;

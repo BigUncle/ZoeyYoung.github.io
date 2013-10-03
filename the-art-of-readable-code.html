@@ -132,14 +132,26 @@
 <h4>可读性基本定理</h4>
 <p>代码的写法应当使别人理解它所需的时间最小化【那个"别人"可能就是6个月后的自己...其实可能不到1周后的...】</p>
 <h4>总是越小越好吗</h4>
+<p>代码短并不是易理解的标准, 2者基本没有关系. 如下面2段功能一致的代码:</p>
+<div class="highlight"><pre><span class="n">assert</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">bucket</span> <span class="o">=</span> <span class="n">FindBucket</span><span class="p">(</span><span class="n">key</span><span class="p">))</span> <span class="o">||</span> <span class="o">!</span><span class="n">bucket</span> <span class="o">-&gt;</span> <span class="n">IsOccupied</span><span class="p">())</span>
+</pre></div>
+
+
+<p>和</p>
+<div class="highlight"><pre><span class="n">bucket</span> <span class="o">=</span> <span class="n">FindBucket</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">bucket</span> <span class="o">!=</span> <span class="n">null</span><span class="p">)</span>
+    <span class="n">assert</span><span class="p">(</span><span class="o">!</span><span class="n">bucket</span> <span class="o">-&gt;</span> <span class="n">IsOccupied</span><span class="p">())</span>
+</pre></div>
+
+
+<p>后面的明显比较容易理解.</p>
 <p>尽管减少代码行数是一个好目标, 但把理解代码所需的时间最小化是一个更好的目标【添加注释有助于理解代码】</p>
 <h4>理解代码所需的时间是否与其他目标有冲突  —— 不会</h4>
 <p>可读性基本定理总是先于本书中任何其他条例或原则.</p>
 <h4>最难的部分</h4>
 <p>要经常想其他人是否会觉得你的代码容易理解, 需要额外的时间</p>
 <h2>第一部分 表面层次的改进</h2>
-<p>(命名、注释以及审美 —— 可以用于代码库每一行的小提示)</p>
-<p>选择好的名字、写好的注释以及把代码整洁地写成更好的格式</p>
+<p>(命名、注释以及审美[代码整洁] —— 可以用于代码库每一行的小提示)</p>
 <h3>第2章 把信息装到名字里(读者仅通过读到名字就可以获得大量信息)</h3>
 <p>把名字当做一条小小的注释, 可以承载很多信息</p>
 <h4>选择专业的词</h4>
@@ -161,14 +173,24 @@
 <p>建议:</p>
 <ul>
 <li>retval这个名字没有包含很多信息. 用一个描述该变量的值的名字来代替它.</li>
-<li>tmp这个名字只应用于短期存在且临时性为其主要存在因素的变量.</li>
-<li>循环迭代器: 索引的第一个字母应该与数据的第一个字符匹配【这是个好建议, 不单纯使用i, j, k】</li>
+<li>tmp这个名字只应用于短期存在且临时性为其主要存在因素的变量.(比如交换变量)</li>
+<li>循环迭代器: 索引的第一个字母应该与数据的第一个字符匹配【这是个好建议, 不单纯使用i,j,k,it,iter】</li>
 <li>对于空泛名字的裁定: 如果你需要使用像tmp、it或者retval这样空泛的名字, 那么你要有个好的理由</li>
 </ul>
 <h4>用具体的名字代替抽象的名字</h4>
 <p>在给变量、函数或者其他元素命名时, 要把它描述的更具体而不是更抽象</p>
+<p>例子: <code>–run_locally</code>(本地运行)</p>
+<p>本意使程序输出更多的调试信息, 但会运行得更慢. 一般用于在本机上测试, 但当运行在服务器上, 性能很重要的时候, 一般不会使用这个标记</p>
+<p>带来的问题:</p>
+<ol>
+<li>新成员不明白真正含义, 可能认为是在本地运行的标记</li>
+<li>偶尔我们需要在远程服务器上查看调试信息, 使用这个看上去比较滑稽</li>
+<li>有时我们在本地运行性能测试, 不需要日志信息, 所以不能使用<code>–run_locally</code></li>
+</ol>
+<p>这种情况下，<code>extra_logging</code>这个意义会更好一点</p>
 <h4>为名字附带更多信息</h4>
 <p>(使用前缀或后缀)</p>
+<p>16进制的id <code>String id</code> -&gt; <code>String hex_id</code></p>
 <p>给变量名带上重要的细节 —— 例如, 在值为毫秒的变量后面加上<code>_ms</code>, 或者在还需要转义的, 未处理的变量前面加上<code>raw_</code></p>
 <p>如果关于一个变量有什么重要事情要读者必需知道, 那么是值得把额外的"词"添加到名字中的</p>
 <p><strong>带单位的值</strong>【带上单位就不用去查说明到底用的是什么单位了, 尤其是时间, 经常搞不清是使用秒还是毫秒】</p>
@@ -179,16 +201,18 @@
 <p><strong>附加其他重要属性</strong></p>
 <div class="highlight"><pre><span class="n">password</span> <span class="o">|</span> <span class="n">plaintext_password</span> <span class="s">&quot;纯文本&quot;</span><span class="err">格式密码</span><span class="p">,</span> <span class="err">需要加密</span>
 <span class="n">comment</span>  <span class="o">|</span> <span class="n">unescaped_comment</span>
-<span class="n">html</span>     <span class="o">|</span> <span class="n">html_utf8</span>
+<span class="n">html</span>     <span class="o">|</span> <span class="n">html_utf8</span>          <span class="err">已转换为</span><span class="n">utf8</span><span class="err">的</span><span class="n">html</span>
 <span class="n">data</span>     <span class="o">|</span> <span class="n">data_urlenc</span>        <span class="err">以</span><span class="s">&quot;url方式编码&quot;</span><span class="err">的输入数据</span>
 </pre></div>
 
 
+<p>核心思想: 如果这是一个需要理解的关键信息, 那么就放到名字里</p>
 <h4>名字应该有多长</h4>
 <p><strong>为作用域大的名字采用更长的名字</strong></p>
 <p><strong>在小的作用域里可以使用短的名字</strong></p>
 <p>输入长名字————不再是个问题(编辑器的"单词补全"功能)</p>
 <p><strong>首字母缩略词和缩写</strong></p>
+<p>程序员常用: eval 代替 evaluation, doc 代替 document, str 代替 string</p>
 <p>使用项目所特有的缩写词非常糟糕.</p>
 <p>经验原则是: 团队的新成员是否能理解这个名字的含义? 如果能, 那可能就没有问题.</p>
 <p><strong>丢掉没用的词</strong></p>
@@ -215,6 +239,7 @@
 <h4>给布尔值命名</h4>
 <p>当为布尔变量或者返回布尔值的函数选择名字时, 要确保返回<code>true</code>和<code>false</code>的意义很明确.</p>
 <p>通常来讲, 加上像<code>is</code>、<code>has</code>、<code>can</code>或<code>should</code>这样的词, 可以把布尔值变得更明确.</p>
+<p><code>bool read_password = true;</code>存在二义性, 修改为<code>bool need_password = true;</code></p>
 <p>避免使用反义的词. 如<code>disable_ssl</code>, 应该用<code>use_ssl</code>更易读.</p>
 <h4>与使用者的期望匹配</h4>
 <p>有些名字之所以会让人误解是因为用户对它们的含义有先入为主的印象, 就算你的本意并非如此. 在这种情况下, 最好放弃这个名字而改用一个不会让人误解的名字.</p>
@@ -224,6 +249,7 @@
 <p>【应该考虑经验用法, 就是一般这个词是怎么用的】</p>
 <p>分析每个备选名字, 考虑各种让人误解的可能性.</p>
 <h3>第4章 审美</h3>
+<p>核心思想: 如何使用好的留白, 对齐和顺序来让你的代码变得更容易阅读</p>
 <p>让代码变得更易读有三条原则:</p>
 <ul>
 <li>使用一致的布局, 让读者很快就习惯这种风格.</li>
@@ -259,6 +285,11 @@
 <h4>记录你的思想</h4>
 <p>写代码时有过重要的想法</p>
 <p><strong>加入"导演评论"</strong>【我喜欢】</p>
+<div class="highlight"><pre><span class="c1">// 出乎意料的是, 对于这些数据用二叉树比哈希表快40%</span>
+<span class="c1">// 哈希运算的代价比左/右比较大得多</span>
+</pre></div>
+
+
 <p>对于为什么代码写成这样而不是那样的内在理由("指导性批注")</p>
 <p><strong>为代码中的瑕疵写注释</strong></p>
 <div class="highlight"><pre><span class="err">标记</span>  <span class="o">|</span> <span class="err">通常的意义</span>
@@ -293,7 +324,7 @@
 <h4>润色粗糙的句子</h4>
 <h4>精确的描述函数的行为</h4>
 <p><code>Return the number of lines in this file</code>和<code>Count how many newline bytes('\n') are in the file</code></p>
-<p>用输入/输出例子来说明特别的情况</p>
+<p>用输入/输出例子来说明特别的情况【这种注释比较喜欢】</p>
 <p>例子要精心挑选, 可以说明复杂的情况.</p>
 <div class="highlight"><pre><span class="c1">// Example: ...</span>
 </pre></div>
@@ -362,6 +393,18 @@
 <h3>第8章 拆分超长的表达式</h3>
 <p>把你的超长表达式拆分成更容易理解的小块</p>
 <h4>用做解释的变量</h4>
+<div class="highlight"><pre><span class="k">if</span> <span class="n">line</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="sc">&#39;:&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="s">&quot;root&quot;</span><span class="o">:</span>
+    <span class="err">…</span>
+</pre></div>
+
+
+<p>拆分为:</p>
+<div class="highlight"><pre><span class="n">username</span> <span class="o">=</span> <span class="n">line</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="sc">&#39;:&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="n">strip</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">username</span> <span class="o">==</span> <span class="s">&quot;root&quot;</span><span class="o">:</span>
+    <span class="err">…</span>
+</pre></div>
+
+
 <p>引入一个额外的变量 —— "解释变量", 三个好处:</p>
 <ul>
 <li>把巨大的表达式拆成小段</li>
@@ -369,6 +412,20 @@
 <li>帮助读者识别代码中的主要概念</li>
 </ul>
 <h4>总结变量</h4>
+<div class="highlight"><pre><span class="k">if</span><span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="n">user_id</span> <span class="o">==</span> <span class="n">document</span><span class="p">.</span><span class="n">owner_id</span><span class="p">)</span> <span class="p">{</span>
+   <span class="err">…</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>if条件有太多的变量, 可能需要花点时间来理解. 改为:</p>
+<div class="highlight"><pre><span class="n">final</span> <span class="n">boolean</span> <span class="n">user_owns_document</span> <span class="o">=</span> <span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="n">user_id</span> <span class="o">==</span> <span class="n">document</span><span class="p">.</span><span class="n">owner_id</span><span class="p">)</span>
+<span class="k">if</span><span class="p">(</span><span class="n">user_owns_document</span><span class="p">)</span> <span class="p">{</span>
+    <span class="err">…</span>
+<span class="p">}</span>
+</pre></div>
+
+
 <h4>使用德摩根定理</h4>
 <ol>
 <li>not (a or b or c) &lt;=&gt; (not a) and (not b) and (not c)</li>
@@ -502,6 +559,7 @@
 <p>把"易于理解"的思想应用于测试以及大数据结构代码的例子</p>
 <h3>第14章 测试与可读性</h3>
 <h4>使测试易于阅读和维护</h4>
+<p>测试代码的可读性与非测试代码的可读性是同样重要的</p>
 <p>测试应当具有可读性, 以便其他程序员可以舒服地改变或者增加测试</p>
 <h4>这段测试什么地方不对</h4>
 <h4>使这个测试更可读</h4>
@@ -510,7 +568,7 @@
 <p>大多数测试的基本内容都能精炼成"对于这样的输入/输出情形, 期望有这样的行为/输出"</p>
 <p><strong>实现定制的"微语言"</strong></p>
 <h4>让错误消息具有可读性</h4>
-<p>了解显示错误的库</p>
+<p>了解显示错误的库, 更好版本的assert()</p>
 <p>手工打造错误消息</p>
 <p>错误消息应当越有帮助越好</p>
 <h4>选择好的测试输入</h4>
@@ -518,12 +576,16 @@
 <p>又简单又能完成工作的测试值更好</p>
 <p>一个功能的多个测试</p>
 <h4>为测试函数命名</h4>
-<div class="highlight"><pre><span class="nx">Test_</span><span class="o">&lt;</span><span class="nx">FunctionName</span><span class="o">&gt;</span><span class="nx">_</span><span class="o">&lt;</span><span class="nx">Situation</span><span class="o">&gt;</span><span class="p">()</span>
-</pre></div>
-
-
+<p>应该能反应:</p>
+<ol>
+<li>被测试的类</li>
+<li>被测试的函数</li>
+<li>被测试的场景或bug</li>
+</ol>
+<p><code>Test_&lt;FunctionName&gt;_&lt;Situation&gt;()</code></p>
 <h4>那个测试有什么地方不对</h4>
 <h4>对测试较好地开发方式</h4>
+<p>TDD</p>
 <p>你会开始把代码写得容易测试！</p>
 <h4>走得太远</h4>
 <ul>
@@ -535,11 +597,14 @@
 <h4>问题</h4>
 <p>跟踪过去一分钟和一个小时里Web服务器传输了多少字节</p>
 <h4>定义类接口</h4>
-<h4>尝试1：一个幼稚的方案</h4>
-<h4>尝试2：传送带设计方案</h4>
-<h4>尝试3：时间桶设计方案</h4>
+<p>改进命名 -》 改进注释</p>
+<h4>尝试1: 一个幼稚的方案</h4>
+<p>只是提取代码中重复的部分</p>
+<h4>尝试2: 传送带设计方案</h4>
+<h4>尝试3: 时间桶设计方案</h4>
 <h4>比较三种方案</h4>
-<h2>附录 深入阅读</h2>
+<p>总得来说就是一步步优化, 可以学习一下这章中使用到的数据结构.</p>
+<h2>附录 深入阅读【一些书】</h2>
 <p>关于写高质量代码的书</p>
 <p>关于各种编程话题的书</p>
 <p>历史上重要的书目</p>
