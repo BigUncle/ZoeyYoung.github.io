@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OK Computer</title><link>http://zoeyyoung.github.io/</link><description>It's better to burn out &lt;br/&gt; than to fade away.</description><atom:link href="http://zoeyyoung.github.io/feeds/du-shu.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 02 Oct 2013 00:00:00 +0800</lastBuildDate><item><title>[笔记] 《编写可读代码的艺术》</title><link>http://zoeyyoung.github.io/the-art-of-readable-code.html</link><description>&lt;p&gt;&lt;a href="http://book.douban.com/subject/10797189/"&gt;《编写可读代码的艺术》&lt;/a&gt;&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OK Computer</title><link>http://zoeyyoung.github.io/</link><description>It's better to burn out &lt;br/&gt; than to fade away.</description><atom:link href="http://zoeyyoung.github.io/feeds/du-shu.rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 03 Oct 2013 00:00:00 +0800</lastBuildDate><item><title>[笔记] 《编写可读代码的艺术》</title><link>http://zoeyyoung.github.io/the-art-of-readable-code.html</link><description>&lt;p&gt;&lt;a href="http://book.douban.com/subject/10797189/"&gt;《编写可读代码的艺术》&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;前言&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;本书旨在帮助你把代码写得更好&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;程序员的日常工作的大部分时间都花在一些"基本"的事情上, 像是给变量命名、写循环以及在函数级别解决问题. 并且这其中很大一部分是阅读和编辑已有的代码.【毕竟很少情况下是独立开发一个系统, 二次开发的情况应该比较多】&lt;/p&gt;
 &lt;h3&gt;第1章 代码应当易于理解&lt;/h3&gt;
 &lt;h4&gt;是什么让代码变得"更好"&lt;/h4&gt;
 &lt;h4&gt;可读性基本定理&lt;/h4&gt;
-&lt;p&gt;代码的写法应当使别人理解它所需的时间最小化【那个"别人"可能就是6个月后的自己...其实可能不到1周就忘得差不多了...】&lt;/p&gt;
+&lt;p&gt;代码的写法应当使别人理解它所需的时间最小化【那个"别人"可能就是6个月后的自己...其实可能不到1周后的...】&lt;/p&gt;
 &lt;h4&gt;总是越小越好吗&lt;/h4&gt;
 &lt;p&gt;尽管减少代码行数是一个好目标, 但把理解代码所需的时间最小化是一个更好的目标【添加注释有助于理解代码】&lt;/p&gt;
 &lt;h4&gt;理解代码所需的时间是否与其他目标有冲突  —— 不会&lt;/h4&gt;
@@ -416,9 +416,9 @@
 &lt;h4&gt;尝试3：时间桶设计方案&lt;/h4&gt;
 &lt;h4&gt;比较三种方案&lt;/h4&gt;
 &lt;h2&gt;附录 深入阅读&lt;/h2&gt;
-&lt;p&gt;关于写高质量代码的书
-关于各种编程话题的书
-历史上重要的书目&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Wed, 02 Oct 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-10-02:the-art-of-readable-code.html</guid><category>读书</category><category>Book</category></item><item><title>[笔记]《简约至上——交互式设计四策略》</title><link>http://zoeyyoung.github.io/simple-and-usable.html</link><description>&lt;p&gt;书的主题是提出&lt;strong&gt;四&lt;/strong&gt;个令交互式设计成果最大程序简单易用的策略:&lt;/p&gt;
+&lt;p&gt;关于写高质量代码的书&lt;/p&gt;
+&lt;p&gt;关于各种编程话题的书&lt;/p&gt;
+&lt;p&gt;历史上重要的书目&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Thu, 03 Oct 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-10-03:the-art-of-readable-code.html</guid><category>读书</category><category>Book</category></item><item><title>[笔记]《简约至上——交互式设计四策略》</title><link>http://zoeyyoung.github.io/simple-and-usable.html</link><description>&lt;p&gt;书的主题是提出&lt;strong&gt;四&lt;/strong&gt;个令交互式设计成果最大程序简单易用的策略:&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;合理删除、分层组织、适时隐藏、巧妙转移&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;全书都是一页文字一页配图，挺多不错的想法&lt;/p&gt;
 &lt;p&gt;================&lt;/p&gt;
