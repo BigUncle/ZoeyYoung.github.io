@@ -22,11 +22,14 @@
 &lt;p&gt;例如, "get"这个词就非常不专业【不能了解是从哪"get"】, 更专业的名字可以是"fetch"或"download", 根据上下文决定&lt;/p&gt;
 &lt;p&gt;"size"很难让人理解到底是什么的"size"【确实, 经常不理解】&lt;/p&gt;
 &lt;p&gt;术语上区分它的职能、&lt;strong&gt;找到更有表现力的词&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;单词  | 更多选择
-send  | deliver、dispatch、announce、distribute、route
-find  | search、extract、locate、recover
-start | launch、create、begin、open
-make  | create、set up、build、generate、compose、add、new&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;单词&lt;/span&gt;  &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="err"&gt;更多选择&lt;/span&gt;
+&lt;span class="n"&gt;send&lt;/span&gt;  &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;deliver&lt;/span&gt;&lt;span class="err"&gt;、&lt;/span&gt;&lt;span class="n"&gt;dispatch&lt;/span&gt;&lt;span class="err"&gt;、&lt;/span&gt;&lt;span class="n"&gt;announce&lt;/span&gt;&lt;span class="err"&gt;、&lt;/span&gt;&lt;span class="n"&gt;distribute&lt;/span&gt;&lt;span class="err"&gt;、&lt;/span&gt;&lt;span class="n"&gt;route&lt;/span&gt;
+&lt;span class="n"&gt;find&lt;/span&gt;  &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="err"&gt;、&lt;/span&gt;&lt;span class="n"&gt;extract&lt;/span&gt;&lt;span class="err"&gt;、&lt;/span&gt;&lt;span class="n"&gt;locate&lt;/span&gt;&lt;span class="err"&gt;、&lt;/span&gt;&lt;span class="n"&gt;recover&lt;/span&gt;
+&lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;launch&lt;/span&gt;&lt;span class="err"&gt;、&lt;/span&gt;&lt;span class="n"&gt;create&lt;/span&gt;&lt;span class="err"&gt;、&lt;/span&gt;&lt;span class="n"&gt;begin&lt;/span&gt;&lt;span class="err"&gt;、&lt;/span&gt;&lt;span class="n"&gt;open&lt;/span&gt;
+&lt;span class="n"&gt;make&lt;/span&gt;  &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;create&lt;/span&gt;&lt;span class="err"&gt;、&lt;/span&gt;&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;up&lt;/span&gt;&lt;span class="err"&gt;、&lt;/span&gt;&lt;span class="n"&gt;build&lt;/span&gt;&lt;span class="err"&gt;、&lt;/span&gt;&lt;span class="n"&gt;generate&lt;/span&gt;&lt;span class="err"&gt;、&lt;/span&gt;&lt;span class="n"&gt;compose&lt;/span&gt;&lt;span class="err"&gt;、&lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="err"&gt;、&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;&lt;strong&gt;清晰和精确比装可爱好&lt;/strong&gt;&lt;/p&gt;
 &lt;h4&gt;避免像tmp和retval("我是一个返回值")这样空泛的名字&lt;/h4&gt;
 &lt;p&gt;(或者说要知道什么时候使用它)&lt;/p&gt;
@@ -134,11 +137,14 @@ make  | create、set up、build、generate、compose、add、new&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;加入"导演评论"&lt;/strong&gt;【我喜欢】&lt;/p&gt;
 &lt;p&gt;对于为什么代码写成这样而不是那样的内在理由("指导性批注")&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;为代码中的瑕疵写注释&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;标记  | 通常的意义
-TODO: | 我还没有处理的事情
-FIXME:| 已知的无法运行的代码
-HACK: | 对一个问题不得不采用的比较粗糙的解决方案
-XXX:  | 危险! 这里有重要的问题&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;标记&lt;/span&gt;  &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="err"&gt;通常的意义&lt;/span&gt;
+&lt;span class="nl"&gt;TODO:&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="err"&gt;我还没有处理的事情&lt;/span&gt;
+&lt;span class="nl"&gt;FIXME:&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="err"&gt;已知的无法运行的代码&lt;/span&gt;
+&lt;span class="nl"&gt;HACK:&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="err"&gt;对一个问题不得不采用的比较粗糙的解决方案&lt;/span&gt;
+&lt;span class="nl"&gt;XXX:&lt;/span&gt;  &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="err"&gt;危险&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt; &lt;span class="err"&gt;这里有重要的问题&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;p&gt;你应该可以随时把代码将来应该如何改动的想法用注释记录下来. 这种注释给读者带来对代码质量和当前状态的宝贵见解, 甚至可能会给他们指出如何改进代码的方向.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;给常量加注释&lt;/strong&gt; —— 【通常很有用. 为什么要定这个值...可不可以修改一类的】&lt;/p&gt;
 &lt;h4&gt;站在读者的角度&lt;/h4&gt;
@@ -179,142 +185,237 @@ XXX:  | 危险! 这里有重要的问题&lt;/p&gt;
 &lt;p&gt;如果你感觉到一段注释太长了, 那么可以看看是不是可以用一个典型的编程场景来描述它&lt;/p&gt;
 &lt;h2&gt;第二部分 简化循环和逻辑&lt;/h2&gt;
 &lt;p&gt;在程序中定义循环、逻辑和变量, 从而使得代码更容易理解.&lt;/p&gt;
-&lt;p&gt;试着最小化代码中的“思维包袱”&lt;/p&gt;
+&lt;p&gt;试着最小化代码中的"思维包袱"&lt;/p&gt;
 &lt;h3&gt;第7章 把控制流变的易读&lt;/h3&gt;
-&lt;p&gt;把条件、循环以及其他对控制流的改变做得越“自然”越好。运用一种方式使读者不用停下来重读你的代码&lt;/p&gt;
-&lt;p&gt;条件语句中参考的顺序
-比较的左侧比较的右侧“被问询的”表达式，它更倾向于不断变化的用来做比较的的表达式，它的值更倾向于常量
-if/else语句块的顺序
-. 首先处理正逻辑而不是负逻辑的情况。例如，用if(debug)而不是if(!debug)。. 先处理掉简单的情况。这种方式可能还会使if和else在屏幕之内都可见. 先处理有趣的或者是可疑的情况&lt;/p&gt;
-&lt;p&gt;?:条件表达式（又名“三目表达式”）
-相对于追求最小化代码行数，一个更好的度量方法是最小化人们理解它所需的时间。&lt;/p&gt;
-&lt;p&gt;默认情况下使用if/else。三目运算符?:只有在最简单的情况下使用&lt;/p&gt;
-&lt;p&gt;避免do/while循环
-我的经验是，do语句是错误和困惑的来源……我倾向于把条件放在“前面我能看到的地方”。其结果是，我倾向避免使用do语句。&lt;/p&gt;
-&lt;p&gt;从函数中提前返回
-臭名昭著的goto
-应该避免使用goto&lt;/p&gt;
-&lt;p&gt;最小化嵌套
-嵌套很深的代码很难以理解&lt;/p&gt;
-&lt;p&gt;当你对代码做改动时，从全新的角度审视它，把它作为一个整体来看待&lt;/p&gt;
-&lt;p&gt;通过提早返回来减少嵌套&lt;/p&gt;
-&lt;p&gt;你能理解执行的流程吗？
-不要让代码中使用“线程”、“信号量”、“异常”、“函数指针和匿名函数”、“虚方法”过多让实现流程变的高级难懂。&lt;/p&gt;
+&lt;p&gt;把条件、循环以及其他对控制流的改变做得越"自然"越好. 运用一种方式使读者不用停下来重读你的代码&lt;/p&gt;
+&lt;h4&gt;条件语句中参考的顺序&lt;/h4&gt;
+&lt;p&gt;在写一个比较时, 把改变的值写在左边并且把更稳定的值写在右边更好一些.&lt;/p&gt;
+&lt;h4&gt;if/else语句块的顺序&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;首先处理正逻辑而不是负逻辑的情况. 例如, 用&lt;code&gt;if(debug)&lt;/code&gt;而不是&lt;code&gt;if(!debug)&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;先处理掉简单的情况. 这种方式可能还会使&lt;code&gt;if&lt;/code&gt;和&lt;code&gt;else&lt;/code&gt;在屏幕之内都可见.&lt;/li&gt;
+&lt;li&gt;先处理有趣的或者是可疑的情况.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;即先处理正确的/简单的/有趣的情况. 有时这些准则会冲突, 但是当不冲突时, 这是要遵循的经验法则.&lt;/p&gt;
+&lt;h4&gt;?:条件表达式(又名“三目运算符"）&lt;/h4&gt;
+&lt;p&gt;相对于追求最小化代码行数, 一个更好的度量方法是最小化人们理解它所需的时间.&lt;/p&gt;
+&lt;p&gt;默认情况下都使用&lt;code&gt;if/else&lt;/code&gt;. 三目运算符&lt;code&gt;?:&lt;/code&gt;只有在最简单的情况下使用&lt;/p&gt;
+&lt;h4&gt;避免do/while循环&lt;/h4&gt;
+&lt;p&gt;C++的开创者Bjarne Stroustrup在《C++程序设计语言》中提到:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;我的经验是, do语句是错误和困惑的来源……我倾向于把条件放在"前面我能看到的地方".其结果是, 我倾向避免使用do语句.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;【所以Python没有do/while语句吗?】&lt;/p&gt;
+&lt;h4&gt;从函数中提前返回&lt;/h4&gt;
+&lt;p&gt;想要单一出口点的一个动机是保证调用函数结尾的清理代码. 但现代的编程语言为这种保证提供了更精细的方式:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;          &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="err"&gt;析构函数&lt;/span&gt;
+&lt;span class="n"&gt;Java&lt;/span&gt;&lt;span class="err"&gt;、&lt;/span&gt;&lt;span class="n"&gt;Python&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;try&lt;/span&gt; &lt;span class="n"&gt;finally&lt;/span&gt;
+&lt;span class="n"&gt;Python&lt;/span&gt;       &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;with&lt;/span&gt;
+&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;           &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;using&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;臭名昭著的goto&lt;/h4&gt;
+&lt;p&gt;除了C语言之外, 其他语言一般不大需要goto. 应该避免使用goto.&lt;/p&gt;
+&lt;h4&gt;最小化嵌套&lt;/h4&gt;
+&lt;p&gt;嵌套很深的代码很难以理解&lt;/p&gt;
+&lt;p&gt;当你对代码做改动时, 从全新的角度审视它, 把它作为一个整体来看待&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;通过提早返回来减少嵌套&lt;/strong&gt; —— 多个&lt;code&gt;return&lt;/code&gt;语句&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;减少循环内的嵌套&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在循环中, 与提早返回类似的技术是&lt;code&gt;continue&lt;/code&gt;(意思是"跳过该项")&lt;/p&gt;
+&lt;p&gt;与&lt;code&gt;if(...) return;&lt;/code&gt;在函数中所扮演的保护语句一样, &lt;code&gt;if(...) continue;&lt;/code&gt;语句是循环中的保护语句.&lt;/p&gt;
+&lt;h4&gt;你能理解执行的流程吗？&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;编程结构&lt;/span&gt;            &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="err"&gt;高层次程序流程是如何变得不清晰的&lt;/span&gt;
+&lt;span class="err"&gt;线程&lt;/span&gt;                &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="err"&gt;不清楚什么时间执行什么代码&lt;/span&gt;
+&lt;span class="err"&gt;信号量&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="err"&gt;中断处理程序&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="err"&gt;有些代码随时都有可能执行&lt;/span&gt;
+&lt;span class="err"&gt;异常&lt;/span&gt;                &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="err"&gt;可能会从多个函数调用中向上冒泡一样地执行&lt;/span&gt;
+&lt;span class="err"&gt;函数指针和匿名函数&lt;/span&gt;  &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="err"&gt;很难知道到底会执行什么代码&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="err"&gt;因为在编译时还没有决定&lt;/span&gt;
+&lt;span class="err"&gt;虚方法&lt;/span&gt;              &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;object&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;virtualMethod&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="err"&gt;可能会调用一人未知子类的代码&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;不要让代码中使用这些结构的比例太高. 会难以理解, 难以跟踪bug.&lt;/p&gt;
 &lt;h3&gt;第8章 拆分超长的表达式&lt;/h3&gt;
 &lt;p&gt;把你的超长表达式拆分成更容易理解的小块&lt;/p&gt;
-&lt;p&gt;用做解释的变量
-临时中间变量&lt;/p&gt;
-&lt;p&gt;总结变量
-使用德摩根定理
-分别取反，转换与/或&lt;/p&gt;
-&lt;p&gt;滥用短路逻辑
-要小心“智能”的小代码————它们往往以后会让别人读起来感到困惑。&lt;/p&gt;
-&lt;p&gt;例子：与复杂的逻辑战斗
-struct Range{    int begin;    int end;    //For example,[0,5) overlaps with [3,8)    bool OverlapsWith(Range other);}
-相反比较&lt;/p&gt;
-&lt;p&gt;bool Range::OverlapsWith(Range other){    if(other.end &amp;lt;= begin) return false;    if(other.begin &amp;gt;= end) return false;    return true;}
-拆分巨大的语句
-提取公用部分放入函数作为总结变量&lt;/p&gt;
-&lt;p&gt;另一个简化表达式的创意方法
-定义宏&lt;/p&gt;
+&lt;h4&gt;用做解释的变量&lt;/h4&gt;
+&lt;p&gt;引入一个额外的变量 —— "解释变量", 三个好处:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;把巨大的表达式拆成小段&lt;/li&gt;
+&lt;li&gt;通过用简单的名字描述子表达式来让代码文档化&lt;/li&gt;
+&lt;li&gt;帮助读者识别代码中的主要概念&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;总结变量&lt;/h4&gt;
+&lt;h4&gt;使用德摩根定理&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;not (a or b or c) &amp;lt;=&amp;gt; (not a) and (not b) and (not c)&lt;/li&gt;
+&lt;li&gt;not (a and b and c) &amp;lt;=&amp;gt; (not a) or (not b) or (not c)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;"分别取反, 转换与/或"&lt;/p&gt;
+&lt;p&gt;例如: &lt;code&gt;if(!(a &amp;amp;&amp;amp; !b))&lt;/code&gt; 变成 &lt;code&gt;if(!a || b)&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;滥用短路逻辑&lt;/h4&gt;
+&lt;p&gt;要小心"智能"的小代码段 —— 它们往往在以后会让别人读起来感到困惑&lt;/p&gt;
+&lt;h4&gt;例子: 与复杂的逻辑战斗&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;Range&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="c1"&gt;//For example, [0,5) overlaps with [3,8)&lt;/span&gt;
+    &lt;span class="kt"&gt;bool&lt;/span&gt; &lt;span class="nf"&gt;OverlapsWith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Range&lt;/span&gt; &lt;span class="n"&gt;other&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;初始方案&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kt"&gt;bool&lt;/span&gt; &lt;span class="n"&gt;Range&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;OverlapsWith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Range&lt;/span&gt; &lt;span class="n"&gt;other&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;begin&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="n"&gt;other&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;begin&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;begin&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;other&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt;
+           &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;other&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;begin&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="n"&gt;other&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt;
+           &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;begin&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="n"&gt;other&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;begin&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="n"&gt;other&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;"反方向"解决问题(考虑目标的对立面)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kt"&gt;bool&lt;/span&gt; &lt;span class="n"&gt;Range&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;OverlapsWith&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Range&lt;/span&gt; &lt;span class="n"&gt;other&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;other&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="n"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;false&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;other&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;begin&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;false&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;true&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;拆分巨大的语句&lt;/h4&gt;
+&lt;p&gt;提取公用部分放入函数作为总结变量&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;帮助避免录入错误&lt;/li&gt;
+&lt;li&gt;进一步缩短行宽度, 使代码更容易快速阅读&lt;/li&gt;
+&lt;li&gt;如果类的名字需要改变, 只需要改一个地方即可&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;另一个简化表达式的创意方法&lt;/h4&gt;
+&lt;p&gt;使用宏&lt;/p&gt;
 &lt;h3&gt;第9章 变量与可读性&lt;/h3&gt;
-&lt;p&gt;变量越多，就越难全部跟踪它们的动向&lt;/p&gt;
-&lt;p&gt;变量的作用域越大，就更需要 跟踪它的动向越久&lt;/p&gt;
-&lt;p&gt;变量改变得越频繁，就越难以跟踪它的当前值&lt;/p&gt;
-&lt;p&gt;减少变量
-没有价值的临时变量&lt;/p&gt;
-&lt;p&gt;减少中间结果&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;变量越多, 就越难全部跟踪它们的动向&lt;/li&gt;
+&lt;li&gt;变量的作用域越大, 就更需要跟踪它的动向越久&lt;/li&gt;
+&lt;li&gt;变量改变得越频繁, 就越难以跟踪它的当前值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;减少变量&lt;/h4&gt;
+&lt;p&gt;没有价值的临时变量&lt;/p&gt;
+&lt;p&gt;减少中间结果【"速战速决"】&lt;/p&gt;
 &lt;p&gt;减少控制流变量&lt;/p&gt;
-&lt;p&gt;缩小变量的作用域
-让你的变量对尽量少的代码行可见。&lt;/p&gt;
-&lt;p&gt;只写一次的变量更好
-操作一个变量的地方越多，越难确定它的当前值。&lt;/p&gt;
-&lt;p&gt;最后的例子&lt;/p&gt;
+&lt;h4&gt;缩小变量的作用域&lt;/h4&gt;
+&lt;p&gt;让你的变量对尽量少的代码行可见【这里面举的例子都比较明显】&lt;/p&gt;
+&lt;h4&gt;只写一次的变量更好&lt;/h4&gt;
+&lt;p&gt;操作一个变量的地方越多, 越难确定它的当前值&lt;/p&gt;
+&lt;h4&gt;最后的例子&lt;/h4&gt;
 &lt;h2&gt;第三部分 重新组织代码&lt;/h2&gt;
 &lt;p&gt;在更高层次上组织大的代码块以及在功能层次上解决问题的方法&lt;/p&gt;
-&lt;p&gt;函数级别对代码做的更大的改动&lt;/p&gt;
 &lt;h3&gt;第10章 抽取不相关的子问题&lt;/h3&gt;
-&lt;p&gt;看看某个函数或者代码块，问问自己：这段代码高层次的目标是什么？&lt;/p&gt;
-&lt;p&gt;对于每一行代码，问一下：它是直接为了目标而工作吗？这段代码高层次的目标是什么呢？&lt;/p&gt;
-&lt;p&gt;如果足够的函数在解决不相关的子问题，抽取代码到独立的函数中。&lt;/p&gt;
+&lt;p&gt;"积极地发现并抽取出不相关的子逻辑"&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;看看某个函数或者代码块, 问问自己: 这段代码高层次的目标是什么?&lt;/li&gt;
+&lt;li&gt;对于每一行代码, 问一下: 它是直接为了目标而工作吗? 这段代码高层次的目标是什么呢?&lt;/li&gt;
+&lt;li&gt;如果足够的行数在解决不相关的子问题, 抽取代码到独立的函数中.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;把一般代码和项目专有的代码分开&lt;/p&gt;
-&lt;p&gt;介绍性的例子：findClosestLocation()
-纯工具代码
-其他多用途代码
-子代码自称一体后改进它变得更容易&lt;/p&gt;
-&lt;p&gt;创建大量通用代码
-通用代码很好，因为“它完全地从项目的其他部分中解耦出来”&lt;/p&gt;
-&lt;p&gt;项目专有的功能
-简化已有接口
-你永远都不要安于使用不理想的接口&lt;/p&gt;
-&lt;p&gt;按需重塑接口
-过犹不及
-别分的太细，多个小函数对可读性不利&lt;/p&gt;
+&lt;h4&gt;介绍性的例子：findClosestLocation()&lt;/h4&gt;
+&lt;h4&gt;纯工具代码&lt;/h4&gt;
+&lt;p&gt;通常来讲, 如果你在想:"我希望我们的库里有XYZ()函数", 那么就写一个! (如果它还不存在的话) 经过一段时间, 你会建立起一组不错的工具代码.&lt;/p&gt;
+&lt;h4&gt;其他多用途代码&lt;/h4&gt;
+&lt;p&gt;子代码自成一体后改进它变得更容易&lt;/p&gt;
+&lt;h4&gt;创建大量通用代码&lt;/h4&gt;
+&lt;p&gt;通用代码很好, 因为"它完全地从项目的其他部分中解耦出来"&lt;/p&gt;
+&lt;p&gt;从你的项目中拆分出越多的独立库越多越好, 因为你代码的其他部分会更小而且更容易思考.&lt;/p&gt;
+&lt;h4&gt;项目专有的功能&lt;/h4&gt;
+&lt;h4&gt;简化已有接口&lt;/h4&gt;
+&lt;p&gt;"你永远都不要安于使用不理想的接口"&lt;/p&gt;
+&lt;h4&gt;按需重塑接口&lt;/h4&gt;
+&lt;h4&gt;过犹不及&lt;/h4&gt;
+&lt;p&gt;别分的太细, 多个小函数对可读性不利&lt;/p&gt;
+&lt;p&gt;"把一般代码和项目专有的代码分开"&lt;/p&gt;
 &lt;h3&gt;第11章 一次只做一件事&lt;/h3&gt;
-&lt;p&gt;应把代码组织得一次制作一件事情。&lt;/p&gt;
-&lt;p&gt;任务可以很小
-投票的例子&lt;/p&gt;
-&lt;p&gt;从对象中抽取值
-更大型的例子&lt;/p&gt;
+&lt;p&gt;应把代码组织得一次只做一件事情&lt;/p&gt;
+&lt;p&gt;流程:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;列出代码所做的所有"任务"&lt;/li&gt;
+&lt;li&gt;尽量把这件任务拆分到不同的函数中, 或者至少是代码中不同的段落中.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4&gt;任务可以很小&lt;/h4&gt;
+&lt;p&gt;投票的例子&lt;/p&gt;
+&lt;h4&gt;从对象中抽取值&lt;/h4&gt;
+&lt;h4&gt;更大型的例子&lt;/h4&gt;
 &lt;h3&gt;第12章 把想法变成代码&lt;/h3&gt;
-&lt;p&gt;如果你不能把一件事情解释给你祖母听的话说明你还没有真正理解它。&lt;/p&gt;
-&lt;p&gt;清楚地描述逻辑
-用自然语言描述逻辑&lt;/p&gt;
-&lt;p&gt;了解函数库是有帮助的
-编写精炼代码的一部分工作是了解你的库提供了什么。&lt;/p&gt;
-&lt;p&gt;把这个方法应用于更大的问题
-自然语言描述逻辑、适当递归调用自身&lt;/p&gt;
+&lt;p&gt;如果你不能把一件事情解释给你祖母听的话说明你还没有真正理解它. —— 阿尔伯特 爱因斯坦&lt;/p&gt;
+&lt;p&gt;当把一件复杂的事向别人解释时, 那些小细节很容易就会让他们迷惑. 把一个想法用"自然语言"解释是个很有价值的能力, 因为这样其他知识没你这么渊博的人才可以理解它. 这需要把一个想法精炼成最重要的概念. 这样做不仅帮助他人理解, 而且也帮助你自己把这个想法想得更清晰.&lt;/p&gt;
+&lt;h4&gt;清楚地描述逻辑&lt;/h4&gt;
+&lt;p&gt;用自然语言描述逻辑&lt;/p&gt;
+&lt;h4&gt;了解函数库是有帮助的&lt;/h4&gt;
+&lt;p&gt;编写精炼代码的一部分工作是了解你的库提供了什么.&lt;/p&gt;
+&lt;h4&gt;把这个方法应用于更大的问题&lt;/h4&gt;
+&lt;p&gt;自然语言描述逻辑、适当递归调用自身&lt;/p&gt;
 &lt;h3&gt;第13章 少些代码&lt;/h3&gt;
 &lt;p&gt;最好读的代码就是没有代码&lt;/p&gt;
-&lt;p&gt;别费神实现那个功能————你不会需要它
-质疑和拆分你的需求
-保持小代码库
-让你的代码库越小，越轻量级越好&lt;/p&gt;
+&lt;h4&gt;别费神实现那个功能 —— 你不会需要它&lt;/h4&gt;
+&lt;h4&gt;质疑和拆分你的需求&lt;/h4&gt;
+&lt;h4&gt;保持小代码库&lt;/h4&gt;
+&lt;p&gt;让你的代码库越小, 越轻量级越好&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;创建越多越好的"工具"代码来减少重复代码&lt;/li&gt;
+&lt;li&gt;减少无用代码或没有用的功能&lt;/li&gt;
+&lt;li&gt;让你的项目保持分开的子项目状态&lt;/li&gt;
+&lt;li&gt;总的来说, 要小心代码的"重量". 让它保持又轻又灵.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;删除没用的代码&lt;/p&gt;
-&lt;p&gt;熟悉你周边的库
-每隔一段时间，花15分钟阅读标准库中的所有函数/模块/类型的名字&lt;/p&gt;
-&lt;p&gt;成熟的库中，每行代码都代表大量的设计、调试、重写、文档、优化和测试。&lt;/p&gt;
-&lt;p&gt;例子：使用Unix工具而非编写代码
-通过以下方法避免编写新代码：&lt;/p&gt;
-&lt;p&gt;. 从项目中消除不必要的功能，不要过度设计。&lt;/p&gt;
-&lt;p&gt;. 重新考虑需求，解决版本最简单的问题，只要能完成工作就行。&lt;/p&gt;
-&lt;p&gt;. 经常性地通读标准库的整个API，保持对它们的熟悉程度。&lt;/p&gt;
+&lt;h4&gt;熟悉你周边的库&lt;/h4&gt;
+&lt;p&gt;每隔一段时间, 花15分钟阅读标准库中的所有函数/模块/类型的名字. 这包括C++标准模板库(STL)、Java API、Python内置的模块以及其他内容.&lt;/p&gt;
+&lt;p&gt;成熟的库中, 每行代码都代表大量的设计、调试、重写、文档、优化和测试&lt;/p&gt;
+&lt;h4&gt;例子: 使用Unix工具而非编写代码&lt;/h4&gt;
+&lt;p&gt;通过以下方法避免编写新代码:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;从项目中消除不必要的功能, 不要过度设计.&lt;/li&gt;
+&lt;li&gt;重新考虑需求, 解决版本最简单的问题, 只要能完成工作就行.&lt;/li&gt;
+&lt;li&gt;经常性地通读标准库的整个API, 保持对它们的熟悉程度.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2&gt;第四部分 精选话题&lt;/h2&gt;
 &lt;p&gt;把"易于理解"的思想应用于测试以及大数据结构代码的例子&lt;/p&gt;
 &lt;h3&gt;第14章 测试与可读性&lt;/h3&gt;
-&lt;p&gt;使测试易于阅读和维护
-测试应当具有可读性，以便其他程序员可以舒服地改变或者增加测试&lt;/p&gt;
-&lt;p&gt;这段测试什么地方不对
-使这个测试更可读
-对使用者隐去不重要的细节，以便更重要的细节会更突出&lt;/p&gt;
-&lt;p&gt;创建最小的测试声明
-大多数测试的基本内容都能精炼成“对于这样的输入/输出情形，期望有这样的行为/输出”&lt;/p&gt;
-&lt;p&gt;实现定制的“微语言”
-让错误消息具有可读性
-了解显示错误的库&lt;/p&gt;
-&lt;p&gt;手工打造错误消息
-错误消息应当越有帮助越好&lt;/p&gt;
-&lt;p&gt;选择好的测试输入
-基本原则是，你应当选择一组最简单的输入，它能完整地使用被测代码&lt;/p&gt;
+&lt;h4&gt;使测试易于阅读和维护&lt;/h4&gt;
+&lt;p&gt;测试应当具有可读性, 以便其他程序员可以舒服地改变或者增加测试&lt;/p&gt;
+&lt;h4&gt;这段测试什么地方不对&lt;/h4&gt;
+&lt;h4&gt;使这个测试更可读&lt;/h4&gt;
+&lt;p&gt;"对使用者隐去不重要的细节, 以便更重要的细节会更突出"&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;创建最小的测试声明&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;大多数测试的基本内容都能精炼成"对于这样的输入/输出情形, 期望有这样的行为/输出"&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;实现定制的"微语言"&lt;/strong&gt;&lt;/p&gt;
+&lt;h4&gt;让错误消息具有可读性&lt;/h4&gt;
+&lt;p&gt;了解显示错误的库&lt;/p&gt;
+&lt;p&gt;手工打造错误消息&lt;/p&gt;
+&lt;p&gt;错误消息应当越有帮助越好&lt;/p&gt;
+&lt;h4&gt;选择好的测试输入&lt;/h4&gt;
+&lt;p&gt;基本原则是, 你应当选择一组最简单的输入, 它能完整地使用被测代码&lt;/p&gt;
 &lt;p&gt;又简单又能完成工作的测试值更好&lt;/p&gt;
-&lt;p&gt;一个功能的多个测试
-为测试函数命名
-Test_&lt;FunctionName&gt;_&lt;Situation&gt;()&lt;/p&gt;
-&lt;p&gt;那个测试有什么地方不对
-对测试较好地开发方式
-你会开始把代码写得容易测试！&lt;/p&gt;
-&lt;p&gt;走得太远
-. 牺牲真实代码的可读性，只是为了使能测试. 着迷于100%的测试覆盖率. 让测试成为产品开发的阻碍&lt;/p&gt;
-&lt;h3&gt;第15章 设计并改进“分钟/小时计数器”&lt;/h3&gt;
-&lt;p&gt;问题
-跟踪过去一分钟和一个小时里Web服务器传输了多少字节。&lt;/p&gt;
-&lt;p&gt;定义类接口
-尝试1：一个幼稚的方案
-尝试2：传送带设计方案
-尝试3：时间桶设计方案
-比较三种方案
-附录
-深入阅读&lt;/p&gt;
+&lt;p&gt;一个功能的多个测试&lt;/p&gt;
+&lt;h4&gt;为测试函数命名&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;Test_&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;FunctionName&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="nx"&gt;_&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;Situation&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;那个测试有什么地方不对&lt;/h4&gt;
+&lt;h4&gt;对测试较好地开发方式&lt;/h4&gt;
+&lt;p&gt;你会开始把代码写得容易测试！&lt;/p&gt;
+&lt;h4&gt;走得太远&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;牺牲真实代码的可读性, 只是为了使能测试.&lt;/li&gt;
+&lt;li&gt;着迷于100%的测试覆盖率.&lt;/li&gt;
+&lt;li&gt;让测试成为产品开发的阻碍.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;第15章 设计并改进"分钟/小时计数器"&lt;/h3&gt;
+&lt;h4&gt;问题&lt;/h4&gt;
+&lt;p&gt;跟踪过去一分钟和一个小时里Web服务器传输了多少字节&lt;/p&gt;
+&lt;h4&gt;定义类接口&lt;/h4&gt;
+&lt;h4&gt;尝试1：一个幼稚的方案&lt;/h4&gt;
+&lt;h4&gt;尝试2：传送带设计方案&lt;/h4&gt;
+&lt;h4&gt;尝试3：时间桶设计方案&lt;/h4&gt;
+&lt;h4&gt;比较三种方案&lt;/h4&gt;
+&lt;h2&gt;附录 深入阅读&lt;/h2&gt;
 &lt;p&gt;关于写高质量代码的书
 关于各种编程话题的书
 历史上重要的书目&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Wed, 02 Oct 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-10-02:the-art-of-readable-code.html</guid><category>读书</category><category>Book</category></item><item><title>[笔记]《简约至上——交互式设计四策略》</title><link>http://zoeyyoung.github.io/simple-and-usable.html</link><description>&lt;p&gt;书的主题是提出&lt;strong&gt;四&lt;/strong&gt;个令交互式设计成果最大程序简单易用的策略:&lt;/p&gt;
