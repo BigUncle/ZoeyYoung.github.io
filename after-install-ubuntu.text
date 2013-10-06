@@ -1,46 +1,33 @@
-Title: [安装配置] 装完 Ubuntu 后
-Date: 2013-08-05
-Tags: Ubuntu,Linux,安装
+Title: [安装配置] MySQL
+Date: 2013-10-06
+Tags: Ubuntu,Linux,安装,MySQL
 Slug: after-install-ubuntu
 Author: Zoey Young
-Summary: 装完 Ubuntu 后
+Summary: MySQL
 
-### 升级系统
+安装: `sudo apt-get install mysql-server`
 
-sudo apt-get update && sudo apt-get upgrade
+额外的一些包也会提示装上.
 
-### 要安装的
+安装过程会给**root**用户创建密码
 
-[ubuntu-tweak](http://ubuntu-tweak.com/source/ubuntu-tweak-stable/)
+作为测试时我会用**123456**(有时会忘了...)
 
-    :::bat
-    sudo add-apt-repository ppa:tualatrix/ppa
-    sudo apt-get update
-    sudo apt-get install ubuntu-tweak
+装好后访问: `mysql -uroot -p123456`
 
-新立得: synaptic
+就可以在命令行中操作数据库
 
-    sudo apt-get install synaptic
+安装使用**phpmyadmin**: `sudo apt-get install phpmyadmin`
 
-fcitx、fcitx-table-wubi、wps。
+添加链接:
 
-其中wps是wps官网下载，然后dpkg安装；ubuntu-tweak是手动添加源，再apt安装；其他则用命令来完成：sudo apt-get install synaptic fcitx fcitx-table-wubi。
+    ~$ cd /var/www/
+    /var/www$ sudo ln -s /usr/share/phpmyadmin/
 
-没装搜狗软件法是因为我基本不用拼音。
+打开页面: http://127.0.0.1/phpmyadmin/
 
-### 要卸载的
+用户名: root 密码: 123456
 
-libreoffice、thunderbird、ibus、Firefox Ubufox扩展、桌面共享、Empathy、扫描易、蓝牙、ubuntu one、各种辅助功能等。
+导出数据库: `~$ mysqldump -uroot -p123456 test>test.sql`
 
-4、彻底清除无用的软件包
-
-在新立得中，搜索libreoffice、bluz、ubuntu one相关包，能卸载的全部卸载。
-
-打开ubuntu tweak，清理垃圾文件。
-
-### 开发相关
-
-sudo apt-get install git
-
-### 其他
-
+导入数据库: `~$ mysql -uroot -p123456 test<test.sql`

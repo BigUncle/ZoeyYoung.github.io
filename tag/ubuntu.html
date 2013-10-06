@@ -40,13 +40,13 @@
             <a href="http://zoeyyoung.github.io/category/cc.html ">C&C++</a>
           </li>
                     <li >
+            <a href="http://zoeyyoung.github.io/category/java.html ">Java</a>
+          </li>
+                    <li >
             <a href="http://zoeyyoung.github.io/category/linux.html ">Linux</a>
           </li>
                     <li >
             <a href="http://zoeyyoung.github.io/category/nlp.html ">NLP</a>
-          </li>
-                    <li >
-            <a href="http://zoeyyoung.github.io/category/nosql.html ">NoSQL</a>
           </li>
                     <li >
             <a href="http://zoeyyoung.github.io/category/python.html ">Python</a>
@@ -74,6 +74,9 @@
           </li>
                     <li >
             <a href="http://zoeyyoung.github.io/category/shou-cang.html ">收藏</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/shu-ju-ku.html ">数据库</a>
           </li>
                     <li >
             <a href="http://zoeyyoung.github.io/category/suan-fa-shu-ju-jie-gou.html ">算法&数据结构</a>
@@ -110,6 +113,42 @@
       <div class="main-content col-md-8">
           
     <div>
+        <a href="http://zoeyyoung.github.io/after-install-ubuntu.html"><h1>[安装配置] MySQL</h1></a>
+        <div class="article-metadata">
+<time class="published" datetime="2013 十月 06 周日">2013 十月 06 周日 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/shu-ju-ku.html">数据库</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/ubuntu.html">Ubuntu</a>
+        <a href="http://zoeyyoung.github.io/tag/linux.html">Linux</a>
+        <a href="http://zoeyyoung.github.io/tag/an-zhuang.html">安装</a>
+        <a href="http://zoeyyoung.github.io/tag/mysql.html">MySQL</a>
+    </span>
+<!-- <p></p> -->
+</div>        <p>安装: <code>sudo apt-get install mysql-server</code></p>
+<p>额外的一些包也会提示装上.</p>
+<p>安装过程会给<strong>root</strong>用户创建密码</p>
+<p>作为测试时我会用<strong>123456</strong>(有时会忘了...)</p>
+<p>装好后访问: <code>mysql -uroot -p123456</code></p>
+<p>就可以在命令行中操作数据库</p>
+<p>安装使用<strong>phpmyadmin</strong>: <code>sudo apt-get install phpmyadmin</code></p>
+<p>添加链接:</p>
+<div class="highlight"><pre><span class="o">~</span><span class="err">$</span> <span class="n">cd</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="err">$</span> <span class="n">sudo</span> <span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">phpmyadmin</span><span class="o">/</span>
+</pre></div>
+
+
+<p>打开页面: http://127.0.0.1/phpmyadmin/</p>
+<p>用户名: root 密码: 123456</p>
+<p>导出数据库: <code>~$ mysqldump -uroot -p123456 test&gt;test.sql</code></p>
+<p>导入数据库: <code>~$ mysql -uroot -p123456 test&lt;test.sql</code></p>
+        <hr />
+    </div>
+         <div>
         <a href="http://zoeyyoung.github.io/setup-c-env.html"><h1>[安装配置] C/C++环境</h1></a>
         <div class="article-metadata">
 <time class="published" datetime="2013 九月 24 周二">2013 九月 24 周二 </time>
@@ -125,8 +164,7 @@
         <a href="http://zoeyyoung.github.io/tag/ubuntu.html">Ubuntu</a>
     </span>
 <!-- <p></p> -->
-</div>        <p>Ubuntu下使用eclipse开发:</p>
-<p>sudo apt-get install eclipse eclipse-cdt</p>
+</div>        <p>C/C++环境</p>
         <hr />
     </div>
          <div>

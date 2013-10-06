@@ -1,5 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OK Computer</title><link>http://zoeyyoung.github.io/</link><description>It's better to burn out &lt;br/&gt; than to fade away.</description><atom:link href="http://zoeyyoung.github.io/feeds/all.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 05 Oct 2013 00:00:00 +0800</lastBuildDate><item><title>[笔记]《清醒思考的艺术: 你最好让别人去犯的52种思维错误》</title><link>http://zoeyyoung.github.io/die-kunst-des-klaren-denkens.html</link><description>&lt;p&gt;列个目录&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OK Computer</title><link>http://zoeyyoung.github.io/</link><description>It's better to burn out &lt;br/&gt; than to fade away.</description><atom:link href="http://zoeyyoung.github.io/feeds/all.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 06 Oct 2013 00:00:00 +0800</lastBuildDate><item><title>[安装配置] MySQL</title><link>http://zoeyyoung.github.io/after-install-ubuntu.html</link><description>&lt;p&gt;安装: &lt;code&gt;sudo apt-get install mysql-server&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;额外的一些包也会提示装上.&lt;/p&gt;
+&lt;p&gt;安装过程会给&lt;strong&gt;root&lt;/strong&gt;用户创建密码&lt;/p&gt;
+&lt;p&gt;作为测试时我会用&lt;strong&gt;123456&lt;/strong&gt;(有时会忘了...)&lt;/p&gt;
+&lt;p&gt;装好后访问: &lt;code&gt;mysql -uroot -p123456&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;就可以在命令行中操作数据库&lt;/p&gt;
+&lt;p&gt;安装使用&lt;strong&gt;phpmyadmin&lt;/strong&gt;: &lt;code&gt;sudo apt-get install phpmyadmin&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;添加链接:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;ln&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;share&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;phpmyadmin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;打开页面: http://127.0.0.1/phpmyadmin/&lt;/p&gt;
+&lt;p&gt;用户名: root 密码: 123456&lt;/p&gt;
+&lt;p&gt;导出数据库: &lt;code&gt;~$ mysqldump -uroot -p123456 test&amp;gt;test.sql&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;导入数据库: &lt;code&gt;~$ mysql -uroot -p123456 test&amp;lt;test.sql&lt;/code&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sun, 06 Oct 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-10-06:after-install-ubuntu.html</guid><category>Ubuntu</category><category>Linux</category><category>安装</category><category>MySQL</category></item><item><title>[Java基础] Top 10 questions of Java Strings</title><link>http://zoeyyoung.github.io/top-10-faqs-of-java-strings.html</link><description>&lt;p&gt;虽然直接看原文就可以了...不过适合挺常用的...因此收藏一下.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.programcreek.com/2013/09/top-10-faqs-of-java-strings/"&gt;原文&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;1、How to compare strings? Use &lt;code&gt;==&lt;/code&gt; or use &lt;code&gt;equals()&lt;/code&gt;?&lt;/p&gt;
+&lt;p&gt;In brief, &lt;code&gt;==&lt;/code&gt; tests if references are equal and &lt;code&gt;equals()&lt;/code&gt; tests if values are equal. Unless you want to check if two strings are the same object, you should always use equals().&lt;/p&gt;
+&lt;p&gt;【考虑是比较引用还是比较值】&lt;/p&gt;
+&lt;p&gt;It would be better if you know the concept of &lt;a href="http://www.programcreek.com/2013/04/why-string-is-immutable-in-java/"&gt;string interning&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;另一个问题 —— &lt;strong&gt;Why string is immutable in Java ?&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Requirement of String Pool&lt;/li&gt;
+&lt;li&gt;Allow String to Cache its Hashcode【保证相同字符串的Hashcode是一样的】&lt;/li&gt;
+&lt;li&gt;Security&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;【&lt;code&gt;==&lt;/code&gt;只是单纯比较是不是同一个对象, 而&lt;code&gt;equals()&lt;/code&gt;才是比较对象的值. 因此有时需要为对象override &lt;code&gt;equals()&lt;/code&gt;方法.】&lt;/p&gt;
+&lt;p&gt;2、Why is &lt;code&gt;char[]&lt;/code&gt; preferred over String for security sensitive information?&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.programcreek.com/2009/02/diagram-to-show-java-strings-immutability/"&gt;Strings are immutable&lt;/a&gt;, which means once they are created, they will stay unchanged until Garbage Collector kicks in. With an array, you can explicitly change its elements. In this way, security sensitive information(e.g. password) will not be present anywhere in the system.&lt;/p&gt;
+&lt;p&gt;3、Can we use string for switch statement?&lt;/p&gt;
+&lt;p&gt;Yes to version 7. From &lt;a href="http://openjdk.java.net/projects/jdk7/features/"&gt;JDK 7&lt;/a&gt;, we can use string as switch condition. Before version 6, we can not use string as switch condition.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;// java 7 only!&lt;/span&gt;
+&lt;span class="k"&gt;switch&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;toLowerCase&lt;/span&gt;&lt;span class="o"&gt;())&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;a&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+        &lt;span class="k"&gt;break&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;b&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+        &lt;span class="k"&gt;break&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;【一般情况是整型或能转成整型的...】&lt;/p&gt;
+&lt;p&gt;4、How to convert string to int?&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Integer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;parseInt&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;10&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Simple, but so frequently used and sometimes ignored.【确实常用】&lt;/p&gt;
+&lt;p&gt;5、How to split a string with white space characters?&lt;/p&gt;
+&lt;p&gt;We can simple do split using regular expression. &lt;code&gt;\s&lt;/code&gt; stands for white space characters such as " ", "\t", "\r", "\n".&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;[]&lt;/span&gt; &lt;span class="n"&gt;strArray&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;aString&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;split&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;\\s+&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;6、What &lt;code&gt;substring()&lt;/code&gt; method really does?【注意JDK6与JDK7实现上的区别】&lt;/p&gt;
+&lt;p&gt;In &lt;strong&gt;JDK 6&lt;/strong&gt;, the &lt;code&gt;substring()&lt;/code&gt; method gives a window to an array of chars which represents the existing String, but do not create a new one. To create a new string represented by a new char array, you can do add an empty string like the following:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;substring&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This will create a new char array that represents the new string. The above approach sometimes can make your code faster, because Garbage Collector can collect the unused large string and keep only the sub string.&lt;/p&gt;
+&lt;p&gt;In Oracle &lt;strong&gt;JDK 7&lt;/strong&gt;, &lt;code&gt;substring()&lt;/code&gt; &lt;strong&gt;creates a new char array&lt;/strong&gt;, not uses the existing one. Check out the diagram for showing &lt;a href="http://www.programcreek.com/2013/09/the-substring-method-in-jdk-6-and-jdk-7/"&gt;substring() difference between JDK 6 and JDK 7&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;7、String vs StringBuilder vs StringBuffer&lt;/p&gt;
+&lt;p&gt;String vs StringBuilder: &lt;strong&gt;StringBuilder is mutable【可变的】&lt;/strong&gt;, which means you can modify it after its creation.&lt;/p&gt;
+&lt;p&gt;StringBuilder vs StringBuffer: &lt;strong&gt;StringBuffer is synchronized【同步的】&lt;/strong&gt;, which means it is thread-safe【线程安全】 but slower than StringBuilder.&lt;/p&gt;
+&lt;p&gt;【HashTable与HashMap的区别, HashTable是同步的, 线程安全的】&lt;/p&gt;
+&lt;p&gt;8、How to repeat a string?&lt;/p&gt;
+&lt;p&gt;In Python, we can just multiple a number to repeat a string【在Python中&lt;code&gt;"abcd"*3&lt;/code&gt;】. In Java, we can use the &lt;code&gt;repeat()&lt;/code&gt; method of StringUtils from Apache Commons Lang package.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;str&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;abcd&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;repeated&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;StringUtils&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;repeat&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="c1"&gt;//abcdabcdabcd&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;9、How to convert string to date?&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;str&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Sep 17, 2013&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;Date&lt;/span&gt; &lt;span class="n"&gt;date&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;SimpleDateFormat&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;MMMM d, yy&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Locale&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;ENGLISH&lt;/span&gt;&lt;span class="o"&gt;).&lt;/span&gt;&lt;span class="na"&gt;parse&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;str&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;date&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="c1"&gt;//Tue Sep 17 00:00:00 EDT 2013&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;10、How to count # of occurrences of a character in a string?&lt;/p&gt;
+&lt;p&gt;Use StringUtils from apache commons lang.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;StringUtils&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;countMatches&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;11112222&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;1&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;【Python中, &lt;code&gt;"11112222".count("1")&lt;/code&gt;】&lt;/p&gt;
+&lt;p&gt;One more&lt;/p&gt;
+&lt;p&gt;Do you know &lt;a href="http://www.programcreek.com/2011/04/a-method-to-detect-if-string-contains-1-uppercase-letter-in-java/"&gt;How to detect if a string contains only uppercase letter?&lt;/a&gt;【这篇感觉没啥意义】&lt;/p&gt;
+&lt;p&gt;Use &lt;code&gt;java.lang.Character#isUpperCase()&lt;/code&gt; and &lt;code&gt;#isLetter()&lt;/code&gt; instead of the magic numbers.&lt;/p&gt;
+&lt;p&gt;【最优的一般是使用内置的方法】&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sun, 06 Oct 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-10-06:top-10-faqs-of-java-strings.html</guid><category>笔试</category><category>面试</category><category>Java</category><category>基础</category><category>编程</category></item><item><title>[安装配置] MySQL</title><link>http://zoeyyoung.github.io/after-install-ubuntu.html</link><description>&lt;p&gt;安装: &lt;code&gt;sudo apt-get install mysql-server&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;额外的一些包也会提示装上.&lt;/p&gt;
+&lt;p&gt;安装过程会给&lt;strong&gt;root&lt;/strong&gt;用户创建密码&lt;/p&gt;
+&lt;p&gt;作为测试时我会用&lt;strong&gt;123456&lt;/strong&gt;(有时会忘了...)&lt;/p&gt;
+&lt;p&gt;装好后访问: &lt;code&gt;mysql -uroot -p123456&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;就可以在命令行中操作数据库&lt;/p&gt;
+&lt;p&gt;安装使用&lt;strong&gt;phpmyadmin&lt;/strong&gt;: &lt;code&gt;sudo apt-get install phpmyadmin&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;添加链接:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;ln&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;share&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;phpmyadmin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;打开页面: http://127.0.0.1/phpmyadmin/&lt;/p&gt;
+&lt;p&gt;用户名: root 密码: 123456&lt;/p&gt;
+&lt;p&gt;导出数据库: &lt;code&gt;~$ mysqldump -uroot -p123456 test&amp;gt;test.sql&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;导入数据库: &lt;code&gt;~$ mysql -uroot -p123456 test&amp;lt;test.sql&lt;/code&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sun, 06 Oct 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-10-06:after-install-ubuntu.html</guid><category>Ubuntu</category><category>Linux</category><category>安装</category><category>MySQL</category></item><item><title>[笔记]《清醒思考的艺术: 你最好让别人去犯的52种思维错误》</title><link>http://zoeyyoung.github.io/die-kunst-des-klaren-denkens.html</link><description>&lt;p&gt;列个目录&lt;/p&gt;
 &lt;p&gt;作者: (德)罗尔夫•多贝里&lt;/p&gt;
 &lt;p&gt;自序&lt;/p&gt;
 &lt;p&gt;1 幸存偏误: 为什么你该去逛逛墓地【这里的墓地不是指真的墓地】&lt;/p&gt;
@@ -34,6 +147,7 @@
 &lt;p&gt;要有意识地寻找反驳证据.&lt;/p&gt;
 &lt;p&gt;8 确认偏误之二: 干掉你的宠儿&lt;/p&gt;
 &lt;p&gt;【联想到辩论赛, 辩论双方都要找支持自己这边观点的论证, 无视支持对方观点的论证.】&lt;/p&gt;
+&lt;p&gt;【联想到找对象, 喜欢一个人的时候就只看到优点而忽视缺点, 不喜欢一个人的时候就相反.】&lt;/p&gt;
 &lt;p&gt;我们不喜欢我们的信念被攻击得千疮百孔.&lt;/p&gt;
 &lt;p&gt;结论: 请你与确认偏误作斗争. 请你写下你的信条——有关世界观、投资、婚姻、健康预防措施、节食、成功策略的, 然后寻找反驳证据. 干掉自己最心爱的理论, 这是一桩艰苦的工作, 但作为聪明人士, 你不会躲避的.&lt;/p&gt;
 &lt;p&gt;9 权威偏误: 你为什么该藐视权威&lt;/p&gt;
@@ -52,6 +166,7 @@
 &lt;p&gt;怎么区分? 真正有知识的人知道他们知道什么, 也知道他们不知道什么. 这类人一旦来到他的"能力范围"之外, 他要么什么也不说, 要么就说"我不知道". 他这么说时不会觉得难为情, 甚至还会带着一定的骄傲. 而从"司机们"那儿, 你别的什么话都能听到, 就是听不到这一句.&lt;/p&gt;
 &lt;p&gt;16 控制错觉: 你实际控制的少于你以为的&lt;/p&gt;
 &lt;p&gt;17 激励过敏倾向: 你为什么不该按实际开销付钱给你的律师&lt;/p&gt;
+&lt;p&gt;【这里不是说付少了. 而是说按实际开销会导致律师乱用钱, 不需要用的也用上.】&lt;/p&gt;
 &lt;p&gt;18 回归均值: 医生、顾问、教练及心理治疗师的作用令人怀疑&lt;/p&gt;
 &lt;p&gt;【就是说起伏是正常的...不一定是因为做了什么导致的】&lt;/p&gt;
 &lt;p&gt;19 公地悲剧: 为什么理性的人不去诉诸理性&lt;/p&gt;
@@ -79,16 +194,34 @@
 &lt;p&gt;结论: 如果你是一个智囊团的成员, 无论何时, 你都要讲出你的看法——哪怕这看法不是很中听. 你要仔细考虑没有讲出的意见, 必要时要甘冒被隔离在温暖团体之外的风险. 如果你领导着一支团队, 请你指定某人唱反调. 他将不是团队里最受欢迎的人, 但也许是最重要的人.&lt;/p&gt;
 &lt;p&gt;26 忽视概率偏误: 累计奖金为什么会越来越多&lt;/p&gt;
 &lt;p&gt;27 零风险偏误: 你为什么会为零风险支付过多&lt;/p&gt;
+&lt;p&gt;无论是中了百万彩票还是半身瘫痪都不会长期改变你的满意程序. 不管发生什么事, 快乐的人照样快乐, 不快乐的人依旧不快乐.&lt;/p&gt;
 &lt;p&gt;28 稀少性谬误: 为什么饼干越少越好吃&lt;/p&gt;
+&lt;p&gt;【物以稀为贵, 但其实稀的东西不一定是好的】&lt;/p&gt;
 &lt;p&gt;29 忽视基本概率: 当你在怀俄明州听到马蹄声、见到黑白条纹时...&lt;/p&gt;
 &lt;p&gt;30 赌徒谬误: 为什么没有一种平衡命运的力量&lt;/p&gt;
+&lt;p&gt;【概率里面的独立事件. 与回归均值不是同类事件.】&lt;/p&gt;
 &lt;p&gt;31 锚定效应: 数字轮盘如何搞得我们晕头转向&lt;/p&gt;
+&lt;p&gt;【买东西的时候容易上当】&lt;/p&gt;
 &lt;p&gt;32 归纳法: 如何把别人的钱弄进自己的口袋&lt;/p&gt;
+&lt;p&gt;一次例外就足以彻底否定一条经过上千次证明的理论. 【反证法?】&lt;/p&gt;
+&lt;p&gt;"除了死亡和税收, 没有什么是肯定的."&lt;/p&gt;
+&lt;p&gt;以我们存在的事实来说明将来我们也会存在, 这是一个严重的思维错误 —— 估计是最严重的.&lt;/p&gt;
 &lt;p&gt;33 规避损失: 为什么凶恶的面孔比友善的面孔更容易引起我们注意&lt;/p&gt;
+&lt;p&gt;如果你想说服某人, 请不要用可能的收益做论据, 而要说他这样做可以规避一种可能的损失.&lt;/p&gt;
+&lt;p&gt;人们害怕失去某种东西的想法要比获得某种同等价值的东西的想法强烈.&lt;/p&gt;
+&lt;p&gt;在几乎所有公司的所有情况下, 风险都大于可能的收益.&lt;/p&gt;
+&lt;p&gt;恶比善更有影响力. 我们对不利东西的反应要比对有利东西的反应敏感.&lt;/p&gt;
 &lt;p&gt;34 社会性懈怠: 团队为什么会使人懒惰&lt;/p&gt;
+&lt;p&gt;责任扩散效应.&lt;/p&gt;
+&lt;p&gt;团队有甘冒比个人更大风险的倾向 —— 风险分摊&lt;/p&gt;
+&lt;p&gt;在涉及巨额资金的公司和养老保险机构的战略团队里, 或在团队决定是否使用核武器的军队里, 风险分摊的想法都是危险的.&lt;/p&gt;
+&lt;p&gt;结论: 人们在团队里的行为不同于单独一人的时候(否则就不存在团队了). 可以通过尽可能彰显个人效率, 来缓和团队的弊病.&lt;/p&gt;
 &lt;p&gt;35 指数增长: 一张对折的纸为什么会超出我们的想象&lt;/p&gt;
+&lt;p&gt;结论: 当事关增长率时, 请不要相信你的感觉. 你的感觉是没有用的 —— 请你承认这一点. 真正有助于你的是计算器, 或者, 在增长率小时, 就使用计算倍增时间的诀窍.&lt;/p&gt;
 &lt;p&gt;36 赢家的诅咒: 你愿意为100欧元支付多少钱?&lt;/p&gt;
 &lt;p&gt;37 基本特征谬误: 千万别问一位作家他的小说是不是自传&lt;/p&gt;
+&lt;p&gt;系统性地高估人的影响, 在解释某些东西时低估情境因素.&lt;/p&gt;
+&lt;p&gt;结论: 不管戏剧多么让我们着迷, 舞台上的人绝非孤立的, 他们的表演离不开一个个情境. 你若真想理解正在表演的戏剧, 就请你不要只注重表演者, 而是多关注他们的表演或舞蹈.&lt;/p&gt;
 &lt;p&gt;38 错误的因果关系: 你为什么不该相信仙鹤送子&lt;/p&gt;
 &lt;p&gt;39 光环效应: 长相好的人为什么容易事业有成&lt;/p&gt;
 &lt;p&gt;40 替代途径: 恭喜你赢了俄罗斯轮盘赌&lt;/p&gt;
@@ -103,7 +236,10 @@
 &lt;p&gt;49 联想偏误: 为什么经验有时让人变蠢&lt;/p&gt;
 &lt;p&gt;50 新手的运气: 假如开始时一切顺利, 请务必多加小心&lt;/p&gt;
 &lt;p&gt;51 认知失调: 你如何撒点小谎, 让自己感觉好一些&lt;/p&gt;
-&lt;p&gt;52 双曲贴现: 及时行乐——但请只限于星期天&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sat, 05 Oct 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-10-05:die-kunst-des-klaren-denkens.html</guid><category>读书</category><category>Book</category></item><item><title>[笔记] 《编写可读代码的艺术》</title><link>http://zoeyyoung.github.io/the-art-of-readable-code.html</link><description>&lt;p&gt;&lt;a href="http://book.douban.com/subject/10797189/"&gt;《编写可读代码的艺术》&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;【吃不到葡萄说葡萄酸】&lt;/p&gt;
+&lt;p&gt;52 双曲贴现: 及时行乐——但请只限于星期天&lt;/p&gt;
+&lt;p&gt;我们年纪越大, 建立的自我控制越多, 我们就越容易成功地延迟满足.&lt;/p&gt;
+&lt;p&gt;在群体里容易按照他人的想法生活, 在孤独中容易按照自己的想法生活. 但值得记住的只是那些在群体中保持独立的人. —— 爱默生&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sat, 05 Oct 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-10-05:die-kunst-des-klaren-denkens.html</guid><category>读书</category><category>Book</category></item><item><title>[笔记] 《编写可读代码的艺术》</title><link>http://zoeyyoung.github.io/the-art-of-readable-code.html</link><description>&lt;p&gt;&lt;a href="http://book.douban.com/subject/10797189/"&gt;《编写可读代码的艺术》&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;前言&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;本书旨在帮助你把代码写得更好&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;程序员的日常工作的大部分时间都花在一些"基本"的事情上, 像是给变量命名、写循环以及在函数级别解决问题. 并且这其中很大一部分是阅读和编辑已有的代码.【毕竟很少情况下是独立开发一个系统, 二次开发的情况应该比较多】&lt;/p&gt;
@@ -1652,7 +1788,13 @@
 &lt;p&gt;str5与str6为字符指针, 而非字符数组, 先请求的是一个指针的地址(初始化为随机地址), 然后赋值时它们都指向常量字符串"test", "test"存储在&lt;strong&gt;静态存储区&lt;/strong&gt;. 即str5和str6为串"test"的地址, 所以&lt;code&gt;str5==str6&lt;/code&gt;. 二者相等, 输出&lt;code&gt;true&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;boolalpha 用符号形式表示真假.&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://stackoverflow.com/questions/19088153/addresses-of-two-pointers-are-same"&gt;StackOverflow: Addresses of two pointers are same&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;这里面提到跟编译器的实现相关...&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 24 Sep 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-09-24:char-pointer.html</guid><category>笔试</category><category>面试</category><category>C++</category><category>基础</category><category>编程</category></item><item><title>[C++基础] new 和 delete</title><link>http://zoeyyoung.github.io/new-delete.html</link><description>&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include &amp;lt;iostream&amp;gt;&lt;/span&gt;
+&lt;p&gt;这里面提到跟编译器的实现相关...&lt;/p&gt;
+&lt;p&gt;Java的String也差不多:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;s1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;test&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;s2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;test&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;out&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s1&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="n"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="c1"&gt;// true&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 24 Sep 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-09-24:char-pointer.html</guid><category>笔试</category><category>面试</category><category>C++</category><category>基础</category><category>编程</category></item><item><title>[C++基础] new 和 delete</title><link>http://zoeyyoung.github.io/new-delete.html</link><description>&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include &amp;lt;iostream&amp;gt;&lt;/span&gt;
 &lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="k"&gt;namespace&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 
 &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Base_J&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
@@ -3942,7 +4084,8 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;总结自: &lt;a href="http://stackoverflow.com/questions/5320871/in-list-of-dicts-find-min-value-of-a-common-dict-field"&gt;In List of Dicts, find min() value of a common Dict field&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 06 Aug 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-08-06:python-dict-list-min-max-value.html</guid><category>Python</category></item><item><title>[安装配置] 装完 Ubuntu 后</title><link>http://zoeyyoung.github.io/after-install-ubuntu.html</link><description>&lt;h3&gt;升级系统&lt;/h3&gt;
+&lt;p&gt;总结自: &lt;a href="http://stackoverflow.com/questions/5320871/in-list-of-dicts-find-min-value-of-a-common-dict-field"&gt;In List of Dicts, find min() value of a common Dict field&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 06 Aug 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-08-06:python-dict-list-min-max-value.html</guid><category>Python</category></item><item><title>[安装配置] 装完 Ubuntu 后</title><link>http://zoeyyoung.github.io/after-install-ubuntu.html</link><description>&lt;p&gt;&lt;a href="http://www.ubuntu.org.cn/"&gt;官网&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;升级系统&lt;/h3&gt;
 &lt;p&gt;sudo apt-get update &amp;amp;&amp;amp; sudo apt-get upgrade&lt;/p&gt;
 &lt;h3&gt;要安装的&lt;/h3&gt;
 &lt;p&gt;&lt;a href="http://ubuntu-tweak.com/source/ubuntu-tweak-stable/"&gt;ubuntu-tweak&lt;/a&gt;&lt;/p&gt;
@@ -4080,7 +4223,33 @@ b&lt;span class="s1"&gt;&amp;#39;&amp;lt;html xmlns:html=&amp;quot;http://www.w3
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;因为&lt;code&gt;Text&lt;/code&gt;不包含在&lt;code&gt;elem.iterchildren()&lt;/code&gt;里.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Mon, 05 Aug 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-08-05:python-lxml-wrapping-elements.html</guid><category>Python</category><category>lxml</category><category>wrapping</category><category>html</category></item><item><title>[记录] MongoDB中数组更新操作</title><link>http://zoeyyoung.github.io/mongodb-array-update-with-query.html</link><description>&lt;p&gt;要做的事情: 在每个文档, 标签tags是以数组Array的形式存在的, 我现在有个标签命名为&lt;strong&gt;python&lt;/strong&gt;, 我想全部改成&lt;strong&gt;Python&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;因为&lt;code&gt;Text&lt;/code&gt;不包含在&lt;code&gt;elem.iterchildren()&lt;/code&gt;里.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Mon, 05 Aug 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-08-05:python-lxml-wrapping-elements.html</guid><category>Python</category><category>lxml</category><category>wrapping</category><category>html</category></item><item><title>[安装配置] 装完 Ubuntu 后</title><link>http://zoeyyoung.github.io/after-install-ubuntu.html</link><description>&lt;p&gt;&lt;a href="http://www.ubuntu.org.cn/"&gt;官网&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;升级系统&lt;/h3&gt;
+&lt;p&gt;sudo apt-get update &amp;amp;&amp;amp; sudo apt-get upgrade&lt;/p&gt;
+&lt;h3&gt;要安装的&lt;/h3&gt;
+&lt;p&gt;&lt;a href="http://ubuntu-tweak.com/source/ubuntu-tweak-stable/"&gt;ubuntu-tweak&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo add-apt-repository ppa:tualatrix&lt;span class="n"&gt;/ppa&lt;/span&gt;
+sudo apt-get update
+sudo apt-get install ubuntu-tweak
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;新立得: synaptic&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;synaptic&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;fcitx、fcitx-table-wubi、wps。&lt;/p&gt;
+&lt;p&gt;其中wps是wps官网下载，然后dpkg安装；ubuntu-tweak是手动添加源，再apt安装；其他则用命令来完成：sudo apt-get install synaptic fcitx fcitx-table-wubi。&lt;/p&gt;
+&lt;p&gt;没装搜狗软件法是因为我基本不用拼音。&lt;/p&gt;
+&lt;h3&gt;要卸载的&lt;/h3&gt;
+&lt;p&gt;libreoffice、thunderbird、ibus、Firefox Ubufox扩展、桌面共享、Empathy、扫描易、蓝牙、ubuntu one、各种辅助功能等。&lt;/p&gt;
+&lt;p&gt;4、彻底清除无用的软件包&lt;/p&gt;
+&lt;p&gt;在新立得中，搜索libreoffice、bluz、ubuntu one相关包，能卸载的全部卸载。&lt;/p&gt;
+&lt;p&gt;打开ubuntu tweak，清理垃圾文件。&lt;/p&gt;
+&lt;h3&gt;开发相关&lt;/h3&gt;
+&lt;p&gt;sudo apt-get install git&lt;/p&gt;
+&lt;h3&gt;其他&lt;/h3&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Mon, 05 Aug 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-08-05:after-install-ubuntu.html</guid><category>Ubuntu</category><category>Linux</category><category>安装</category></item><item><title>[记录] MongoDB中数组更新操作</title><link>http://zoeyyoung.github.io/mongodb-array-update-with-query.html</link><description>&lt;p&gt;要做的事情: 在每个文档, 标签tags是以数组Array的形式存在的, 我现在有个标签命名为&lt;strong&gt;python&lt;/strong&gt;, 我想全部改成&lt;strong&gt;Python&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://docs.mongodb.org/manual/reference/operator/positional/#op._S"&gt;$ (query)&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;语法: &lt;code&gt;{ "&amp;lt;array&amp;gt;.$" : value }&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;使用mongo shell, 首先插入三条记录:&lt;/p&gt;

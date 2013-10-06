@@ -37,3 +37,10 @@ boolalpha 用符号形式表示真假.
 [StackOverflow: Addresses of two pointers are same](http://stackoverflow.com/questions/19088153/addresses-of-two-pointers-are-same)
 
 这里面提到跟编译器的实现相关...
+
+Java的String也差不多:
+
+    String s1 = "test";
+    String s2 = "test";
+    System.out.println(s1==s2);
+    // true

@@ -11,7 +11,7 @@
   <script src="http://zoeyyoung.github.io/theme/html5.js"></script>
   <![endif]-->
   <!-- Le styles -->
-  <link href="http://netdna.bootstrapcdn.com/bootswatch/3.0.0/cyborg/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/journal/bootstrap.min.css" rel="stylesheet" media="screen">
   <link href="http://zoeyyoung.github.io/theme/print.css" rel="stylesheet" media="print" />
   <link href="http://zoeyyoung.github.io/theme/local.css" rel="stylesheet" media="screen" />
   <link href="http://zoeyyoung.github.io/theme/pygments.css" rel="stylesheet" />
@@ -36,6 +36,9 @@
           <li><a href="http://zoeyyoung.github.io/tags.html">标签</a></li>
           <li><hr/></li>
           <li>CATEGORIES</li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/cc.html ">C&C++</a>
+          </li>
                     <li  class="active" >
             <a href="http://zoeyyoung.github.io/category/java.html ">Java</a>
           </li>
@@ -44,9 +47,6 @@
           </li>
                     <li >
             <a href="http://zoeyyoung.github.io/category/nlp.html ">NLP</a>
-          </li>
-                    <li >
-            <a href="http://zoeyyoung.github.io/category/nosql.html ">NoSQL</a>
           </li>
                     <li >
             <a href="http://zoeyyoung.github.io/category/python.html ">Python</a>
@@ -71,6 +71,12 @@
           </li>
                     <li >
             <a href="http://zoeyyoung.github.io/category/wo-de-xiang-mu.html ">我的项目</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/shou-cang.html ">收藏</a>
+          </li>
+                    <li >
+            <a href="http://zoeyyoung.github.io/category/shu-ju-ku.html ">数据库</a>
           </li>
                     <li >
             <a href="http://zoeyyoung.github.io/category/suan-fa-shu-ju-jie-gou.html ">算法&数据结构</a>
@@ -107,9 +113,9 @@
       <div class="main-content col-md-8">
           
     <div>
-        <a href="http://zoeyyoung.github.io/javamail-verify-user.html"><h1>JavaMail邮箱验证用户注册</h1></a>
+        <a href="http://zoeyyoung.github.io/top-10-faqs-of-java-strings.html"><h1>[Java基础] Top 10 questions of Java Strings</h1></a>
         <div class="article-metadata">
-<time class="published" datetime="2012 十一月 21 周三">2012 十一月 21 周三 </time>
+<time class="published" datetime="2013 十月 06 周日">2013 十月 06 周日 </time>
 <a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
 <span>
     <i class="icon-folder-open"></i>
@@ -117,335 +123,95 @@
 </span>
 <span>
     <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/bi-shi.html">笔试</a>
+        <a href="http://zoeyyoung.github.io/tag/mian-shi.html">面试</a>
         <a href="http://zoeyyoung.github.io/tag/java.html">Java</a>
-        <a href="http://zoeyyoung.github.io/tag/javamail.html">JavaMail</a>
-        <a href="http://zoeyyoung.github.io/tag/mail.html">Mail</a>
+        <a href="http://zoeyyoung.github.io/tag/ji-chu.html">基础</a>
+        <a href="http://zoeyyoung.github.io/tag/bian-cheng.html">编程</a>
     </span>
 <!-- <p></p> -->
-</div>        <p><a href="http://yimengzhu.iteye.com/blog/1454887">JavaMail——邮箱验证用户注册</a> : 有些代码没给，还好自己Servlet基础还是有的，所以还是整出来了</p>
-<p><a href="http://www.blogjava.net/wangfun/archive/2009/04/15/265748.html">javamail发送邮件的简单实例</a> : 对邮件内容的组装和发送做了点封装，稍微做了点修改</p>
-<p><a href="http://blog.sina.com.cn/s/blog_6e295d0001011uzg.html">JSP + Servlet 中文乱码问题解决</a></p>
-<p>参考整合上面两篇，做了个Demo，中文乱码问题用第三篇解决</p>
-<p>需要<a href="http://www.oracle.com/technetwork/java/javamail/index.html">JavaMail的jar包</a></p>
-<p>Demo结构</p>
-<p><img alt="Demo结构" src="/static/images/javamail-verify-user.gif" /></p>
-<p><strong>MailInfo.java</strong> 邮件相关信息</p>
-<div class="highlight"><pre><span class="kn">package</span> <span class="n">zoey</span><span class="o">.</span><span class="na">model</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">java.util.Properties</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MailInfo</span> <span class="o">{</span>
-  <span class="kd">private</span> <span class="n">String</span> <span class="n">mailSmtpHost</span><span class="o">;</span>
-  <span class="kd">private</span> <span class="n">String</span> <span class="n">mailSmtpPort</span> <span class="o">=</span> <span class="s">&quot;25&quot;</span><span class="o">;</span>
-  <span class="kd">private</span> <span class="n">String</span> <span class="n">fromAddress</span><span class="o">;</span>
-  <span class="kd">private</span> <span class="n">String</span> <span class="n">toAddress</span><span class="o">;</span>
-  <span class="kd">private</span> <span class="n">String</span> <span class="n">userName</span><span class="o">;</span>
-  <span class="kd">private</span> <span class="n">String</span> <span class="n">password</span><span class="o">;</span>
-  <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">validate</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
-  <span class="kd">private</span> <span class="n">String</span> <span class="n">subject</span><span class="o">;</span>
-  <span class="kd">private</span> <span class="n">String</span> <span class="n">content</span><span class="o">;</span>
-  <span class="kd">private</span> <span class="n">String</span><span class="o">[]</span> <span class="n">attachFileNames</span><span class="o">;</span>
-
-  <span class="kd">public</span> <span class="n">Properties</span> <span class="nf">getProperties</span><span class="o">()</span> <span class="o">{</span>
-    <span class="n">Properties</span> <span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Properties</span><span class="o">();</span>
-    <span class="n">p</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;mail.smtp.host&quot;</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">mailSmtpHost</span><span class="o">);</span>
-    <span class="n">p</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;mail.smtp.port&quot;</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">mailSmtpPort</span><span class="o">);</span>
-    <span class="n">p</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;mail.smtp.auth&quot;</span><span class="o">,</span> <span class="n">validate</span> <span class="o">?</span> <span class="s">&quot;true&quot;</span> <span class="o">:</span> <span class="s">&quot;false&quot;</span><span class="o">);</span>
-    <span class="k">return</span> <span class="n">p</span><span class="o">;</span>
-  <span class="o">}</span>
-
-  <span class="c1">// Getters &amp; Setters</span>
-<span class="o">}</span>
-</pre></div>
-
-
-<p><strong>MyAuthenticator.java</strong></p>
-<div class="highlight"><pre><span class="kn">package</span> <span class="n">zoey</span><span class="o">.</span><span class="na">model</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">javax.mail.Authenticator</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">javax.mail.PasswordAuthentication</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyAuthenticator</span> <span class="kd">extends</span> <span class="n">Authenticator</span> <span class="o">{</span>
-  <span class="kd">private</span> <span class="n">String</span> <span class="n">userName</span><span class="o">;</span>
-  <span class="kd">private</span> <span class="n">String</span> <span class="n">password</span><span class="o">;</span>
-
-  <span class="kd">public</span> <span class="nf">MyAuthenticator</span><span class="o">()</span> <span class="o">{</span>
-  <span class="o">}</span>
-
-  <span class="kd">public</span> <span class="nf">MyAuthenticator</span><span class="o">(</span><span class="n">String</span> <span class="n">userName</span><span class="o">,</span> <span class="n">String</span> <span class="n">password</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">userName</span> <span class="o">=</span> <span class="n">userName</span><span class="o">;</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">password</span> <span class="o">=</span> <span class="n">password</span><span class="o">;</span>
-  <span class="o">}</span>
-
-  <span class="nd">@Override</span>
-  <span class="kd">protected</span> <span class="n">PasswordAuthentication</span> <span class="nf">getPasswordAuthentication</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="k">new</span> <span class="nf">PasswordAuthentication</span><span class="o">(</span><span class="n">userName</span><span class="o">,</span> <span class="n">password</span><span class="o">);</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</pre></div>
-
-
-<p><strong>MailSender.java</strong> 邮件发送器，稍微做了点修改，使代码更少些</p>
-<div class="highlight"><pre><span class="kn">package</span> <span class="n">zoey</span><span class="o">.</span><span class="na">model</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.util.Properties</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">javax.mail.Address</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">javax.mail.BodyPart</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">javax.mail.Message</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">javax.mail.MessagingException</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">javax.mail.Multipart</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">javax.mail.Session</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">javax.mail.Transport</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">javax.mail.internet.InternetAddress</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">javax.mail.internet.MimeBodyPart</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">javax.mail.internet.MimeMessage</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">javax.mail.internet.MimeMultipart</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MailSender</span> <span class="o">{</span>
-  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">sendMail</span><span class="o">(</span><span class="n">MailInfo</span> <span class="n">mailInfo</span><span class="o">,</span> <span class="n">Boolean</span> <span class="n">isMime</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">MyAuthenticator</span> <span class="n">authenticator</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">mailInfo</span><span class="o">.</span><span class="na">isValidate</span><span class="o">())</span> <span class="o">{</span>
-      <span class="n">authenticator</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MyAuthenticator</span><span class="o">(</span><span class="n">mailInfo</span><span class="o">.</span><span class="na">getUserName</span><span class="o">(),</span> <span class="n">mailInfo</span><span class="o">.</span><span class="na">getPassword</span><span class="o">());</span>
-    <span class="o">}</span>
-    <span class="n">Properties</span> <span class="n">pro</span> <span class="o">=</span> <span class="n">mailInfo</span><span class="o">.</span><span class="na">getProperties</span><span class="o">();</span>
-    <span class="n">Session</span> <span class="n">session</span> <span class="o">=</span> <span class="n">Session</span><span class="o">.</span><span class="na">getDefaultInstance</span><span class="o">(</span><span class="n">pro</span><span class="o">,</span> <span class="n">authenticator</span><span class="o">);</span>
-    <span class="k">try</span> <span class="o">{</span>
-      <span class="n">Message</span> <span class="n">message</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MimeMessage</span><span class="o">(</span><span class="n">session</span><span class="o">);</span>
-      <span class="n">Address</span> <span class="n">from</span> <span class="o">=</span> <span class="k">new</span> <span class="n">InternetAddress</span><span class="o">(</span><span class="n">mailInfo</span><span class="o">.</span><span class="na">getFromAddress</span><span class="o">());</span>
-      <span class="n">Address</span> <span class="n">to</span> <span class="o">=</span> <span class="k">new</span> <span class="n">InternetAddress</span><span class="o">(</span><span class="n">mailInfo</span><span class="o">.</span><span class="na">getToAddress</span><span class="o">());</span>
-      <span class="n">message</span><span class="o">.</span><span class="na">setFrom</span><span class="o">(</span><span class="n">from</span><span class="o">);</span>
-      <span class="n">message</span><span class="o">.</span><span class="na">setRecipient</span><span class="o">(</span><span class="n">Message</span><span class="o">.</span><span class="na">RecipientType</span><span class="o">.</span><span class="na">TO</span><span class="o">,</span> <span class="n">to</span><span class="o">);</span>
-      <span class="n">message</span><span class="o">.</span><span class="na">setSubject</span><span class="o">(</span><span class="n">mailInfo</span><span class="o">.</span><span class="na">getSubject</span><span class="o">());</span>
-      <span class="n">message</span><span class="o">.</span><span class="na">setSentDate</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">());</span>
-      <span class="k">if</span> <span class="o">(!</span><span class="n">isMime</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">message</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">mailInfo</span><span class="o">.</span><span class="na">getContent</span><span class="o">());</span>
-      <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-        <span class="n">BodyPart</span> <span class="n">html</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MimeBodyPart</span><span class="o">();</span>
-        <span class="n">html</span><span class="o">.</span><span class="na">setContent</span><span class="o">(</span><span class="n">mailInfo</span><span class="o">.</span><span class="na">getContent</span><span class="o">(),</span> <span class="s">&quot;text/html; charset=utf-8&quot;</span><span class="o">);</span>
-        <span class="n">Multipart</span> <span class="n">mainPart</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MimeMultipart</span><span class="o">();</span>
-        <span class="n">mainPart</span><span class="o">.</span><span class="na">addBodyPart</span><span class="o">(</span><span class="n">html</span><span class="o">);</span>
-        <span class="n">message</span><span class="o">.</span><span class="na">setContent</span><span class="o">(</span><span class="n">mainPart</span><span class="o">);</span>
-      <span class="o">}</span>
-      <span class="n">Transport</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">message</span><span class="o">);</span>
-      <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">MessagingException</span> <span class="n">ex</span><span class="o">)</span> <span class="o">{</span>
-      <span class="n">ex</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</pre></div>
-
-
-<p>先给出：<strong>web.xml</strong></p>
-<div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
-<span class="nt">&lt;web-app</span> <span class="na">id=</span><span class="s">&quot;WebApp_ID&quot;</span> <span class="na">version=</span><span class="s">&quot;2.4&quot;</span>
-  <span class="na">xmlns=</span><span class="s">&quot;http://java.sun.com/xml/ns/j2ee&quot;</span> <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
-  <span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;servlet&gt;</span>
-    <span class="nt">&lt;servlet-name&gt;</span>RegisterServlet<span class="nt">&lt;/servlet-name&gt;</span>
-    <span class="nt">&lt;servlet-class&gt;</span>zoey.register.RegisterServlet<span class="nt">&lt;/servlet-class&gt;</span>
-  <span class="nt">&lt;/servlet&gt;</span>
-
-  <span class="nt">&lt;servlet-mapping&gt;</span>
-    <span class="nt">&lt;servlet-name&gt;</span>RegisterServlet<span class="nt">&lt;/servlet-name&gt;</span>
-    <span class="nt">&lt;url-pattern&gt;</span>/RegisterServlet.do<span class="nt">&lt;/url-pattern&gt;</span>
-  <span class="nt">&lt;/servlet-mapping&gt;</span>
-
-  <span class="nt">&lt;servlet&gt;</span>
-    <span class="nt">&lt;servlet-name&gt;</span>MailBackServlet<span class="nt">&lt;/servlet-name&gt;</span>
-    <span class="nt">&lt;servlet-class&gt;</span>zoey.register.MailBackServlet<span class="nt">&lt;/servlet-class&gt;</span>
-  <span class="nt">&lt;/servlet&gt;</span>
-
-  <span class="nt">&lt;servlet-mapping&gt;</span>
-    <span class="nt">&lt;servlet-name&gt;</span>MailBackServlet<span class="nt">&lt;/servlet-name&gt;</span>
-    <span class="nt">&lt;url-pattern&gt;</span>/MailBackServlet.do<span class="nt">&lt;/url-pattern&gt;</span>
-  <span class="nt">&lt;/servlet-mapping&gt;</span>
-
-  <span class="c">&lt;!-- 定义字符转换过滤器 --&gt;</span>
-  <span class="nt">&lt;filter&gt;</span>
-    <span class="nt">&lt;filter-name&gt;</span>SetCharacterEncoding<span class="nt">&lt;/filter-name&gt;</span>
-    <span class="nt">&lt;filter-class&gt;</span>zoey.util.SetCharacterEncoding<span class="nt">&lt;/filter-class&gt;</span>
-    <span class="c">&lt;!-- 设置参数名称及参数值 --&gt;</span>
-    <span class="nt">&lt;init-param&gt;</span>
-      <span class="nt">&lt;param-name&gt;</span>encoding<span class="nt">&lt;/param-name&gt;</span>
-      <span class="nt">&lt;param-value&gt;</span>UTF-8<span class="nt">&lt;/param-value&gt;</span>
-    <span class="nt">&lt;/init-param&gt;</span>
-  <span class="nt">&lt;/filter&gt;</span>
-  <span class="c">&lt;!-- 映射定义的Filter，设置对所有的请求进行过滤 --&gt;</span>
-  <span class="nt">&lt;filter-mapping&gt;</span>
-    <span class="nt">&lt;filter-name&gt;</span>SetCharacterEncoding<span class="nt">&lt;/filter-name&gt;</span>
-    <span class="nt">&lt;url-pattern&gt;</span>/*<span class="nt">&lt;/url-pattern&gt;</span>
-  <span class="nt">&lt;/filter-mapping&gt;</span>
-<span class="nt">&lt;/web-app&gt;</span>
-</pre></div>
-
-
-<p>注册页面：<strong>index.jsp</strong></p>
-<div class="highlight"><pre><span class="err">&lt;</span>%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=UTF-8&quot; pageEncoding=&quot;UTF-8&quot;%&gt;
-<span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="nt">&lt;html&gt;</span>
-<span class="nt">&lt;head&gt;</span>
-<span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;Content-Type&quot;</span> <span class="na">content=</span><span class="s">&quot;text/html; charset=utf-8&quot;</span><span class="nt">&gt;</span>
-<span class="nt">&lt;title&gt;</span>用户注册<span class="nt">&lt;/title&gt;</span>
-<span class="nt">&lt;/head&gt;</span>
-<span class="nt">&lt;body&gt;</span>
-<span class="nt">&lt;h1&gt;</span>用户注册<span class="nt">&lt;/h1&gt;&lt;hr/&gt;&lt;br/&gt;</span>
-<span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">&quot;RegisterServlet.do&quot;</span> <span class="na">method=</span><span class="s">&quot;post&quot;</span><span class="nt">&gt;</span>
-    邮箱: <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">name=</span><span class="s">&quot;email&quot;</span> <span class="nt">/&gt;&lt;br/&gt;&lt;br/&gt;</span>
-    昵称: <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">name=</span><span class="s">&quot;userName&quot;</span> <span class="nt">/&gt;&lt;br/&gt;&lt;br/&gt;</span>
-    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;submit&quot;</span> <span class="na">value=</span><span class="s">&quot;确认注册&quot;</span> <span class="nt">/&gt;</span>
-<span class="nt">&lt;/form&gt;</span>
-<span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span>
-</pre></div>
-
-
-<p>点击注册后：<strong>RegisterServlet.java</strong></p>
-<div class="highlight"><pre><span class="kn">package</span> <span class="n">zoey</span><span class="o">.</span><span class="na">register</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">javax.servlet.ServletException</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">javax.servlet.http.HttpServlet</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">javax.servlet.http.HttpServletRequest</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">javax.servlet.http.HttpServletResponse</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">javax.servlet.http.HttpSession</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">zoey.model.MailInfo</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">zoey.model.MailSender</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">RegisterServlet</span> <span class="kd">extends</span> <span class="n">HttpServlet</span> <span class="o">{</span>
-  <span class="nd">@Override</span>
-  <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">doGet</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span>
-    <span class="n">HttpServletResponse</span> <span class="n">response</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">ServletException</span><span class="o">,</span> <span class="n">IOException</span> <span class="o">{</span>
-    <span class="n">String</span> <span class="n">registerName</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getParameter</span><span class="o">(</span><span class="s">&quot;userName&quot;</span><span class="o">);</span>
-    <span class="n">String</span> <span class="n">registerMail</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getParameter</span><span class="o">(</span><span class="s">&quot;email&quot;</span><span class="o">);</span>
-    <span class="n">String</span> <span class="n">registerId</span> <span class="o">=</span> <span class="s">&quot;&quot;</span> <span class="o">+</span> <span class="n">Math</span><span class="o">.</span><span class="na">random</span><span class="o">()</span> <span class="o">*</span> <span class="n">Math</span><span class="o">.</span><span class="na">random</span><span class="o">();</span>
-    <span class="n">String</span> <span class="n">url</span> <span class="o">=</span> <span class="s">&quot;http://localhost:8080/EmailRegister/MailBackServlet.do?registerId=&quot;</span> <span class="o">+</span> <span class="n">registerId</span><span class="o">;</span>
-    <span class="n">HttpSession</span> <span class="n">httpSession</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>
-    <span class="n">httpSession</span><span class="o">.</span><span class="na">setAttribute</span><span class="o">(</span><span class="n">registerId</span><span class="o">,</span> <span class="n">registerName</span><span class="o">);</span>
-    <span class="n">httpSession</span><span class="o">.</span><span class="na">setMaxInactiveInterval</span><span class="o">(</span><span class="mi">600</span><span class="o">);</span>
-
-    <span class="n">String</span> <span class="n">content</span> <span class="o">=</span> <span class="n">registerName</span> <span class="o">+</span> <span class="s">&quot;(&quot;</span> <span class="o">+</span> <span class="n">registerMail</span> <span class="o">+</span> <span class="s">&quot;),您好&lt;br/&gt;感谢您注册XXXXX!&lt;br/&gt;&quot;</span>
-    <span class="o">+</span> <span class="s">&quot;&lt;b&gt;验证您的邮箱地址注册&lt;/b&gt;&lt;br/&gt;请点击下面的链接来确认您的注册&lt;br/&gt;&quot;</span>
-    <span class="o">+</span> <span class="s">&quot;&lt;a href=&#39;&quot;</span> <span class="o">+</span> <span class="n">url</span> <span class="o">+</span> <span class="s">&quot;&#39;&gt;确认!请点击这里验证此邮件&lt;/a&gt;&lt;br/&gt;&quot;</span>
-    <span class="o">+</span> <span class="s">&quot;如果您不能点击上述标签为“确认！”的链接，您还可以通过复制（或输入）下面的URL到地址栏中来验证您的邮件地址。&quot;</span>
-    <span class="o">+</span> <span class="s">&quot;&lt;a href=&#39;&quot;</span> <span class="o">+</span> <span class="n">url</span> <span class="o">+</span> <span class="s">&quot;&#39;&gt;&quot;</span> <span class="o">+</span> <span class="n">url</span> <span class="o">+</span> <span class="s">&quot;&lt;/a&gt;&lt;br/&gt;&quot;</span>
-    <span class="o">+</span> <span class="s">&quot;如果您认为这是垃圾邮件，请忽略此邮件。&quot;</span><span class="o">;</span>
-
-    <span class="n">MailInfo</span> <span class="n">mailInfo</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MailInfo</span><span class="o">();</span>
-    <span class="n">mailInfo</span><span class="o">.</span><span class="na">setMailSmtpHost</span><span class="o">(</span><span class="s">&quot;yourmail&#39;s smtp host&quot;</span><span class="o">);</span> <span class="c1">// 根据实际修改</span>
-    <span class="n">mailInfo</span><span class="o">.</span><span class="na">setFromAddress</span><span class="o">(</span><span class="s">&quot;yourmail@whatever.com&quot;</span><span class="o">);</span> <span class="c1">// 根据实际修改</span>
-    <span class="n">mailInfo</span><span class="o">.</span><span class="na">setToAddress</span><span class="o">(</span><span class="n">registerMail</span><span class="o">);</span>
-    <span class="n">mailInfo</span><span class="o">.</span><span class="na">setUserName</span><span class="o">(</span><span class="s">&quot;yourmail@whatever.com&quot;</span><span class="o">);</span> <span class="c1">// 根据实际修改</span>
-    <span class="n">mailInfo</span><span class="o">.</span><span class="na">setPassword</span><span class="o">(</span><span class="s">&quot;password&quot;</span><span class="o">);</span> <span class="c1">// 根据实际修改</span>
-    <span class="n">mailInfo</span><span class="o">.</span><span class="na">setValidate</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>      <span class="c1">// 根据实际修改</span>
-    <span class="n">mailInfo</span><span class="o">.</span><span class="na">setSubject</span><span class="o">(</span><span class="s">&quot;邮件主题&quot;</span><span class="o">);</span> <span class="c1">// 根据实际修改</span>
-    <span class="n">mailInfo</span><span class="o">.</span><span class="na">setContent</span><span class="o">(</span><span class="n">content</span><span class="o">);</span>
-
-    <span class="n">MailSender</span><span class="o">.</span><span class="na">sendMail</span><span class="o">(</span><span class="n">mailInfo</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span> <span class="c1">// true发送HTML格式邮件，false发送纯文本</span>
-    <span class="n">request</span><span class="o">.</span><span class="na">setAttribute</span><span class="o">(</span><span class="s">&quot;userName&quot;</span><span class="o">,</span> <span class="n">registerName</span><span class="o">);</span>
-    <span class="n">request</span><span class="o">.</span><span class="na">setAttribute</span><span class="o">(</span><span class="s">&quot;email&quot;</span><span class="o">,</span> <span class="n">registerMail</span><span class="o">);</span>
-    <span class="n">request</span><span class="o">.</span><span class="na">getRequestDispatcher</span><span class="o">(</span><span class="s">&quot;/sendMailSuccess.jsp&quot;</span><span class="o">).</span><span class="na">forward</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
-  <span class="o">}</span>
-
-  <span class="nd">@Override</span>
-  <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">doPost</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span>
-    <span class="n">HttpServletResponse</span> <span class="n">response</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">ServletException</span><span class="o">,</span> <span class="n">IOException</span> <span class="o">{</span>
-      <span class="n">doGet</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</pre></div>
-
-
-<p>发送成功后转到页面：<strong>sendMailSuccess.jsp</strong></p>
-<div class="highlight"><pre><span class="err">&lt;</span>%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=UTF-8&quot; pageEncoding=&quot;UTF-8&quot;%&gt;
-<span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="nt">&lt;html&gt;</span>
-<span class="nt">&lt;head&gt;</span>
-<span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;Content-Type&quot;</span> <span class="na">content=</span><span class="s">&quot;text/html; charset=utf-8&quot;</span><span class="nt">&gt;</span>
-<span class="nt">&lt;title&gt;</span>帐号确认<span class="nt">&lt;/title&gt;</span>
-<span class="nt">&lt;/head&gt;</span>
-<span class="nt">&lt;body&gt;</span>
-<span class="nt">&lt;h1&gt;</span>帐号确认<span class="nt">&lt;/h1&gt;</span>
-<span class="err">&lt;</span>%
-    String userName = request.getParameter(&quot;userName&quot;);
-    String email = request.getParameter(&quot;email&quot;);
-    String sub = email.substring(email.indexOf(&#39;@&#39;) + 1);
-    if (sub.equals(&quot;gmail&quot;)) { sub = &quot;google&quot;; } // 特殊处理
-    String url = &quot;http://mail.&quot; + sub;
-%&gt;
-${userName}您的邮箱<span class="nt">&lt;a</span> <span class="na">target=</span><span class="s">&quot;_blank&quot;</span> <span class="na">href=</span><span class="s">&quot;&lt;%=url %&gt;&quot;</span><span class="nt">&gt;</span>${email}<span class="nt">&lt;/a&gt;</span>还没确认，您必须尽快进行帐户激活（登录该邮箱，并按照帐号激活通知的指示操作）。否则您的帐号将很快被删除！<span class="nt">&lt;br/&gt;</span>
-您还没有收到激活信？点击<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;RegisterServlet.do?userName=&lt;%=userName%&gt;&amp;email=&lt;%=email%&gt;&quot;</span><span class="nt">&gt;</span>这里<span class="nt">&lt;/a&gt;</span>重新发送激活邮件。
-<span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span>
-</pre></div>
-
-
-<p>点击验证邮箱链接后：<strong>MailBackServlet.java</strong></p>
-<div class="highlight"><pre><span class="kn">package</span> <span class="n">zoey</span><span class="o">.</span><span class="na">register</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">javax.servlet.ServletException</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">javax.servlet.http.HttpServlet</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">javax.servlet.http.HttpServletRequest</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">javax.servlet.http.HttpServletResponse</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MailBackServlet</span> <span class="kd">extends</span> <span class="n">HttpServlet</span> <span class="o">{</span>
-
-  <span class="nd">@Override</span>
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doGet</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">HttpServletResponse</span> <span class="n">response</span><span class="o">)</span>
-  <span class="kd">throws</span> <span class="n">ServletException</span><span class="o">,</span> <span class="n">IOException</span> <span class="o">{</span>
-    <span class="n">String</span> <span class="n">registerId</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getParameter</span><span class="o">(</span><span class="s">&quot;registerId&quot;</span><span class="o">);</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">registerId</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-      <span class="n">request</span><span class="o">.</span><span class="na">getRequestDispatcher</span><span class="o">(</span><span class="s">&quot;/index.jsp&quot;</span><span class="o">).</span><span class="na">forward</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
-      <span class="k">return</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="n">String</span> <span class="n">registerName</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">)</span> <span class="n">request</span><span class="o">.</span><span class="na">getSession</span><span class="o">().</span><span class="na">getAttribute</span><span class="o">(</span><span class="n">registerId</span><span class="o">);</span>
-
-    <span class="k">if</span> <span class="o">(</span><span class="n">registerName</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">registerName</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">&quot;&quot;</span><span class="o">))</span> <span class="o">{</span>
-      <span class="n">request</span><span class="o">.</span><span class="na">getRequestDispatcher</span><span class="o">(</span><span class="s">&quot;/index.jsp&quot;</span><span class="o">).</span><span class="na">forward</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
-      <span class="k">return</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="n">request</span><span class="o">.</span><span class="na">setAttribute</span><span class="o">(</span><span class="s">&quot;registerName&quot;</span><span class="o">,</span> <span class="n">registerName</span><span class="o">);</span>
-    <span class="n">request</span><span class="o">.</span><span class="na">getRequestDispatcher</span><span class="o">(</span><span class="s">&quot;/registerSuccess.jsp&quot;</span><span class="o">).</span><span class="na">forward</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
-  <span class="o">}</span>
-
-  <span class="nd">@Override</span>
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doPost</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">HttpServletResponse</span> <span class="n">response</span><span class="o">)</span>
-  <span class="kd">throws</span> <span class="n">ServletException</span><span class="o">,</span> <span class="n">IOException</span> <span class="o">{</span>
-    <span class="n">doGet</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</pre></div>
-
-
-<p>注册成功：<strong>registerSuccess.jsp</strong></p>
-<div class="highlight"><pre><span class="err">&lt;</span>%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=UTF-8&quot; pageEncoding=&quot;UTF-8&quot;%&gt;
-<span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="nt">&lt;html&gt;</span>
-<span class="nt">&lt;head&gt;</span>
-<span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;Content-Type&quot;</span> <span class="na">content=</span><span class="s">&quot;text/html; charset=utf-8&quot;</span><span class="nt">&gt;</span>
-<span class="nt">&lt;title&gt;</span>注册成功<span class="nt">&lt;/title&gt;</span>
-<span class="nt">&lt;/head&gt;</span>
-<span class="nt">&lt;body&gt;</span>
-    ${registerName} 恭喜您，从现在起，您就是本站的一员了。
-<span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span>
-</pre></div>
-
-
-<p>存在的问题:</p>
+</div>        <p>虽然直接看原文就可以了...不过适合挺常用的...因此收藏一下.</p>
+<p><a href="http://www.programcreek.com/2013/09/top-10-faqs-of-java-strings/">原文</a></p>
+<p>1、How to compare strings? Use <code>==</code> or use <code>equals()</code>?</p>
+<p>In brief, <code>==</code> tests if references are equal and <code>equals()</code> tests if values are equal. Unless you want to check if two strings are the same object, you should always use equals().</p>
+<p>【考虑是比较引用还是比较值】</p>
+<p>It would be better if you know the concept of <a href="http://www.programcreek.com/2013/04/why-string-is-immutable-in-java/">string interning</a>.</p>
+<p>另一个问题 —— <strong>Why string is immutable in Java ?</strong></p>
 <ol>
-<li>刷新重复提交，另外做整理</li>
-<li>通过session来判断不合理，得在同一个浏览器中才能显示注册成功(session作用域和生命周期内)，这里只是作为演示用</li>
+<li>Requirement of String Pool</li>
+<li>Allow String to Cache its Hashcode【保证相同字符串的Hashcode是一样的】</li>
+<li>Security</li>
 </ol>
-<p>可以在数据库中设置一个是否激活字段，注册时为未激活，然后在验证后设置为激活</p>
-<p>还是比较容易集成到系统中的</p>
+<p>【<code>==</code>只是单纯比较是不是同一个对象, 而<code>equals()</code>才是比较对象的值. 因此有时需要为对象override <code>equals()</code>方法.】</p>
+<p>2、Why is <code>char[]</code> preferred over String for security sensitive information?</p>
+<p><a href="http://www.programcreek.com/2009/02/diagram-to-show-java-strings-immutability/">Strings are immutable</a>, which means once they are created, they will stay unchanged until Garbage Collector kicks in. With an array, you can explicitly change its elements. In this way, security sensitive information(e.g. password) will not be present anywhere in the system.</p>
+<p>3、Can we use string for switch statement?</p>
+<p>Yes to version 7. From <a href="http://openjdk.java.net/projects/jdk7/features/">JDK 7</a>, we can use string as switch condition. Before version 6, we can not use string as switch condition.</p>
+<div class="highlight"><pre><span class="c1">// java 7 only!</span>
+<span class="k">switch</span> <span class="o">(</span><span class="n">str</span><span class="o">.</span><span class="na">toLowerCase</span><span class="o">())</span> <span class="o">{</span>
+    <span class="k">case</span> <span class="s">&quot;a&quot;</span><span class="o">:</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+        <span class="k">break</span><span class="o">;</span>
+    <span class="k">case</span> <span class="s">&quot;b&quot;</span><span class="o">:</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
+        <span class="k">break</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<p>【一般情况是整型或能转成整型的...】</p>
+<p>4、How to convert string to int?</p>
+<div class="highlight"><pre><span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="s">&quot;10&quot;</span><span class="o">);</span>
+</pre></div>
+
+
+<p>Simple, but so frequently used and sometimes ignored.【确实常用】</p>
+<p>5、How to split a string with white space characters?</p>
+<p>We can simple do split using regular expression. <code>\s</code> stands for white space characters such as " ", "\t", "\r", "\n".</p>
+<div class="highlight"><pre><span class="n">String</span><span class="o">[]</span> <span class="n">strArray</span> <span class="o">=</span> <span class="n">aString</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">&quot;\\s+&quot;</span><span class="o">);</span>
+</pre></div>
+
+
+<p>6、What <code>substring()</code> method really does?【注意JDK6与JDK7实现上的区别】</p>
+<p>In <strong>JDK 6</strong>, the <code>substring()</code> method gives a window to an array of chars which represents the existing String, but do not create a new one. To create a new string represented by a new char array, you can do add an empty string like the following:</p>
+<div class="highlight"><pre><span class="n">str</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">m</span><span class="o">,</span> <span class="n">n</span><span class="o">)</span> <span class="o">+</span> <span class="s">&quot;&quot;</span>
+</pre></div>
+
+
+<p>This will create a new char array that represents the new string. The above approach sometimes can make your code faster, because Garbage Collector can collect the unused large string and keep only the sub string.</p>
+<p>In Oracle <strong>JDK 7</strong>, <code>substring()</code> <strong>creates a new char array</strong>, not uses the existing one. Check out the diagram for showing <a href="http://www.programcreek.com/2013/09/the-substring-method-in-jdk-6-and-jdk-7/">substring() difference between JDK 6 and JDK 7</a>.</p>
+<p>7、String vs StringBuilder vs StringBuffer</p>
+<p>String vs StringBuilder: <strong>StringBuilder is mutable【可变的】</strong>, which means you can modify it after its creation.</p>
+<p>StringBuilder vs StringBuffer: <strong>StringBuffer is synchronized【同步的】</strong>, which means it is thread-safe【线程安全】 but slower than StringBuilder.</p>
+<p>【HashTable与HashMap的区别, HashTable是同步的, 线程安全的】</p>
+<p>8、How to repeat a string?</p>
+<p>In Python, we can just multiple a number to repeat a string【在Python中<code>"abcd"*3</code>】. In Java, we can use the <code>repeat()</code> method of StringUtils from Apache Commons Lang package.</p>
+<div class="highlight"><pre><span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">&quot;abcd&quot;</span><span class="o">;</span>
+<span class="n">String</span> <span class="n">repeated</span> <span class="o">=</span> <span class="n">StringUtils</span><span class="o">.</span><span class="na">repeat</span><span class="o">(</span><span class="n">str</span><span class="o">,</span> <span class="mi">3</span><span class="o">);</span>
+<span class="c1">//abcdabcdabcd</span>
+</pre></div>
+
+
+<p>9、How to convert string to date?</p>
+<div class="highlight"><pre><span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">&quot;Sep 17, 2013&quot;</span><span class="o">;</span>
+<span class="n">Date</span> <span class="n">date</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SimpleDateFormat</span><span class="o">(</span><span class="s">&quot;MMMM d, yy&quot;</span><span class="o">,</span> <span class="n">Locale</span><span class="o">.</span><span class="na">ENGLISH</span><span class="o">).</span><span class="na">parse</span><span class="o">(</span><span class="n">str</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">date</span><span class="o">);</span>
+<span class="c1">//Tue Sep 17 00:00:00 EDT 2013</span>
+</pre></div>
+
+
+<p>10、How to count # of occurrences of a character in a string?</p>
+<p>Use StringUtils from apache commons lang.</p>
+<div class="highlight"><pre><span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">StringUtils</span><span class="o">.</span><span class="na">countMatches</span><span class="o">(</span><span class="s">&quot;11112222&quot;</span><span class="o">,</span> <span class="s">&quot;1&quot;</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">n</span><span class="o">);</span>
+</pre></div>
+
+
+<p>【Python中, <code>"11112222".count("1")</code>】</p>
+<p>One more</p>
+<p>Do you know <a href="http://www.programcreek.com/2011/04/a-method-to-detect-if-string-contains-1-uppercase-letter-in-java/">How to detect if a string contains only uppercase letter?</a>【这篇感觉没啥意义】</p>
+<p>Use <code>java.lang.Character#isUpperCase()</code> and <code>#isLetter()</code> instead of the magic numbers.</p>
+<p>【最优的一般是使用内置的方法】</p>
         <hr />
     </div>
             <ul class="pagination pagination-sm no-print">

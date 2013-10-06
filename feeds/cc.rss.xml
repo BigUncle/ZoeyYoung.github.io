@@ -756,7 +756,13 @@
 &lt;p&gt;str5与str6为字符指针, 而非字符数组, 先请求的是一个指针的地址(初始化为随机地址), 然后赋值时它们都指向常量字符串"test", "test"存储在&lt;strong&gt;静态存储区&lt;/strong&gt;. 即str5和str6为串"test"的地址, 所以&lt;code&gt;str5==str6&lt;/code&gt;. 二者相等, 输出&lt;code&gt;true&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;boolalpha 用符号形式表示真假.&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://stackoverflow.com/questions/19088153/addresses-of-two-pointers-are-same"&gt;StackOverflow: Addresses of two pointers are same&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;这里面提到跟编译器的实现相关...&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 24 Sep 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-09-24:char-pointer.html</guid><category>笔试</category><category>面试</category><category>C++</category><category>基础</category><category>编程</category></item><item><title>[C++基础] new 和 delete</title><link>http://zoeyyoung.github.io/new-delete.html</link><description>&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include &amp;lt;iostream&amp;gt;&lt;/span&gt;
+&lt;p&gt;这里面提到跟编译器的实现相关...&lt;/p&gt;
+&lt;p&gt;Java的String也差不多:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;s1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;test&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;s2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;test&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;out&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s1&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="n"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="c1"&gt;// true&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 24 Sep 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-09-24:char-pointer.html</guid><category>笔试</category><category>面试</category><category>C++</category><category>基础</category><category>编程</category></item><item><title>[C++基础] new 和 delete</title><link>http://zoeyyoung.github.io/new-delete.html</link><description>&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include &amp;lt;iostream&amp;gt;&lt;/span&gt;
 &lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="k"&gt;namespace&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 
 &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Base_J&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
