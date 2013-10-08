@@ -113,6 +113,218 @@
       <div class="main-content col-md-8">
           
     <div>
+        <a href="http://zoeyyoung.github.io/design-patten-facade.html"><h1>[设计模式] Facade</h1></a>
+        <div class="article-metadata">
+<time class="published" datetime="2013 十月 08 周二">2013 十月 08 周二 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/she-ji-mo-shi.html">设计模式</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/du-shu.html">读书</a>
+        <a href="http://zoeyyoung.github.io/tag/book.html">Book</a>
+    </span>
+<!-- <p></p> -->
+</div>        <h3>意图</h3>
+<p>为子系统中的一组接口提供一个一致的界面, Facade模式定义了一个高层接口, 这个接口使得这一子系统更加容易使用.</p>
+<h3>适用性</h3>
+<p>在遇到以下情况使用Facade模式</p>
+<ul>
+<li>当你要为一个复杂子系统提供一个简单接口时. 子系统往往因为不断演化而变得越来越复杂. 大多数模式使用时都会产生更多更小的类. 这使得子系统更具可重用性, 也更容易对子系统进行定制, 但这也给那些不需要定制子系统的用户带来一些使用上的困难. Facade可以提供一个简单的缺省视图, 这一视图对大多数用户来说已经足够, 而那些需要更多的可定制性的用户可以越过facade层.</li>
+<li>客户程序与抽象类的实现部分之间存在着很大的依赖性. 引入facade将这个子系统与客户以及其他的子系统分离, 可以提高子系统的独立性和可移植性.</li>
+<li>当你需要构建一个层次结构的子系统时, 使用facade模式定义子系统中每层的入口点. 如果子系统之间是相互依赖的, 你可以让它们仅通过facade进行通讯, 从而简化了它们之间的依赖关系.</li>
+</ul>
+<h3>Head First</h3>
+<p>书中接着引入另一个改变接口的新模式——外观模式(facade), 它改变接口的目的是简化接口. 外观类没有对子系统进行封装, 只是提供了集合式简化的接口. 这其实是一个极朴素的概念, 不只是简化了接口, 也将客户从组件的子系统中解耦出来. 外观和适配器都可以包装多个类, 但是外观的意图在于简化接口, 而适配器的意图在于将接口转换成不同的接口.</p>
+<p>书中举了家庭影院的外观模式例子, 将许许多多的组件动作结合在一起完成了一系列对用户来讲方便的方法:</p>
+<div class="highlight"><pre><span class="n">public</span> <span class="n">class</span> <span class="n">HomeTheaterFacade</span> <span class="p">{</span>
+    <span class="n">Amplifier</span> <span class="n">amp</span><span class="p">;</span>
+    <span class="n">Tuner</span> <span class="n">tuner</span><span class="p">;</span>
+    <span class="n">DvdPlayer</span> <span class="n">dvd</span><span class="p">;</span>
+    <span class="n">CdPlayer</span> <span class="n">cd</span><span class="p">;</span>
+    <span class="n">Projector</span> <span class="n">projector</span><span class="p">;</span>
+    <span class="n">TheaterLights</span> <span class="n">lights</span><span class="p">;</span>
+    <span class="n">Screen</span> <span class="n">screen</span><span class="p">;</span>
+    <span class="n">PopcornPopper</span> <span class="n">popper</span><span class="p">;</span>
+    <span class="n">public</span> <span class="nf">HomeTheaterFacade</span><span class="p">(</span><span class="n">Amplifier</span> <span class="n">amp</span><span class="p">,</span>
+                 <span class="n">Tuner</span> <span class="n">tuner</span><span class="p">,</span>
+                 <span class="n">DvdPlayer</span> <span class="n">dvd</span><span class="p">,</span>
+                 <span class="n">CdPlayer</span> <span class="n">cd</span><span class="p">,</span>
+                 <span class="n">Projector</span> <span class="n">projector</span><span class="p">,</span>
+                 <span class="n">Screen</span> <span class="n">screen</span><span class="p">,</span>
+                 <span class="n">TheaterLights</span> <span class="n">lights</span><span class="p">,</span>
+                 <span class="n">PopcornPopper</span> <span class="n">popper</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">this</span><span class="p">.</span><span class="n">amp</span> <span class="o">=</span> <span class="n">amp</span><span class="p">;</span>
+        <span class="n">this</span><span class="p">.</span><span class="n">tuner</span> <span class="o">=</span> <span class="n">tuner</span><span class="p">;</span>
+        <span class="n">this</span><span class="p">.</span><span class="n">dvd</span> <span class="o">=</span> <span class="n">dvd</span><span class="p">;</span>
+        <span class="n">this</span><span class="p">.</span><span class="n">cd</span> <span class="o">=</span> <span class="n">cd</span><span class="p">;</span>
+        <span class="n">this</span><span class="p">.</span><span class="n">projector</span> <span class="o">=</span> <span class="n">projector</span><span class="p">;</span>
+        <span class="n">this</span><span class="p">.</span><span class="n">screen</span> <span class="o">=</span> <span class="n">screen</span><span class="p">;</span>
+        <span class="n">this</span><span class="p">.</span><span class="n">lights</span> <span class="o">=</span> <span class="n">lights</span><span class="p">;</span>
+        <span class="n">this</span><span class="p">.</span><span class="n">popper</span> <span class="o">=</span> <span class="n">popper</span><span class="p">;</span>
+    <span class="p">}</span> <span class="c1">//将每一个组件的引用传入该对象中</span>
+    <span class="n">public</span> <span class="kt">void</span> <span class="nf">watchMovie</span><span class="p">(</span><span class="n">String</span> <span class="n">movie</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">System</span><span class="p">.</span><span class="n">out</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Get ready to watch a movie...&quot;</span><span class="p">);</span>
+        <span class="n">popper</span><span class="p">.</span><span class="n">on</span><span class="p">();</span>
+        <span class="n">popper</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+        <span class="n">lights</span><span class="p">.</span><span class="n">dim</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+        <span class="n">screen</span><span class="p">.</span><span class="n">down</span><span class="p">();</span>
+        <span class="n">projector</span><span class="p">.</span><span class="n">on</span><span class="p">();</span>
+        <span class="n">projector</span><span class="p">.</span><span class="n">wideScreenMode</span><span class="p">();</span>
+        <span class="n">amp</span><span class="p">.</span><span class="n">on</span><span class="p">();</span>
+        <span class="n">amp</span><span class="p">.</span><span class="n">setDvd</span><span class="p">(</span><span class="n">dvd</span><span class="p">);</span>
+        <span class="n">amp</span><span class="p">.</span><span class="n">setSurroundSound</span><span class="p">();</span>
+        <span class="n">amp</span><span class="p">.</span><span class="n">setVolume</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+        <span class="n">dvd</span><span class="p">.</span><span class="n">on</span><span class="p">();</span>
+        <span class="n">dvd</span><span class="p">.</span><span class="n">play</span><span class="p">(</span><span class="n">movie</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">public</span> <span class="kt">void</span> <span class="nf">endMovie</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">System</span><span class="p">.</span><span class="n">out</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Shutting movie theater down...&quot;</span><span class="p">);</span>
+        <span class="n">popper</span><span class="p">.</span><span class="n">off</span><span class="p">();</span>
+        <span class="n">lights</span><span class="p">.</span><span class="n">on</span><span class="p">();</span>
+        <span class="n">screen</span><span class="p">.</span><span class="n">up</span><span class="p">();</span>
+        <span class="n">projector</span><span class="p">.</span><span class="n">off</span><span class="p">();</span>
+        <span class="n">amp</span><span class="p">.</span><span class="n">off</span><span class="p">();</span>
+        <span class="n">dvd</span><span class="p">.</span><span class="n">stop</span><span class="p">();</span>
+        <span class="n">dvd</span><span class="p">.</span><span class="n">eject</span><span class="p">();</span>
+        <span class="n">dvd</span><span class="p">.</span><span class="n">off</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="n">public</span> <span class="kt">void</span> <span class="nf">listenToCd</span><span class="p">(</span><span class="n">String</span> <span class="n">cdTitle</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">System</span><span class="p">.</span><span class="n">out</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Get ready for an audiopile experence...&quot;</span><span class="p">);</span>
+        <span class="n">lights</span><span class="p">.</span><span class="n">on</span><span class="p">();</span>
+        <span class="n">amp</span><span class="p">.</span><span class="n">on</span><span class="p">();</span>
+        <span class="n">amp</span><span class="p">.</span><span class="n">setVolume</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+        <span class="n">amp</span><span class="p">.</span><span class="n">setCd</span><span class="p">(</span><span class="n">cd</span><span class="p">);</span>
+        <span class="n">amp</span><span class="p">.</span><span class="n">setStereoSound</span><span class="p">();</span>
+        <span class="n">cd</span><span class="p">.</span><span class="n">on</span><span class="p">();</span>
+        <span class="n">cd</span><span class="p">.</span><span class="n">play</span><span class="p">(</span><span class="n">cdTitle</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">public</span> <span class="kt">void</span> <span class="nf">endCd</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">System</span><span class="p">.</span><span class="n">out</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Shutting down CD...&quot;</span><span class="p">);</span>
+        <span class="n">amp</span><span class="p">.</span><span class="n">off</span><span class="p">();</span>
+        <span class="n">amp</span><span class="p">.</span><span class="n">setCd</span><span class="p">(</span><span class="n">cd</span><span class="p">);</span>
+        <span class="n">cd</span><span class="p">.</span><span class="n">eject</span><span class="p">();</span>
+        <span class="n">cd</span><span class="p">.</span><span class="n">off</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="n">public</span> <span class="kt">void</span> <span class="nf">listenToRadio</span><span class="p">(</span><span class="kt">double</span> <span class="n">frequency</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">System</span><span class="p">.</span><span class="n">out</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Tuning in the airwaves...&quot;</span><span class="p">);</span>
+        <span class="n">tuner</span><span class="p">.</span><span class="n">on</span><span class="p">();</span>
+        <span class="n">tuner</span><span class="p">.</span><span class="n">setFrequency</span><span class="p">(</span><span class="n">frequency</span><span class="p">);</span>
+        <span class="n">amp</span><span class="p">.</span><span class="n">on</span><span class="p">();</span>
+        <span class="n">amp</span><span class="p">.</span><span class="n">setVolume</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+        <span class="n">amp</span><span class="p">.</span><span class="n">setTuner</span><span class="p">(</span><span class="n">tuner</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">public</span> <span class="kt">void</span> <span class="nf">endRadio</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">System</span><span class="p">.</span><span class="n">out</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Shutting down the tuner...&quot;</span><span class="p">);</span>
+        <span class="n">tuner</span><span class="p">.</span><span class="n">off</span><span class="p">();</span>
+        <span class="n">amp</span><span class="p">.</span><span class="n">off</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>我们使用这个外观模式就可以简单舒适的看一场电影了:</p>
+<div class="highlight"><pre><span class="n">public</span> <span class="n">class</span> <span class="n">HomeTheaterTestDrive</span> <span class="p">{</span>
+    <span class="n">public</span> <span class="k">static</span> <span class="kt">void</span> <span class="n">main</span><span class="p">(</span><span class="n">String</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Amplifier</span> <span class="n">amp</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Amplifier</span><span class="p">(</span><span class="s">&quot;Top-O-Line Amplifier&quot;</span><span class="p">);</span>
+        <span class="n">Tuner</span> <span class="n">tuner</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Tuner</span><span class="p">(</span><span class="s">&quot;Top-O-Line AM/FM Tuner&quot;</span><span class="p">,</span> <span class="n">amp</span><span class="p">);</span>
+        <span class="n">DvdPlayer</span> <span class="n">dvd</span> <span class="o">=</span> <span class="n">new</span> <span class="n">DvdPlayer</span><span class="p">(</span><span class="s">&quot;Top-O-Line DVD Player&quot;</span><span class="p">,</span> <span class="n">amp</span><span class="p">);</span>
+        <span class="n">CdPlayer</span> <span class="n">cd</span> <span class="o">=</span> <span class="n">new</span> <span class="n">CdPlayer</span><span class="p">(</span><span class="s">&quot;Top-O-Line CD Player&quot;</span><span class="p">,</span> <span class="n">amp</span><span class="p">);</span>
+        <span class="n">Projector</span> <span class="n">projector</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Projector</span><span class="p">(</span><span class="s">&quot;Top-O-Line Projector&quot;</span><span class="p">,</span> <span class="n">dvd</span><span class="p">);</span>
+        <span class="n">TheaterLights</span> <span class="n">lights</span> <span class="o">=</span> <span class="n">new</span> <span class="n">TheaterLights</span><span class="p">(</span><span class="s">&quot;Theater Ceiling Lights&quot;</span><span class="p">);</span>
+        <span class="n">Screen</span> <span class="n">screen</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Screen</span><span class="p">(</span><span class="s">&quot;Theater Screen&quot;</span><span class="p">);</span>
+        <span class="n">PopcornPopper</span> <span class="n">popper</span> <span class="o">=</span> <span class="n">new</span> <span class="n">PopcornPopper</span><span class="p">(</span><span class="s">&quot;Popcorn Popper&quot;</span><span class="p">);</span>
+        <span class="n">HomeTheaterFacade</span> <span class="n">homeTheater</span> <span class="o">=</span>
+                <span class="n">new</span> <span class="n">HomeTheaterFacade</span><span class="p">(</span><span class="n">amp</span><span class="p">,</span> <span class="n">tuner</span><span class="p">,</span> <span class="n">dvd</span><span class="p">,</span> <span class="n">cd</span><span class="p">,</span>
+                        <span class="n">projector</span><span class="p">,</span> <span class="n">screen</span><span class="p">,</span> <span class="n">lights</span><span class="p">,</span> <span class="n">popper</span><span class="p">);</span>
+        <span class="n">homeTheater</span><span class="p">.</span><span class="n">watchMovie</span><span class="p">(</span><span class="s">&quot;Raiders of the Lost Ark&quot;</span><span class="p">);</span>
+        <span class="n">homeTheater</span><span class="p">.</span><span class="n">endMovie</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>我们最后给外观模式一个定义：提供了一个统一的接口，用来访问子系统中的一群接口，外观定义了一个高层接口，让子系统更容易使用。</p>
+<p>我们由此引入一个新的OO原则——最少知识(Least Knowledge)原则(也就是传说中的Law of Demeter): 只和你的密友谈话. 也就是说, 当你正在设计一个系统时不管是任何对象, 你都要注意它所交互的类有哪些, 并注意它和这些类是如何交互的. 尽量减少类之间的依赖. 针对这个原则, 我们有一系列的准则可以遵循: 对于任何对象, 在其内部的方法中, 我们只应该调用属于以下范围的方法:</p>
+<ul>
+<li>该对象本身。</li>
+<li>被当做方法的参数而传递进来的对象。</li>
+<li>此方法所创建或实例化的任何对象。</li>
+<li>对象中的其他任何的对象成员和方法。</li>
+</ul>
+<p>举一个汽车的例子：</p>
+<div class="highlight"><pre><span class="n">public</span> <span class="n">class</span> <span class="n">car</span><span class="p">{</span>
+    <span class="n">Engine</span> <span class="n">engine</span><span class="p">;</span> <span class="c1">// 类中的组件, 我们可以调用它的方法</span>
+    <span class="n">public</span> <span class="nf">Car</span><span class="p">(){</span>
+    <span class="p">}</span>
+    <span class="n">public</span> <span class="kt">void</span> <span class="nf">start</span><span class="p">(</span><span class="n">Key</span> <span class="n">key</span><span class="p">){</span>
+        <span class="n">Doors</span> <span class="n">doors</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Doors</span><span class="p">();</span> <span class="c1">// 方法创建的对象, 我们可以调用它的方法</span>
+        <span class="n">boolean</span> <span class="n">authorized</span> <span class="o">=</span> <span class="n">key</span><span class="p">.</span><span class="n">turns</span><span class="p">();</span> <span class="c1">// 传入的参数, 我们可以调用它的方法</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">authorized</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">engine</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
+            <span class="n">updateDashboardDisplay</span><span class="p">();</span> <span class="c1">// 对象中的方法, 我们可以调用</span>
+            <span class="n">doors</span><span class="p">.</span><span class="n">lock</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">public</span> <span class="kt">void</span> <span class="nf">updateDashboardDisplay</span><span class="p">(){</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>不要对某个调用其他方法返回的对象进行方法的调用, 我们若是这么做就相当于向另一个对象的子部分发请求, 耦合性就会加大. 但是这个原则也会带来一些弊端, 导致更多的"包装"类被制造出来, 以处理和其他组件的沟通, 增加程序复杂度和运行时的性能.</p>
+<p>我们再举书中一个练习题的例子仔细看看这个相当基本且重要的原则:</p>
+<p>一个不符合这个原则的案例:</p>
+<div class="highlight"><pre><span class="n">public</span> <span class="n">class</span> <span class="n">House</span><span class="p">{</span>
+    <span class="n">WeatherStation</span> <span class="n">station</span><span class="p">;</span>
+    <span class="n">public</span> <span class="kt">float</span> <span class="nf">getTemp</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="n">station</span><span class="p">.</span><span class="n">getThermometer</span><span class="p">().</span><span class="n">getTemperature</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>这个getTemp方法中涉及了一个调用返回的对象.</p>
+<p>而我们把这个方法拆开就可以得到一个符合这个原则的案例：</p>
+<div class="highlight"><pre><span class="n">public</span> <span class="n">class</span> <span class="n">House</span><span class="p">{</span>
+    <span class="n">WeatherStation</span> <span class="n">station</span><span class="p">;</span>
+    <span class="n">public</span> <span class="kt">float</span> <span class="nf">getTemp</span><span class="p">(){</span>
+        <span class="n">Thermometer</span> <span class="n">thermometer</span> <span class="o">=</span> <span class="n">station</span><span class="p">.</span><span class="n">getThermometer</span><span class="p">();</span>
+        <span class="k">return</span> <span class="n">getTempHelper</span><span class="p">(</span><span class="n">thermometer</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">public</span> <span class="kt">float</span> <span class="nf">getTemperHelp</span><span class="p">(</span><span class="n">Thermometer</span> <span class="n">thermometer</span><span class="p">){</span>
+        <span class="k">return</span> <span class="n">thermometer</span><span class="p">.</span><span class="n">getTemperature</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>但是这有意义吗? 在这个简单的例子中恐怕是没有的. 其实我们经常用到违反该原则的例子, 比如<code>System.out.println</code>……, 这就告诉我们这并非是金科玉律. 有好有坏吧, 凡事有得有失, 在外观模式中, 我们看到HomeTheaterFacade类是遵循这个原则的, 这就主要带来好处: 一个组件的更换和升级不影响我们通过HomeTheaterTestDrive这个测试类中的主函数去轻松的看一场电影.</p>
+        <hr />
+    </div>
+         <div>
+        <a href="http://zoeyyoung.github.io/design-pattern-chain-of-responsibility.html"><h1>[设计模式] 职责链模式</h1></a>
+        <div class="article-metadata">
+<time class="published" datetime="2013 十月 08 周二">2013 十月 08 周二 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/she-ji-mo-shi.html">设计模式</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+        <a href="http://zoeyyoung.github.io/tag/du-shu.html">读书</a>
+        <a href="http://zoeyyoung.github.io/tag/book.html">Book</a>
+        <a href="http://zoeyyoung.github.io/tag/she-ji-mo-shi.html">设计模式</a>
+    </span>
+<!-- <p></p> -->
+</div>        <p>职责链模式</p>
+        <hr />
+    </div>
+         <div>
         <a href="http://zoeyyoung.github.io/design-patten-adapter.html"><h1>[设计模式] Adapter</h1></a>
         <div class="article-metadata">
 <time class="published" datetime="2013 十月 02 周三">2013 十月 02 周三 </time>
@@ -127,7 +339,7 @@
         <a href="http://zoeyyoung.github.io/tag/book.html">Book</a>
     </span>
 <!-- <p></p> -->
-</div>        <p><a href="http://www.programcreek.com/2011/09/java-design-pattern-adapter/">Programcreek: Java Design Pattern: Adapter</a></p>
+</div>        <p>Adapter</p>
         <hr />
     </div>
          <div>
@@ -161,6 +373,7 @@
     <i class="icon-tags"></i>
         <a href="http://zoeyyoung.github.io/tag/du-shu.html">读书</a>
         <a href="http://zoeyyoung.github.io/tag/book.html">Book</a>
+        <a href="http://zoeyyoung.github.io/tag/she-ji-mo-shi.html">设计模式</a>
     </span>
 <!-- <p></p> -->
 </div>        <p>观察者模式</p>

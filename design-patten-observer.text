@@ -1,6 +1,6 @@
 Title: [设计模式] 观察者模式
 Date: 2013-09-22
-Tags: 读书,Book
+Tags: 读书,Book,设计模式
 Slug: design-patten-observer
 Author: Zoey Young
 Summary: 观察者模式
@@ -49,3 +49,13 @@ MVC
 * 如果有必要的话, 可以实现自己的Observable
 * Swing大量使用观察者模式, 许多GUI框架也是如此
 * 此模式也被应用在许多地方, 例如: JavaBeans、RMI
+
+### JDK
+
+Observer (or Publish/Subscribe) (recognizeable by behavioral methods which invokes a method on an instance of another abstract/interface type, depending on own state)
+
+* [java.util.Observer](http://docs.oracle.com/javase/7/docs/api/java/util/Observer.html) / [java.util.Observable](http://docs.oracle.com/javase/7/docs/api/java/util/Observable.html) (rarely used in real world though)
+* All implementations of [java.util.EventListener](http://docs.oracle.com/javase/7/docs/api/java/util/EventListener.html) (practically all over Swing thus)
+* [javax.servlet.http.HttpSessionBindingListener](http://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSessionBindingListener.html)
+* [javax.servlet.http.HttpSessionAttributeListener](http://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSessionAttributeListener.html)
+* [javax.faces.event.PhaseListener](http://docs.oracle.com/javaee/7/api/javax/faces/event/PhaseListener.html)

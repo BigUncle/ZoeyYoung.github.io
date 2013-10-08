@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
-  <title>[设计模式] 观察者模式 - OK Computer</title>
+  <title>[设计模式] 职责链模式 - OK Computer</title>
   <meta name="description" content="杨丁苗的个人博客">
   <meta name="author" content="ZoeyYoung">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -112,9 +112,9 @@
       </div>
       <div class="main-content col-md-8">
           <article>
-  <h1>[设计模式] 观察者模式</h1>
+  <h1>[设计模式] 职责链模式</h1>
   <div class="article-metadata">
-<time class="published" datetime="2013 九月 22 周日">2013 九月 22 周日 </time>
+<time class="published" datetime="2013 十月 08 周二">2013 十月 08 周二 </time>
 <a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
 <span>
     <i class="icon-folder-open"></i>
@@ -127,43 +127,16 @@
         <a href="http://zoeyyoung.github.io/tag/she-ji-mo-shi.html">设计模式</a>
     </span>
 <!-- <p></p> -->
-</div>  <h3>参考书籍</h3>
-<p>《Head First 设计模式》2 观察者(Observer)模式 —— 让你的对象知悉现况[本文主要是基于这本的笔记]</p>
-<p>《设计模式：可复用面向对象软件的基础》5.7 OBSERVER(观察者) —— 对象行为型模式</p>
-<hr />
-<p>观察者模式是JDK中使用最多的模式之一.</p>
-<p>(手机中的后台通知. 天气通知. 新闻订阅. RSS订阅. 报纸和杂志的订阅.)</p>
-<p>出版者(Subject)+订阅者(Observer)=观察者模式</p>
-<p>定义: 观察者模式定义了对象之间的一对多依赖关系, 这样一来, 当一个对象改变状态时, 它的所有依赖者都会收到通知并自动更新.</p>
-<p>Java内置的观察者模式</p>
-<p>java.util.Observer &lt;<interface>&gt;</p>
-<p>java.util.Observable &lt;<class>&gt; —— 不是接口, 必须继承. 限制了它的使用和复用. 不能使用组合, 因为存在受保护(protected)的方法.</p>
-<p>相关描述查看<a href="http://docs.oracle.com/javase/7/docs/api/">API文档</a></p>
-<p>在JavaBeans和Swing中, 也都实现了观察者模式.</p>
-<p>PropertyChangeListener接口</p>
-<p>ActionListener</p>
-<p>MVC</p>
-<h3>要点</h3>
-<ul>
-<li>观察者模式定义了对象之间一对多的关系</li>
-<li>主题(也就是可观察者)用一个共同的接口来更新观察者</li>
-<li>观察者和可观察者之间用松耦合方式结合(loosecoupling), 可观察者不知道观察者的细节, 只知道观察者实现了观察者接口</li>
-<li>使用此模式时, 你可从被观察者处推(push)或拉(pull)数据(然而, 推的方式被认为更"正确")</li>
-<li>有多个观察者时, 不可以依赖特定的通知次序</li>
-<li>Java有多种观察者模式的实现, 包括了通用的java.util.Observable</li>
-<li>要注意java.util.Observable实现上所带来的一些问题</li>
-<li>如果有必要的话, 可以实现自己的Observable</li>
-<li>Swing大量使用观察者模式, 许多GUI框架也是如此</li>
-<li>此模式也被应用在许多地方, 例如: JavaBeans、RMI</li>
-</ul>
+</div>  <h3>联想</h3>
+<p>击鼓传花</p>
+<h3>意图</h3>
+<p><a href="http://en.wikipedia.org/wiki/Chain_of_responsibility_pattern">Chain Of Responsibility</a>: 为清除请求的发送者和接受者之间的耦合, 而使多个对象都有机会处理这个请求. 将这些对象连成一条链, 并沿着这条链传递该请求, 直到有一个对象处理它.</p>
+<p><a href="http://www.programcreek.com/2013/02/java-design-pattern-chain-of-responsibility/">Java Design Pattern: Chain of Responsibility</a></p>
 <h3>JDK</h3>
-<p>Observer (or Publish/Subscribe) (recognizeable by behavioral methods which invokes a method on an instance of another abstract/interface type, depending on own state)</p>
+<p>Chain of responsibility (recognizeable by behavioral methods which (indirectly) invokes the same method in another implementation of same abstract/interface type in a queue)</p>
 <ul>
-<li><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Observer.html">java.util.Observer</a> / <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Observable.html">java.util.Observable</a> (rarely used in real world though)</li>
-<li>All implementations of <a href="http://docs.oracle.com/javase/7/docs/api/java/util/EventListener.html">java.util.EventListener</a> (practically all over Swing thus)</li>
-<li><a href="http://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSessionBindingListener.html">javax.servlet.http.HttpSessionBindingListener</a></li>
-<li><a href="http://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSessionAttributeListener.html">javax.servlet.http.HttpSessionAttributeListener</a></li>
-<li><a href="http://docs.oracle.com/javaee/7/api/javax/faces/event/PhaseListener.html">javax.faces.event.PhaseListener</a></li>
+<li><a href="http://docs.oracle.com/javase/7/docs/api/java/util/logging/Logger.html#log%28java.util.logging.Level,%20java.lang.String%29">java.util.logging.Logger#log()</a></li>
+<li><a href="http://docs.oracle.com/javaee/7/api/javax/servlet/Filter.html#doFilter%28javax.servlet.ServletRequest,%20javax.servlet.ServletResponse,%20javax.servlet.FilterChain%29">javax.servlet.Filter#doFilter()</a></li>
 </ul>
 </article>
 <div class="comment">

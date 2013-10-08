@@ -5,5 +5,110 @@ Slug: design-patten-adapter
 Author: Zoey Young
 Summary: Adapter
 
-[Programcreek: Java Design Pattern: Adapter](http://www.programcreek.com/2011/09/java-design-pattern-adapter/)
+### 意图:
 
+1. Adapter(类模式): 通过类继承, 将一个类的接口转换成客户希望的另外一个接口. 使得原本由于接口不兼容而不能一起工作的那些类可以一起工作.
+
+2. Adapter: 通过对象组合, 将一个类的接口转换成客户希望的另外一个接口. 使得原本由于接口不兼容而不能一起工作的那些类可以一起工作.
+
+### 别名: 包装器 Wrapper
+
+### 适用性
+
+以下情况使用Adapter模式
+
+* 你想使用一个已经存在的类, 而它的接口不符合你的需求.
+* 你想创建一个可以复用的类, 该类可以与其他不相关的类或不可预见的类(即那些接口
+可能不一定兼容的类)协同工作.
+* (仅适用于对象Adapter)你想使用一些已经存在的子类, 但是不可能对每一个都进行
+子类化以匹配它们的接口. 对象适配器可以适配它的父类接口.
+
+### Head First
+
+![适配器](/static/images/适配器.jpg)
+
+1.真实世界的适配器: 交流电适配器. 【想想相机那个充电器.】
+
+2.构造适配器的关键: 实现了目标接口, 并持有被适配者的实例.
+
+举一个火鸡冒充鸭子的适配器例子:
+
+我们定义两个东西:
+
+一个是鸭子:
+
+    :::java
+    public interface Duck {
+        public void quack();
+        public void fly();
+    }
+
+一个是火鸡：
+
+    :::java
+    public interface Turkey {
+        public void gobble();
+        public void fly();
+    }
+
+我们现在做的就是要让火鸡有能力去冒充鸭子, 因为接口不同, 因此需要适配器:
+
+    :::java
+    public class TurkeyAdapter implements Duck { // 需要实现客户想看到的接口
+        Turkey turkey;
+        public TurkeyAdapter(Turkey turkey) { // 利用构造器取得要被适配的对象的引用
+            this.turkey = turkey;
+        }
+        // 下面实现接口中所有的方法.
+        public void quack() {
+            turkey.gobble();
+        }
+        public void fly() {
+            for(int i=0; i < 5; i++) {
+                turkey.fly();
+            }
+        }
+    }
+
+在这个类似于一种能力转换器的类中, 我们首先指定了我们转换为Duck的能力(**implements Duck**), 而这个能力的实际提供者 —— Turkey则被我们以成员变量的形式置于这个类内部(**Turkey turkey;**)并且在这个类构造对象时传入(**public TurkeyAdapter(Turkey turkey)**). 下一步就是具体定义这些能力的时候了——也就是把接口定义的方法都对应实现.
+
+在使用的时候, 我们的意图是让火鸡冒充鸭子, 那么我们要先建立一个火鸡, 然后建立一个能力转换器(**new TurkeyAdapter(turkey)**), 把我们建立好的火鸡传进去处理, 这样得到的一个对象(**turkeyAdapter**)就可以完全当做一个鸭子使用了.
+
+    :::java
+    public class DuckTestDrive {
+        public static void main(String[] args) {
+            WildTurkey turkey = new WildTurkey();
+            Duck turkeyAdapter = new TurkeyAdapter(turkey);
+            testDuck(turkeyAdapter);
+        }
+        static void testDuck(Duck duck) {
+            duck.quack();
+            duck.fly();
+        }
+    }
+
+这样的设计体现了良好的OO设计原则: 使用对象组合, 包装被适配者. 并且它是通过接口进行组合将二者绑定起来, 而不是实现——这就是一个对象适配器的设计观念.
+
+3.类适配器与对象适配器不同之处在于: 类适配器使用继承的方式, 多重继承了被适配者(此例中为火鸡)和目标适配者(此例中为鸭子)两者. 而对象适配器则实现了鸭子的接口, 在具体调用时则通过内部的火鸡成员变量提供具体真实的能力, 通过这样的方式将两者组合起来. 通过对比, 我们能得到如下一些特点:
+
+对象适配器不但能适配某一个类, 而且还可以适配该类的任意子类, 另外实现的方法可以由多个方法搭配完成, 这样更具有弹性.
+
+类适配器则只在需要的时候使用覆盖来实现一些方法, 而不用像对象适配器一样实现整个被适配者的各种方法, 因为它可以直接使用继承, 更加有效率.
+
+另外需要说明的是: 由于Java中无法提供多重继承, 所以无法轻易实现类适配器这个层面的东西.
+
+4.在Sun Java中一个实际使用适配器的例子就是**Iterator接口**, 它实现了对集合类型的遍历.
+
+5.你可能发现一个事情: 装饰者模式和适配器模式貌似比较相像, 我们做一下比较：
+
+装饰者需要有一些新的行为或者职责要加入到设计中, 并且动态的进行添加处理, 而适配器模式则是需要将一个能力转换为另一个能力, 静态敲定了一些能力. 装饰者也可以做到能力转换, 而且还支持新行为的加入, 适配器只是装饰者的一种变体, 都是用来包装对象的. 而从另外的角度, 适配器一定会对接口进行转换, 而装饰者一定不会. 从意图上说, 装饰者是被改变接口而扩展包装对象的行为或者职责, 而适配器则是为了转换包装对象的行为来改变接口.
+
+比较:
+
+* 装饰者模式 将对象包装起来, 赋予它们新的职责
+* 适配器模式 将类的接口转换成想要的接口
+* 外观模式 将对象包装起来以简化其接口
+
+更多:
+
+[Programcreek: Java Design Pattern: Adapter](http://www.programcreek.com/2011/09/java-design-pattern-adapter/)
