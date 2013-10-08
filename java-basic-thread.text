@@ -1,0 +1,32 @@
+Title: [Java基础] 多线程
+Date: 2013-10-08
+Tags: 笔试,面试,Java,基础,编程
+Slug: java-basic-thread
+Author: Zoey Young
+Summary:
+
+[java.lang - Interface Runnable](http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.html)
+
+[java.lang - Class Thread](http://docs.oracle.com/javase/7/docs/api/java/lang/Thread.html)
+
+声明:
+
+    public class Thread
+    extends Object
+    implements Runnable
+
+[【Java学习笔记】多线程](http://www.cnblogs.com/gnuhpc/archive/2013/01/04/2843817.html)
+
+[Java Thread: Status Diagram](http://www.programcreek.com/2009/03/thread-status/)
+
+![Java Thread: Status Diagram](http://www.programcreek.com/wp-content/uploads/2009/03/threads2.gif)
+
+[Java Thread: an overridding example code](http://www.programcreek.com/2009/02/a-java-thread-overridding-example-code/)
+
+这篇博文的例子描述了直接调用`run()`方法和使用`start()`的区别
+
+[Interview Question – Use Java Thread to Do Math Calculation](http://www.programcreek.com/2012/08/interview-question-use-java-thread-to-do-math-calculation/)
+
+例子描述了`join()`的用法
+
+[stackoverflow: “implements Runnable” vs. “extends Thread”](http://stackoverflow.com/questions/541487/implements-runnable-vs-extends-thread)

@@ -9,8 +9,8 @@
 &lt;li&gt;当你需要构建一个层次结构的子系统时, 使用facade模式定义子系统中每层的入口点. 如果子系统之间是相互依赖的, 你可以让它们仅通过facade进行通讯, 从而简化了它们之间的依赖关系.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;Head First&lt;/h3&gt;
-&lt;p&gt;书中接着引入另一个改变接口的新模式——外观模式(facade), 它改变接口的目的是简化接口. 外观类没有对子系统进行封装, 只是提供了集合式简化的接口. 这其实是一个极朴素的概念, 不只是简化了接口, 也将客户从组件的子系统中解耦出来. 外观和适配器都可以包装多个类, 但是外观的意图在于简化接口, 而适配器的意图在于将接口转换成不同的接口.&lt;/p&gt;
-&lt;p&gt;书中举了家庭影院的外观模式例子, 将许许多多的组件动作结合在一起完成了一系列对用户来讲方便的方法:&lt;/p&gt;
+&lt;p&gt;外观模式(facade)改变接口的目的是&lt;strong&gt;简化接口&lt;/strong&gt;. 外观类没有对子系统进行封装, 只是提供了集合式简化的接口. 这其实是一个极朴素的概念, 不只是简化了接口, 也将客户从组件的子系统中解耦出来. 外观和适配器都可以包装多个类, 但是外观的&lt;strong&gt;意图&lt;/strong&gt;在于简化接口, 而适配器的意图在于将接口转换成不同的接口.&lt;/p&gt;
+&lt;p&gt;家庭影院的外观模式例子, 将许许多多的组件动作结合在一起完成了一系列对用户来讲方便的方法:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;HomeTheaterFacade&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="n"&gt;Amplifier&lt;/span&gt; &lt;span class="n"&gt;amp&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
     &lt;span class="n"&gt;Tuner&lt;/span&gt; &lt;span class="n"&gt;tuner&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -118,7 +118,6 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;我们最后给外观模式一个定义：提供了一个统一的接口，用来访问子系统中的一群接口，外观定义了一个高层接口，让子系统更容易使用。&lt;/p&gt;
 &lt;p&gt;我们由此引入一个新的OO原则——最少知识(Least Knowledge)原则(也就是传说中的Law of Demeter): 只和你的密友谈话. 也就是说, 当你正在设计一个系统时不管是任何对象, 你都要注意它所交互的类有哪些, 并注意它和这些类是如何交互的. 尽量减少类之间的依赖. 针对这个原则, 我们有一系列的准则可以遵循: 对于任何对象, 在其内部的方法中, 我们只应该调用属于以下范围的方法:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;该对象本身。&lt;/li&gt;
@@ -174,7 +173,10 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;但是这有意义吗? 在这个简单的例子中恐怕是没有的. 其实我们经常用到违反该原则的例子, 比如&lt;code&gt;System.out.println&lt;/code&gt;……, 这就告诉我们这并非是金科玉律. 有好有坏吧, 凡事有得有失, 在外观模式中, 我们看到HomeTheaterFacade类是遵循这个原则的, 这就主要带来好处: 一个组件的更换和升级不影响我们通过HomeTheaterTestDrive这个测试类中的主函数去轻松的看一场电影.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 08 Oct 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-10-08:design-patten-facade.html</guid><category>读书</category><category>Book</category></item><item><title>[设计模式] 职责链模式</title><link>http://zoeyyoung.github.io/design-pattern-chain-of-responsibility.html</link><description>&lt;h3&gt;联想&lt;/h3&gt;
+&lt;p&gt;但是这有意义吗? 在这个简单的例子中恐怕是没有的. 其实我们经常用到违反该原则的例子, 比如&lt;code&gt;System.out.println&lt;/code&gt;……, 这就告诉我们这并非是金科玉律. 有好有坏吧, 凡事有得有失, 在外观模式中, 我们看到HomeTheaterFacade类是遵循这个原则的, 这就主要带来好处: 一个组件的更换和升级不影响我们通过HomeTheaterTestDrive这个测试类中的主函数去轻松的看一场电影.&lt;/p&gt;
+&lt;h3&gt;更多&lt;/h3&gt;
+&lt;p&gt;&lt;a href="http://en.wikipedia.org/wiki/Facade_pattern"&gt;维基: Facade pattern&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;举了一个电脑启动的例子. 我们只要按开机按钮, 但计算机内部帮我们做了一堆事情, 包括CPU、内存、硬盘等对象互相交互.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 08 Oct 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-10-08:design-patten-facade.html</guid><category>读书</category><category>Book</category></item><item><title>[设计模式] 职责链模式</title><link>http://zoeyyoung.github.io/design-pattern-chain-of-responsibility.html</link><description>&lt;h3&gt;联想&lt;/h3&gt;
 &lt;p&gt;击鼓传花&lt;/p&gt;
 &lt;h3&gt;意图&lt;/h3&gt;
 &lt;p&gt;&lt;a href="http://en.wikipedia.org/wiki/Chain_of_responsibility_pattern"&gt;Chain Of Responsibility&lt;/a&gt;: 为清除请求的发送者和接受者之间的耦合, 而使多个对象都有机会处理这个请求. 将这些对象连成一条链, 并沿着这条链传递该请求, 直到有一个对象处理它.&lt;/p&gt;
@@ -462,7 +464,7 @@
 &lt;p&gt;3、Bridge: 将抽象部分与它的显示部分分离, 使它们都可以独立地变化.&lt;/p&gt;
 &lt;p&gt;4、Composite: 将对象组合成树形结构以表示“部分-整体”的层次结构. 使得客户对单个对象和复合对象的使用具有一致性.&lt;/p&gt;
 &lt;p&gt;5、Decorator: 动态地给一个对象添加一些额外的职责. 就扩展功能而言, Decorator模式比生成子类方式更为灵活.&lt;/p&gt;
-&lt;p&gt;6、Facade: 为子系统中的一组接口提供一个一致的界面, Facade模式定义了一个高层的接口, 这个接口使得这一子系统更加容易使用.&lt;/p&gt;
+&lt;p&gt;6、&lt;a href="http://en.wikipedia.org/wiki/Facade_pattern"&gt;Facade&lt;/a&gt;: 为子系统中的一组接口提供一个一致的界面, Facade模式定义了一个高层的接口, 这个接口使得这一子系统更加容易使用.&lt;/p&gt;
 &lt;p&gt;7、Flyweight: 运用共享技术有效地支持大量细粒度的对象.&lt;/p&gt;
 &lt;p&gt;8、Proxy: 为其他对象提供一个代理以控制对这个对象的访问.&lt;/p&gt;
 &lt;h3&gt;&lt;a href="http://en.wikipedia.org/wiki/Behavioral_pattern"&gt;行为型&lt;/a&gt;:&lt;/h3&gt;

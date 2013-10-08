@@ -119,6 +119,16 @@
 &lt;p&gt;45 不作为偏误: 为什么你不是答案就是问题&lt;/p&gt;
 &lt;p&gt;46 自利偏误: 你为什么从不自责&lt;/p&gt;
 &lt;p&gt;47 享乐适应症: 你为什么应该缩短上班路程&lt;/p&gt;
+&lt;p&gt;研究证明, 驾驶汽车的往返交通引起的不满最多, 人们几乎无法适应.&lt;/p&gt;
+&lt;p&gt;享乐适应症: 我们工作、升迁, 给自己购买更多更漂亮的东西, 但我们不会变得更幸福.&lt;/p&gt;
+&lt;p&gt;幸福感和痛苦感平均持续时间只有3个月.&lt;/p&gt;
+&lt;p&gt;【这让我想到, 你是宁愿租个离工作进一点的地方, 还是住在自己的房子, 但是离工作地方很远.】&lt;/p&gt;
+&lt;p&gt;建议:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;请你避免很长时间也不会习惯的负面效应, 例如往返交通、噪音、慢性疲累等;&lt;/li&gt;
+&lt;li&gt;请你对物质的东西只期待短期效果, 例如汽车、房屋、分红、中彩票、得金奖等;&lt;/li&gt;
+&lt;li&gt;持续的正面效应主要与你如何利用你的时间有关. 你要设法让自己得到尽可能多的自由时间和自主权.&lt;/li&gt;
+&lt;/ol&gt;
 &lt;p&gt;48 自我选择偏误: 请不要惊讶有你存在&lt;/p&gt;
 &lt;p&gt;49 联想偏误: 为什么经验有时让人变蠢&lt;/p&gt;
 &lt;p&gt;50 新手的运气: 假如开始时一切顺利, 请务必多加小心&lt;/p&gt;
@@ -597,6 +607,7 @@
 &lt;li&gt;让测试成为产品开发的阻碍.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;第15章 设计并改进"分钟/小时计数器"&lt;/h3&gt;
+&lt;p&gt;【这部分涉及到一些数据结构方面的知识】&lt;/p&gt;
 &lt;h4&gt;问题&lt;/h4&gt;
 &lt;p&gt;跟踪过去一分钟和一个小时里Web服务器传输了多少字节&lt;/p&gt;
 &lt;h4&gt;定义类接口&lt;/h4&gt;
@@ -610,7 +621,8 @@
 &lt;h2&gt;附录 深入阅读【一些书】&lt;/h2&gt;
 &lt;p&gt;关于写高质量代码的书&lt;/p&gt;
 &lt;p&gt;关于各种编程话题的书&lt;/p&gt;
-&lt;p&gt;历史上重要的书目&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Thu, 03 Oct 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-10-03:the-art-of-readable-code.html</guid><category>读书</category><category>Book</category></item><item><title>[笔记]《简约至上——交互式设计四策略》</title><link>http://zoeyyoung.github.io/simple-and-usable.html</link><description>&lt;p&gt;书的主题是提出&lt;strong&gt;四&lt;/strong&gt;个令交互式设计成果最大程序简单易用的策略:&lt;/p&gt;
+&lt;p&gt;历史上重要的书目&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://blog.csdn.net/courtneygeng/article/category/1548499"&gt;相关笔记&lt;/a&gt; —— 下次复习可比较一下&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Thu, 03 Oct 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-10-03:the-art-of-readable-code.html</guid><category>读书</category><category>Book</category></item><item><title>[笔记]《简约至上——交互式设计四策略》</title><link>http://zoeyyoung.github.io/simple-and-usable.html</link><description>&lt;p&gt;书的主题是提出&lt;strong&gt;四&lt;/strong&gt;个令交互式设计成果最大程序简单易用的策略:&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;合理删除、分层组织、适时隐藏、巧妙转移&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;全书都是一页文字一页配图，挺多不错的想法&lt;/p&gt;
 &lt;p&gt;================&lt;/p&gt;
