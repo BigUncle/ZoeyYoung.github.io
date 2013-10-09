@@ -5,17 +5,17 @@ Slug: after-install-ubuntu
 Author: Zoey Young
 Summary: MySQL
 
+### Ubuntu
+
 安装: `sudo apt-get install mysql-server`
 
 额外的一些包也会提示装上.
 
 安装过程会给**root**用户创建密码
 
-作为测试时我会用**123456**(有时会忘了...)
+作为测试时我会用**123456**(有时会忘了...实验环境.)
 
-装好后访问: `mysql -uroot -p123456`
-
-就可以在命令行中操作数据库
+装好后访问: `mysql -uroot -p123456` 就可以在命令行中操作数据库
 
 安装使用**phpmyadmin**: `sudo apt-get install phpmyadmin`
 
@@ -28,6 +28,8 @@ Summary: MySQL
 
 用户名: root 密码: 123456
 
-导出数据库: `~$ mysqldump -uroot -p123456 test>test.sql`
+备份: `mysqldump -uroot -p123456 test>test.sql`
 
-导入数据库: `~$ mysql -uroot -p123456 test<test.sql`
+恢复: `mysql -uroot -p123456 test<test.sql`
+
+[MySQL安装指南](http://wiki.ubuntu.org.cn/MySQL安装指南)

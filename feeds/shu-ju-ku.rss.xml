@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OK Computer</title><link>http://zoeyyoung.github.io/</link><description>It's better to burn out &lt;br/&gt; than to fade away.</description><atom:link href="http://zoeyyoung.github.io/feeds/shu-ju-ku.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 06 Oct 2013 00:00:00 +0800</lastBuildDate><item><title>[安装配置] MySQL</title><link>http://zoeyyoung.github.io/after-install-ubuntu.html</link><description>&lt;p&gt;安装: &lt;code&gt;sudo apt-get install mysql-server&lt;/code&gt;&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OK Computer</title><link>http://zoeyyoung.github.io/</link><description>It's better to burn out &lt;br/&gt; than to fade away.</description><atom:link href="http://zoeyyoung.github.io/feeds/shu-ju-ku.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 06 Oct 2013 00:00:00 +0800</lastBuildDate><item><title>[安装配置] MySQL</title><link>http://zoeyyoung.github.io/after-install-ubuntu.html</link><description>&lt;h3&gt;Ubuntu&lt;/h3&gt;
+&lt;p&gt;安装: &lt;code&gt;sudo apt-get install mysql-server&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;额外的一些包也会提示装上.&lt;/p&gt;
 &lt;p&gt;安装过程会给&lt;strong&gt;root&lt;/strong&gt;用户创建密码&lt;/p&gt;
-&lt;p&gt;作为测试时我会用&lt;strong&gt;123456&lt;/strong&gt;(有时会忘了...)&lt;/p&gt;
-&lt;p&gt;装好后访问: &lt;code&gt;mysql -uroot -p123456&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;就可以在命令行中操作数据库&lt;/p&gt;
+&lt;p&gt;作为测试时我会用&lt;strong&gt;123456&lt;/strong&gt;(有时会忘了...实验环境.)&lt;/p&gt;
+&lt;p&gt;装好后访问: &lt;code&gt;mysql -uroot -p123456&lt;/code&gt; 就可以在命令行中操作数据库&lt;/p&gt;
 &lt;p&gt;安装使用&lt;strong&gt;phpmyadmin&lt;/strong&gt;: &lt;code&gt;sudo apt-get install phpmyadmin&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;添加链接:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
@@ -14,8 +14,9 @@
 
 &lt;p&gt;打开页面: http://127.0.0.1/phpmyadmin/&lt;/p&gt;
 &lt;p&gt;用户名: root 密码: 123456&lt;/p&gt;
-&lt;p&gt;导出数据库: &lt;code&gt;~$ mysqldump -uroot -p123456 test&amp;gt;test.sql&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;导入数据库: &lt;code&gt;~$ mysql -uroot -p123456 test&amp;lt;test.sql&lt;/code&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sun, 06 Oct 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-10-06:after-install-ubuntu.html</guid><category>Ubuntu</category><category>Linux</category><category>安装</category><category>MySQL</category></item><item><title>[记录] MongoDB使用Whoosh进行全文搜索</title><link>http://zoeyyoung.github.io/mongodb-whoosh-full-text-search.html</link><description>&lt;p&gt;在我的书签云项目中采用了MongoDB数据库.&lt;/p&gt;
+&lt;p&gt;备份: &lt;code&gt;mysqldump -uroot -p123456 test&amp;gt;test.sql&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;恢复: &lt;code&gt;mysql -uroot -p123456 test&amp;lt;test.sql&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://wiki.ubuntu.org.cn/MySQL安装指南"&gt;MySQL安装指南&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sun, 06 Oct 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-10-06:after-install-ubuntu.html</guid><category>Ubuntu</category><category>Linux</category><category>安装</category><category>MySQL</category></item><item><title>[记录] MongoDB使用Whoosh进行全文搜索</title><link>http://zoeyyoung.github.io/mongodb-whoosh-full-text-search.html</link><description>&lt;p&gt;在我的书签云项目中采用了MongoDB数据库.&lt;/p&gt;
 &lt;p&gt;假设我有如下格式的文档(省略了与搜索无关的字段):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;519cd22917a0b7429bc2a1c0&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
