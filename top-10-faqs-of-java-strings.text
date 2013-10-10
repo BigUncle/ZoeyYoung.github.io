@@ -5,7 +5,9 @@ Slug: top-10-faqs-of-java-strings
 Author: Zoey Young
 Summary: Top 10 questions of Java Strings
 
-虽然直接看原文就可以了...不过适合挺常用的...因此收藏一下.
+[API: java.lang - Class String](http://docs.oracle.com/javase/7/docs/api/java/lang/String.html)
+
+虽然直接看原文就可以了...不过挺常用的...因此收藏一下. 其它关于字符串的内容也添加到这篇中.
 
 [原文](http://www.programcreek.com/2013/09/top-10-faqs-of-java-strings/)
 
@@ -24,6 +26,31 @@ It would be better if you know the concept of [string interning](http://www.prog
 3. Security
 
 【`==`只是单纯比较是不是同一个对象, 而`equals()`才是比较对象的值. 因此有时需要为对象override `equals()`方法.】
+
+-----【补充】-----
+
+[全面理解Java中的String数据类型](http://www.iteye.com/topic/122206)
+
+`new String()`和`new String("")`都是申明一个新的空字符串, 是空串不是`null`
+
+**常量池(constant pool)**指的是在编译期被确定, 并被保存在已编译的**.class**文件中的一些数据. 它包括了关于类、方法、接口等中的常量, 也包括字符串常量.
+
+[String中intern的方法](http://www.cnblogs.com/wanlipeng/archive/2010/10/21/1857513.html)
+
+    :::java
+    String a = new String("ab");
+    String b = new String("ab");
+    String c = "ab";
+    String d = "a" + "b";
+    String e = "b";
+    String f = "a" + e;
+
+    System.out.println(c == d); // true
+    System.out.println(b.intern() == a); // false
+    System.out.println(b.intern() == c); // true
+    System.out.println(b.intern() == d); // true
+    System.out.println(b.intern() == f); // false
+    System.out.println(b.intern() == a.intern()); // true
 
 2、Why is `char[]` preferred over String for security sensitive information?
 

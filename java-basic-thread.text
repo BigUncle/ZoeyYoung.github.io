@@ -29,4 +29,8 @@ Summary:
 
 例子描述了`join()`的用法
 
+[Java Thread: notify() and wait() examples](http://www.programcreek.com/2009/02/notify-and-wait-example/)
+
+有生产者和消费者的例子.
+
 [stackoverflow: “implements Runnable” vs. “extends Thread”](http://stackoverflow.com/questions/541487/implements-runnable-vs-extends-thread)

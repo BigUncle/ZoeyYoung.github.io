@@ -129,7 +129,8 @@
         <a href="http://zoeyyoung.github.io/tag/bian-cheng.html">编程</a>
     </span>
 <!-- <p></p> -->
-</div>  <p>虽然直接看原文就可以了...不过适合挺常用的...因此收藏一下.</p>
+</div>  <p><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html">API: java.lang - Class String</a></p>
+<p>虽然直接看原文就可以了...不过挺常用的...因此收藏一下. 其它关于字符串的内容也添加到这篇中.</p>
 <p><a href="http://www.programcreek.com/2013/09/top-10-faqs-of-java-strings/">原文</a></p>
 <p>1、How to compare strings? Use <code>==</code> or use <code>equals()</code>?</p>
 <p>In brief, <code>==</code> tests if references are equal and <code>equals()</code> tests if values are equal. Unless you want to check if two strings are the same object, you should always use equals().</p>
@@ -142,6 +143,27 @@
 <li>Security</li>
 </ol>
 <p>【<code>==</code>只是单纯比较是不是同一个对象, 而<code>equals()</code>才是比较对象的值. 因此有时需要为对象override <code>equals()</code>方法.】</p>
+<p>-----【补充】-----</p>
+<p><a href="http://www.iteye.com/topic/122206">全面理解Java中的String数据类型</a></p>
+<p><code>new String()</code>和<code>new String("")</code>都是申明一个新的空字符串, 是空串不是<code>null</code></p>
+<p><strong>常量池(constant pool)</strong>指的是在编译期被确定, 并被保存在已编译的<strong>.class</strong>文件中的一些数据. 它包括了关于类、方法、接口等中的常量, 也包括字符串常量.</p>
+<p><a href="http://www.cnblogs.com/wanlipeng/archive/2010/10/21/1857513.html">String中intern的方法</a></p>
+<div class="highlight"><pre><span class="n">String</span> <span class="n">a</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="s">&quot;ab&quot;</span><span class="o">);</span>
+<span class="n">String</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="s">&quot;ab&quot;</span><span class="o">);</span>
+<span class="n">String</span> <span class="n">c</span> <span class="o">=</span> <span class="s">&quot;ab&quot;</span><span class="o">;</span>
+<span class="n">String</span> <span class="n">d</span> <span class="o">=</span> <span class="s">&quot;a&quot;</span> <span class="o">+</span> <span class="s">&quot;b&quot;</span><span class="o">;</span>
+<span class="n">String</span> <span class="n">e</span> <span class="o">=</span> <span class="s">&quot;b&quot;</span><span class="o">;</span>
+<span class="n">String</span> <span class="n">f</span> <span class="o">=</span> <span class="s">&quot;a&quot;</span> <span class="o">+</span> <span class="n">e</span><span class="o">;</span>
+
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="n">d</span><span class="o">);</span> <span class="c1">// true</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">b</span><span class="o">.</span><span class="na">intern</span><span class="o">()</span> <span class="o">==</span> <span class="n">a</span><span class="o">);</span> <span class="c1">// false</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">b</span><span class="o">.</span><span class="na">intern</span><span class="o">()</span> <span class="o">==</span> <span class="n">c</span><span class="o">);</span> <span class="c1">// true</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">b</span><span class="o">.</span><span class="na">intern</span><span class="o">()</span> <span class="o">==</span> <span class="n">d</span><span class="o">);</span> <span class="c1">// true</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">b</span><span class="o">.</span><span class="na">intern</span><span class="o">()</span> <span class="o">==</span> <span class="n">f</span><span class="o">);</span> <span class="c1">// false</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">b</span><span class="o">.</span><span class="na">intern</span><span class="o">()</span> <span class="o">==</span> <span class="n">a</span><span class="o">.</span><span class="na">intern</span><span class="o">());</span> <span class="c1">// true</span>
+</pre></div>
+
+
 <p>2、Why is <code>char[]</code> preferred over String for security sensitive information?</p>
 <p><a href="http://www.programcreek.com/2009/02/diagram-to-show-java-strings-immutability/">Strings are immutable</a>, which means once they are created, they will stay unchanged until Garbage Collector kicks in. With an array, you can explicitly change its elements. In this way, security sensitive information(e.g. password) will not be present anywhere in the system.</p>
 <p>3、Can we use string for switch statement?</p>
