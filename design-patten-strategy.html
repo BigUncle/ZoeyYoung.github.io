@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>[设计模式] 策略模式 - OK Computer</title>
+  <meta name="description" content="杨丁苗的个人博客">
+  <meta name="author" content="Zoey Young">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+  <!--[if lt IE 9]>
+  <script src="http://zoeyyoung.github.io/theme/html5.js"></script>
+  <![endif]-->
+  <!-- Le styles -->
+  <link href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/journal/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link href="http://zoeyyoung.github.io/theme/print.css" rel="stylesheet" media="print" />
+  <link href="http://zoeyyoung.github.io/theme/local.css" rel="stylesheet" media="screen" />
+  <link href="http://zoeyyoung.github.io/theme/pygments.css" rel="stylesheet" />
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet" />
+  <!--[if IE 7]>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome-ie7.min.css" rel="stylesheet" />
+  <![endif]-->
+  <script type="text/javascript" src="http://tajs.qq.com/stats?sId=27017681" charset="UTF-8"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div id="header" class="col-md-2 no-print">
+        <div class="brand-wrapper">
+          <a href="http://zoeyyoung.github.io" class="navbar-brand">OK Computer</a>
+          <p style="text-align: center; font-size: 12px; margin-top: 0;">It's better to burn out <br/> than to fade away.</p>
+        </div>
+        <ul id="blog-nav" class="nav">
+          <li>SITE</li>
+          <li><a href="http://zoeyyoung.github.io">首页</a></li>
+          <li><a href="http://zoeyyoung.github.io/archives.html">归档</a></li>
+          <li><a href="http://zoeyyoung.github.io/tags.html">标签</a></li>
+          <li><hr/></li>
+          <li>CATEGORIES</li>
+          <li >
+            <a href="http://zoeyyoung.github.io/category/cc.html ">C&C++</a>
+          </li>
+          <li >
+            <a href="http://zoeyyoung.github.io/category/dong-nao.html ">动脑</a>
+          </li>
+          <li >
+            <a href="http://zoeyyoung.github.io/category/du-shu.html ">读书</a>
+          </li>
+          <li >
+            <a href="http://zoeyyoung.github.io/category/gong-zuo-ji-lu.html ">工作记录</a>
+          </li>
+          <li >
+            <a href="http://zoeyyoung.github.io/category/java.html ">Java</a>
+          </li>
+          <li >
+            <a href="http://zoeyyoung.github.io/category/ji-chu.html ">基础</a>
+          </li>
+          <li >
+            <a href="http://zoeyyoung.github.io/category/linux.html ">Linux</a>
+          </li>
+          <li >
+            <a href="http://zoeyyoung.github.io/category/nlp.html ">NLP</a>
+          </li>
+          <li >
+            <a href="http://zoeyyoung.github.io/category/python.html ">Python</a>
+          </li>
+          <li >
+            <a href="http://zoeyyoung.github.io/category/qian-duan.html ">前端</a>
+          </li>
+          <li >
+            <a href="http://zoeyyoung.github.io/category/ruby.html ">Ruby</a>
+          </li>
+          <li  class="active" >
+            <a href="http://zoeyyoung.github.io/category/she-ji-mo-shi.html ">设计模式</a>
+          </li>
+          <li >
+            <a href="http://zoeyyoung.github.io/category/shou-cang.html ">收藏</a>
+          </li>
+          <li >
+            <a href="http://zoeyyoung.github.io/category/shu-ju-ku.html ">数据库</a>
+          </li>
+          <li >
+            <a href="http://zoeyyoung.github.io/category/suan-fa-shu-ju-jie-gou.html ">算法&数据结构</a>
+          </li>
+          <li >
+            <a href="http://zoeyyoung.github.io/category/tips.html ">Tips</a>
+          </li>
+          <li >
+            <a href="http://zoeyyoung.github.io/category/wo-de-xiang-mu.html ">我的项目</a>
+          </li>
+          <li><hr/></li>
+          <li>PAGES<li>
+          
+          <li>
+            <a href="http://zoeyyoung.github.io/pages/about.html">关于</a>
+          </li>
+          <li>
+            <a href="http://zoeyyoung.github.io/pages/golden-slumber.html">Golden Slumber</a>
+          </li>
+          <li>
+            <a href="http://zoeyyoung.github.io/pages/neil-young.html">Neil Young</a>
+          </li>
+          <li>
+            <a href="http://zoeyyoung.github.io/pages/on-the-road.html">在路上</a>
+          </li>
+          <li>
+            <a href="http://zoeyyoung.github.io/pages/software.html">我使用的软件</a>
+          </li>
+          <li>
+            <a href="http://zoeyyoung.github.io/pages/translate.html">翻译</a>
+          </li>
+        </ul>
+      </div>
+      <div class="main-content col-md-8">
+<article>
+  <h1>[设计模式] 策略模式</h1>
+<div class="article-metadata">
+<time class="published" datetime="2013 十月 15 周二">2013 十月 15 周二 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/she-ji-mo-shi.html">设计模式</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+    <a href="http://zoeyyoung.github.io/tag/du-shu.html">读书</a>
+    <a href="http://zoeyyoung.github.io/tag/book.html">Book</a>
+</span>
+<!-- <p></p> -->
+</div>  <p>STRATEGY(策略) —— 对象行为型模式</p>
+<h3>意图</h3>
+<p>定义一系列的算法, 把它们一个个封装起来, 且使它们可相互替换. 本模式使得算法可独
+立于使用它的客户而变化.</p>
+<h3>别名</h3>
+<p>政策(Policy)</p>
+<h3>适用性</h3>
+<p>当存在以下情况时使用Strategy模式</p>
+<ul>
+<li>许多相关的类仅仅是行为有异. "策略"提供了一种用多个行为中的一个行为来配置一个类的方法.</li>
+<li>需要使用一个算法的不同变体. 例如, 你可能会定义一些反映不同的空间/时间权衡的
+算法. 当这些变体实现为一个算法的类层次时, 可以使用策略模式.</li>
+<li>算法使用客户不应该知道的数据. 可使用策略模式以避免暴露复杂的、与算法相关的数
+据结构.</li>
+<li>一个类定义了多种行为, 并且这些行为在这个类的操作中以多个条件语句的形式出现. 将相关的条件分支移入它们各自的Strategy类中以代替这些条件语句.</li>
+</ul>
+<h3>结构</h3>
+<p><img alt="策略模式结构图" src="/static/images/design-patten-strategy.png" /></p>
+<h3>参与者</h3>
+<ul>
+<li>Strategy(策略)<ul>
+<li>定义所有支持的算法的公共接口. Context使用这个接口来调用某ConcreteStrategy定义的算法.【使用组合】</li>
+</ul>
+</li>
+<li>ConcreteStrategy(具体策略)<ul>
+<li>以Strategy接口实现某具体算法.</li>
+</ul>
+</li>
+<li>Context(上下文)<ul>
+<li>用一个ConcreteStrategy对象来配置.【setStrategy(Strategy concreteStrategy)】</li>
+<li>维护一个对Strategy对象的引用.</li>
+<li>可定义一个接口来让Strategy访问它的数据.</li>
+</ul>
+</li>
+</ul>
+<h3>协作</h3>
+<ul>
+<li>Strategy和Context相互作用以实现选定的算法. 当算法被调用时, Context可以将该算法所需要的所有数据都传递给该Strategy. 或者, Context可以将自身作为一个参数传递给Strategy操作. 这就让Strategy在需要时可以回调Context.
+• Context将它的客户的请求转发给它的Strategy. 客户通常创建并传递一个ConcreteStrategy对象给该Context; 这样, 客户仅与Context交互. 通常有一系列的ConcreteStrategy类可供
+客户从中选择.</li>
+</ul>
+<h3>效果</h3>
+<p>优:</p>
+<ol>
+<li>相关算法系列</li>
+<li>一个替代继承的方法</li>
+<li>消除了一些条件语句</li>
+<li>实现的选择</li>
+</ol>
+<p>缺:</p>
+<ol>
+<li>客户必须了解不同的 Strategy</li>
+<li>Strategy和Context之间的通信开销</li>
+<li>增加了对象的数目【使用Flyweight】</li>
+</ol>
+<h3>实现</h3>
+<ol>
+<li>定义Strategy和Context接口</li>
+<li>将Strategy作为模板参数【C++】</li>
+<li>使Strategy对象成为可选的【常见, 在无Strategy时使用默认实现】</li>
+</ol>
+<h3>JDK</h3>
+<p>recognizeable by behavioral methods in an abstract/interface type which invokes a method in an implementation of a different abstract/interface type which has been passed-in as method argument into the strategy implementation</p>
+<p><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Comparator.html#compare%28T,%20T%29">java.util.Comparator#compare()</a>, executed by among others Collections#sort().</p>
+<p><a href="http://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServlet.html">javax.servlet.http.HttpServlet</a>, the <code>service()</code> and all <code>doXXX()</code> methods take <code>HttpServletRequest</code> and <code>HttpServletResponse</code> and the implementor has to process them (and not to get hold of them as instance variables!).</p>
+<p><a href="http://docs.oracle.com/javaee/7/api/javax/servlet/Filter.html#doFilter%28javax.servlet.ServletRequest,%20javax.servlet.ServletResponse,%20javax.servlet.FilterChain%29">javax.servlet.Filter#doFilter()</a></p>
+<p><a href="http://docs.oracle.com/javase/7/docs/api/java/io/File.html#list(java.io.FilenameFilter)">java.io.File#list()</a> FilenameFilter作为Strategy, 其它带FilenameFilter参数的方法也是.</p>
+</article>
+<div class="comment">
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a href="http://www.jiathis.com/share?uid=1801890" class="jiathis jiathis_txt" target="_blank"><img src="http://v3.jiathis.com/code_mini/images/btn/v1/jiathis1.gif" border="0" /></a>
+  <a class="jiathis_counter_style_margin:3px 0 0 2px"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code_mini/jia.js?uid=1371447419774871" charset="utf-8"></script>
+<!-- JiaThis Button END --><!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" id="UYScript" src="http://v1.uyan.cc/js/iframe.js?UYUserId=1801890" async=""></script>
+<!-- UY END --></div>
+      </div>    </div><!-- End of fluid row-->
+  </div><!-- End of Container-->
+  <!--footer-->
+  <footer id="footer" class="no-print">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-2" id="socialist">
+          <ul class="nav">
+            <li>Social</li>
+            <li><a href="http://weibo.com/1990zoey"><i class="icon-weibo icon-large"></i>新浪微博</a></li>
+            <li><a href="http://www.renren.com/230222157/profile"><i class="icon-renren icon-large"></i>人人网</a></li>
+            <li><a href="http://www.douban.com/people/ZoeyYoung/"><i class="icon-leaf icon-large"></i>豆瓣</a></li>
+            <li><a href="mailto:ydingmiao@gmail.com">
+              <i class="icon-envelope icon-large"></i>联系我
+            </a></li>
+          </ul>
+        </div>
+        <div class="col-md-2">
+          <ul class="nav">
+            <li>Links</li>
+            <li><a href="http://my.oschina.net/zoey1990">
+              <i class="icon-heart icon-large"></i>OSC
+            </a></li>
+            <li><a href="http://www.xiami.com/u/2092563">
+              <i class="icon-music icon-large"></i>虾米
+            </a></li>
+            <li><a href="https://gist.github.com/ZoeyYoung">
+              <i class="icon-github icon-large"></i>GIST
+            </a></li>
+            <li><a href="https://github.com/ZoeyYoung">
+              <i class="icon-github icon-large"></i>GitHub
+            </a></li>
+          </ul>
+        </div>
+        <div class="col-md-2" id="site-links">
+          <ul class="nav">
+            <li>Site</li>
+            <li><a href="http://zoeyyoung.github.io">
+              <i class="icon-home icon-large"></i>首页
+            </a></li>
+            <li><a href="http://zoeyyoung.github.io/archives.html">
+              <i class="icon-list icon-large"></i>归档
+            </a></li>
+            <li><a href="http://zoeyyoung.github.io/tags.html">
+              <i class="icon-tags icon-large"></i>标签
+            </a></li>
+            <li><a href="http://zoeyyoung.github.io/" rel="alternate">
+              <i class="icon-rss-sign icon-large"></i>Atom Feed
+            </a></li>
+          </ul>
+        </div>
+        <div class="sina-weibo col-md-4">
+          <a href="http://weibo.com/u/1861922471?s=6uyXnP" target="_blank"><img border="0" src="http://service.t.sina.com.cn/widget/qmd/1861922471/c4ba5282/1.png"/></a>
+        </div>
+        <div class="col-md-1"></div>
+      </div><!--end of fluid row-->
+      <p style="text-align: center;">
+          <a href="http://zoeyyoung.github.io">OK Computer</a>
+          &copy; Zoey Young
+          Powered by
+          <a href="https://github.com/getpelican/pelican">Pelican</a>
+          and
+          <a href="https://twitter.github.com/bootstrap">Twitter Bootstrap</a>
+          .
+          Icons by
+          <a href="http://gregoryloucas.github.io/Fontstrap/">Font Awesome</a>
+          .Theme By <a href="http://zoeyyoung.gitcafe.com/">ZoeyYoung</a>
+      </p>
+    </div>
+  </footer>
+  <!--/footer-->
+  <script src="http://zoeyyoung.github.io/theme/jquery.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script>var _gaq=[['_setAccount','UA-41731595-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='http//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+</body>
+</html>

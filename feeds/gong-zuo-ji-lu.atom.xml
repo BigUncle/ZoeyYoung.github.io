@@ -1,0 +1,941 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>OK Computer</title><link href="http://zoeyyoung.github.io/" rel="alternate"></link><link href="http://zoeyyoung.github.io/feeds/gong-zuo-ji-lu.atom.xml" rel="self"></link><id>http://zoeyyoung.github.io/</id><updated>2013-03-17T00:00:00+08:00</updated><entry><title>[记录] 表情文字转表情图片URL</title><link href="http://zoeyyoung.github.io/emotions-mobile-exchange.html" rel="alternate"></link><updated>2013-03-17T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2013-03-17:emotions-mobile-exchange.html</id><summary type="html">&lt;p&gt;即时通讯中，移动端和网页端发送信息，移动端使用表情文字(后面怎么换成图片的不大清楚)，而网页端直接插入表情图片，因此相互发送信息时要先对表情信息进行处理。&lt;/p&gt;
+&lt;p&gt;感觉代码写得不大漂亮，但又不知道怎么改，先暂存。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;java.util.HashMap&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;java.util.Map&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;java.util.regex.Matcher&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;java.util.regex.Pattern&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+&lt;span class="kd"&gt;enum&lt;/span&gt; &lt;span class="n"&gt;Dev&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;MOBILE&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;WEB&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+
+&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Emotions&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="cm"&gt;/**&lt;/span&gt;
+&lt;span class="cm"&gt;     * 移动端表情字符串数组&lt;/span&gt;
+&lt;span class="cm"&gt;     */&lt;/span&gt;
+    &lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="kd"&gt;static&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;[]&lt;/span&gt; &lt;span class="n"&gt;mobile&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/微笑]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/瘪嘴]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/好色]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/瞪眼]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;quot;[/得意]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/流泪]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/害羞]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/闭嘴]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/睡觉]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/大哭]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/尴尬]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;quot;[/愤怒]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/调皮]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/呲牙]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/惊讶]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/难过]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/装酷]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/冷汗]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;quot;[/抓狂]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/呕吐]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/偷笑]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/可爱]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/白眼]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/傲慢]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/饥饿]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;quot;[/困]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/恐惧]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/流汗]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/憨笑]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/大兵]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/奋斗]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/咒骂]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;quot;[/疑问]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/嘘嘘]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/晕]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/折磨]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/衰]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/骷髅]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/敲打]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;quot;[/再见]&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;};&lt;/span&gt;
+    &lt;span class="cm"&gt;/**&lt;/span&gt;
+&lt;span class="cm"&gt;     * 网页端表情前缀&lt;/span&gt;
+&lt;span class="cm"&gt;     */&lt;/span&gt;
+    &lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="kd"&gt;static&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;prefix&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;lt;img src=&amp;#39;/pathToEmoticons/&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="cm"&gt;/**&lt;/span&gt;
+&lt;span class="cm"&gt;     * 网页端表情后缀&lt;/span&gt;
+&lt;span class="cm"&gt;     */&lt;/span&gt;
+    &lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="kd"&gt;static&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;.gif&amp;#39;&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+    &lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="kd"&gt;static&lt;/span&gt; &lt;span class="n"&gt;Map&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;mobileToWebEmotions&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;HashMap&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;();&lt;/span&gt;
+    &lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="kd"&gt;static&lt;/span&gt; &lt;span class="n"&gt;Map&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;webToMobileEmotions&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;HashMap&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;();&lt;/span&gt;
+
+    &lt;span class="kd"&gt;static&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;mobile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;length&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+            &lt;span class="n"&gt;mobileToWebEmotions&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;put&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mobile&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;],&lt;/span&gt; &lt;span class="n"&gt;prefix&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+            &lt;span class="n"&gt;webToMobileEmotions&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;put&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;prefix&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;mobile&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;]);&lt;/span&gt;
+        &lt;span class="o"&gt;}&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
+
+    &lt;span class="cm"&gt;/**&lt;/span&gt;
+&lt;span class="cm"&gt;     * 表情转换&lt;/span&gt;
+&lt;span class="cm"&gt;     *&lt;/span&gt;
+&lt;span class="cm"&gt;     * @param message&lt;/span&gt;
+&lt;span class="cm"&gt;     * @param isToMobile&lt;/span&gt;
+&lt;span class="cm"&gt;     *            true 为转成手机端表情 false为转为网页端表情&lt;/span&gt;
+&lt;span class="cm"&gt;     * @return&lt;/span&gt;
+&lt;span class="cm"&gt;     */&lt;/span&gt;
+    &lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="kd"&gt;static&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="nf"&gt;formatEmotion&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Dev&lt;/span&gt; &lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;regex&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;Pattern&lt;/span&gt; &lt;span class="n"&gt;pattern&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;Matcher&lt;/span&gt; &lt;span class="n"&gt;matcher&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;StringBuffer&lt;/span&gt; &lt;span class="n"&gt;buffer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;StringBuffer&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;Dev&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;WEB&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+            &lt;span class="n"&gt;regex&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;\\[\\/[\u4E00-\u9FA5]*\\]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+            &lt;span class="n"&gt;pattern&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Pattern&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;compile&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;regex&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+            &lt;span class="n"&gt;matcher&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pattern&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;matcher&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+            &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;matcher&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;find&lt;/span&gt;&lt;span class="o"&gt;())&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+                &lt;span class="n"&gt;matcher&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;appendReplacement&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;buffer&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+                        &lt;span class="n"&gt;mobileToWebEmotions&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;get&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;matcher&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;group&lt;/span&gt;&lt;span class="o"&gt;()));&lt;/span&gt;
+            &lt;span class="o"&gt;}&lt;/span&gt;
+        &lt;span class="o"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+            &lt;span class="n"&gt;regex&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;prefix&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[0-9]+&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+            &lt;span class="n"&gt;pattern&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Pattern&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;compile&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;regex&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+            &lt;span class="n"&gt;matcher&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pattern&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;matcher&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+            &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;matcher&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;find&lt;/span&gt;&lt;span class="o"&gt;())&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+                &lt;span class="n"&gt;matcher&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;appendReplacement&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;buffer&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+                        &lt;span class="n"&gt;webToMobileEmotions&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;get&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;matcher&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;group&lt;/span&gt;&lt;span class="o"&gt;()));&lt;/span&gt;
+            &lt;span class="o"&gt;}&lt;/span&gt;
+        &lt;span class="o"&gt;}&lt;/span&gt;
+        &lt;span class="n"&gt;matcher&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;appendTail&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;buffer&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;buffer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;toString&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
+
+    &lt;span class="cm"&gt;/**&lt;/span&gt;
+&lt;span class="cm"&gt;     * @param args&lt;/span&gt;
+&lt;span class="cm"&gt;     */&lt;/span&gt;
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;[]&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;msg&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/微笑]Hello[/憨笑]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Emotions&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;formatEmotion&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Dev&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;WEB&lt;/span&gt;&lt;span class="o"&gt;));&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
+
+&lt;span class="o"&gt;}&lt;/span&gt; &lt;span class="cm"&gt;/* Output:&lt;/span&gt;
+&lt;span class="cm"&gt;&amp;lt;img src=&amp;#39;/pathToEmoticons/0.gif&amp;#39;&amp;gt;Hello&amp;lt;img src=&amp;#39;/pathToEmoticons/28.gif&amp;#39;&amp;gt;&lt;/span&gt;
+&lt;span class="cm"&gt; */&lt;/span&gt;&lt;span class="c1"&gt;// :~&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;版本2，修改枚举&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;java.util.HashMap&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;java.util.Map&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;java.util.regex.Matcher&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;java.util.regex.Pattern&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Emotions&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="cm"&gt;/**&lt;/span&gt;
+&lt;span class="cm"&gt;     * 移动端表情字符串数组&lt;/span&gt;
+&lt;span class="cm"&gt;     */&lt;/span&gt;
+    &lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="kd"&gt;static&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;[]&lt;/span&gt; &lt;span class="n"&gt;mobile&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/微笑]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/瘪嘴]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/好色]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/瞪眼]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;quot;[/得意]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/流泪]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/害羞]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/闭嘴]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/睡觉]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/大哭]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/尴尬]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;quot;[/愤怒]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/调皮]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/呲牙]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/惊讶]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/难过]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/装酷]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/冷汗]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;quot;[/抓狂]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/呕吐]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/偷笑]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/可爱]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/白眼]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/傲慢]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/饥饿]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;quot;[/困]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/恐惧]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/流汗]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/憨笑]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/大兵]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/奋斗]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/咒骂]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;quot;[/疑问]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/嘘嘘]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/晕]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/折磨]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/衰]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/骷髅]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/敲打]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;quot;[/再见]&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;};&lt;/span&gt;
+    &lt;span class="cm"&gt;/**&lt;/span&gt;
+&lt;span class="cm"&gt;     * 网页端表情前缀&lt;/span&gt;
+&lt;span class="cm"&gt;     */&lt;/span&gt;
+    &lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="kd"&gt;static&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;prefix&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;lt;img src=&amp;#39;/pathToEmoticons/&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="cm"&gt;/**&lt;/span&gt;
+&lt;span class="cm"&gt;     * 网页端表情后缀&lt;/span&gt;
+&lt;span class="cm"&gt;     */&lt;/span&gt;
+    &lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="kd"&gt;static&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;.gif&amp;#39;&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+    &lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="kd"&gt;static&lt;/span&gt; &lt;span class="n"&gt;Map&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;mobileToWebEmotions&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;HashMap&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;();&lt;/span&gt;
+    &lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="kd"&gt;static&lt;/span&gt; &lt;span class="n"&gt;Map&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;webToMobileEmotions&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;HashMap&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;();&lt;/span&gt;
+
+    &lt;span class="kd"&gt;static&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;mobile&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;length&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+            &lt;span class="n"&gt;mobileToWebEmotions&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;put&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mobile&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;],&lt;/span&gt; &lt;span class="n"&gt;prefix&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+            &lt;span class="n"&gt;webToMobileEmotions&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;put&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;prefix&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;mobile&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;]);&lt;/span&gt;
+        &lt;span class="o"&gt;}&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
+
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;static&lt;/span&gt; &lt;span class="kd"&gt;enum&lt;/span&gt; &lt;span class="n"&gt;Dev&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;MOBILE&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;prefix&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[0-9]+&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;webToMobileEmotions&lt;/span&gt;&lt;span class="o"&gt;),&lt;/span&gt;
+        &lt;span class="n"&gt;WEB&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;\\[\\/[\u4E00-\u9FA5]*\\]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;mobileToWebEmotions&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+
+        &lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;regex&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+        &lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="n"&gt;Map&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;map&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+        &lt;span class="n"&gt;Dev&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;regex&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Map&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;map&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+            &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;regex&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;regex&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+            &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;map&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;map&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+        &lt;span class="o"&gt;}&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
+    &lt;span class="cm"&gt;/**&lt;/span&gt;
+&lt;span class="cm"&gt;     * 表情转换&lt;/span&gt;
+&lt;span class="cm"&gt;     *&lt;/span&gt;
+&lt;span class="cm"&gt;     * @param message&lt;/span&gt;
+&lt;span class="cm"&gt;     * @param dev 目标设备&lt;/span&gt;
+&lt;span class="cm"&gt;     * @return&lt;/span&gt;
+&lt;span class="cm"&gt;     */&lt;/span&gt;
+    &lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="kd"&gt;static&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="nf"&gt;formatEmotion&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Dev&lt;/span&gt; &lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;Pattern&lt;/span&gt; &lt;span class="n"&gt;pattern&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;Matcher&lt;/span&gt; &lt;span class="n"&gt;matcher&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;StringBuffer&lt;/span&gt; &lt;span class="n"&gt;buffer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;StringBuffer&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+
+        &lt;span class="n"&gt;pattern&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Pattern&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;compile&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;regex&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;matcher&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pattern&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;matcher&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+        &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;matcher&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;find&lt;/span&gt;&lt;span class="o"&gt;())&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+            &lt;span class="n"&gt;matcher&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;appendReplacement&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;buffer&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+                    &lt;span class="n"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;map&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;get&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;matcher&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;group&lt;/span&gt;&lt;span class="o"&gt;()));&lt;/span&gt;
+        &lt;span class="o"&gt;}&lt;/span&gt;
+        &lt;span class="n"&gt;matcher&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;appendTail&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;buffer&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;buffer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;toString&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
+
+    &lt;span class="cm"&gt;/**&lt;/span&gt;
+&lt;span class="cm"&gt;     * @param args&lt;/span&gt;
+&lt;span class="cm"&gt;     */&lt;/span&gt;
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;[]&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;msg&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[/微笑]Hello[/憨笑]&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;println&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Emotions&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;formatEmotion&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Dev&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;WEB&lt;/span&gt;&lt;span class="o"&gt;));&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
+
+&lt;span class="o"&gt;}&lt;/span&gt; &lt;span class="cm"&gt;/* Output:&lt;/span&gt;
+&lt;span class="cm"&gt;&amp;lt;img src=&amp;#39;/pathToEmoticons/0.gif&amp;#39;&amp;gt;Hello&amp;lt;img src=&amp;#39;/pathToEmoticons/28.gif&amp;#39;&amp;gt;&lt;/span&gt;
+&lt;span class="cm"&gt; */&lt;/span&gt;&lt;span class="c1"&gt;// :~&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Java"></category><category term="Enum"></category></entry><entry><title>[记录] JavaMail邮箱验证用户注册</title><link href="http://zoeyyoung.github.io/javamail-verify-user.html" rel="alternate"></link><updated>2012-11-21T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2012-11-21:javamail-verify-user.html</id><summary type="html">&lt;p&gt;&lt;a href="http://yimengzhu.iteye.com/blog/1454887"&gt;JavaMail——邮箱验证用户注册&lt;/a&gt; : 有些代码没给，还好自己Servlet基础还是有的，所以还是整出来了&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.blogjava.net/wangfun/archive/2009/04/15/265748.html"&gt;javamail发送邮件的简单实例&lt;/a&gt; : 对邮件内容的组装和发送做了点封装，稍微做了点修改&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://blog.sina.com.cn/s/blog_6e295d0001011uzg.html"&gt;JSP + Servlet 中文乱码问题解决&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;参考整合上面两篇，做了个Demo，中文乱码问题用第三篇解决&lt;/p&gt;
+&lt;p&gt;需要&lt;a href="http://www.oracle.com/technetwork/java/javamail/index.html"&gt;JavaMail的jar包&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Demo结构&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Demo结构" src="/static/images/javamail-verify-user.gif" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;MailInfo.java&lt;/strong&gt; 邮件相关信息&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;package&lt;/span&gt; &lt;span class="n"&gt;zoey&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;model&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;java.util.Properties&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;MailInfo&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+  &lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;mailSmtpHost&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+  &lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;mailSmtpPort&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;25&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+  &lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;fromAddress&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+  &lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;toAddress&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+  &lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;userName&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+  &lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;password&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+  &lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="kt"&gt;boolean&lt;/span&gt; &lt;span class="n"&gt;validate&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+  &lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;subject&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+  &lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+  &lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;[]&lt;/span&gt; &lt;span class="n"&gt;attachFileNames&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+  &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="n"&gt;Properties&lt;/span&gt; &lt;span class="nf"&gt;getProperties&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;Properties&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;Properties&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+    &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;put&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;mail.smtp.host&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;mailSmtpHost&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;put&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;mail.smtp.port&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;mailSmtpPort&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;put&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;mail.smtp.auth&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;validate&lt;/span&gt; &lt;span class="o"&gt;?&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;true&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;false&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+  &lt;span class="o"&gt;}&lt;/span&gt;
+
+  &lt;span class="c1"&gt;// Getters &amp;amp; Setters&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;MyAuthenticator.java&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;package&lt;/span&gt; &lt;span class="n"&gt;zoey&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;model&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;javax.mail.Authenticator&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;javax.mail.PasswordAuthentication&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;MyAuthenticator&lt;/span&gt; &lt;span class="kd"&gt;extends&lt;/span&gt; &lt;span class="n"&gt;Authenticator&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+  &lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;userName&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+  &lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;password&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+  &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="nf"&gt;MyAuthenticator&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+  &lt;span class="o"&gt;}&lt;/span&gt;
+
+  &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="nf"&gt;MyAuthenticator&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;userName&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;password&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;userName&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;userName&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;password&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;password&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+  &lt;span class="o"&gt;}&lt;/span&gt;
+
+  &lt;span class="nd"&gt;@Override&lt;/span&gt;
+  &lt;span class="kd"&gt;protected&lt;/span&gt; &lt;span class="n"&gt;PasswordAuthentication&lt;/span&gt; &lt;span class="nf"&gt;getPasswordAuthentication&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nf"&gt;PasswordAuthentication&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;userName&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;password&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+  &lt;span class="o"&gt;}&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;MailSender.java&lt;/strong&gt; 邮件发送器，稍微做了点修改，使代码更少些&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;package&lt;/span&gt; &lt;span class="n"&gt;zoey&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;model&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;java.util.Date&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;java.util.Properties&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;javax.mail.Address&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;javax.mail.BodyPart&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;javax.mail.Message&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;javax.mail.MessagingException&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;javax.mail.Multipart&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;javax.mail.Session&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;javax.mail.Transport&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;javax.mail.internet.InternetAddress&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;javax.mail.internet.MimeBodyPart&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;javax.mail.internet.MimeMessage&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;javax.mail.internet.MimeMultipart&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;MailSender&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+  &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;boolean&lt;/span&gt; &lt;span class="nf"&gt;sendMail&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MailInfo&lt;/span&gt; &lt;span class="n"&gt;mailInfo&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Boolean&lt;/span&gt; &lt;span class="n"&gt;isMime&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;MyAuthenticator&lt;/span&gt; &lt;span class="n"&gt;authenticator&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mailInfo&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;isValidate&lt;/span&gt;&lt;span class="o"&gt;())&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+      &lt;span class="n"&gt;authenticator&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;MyAuthenticator&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mailInfo&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getUserName&lt;/span&gt;&lt;span class="o"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;mailInfo&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getPassword&lt;/span&gt;&lt;span class="o"&gt;());&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
+    &lt;span class="n"&gt;Properties&lt;/span&gt; &lt;span class="n"&gt;pro&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mailInfo&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getProperties&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+    &lt;span class="n"&gt;Session&lt;/span&gt; &lt;span class="n"&gt;session&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Session&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getDefaultInstance&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pro&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;authenticator&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+    &lt;span class="k"&gt;try&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+      &lt;span class="n"&gt;Message&lt;/span&gt; &lt;span class="n"&gt;message&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;MimeMessage&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;session&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+      &lt;span class="n"&gt;Address&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;InternetAddress&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mailInfo&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getFromAddress&lt;/span&gt;&lt;span class="o"&gt;());&lt;/span&gt;
+      &lt;span class="n"&gt;Address&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;InternetAddress&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mailInfo&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getToAddress&lt;/span&gt;&lt;span class="o"&gt;());&lt;/span&gt;
+      &lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;setFrom&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;from&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+      &lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;setRecipient&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Message&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;RecipientType&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;TO&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+      &lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;setSubject&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mailInfo&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getSubject&lt;/span&gt;&lt;span class="o"&gt;());&lt;/span&gt;
+      &lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;setSentDate&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;Date&lt;/span&gt;&lt;span class="o"&gt;());&lt;/span&gt;
+      &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;(!&lt;/span&gt;&lt;span class="n"&gt;isMime&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;setText&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mailInfo&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getContent&lt;/span&gt;&lt;span class="o"&gt;());&lt;/span&gt;
+      &lt;span class="o"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;BodyPart&lt;/span&gt; &lt;span class="n"&gt;html&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;MimeBodyPart&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+        &lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;setContent&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mailInfo&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getContent&lt;/span&gt;&lt;span class="o"&gt;(),&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;text/html; charset=utf-8&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;Multipart&lt;/span&gt; &lt;span class="n"&gt;mainPart&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;MimeMultipart&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+        &lt;span class="n"&gt;mainPart&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;addBodyPart&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;setContent&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mainPart&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+      &lt;span class="o"&gt;}&lt;/span&gt;
+      &lt;span class="n"&gt;Transport&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;send&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;message&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+      &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt; &lt;span class="k"&gt;catch&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MessagingException&lt;/span&gt; &lt;span class="n"&gt;ex&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+      &lt;span class="n"&gt;ex&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;printStackTrace&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+  &lt;span class="o"&gt;}&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;先给出：&lt;strong&gt;web.xml&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;web-app&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;WebApp_ID&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;version=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;2.4&amp;quot;&lt;/span&gt;
+  &lt;span class="na"&gt;xmlns=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://java.sun.com/xml/ns/j2ee&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;xmlns:xsi=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot;&lt;/span&gt;
+  &lt;span class="na"&gt;xsi:schemaLocation=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;servlet&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;servlet-name&amp;gt;&lt;/span&gt;RegisterServlet&lt;span class="nt"&gt;&amp;lt;/servlet-name&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;servlet-class&amp;gt;&lt;/span&gt;zoey.register.RegisterServlet&lt;span class="nt"&gt;&amp;lt;/servlet-class&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;/servlet&amp;gt;&lt;/span&gt;
+
+  &lt;span class="nt"&gt;&amp;lt;servlet-mapping&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;servlet-name&amp;gt;&lt;/span&gt;RegisterServlet&lt;span class="nt"&gt;&amp;lt;/servlet-name&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;url-pattern&amp;gt;&lt;/span&gt;/RegisterServlet.do&lt;span class="nt"&gt;&amp;lt;/url-pattern&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;/servlet-mapping&amp;gt;&lt;/span&gt;
+
+  &lt;span class="nt"&gt;&amp;lt;servlet&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;servlet-name&amp;gt;&lt;/span&gt;MailBackServlet&lt;span class="nt"&gt;&amp;lt;/servlet-name&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;servlet-class&amp;gt;&lt;/span&gt;zoey.register.MailBackServlet&lt;span class="nt"&gt;&amp;lt;/servlet-class&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;/servlet&amp;gt;&lt;/span&gt;
+
+  &lt;span class="nt"&gt;&amp;lt;servlet-mapping&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;servlet-name&amp;gt;&lt;/span&gt;MailBackServlet&lt;span class="nt"&gt;&amp;lt;/servlet-name&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;url-pattern&amp;gt;&lt;/span&gt;/MailBackServlet.do&lt;span class="nt"&gt;&amp;lt;/url-pattern&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;/servlet-mapping&amp;gt;&lt;/span&gt;
+
+  &lt;span class="c"&gt;&amp;lt;!-- 定义字符转换过滤器 --&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;filter&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;filter-name&amp;gt;&lt;/span&gt;SetCharacterEncoding&lt;span class="nt"&gt;&amp;lt;/filter-name&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;filter-class&amp;gt;&lt;/span&gt;zoey.util.SetCharacterEncoding&lt;span class="nt"&gt;&amp;lt;/filter-class&amp;gt;&lt;/span&gt;
+    &lt;span class="c"&gt;&amp;lt;!-- 设置参数名称及参数值 --&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;init-param&amp;gt;&lt;/span&gt;
+      &lt;span class="nt"&gt;&amp;lt;param-name&amp;gt;&lt;/span&gt;encoding&lt;span class="nt"&gt;&amp;lt;/param-name&amp;gt;&lt;/span&gt;
+      &lt;span class="nt"&gt;&amp;lt;param-value&amp;gt;&lt;/span&gt;UTF-8&lt;span class="nt"&gt;&amp;lt;/param-value&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/init-param&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;/filter&amp;gt;&lt;/span&gt;
+  &lt;span class="c"&gt;&amp;lt;!-- 映射定义的Filter，设置对所有的请求进行过滤 --&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;filter-mapping&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;filter-name&amp;gt;&lt;/span&gt;SetCharacterEncoding&lt;span class="nt"&gt;&amp;lt;/filter-name&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;url-pattern&amp;gt;&lt;/span&gt;/*&lt;span class="nt"&gt;&amp;lt;/url-pattern&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;/filter-mapping&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/web-app&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;注册页面：&lt;strong&gt;index.jsp&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;&amp;lt;&lt;/span&gt;%@ page language=&amp;quot;java&amp;quot; contentType=&amp;quot;text/html; charset=UTF-8&amp;quot; pageEncoding=&amp;quot;UTF-8&amp;quot;%&amp;gt;
+&lt;span class="cp"&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;meta&lt;/span&gt; &lt;span class="na"&gt;http-equiv=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Content-Type&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;content=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text/html; charset=utf-8&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;title&amp;gt;&lt;/span&gt;用户注册&lt;span class="nt"&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;h1&amp;gt;&lt;/span&gt;用户注册&lt;span class="nt"&gt;&amp;lt;/h1&amp;gt;&amp;lt;hr/&amp;gt;&amp;lt;br/&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;form&lt;/span&gt; &lt;span class="na"&gt;action=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;RegisterServlet.do&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;method=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;post&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    邮箱: &lt;span class="nt"&gt;&amp;lt;input&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;email&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&amp;lt;br/&amp;gt;&amp;lt;br/&amp;gt;&lt;/span&gt;
+    昵称: &lt;span class="nt"&gt;&amp;lt;input&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;userName&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&amp;lt;br/&amp;gt;&amp;lt;br/&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;input&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;submit&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;value=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;确认注册&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/form&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;点击注册后：&lt;strong&gt;RegisterServlet.java&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;package&lt;/span&gt; &lt;span class="n"&gt;zoey&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;register&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;java.io.IOException&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;javax.servlet.ServletException&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;javax.servlet.http.HttpServlet&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;javax.servlet.http.HttpServletRequest&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;javax.servlet.http.HttpServletResponse&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;javax.servlet.http.HttpSession&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;zoey.model.MailInfo&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;zoey.model.MailSender&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;RegisterServlet&lt;/span&gt; &lt;span class="kd"&gt;extends&lt;/span&gt; &lt;span class="n"&gt;HttpServlet&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+  &lt;span class="nd"&gt;@Override&lt;/span&gt;
+  &lt;span class="kd"&gt;protected&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;doGet&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;HttpServletRequest&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;HttpServletResponse&lt;/span&gt; &lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="kd"&gt;throws&lt;/span&gt; &lt;span class="n"&gt;ServletException&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;IOException&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;registerName&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getParameter&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;userName&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;registerMail&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getParameter&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;email&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;registerId&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;Math&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;random&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;Math&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;random&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+    &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;http://localhost:8080/EmailRegister/MailBackServlet.do?registerId=&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;registerId&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;HttpSession&lt;/span&gt; &lt;span class="n"&gt;httpSession&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getSession&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+    &lt;span class="n"&gt;httpSession&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;setAttribute&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;registerId&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;registerName&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;httpSession&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;setMaxInactiveInterval&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;600&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+
+    &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;content&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;registerName&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;(&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;registerMail&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;),您好&amp;lt;br/&amp;gt;感谢您注册XXXXX!&amp;lt;br/&amp;gt;&amp;quot;&lt;/span&gt;
+    &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;lt;b&amp;gt;验证您的邮箱地址注册&amp;lt;/b&amp;gt;&amp;lt;br/&amp;gt;请点击下面的链接来确认您的注册&amp;lt;br/&amp;gt;&amp;quot;&lt;/span&gt;
+    &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;lt;a href=&amp;#39;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;#39;&amp;gt;确认!请点击这里验证此邮件&amp;lt;/a&amp;gt;&amp;lt;br/&amp;gt;&amp;quot;&lt;/span&gt;
+    &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;如果您不能点击上述标签为“确认！”的链接，您还可以通过复制（或输入）下面的URL到地址栏中来验证您的邮件地址。&amp;quot;&lt;/span&gt;
+    &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;lt;a href=&amp;#39;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;#39;&amp;gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;lt;/a&amp;gt;&amp;lt;br/&amp;gt;&amp;quot;&lt;/span&gt;
+    &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;如果您认为这是垃圾邮件，请忽略此邮件。&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+    &lt;span class="n"&gt;MailInfo&lt;/span&gt; &lt;span class="n"&gt;mailInfo&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;MailInfo&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt;
+    &lt;span class="n"&gt;mailInfo&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;setMailSmtpHost&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;yourmail&amp;#39;s smtp host&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// 根据实际修改&lt;/span&gt;
+    &lt;span class="n"&gt;mailInfo&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;setFromAddress&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;yourmail@whatever.com&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// 根据实际修改&lt;/span&gt;
+    &lt;span class="n"&gt;mailInfo&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;setToAddress&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;registerMail&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;mailInfo&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;setUserName&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;yourmail@whatever.com&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// 根据实际修改&lt;/span&gt;
+    &lt;span class="n"&gt;mailInfo&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;setPassword&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;password&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// 根据实际修改&lt;/span&gt;
+    &lt;span class="n"&gt;mailInfo&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;setValidate&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;      &lt;span class="c1"&gt;// 根据实际修改&lt;/span&gt;
+    &lt;span class="n"&gt;mailInfo&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;setSubject&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;邮件主题&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// 根据实际修改&lt;/span&gt;
+    &lt;span class="n"&gt;mailInfo&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;setContent&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+
+    &lt;span class="n"&gt;MailSender&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;sendMail&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mailInfo&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// true发送HTML格式邮件，false发送纯文本&lt;/span&gt;
+    &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;setAttribute&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;userName&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;registerName&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;setAttribute&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;email&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;registerMail&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getRequestDispatcher&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/sendMailSuccess.jsp&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;).&lt;/span&gt;&lt;span class="na"&gt;forward&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+  &lt;span class="o"&gt;}&lt;/span&gt;
+
+  &lt;span class="nd"&gt;@Override&lt;/span&gt;
+  &lt;span class="kd"&gt;protected&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;doPost&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;HttpServletRequest&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;HttpServletResponse&lt;/span&gt; &lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="kd"&gt;throws&lt;/span&gt; &lt;span class="n"&gt;ServletException&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;IOException&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+      &lt;span class="n"&gt;doGet&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+  &lt;span class="o"&gt;}&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;发送成功后转到页面：&lt;strong&gt;sendMailSuccess.jsp&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;&amp;lt;&lt;/span&gt;%@ page language=&amp;quot;java&amp;quot; contentType=&amp;quot;text/html; charset=UTF-8&amp;quot; pageEncoding=&amp;quot;UTF-8&amp;quot;%&amp;gt;
+&lt;span class="cp"&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;meta&lt;/span&gt; &lt;span class="na"&gt;http-equiv=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Content-Type&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;content=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text/html; charset=utf-8&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;title&amp;gt;&lt;/span&gt;帐号确认&lt;span class="nt"&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;h1&amp;gt;&lt;/span&gt;帐号确认&lt;span class="nt"&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
+&lt;span class="err"&gt;&amp;lt;&lt;/span&gt;%
+    String userName = request.getParameter(&amp;quot;userName&amp;quot;);
+    String email = request.getParameter(&amp;quot;email&amp;quot;);
+    String sub = email.substring(email.indexOf(&amp;#39;@&amp;#39;) + 1);
+    if (sub.equals(&amp;quot;gmail&amp;quot;)) { sub = &amp;quot;google&amp;quot;; } // 特殊处理
+    String url = &amp;quot;http://mail.&amp;quot; + sub;
+%&amp;gt;
+${userName}您的邮箱&lt;span class="nt"&gt;&amp;lt;a&lt;/span&gt; &lt;span class="na"&gt;target=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;_blank&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;lt;%=url %&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;${email}&lt;span class="nt"&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;还没确认，您必须尽快进行帐户激活（登录该邮箱，并按照帐号激活通知的指示操作）。否则您的帐号将很快被删除！&lt;span class="nt"&gt;&amp;lt;br/&amp;gt;&lt;/span&gt;
+您还没有收到激活信？点击&lt;span class="nt"&gt;&amp;lt;a&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;RegisterServlet.do?userName=&amp;lt;%=userName%&amp;gt;&amp;amp;email=&amp;lt;%=email%&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;这里&lt;span class="nt"&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;重新发送激活邮件。
+&lt;span class="nt"&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;点击验证邮箱链接后：&lt;strong&gt;MailBackServlet.java&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;package&lt;/span&gt; &lt;span class="n"&gt;zoey&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;register&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;java.io.IOException&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;javax.servlet.ServletException&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;javax.servlet.http.HttpServlet&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;javax.servlet.http.HttpServletRequest&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;javax.servlet.http.HttpServletResponse&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;MailBackServlet&lt;/span&gt; &lt;span class="kd"&gt;extends&lt;/span&gt; &lt;span class="n"&gt;HttpServlet&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+
+  &lt;span class="nd"&gt;@Override&lt;/span&gt;
+  &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;doGet&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;HttpServletRequest&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;HttpServletResponse&lt;/span&gt; &lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+  &lt;span class="kd"&gt;throws&lt;/span&gt; &lt;span class="n"&gt;ServletException&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;IOException&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;registerId&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getParameter&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;registerId&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;registerId&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+      &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getRequestDispatcher&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/index.jsp&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;).&lt;/span&gt;&lt;span class="na"&gt;forward&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+      &lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
+
+    &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;registerName&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getSession&lt;/span&gt;&lt;span class="o"&gt;().&lt;/span&gt;&lt;span class="na"&gt;getAttribute&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;registerId&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;registerName&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;registerName&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;equals&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;))&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+      &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getRequestDispatcher&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/index.jsp&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;).&lt;/span&gt;&lt;span class="na"&gt;forward&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+      &lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
+
+    &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;setAttribute&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;registerName&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;registerName&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;getRequestDispatcher&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/registerSuccess.jsp&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;).&lt;/span&gt;&lt;span class="na"&gt;forward&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+  &lt;span class="o"&gt;}&lt;/span&gt;
+
+  &lt;span class="nd"&gt;@Override&lt;/span&gt;
+  &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;doPost&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;HttpServletRequest&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;HttpServletResponse&lt;/span&gt; &lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+  &lt;span class="kd"&gt;throws&lt;/span&gt; &lt;span class="n"&gt;ServletException&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;IOException&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;doGet&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+  &lt;span class="o"&gt;}&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;注册成功：&lt;strong&gt;registerSuccess.jsp&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;&amp;lt;&lt;/span&gt;%@ page language=&amp;quot;java&amp;quot; contentType=&amp;quot;text/html; charset=UTF-8&amp;quot; pageEncoding=&amp;quot;UTF-8&amp;quot;%&amp;gt;
+&lt;span class="cp"&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;meta&lt;/span&gt; &lt;span class="na"&gt;http-equiv=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Content-Type&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;content=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text/html; charset=utf-8&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;title&amp;gt;&lt;/span&gt;注册成功&lt;span class="nt"&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+    ${registerName} 恭喜您，从现在起，您就是本站的一员了。
+&lt;span class="nt"&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;存在的问题:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;刷新重复提交，另外做整理&lt;/li&gt;
+&lt;li&gt;通过session来判断不合理，得在同一个浏览器中才能显示注册成功(session作用域和生命周期内)，这里只是作为演示用&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;可以在数据库中设置一个是否激活字段，注册时为未激活，然后在验证后设置为激活&lt;/p&gt;
+&lt;p&gt;还是比较容易集成到系统中的&lt;/p&gt;</summary><category term="Java"></category><category term="JavaMail"></category><category term="Mail"></category></entry><entry><title>[记录] Openfire集成现有系统数据库用户</title><link href="http://zoeyyoung.github.io/openfire-xmpp-database.html" rel="alternate"></link><updated>2012-10-31T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2012-10-31:openfire-xmpp-database.html</id><summary type="html">&lt;p&gt;基于Openfire 3.7.1&lt;/p&gt;
+&lt;h3&gt;参考文档：&lt;/h3&gt;
+&lt;p&gt;官方文档&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.igniterealtime.org/builds/openfire/docs/latest/documentation/db-integration-guide.html"&gt;Custom Database Integration Guide&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;——参考该文档介绍需要配置的参数, 在&lt;strong&gt;conf/openfire.xml&lt;/strong&gt;中编辑属性, 实际为在管理控制台或数据库中添加系统属性&lt;/p&gt;
+&lt;h3&gt;背景&lt;/h3&gt;
+&lt;p&gt;假设已存在MySQL数据库&lt;strong&gt;office&lt;/strong&gt;, 且数据库中有3张表&lt;strong&gt;users(用户表)&lt;/strong&gt;、&lt;strong&gt;groups(分组表)&lt;/strong&gt;和&lt;strong&gt;groupusers(用户所属分组表)&lt;/strong&gt;&lt;/p&gt;
+&lt;h3&gt;目标&lt;/h3&gt;
+&lt;p&gt;使用&lt;strong&gt;office&lt;/strong&gt;数据库中的&lt;strong&gt;users&lt;/strong&gt;、&lt;strong&gt;groups&lt;/strong&gt;、&lt;strong&gt;groupusers&lt;/strong&gt;表替代&lt;strong&gt;Openfire&lt;/strong&gt;中的&lt;strong&gt;ofuser&lt;/strong&gt;、&lt;strong&gt;ofgroup&lt;/strong&gt;、&lt;strong&gt;ofgroupuser&lt;/strong&gt;三个表, 从而整合现有系统用户&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;users&lt;/strong&gt;表包含的属性（对应于Openfire原数据库中的&lt;strong&gt;ofuser&lt;/strong&gt;表）：&lt;/p&gt;
+&lt;table class="table"&gt;
+ &lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td&gt;&lt;strong&gt;属性名&lt;/strong&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;strong&gt;说明&lt;/strong&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td&gt;uid&lt;/td&gt;&lt;td&gt;用于登录，假如uid为admin，则jid为admin@domain&lt;/a&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;name&lt;/td&gt;&lt;td&gt;用户名&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;pwd&lt;/td&gt;&lt;td&gt;密码&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;email&lt;/td&gt;&lt;td&gt;电子邮件&lt;/td&gt;
+  &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;CREATE&lt;/span&gt; &lt;span class="k"&gt;TABLE&lt;/span&gt; &lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;users&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+  &lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;uid&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt; &lt;span class="nb"&gt;varchar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;64&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;NOT&lt;/span&gt; &lt;span class="k"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;pwd&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt; &lt;span class="nb"&gt;varchar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;32&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;DEFAULT&lt;/span&gt; &lt;span class="k"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt; &lt;span class="nb"&gt;varchar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;DEFAULT&lt;/span&gt; &lt;span class="k"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;email&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt; &lt;span class="nb"&gt;varchar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;DEFAULT&lt;/span&gt; &lt;span class="k"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="k"&gt;PRIMARY&lt;/span&gt; &lt;span class="k"&gt;KEY&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;uid&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;ENGINE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;InnoDB&lt;/span&gt; &lt;span class="k"&gt;DEFAULT&lt;/span&gt; &lt;span class="n"&gt;CHARSET&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;utf8&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;groups&lt;/strong&gt;表包含的属性（对应于Openfire原数据库中的&lt;strong&gt;ofgroup&lt;/strong&gt;表）：&lt;/p&gt;
+&lt;table class="table"&gt;
+ &lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td&gt;&lt;strong&gt;属性名&lt;/strong&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;strong&gt;说明&lt;/strong&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;groupName&lt;/td&gt;&lt;td&gt;组名&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;description&lt;/td&gt;&lt;td&gt;描述&lt;/td&gt;&lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;CREATE&lt;/span&gt; &lt;span class="k"&gt;TABLE&lt;/span&gt; &lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;groups&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+  &lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;groupName&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt; &lt;span class="nb"&gt;varchar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;NOT&lt;/span&gt; &lt;span class="k"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt; &lt;span class="nb"&gt;varchar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;255&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;DEFAULT&lt;/span&gt; &lt;span class="k"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="k"&gt;PRIMARY&lt;/span&gt; &lt;span class="k"&gt;KEY&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;groupName&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;ENGINE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;InnoDB&lt;/span&gt; &lt;span class="k"&gt;DEFAULT&lt;/span&gt; &lt;span class="n"&gt;CHARSET&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;utf8&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;groupusers&lt;/strong&gt;表包含的属性（对应于Openfire原数据库中的&lt;strong&gt;ofgroupuser&lt;/strong&gt;表）：&lt;/p&gt;
+&lt;table class="table"&gt;
+ &lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td&gt;&lt;strong&gt;属性名&lt;/strong&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;strong&gt;说明&lt;/strong&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;groupName&lt;/td&gt;&lt;td&gt;对应于groups表的groupName&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;uid&lt;/td&gt;&lt;td&gt;对应于user表的uid&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;admin&lt;/td&gt;&lt;td&gt;是否是管理员, 1是, 0否&lt;/td&gt;&lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;CREATE&lt;/span&gt; &lt;span class="k"&gt;TABLE&lt;/span&gt; &lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;groupusers&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+  &lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;groupName&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt; &lt;span class="nb"&gt;varchar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;NOT&lt;/span&gt; &lt;span class="k"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;uid&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt; &lt;span class="nb"&gt;varchar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;NOT&lt;/span&gt; &lt;span class="k"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="k"&gt;admin&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt; &lt;span class="n"&gt;tinyint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;NOT&lt;/span&gt; &lt;span class="k"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="k"&gt;PRIMARY&lt;/span&gt; &lt;span class="k"&gt;KEY&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;groupName&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;uid&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="k"&gt;admin&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;ENGINE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;InnoDB&lt;/span&gt; &lt;span class="k"&gt;DEFAULT&lt;/span&gt; &lt;span class="n"&gt;CHARSET&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;utf8&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;注：表中属性名不一定要一样, 关键是“说明”部分, 此处参考Openfire原有数据库中的表创建&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;进入&lt;strong&gt;Openfire管理控制台-》服务器-》服务器管理器-》系统属性&lt;/strong&gt;, 默认系统属性：&lt;/p&gt;
+&lt;table class="table"&gt;
+ &lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td&gt;&lt;strong&gt;属性名&lt;/strong&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;strong&gt;说明&lt;/strong&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;strong&gt;属性值&lt;/strong&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td&gt;httpbind.enabled&lt;/td&gt;
+   &lt;td&gt;&lt;br&gt;&lt;/td&gt;
+   &lt;td&gt;true&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td&gt;passwordKey&lt;/td&gt;
+   &lt;td&gt;&lt;br&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;i&gt;hidden&lt;/i&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td&gt;provider.admin.className&lt;/td&gt;
+   &lt;td&gt;&lt;br&gt;&lt;/td&gt;
+   &lt;td&gt;org.jivesoftware.openfire.admin.DefaultAdminProvider&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td&gt;&lt;strong&gt;provider.auth.className&lt;/strong&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;strong&gt;验证&lt;/strong&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;strong&gt;org.jivesoftware.openfire.auth.DefaultAuthProvider&lt;/strong&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td&gt;&lt;strong&gt;provider.group.className&lt;/strong&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;strong&gt;组相关&lt;/strong&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;strong&gt;org.jivesoftware.openfire.group.DefaultGroupProvider&lt;/strong&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td&gt;provider.lockout.className&lt;/td&gt;
+   &lt;td&gt;&lt;br&gt;&lt;/td&gt;
+   &lt;td&gt;org.jivesoftware.openfire.lockout.DefaultLockOutProvider&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td&gt;&lt;strong&gt;provider.securityAudit.className&lt;/strong&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;strong&gt;用户相关&lt;/strong&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;strong&gt;org.jivesoftware.openfire.security.DefaultSecurityAuditProvider&lt;/strong&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td&gt;provider.user.className&lt;/td&gt;
+   &lt;td&gt;&lt;br&gt;&lt;/td&gt;
+   &lt;td&gt;org.jivesoftware.openfire.user.DefaultUserProvider&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td&gt;provider.vcard.className&lt;/td&gt;
+   &lt;td&gt;&lt;br&gt;&lt;/td&gt;
+   &lt;td&gt;org.jivesoftware.openfire.vcard.DefaultVCardProvider&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td&gt;update.lastCheck&lt;/td&gt;
+   &lt;td&gt;&lt;br&gt;&lt;/td&gt;
+   &lt;td&gt;1351559310961&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td&gt;xmpp.auth.anonymous&lt;/td&gt;
+   &lt;td&gt;&lt;br&gt;&lt;/td&gt;
+   &lt;td&gt;true&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td&gt;&lt;strong&gt;xmpp.domain&lt;/strong&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;strong&gt;域名，服务器IP&lt;/strong&gt; &lt;/td&gt;
+   &lt;td&gt;&lt;span style="color:#E53333;"&gt;&lt;strong&gt;192.168.0.46&lt;/strong&gt;&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td&gt;xmpp.httpbind.scriptSyntax.enabled&lt;/td&gt;
+   &lt;td&gt;&lt;br&gt;&lt;/td&gt;
+   &lt;td&gt;true&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td&gt;xmpp.session.conflict-limit&lt;/td&gt;
+   &lt;td&gt;&lt;br&gt;&lt;/td&gt;
+   &lt;td&gt;0&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td&gt;xmpp.socket.ssl.active&lt;/td&gt;
+   &lt;td&gt;&lt;br&gt;&lt;/td&gt;
+   &lt;td&gt;true&lt;/td&gt;
+  &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;首先&lt;strong&gt;修改&lt;/strong&gt;三个属性(openfire提供了支持JDBC相关的Provider, 可以从其它的数据源获取用户/组数据)：&lt;/p&gt;
+&lt;table class="table"&gt;
+ &lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td&gt;&lt;strong&gt;属性名&lt;/strong&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;strong&gt;属性值&lt;/strong&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td&gt;provider.auth.className&lt;/td&gt;
+   &lt;td&gt;org.jivesoftware.openfire.auth.&lt;span style="color:#E53333;"&gt;&lt;strong&gt;JDBC&lt;/strong&gt;&lt;/span&gt;AuthProvider&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td&gt;provider.group.className&lt;/td&gt;
+   &lt;td&gt; org.jivesoftware.openfire.group.&lt;span style="color:#E53333;"&gt;&lt;strong&gt;JDBC&lt;/strong&gt;&lt;/span&gt;GroupProvider&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td&gt;provider.user.className&lt;/td&gt;
+   &lt;td&gt; org.jivesoftware.openfire.user.&lt;span style="color:#E53333;"&gt;&lt;strong&gt;JDBC&lt;/strong&gt;&lt;/span&gt;UserProvider&lt;/td&gt;
+  &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;接着配置&lt;strong&gt;数据源&lt;/strong&gt;（添加系统属性, 这里使用的是mysql数据库）：&lt;/p&gt;
+&lt;table class="table"&gt;
+ &lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td&gt;&lt;strong&gt;属性名&lt;/strong&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;strong&gt;说明&lt;/strong&gt; &lt;/td&gt;
+   &lt;td&gt;&lt;strong&gt;属性值&lt;/strong&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td&gt;jdbcProvider.driver&lt;/td&gt;
+   &lt;td&gt;数据源驱动&lt;/td&gt;
+   &lt;td&gt;com.mysql.jdbc.Driver&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td&gt;jdbcProvider.connectionString&lt;/td&gt;
+   &lt;td&gt;连接字符串，需要集成的数据库地址&lt;/td&gt;
+   &lt;td&gt; jdbc:mysql://&lt;span style="color:#E53333;"&gt;localhost&lt;/span&gt;:3306/&lt;span style="color:#E53333;"&gt;office&lt;/span&gt;?user=&lt;span style="color:#E53333;"&gt;root&lt;/span&gt;&amp;amp;password=&lt;span style="color:#E53333;"&gt;123456&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;这里的配置可&lt;a href="http://www.igniterealtime.org/builds/openfire/docs/latest/documentation/database.html"&gt;参考&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;其中, 相应数据库的driver必须放在Openfire安装目录的"lib/"文件夹中（默认安装Openfire后就有了）。&lt;/p&gt;
+&lt;p&gt;对每一个JDBC Provider需要&lt;strong&gt;添加&lt;/strong&gt;相关系统属性&lt;/p&gt;
+&lt;h4&gt;JDBCAuthProvider&lt;/h4&gt;
+&lt;table class="table"&gt;
+ &lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td&gt;&lt;strong&gt;属性名&lt;/strong&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;strong&gt;说明&lt;/strong&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;strong&gt;输入值&lt;/strong&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;strong&gt;输出列&lt;/strong&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;strong&gt;属性值&lt;/strong&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td&gt;&lt;span&gt;jdbcAuthProvider.passwordSQL&lt;/span&gt;&lt;/td&gt;
+   &lt;td&gt;获取用户密码的SQL&lt;/td&gt;
+   &lt;td&gt;登录名&lt;/td&gt;
+   &lt;td&gt;密码&lt;/td&gt;
+   &lt;td&gt;select &lt;span style="color:#E53333;"&gt;pwd &lt;/span&gt;from &lt;span style="color:#E53333;"&gt;users &lt;/span&gt;where &lt;span style="color:#E53333;"&gt;uid&lt;/span&gt;=?&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td&gt;jdbcAuthProvider.passwordType&lt;/td&gt;
+   &lt;td&gt;密码类型&lt;/td&gt;
+   &lt;td&gt;&lt;br&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;br&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;span style="color:#E53333;"&gt;plain&lt;/span&gt;(文本) | md5 | sha1 | sha256 |sha512, 如果密码加密不为前面几种, 就需要自己提供一个AuthProvide, 如果没有设置, 默认为plain&lt;/td&gt;
+  &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h4&gt;JDBCUserProvider&lt;/h4&gt;
+&lt;table class="table"&gt;
+ &lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td&gt;&lt;strong&gt;属性名&lt;/strong&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;strong&gt;说明&lt;/strong&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;strong&gt;输入值&lt;/strong&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;strong&gt;输出列&lt;/strong&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;strong&gt;属性值&lt;/strong&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td&gt;jdbcUserProvider.allUsersSQL&lt;/td&gt;
+   &lt;td&gt;获取所有用户&lt;/td&gt;
+   &lt;td&gt;&lt;br/&gt;&lt;/td&gt;
+   &lt;td&gt;用户的uid&lt;/td&gt;
+   &lt;td&gt;select &lt;span style="color:#E53333;"&gt;uid &lt;/span&gt;from &lt;span style="color:#E53333;"&gt;user&lt;/span&gt;&lt;span style="color:#E53333;"&gt;s&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td&gt;jdbcUserProvider.loadUserSQL&lt;/td&gt;
+   &lt;td&gt;获取用户信息&lt;/td&gt;
+   &lt;td&gt;用户uid&lt;/td&gt;
+   &lt;td&gt;用户名,email&lt;/td&gt;
+   &lt;td&gt;select &lt;span style="color:#E53333;"&gt;name&lt;/span&gt;,&lt;span style="color:#E53333;"&gt;email &lt;/span&gt;from &lt;span style="color:#E53333;"&gt;users &lt;/span&gt;where &lt;span style="color:#E53333;"&gt;uid&lt;/span&gt;=?&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td&gt;jdbcUserProvider.userCountSQL&lt;/td&gt;
+   &lt;td&gt;获取用户数量&lt;/td&gt;
+   &lt;td&gt;&lt;br/&gt;&lt;/td&gt;
+   &lt;td&gt;用户数量&lt;/td&gt;
+   &lt;td&gt;select count(*) from &lt;span style="color:#E53333;"&gt;users&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td&gt;jdbcUserProvider.searchSQL&lt;/td&gt;
+   &lt;td&gt;&lt;span style="color:#E53333;"&gt;&lt;strong&gt;!!这边略有疑问!!&lt;/strong&gt;&lt;/span&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;br&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;br&gt;&lt;/td&gt;
+   &lt;td&gt;select &lt;span style="color:#E53333;"&gt;uid &lt;/span&gt;from &lt;span style="color:#E53333;"&gt;users &lt;/span&gt;where&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td&gt;jdbcUserProvider.usernameField&lt;/td&gt;
+   &lt;td&gt;指定用户登录名的列名&lt;/td&gt;
+   &lt;td&gt;&lt;br&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;br&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;span style="color:#E53333;"&gt;uid&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td&gt;jdbcUserProvider.nameField&lt;/td&gt;
+   &lt;td&gt;指定用户名称的列名&lt;/td&gt;
+   &lt;td&gt;&lt;br&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;br&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;span style="color:#E53333;"&gt;name&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td&gt;jdbcUserProvider.emailField&lt;/td&gt;
+   &lt;td&gt;指定用户email的列名&lt;/td&gt;
+   &lt;td&gt;&lt;br&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;br&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;span style="color:#E53333;"&gt;email&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h4&gt;JDBCGroupProvider&lt;/h4&gt;
+&lt;table class="table"&gt;
+ &lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td&gt;&lt;strong&gt;属性名&lt;/strong&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;strong&gt;说明&lt;/strong&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;strong&gt;输入值&lt;/strong&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;strong&gt;输出列&lt;/strong&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;strong&gt;属性值&lt;/strong&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td&gt;jdbcGroupProvider.allGroupsSQL&lt;/td&gt;
+   &lt;td&gt;获取所有组的SQL&lt;/td&gt;
+   &lt;td&gt;&lt;br&gt;&lt;/td&gt;
+   &lt;td&gt;组名&lt;/td&gt;
+   &lt;td&gt;select &lt;span style="color:#E53333;"&gt;groupName &lt;/span&gt;from &lt;span style="color:#E53333;"&gt;groups&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td&gt;jdbcGroupProvider.descriptionSQL&lt;/td&gt;
+   &lt;td&gt;获取组描述&lt;/td&gt;
+   &lt;td&gt;组名&lt;/td&gt;
+   &lt;td&gt;组描述&lt;/td&gt;
+   &lt;td&gt;select &lt;span style="color:#E53333;"&gt;description &lt;/span&gt;from &lt;span style="color:#E53333;"&gt;groups &lt;/span&gt;where &lt;span style="color:#E53333;"&gt;groupName&lt;/span&gt;=?&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td&gt;jdbcGroupProvider.groupCountSQL&lt;/td&gt;
+   &lt;td&gt;获取组的数量&lt;/td&gt;
+   &lt;td&gt;&lt;br&gt;&lt;/td&gt;
+   &lt;td&gt;组的数量&lt;/td&gt;
+   &lt;td&gt;select count(*) from &lt;span style="color:#E53333;"&gt;groups&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td&gt;jdbcGroupProvider.loadAdminsSQL&lt;/td&gt;
+   &lt;td&gt;获取组的管理员&lt;/td&gt;
+   &lt;td&gt;组名&lt;/td&gt;
+   &lt;td&gt;组管理员&lt;/td&gt;
+   &lt;td&gt;select &lt;span style="color:#E53333;"&gt;uid &lt;/span&gt;from &lt;span style="color:#E53333;"&gt;groupusers &lt;/span&gt;where &lt;span style="color:#E53333;"&gt;groupName&lt;/span&gt;=? and &lt;span style="color:#E53333;"&gt;admin=1&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td&gt;jdbcGroupProvider.loadMembersSQL&lt;/td&gt;
+   &lt;td&gt;获取组的成员&lt;/td&gt;
+   &lt;td&gt;组名&lt;/td&gt;
+   &lt;td&gt;组成员uid&lt;/td&gt;
+   &lt;td&gt;select &lt;span style="color:#E53333;"&gt;uid &lt;/span&gt;from &lt;span style="color:#E53333;"&gt;groupusers &lt;/span&gt;where &lt;span style="color:#E53333;"&gt;groupName&lt;/span&gt;=? and &lt;span style="color:#E53333;"&gt;admin=0&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td&gt;jdbcGroupProvider.userGroupsSQL&lt;/td&gt;
+   &lt;td&gt;获取成员的组&lt;/td&gt;
+   &lt;td&gt;成员uid&lt;/td&gt;
+   &lt;td&gt;成员所属组名&lt;/td&gt;
+   &lt;td&gt;select &lt;span style="color:#E53333;"&gt;groupName &lt;/span&gt;from &lt;span style="color:#E53333;"&gt;groupusers &lt;/span&gt;where &lt;span style="color:#E53333;"&gt;uid&lt;/span&gt;=? &lt;/td&gt;
+  &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;注意：其中获取组的管理员和组的成员中的判断要根据相应系统修改, 我这边假设admin值为1时是管理员, 值为0时是成员&lt;/p&gt;
+&lt;p&gt;最后, 配置新的&lt;strong&gt;管理员用户&lt;/strong&gt;（应该在&lt;strong&gt;users&lt;/strong&gt;表中添加一个用户作为管理员）&lt;/p&gt;
+&lt;table class="table"&gt;
+ &lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td&gt;&lt;strong&gt;属性名&lt;/strong&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;strong&gt;说明&lt;/strong&gt;&lt;/td&gt;
+   &lt;td&gt;&lt;strong&gt;属性值&lt;/strong&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td&gt;admin.authorizedJIDs&lt;/td&gt;
+   &lt;td&gt;指定新数据源中的管理员用户, 注意是是完整JID(user@域名)&lt;/td&gt;
+   &lt;td&gt;&lt;span style="color:red"&gt;admin@192.168.0.46&lt;/span&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;注：官方文档写的配置admin.authorizedUsernames, 但是配置后似乎不起效果&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注：表中红色字体部分为需要根据具体数据库进行修改的部分.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;配置好后, 重启Openfire。&lt;/p&gt;
+&lt;p&gt;使用&lt;strong&gt;admin.authorizedJIDs&lt;/strong&gt;中的用户名登录Openfire管理控制台(&lt;strong&gt;admin.authorizedJIDs&lt;/strong&gt;配置为&lt;strong&gt;admin@192.168.0.46&lt;/strong&gt;, 则用户名为&lt;strong&gt;admin&lt;/strong&gt;).&lt;/p&gt;
+&lt;p&gt;如果配置成功, 进入&lt;strong&gt;Openfire管理控制台-》用户/组&lt;/strong&gt;就可以看到你数据源中的用户/组信息了。&lt;/p&gt;
+&lt;p&gt;注: 在修改添加系统属性的过程中, 若无法登录Openfire管理控制台, 可直接修改Openfire数据库中的&lt;strong&gt;ofproperty&lt;/strong&gt;表.&lt;/p&gt;
+&lt;h3&gt;懒惰的程序猿——使用SQL语句修改&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="c1"&gt;-----------------------------------------------------------------------------------------------------------&lt;/span&gt;
+&lt;span class="k"&gt;UPDATE&lt;/span&gt; &lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;openfire&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;ofProperty&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt; &lt;span class="k"&gt;SET&lt;/span&gt; &lt;span class="n"&gt;propValue&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;org.jivesoftware.openfire.auth.JDBCAuthProvider&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;WHERE&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;provider.auth.className&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;UPDATE&lt;/span&gt; &lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;openfire&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;ofProperty&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt; &lt;span class="k"&gt;SET&lt;/span&gt; &lt;span class="n"&gt;propValue&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;org.jivesoftware.openfire.group.JDBCGroupProvider&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;WHERE&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;provider.group.className&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;UPDATE&lt;/span&gt; &lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;openfire&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;ofProperty&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt; &lt;span class="k"&gt;SET&lt;/span&gt; &lt;span class="n"&gt;propValue&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;org.jivesoftware.openfire.user.JDBCUserProvider&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;WHERE&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;provider.user.className&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="k"&gt;INSERT&lt;/span&gt; &lt;span class="k"&gt;INTO&lt;/span&gt; &lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;openfire&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt;&lt;span class="n"&gt;ofProperty&lt;/span&gt;&lt;span class="o"&gt;`&lt;/span&gt; &lt;span class="k"&gt;VALUES&lt;/span&gt;
+ &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;jdbcProvider.driver&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;com.mysql.jdbc.Driver&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+ &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;jdbcProvider.connectionString&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;jdbc:mysql://localhost:3306/office?user=root&amp;amp;password=123456&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+ &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;admin.authorizedJIDs&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;admin@localhost,admin@192.168.0.46&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+ &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;jdbcAuthProvider.passwordSQL&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;SELECT pwd FROM users WHERE uid=?&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+ &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;jdbcAuthProvider.passwordType&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;plain&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+ &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;jdbcUserProvider.allUsersSQL&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;SELECT uid FROM users&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+ &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;jdbcUserProvider.loadUserSQL&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;SELECT name,email FROM users WHERE uid=?&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+ &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;jdbcUserProvider.userCountSQL&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;SELECT COUNT(*) FROM users&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+ &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;jdbcUserProvider.searchSQL&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;SELECT uid FROM users WHERE&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+ &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;jdbcUserProvider.usernameField&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;uid&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+ &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;jdbcUserProvider.nameField&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;name&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+ &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;jdbcUserProvider.emailField&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;email&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+ &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;jdbcGroupProvider.allGroupsSQL&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;SELECT groupName FROM groups&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+ &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;jdbcGroupProvider.descriptionSQL&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;SELECT description FROM groups WHERE groupName=?&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+ &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;jdbcGroupProvider.groupCountSQL&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;SELECT COUNT(*) FROM groups&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+ &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;jdbcGroupProvider.loadAdminsSQL&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;SELECT uid FROM groupusers WHERE groupName=? AND admin=1&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+ &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;jdbcGroupProvider.loadMembersSQL&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;SELECT uid FROM groupusers WHERE groupName=? AND admin=0&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+ &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;jdbcGroupProvider.userGroupsSQL&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;SELECT groupName from groupusers WHERE uid=?&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="c1"&gt;-----------------------------------------------------------------------------------------------------------&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Openfire"></category><category term="数据库"></category><category term="XMPP"></category><category term="MySQL"></category></entry><entry><title>[备忘] 8080端口被占用</title><link href="http://zoeyyoung.github.io/tomcat-cant-start.html" rel="alternate"></link><updated>2011-05-03T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2011-05-03:tomcat-cant-start.html</id><summary type="html">&lt;p&gt;用tomcat的时候出现tomcat启动不起来多数情况是由于8080端口被占用&lt;/p&gt;
+&lt;p&gt;那如何结束占用8080端口的进程呢?&lt;/p&gt;
+&lt;p&gt;1、&lt;code&gt;Win+R&lt;/code&gt; cmd 打开运行窗口&lt;/p&gt;
+&lt;p&gt;输入&lt;code&gt;netstat -ano&lt;/code&gt;会出现类似下图的数据窗口&lt;/p&gt;
+&lt;p&gt;&lt;img alt="netstat -ano" src="/static/images/netstat-ano.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;2、比如我们要结束tomcat的8080端口&lt;/p&gt;
+&lt;p&gt;由图8080的端口PID是2272, 调出windows资源管理器可以看到PID 2272被&lt;strong&gt;reportingservicesservice.exe&lt;/strong&gt;进程占用, 结束该进程, 然后重启Tomcat.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="任务管理器" src="/static/images/pip2272.png" /&gt;&lt;/p&gt;
+&lt;p&gt;3、还有一种情况, 直接结束进程中的&lt;strong&gt;javaw.exe&lt;/strong&gt;即可&lt;/p&gt;</summary><category term="端口"></category><category term="Tomcat"></category><category term="进程"></category><category term="Windows"></category></entry><entry><title>[安装配置] Tomcat配置</title><link href="http://zoeyyoung.github.io/tomcat-config.html" rel="alternate"></link><updated>2009-07-18T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2009-07-18:tomcat-config.html</id><summary type="html">&lt;p&gt;&lt;a href="http://tomcat.apache.org/index.html"&gt;Tomcat主页&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;一、安装JDK 1.7&lt;/p&gt;
+&lt;p&gt;1、添加环境变量: 在 &lt;strong&gt;我的电脑-&amp;gt;属性-&amp;gt;高级-&amp;gt;环境变量&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;2、新建系统变量, 变量名: &lt;code&gt;JAVA_HOME&lt;/code&gt;  变量值: &lt;code&gt;C:\Program Files\Java\jdk1.7.0&lt;/code&gt; (JDK的安装目录)&lt;/p&gt;
+&lt;p&gt;3、在原有的系统变量Path后面加上英文分号, 再添加&lt;code&gt;%JAVA_HOME%\bin;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\jre\bin;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;不要删除原来的. 看清楚, 它们之间的分号, 是英文的分号.&lt;/p&gt;
+&lt;p&gt;4、测试JDK是否安装成功, 运行-&amp;gt;cmd -&amp;gt;D: 进入D盘, 输入&lt;code&gt;javac&lt;/code&gt;看能否出来很多命令, 出来则说明JDK配置成功.&lt;/p&gt;
+&lt;p&gt;二、Tomcat 7.0的安装配置&lt;/p&gt;
+&lt;p&gt;1、Tomcat 7.0 的免安装版的配置(假如将Tomcat 解压到C:\Program Files目录, 目录结构为: C:\Program Files\apache-tomcat-7.0.11&lt;/p&gt;
+&lt;p&gt;1、添加环境变量: 在 我的电脑-&amp;gt;属性-&amp;gt;高级-&amp;gt;环境变量&lt;/p&gt;
+&lt;p&gt;2、新建系统变量, 变量名: &lt;code&gt;CATALINA_HOME&lt;/code&gt;  变量值: &lt;code&gt;C:\Program Files\apache-tomcat-7.0.11&lt;/code&gt; (Tomcat 解压到的目录).&lt;/p&gt;
+&lt;p&gt;3、在系统变量Path的最后面添加&lt;code&gt;%CATALINA_HOME%\lib;%CATALINA_HOME%\lib\servlet-api.jar;%CATALINA_HOME%\lib\jsp-api.jar&lt;/code&gt;注意它们之间的分号, 一定是英文的分号.&lt;/p&gt;
+&lt;p&gt;4、Tomcat 7.0的管理员的配置, 进入C:\Program Files\apache-tomcat-7.0.11(Tomcat目录)下的conf目录, 编辑tomcat-users.xml, 找到最后的:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;lt;!--&lt;/span&gt;
+  &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;role&lt;/span&gt; &lt;span class="n"&gt;rolename&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;tomcat&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;/&amp;gt;&lt;/span&gt;
+  &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;role&lt;/span&gt; &lt;span class="n"&gt;rolename&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;role1&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;/&amp;gt;&lt;/span&gt;
+  &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="n"&gt;username&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;tomcat&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;password&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;tomcat&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;roles&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;tomcat&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;/&amp;gt;&lt;/span&gt;
+  &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="n"&gt;username&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;both&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;password&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;tomcat&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;roles&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;tomcat,role1&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;/&amp;gt;&lt;/span&gt;
+  &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="n"&gt;username&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;role1&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;password&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;tomcat&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;roles&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;role1&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class="o"&gt;--&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;在上面这段后面添加上:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;role&lt;/span&gt; &lt;span class="n"&gt;rolename&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;manager-gui&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;role&lt;/span&gt; &lt;span class="n"&gt;rolename&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;admin-gui&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="n"&gt;username&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;admin&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;password&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;admin888&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;roles&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;admin-gui&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="n"&gt;username&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;tomcat&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;password&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;tomcat&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;roles&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;manager-gui&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;/&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;5、从WIN+R CMD, 进入Tomcat目录下的bin目录, 双击startup.bat启动Tomcat, 在命令行窗口会出来英文提示.&lt;/p&gt;
+&lt;p&gt;6、浏览器输入: http://localhost:8080 可以看到Tomcat的欢迎页面就说明配置成功了, 点击右上角上manager连接, 输入上面配置的用户名和密码, 就可以进入管理页面.&lt;/p&gt;
+&lt;p&gt;注: 要从命令行运行, 否则会闪一下就消失.&lt;/p&gt;</summary><category term="Tomcat"></category><category term="Windows"></category><category term="服务器"></category></entry></feed>

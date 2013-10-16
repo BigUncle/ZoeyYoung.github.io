@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>OK Computer</title><link href="http://zoeyyoung.github.io/" rel="alternate"></link><link href="http://zoeyyoung.github.io/feeds/shu-ju-ku.atom.xml" rel="self"></link><id>http://zoeyyoung.github.io/</id><updated>2013-10-06T00:00:00+08:00</updated><entry><title>[安装配置] MySQL</title><link href="http://zoeyyoung.github.io/after-install-ubuntu.html" rel="alternate"></link><updated>2013-10-06T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2013-10-06:after-install-ubuntu.html</id><summary type="html">&lt;h3&gt;Ubuntu&lt;/h3&gt;
+&lt;p&gt;安装: &lt;code&gt;sudo apt-get install mysql-server&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;额外的一些包也会提示装上.&lt;/p&gt;
+&lt;p&gt;安装过程会给&lt;strong&gt;root&lt;/strong&gt;用户创建密码&lt;/p&gt;
+&lt;p&gt;作为测试时我会用&lt;strong&gt;123456&lt;/strong&gt;(有时会忘了...实验环境.)&lt;/p&gt;
+&lt;p&gt;装好后访问: &lt;code&gt;mysql -uroot -p123456&lt;/code&gt; 就可以在命令行中操作数据库&lt;/p&gt;
+&lt;p&gt;安装使用&lt;strong&gt;phpmyadmin&lt;/strong&gt;: &lt;code&gt;sudo apt-get install phpmyadmin&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;添加链接:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;ln&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;share&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;phpmyadmin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;打开页面: http://127.0.0.1/phpmyadmin/&lt;/p&gt;
+&lt;p&gt;用户名: root 密码: 123456&lt;/p&gt;
+&lt;p&gt;备份: &lt;code&gt;mysqldump -uroot -p123456 test&amp;gt;test.sql&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;恢复: &lt;code&gt;mysql -uroot -p123456 test&amp;lt;test.sql&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://wiki.ubuntu.org.cn/MySQL安装指南"&gt;MySQL安装指南&lt;/a&gt;&lt;/p&gt;</summary><category term="Ubuntu"></category><category term="Linux"></category><category term="安装"></category><category term="MySQL"></category></entry><entry><title>[记录] MongoDB使用Whoosh进行全文搜索</title><link href="http://zoeyyoung.github.io/mongodb-whoosh-full-text-search.html" rel="alternate"></link><updated>2013-08-08T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2013-08-08:mongodb-whoosh-full-text-search.html</id><summary type="html">&lt;p&gt;在我的书签云项目中采用了MongoDB数据库.&lt;/p&gt;
+&lt;p&gt;假设我有如下格式的文档(省略了与搜索无关的字段):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;ObjectId&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;519cd22917a0b7429bc2a1c0&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+  &lt;span class="s2"&gt;&amp;quot;title&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Python搭配MongoDB使用方法 - I&amp;#39;m SErHo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="s2"&gt;&amp;quot;tags&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Python&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;数据库&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;MongoDB&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;PyMongo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;博客&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;,
+  &amp;quot;url&amp;quot; : &amp;quot;http://serholiu.com/python-mongodb&amp;quot;,
+  &amp;quot;article&amp;quot; : &amp;quot;&lt;span class="nt"&gt;&amp;lt;div&amp;gt;&amp;lt;article&amp;gt;&lt;/span&gt;\n&lt;span class="nt"&gt;&amp;lt;h2&amp;gt;&lt;/span&gt;Python搭配MongoDB使用方法&lt;span class="nt"&gt;&amp;lt;/a&amp;gt;&amp;lt;/h2&amp;gt;&lt;/span&gt;\n&lt;span class="nt"&gt;&amp;lt;p&amp;gt;&lt;/span&gt;这几天在学习Python Web开发&lt;span class="nt"&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;，于是做准备做一个博客来练练手，当然，只是练手的，博客界有WordPress这样的好玩意儿，何必还自己造车呢？决定使用Tornado这个框架，然后数据库方面决定顺便熟悉一下MongoDB这样的非关系型数据库。Python让我觉得轻松，再和MongoDB搭配上，那感觉真是好。&lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&lt;/span&gt;下面就谈谈Python操作MongoDB的一些基本用法，先介绍一下MongoDB，这是现在风头正劲的NoSQL数据库，没有关系数据库那种表之类的概念，就像Python中的字典一样，一个键对应一个值，然后这些键值组成一个文档，然后文档组成一个集合，集合再组成一个数据库，类型十分丰富，使用Python操作MongoDB需要安装MongoDB的Python驱动&lt;span class="nt"&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;，安装完成后，就可以和我一起开始了。&lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&lt;/span&gt;启动数据库（具体方法不是本文重点），连接数据库。&lt;span class="nt"&gt;&amp;lt;/p&amp;gt;&amp;lt;/article&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;&amp;quot;,
+  &amp;quot;note&amp;quot; : &amp;quot;# Good Post!&amp;quot;
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;我要搜索与Python有关的文档.&lt;/p&gt;
+&lt;p&gt;MongoDB有提供全文搜索功能, 但&lt;a href="http://docs.mongodb.org/manual/reference/command/text/#text-search-languages"&gt;支持的语言&lt;/a&gt;不包含中文.&lt;/p&gt;
+&lt;p&gt;并且官方也&lt;a href="http://docs.mongodb.org/manual/tutorial/enable-text-search/"&gt;不推荐&lt;/a&gt;用在生产系统上.&lt;/p&gt;
+&lt;div class="admonition warning"&gt;
+    &lt;p class="first admonition-title"&gt;Warning&lt;/p&gt;
+    &lt;ul class="simple"&gt;
+        &lt;li&gt;Do &lt;strong&gt;not&lt;/strong&gt; enable or use text search on production systems.&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;ul class="last simple"&gt;
+        &lt;li&gt;Text indexes have significant storage requirements and performance costs. See &lt;a class="reference internal" href="../../core/indexes/#index-feature-text"&gt;&lt;em&gt;text Indexes&lt;/em&gt;&lt;/a&gt; for more information.&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;p&gt;原本使用普通的正则匹配:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_by_keywords&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;keywords&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;t_keywords&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;r&amp;quot;.*&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;keywords&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;r&amp;quot;.*&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;keywords&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;keywords&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39; &amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;regex_keywords&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;r&amp;quot;.*&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;keywords&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;regex_keywords&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;r&amp;quot;.*&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;regex_list&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+    &lt;span class="c"&gt;# 先匹配完全符合的&lt;/span&gt;
+    &lt;span class="n"&gt;regex_list&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;title&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;$regex&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;t_keywords&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;$options&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;-i&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;}})&lt;/span&gt;
+    &lt;span class="n"&gt;regex_list&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;description&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;$regex&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;t_keywords&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;$options&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;-i&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;}})&lt;/span&gt;
+    &lt;span class="n"&gt;regex_list&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;tags&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;$regex&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;t_keywords&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;$options&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;-i&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;}})&lt;/span&gt;
+    &lt;span class="n"&gt;regex_list&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;note&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;$regex&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;t_keywords&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;$options&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;-i&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;}})&lt;/span&gt;
+    &lt;span class="c"&gt;# 再匹配用空格分开的多个词&lt;/span&gt;
+    &lt;span class="n"&gt;regex_list&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;title&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;$regex&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;regex_keywords&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;$options&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;-i&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;}})&lt;/span&gt;
+    &lt;span class="n"&gt;regex_list&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;url&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;$regex&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;regex_keywords&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;$options&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;-i&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;}})&lt;/span&gt;
+    &lt;span class="n"&gt;regex_list&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;description&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;$regex&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;regex_keywords&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;$options&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;-i&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;}})&lt;/span&gt;
+    &lt;span class="n"&gt;regex_list&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;note&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;$regex&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;regex_keywords&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;$options&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;-i&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;}})&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;keywords&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;regex_list&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;tags&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;$regex&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;r&amp;quot;.*&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="s"&gt;r&amp;quot;.*&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;$options&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;-i&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;}})&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;bookmarks_collection&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;$or&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;regex_list&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;共匹配到203个书签. (后面使用Whoosh搜索到280个书签).&lt;/p&gt;
+&lt;p&gt;看起来很糟糕. 并且效果并不理想.&lt;/p&gt;
+&lt;p&gt;查找发现了Whoosh&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://pythonhosted.org/Whoosh/"&gt;Whoosh&lt;/a&gt;是python写的全文搜索引擎, 很容易集成和使用, 因此目前决定使用whoosh来进行全文检索.&lt;/p&gt;
+&lt;p&gt;安装:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;pip install Whoosh
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;使用:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pymongo&lt;/span&gt;
+&lt;span class="c"&gt;# MongoDB中有数据库bookmarks_cloud, 有集合bookmarks&lt;/span&gt;
+&lt;span class="n"&gt;bookmarks_collection&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pymongo&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Connection&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bookmarks_cloud&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bookmarks&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;whoosh.fields&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Schema&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;TEXT&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ID&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;KEYWORD&lt;/span&gt;
+&lt;span class="c"&gt;# from bookmarks_cloud.whoosh_fts import ChineseAnalyzer&lt;/span&gt;
+&lt;span class="c"&gt;# jieba已经内置了和whoosh的集成功能&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;jieba.analyse&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ChineseAnalyzer&lt;/span&gt;
+&lt;span class="n"&gt;analyzer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ChineseAnalyzer&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="c"&gt;# 我需要在url, title, tags, note, article中进行搜索,&lt;/span&gt;
+&lt;span class="c"&gt;# 然后根据搜索到的_id再去数据库中获取数据.&lt;/span&gt;
+&lt;span class="c"&gt;# 这里并没有添加bookmarks文档中所有元素.&lt;/span&gt;
+&lt;span class="c"&gt;# 还有一种方式是直接添加所有最后需要展示的元素.&lt;/span&gt;
+&lt;span class="n"&gt;schema&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Schema&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+            &lt;span class="n"&gt;nid&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;ID&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unique&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;stored&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+            &lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;ID&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unique&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;stored&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+            &lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;TEXT&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;phrase&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+            &lt;span class="n"&gt;tags&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;KEYWORD&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lowercase&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;commas&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;scorable&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+            &lt;span class="n"&gt;note&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;TEXT&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;analyzer&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;analyzer&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+            &lt;span class="n"&gt;article&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;TEXT&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;stored&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;analyzer&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;analyzer&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c"&gt;# 索引&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;whoosh.index&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;create_in&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;open_dir&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exists&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;testindexdir&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mkdir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;testindexdir&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;create_in&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;testindexdir&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;schema&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;ix&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;open_dir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;testindexdir&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;writer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ix&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;writer&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;bm&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;bookmarks_collection&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;timeout&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;writer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;update_document&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+            &lt;span class="n"&gt;nid&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;bm&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;_id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]),&lt;/span&gt;
+            &lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;bm&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;url&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+            &lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;bm&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;title&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+            &lt;span class="n"&gt;tags&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;,&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;bm&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;tags&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]),&lt;/span&gt;
+            &lt;span class="n"&gt;note&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;bm&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;note&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+            &lt;span class="n"&gt;article&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;bm&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;article&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+        &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;writer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;commit&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="c"&gt;# 搜索&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;whoosh.qparser&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;MultifieldParser&lt;/span&gt;
+&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;ix&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;searcher&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;searcher&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;query&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;MultifieldParser&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;url&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;title&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;tags&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;note&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;article&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;ix&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;schema&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;parse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Python&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;results&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;searcher&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;results&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;results&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+    &lt;span class="n"&gt;keywords&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;keyword&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;score&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;results&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;key_terms&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;article&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;docs&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;numterms&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;keywords&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;若想使用分页, 使用:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;searcher&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;search_page&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;pagelen&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;a href="https://github.com/ZoeyYoung/Bookmarks_Cloud/blob/master/bookmarks_cloud/whoosh_fts.py"&gt;具体使用的代码&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;参考文档&lt;/h3&gt;
+&lt;p&gt;&lt;a href="http://blog.csdn.net/wenxuansoft/article/details/8169842"&gt;实现Django的全文检索功能（一）：选择Whoosh全文检索引擎&lt;/a&gt; ChineseAnalyzer是使用这篇文章中的, 其中修改使用了&lt;code&gt;jieba.cut_for_search(value)&lt;/code&gt;, 而不是博主使用的&lt;code&gt;jieba.cut()&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/qoda/python-searchengine/blob/master/searchengine/search.py"&gt;python-searchengine&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://gelnior.wordpress.com/2012/05/23/whoosh-full-text-search-for-python/"&gt;Whoosh: full-text search with Python&lt;/a&gt;&lt;/p&gt;</summary><category term="MongoDB"></category><category term="NoSQL"></category><category term="Whoosh"></category></entry><entry><title>[尝试] MongoDB云服务使用</title><link href="http://zoeyyoung.github.io/mongodb-cloud-service.html" rel="alternate"></link><updated>2013-08-07T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2013-08-07:mongodb-cloud-service.html</id><summary type="html">&lt;p&gt;试用了下都可以用, 但连接速度很慢很慢.&lt;/p&gt;
+&lt;h3&gt;使用&lt;a href="http://www.mongohq.com"&gt;MongoHQ&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;创建数据库bookmarks_cloud&lt;/p&gt;
+&lt;p&gt;从本地导入数据&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://support.mongohq.com/importing-exporting/local-to-mongohq.html"&gt;Migrate Data from Localhost to MongoHQ&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;本地备份数据&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;mongodump&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;h&lt;/span&gt; &lt;span class="n"&gt;localhost&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="n"&gt;bookmarks_cloud&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;o&lt;/span&gt; &lt;span class="n"&gt;F&lt;/span&gt;&lt;span class="o"&gt;:/&lt;/span&gt;&lt;span class="n"&gt;mongodb&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dump&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;导入MongoHQ&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;mongorestore&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;h&lt;/span&gt; &lt;span class="n"&gt;dharma&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mongohq&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;10088&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="n"&gt;bookmarks_cloud&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt; &lt;span class="n"&gt;username&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="n"&gt;password&lt;/span&gt; &lt;span class="n"&gt;F&lt;/span&gt;&lt;span class="o"&gt;:/&lt;/span&gt;&lt;span class="n"&gt;mongodb&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dump&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bookmarks_cloud&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;连接方法:&lt;/p&gt;
+&lt;p&gt;1.Mongo Console&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;mongo&lt;/span&gt; &lt;span class="nx"&gt;dharma.mongohq.com&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;10088&lt;/span&gt;&lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;bookmarks_cloud&lt;/span&gt; &lt;span class="na"&gt;-u&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nb"&gt;user&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="na"&gt;-p&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;password&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;2.Mongo URI&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;mongodb&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//&amp;lt;user&amp;gt;:&amp;lt;password&amp;gt;@dharma.mongohq.com:10088/bookmarks_cloud&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;使用&lt;a href="https://mongolab.com/"&gt;MongoLib&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;与MongoHQ类似. 连接方法:&lt;/p&gt;
+&lt;p&gt;1.To connect using the shell:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;mongo&lt;/span&gt; &lt;span class="nx"&gt;ds037478.mongolab.com&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;37478&lt;/span&gt;&lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;bookmarks_cloud&lt;/span&gt; &lt;span class="na"&gt;-u&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;dbuser&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="na"&gt;-p&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;dbpassword&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;2.To connect using a driver via the standard URI (what's this?):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;mongodb&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//&amp;lt;dbuser&amp;gt;:&amp;lt;dbpassword&amp;gt;@ds037478.mongolab.com:37478/bookmarks_cloud&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;使用&lt;/h3&gt;
+&lt;p&gt;创建MongoClient时写入Mongo URI即可&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;db&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pymongo&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MongoClient&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;mongodb://username:password@dharma.mongohq.com:10088/bookmarks_cloud&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;bookmarks_cloud&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="MongoDB"></category><category term="MongoHQ"></category><category term="MongoLib"></category></entry><entry><title>[记录] MongoDB中数组更新操作</title><link href="http://zoeyyoung.github.io/mongodb-array-update-with-query.html" rel="alternate"></link><updated>2013-08-03T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2013-08-03:mongodb-array-update-with-query.html</id><summary type="html">&lt;p&gt;要做的事情: 在每个文档, 标签tags是以数组Array的形式存在的, 我现在有个标签命名为&lt;strong&gt;python&lt;/strong&gt;, 我想全部改成&lt;strong&gt;Python&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://docs.mongodb.org/manual/reference/operator/positional/#op._S"&gt;$ (query)&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;语法: &lt;code&gt;{ "&amp;lt;array&amp;gt;.$" : value }&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;使用mongo shell, 首先插入三条记录:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;mongo&lt;/span&gt;
+MongoDB shell version: &lt;span class="m"&gt;2&lt;/span&gt;.&lt;span class="m"&gt;4&lt;/span&gt;.&lt;span class="m"&gt;5&lt;/span&gt;
+connecting to: test
+&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;db&lt;/span&gt;.tags.insert({&lt;span class="s2"&gt;&amp;quot;tags&amp;quot;&lt;/span&gt;: [&lt;span class="s2"&gt;&amp;quot;1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;3&amp;quot;&lt;/span&gt;]})
+&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;db&lt;/span&gt;.tags.insert({&lt;span class="s2"&gt;&amp;quot;tags&amp;quot;&lt;/span&gt;: [&lt;span class="s2"&gt;&amp;quot;1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;3&amp;quot;&lt;/span&gt;]})
+&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;db&lt;/span&gt;.tags.insert({&lt;span class="s2"&gt;&amp;quot;tags&amp;quot;&lt;/span&gt;: [&lt;span class="s2"&gt;&amp;quot;1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;3&amp;quot;&lt;/span&gt;]})
+&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;db&lt;/span&gt;.tags.find()
+{ &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; : ObjectId(&lt;span class="s2"&gt;&amp;quot;...&amp;quot;&lt;/span&gt;)&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;tags&amp;quot;&lt;/span&gt; : [  &lt;span class="s2"&gt;&amp;quot;1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="s2"&gt;&amp;quot;2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="s2"&gt;&amp;quot;3&amp;quot;&lt;/span&gt; ] }
+{ &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; : ObjectId(&lt;span class="s2"&gt;&amp;quot;...&amp;quot;&lt;/span&gt;)&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;tags&amp;quot;&lt;/span&gt; : [  &lt;span class="s2"&gt;&amp;quot;1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="s2"&gt;&amp;quot;2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="s2"&gt;&amp;quot;3&amp;quot;&lt;/span&gt; ] }
+{ &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; : ObjectId(&lt;span class="s2"&gt;&amp;quot;...&amp;quot;&lt;/span&gt;)&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;tags&amp;quot;&lt;/span&gt; : [  &lt;span class="s2"&gt;&amp;quot;1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="s2"&gt;&amp;quot;2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="s2"&gt;&amp;quot;3&amp;quot;&lt;/span&gt; ] }
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;update默认只更新一条:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;db&lt;/span&gt;.tags.update({&lt;span class="s2"&gt;&amp;quot;tags&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;3&amp;quot;&lt;/span&gt;}&lt;span class="p"&gt;,&lt;/span&gt; {$&lt;span class="k"&gt;set&lt;/span&gt;: {&lt;span class="s2"&gt;&amp;quot;tags.$&amp;quot;&lt;/span&gt;: &lt;span class="s2"&gt;&amp;quot;5&amp;quot;&lt;/span&gt;}})
+&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;db&lt;/span&gt;.tags.find()
+{ &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; : ObjectId(&lt;span class="s2"&gt;&amp;quot;...&amp;quot;&lt;/span&gt;)&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;tags&amp;quot;&lt;/span&gt; : [  &lt;span class="s2"&gt;&amp;quot;1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="s2"&gt;&amp;quot;2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="s2"&gt;&amp;quot;5&amp;quot;&lt;/span&gt; ] }
+{ &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; : ObjectId(&lt;span class="s2"&gt;&amp;quot;...&amp;quot;&lt;/span&gt;)&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;tags&amp;quot;&lt;/span&gt; : [  &lt;span class="s2"&gt;&amp;quot;1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="s2"&gt;&amp;quot;2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="s2"&gt;&amp;quot;3&amp;quot;&lt;/span&gt; ] }
+{ &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; : ObjectId(&lt;span class="s2"&gt;&amp;quot;...&amp;quot;&lt;/span&gt;)&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;tags&amp;quot;&lt;/span&gt; : [  &lt;span class="s2"&gt;&amp;quot;1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="s2"&gt;&amp;quot;2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="s2"&gt;&amp;quot;3&amp;quot;&lt;/span&gt; ] }
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;更新全部, 加入option &lt;code&gt;{multi: true}&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;db&lt;/span&gt;.tags.update({&lt;span class="s2"&gt;&amp;quot;tags&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;3&amp;quot;&lt;/span&gt;}&lt;span class="p"&gt;,&lt;/span&gt; {$&lt;span class="k"&gt;set&lt;/span&gt;: {&lt;span class="s2"&gt;&amp;quot;tags.$&amp;quot;&lt;/span&gt;: &lt;span class="s2"&gt;&amp;quot;5&amp;quot;&lt;/span&gt;}}&lt;span class="p"&gt;,&lt;/span&gt; {multi: true})
+&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;db&lt;/span&gt;.tags.find()
+{ &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; : ObjectId(&lt;span class="s2"&gt;&amp;quot;...&amp;quot;&lt;/span&gt;)&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;tags&amp;quot;&lt;/span&gt; : [  &lt;span class="s2"&gt;&amp;quot;1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="s2"&gt;&amp;quot;2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="s2"&gt;&amp;quot;5&amp;quot;&lt;/span&gt; ] }
+{ &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; : ObjectId(&lt;span class="s2"&gt;&amp;quot;...&amp;quot;&lt;/span&gt;)&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;tags&amp;quot;&lt;/span&gt; : [  &lt;span class="s2"&gt;&amp;quot;1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="s2"&gt;&amp;quot;2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="s2"&gt;&amp;quot;5&amp;quot;&lt;/span&gt; ] }
+{ &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; : ObjectId(&lt;span class="s2"&gt;&amp;quot;...&amp;quot;&lt;/span&gt;)&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;tags&amp;quot;&lt;/span&gt; : [  &lt;span class="s2"&gt;&amp;quot;1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="s2"&gt;&amp;quot;2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="s2"&gt;&amp;quot;5&amp;quot;&lt;/span&gt; ] }
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;使操作具原子性, &lt;a href="http://docs.mongodb.org/manual/reference/operator/isolated/#op._S_isolated"&gt;$isolated&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;db&lt;/span&gt;.tags.update({&lt;span class="s2"&gt;&amp;quot;tags&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;5&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; $isolated : &lt;span class="m"&gt;1&lt;/span&gt;}&lt;span class="p"&gt;,&lt;/span&gt; {$&lt;span class="k"&gt;set&lt;/span&gt;: {&lt;span class="s2"&gt;&amp;quot;tags.$&amp;quot;&lt;/span&gt;: &lt;span class="s2"&gt;&amp;quot;6&amp;quot;&lt;/span&gt;}}&lt;span class="p"&gt;,&lt;/span&gt; {multi: true })
+&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;db&lt;/span&gt;.tags.find()
+{ &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; : ObjectId(&lt;span class="s2"&gt;&amp;quot;...&amp;quot;&lt;/span&gt;)&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;tags&amp;quot;&lt;/span&gt; : [  &lt;span class="s2"&gt;&amp;quot;1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="s2"&gt;&amp;quot;2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="s2"&gt;&amp;quot;6&amp;quot;&lt;/span&gt; ] }
+{ &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; : ObjectId(&lt;span class="s2"&gt;&amp;quot;...&amp;quot;&lt;/span&gt;)&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;tags&amp;quot;&lt;/span&gt; : [  &lt;span class="s2"&gt;&amp;quot;1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="s2"&gt;&amp;quot;2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="s2"&gt;&amp;quot;6&amp;quot;&lt;/span&gt; ] }
+{ &lt;span class="s2"&gt;&amp;quot;_id&amp;quot;&lt;/span&gt; : ObjectId(&lt;span class="s2"&gt;&amp;quot;...&amp;quot;&lt;/span&gt;)&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;tags&amp;quot;&lt;/span&gt; : [  &lt;span class="s2"&gt;&amp;quot;1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="s2"&gt;&amp;quot;2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="s2"&gt;&amp;quot;6&amp;quot;&lt;/span&gt; ] }
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;上面是使用mongo shell进行操作, 下面使用pymongo进行等价操作, 来对我书签云中的标签进行整理:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/usr/bin/env python&lt;/span&gt;
+&lt;span class="c"&gt;# -*- coding: utf-8 -*-&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pymongo&lt;/span&gt;
+
+&lt;span class="n"&gt;bookmarks_collection&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pymongo&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Connection&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bookmarks_cloud&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bookmarks&lt;/span&gt;
+
+&lt;span class="n"&gt;tags_dict&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;Ajax&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;ajax&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;Apache&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Apach&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;apache&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;博客&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Blog&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;blog&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;BLOG&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;Chrome&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;chrome&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;Chrome扩展&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;chrome extensions&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;chrome扩展&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;CSS&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;css&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;div+css布局&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;quot;CSS3&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;css3&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;tags_dict&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;bookmarks_collection&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;update&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;tags&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;$set&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;tags.$&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="p"&gt;}},&lt;/span&gt; &lt;span class="n"&gt;multi&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;目的是减少一些重复, 大小写不一致. 目前自动生成的标签的质量实在是很糟糕.&lt;/p&gt;</summary><category term="MongoDB"></category><category term="NoSQL"></category><category term="Update"></category></entry><entry><title>[安装配置] MongoDB相关记录</title><link href="http://zoeyyoung.github.io/mongodb.html" rel="alternate"></link><updated>2013-07-06T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2013-07-06:mongodb.html</id><summary type="html">&lt;p&gt;&lt;a href="http://www.mongodb.org/downloads"&gt;下载地址&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://docs.mongodb.org/manual/installation/"&gt;安装mongodb&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Windows&lt;/h3&gt;
+&lt;p&gt;&lt;a href="http://docs.mongodb.org/manual/tutorial/install-mongodb-on-windows/"&gt;Windows下安装&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;从官网下载安装文件后解压缩到目录&lt;code&gt;F:\mongodb&lt;/code&gt;, 在环境变量PATH中追加: &lt;code&gt;F:\mongodb\bin&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;直接启动&lt;/h4&gt;
+&lt;p&gt;数据库保存到&lt;code&gt;F:\mongodb\data\db&lt;/code&gt;, 直接启动mongodb:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;mongod.exe --dbpath F:\mongodb\data\db
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;刚开始总用这个命令启动, 每次开机都得启动一下, 后面还是配置服务方便点...&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;REST is not enabled.  use --rest to turn on.
+check that port 28017 is secured for the network too.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;mongod.exe --dbpath F:\mongodb\data\db --rest
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;配置服务&lt;/h4&gt;
+&lt;p&gt;添加服务前要先写配置文件, 即下面的.cfg文件, 然后再安装&lt;/p&gt;
+&lt;p&gt;mongod.cfg文件(其中的log、data文件夹都要先创建, 否则启动时会出现错误, &lt;strong&gt;错误1053：服务没有及时响应启动或控制请求&lt;/strong&gt;, 我创建文件后就能正常启动了..)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;# 端口
+# port &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;27017&lt;/span&gt;
+
+# 日志
+logpath &lt;span class="o"&gt;=&lt;/span&gt; F:\mongodb\log\mongodb.log
+logappend &lt;span class="o"&gt;=&lt;/span&gt; true
+#cpu &lt;span class="o"&gt;=&lt;/span&gt; true
+#verbose &lt;span class="o"&gt;=&lt;/span&gt; true
+
+# 数据库
+dbpath &lt;span class="o"&gt;=&lt;/span&gt; F:\mongodb\data\db
+# directoryperdb &lt;span class="o"&gt;=&lt;/span&gt; true
+
+# 认证
+# auth &lt;span class="o"&gt;=&lt;/span&gt; false
+
+# 管理
+rest &lt;span class="o"&gt;=&lt;/span&gt; true
+
+# 主节点配置
+master &lt;span class="o"&gt;=&lt;/span&gt; true
+
+# 子节点配置
+# slave &lt;span class="o"&gt;=&lt;/span&gt; true
+# source &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;192&lt;/span&gt;.&lt;span class="m"&gt;168&lt;/span&gt;.&lt;span class="m"&gt;3&lt;/span&gt;.&lt;span class="m"&gt;56&lt;/span&gt;
+# only &lt;span class="o"&gt;=&lt;/span&gt; xxx
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;安装Windows服务&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nl"&gt;F:&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;mongodb&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;mongod&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exe&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt; &lt;span class="n"&gt;F&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;mongodb&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;mongod&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cfg&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;install&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;移除Windwos服务&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nl"&gt;F:&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;mongodb&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="err"&gt;\&lt;/span&gt;&lt;span class="n"&gt;mongod&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exe&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;remove&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;blockquote&gt;
+&lt;p&gt;如果您的MongoDB服务总是无法启动，或启动后一直在反复重启，那么请检查data目录下是否存在一个名为“mongod.lock”的文件，如果存在就删除它，然后重启服务即可。这种情况通常是由于MongoDB服务没有正常关闭造成的，比如意外断电。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;补充一下三个命令: (必须以管理员身份运行cmd，然后执行下面的命令)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;启动MongoDB：net start MongoDB&lt;/li&gt;
+&lt;li&gt;停止MongoDB：net stop MongoDB&lt;/li&gt;
+&lt;li&gt;删除MongoDB：sc delete MongoDB&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;备份和恢复&lt;/h4&gt;
+&lt;p&gt;例如我有一个数据库名为&lt;strong&gt;bookmarks_cloud&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;备份&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;mongodump -h localhost -d bookmarks_cloud -o F:&lt;span class="n"&gt;/mongodb/data/dump&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;恢复&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;mongorestore -h localhost -d bookmarks_cloud --directoryperdb F:&lt;span class="n"&gt;/mongodb/data/dump/bookmarks_cloud&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;还有问题再补充...基本上我重装就按这个步骤了...&lt;/p&gt;</summary><category term="Windows"></category><category term="Python"></category><category term="pip"></category><category term="virtualenv"></category></entry></feed>

@@ -1,5 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OK Computer</title><link>http://zoeyyoung.github.io/</link><description>It's better to burn out &lt;br/&gt; than to fade away.</description><atom:link href="http://zoeyyoung.github.io/feeds/she-ji-mo-shi.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 08 Oct 2013 00:00:00 +0800</lastBuildDate><item><title>[设计模式] Facade</title><link>http://zoeyyoung.github.io/design-patten-facade.html</link><description>&lt;h3&gt;意图&lt;/h3&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OK Computer</title><link>http://zoeyyoung.github.io/</link><description>It's better to burn out &lt;br/&gt; than to fade away.</description><atom:link href="http://zoeyyoung.github.io/feeds/she-ji-mo-shi.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 15 Oct 2013 00:00:00 +0800</lastBuildDate><item><title>[设计模式] 策略模式</title><link>http://zoeyyoung.github.io/design-patten-strategy.html</link><description>&lt;p&gt;STRATEGY(策略) —— 对象行为型模式&lt;/p&gt;
+&lt;h3&gt;意图&lt;/h3&gt;
+&lt;p&gt;定义一系列的算法, 把它们一个个封装起来, 且使它们可相互替换. 本模式使得算法可独
+立于使用它的客户而变化.&lt;/p&gt;
+&lt;h3&gt;别名&lt;/h3&gt;
+&lt;p&gt;政策(Policy)&lt;/p&gt;
+&lt;h3&gt;适用性&lt;/h3&gt;
+&lt;p&gt;当存在以下情况时使用Strategy模式&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;许多相关的类仅仅是行为有异. "策略"提供了一种用多个行为中的一个行为来配置一个类的方法.&lt;/li&gt;
+&lt;li&gt;需要使用一个算法的不同变体. 例如, 你可能会定义一些反映不同的空间/时间权衡的
+算法. 当这些变体实现为一个算法的类层次时, 可以使用策略模式.&lt;/li&gt;
+&lt;li&gt;算法使用客户不应该知道的数据. 可使用策略模式以避免暴露复杂的、与算法相关的数
+据结构.&lt;/li&gt;
+&lt;li&gt;一个类定义了多种行为, 并且这些行为在这个类的操作中以多个条件语句的形式出现. 将相关的条件分支移入它们各自的Strategy类中以代替这些条件语句.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;结构&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="策略模式结构图" src="/static/images/design-patten-strategy.png" /&gt;&lt;/p&gt;
+&lt;h3&gt;参与者&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Strategy(策略)&lt;ul&gt;
+&lt;li&gt;定义所有支持的算法的公共接口. Context使用这个接口来调用某ConcreteStrategy定义的算法.【使用组合】&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;ConcreteStrategy(具体策略)&lt;ul&gt;
+&lt;li&gt;以Strategy接口实现某具体算法.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Context(上下文)&lt;ul&gt;
+&lt;li&gt;用一个ConcreteStrategy对象来配置.【setStrategy(Strategy concreteStrategy)】&lt;/li&gt;
+&lt;li&gt;维护一个对Strategy对象的引用.&lt;/li&gt;
+&lt;li&gt;可定义一个接口来让Strategy访问它的数据.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;协作&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Strategy和Context相互作用以实现选定的算法. 当算法被调用时, Context可以将该算法所需要的所有数据都传递给该Strategy. 或者, Context可以将自身作为一个参数传递给Strategy操作. 这就让Strategy在需要时可以回调Context.
+• Context将它的客户的请求转发给它的Strategy. 客户通常创建并传递一个ConcreteStrategy对象给该Context; 这样, 客户仅与Context交互. 通常有一系列的ConcreteStrategy类可供
+客户从中选择.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;效果&lt;/h3&gt;
+&lt;p&gt;优:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;相关算法系列&lt;/li&gt;
+&lt;li&gt;一个替代继承的方法&lt;/li&gt;
+&lt;li&gt;消除了一些条件语句&lt;/li&gt;
+&lt;li&gt;实现的选择&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;缺:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;客户必须了解不同的 Strategy&lt;/li&gt;
+&lt;li&gt;Strategy和Context之间的通信开销&lt;/li&gt;
+&lt;li&gt;增加了对象的数目【使用Flyweight】&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;实现&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;定义Strategy和Context接口&lt;/li&gt;
+&lt;li&gt;将Strategy作为模板参数【C++】&lt;/li&gt;
+&lt;li&gt;使Strategy对象成为可选的【常见, 在无Strategy时使用默认实现】&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;JDK&lt;/h3&gt;
+&lt;p&gt;recognizeable by behavioral methods in an abstract/interface type which invokes a method in an implementation of a different abstract/interface type which has been passed-in as method argument into the strategy implementation&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://docs.oracle.com/javase/7/docs/api/java/util/Comparator.html#compare%28T,%20T%29"&gt;java.util.Comparator#compare()&lt;/a&gt;, executed by among others Collections#sort().&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServlet.html"&gt;javax.servlet.http.HttpServlet&lt;/a&gt;, the &lt;code&gt;service()&lt;/code&gt; and all &lt;code&gt;doXXX()&lt;/code&gt; methods take &lt;code&gt;HttpServletRequest&lt;/code&gt; and &lt;code&gt;HttpServletResponse&lt;/code&gt; and the implementor has to process them (and not to get hold of them as instance variables!).&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://docs.oracle.com/javaee/7/api/javax/servlet/Filter.html#doFilter%28javax.servlet.ServletRequest,%20javax.servlet.ServletResponse,%20javax.servlet.FilterChain%29"&gt;javax.servlet.Filter#doFilter()&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://docs.oracle.com/javase/7/docs/api/java/io/File.html#list(java.io.FilenameFilter)"&gt;java.io.File#list()&lt;/a&gt; FilenameFilter作为Strategy, 其它带FilenameFilter参数的方法也是.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 15 Oct 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-10-15:design-patten-strategy.html</guid><category>读书</category><category>Book</category></item><item><title>[设计模式] Facade</title><link>http://zoeyyoung.github.io/design-patten-facade.html</link><description>&lt;h3&gt;意图&lt;/h3&gt;
 &lt;p&gt;为子系统中的一组接口提供一个一致的界面, Facade模式定义了一个高层接口, 这个接口使得这一子系统更加容易使用.&lt;/p&gt;
 &lt;h3&gt;适用性&lt;/h3&gt;
 &lt;p&gt;在遇到以下情况使用Facade模式&lt;/p&gt;
@@ -477,7 +543,7 @@
 &lt;p&gt;7、Memento: 在不破坏封装性的前提下, 捕获一个对象内部的状态, 并在该对象之外保存这个状态. 这样以后就可以将该对象恢复到保存状态.&lt;/p&gt;
 &lt;p&gt;8、&lt;a href="http://en.wikipedia.org/wiki/Observer_pattern"&gt;Observer&lt;/a&gt;: 定义对象的一种一对多的依赖关系, 以便当一个对象的状态发生改变时, 所有依赖于它的对象多得到通知并自动刷新.&lt;/p&gt;
 &lt;p&gt;9、State: 允许一个对象在其内部状态改变时改变它的行为.对象看起来似乎修改了它所属的类.&lt;/p&gt;
-&lt;p&gt;10、Strategy: 定义一系列的算法把它们一个个封装起来, 并且使它们可以相互替换. 本模式使得算法的变化可以独立于使用它的客户.&lt;/p&gt;
+&lt;p&gt;10、&lt;a href="http://en.wikipedia.org/wiki/Strategy_pattern"&gt;Strategy&lt;/a&gt;: 定义一系列的算法把它们一个个封装起来, 并且使它们可以相互替换. 本模式使得算法的变化可以独立于使用它的客户.&lt;/p&gt;
 &lt;p&gt;11、Visitor: 表示一个作用于某对象结构中的各元素的操作, 它使得可以在不改变各元素的类的前提下定义作用于这些元素的新操作.&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://en.wikipedia.org/wiki/Software_design_pattern"&gt;维基&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://stackoverflow.com/questions/1673841/examples-of-gof-design-patterns"&gt;Examples of GoF Design Patterns&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Mon, 09 Sep 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-09-09:design-patten-book.html</guid><category>设计模式</category><category>书籍</category><category>笔记</category></item></channel></rss>

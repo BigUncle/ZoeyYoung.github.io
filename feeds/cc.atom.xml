@@ -1,0 +1,897 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>OK Computer</title><link href="http://zoeyyoung.github.io/" rel="alternate"></link><link href="http://zoeyyoung.github.io/feeds/cc.atom.xml" rel="self"></link><id>http://zoeyyoung.github.io/</id><updated>2013-09-29T00:00:00+08:00</updated><entry><title>[笔记] 《Effective C++》</title><link href="http://zoeyyoung.github.io/effective-cpp.html" rel="alternate"></link><updated>2013-09-29T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2013-09-29:effective-cpp.html</id><summary type="html">&lt;p&gt;常看常新...持续更新...&lt;/p&gt;
+&lt;h2&gt;1 让自己习惯C++&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Accustoming Yourself to C++&lt;/strong&gt;&lt;/p&gt;
+&lt;h3&gt;条款01: 视C++为一个语言联邦&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;View C++ as a federation of languages&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;一开始只是带类的C(C with Classes)&lt;/p&gt;
+&lt;p&gt;C++ 主要的次语言: C(基础) &amp;amp; Object-Oriented C++ &amp;amp; Template C++ &amp;amp; STL(template程序库)&lt;/p&gt;
+&lt;p&gt;要点:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;C++高效编程守则视状况而变化, 取决于你使用C++的哪一部分.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;条款02: 使用 const, enum, inline 代替 #define&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Prefer consts, enums, and inlines to #defines&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;要点:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;对于单纯常量, 最好以&lt;code&gt;const&lt;/code&gt;对象或&lt;code&gt;enums&lt;/code&gt;替换&lt;code&gt;#defines&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;对于形似函数的宏(macros), 最好改用inline函数替换#defines&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;条款03: 尽可能使用 const&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Use const whenever possible&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;const 修饰指针时(区别在于&lt;code&gt;const&lt;/code&gt;与&lt;code&gt;*&lt;/code&gt;的相对位置)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;hello&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// non-const pointer, const data&lt;/span&gt;
+&lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;hello&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// const pointer, non-const data&lt;/span&gt;
+&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;hello&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// const pointer, const data&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;const 修饰函数时(返回值、参数、函数自身(成员函数))&lt;/p&gt;
+&lt;p&gt;当返回值不应该作为左值时应使用const修饰返回值(预防"无意义的赋值动作").&lt;/p&gt;
+&lt;p&gt;const成员函数&lt;/p&gt;
+&lt;p&gt;目的: 为了确认该成员函数可作用于const对象身上&lt;/p&gt;
+&lt;p&gt;一件事实: 两个成员函数如果只是常量性(constness)不同, 可以被重载.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;Text&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="nl"&gt;public:&lt;/span&gt;
+    &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="kt"&gt;size_t&lt;/span&gt; &lt;span class="n"&gt;length&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="c1"&gt;// 返回文本的长度&lt;/span&gt;
+    &lt;span class="c1"&gt;// 第一个 const 表示 函数返回一个常量, 不可作为左值使用&lt;/span&gt;
+    &lt;span class="c1"&gt;// 第二个 const 表示 函数不修改 Text 类中的数据成员(除了 static 和 mutable 修饰过的)&lt;/span&gt;
+&lt;span class="nl"&gt;private:&lt;/span&gt;
+    &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;当类的实例被声明为&lt;code&gt;const&lt;/code&gt;时, 只能调用被第二个&lt;code&gt;const&lt;/code&gt;修饰过的函数.&lt;/p&gt;
+&lt;p&gt;要点:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;将某些东西声明为&lt;code&gt;const&lt;/code&gt;可帮助编译器侦测出错误用法. const可被施加于任何作用域内的对象、函数参数、函数返回类型、成员函数本体.&lt;/li&gt;
+&lt;li&gt;编译器强制实施bitwise constness, 但你编写程序时应该使用"概念上的常量性"(conceptual constness)&lt;/li&gt;
+&lt;li&gt;当const和non-const成员函数有着实质等价的实现时, 令non-const版本调用const版本调用const版本可避免代码重复.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;条款04: 确定对象被使用前已先被初始化&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Make sure that objects are initialized before they're used.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;永远在使用对象之前先将它初始化.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;手工初始化内置型non-member对象(C++不保证初始化它们)&lt;/li&gt;
+&lt;li&gt;使用初始化列表初始化对象的成员变量&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在构造函数中对成员变量赋值并不是真正意义的初始化, C++规定, 对象的成员变量的初始化动作发生在进入构造函数本体之前(内置类型不保证会在赋值前获得初始化). 应当使用&lt;strong&gt;初始化列表(member initialization list)&lt;/strong&gt;进行初始化(使用拷贝构造函数).&lt;/p&gt;
+&lt;p&gt;重要的是别混淆了&lt;strong&gt;赋值(assignment)&lt;/strong&gt;和&lt;strong&gt;初始化(initialization)&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;如果成员变量是&lt;code&gt;const&lt;/code&gt;或&lt;code&gt;references&lt;/code&gt;, 它们就一定需要初始化, 不能被赋值.&lt;/p&gt;
+&lt;p&gt;最简单的做法就是: 总是使用&lt;strong&gt;初始化列表(member initialization list)&lt;/strong&gt;(有时绝对必要, 也高效, 为什么不呢), 并且以class中成员变量的声明次序为次序.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;Person&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="nl"&gt;public:&lt;/span&gt;
+    &lt;span class="n"&gt;Person&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+       &lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="c1"&gt;// 调用 string 类默认构造函数&lt;/span&gt;
+        &lt;span class="n"&gt;sex_isMale&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;true&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;// 内置类型, 必须初始化&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt;
+    &lt;span class="n"&gt;Person&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;tname&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;bool&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;isMale&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tname&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="c1"&gt;// 调用 string 类的拷贝构造函数&lt;/span&gt;
+        &lt;span class="n"&gt;sex_isMale&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;isMale&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="nl"&gt;private:&lt;/span&gt;
+    &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="kt"&gt;bool&lt;/span&gt; &lt;span class="n"&gt;sex_isMale&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;"跨编译单元之初始化次序"问题&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;static对象&lt;/strong&gt;: 其寿命从被构造出来直到程序结束为止, 包括全局对象、定义于namespace作用域内的对象、在classes内、在函数内(这个为local staitc对象, 其余为non-local static对象)、以及在file作用域内被声明为static的对象.&lt;/p&gt;
+&lt;p&gt;C++对"定义于不同编译单元内的&lt;strong&gt;non-local static对象&lt;/strong&gt;的初始化相对次序无明确定义.&lt;/p&gt;
+&lt;p&gt;怎么做?&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Singleton模式&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;以"函数调用"(返回一个reference指向&lt;strong&gt;local static对象&lt;/strong&gt;)替换"直接访问non-local static对象"&lt;/p&gt;
+&lt;p&gt;多线程环境下: 在程序的单线程启动阶段(single-threaded startup portion)手工调用所有reference-returning函数, 可消除与初始化有关的"竞速形势(race conditions)"&lt;/p&gt;
+&lt;h2&gt;2 构造/析构/赋值运算&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Constructors, Destructors, and Assignment Operators&lt;/strong&gt;&lt;/p&gt;
+&lt;h3&gt;条款05: 了解C++默默做的事&lt;/h3&gt;
+&lt;p&gt;如果没有声明任何构造函数, 则编译器自动为类实现默认构造函数.&lt;/p&gt;
+&lt;p&gt;如果你没有实现, 编译器会自动为类实现复制构造函数, 复制运算符(operator=)函数, 析构函数.&lt;/p&gt;
+&lt;p&gt;如果类中包含 引用类型的成员 或 const成员, 则编译器不会实现复制运算符函数. 因为更改 引用 或 const 成员是不允许的.&lt;/p&gt;
+&lt;h3&gt;6. 如果不想使用编译器自动生成函数, 就该明确拒绝&lt;/h3&gt;
+&lt;p&gt;将不想使用(如果你不声明, 编译器就会自动生成)的函数声明为&lt;code&gt;private&lt;/code&gt;, 并且不实现它(防止友元类调用).&lt;/p&gt;
+&lt;p&gt;声明基类, 并在基类中将不想使用的函数声明为 &lt;code&gt;private&lt;/code&gt;, 且不实现. 继承基类的派生类, 编译器不会自动生成相应函数.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;Uncopyble&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="nl"&gt;protected:&lt;/span&gt;
+    &lt;span class="n"&gt;Uncopyble&lt;/span&gt;&lt;span class="p"&gt;(){}&lt;/span&gt;
+    &lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="n"&gt;Uncopyble&lt;/span&gt;&lt;span class="p"&gt;(){}&lt;/span&gt;
+&lt;span class="nl"&gt;private:&lt;/span&gt;
+    &lt;span class="c1"&gt;// 声明但不实现复制构造函数, 其派生类无法调用基类的复制构造函数(由于private)&lt;/span&gt;
+    &lt;span class="c1"&gt;// 因此编译器无法自动生成派生类的复制构造函数(默认的逻辑上, 该函数应当调用基类的复制构造函数)&lt;/span&gt;
+    &lt;span class="n"&gt;Uncopyble&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;Uncopyble&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="c1"&gt;// 复制操作符函数同理&lt;/span&gt;
+    &lt;span class="n"&gt;Uncopyble&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;operator&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;Uncopyble&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;7. 为多态基类声明virtual析构函数&lt;/h3&gt;
+&lt;p&gt;如果基类的析构函数不是虚函数, 那么通过基类指针引用的派生类对象, 在其销毁时, 只能销毁基类部分, 而不能销毁派生类部分.&lt;/p&gt;
+&lt;h3&gt;8. 不让异常逃离析构函数&lt;/h3&gt;
+&lt;p&gt;析构函数往往并不由类的使用者亲自调用, 因此在析构函数中抛出的异常难以捕捉.&lt;/p&gt;
+&lt;p&gt;如果在对象的销毁阶段确实可能抛出异常(比如, 由于网络原因, 关闭远程数据库失败), 应该另外实现一个使用者亲自调用的销毁函数如&lt;code&gt;close()&lt;/code&gt;, 在该函数中抛出异常, 以此给用户以机会处理异常. 在析构函数中, 检查用户是否调用了销毁函数: 如果用户已经调用过, 则不再调用该函数; 如果用户未曾调用过, 则调用该函数, 在出现异常的情况下, 并吞下异常或直接停止程序(用户没有立场抱怨, 因为我们已经给了他机会).&lt;/p&gt;
+&lt;h3&gt;9. 不在构造函数或析构函数中调用virtual函数&lt;/h3&gt;
+&lt;p&gt;派生类初始化时, 先对基类部分初始化, 然后才是派生部分. 基类的构造函数运行时, 派生类还不存在, 此时调用虚函数并试图完成派生类中相应地逻辑: 如果该虚函数有实现, 就仅仅调用虚函数而不是派生类中的函数; 如果没有定义虚函数, 会出现连接错误.&lt;/p&gt;
+&lt;p&gt;析构函数同理.&lt;/p&gt;
+&lt;h3&gt;10. 令 operator= 返回一个对 this 的引用&lt;/h3&gt;
+&lt;p&gt;这样就可以使用连等式来赋值了。&lt;/p&gt;
+&lt;h3&gt;11. 在 operator= 中处理自我赋值&lt;/h3&gt;
+&lt;p&gt;在&lt;code&gt;operator=&lt;/code&gt;中需要考虑参数就是自身的情况, 也要注意语句顺序, 以保证"异常安全性".&lt;/p&gt;
+&lt;h3&gt;12. 复制对象时不要忘了对象的每一个部分&lt;/h3&gt;
+&lt;p&gt;如果自己实现复制构造函数和复制运算符函数(而不使用编译器自动生成的版本), 一定要记得将所有的成员都复制过来, 编译器不会因为这是个复制构造函数或&lt;code&gt;operater=&lt;/code&gt;而帮你检查.&lt;/p&gt;
+&lt;p&gt;如果你在派生类中自己实现以上两种函数, 一定要记得显式地调用基类的相应函数, 编译器不会帮你调用.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;Person&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="nl"&gt;public:&lt;/span&gt;
+    &lt;span class="n"&gt;Person&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+    &lt;span class="n"&gt;Person&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;tname&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tname&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+&lt;span class="nl"&gt;private:&lt;/span&gt;
+    &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;Citizen&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;Person&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="nl"&gt;public:&lt;/span&gt;
+    &lt;span class="n"&gt;Citizen&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Person&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;married&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;false&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+    &lt;span class="n"&gt;Citizen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Citizen&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;pcitizen&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;Person&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pcitizen&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+        &lt;span class="c1"&gt;// 显式调用基类的复制构造函数,&lt;/span&gt;
+        &lt;span class="c1"&gt;// 注意传入的是pcitizen而不是pcitizen.name,&lt;/span&gt;
+        &lt;span class="c1"&gt;// 因为调用的是基类的复制构造函数而不是构造函数,&lt;/span&gt;
+        &lt;span class="c1"&gt;// 而且基类的private也不允许你这样做&lt;/span&gt;
+        &lt;span class="n"&gt;married&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pcitizen&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;married&lt;/span&gt;&lt;span class="p"&gt;){}&lt;/span&gt; &lt;span class="c1"&gt;// 派生类部分的初始化&lt;/span&gt;
+&lt;span class="nl"&gt;private:&lt;/span&gt;
+    &lt;span class="kt"&gt;bool&lt;/span&gt; &lt;span class="n"&gt;married&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;13. 以对象管理资源&lt;/h3&gt;
+&lt;p&gt;所谓资源, 往往是由&lt;code&gt;new&lt;/code&gt;运算符产生的, 由指针控制和管理的对象和数组. 它们通常分配在堆(而不是栈)上, 所以程序流程发生变化时, 这些对象和数组不能自动销毁(而分配在栈上的对象是可以的), 需要手动销毁.&lt;/p&gt;
+&lt;p&gt;RAII: 对象的取得时机就是最好的初始化时机, 两种常用的RAII对象(智能指针): &lt;code&gt;std::auto_ptr&amp;lt;T&amp;gt;&lt;/code&gt; 和 &lt;code&gt;std::tr1::shared_ptr&amp;lt;T&amp;gt;&lt;/code&gt;, 前者的复制方案为"转让所有权", 后者的复制方案为"计数器".&lt;/p&gt;
+&lt;p&gt;一个RAII对象示例&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;FontHandle&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;Font&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="nl"&gt;public:&lt;/span&gt;
+    &lt;span class="n"&gt;Font&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;FontHandle&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;ft&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ft&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+    &lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="n"&gt;Font&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;&lt;span class="n"&gt;delete&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;;}&lt;/span&gt;
+    &lt;span class="p"&gt;...&lt;/span&gt;
+&lt;span class="nl"&gt;private:&lt;/span&gt;
+    &lt;span class="n"&gt;FontHandle&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Font类的实例并不分配在堆上, 但其指针成员&lt;code&gt;f&lt;/code&gt;指向的对象&lt;code&gt;*f&lt;/code&gt;分配在堆上. 当流程变化时, Font实例被正常销毁, 其析构函数被调用, 析构函数中将指针成员指向的对象销毁. 这就保证了&lt;code&gt;*f&lt;/code&gt;没有泄露.&lt;/p&gt;
+&lt;h4&gt;14. 在资源管理器中小心  copying 行为&lt;/h4&gt;
+&lt;p&gt;资源管理器的资源: 即指针指向的对象, 由资源管理器维护. 当自己实现智能指针对象时, 考虑一下四种 copying 行为.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁止复制&lt;/li&gt;
+&lt;li&gt;引用计数(如shared_ptr, 需用到类的静态成员)&lt;/li&gt;
+&lt;li&gt;深度复制&lt;/li&gt;
+&lt;li&gt;转让所有权(如auto_ptr)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;考虑着四种 copying 行为的目的就是, 避免在析构函数中多次试图销毁指针所指对象,或者完全不销毁.&lt;/p&gt;
+&lt;h4&gt;15. 在资源管理器中提供对原始资源的访问&lt;/h4&gt;
+&lt;p&gt;往往对 RAII 对象实现 &lt;code&gt;operator-&amp;gt;&lt;/code&gt; 和 &lt;code&gt;operator*&lt;/code&gt; 以实现对资源对象内部成员的访问.&lt;/p&gt;
+&lt;p&gt;实现显式转换函数, 如 &lt;code&gt;Font.get()&lt;/code&gt; 返回资源对象.&lt;/p&gt;
+&lt;p&gt;实现隐式转换函数, 如 &lt;code&gt;Font::operator FontHandle()&lt;/code&gt; 返回资源对象. 此时, Font对象 可 隐式转换为 FontHandle 对象, 但也会带来部分风险.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;Font&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="nl"&gt;public:&lt;/span&gt;
+    &lt;span class="n"&gt;Font&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;FontHandle&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;ft&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ft&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+    &lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="n"&gt;Font&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="n"&gt;delete&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="n"&gt;operator&lt;/span&gt; &lt;span class="n"&gt;FontHandle&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;;}&lt;/span&gt;
+    &lt;span class="n"&gt;FontHandle&lt;/span&gt; &lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;;}&lt;/span&gt;
+    &lt;span class="p"&gt;...&lt;/span&gt;
+&lt;span class="nl"&gt;private:&lt;/span&gt;
+    &lt;span class="n"&gt;FontHandle&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;16. 成对使用 new 与 delete 时采取相同的形式&lt;/h4&gt;
+&lt;p&gt;事实上, 编译器中实现了两种指针, 指向单个变量/对象的 和 指向变量/对象数组的. 使用&lt;code&gt;new&lt;/code&gt;和&lt;code&gt;delete&lt;/code&gt;时应当采取对应的形式.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;s1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;hello&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;s2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+&lt;span class="p"&gt;...&lt;/span&gt;
+&lt;span class="n"&gt;delete&lt;/span&gt; &lt;span class="n"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;delete&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="n"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;17. 以独立语句将 newed 对象置入智能指针中&lt;/h4&gt;
+&lt;p&gt;考虑这样做:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Font&lt;/span&gt; &lt;span class="nf"&gt;f1&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;FontHandle&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;独立语句的含义是: 不将该语句拆开, 也不将其合并到其他语句中, 这样可以确保资源不被泄露, 如:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;// 不将其拆开&lt;/span&gt;
+&lt;span class="n"&gt;FontHandle&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;fh1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;FontHandle&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;...&lt;/span&gt; &lt;span class="c1"&gt;// 发生异常怎么办？&lt;/span&gt;
+&lt;span class="n"&gt;Font&lt;/span&gt; &lt;span class="n"&gt;f1&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fh1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="c1"&gt;// 不将其合并&lt;/span&gt;
+&lt;span class="n"&gt;AnotherFunction&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Font&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;FontHandle&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;otherParameters&lt;/span&gt; &lt;span class="cm"&gt;/*发生异常怎么办？*/&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;18. 让接口易于使用, 难于误用&lt;/h4&gt;
+&lt;p&gt;让接口易于使用, 一般来说, 就是尽量保持与内置类型(甚至STL)同样的行为. 比如, 你应当为 &lt;code&gt;operator+&lt;/code&gt; 函数返回 const值, 以免用户对计算结果进行赋值操作, 内置类型不允许(对&lt;code&gt;int&lt;/code&gt;型变量, 语句&lt;code&gt;a+b=c&lt;/code&gt;不能通过编译, 所以你的类型也应该尽量保持同样的性质, 除非你有更好的理由); 又比如, 对象的主要组成部分如果是一个数组, 那么数组的长度的成员名最好使用&lt;code&gt;size&lt;/code&gt;而不是 &lt;code&gt;length&lt;/code&gt;, 因为 STL 也这么做了.&lt;/p&gt;
+&lt;p&gt;让接口难于误用, 包括在类中限制成员的值(比如 Month 类型不可能表示 13 月), 限制类型上的操作, 在工厂函数中返回智能指针.&lt;/p&gt;
+&lt;h4&gt;19. 设计class 犹如 设计type&lt;/h4&gt;
+&lt;h4&gt;20. 用 pass-by-reference-const 替换 pass-by-value&lt;/h4&gt;
+&lt;p&gt;为函数传递参数时, 使用 const 引用传递变量. 在定义函数时:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;Person&lt;/span&gt;&lt;span class="p"&gt;{...};&lt;/span&gt;
+&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;Citizen&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;Person&lt;/span&gt;&lt;span class="p"&gt;{...};&lt;/span&gt;
+
+&lt;span class="kt"&gt;bool&lt;/span&gt; &lt;span class="nf"&gt;validatePerson&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Person&lt;/span&gt; &lt;span class="n"&gt;psn&lt;/span&gt;&lt;span class="p"&gt;){...}&lt;/span&gt; &lt;span class="c1"&gt;// 值传递, 尽量不要这样做&lt;/span&gt;
+&lt;span class="kt"&gt;bool&lt;/span&gt; &lt;span class="nf"&gt;validatePerson&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;Person&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;psn&lt;/span&gt;&lt;span class="p"&gt;){...}&lt;/span&gt; &lt;span class="c1"&gt;// const引用传递&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;使用const引用类型传递函数参数的好处在于:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;免去不必要的构造开销: 如果使用值传递, 实参到形参的过程调用了类型的复制构造函数, 而引用不会.&lt;/li&gt;
+&lt;li&gt;避免不必要的割裂对象: 如果函数的参数类型是基类, 而函数中又调用了派生类中的某种逻辑(即调用了基类中的虚函数), 那么值传递的后果就是, 形参仅仅是个基类对象, 虚函数也仅仅就调用了虚函数自己(而不是派生类中的函数).&lt;/li&gt;
+&lt;li&gt;对于C++内置类型和STL迭代器, 使用值传递, 以保持一致性.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;21. 必须返回对象时, 不要试图返回 reference&lt;/h4&gt;
+&lt;p&gt;考虑一个有理数类:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;Rational&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="nl"&gt;public:&lt;/span&gt;
+    &lt;span class="n"&gt;Rational&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;numerator&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;denominator&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;numerator&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;denominator&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+&lt;span class="nl"&gt;private:&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;任何有理数可用分数表示, n和d分别为分子和分母, 他们都是int型的. 现在考虑为该类实现乘法, 我们希望它能像内置类型一样工作.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Rational&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;Rational&lt;/span&gt; &lt;span class="nf"&gt;y&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;Rational&lt;/span&gt; &lt;span class="n"&gt;z&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// z等于2/9&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;我们可能会令函数返回引用类型(尤其是意识到20条中关于值传递的种种劣迹后):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;Rational&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="p"&gt;...&lt;/span&gt;
+&lt;span class="nl"&gt;private:&lt;/span&gt;
+    &lt;span class="c1"&gt;// 错误的代码&lt;/span&gt;
+    &lt;span class="n"&gt;friend&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;Rational&lt;/span&gt; &lt;span class="n"&gt;operator&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;Rational&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;lhs&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;Rational&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;rhs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;Rational&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lhs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;rhs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;lhs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;lhs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;...&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;result对象在&lt;code&gt;operator*&lt;/code&gt;函数结束后就销毁了, 但我们返回了它的引用! 这个引用指向 result对象 原先的位置(编译器往往用指针实现引用), 而且该位置在栈上! 不仅无效, 而且危险.&lt;/p&gt;
+&lt;p&gt;我们也可能用 new运算符 建立一个新的对象(以防止在函数结束后被销毁), 并返回该对象的引用:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;// 错误的代码&lt;/span&gt;
+&lt;span class="n"&gt;friend&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;Rational&lt;/span&gt; &lt;span class="n"&gt;operator&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;Rational&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;lhs&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;Rational&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;rhs&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+        &lt;span class="n"&gt;Rational&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;Rational&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lhs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;rhs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;lhs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;lhs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;这次, &lt;code&gt;*result&lt;/code&gt; 对象不会因为函数结束而销毁了, 它分配在堆上. 但问题是, 谁来负责销毁它? 尤其是上文 &lt;code&gt;z=x*y*y&lt;/code&gt; 中, 由 &lt;code&gt;y*y&lt;/code&gt; 计算而得到的临时变量, 几乎不可能正常销毁.&lt;/p&gt;
+&lt;p&gt;正确的做法是:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;// 正确的代码&lt;/span&gt;
+&lt;span class="n"&gt;friend&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;Rational&lt;/span&gt; &lt;span class="n"&gt;operator&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;Rational&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;lhs&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;Rational&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;rhs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;Rational&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lhs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;rhs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;lhs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;lhs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;虽然产生了构造消耗, 但这是值得的. 返回的对象&lt;code&gt;z&lt;/code&gt;分配在栈上, 也就是说会在适当的时候销毁, 而原先函数中的临时变量也正常销毁了.&lt;/p&gt;
+&lt;h4&gt;22. 将成员变量声明为 private&lt;/h4&gt;
+&lt;h4&gt;23. 以 non-member 和 non-friend 函数替换 non-member 函数&lt;/h4&gt;
+&lt;p&gt;类的 public 方法越多, 其封装性就越差, 内部实现弹性就越小. 设计类的时候应由其细心. 对于一些便利函数(这些函数往往只调用函数的其他 public 方法), 可考虑将其放置在类外. C++允许函数单独出现在类外, 即使在C#等语言中, 也可以使其出现在&lt;strong&gt;工具&lt;/strong&gt;对象中.&lt;/p&gt;
+&lt;p&gt;将类外的函数与类声明在同一个命名空间中是不错的选择.&lt;/p&gt;
+&lt;h4&gt;24. 如果函数的所有参数都需要类型转换, 采用 non-member 函数&lt;/h4&gt;
+&lt;p&gt;第21条中的代码已经体现出这一条的意思了. 这一条大致就是希望 Rational 对象能像其他内置对象一样, 直接参与运算. 比如, 希望这样:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Rational&lt;/span&gt; &lt;span class="nf"&gt;x&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;Rational&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;Rational&lt;/span&gt; &lt;span class="n"&gt;z&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;首先, Rational 构造函数没有使用 explicit 修饰, 这意味着 &lt;code&gt;x*2&lt;/code&gt; 可以正常计算, 因为这会调用 &lt;code&gt;x.operator*(Rational&amp;amp; a)&lt;/code&gt;, 而整数 2 会隐式转换成 Rational 对象.(等等, 在第21条中我们好像没有定义, &lt;code&gt;x.operator*(Rational&amp;amp; a)&lt;/code&gt;函数? 对, 这是因为其中的代码已经遵循了本条的忠告, 定义了 non-member 函数.)&lt;/p&gt;
+&lt;p&gt;如果在 Rational 中定义了 &lt;code&gt;x.operator*(Rational&amp;amp; a)&lt;/code&gt;, 那么计算 z 时会遇到困难, 因为系统会试图调用 &lt;code&gt;Int32.operator*(Rational&amp;amp; a)&lt;/code&gt;, 这根本没有定义. 所以, 我们在代码中并没有定义成员函数, 而是定义了友元函数 &lt;code&gt;Rational operator*(Rational&amp;amp; a, Rational&amp;amp; b)&lt;/code&gt;, 正如在第21条的代码中显示的那样.&lt;/p&gt;
+&lt;h4&gt;25. 考虑写一个不抛出异常的 swap 函数&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;std::swap&lt;/code&gt; 函数采取复制构造的方法, 效率比较低.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;namespace&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;template&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kr"&gt;typename&lt;/span&gt; &lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;swap&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+        &lt;span class="n"&gt;T&lt;/span&gt; &lt;span class="n"&gt;temp&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;为自己的类实现 swap方法 并 特化&lt;code&gt;std::swap&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;class&lt;/span&gt; &lt;span class="nx"&gt;Person&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="k"&gt;private&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="bp"&gt;void&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="nx"&gt;photo&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+
+&lt;span class="nx"&gt;namespace&lt;/span&gt; &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;template&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;gt;&lt;/span&gt; &lt;span class="c1"&gt;// 特化std::swap方法&lt;/span&gt;
+    &lt;span class="bp"&gt;void&lt;/span&gt; &lt;span class="nx"&gt;swap&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;Person&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;Person&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;Person&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;b&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+        &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="nl"&gt;swap&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;a.photo&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;b.photo&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;当自己的类较大时, 可在类中定义swap方法, 并在 &lt;code&gt;std::swap&amp;lt;YourClass&amp;gt;&lt;/code&gt; 中调用该方法。&lt;/p&gt;
+&lt;h4&gt;26. 尽量延后变量定义式的时间&lt;/h4&gt;
+&lt;p&gt;仅当变量第一次具有"具有明显意义的初值"时, 才定义变量, 以避免不必要的构造开销. 避免这样做:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// 调用默认构造函数&lt;/span&gt;
+&lt;span class="p"&gt;...&lt;/span&gt;  &lt;span class="c1"&gt;// 如果发生异常呢, 如果含有某个return语句呢? 第一次调用构造函数的开销被浪费了&lt;/span&gt;
+&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Hello&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// 再一次调用构造函数, 第一次调用构造函数的开销依然被浪费了&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;应当这样做:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Hello&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// “hello”是具有明显意义的初值, 只调用了一次构造函数&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;27. 尽量少做转型动作&lt;/h4&gt;
+&lt;p&gt;四种转型动作&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;const_cast: 消除对象的常量性&lt;/li&gt;
+&lt;li&gt;dynamic_cast: 动态转换, 开销较大. 使用的场合往往是: 想要在派生类上执行派生类的某个函数, 但是手头上只有基类的指针指向该对象.&lt;/li&gt;
+&lt;li&gt;reinterpret_cast: 依赖于编译器的低级转型&lt;/li&gt;
+&lt;li&gt;static_cast: 强迫隐式转换, 类似于C风格的转换, 例如将int转换为double等&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;不要试图在派生类的成员函数中, 通过dynamic_cast将(*this)转换为基类对象, 并调用基类成员函数.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;class&lt;/span&gt; &lt;span class="nx"&gt;Person&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="k"&gt;public&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="bp"&gt;void&lt;/span&gt; &lt;span class="nx"&gt;showMessage&lt;/span&gt;&lt;span class="p"&gt;(){}&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="nb"&gt;class&lt;/span&gt; &lt;span class="nx"&gt;Citizen&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="k"&gt;public&lt;/span&gt; &lt;span class="nf"&gt;Person&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="k"&gt;public&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="bp"&gt;void&lt;/span&gt; &lt;span class="nx"&gt;showMessage&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
+        &lt;span class="nx"&gt;dynamic_cast&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;Person&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="nx"&gt;this&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="bp"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;showMessage&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt; &lt;span class="c1"&gt;// 错误, 这样转型得到的并不是期望的&amp;quot;基类&amp;quot;对象&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;而应当这样做:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Person&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;showMessage&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt; &lt;span class="c1"&gt;// 这就对了&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;28. 避免返回 handles 指向对象内部部分&lt;/h4&gt;
+&lt;p&gt;handle 包括指针, 引用, 迭代器, 用来获取某个对象, 以前被翻译成句柄.&lt;/p&gt;
+&lt;p&gt;在函数的方法中返回对象内部成员的 handle 可能遭致这样的风险: 返回的 handle 比对象本身更长寿, 当对象销毁后, handle 所指向的区域就是不确定的.&lt;/p&gt;
+&lt;p&gt;string 和 vector 类型的 operator[] 就返回了对象内部成员的 handle, 这只是例外.&lt;/p&gt;
+&lt;h4&gt;29. 为"异常安全"而作的努力是值得的&lt;/h4&gt;
+&lt;p&gt;函数异常安全类型:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;基本承诺: 如果异常抛出, 程序内的所有元素仍然在有效状态下, 没有任何元素受到损坏(如释放了指针指向资源却没有为其指定新的资源, 该指针通向了不确定性).&lt;/li&gt;
+&lt;li&gt;强烈保障: 如果异常抛出, 程序内的所有元素保持函数调用前的状态.&lt;/li&gt;
+&lt;li&gt;不throw异常: 承诺绝不抛出异常.&lt;/li&gt;
+&lt;li&gt;一个函数异常安全的程度取决于所调用函数中异常安全程度最弱的.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;copy &amp;amp; swap 策略: 为对象的数据制造一份副本, 并对副本进行修改. 如果发生异常, 抛弃副本并返回; 如果成功, 则将对象数据与副本数据做 swap 操作, swap 操作承诺绝不抛出异常.&lt;/p&gt;
+&lt;h4&gt;32. 确定你的 public 继承模拟了 is-a 关系&lt;/h4&gt;
+&lt;p&gt;面向对象编程中最重要的一条. 如果派生类D通过public方式继承了基类B, 那么所用用于B的方法 或者 基类B自身具有的方法, 都适用于D.&lt;/p&gt;
+&lt;h4&gt;33. 避免遮掩继承而来的名称&lt;/h4&gt;
+&lt;p&gt;如果派生类D通过public方式继承了基类B, 那么D中的 函数/变量名 会遮掩B中的 函数/变量名, 如同局部作用域与全局作用域的关系一样.比如:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;B&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="nl"&gt;public:&lt;/span&gt;
+    &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+    &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;B&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="nl"&gt;public:&lt;/span&gt;
+    &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt; &lt;span class="c1"&gt;// f不仅会覆盖B::f(), 也会覆盖B::f(int), 因为这是变量名覆盖&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;E&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;B&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="nl"&gt;public:&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// 即使f不是函数, 也会覆盖B::f()和B::f(int)&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;34. 区别接口继承与实现继承&lt;/h4&gt;
+&lt;p&gt;接口继承, 意味着继承方法的签名, 包括返回类型, 参数列表, 方法名.&lt;/p&gt;
+&lt;p&gt;实现继承, 意味着继承方法的实现, 即功能.&lt;/p&gt;
+&lt;p&gt;基类中的纯虚函数意味着, 派生类只继承接口, 而自己进行实现. 所有派生类都必须对基类的纯虚函数进行显式的继承(即使继承后仍然是个纯虚函数). 理论上, 纯虚函数不必须实现(即只有声明没有定义), 但也可以定义纯虚函数的函数体. 如果定义了纯虚函数, 那么调用该函数的唯一方法就是在调用时显式指定基类的名称. 这使得我们有时候可以通过实现纯虚函数来进行某种缺省的实现.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;Shape&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="nl"&gt;public:&lt;/span&gt;
+    &lt;span class="n"&gt;virtual&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;draw&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="p"&gt;{};&lt;/span&gt;
+    &lt;span class="p"&gt;...&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;Circle&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;Shape&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="nl"&gt;public:&lt;/span&gt;
+    &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;draw&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="p"&gt;...&lt;/span&gt; &lt;span class="c1"&gt;// 在隐喻的屏幕上绘制圆&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;...&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;InvisibleShape&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;Shape&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="nl"&gt;public:&lt;/span&gt;
+    &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;draw&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;Shape&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;draw&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt; &lt;span class="c1"&gt;// 对不可见的物体, 调用缺省的纯虚函数实现&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;...&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;基类中的非纯虚函数意味着, 派生类需要同时集成接口和一份缺省实现. 如果派生类中未声明该虚函数, 就相当于自动继承了该函数, 如果派生类自己实现了同样签名的函数, 则使用自己的实现. 使用非纯虚函数可能导致的一个风险, 就是由于依赖于 "不去声明基类中的虚函数而自动获得继承", 而忘了该虚函数的存在.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;airPlane&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;virtual&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;fly&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="p"&gt;...&lt;/span&gt; &lt;span class="c1"&gt;// 缺省的实现&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;...&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;planeTypeA&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;airPlane&lt;/span&gt; &lt;span class="p"&gt;{...};&lt;/span&gt; &lt;span class="c1"&gt;// A依赖缺省的fly()方法&lt;/span&gt;
+&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;planeTypeB&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;airPlane&lt;/span&gt; &lt;span class="p"&gt;{...};&lt;/span&gt; &lt;span class="c1"&gt;// B也一样&lt;/span&gt;
+&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;planeTypeC&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;airPlane&lt;/span&gt; &lt;span class="p"&gt;{...};&lt;/span&gt; &lt;span class="c1"&gt;// C的引擎与A和B不一样, 但是忘了实现自己的fly()方法！&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;一个可选的方法是, 定义一个非虚函数, 令虚函数调用它&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;airPlane&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="nl"&gt;public:&lt;/span&gt;
+    &lt;span class="n"&gt;virtual&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;fly&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nl"&gt;protected:&lt;/span&gt;
+    &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;defaultFly&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
+        &lt;span class="c1"&gt;// 缺省的实现&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;planeTypeA&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;airPlane&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;fly&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;defaultFly&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt; &lt;span class="c1"&gt;// 即使依赖缺省实现, 也要显式调用&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;planeTypeC&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;airPlane&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;fly&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="c1"&gt;// C的引擎与A不一样, 不能依赖缺省实现, 这里是单独的一份实现&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;基类中的非虚函数, 表示派生类不仅需要继承接口, 还需要继承一份强制的实现.&lt;/p&gt;
+&lt;h4&gt;35. 考虑虚函数以外的选择&lt;/h4&gt;
+&lt;p&gt;非常精彩的一节! 这一节在 为对象实现"动态的方法" 这个话题上, 提供了四种不同的风格:&lt;/p&gt;
+&lt;h5&gt;接口不含虚函数的Template Method模式&lt;/h5&gt;
+&lt;p&gt;这种模式认为, 虚函数都必须是private的, 基类的"动态逻辑"(即不同派生类不同的逻辑)由非虚函数调用虚函数实现. 假设我们在设计网络游戏《魔兽世界》每个种族的跳跃动作:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;charactor&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="nl"&gt;public:&lt;/span&gt;
+    &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;jump&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
+        &lt;span class="p"&gt;...&lt;/span&gt; &lt;span class="c1"&gt;// 准备工作, 比如停止施法(如果正在)&lt;/span&gt;
+        &lt;span class="n"&gt;doJump&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt; &lt;span class="c1"&gt;// 跳跃&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="nl"&gt;private:&lt;/span&gt;
+    &lt;span class="n"&gt;virtual&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;doJump&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// 跳跃&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;侏儒的跳跃与人类的肯定不一样, 所以派生类需要实现基类中的纯虚函数.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;dwarfCharactor&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;charactor&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="nl"&gt;private:&lt;/span&gt;
+    &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;doJump&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="c1"&gt;// 侏儒角色的跳跃动作&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;orcCharactor&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;charactor&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="nl"&gt;private:&lt;/span&gt;
+    &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;doJump&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
+        &lt;span class="c1"&gt;// 兽人角色的跳跃动作&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;这种模式的优点在于, 你可以做一些"事前"或"事后"的事情, 比如跳跃时必须停止施法. 但是这种模式会产生这样的诡异之处: 派生类需要实现一个根本不需要自己调用的函数(而是给基类的函数调用), 也就是说基类保留了"何时调用该函数的权利", 却将函数的细节交给派生类掌管.&lt;/p&gt;
+&lt;h5&gt;函数指针实现的Strategy模式&lt;/h5&gt;
+&lt;p&gt;兽人不一定是指玩家, 也可能是指怪物. 如果游戏中有大大小小各色兽人怪物, 他们的跳跃方式只有在初始化时才能确定, 那么我们可以在类中保存一个函数指针, 在初始化时传入函数地址.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;defaultJump&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+
+&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;charactor&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="nl"&gt;public:&lt;/span&gt;
+    &lt;span class="n"&gt;charactor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;jump&lt;/span&gt;&lt;span class="p"&gt;)()&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;defaultJump&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+      &lt;span class="n"&gt;jumpFunc&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;jump&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+      &lt;span class="p"&gt;{}&lt;/span&gt;
+&lt;span class="nl"&gt;private:&lt;/span&gt;
+    &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;jumpFunc&lt;/span&gt;&lt;span class="p"&gt;)();&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+
+&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;orcCharactor&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;charactor&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="nl"&gt;public:&lt;/span&gt;
+    &lt;span class="n"&gt;orcCharactor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;jump&lt;/span&gt;&lt;span class="p"&gt;)()&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;defaultJump&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+      &lt;span class="n"&gt;charactor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;jump&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+      &lt;span class="p"&gt;{}&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;通过建立如 setJumpFunc 函数甚至可以在运行时改变角色跳跃的方式。&lt;/p&gt;
+&lt;h5&gt;tr1::function实现的Strategy模式&lt;/h5&gt;
+&lt;p&gt;将函数指针实现的Strategy模式中的"函数指针"替换为函数对象&lt;code&gt;tr1::function&lt;/code&gt;. 假设我们现在要计算角色剩余的生命值(好吧, 还是用书中的例子吧, 编不下去了, 但是这里真的很精彩啊! 为了避免以后忘记, 一定要好好记下来, 嗯).&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kr"&gt;class&lt;/span&gt; &lt;span class="nx"&gt;charactor&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="kr"&gt;public&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+    &lt;span class="c1"&gt;// std::tr1::function&amp;lt;int (const charactor*)&amp;gt;对象healthCalc, 可以接受一个类似函数的对象, 只要该对象能够:&lt;/span&gt;
+    &lt;span class="c1"&gt;// 返回一个与int兼容的对象/变量&lt;/span&gt;
+    &lt;span class="c1"&gt;// 接受一个与const charactor&amp;amp;兼容的对象/变量&lt;/span&gt;
+    &lt;span class="nx"&gt;charactor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;tr1&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kr"&gt;int&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;charactor&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;_healthCalc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="nx"&gt;healthCalc&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_healthCalc&lt;/span&gt;&lt;span class="p"&gt;){}&lt;/span&gt;
+&lt;span class="kr"&gt;private&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+    &lt;span class="nx"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nx"&gt;tr1&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kr"&gt;int&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;charactor&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;healthCalc&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="kr"&gt;class&lt;/span&gt; &lt;span class="nx"&gt;orcCharactor&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="kr"&gt;public&lt;/span&gt; &lt;span class="nx"&gt;charactor&lt;/span&gt;&lt;span class="p"&gt;{...};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;类 charactor 中包含一个 &lt;code&gt;std::tr1::function&amp;lt;int (const charactor*)&amp;gt;&lt;/code&gt; 类型的成员对象 healthCalc, 该对象可以通过任何"像函数的东西"来初始化. 如注释中所说, 只要这个东西接受和返回具有相应兼容性的对象, 就可以初始化healthCalc. 比如以下这三样东西:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kt"&gt;short&lt;/span&gt; &lt;span class="nf"&gt;calcHeath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;charactor&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// 计算生命值的函数&lt;/span&gt;
+&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;healthCaculator&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="c1"&gt;// 函数对象&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;operator&lt;/span&gt;&lt;span class="p"&gt;()(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;charactor&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;gameLevel&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="nl"&gt;public:&lt;/span&gt;
+    &lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;healh&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;charactor&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// 某个类的成员函数&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;一个函数, 一个函数对象, 一个类的成员函数. 他们都可以用来初始化.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;orcCharactor&lt;/span&gt; &lt;span class="nf"&gt;badGuy1&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;calcHeath&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// 用函数初始化&lt;/span&gt;
+&lt;span class="n"&gt;orcCharactor&lt;/span&gt; &lt;span class="nf"&gt;badGuy2&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;healthCaculator&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// 用函数对象初始化&lt;/span&gt;
+&lt;span class="n"&gt;gameLevel&lt;/span&gt; &lt;span class="n"&gt;level&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;orcCharactor&lt;/span&gt; &lt;span class="nf"&gt;badGuy3&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="c1"&gt;// 使用成员函数初始化&lt;/span&gt;
+    &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;tr1&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;bind&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;gameLevel&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;healh&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;level&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;_l&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;我们分别使用函数和函数对象来进行初始化. 最精彩的在第三个, 使用成员函数初始化. 因为成员函数实际上额外接受一个参数(即调用成员函数的对象自身), 所以它实际上是接受两个参数的函数. 而&lt;code&gt;std::tr1::bind&lt;/code&gt;方法允许为这样一个函数的其中一个参数绑上默认值, 使这个函数的行为就像是只接受一个参数的函数那样. 这个方法同样适用于具有多个参数的函数(而不仅仅是成员函数, 这里拿成员函数只不过又提醒了我, 成员函数隐式接受调用对象自身作为参数). 这真的很奇妙.&lt;/p&gt;
+&lt;h5&gt;古典Strategy模式&lt;/h5&gt;
+&lt;p&gt;相对简单, 将计算生命值 和 角色 分别体系化, 角色基类 中 存储 指向“计算生命值基类对象”的指针, 并在派生类中实现相应逻辑. 通常使用UML图描述这种关系.&lt;/p&gt;
+&lt;h4&gt;36. 绝不重新定义继承而来的非虚函数&lt;/h4&gt;
+&lt;h4&gt;37. 绝不重新定义继承而来的缺省参数值&lt;/h4&gt;
+&lt;p&gt;非虚函数和缺省参数值都是静态绑定的, 对于虚函数中的缺省参数值, 是否会影响到派生类中的对应函数, 取决于调用的形式. 比如:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;B&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;virtual&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;B&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;这种情况下, 如果通过指向派生类实例的基类指针调用函数f(), 可以不指定参数x, 缺省参数值起作用. 但是如果通过派生类指针调用函数f(), 不指定参数x就无法通过编译.&lt;/p&gt;
+&lt;p&gt;注意B中的函数f()是虚函数. 不应当在public继承的派生类中重载基类的非虚函数.&lt;/p&gt;
+&lt;h4&gt;38. 通过复合模拟出 has-a 或者 is-implemented-in-terms-of 关系&lt;/h4&gt;
+&lt;p&gt;应用域: has-a关系&lt;/p&gt;
+&lt;p&gt;实现域: is-implemented-in-terms-of 关系&lt;/p&gt;
+&lt;h4&gt;39. 明智而审慎地使用 private 继承&lt;/h4&gt;
+&lt;p&gt;private 继承的特点是: 基类中的所有public成员都将称为派生类的private成员, 从派生类外无法访问基类的成员. 这说明基类的逻辑被隐藏在幕后, 派生类需要借助基类实现其自身的功能, 即 is-implemented-in-terms-of 关系.&lt;/p&gt;
+&lt;p&gt;与复合不同之处: private继承的派生类具有"对象尺寸最小化"的特征. 如下, 类B1和类B2都是通过B来实现的(在这里B只是个什么都没有的空类). 但是在几乎所有编译器中, B2对空间的消耗的确比B1稍大一些.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;B&lt;/span&gt;&lt;span class="p"&gt;{};&lt;/span&gt;
+&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;B1&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;private&lt;/span&gt; &lt;span class="n"&gt;B&lt;/span&gt; &lt;span class="p"&gt;{};&lt;/span&gt;
+&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;B2&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nl"&gt;private:&lt;/span&gt;
+        &lt;span class="n"&gt;B&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;40. 明智而审慎地使用多重继承&lt;/h4&gt;
+&lt;p&gt;多重继承, 顾名思义, 就是同时继承多个基类. 在访问多重继承派生类的时候, 如果多个基类中的成员具有相同的名称, 需要显示指定访问的是哪个基类中的成员, 如:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;B1&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="nl"&gt;public:&lt;/span&gt;
+    &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{};&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;B2&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="nl"&gt;public:&lt;/span&gt;
+    &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{};&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;B1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;B2&lt;/span&gt; &lt;span class="p"&gt;{};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;此时需要:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;D&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;B1&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;解决钻石型多重继承: 如果多重继承的两类又同时继承自同一类, 如:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;B&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="nl"&gt;public:&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;B1&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;B&lt;/span&gt; &lt;span class="p"&gt;{};&lt;/span&gt;
+&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;B2&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;B&lt;/span&gt; &lt;span class="p"&gt;{};&lt;/span&gt;
+&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;D&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;B1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;B2&lt;/span&gt; &lt;span class="p"&gt;{};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;此时类D中实际上有两份x(B1::x和B2::x), 这两份x又同时继承自B. 在语义上往往只要一份x. C++默认的实现是, 维持两份x, 但是相互复制. 改动一份则两份都受到影响. 一种语义上更自然, 但是却会造成额外开销的方法是, 将B1和B2对B的继承都实现为&lt;strong&gt;virtual public继承&lt;/strong&gt;, 这样在类D中就只有一份x了.&lt;/p&gt;
+&lt;p&gt;使用 virtual继承 会产生额外的开销, 而且 virtual继承 后, 基类的初始化由最底层的派生类实现(也就是说, D要负责对B中成员x的初始化, 而不是由B1和B2负责). 所以, 如果不得不使用virtual继承, 那么就尽量避免在可能被 virtual继承 的基类中放置数据.&lt;/p&gt;
+&lt;h4&gt;41. 隐式接口和编译器多态&lt;/h4&gt;
+&lt;p&gt;隐式接口是泛型编程中的概念, 相对的显式接口则是面向对象编程中的.&lt;/p&gt;
+&lt;p&gt;显式接口, 包括函数的签名, 或者类的public部分, 它规定了类和函数能够做什么, 外界如果才能驱动函数和类的工作.&lt;/p&gt;
+&lt;p&gt;隐式接口, 指在一个模板元中, 待给定的类T需要做什么. 比如:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;template&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kr"&gt;typename&lt;/span&gt; &lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;compareSize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;t1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;t2&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;t1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;t2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;在这个模板元中, T的隐式接口就是, 必须具有size()方法, 而且该方法返回的对象重载了&amp;gt;运算符, 或者是内置类型. 在模板的"具现化"过程中, 不会发生什么, 但是如果编译到调用compareSize&lt;int&gt;()方法的语句, 就会编译出错(因为int没有实现size()方法).&lt;/p&gt;
+&lt;h4&gt;42. 了解 typename 的双重含义&lt;/h4&gt;
+&lt;p&gt;从属属性: 在模板中依赖于一个template参数(也就是尖括号中typename后面的T啦)的属性(注意, 是属性而不是成员哦).&lt;/p&gt;
+&lt;p&gt;在使用从属属性的时候, 应当在前面加上一个typename关键字, 否则就会引发潜在的问题, 如下所示. 如果在T::someProperty前没有typename关键字, 也许编译器会把声明指针用的*认为是用作乘法的乘号.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;template&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kr"&gt;typename&lt;/span&gt; &lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="nl"&gt;public:&lt;/span&gt;
+    &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
+        &lt;span class="kr"&gt;typename&lt;/span&gt; &lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;someProperty&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;43. 处理模板化基类内的名称&lt;/h4&gt;
+&lt;p&gt;当基类是一个模板类时, 派生类对基类几乎一无所知. 事实就是这样, 下面这段代码, 在严格的编译器中, 无法通过编译. 虽然基类中已经定义了f()函数, 但是派生类却坚持看不到这个函数.(但是我在VS2012中却是可以编译的, 而且就算我把f()改成f2()都是可以编译的(f2()在基类B中可没有定义), 只要不去实例化某个D类的对象, 也就是说编译器对基类的假定相当宽松, 把很多事情交给了编译后期完成).&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;template&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nb"&gt;typename&lt;/span&gt; &lt;span class="nb"&gt;T&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nb"&gt;class&lt;/span&gt; &lt;span class="nx"&gt;B&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="k"&gt;public&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="bp"&gt;void&lt;/span&gt; &lt;span class="nb"&gt;f&lt;/span&gt;&lt;span class="p"&gt;(){}&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="nx"&gt;template&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nb"&gt;typename&lt;/span&gt; &lt;span class="nb"&gt;T&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nb"&gt;class&lt;/span&gt; &lt;span class="nb"&gt;D&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="k"&gt;public&lt;/span&gt; &lt;span class="nf"&gt;B&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nb"&gt;T&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="k"&gt;public&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="bp"&gt;void&lt;/span&gt; &lt;span class="nx"&gt;callf&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
+        &lt;span class="nb"&gt;f&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt; &lt;span class="c1"&gt;// 无法通过编译！&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;这是因为编译器知道, B类可能被特化, 因此严格的编译器拒绝让D中对f()的调用通过编译。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;template&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;gt;&lt;/span&gt;
+&lt;span class="nb"&gt;class&lt;/span&gt; &lt;span class="nx"&gt;B&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;int&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="k"&gt;public&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="c1"&gt;// B模板类的这个特化版本并没有f()方法&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;解决这个问题的方法有三种:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;使用this指针&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;template&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nb"&gt;typename&lt;/span&gt; &lt;span class="nb"&gt;T&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nb"&gt;class&lt;/span&gt; &lt;span class="nb"&gt;D&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="k"&gt;public&lt;/span&gt; &lt;span class="nf"&gt;B&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nb"&gt;T&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="k"&gt;public&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="bp"&gt;void&lt;/span&gt; &lt;span class="nx"&gt;callf&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
+        &lt;span class="nx"&gt;this&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="nb"&gt;f&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;使用using语句&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;template&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nb"&gt;typename&lt;/span&gt; &lt;span class="nb"&gt;T&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nb"&gt;class&lt;/span&gt; &lt;span class="nb"&gt;D&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="k"&gt;public&lt;/span&gt; &lt;span class="nf"&gt;B&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nb"&gt;T&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="k"&gt;public&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="nx"&gt;using&lt;/span&gt; &lt;span class="nx"&gt;B&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nb"&gt;T&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="nl"&gt;f&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="bp"&gt;void&lt;/span&gt; &lt;span class="nx"&gt;callf&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
+        &lt;span class="nb"&gt;f&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;明确指定调用的函数存在于基类中&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;template&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nb"&gt;typename&lt;/span&gt; &lt;span class="nb"&gt;T&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nb"&gt;class&lt;/span&gt; &lt;span class="nb"&gt;D&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="k"&gt;public&lt;/span&gt; &lt;span class="nf"&gt;B&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nb"&gt;T&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="k"&gt;public&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="bp"&gt;void&lt;/span&gt; &lt;span class="nx"&gt;callf&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
+        &lt;span class="nx"&gt;B&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nb"&gt;T&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="nl"&gt;f&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;44. 将与参数无关的代码抽离templates&lt;/h4&gt;
+&lt;p&gt;非类型模板参数往往引起"代码膨胀". 如&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;template&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kr"&gt;typename&lt;/span&gt; &lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;mat&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="nl"&gt;public:&lt;/span&gt;
+    &lt;span class="n"&gt;mat&lt;/span&gt; &lt;span class="n"&gt;invert&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="p"&gt;...&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;就不如:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;template&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kr"&gt;typename&lt;/span&gt; &lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;mat&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="nl"&gt;public:&lt;/span&gt;
+    &lt;span class="n"&gt;mat&lt;/span&gt; &lt;span class="n"&gt;invert&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="p"&gt;...&lt;/span&gt;
+&lt;span class="nl"&gt;private:&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="C++"></category><category term="基础"></category><category term="编程"></category></entry><entry><title>[C++基础] 字符指针</title><link href="http://zoeyyoung.github.io/char-pointer.html" rel="alternate"></link><updated>2013-09-24T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2013-09-24:char-pointer.html</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include &amp;lt;iostream&amp;gt;&lt;/span&gt;
+&lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="k"&gt;namespace&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;str1&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;test&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;str2&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;test&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;str3&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;test&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;str4&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;test&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;str5&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;test&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;str6&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;test&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;boolalpha&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;str1&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;str2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;&amp;quot; &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;str3&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;str4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;&amp;quot; &amp;quot;&lt;/span&gt;
+            &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;str5&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;str6&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="c1"&gt;// false false true&lt;/span&gt;
+&lt;span class="c1"&gt;// 没有boolalpha则输出: 0 0 1&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Debug:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="字符指针" src="/static/images/字符指针.png" /&gt;&lt;/p&gt;
+&lt;p&gt;首先, 这题与是否&lt;code&gt;const&lt;/code&gt;无关.&lt;/p&gt;
+&lt;p&gt;str1, str2, str3, str4都是字符数组, 都有各自的存储区, 它们的值是各自存储区的首地址, 因此各不相等, 输出false.&lt;/p&gt;
+&lt;p&gt;str5与str6为字符指针, 而非字符数组, 先请求的是一个指针的地址(初始化为随机地址), 然后赋值时它们都指向常量字符串"test", "test"存储在&lt;strong&gt;静态存储区&lt;/strong&gt;. 即str5和str6为串"test"的地址, 所以&lt;code&gt;str5==str6&lt;/code&gt;. 二者相等, 输出&lt;code&gt;true&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;boolalpha 用符号形式表示真假.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://stackoverflow.com/questions/19088153/addresses-of-two-pointers-are-same"&gt;StackOverflow: Addresses of two pointers are same&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这里面提到跟编译器的实现相关...&lt;/p&gt;
+&lt;p&gt;Java的String也差不多:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;s1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;test&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;s2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;test&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;out&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s1&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="n"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="c1"&gt;// true&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="笔试"></category><category term="面试"></category><category term="C++"></category><category term="基础"></category><category term="编程"></category></entry><entry><title>[C++基础] new 和 delete</title><link href="http://zoeyyoung.github.io/new-delete.html" rel="alternate"></link><updated>2013-09-24T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2013-09-24:new-delete.html</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include &amp;lt;iostream&amp;gt;&lt;/span&gt;
+&lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="k"&gt;namespace&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Base_J&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="nl"&gt;public:&lt;/span&gt;
+    &lt;span class="n"&gt;Base_J&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Base Created&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="n"&gt;Base_J&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Base Destroyed&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Derived_J&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="k"&gt;public&lt;/span&gt; &lt;span class="n"&gt;Base_J&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="nl"&gt;public:&lt;/span&gt;
+    &lt;span class="n"&gt;Derived_J&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Derived Created&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="n"&gt;Derived_J&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Derived Destroyed&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;Base_J&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;pB&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;Derived_J&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="k"&gt;delete&lt;/span&gt; &lt;span class="n"&gt;pB&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="c1"&gt;// Base Created&lt;/span&gt;
+&lt;span class="c1"&gt;// Derived Created&lt;/span&gt;
+&lt;span class="c1"&gt;// Base Destroyed&lt;/span&gt;
+
+
+&lt;span class="cp"&gt;#include &amp;lt;iostream&amp;gt;&lt;/span&gt;
+&lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="k"&gt;namespace&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Base_J&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="nl"&gt;public:&lt;/span&gt;
+    &lt;span class="n"&gt;Base_J&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Base Created&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;virtual&lt;/span&gt; &lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="n"&gt;Base_J&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Base Destroyed&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Derived_J&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="k"&gt;public&lt;/span&gt; &lt;span class="n"&gt;Base_J&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="nl"&gt;public:&lt;/span&gt;
+    &lt;span class="n"&gt;Derived_J&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Derived Created&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;virtual&lt;/span&gt; &lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="n"&gt;Derived_J&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Derived Destroyed&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;Base_J&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;pB&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;Derived_J&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="k"&gt;delete&lt;/span&gt; &lt;span class="n"&gt;pB&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="c1"&gt;// Base Created&lt;/span&gt;
+&lt;span class="c1"&gt;// Derived Created&lt;/span&gt;
+&lt;span class="c1"&gt;// Derived Destroyed&lt;/span&gt;
+&lt;span class="c1"&gt;// Base Destroyed&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="笔试"></category><category term="面试"></category><category term="C++"></category><category term="基础"></category><category term="编程"></category></entry><entry><title>[安装配置] C/C++环境</title><link href="http://zoeyyoung.github.io/setup-c-env.html" rel="alternate"></link><updated>2013-09-24T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2013-09-24:setup-c-env.html</id><summary type="html">&lt;p&gt;Ubuntu下使用eclipse开发:&lt;/p&gt;
+&lt;p&gt;sudo apt-get install eclipse eclipse-cdt&lt;/p&gt;</summary><category term="安装配置"></category><category term="C/C++"></category><category term="Ubuntu"></category></entry><entry><title>[C++基础] 虚函数</title><link href="http://zoeyyoung.github.io/virtual.html" rel="alternate"></link><updated>2013-09-24T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2013-09-24:virtual.html</id><summary type="html">&lt;p&gt;&lt;a href="http://book.douban.com/subject/1096216/"&gt;《C++语言的设计和演化》&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;中相关章节:&lt;/p&gt;
+&lt;p&gt;3.5 虚函数&lt;/p&gt;
+&lt;p&gt;需要虚函数的理由?&lt;/p&gt;
+&lt;p&gt;实现机制?&lt;/p&gt;
+&lt;p&gt;最关键的实现思想, 就是把在一个类里定义的一集虚函数定义为一个指向函数的指针数组. 这样, 对虚函数的调用简单地也就是通过该数组一个&lt;strong&gt;间接函数调用&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;对每个有虚函数的类都存在一个这样的数组, 一般称为&lt;strong&gt;虚函数表或者vtbl&lt;/strong&gt;. 这些类的每个对象都包含一个隐式指针, 一般称为&lt;strong&gt;vprt&lt;/strong&gt;, 指向该对象的类的虚函数表.&lt;/p&gt;
+&lt;p&gt;一篇与Java的比较: &lt;a href="http://blog.csdn.net/trojanpizza/article/details/6556604"&gt;JAVA – 虚函数、抽象函数、抽象类、接口&lt;/a&gt; —— 还没认真看...&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include &amp;lt;iostream&amp;gt;&lt;/span&gt;
+&lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="k"&gt;namespace&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Base&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="nl"&gt;protected:&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;ID&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nl"&gt;public:&lt;/span&gt;
+    &lt;span class="n"&gt;Base&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;ID&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;GenerateID&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;virtual&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;GenerateID&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;GetID&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;ID&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Derived&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="k"&gt;public&lt;/span&gt; &lt;span class="n"&gt;Base&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="nl"&gt;public:&lt;/span&gt;
+    &lt;span class="n"&gt;Derived&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;GenerateID&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;Derived&lt;/span&gt; &lt;span class="n"&gt;cDerived&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// 原来不一定要用new啊...&lt;/span&gt;
+    &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;cDerived&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;GetID&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="c1"&gt;// 1&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;a href="http://blog.csdn.net/ring0hx/article/details/1605254"&gt;C++ Virtual详解&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include &amp;lt;iostream&amp;gt;&lt;/span&gt;
+&lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="k"&gt;namespace&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;A&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="nl"&gt;public:&lt;/span&gt;
+    &lt;span class="k"&gt;virtual&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;A::f() &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;A::f() const &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;}&lt;/span&gt;
+    &lt;span class="k"&gt;virtual&lt;/span&gt; &lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;B&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="k"&gt;public&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="nl"&gt;public:&lt;/span&gt;
+    &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;B::f() &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;B::f() const &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;virtual&lt;/span&gt; &lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="n"&gt;B&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;g&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;argc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[])&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;B&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="k"&gt;delete&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="c1"&gt;// B::f() A::f() const&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="C++"></category><category term="基础"></category><category term="编程"></category></entry></feed>
