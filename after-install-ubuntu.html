@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
-  <title>[安装配置] MySQL - OK Computer</title>
+  <title>[安装配置] 装完 Ubuntu 后 - OK Computer</title>
   <meta name="description" content="杨丁苗的个人博客">
   <meta name="author" content="Zoey Young">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -54,7 +54,7 @@
           <li >
             <a href="http://zoeyyoung.github.io/category/ji-chu.html ">基础</a>
           </li>
-          <li >
+          <li  class="active" >
             <a href="http://zoeyyoung.github.io/category/linux.html ">Linux</a>
           </li>
           <li >
@@ -75,7 +75,7 @@
           <li >
             <a href="http://zoeyyoung.github.io/category/shou-cang.html ">收藏</a>
           </li>
-          <li  class="active" >
+          <li >
             <a href="http://zoeyyoung.github.io/category/shu-ju-ku.html ">数据库</a>
           </li>
           <li >
@@ -112,40 +112,48 @@
       </div>
       <div class="main-content col-md-8">
 <article>
-  <h1>[安装配置] MySQL</h1>
+  <h1>[安装配置] 装完 Ubuntu 后</h1>
 <div class="article-metadata">
-<time class="published" datetime="2013 十月 06 周日">2013 十月 06 周日 </time>
+<time class="published" datetime="2013 八月 05 周一">2013 八月 05 周一 </time>
 <a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
 <span>
     <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/shu-ju-ku.html">数据库</a>
+    <a href="http://zoeyyoung.github.io/category/linux.html">Linux</a>
 </span>
 <span>
     <i class="icon-tags"></i>
     <a href="http://zoeyyoung.github.io/tag/ubuntu.html">Ubuntu</a>
     <a href="http://zoeyyoung.github.io/tag/linux.html">Linux</a>
     <a href="http://zoeyyoung.github.io/tag/an-zhuang.html">安装</a>
-    <a href="http://zoeyyoung.github.io/tag/mysql.html">MySQL</a>
 </span>
 <!-- <p></p> -->
-</div>  <h3>Ubuntu</h3>
-<p>安装: <code>sudo apt-get install mysql-server</code></p>
-<p>额外的一些包也会提示装上.</p>
-<p>安装过程会给<strong>root</strong>用户创建密码</p>
-<p>作为测试时我会用<strong>123456</strong>(有时会忘了...实验环境.)</p>
-<p>装好后访问: <code>mysql -uroot -p123456</code> 就可以在命令行中操作数据库</p>
-<p>安装使用<strong>phpmyadmin</strong>: <code>sudo apt-get install phpmyadmin</code></p>
-<p>添加链接:</p>
-<div class="highlight"><pre><span class="o">~</span><span class="err">$</span> <span class="n">cd</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span>
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="err">$</span> <span class="n">sudo</span> <span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">phpmyadmin</span><span class="o">/</span>
+</div>  <p><a href="http://www.ubuntu.org.cn/">官网</a></p>
+<h3>升级系统</h3>
+<p>sudo apt-get update &amp;&amp; sudo apt-get upgrade</p>
+<h3>要安装的</h3>
+<p><a href="http://ubuntu-tweak.com/source/ubuntu-tweak-stable/">ubuntu-tweak</a></p>
+<div class="highlight"><pre>sudo add-apt-repository ppa:tualatrix<span class="n">/ppa</span>
+sudo apt-get update
+sudo apt-get install ubuntu-tweak
 </pre></div>
 
 
-<p>打开页面: http://127.0.0.1/phpmyadmin/</p>
-<p>用户名: root 密码: 123456</p>
-<p>备份: <code>mysqldump -uroot -p123456 test&gt;test.sql</code></p>
-<p>恢复: <code>mysql -uroot -p123456 test&lt;test.sql</code></p>
-<p><a href="http://wiki.ubuntu.org.cn/MySQL安装指南">MySQL安装指南</a></p>
+<p>新立得: synaptic</p>
+<div class="highlight"><pre><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">synaptic</span>
+</pre></div>
+
+
+<p>fcitx、fcitx-table-wubi、wps。</p>
+<p>其中wps是wps官网下载，然后dpkg安装；ubuntu-tweak是手动添加源，再apt安装；其他则用命令来完成：sudo apt-get install synaptic fcitx fcitx-table-wubi。</p>
+<p>没装搜狗软件法是因为我基本不用拼音。</p>
+<h3>要卸载的</h3>
+<p>libreoffice、thunderbird、ibus、Firefox Ubufox扩展、桌面共享、Empathy、扫描易、蓝牙、ubuntu one、各种辅助功能等。</p>
+<p>4、彻底清除无用的软件包</p>
+<p>在新立得中，搜索libreoffice、bluz、ubuntu one相关包，能卸载的全部卸载。</p>
+<p>打开ubuntu tweak，清理垃圾文件。</p>
+<h3>开发相关</h3>
+<p>sudo apt-get install git</p>
+<h3>其他</h3>
 </article>
 <div class="comment">
 <!-- JiaThis Button BEGIN -->

@@ -523,7 +523,7 @@
 &lt;p&gt;例子描述了&lt;code&gt;join()&lt;/code&gt;的用法&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://www.programcreek.com/2009/02/notify-and-wait-example/"&gt;Java Thread: notify() and wait() examples&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;有生产者和消费者的例子.&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://stackoverflow.com/questions/541487/implements-runnable-vs-extends-thread"&gt;stackoverflow: “implements Runnable” vs. “extends Thread”&lt;/a&gt;&lt;/p&gt;</summary><category term="笔试"></category><category term="面试"></category><category term="Java"></category><category term="基础"></category><category term="编程"></category></entry><entry><title>[安装配置] MySQL</title><link href="http://zoeyyoung.github.io/after-install-ubuntu.html" rel="alternate"></link><updated>2013-10-06T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2013-10-06:after-install-ubuntu.html</id><summary type="html">&lt;h3&gt;Ubuntu&lt;/h3&gt;
+&lt;p&gt;&lt;a href="http://stackoverflow.com/questions/541487/implements-runnable-vs-extends-thread"&gt;stackoverflow: “implements Runnable” vs. “extends Thread”&lt;/a&gt;&lt;/p&gt;</summary><category term="笔试"></category><category term="面试"></category><category term="Java"></category><category term="基础"></category><category term="编程"></category></entry><entry><title>[安装配置] MySQL</title><link href="http://zoeyyoung.github.io/mysql-setup.html" rel="alternate"></link><updated>2013-10-06T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2013-10-06:mysql-setup.html</id><summary type="html">&lt;h3&gt;Ubuntu&lt;/h3&gt;
 &lt;p&gt;安装: &lt;code&gt;sudo apt-get install mysql-server&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;额外的一些包也会提示装上.&lt;/p&gt;
 &lt;p&gt;安装过程会给&lt;strong&gt;root&lt;/strong&gt;用户创建密码&lt;/p&gt;
@@ -643,24 +643,7 @@
 &lt;p&gt;One more&lt;/p&gt;
 &lt;p&gt;Do you know &lt;a href="http://www.programcreek.com/2011/04/a-method-to-detect-if-string-contains-1-uppercase-letter-in-java/"&gt;How to detect if a string contains only uppercase letter?&lt;/a&gt;【这篇感觉没啥意义】&lt;/p&gt;
 &lt;p&gt;Use &lt;code&gt;java.lang.Character#isUpperCase()&lt;/code&gt; and &lt;code&gt;#isLetter()&lt;/code&gt; instead of the magic numbers.&lt;/p&gt;
-&lt;p&gt;【最优的一般是使用内置的方法】&lt;/p&gt;</summary><category term="笔试"></category><category term="面试"></category><category term="Java"></category><category term="基础"></category><category term="编程"></category></entry><entry><title>[安装配置] MySQL</title><link href="http://zoeyyoung.github.io/after-install-ubuntu.html" rel="alternate"></link><updated>2013-10-06T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2013-10-06:after-install-ubuntu.html</id><summary type="html">&lt;h3&gt;Ubuntu&lt;/h3&gt;
-&lt;p&gt;安装: &lt;code&gt;sudo apt-get install mysql-server&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;额外的一些包也会提示装上.&lt;/p&gt;
-&lt;p&gt;安装过程会给&lt;strong&gt;root&lt;/strong&gt;用户创建密码&lt;/p&gt;
-&lt;p&gt;作为测试时我会用&lt;strong&gt;123456&lt;/strong&gt;(有时会忘了...实验环境.)&lt;/p&gt;
-&lt;p&gt;装好后访问: &lt;code&gt;mysql -uroot -p123456&lt;/code&gt; 就可以在命令行中操作数据库&lt;/p&gt;
-&lt;p&gt;安装使用&lt;strong&gt;phpmyadmin&lt;/strong&gt;: &lt;code&gt;sudo apt-get install phpmyadmin&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;添加链接:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
-&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;ln&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;share&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;phpmyadmin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;打开页面: http://127.0.0.1/phpmyadmin/&lt;/p&gt;
-&lt;p&gt;用户名: root 密码: 123456&lt;/p&gt;
-&lt;p&gt;备份: &lt;code&gt;mysqldump -uroot -p123456 test&amp;gt;test.sql&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;恢复: &lt;code&gt;mysql -uroot -p123456 test&amp;lt;test.sql&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://wiki.ubuntu.org.cn/MySQL安装指南"&gt;MySQL安装指南&lt;/a&gt;&lt;/p&gt;</summary><category term="Ubuntu"></category><category term="Linux"></category><category term="安装"></category><category term="MySQL"></category></entry><entry><title>[笔记]《清醒思考的艺术: 你最好让别人去犯的52种思维错误》</title><link href="http://zoeyyoung.github.io/die-kunst-des-klaren-denkens.html" rel="alternate"></link><updated>2013-10-05T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2013-10-05:die-kunst-des-klaren-denkens.html</id><summary type="html">&lt;p&gt;列个目录&lt;/p&gt;
+&lt;p&gt;【最优的一般是使用内置的方法】&lt;/p&gt;</summary><category term="笔试"></category><category term="面试"></category><category term="Java"></category><category term="基础"></category><category term="编程"></category></entry><entry><title>[笔记]《清醒思考的艺术: 你最好让别人去犯的52种思维错误》</title><link href="http://zoeyyoung.github.io/die-kunst-des-klaren-denkens.html" rel="alternate"></link><updated>2013-10-05T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2013-10-05:die-kunst-des-klaren-denkens.html</id><summary type="html">&lt;p&gt;列个目录&lt;/p&gt;
 &lt;p&gt;作者: (德)罗尔夫•多贝里&lt;/p&gt;
 &lt;p&gt;自序&lt;/p&gt;
 &lt;p&gt;1 幸存偏误: 为什么你该去逛逛墓地【这里的墓地不是指真的墓地】&lt;/p&gt;
@@ -4904,33 +4887,7 @@ b&lt;span class="s1"&gt;&amp;#39;&amp;lt;html xmlns:html=&amp;quot;http://www.w3
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;因为&lt;code&gt;Text&lt;/code&gt;不包含在&lt;code&gt;elem.iterchildren()&lt;/code&gt;里.&lt;/p&gt;</summary><category term="Python"></category><category term="lxml"></category><category term="wrapping"></category><category term="html"></category></entry><entry><title>[安装配置] 装完 Ubuntu 后</title><link href="http://zoeyyoung.github.io/after-install-ubuntu.html" rel="alternate"></link><updated>2013-08-05T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2013-08-05:after-install-ubuntu.html</id><summary type="html">&lt;p&gt;&lt;a href="http://www.ubuntu.org.cn/"&gt;官网&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;升级系统&lt;/h3&gt;
-&lt;p&gt;sudo apt-get update &amp;amp;&amp;amp; sudo apt-get upgrade&lt;/p&gt;
-&lt;h3&gt;要安装的&lt;/h3&gt;
-&lt;p&gt;&lt;a href="http://ubuntu-tweak.com/source/ubuntu-tweak-stable/"&gt;ubuntu-tweak&lt;/a&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;sudo add-apt-repository ppa:tualatrix&lt;span class="n"&gt;/ppa&lt;/span&gt;
-sudo apt-get update
-sudo apt-get install ubuntu-tweak
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;新立得: synaptic&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;synaptic&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;fcitx、fcitx-table-wubi、wps。&lt;/p&gt;
-&lt;p&gt;其中wps是wps官网下载，然后dpkg安装；ubuntu-tweak是手动添加源，再apt安装；其他则用命令来完成：sudo apt-get install synaptic fcitx fcitx-table-wubi。&lt;/p&gt;
-&lt;p&gt;没装搜狗软件法是因为我基本不用拼音。&lt;/p&gt;
-&lt;h3&gt;要卸载的&lt;/h3&gt;
-&lt;p&gt;libreoffice、thunderbird、ibus、Firefox Ubufox扩展、桌面共享、Empathy、扫描易、蓝牙、ubuntu one、各种辅助功能等。&lt;/p&gt;
-&lt;p&gt;4、彻底清除无用的软件包&lt;/p&gt;
-&lt;p&gt;在新立得中，搜索libreoffice、bluz、ubuntu one相关包，能卸载的全部卸载。&lt;/p&gt;
-&lt;p&gt;打开ubuntu tweak，清理垃圾文件。&lt;/p&gt;
-&lt;h3&gt;开发相关&lt;/h3&gt;
-&lt;p&gt;sudo apt-get install git&lt;/p&gt;
-&lt;h3&gt;其他&lt;/h3&gt;</summary><category term="Ubuntu"></category><category term="Linux"></category><category term="安装"></category></entry><entry><title>[记录] MongoDB中数组更新操作</title><link href="http://zoeyyoung.github.io/mongodb-array-update-with-query.html" rel="alternate"></link><updated>2013-08-03T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2013-08-03:mongodb-array-update-with-query.html</id><summary type="html">&lt;p&gt;要做的事情: 在每个文档, 标签tags是以数组Array的形式存在的, 我现在有个标签命名为&lt;strong&gt;python&lt;/strong&gt;, 我想全部改成&lt;strong&gt;Python&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;因为&lt;code&gt;Text&lt;/code&gt;不包含在&lt;code&gt;elem.iterchildren()&lt;/code&gt;里.&lt;/p&gt;</summary><category term="Python"></category><category term="lxml"></category><category term="wrapping"></category><category term="html"></category></entry><entry><title>[记录] MongoDB中数组更新操作</title><link href="http://zoeyyoung.github.io/mongodb-array-update-with-query.html" rel="alternate"></link><updated>2013-08-03T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2013-08-03:mongodb-array-update-with-query.html</id><summary type="html">&lt;p&gt;要做的事情: 在每个文档, 标签tags是以数组Array的形式存在的, 我现在有个标签命名为&lt;strong&gt;python&lt;/strong&gt;, 我想全部改成&lt;strong&gt;Python&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://docs.mongodb.org/manual/reference/operator/positional/#op._S"&gt;$ (query)&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;语法: &lt;code&gt;{ "&amp;lt;array&amp;gt;.$" : value }&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;使用mongo shell, 首先插入三条记录:&lt;/p&gt;

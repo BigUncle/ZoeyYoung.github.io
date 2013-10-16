@@ -1,7 +1,7 @@
 Title: [安装配置] MySQL
 Date: 2013-10-06
 Tags: Ubuntu,Linux,安装,MySQL
-Slug: after-install-ubuntu
+Slug: mysql-setup
 Author: Zoey Young
 Summary: MySQL
 

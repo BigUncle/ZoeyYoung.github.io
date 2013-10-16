@@ -61,11 +61,12 @@ Summary: 《编写可读代码的艺术》
 
 术语上区分它的职能、**找到更有表现力的词**
 
-    单词  | 更多选择
-    send  | deliver、dispatch、announce、distribute、route
-    find  | search、extract、locate、recover
-    start | launch、create、begin、open
-    make  | create、set up、build、generate、compose、add、new
+单词  | 更多选择
+------|----------------------------------------------------
+send  | deliver、dispatch、announce、distribute、route
+find  | search、extract、locate、recover
+start | launch、create、begin、open
+make  | create、set up、build、generate、compose、add、new
 
 **清晰和精确比装可爱好**
 
