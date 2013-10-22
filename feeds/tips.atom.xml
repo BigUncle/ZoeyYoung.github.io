@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>OK Computer</title><link href="http://zoeyyoung.github.io/" rel="alternate"></link><link href="http://zoeyyoung.github.io/feeds/tips.atom.xml" rel="self"></link><id>http://zoeyyoung.github.io/</id><updated>2013-06-30T00:00:00+08:00</updated><entry><title>[安装配置] 我的 Sublime Text 2/3 配置</title><link href="http://zoeyyoung.github.io/sublime-text-2.html" rel="alternate"></link><updated>2013-06-30T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2013-06-30:sublime-text-2.html</id><summary type="html">&lt;blockquote&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>OK Computer</title><link href="http://zoeyyoung.github.io/" rel="alternate"></link><link href="http://zoeyyoung.github.io/feeds/tips.atom.xml" rel="self"></link><id>http://zoeyyoung.github.io/</id><updated>2013-10-22T00:00:00+08:00</updated><entry><title>[安装配置] 我的 Sublime Text 2/3 配置</title><link href="http://zoeyyoung.github.io/sublime-text.html" rel="alternate"></link><updated>2013-10-22T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2013-10-22:sublime-text.html</id><summary type="html">&lt;p&gt;初始化于: 2013-06-30&lt;/p&gt;
+&lt;blockquote&gt;
 &lt;p&gt;Sublime Text is a sophisticated text editor for code, markup and prose.
 You'll love the slick user interface, extraordinary features and amazing performance.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -94,6 +95,9 @@ You'll love the slick user interface, extraordinary features and amazing perform
 &lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/victorporof/Sublime-HTMLPrettify"&gt;HTML-CSS-JS Prettify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h3&gt;Themes&lt;/h3&gt;
 &lt;p&gt;我使用Soda主题&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://github.com/buymeasoda/soda-theme/"&gt;Soda&lt;/a&gt;&lt;/p&gt;

@@ -116,6 +116,161 @@
       <div class="main-content col-md-8">
 
     <div>
+        <a href="http://zoeyyoung.github.io/sublime-text.html"><h1>[安装配置] 我的 Sublime Text 2/3 配置</h1></a>
+<div class="article-metadata">
+<time class="published" datetime="2013 十月 22 周二">2013 十月 22 周二 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/tips.html">Tips</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+    <a href="http://zoeyyoung.github.io/tag/windows.html">Windows</a>
+    <a href="http://zoeyyoung.github.io/tag/tips.html">Tips</a>
+    <a href="http://zoeyyoung.github.io/tag/sublime-text-2.html">Sublime Text 2</a>
+    <a href="http://zoeyyoung.github.io/tag/sublime-text-3.html">Sublime Text 3</a>
+    <a href="http://zoeyyoung.github.io/tag/pei-zhi.html">配置</a>
+</span>
+<!-- <p></p> -->
+</div>        <p>初始化于: 2013-06-30</p>
+<blockquote>
+<p>Sublime Text is a sophisticated text editor for code, markup and prose.
+You'll love the slick user interface, extraordinary features and amazing performance.</p>
+</blockquote>
+<p>— Description from the Sublime Text website.</p>
+<p>我使用<a href="http://www.sublimetext.com/">Sublime Text 2/3</a>已经有半年以上的时间了, 基本在文本编辑和一般的开发都在该编辑器中进行, 刚开始根据一些文章的介绍配置了许多东西, 但到后来都不记得自己到底配置过啥, 或者为啥而配置. 因此这里进行一些整理与总结.
+内容太多, 不时整理下.</p>
+<h3>快捷键</h3>
+<p>ST2有一个<code>super</code>键, 在OSX中是<code>⌘</code>, 在Windows/Linux中是<code>Ctrl</code>. 下面都用<code>super</code>来表示.</p>
+<p>根据文件名搜索和打开文件: <code>super + P</code></p>
+<p>列出(代码)文件中所有方法: <code>super + R</code></p>
+<p>在当前文档中, 选中下一处与<strong>当前选中文字</strong>相同的文字: <code>super + D</code></p>
+<p>在当前文档中, 选中所有<strong>当前选中文字</strong>相同的文字: OSX上<code>super + Ctrl + G</code> , Windows上<code>Alt + F3</code></p>
+<p>调出命令面板: <code>super + Shift + P</code></p>
+<h3>安装Package Control</h3>
+<p>要做的第一件事是安装<a href="https://sublime.wbond.net/installation">Package Control</a></p>
+<p>支持ST2 与 ST3, 用于安装插件</p>
+<h3>安装Packages</h3>
+<p><code>super + Shift + P</code>, 输入<code>ip</code>, 会出现<code>Package Control: Install Package</code>选项, <code>Enter</code></p>
+<p>有许多包可以选择安装</p>
+<ul>
+<li>Alignment</li>
+</ul>
+<p>修改了快捷键防止与QQ截图冲突：</p>
+<div class="highlight"><pre><span class="cp">[</span>
+  <span class="p">{</span> <span class="s2">&quot;keys&quot;</span><span class="p">:</span> <span class="err">[</span><span class="s2">&quot;ctrl+alt+f&quot;</span><span class="cp">]</span><span class="o">,</span> <span class="s2">&quot;command&quot;</span><span class="o">:</span> <span class="s2">&quot;alignment&quot;</span> <span class="err">}</span>
+<span class="o">]</span>
+</pre></div>
+
+
+<p>貌似默认没有对齐":"，在配置文件中添加了...</p>
+<ul>
+<li><a href="https://github.com/Monnoroch/ColorHighlighter">Color Highlighter</a> 还不支持ST3</li>
+</ul>
+<p><img alt="ColorHighlighter" src="https://github-camo.global.ssl.fastly.net/a1de8f4978332bcec21a5741747db8d5de448534/687474703a2f2f662e636c2e6c792f6974656d732f30623437314b3154305833623365316d326a31722f53637265656e25323053686f74253230323031332d30382d3037253230617425323031322e35322e3031253230504d2e6a7067" /></p>
+<ul>
+<li>SideBarEnhancements</li>
+</ul>
+<p>ST3版本需手动安装: https://github.com/titoBouzout/SideBarEnhancements/tree/st3</p>
+<ul>
+<li><a href="https://github.com/bgreenlee/sublime-github">Sublime GitHub</a></li>
+</ul>
+<p>Sublime Text 2/3 plugin that provides a number of useful commands for GitHub.</p>
+<p>ST3版本可直接用Package Control安装</p>
+<ul>
+<li>
+<p><a href="https://sublimegit.net/">Sublime Git</a></p>
+</li>
+<li>
+<p>SmartMarkdown for Sublime Text 2</p>
+</li>
+</ul>
+<p>可使用Tab和Shift Tab折叠标题</p>
+<ul>
+<li><a href="http://www.sublimerge.com/">Sublimerge Pro</a></li>
+</ul>
+<blockquote>
+<p>The diff and merge tool for Sublime Text 2 and 3</p>
+</blockquote>
+<p><img alt="Sublimerge" src="http://www.sublimerge.com/Images/sublimerge-pro-windows.png" /></p>
+<ul>
+<li><a href="https://github.com/facelessuser/BracketHighlighter">BracketHighlighter</a></li>
+</ul>
+<p>高亮显示匹配的括号、引号和标签</p>
+<p>ST3版本需手动安装: https://github.com/facelessuser/BracketHighlighter/tree/BH2ST3</p>
+<ul>
+<li><a href="https://github.com/SublimeText/TrailingSpaces">TrailingSpacer</a></li>
+</ul>
+<p>高亮显示多余的空格和Tab, ST3版本可直接用Package Control安装</p>
+<p>相关Settings - User</p>
+<div class="highlight"><pre><span class="p">{</span>
+    <span class="p">...</span>
+    <span class="s">&quot;draw_white_space&quot;</span><span class="o">:</span> <span class="s">&quot;all&quot;</span><span class="p">,</span>
+    <span class="s">&quot;ensure_newline_at_eof_on_save&quot;</span><span class="o">:</span> <span class="nb">true</span><span class="p">,</span>
+    <span class="s">&quot;trim_automatic_white_space&quot;</span><span class="o">:</span> <span class="nb">true</span><span class="p">,</span>
+    <span class="s">&quot;trim_trailing_white_space_on_save&quot;</span><span class="o">:</span> <span class="nb">true</span><span class="p">,</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<ul>
+<li>Fetch</li>
+</ul>
+<p>抓取文件</p>
+<p><a href="https://tutsplus.com/lesson/fetch-files-with-ease/">插件视频</a></p>
+<ul>
+<li><a href="https://github.com/leonid-shevtsov/ClickableUrls_SublimeText2">Clickable Urls</a></li>
+</ul>
+<p>ST3版本可直接用Package Control安装</p>
+<p>默认快捷键是<code>ctrl+alt+enter</code>, 但是发现有冲突, 固修改为:</p>
+<div class="highlight"><pre><span class="p">{</span> <span class="s">&quot;keys&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;ctrl+alt+u&quot;</span><span class="p">],</span> <span class="s">&quot;command&quot;</span><span class="p">:</span> <span class="s">&quot;open_url&quot;</span> <span class="p">}</span>
+</pre></div>
+
+
+<ul>
+<li><a href="https://github.com/victorporof/Sublime-HTMLPrettify">HTML-CSS-JS Prettify</a></li>
+</ul>
+<h3>Themes</h3>
+<p>我使用Soda主题</p>
+<p><a href="https://github.com/buymeasoda/soda-theme/">Soda</a></p>
+<h3>Color Scheme</h3>
+<p>使用添加了<strong>Markdown</strong>语法高亮后的<strong>Monokai</strong>, 即<strong>Monokai Soda.tmTheme</strong></p>
+<p>参考<a href="http://thepast.me/post/80017253">自定义 Markdown 高亮配色方案</a>, 修改以适应Soda主题(博文中的主题直接用在Soda主题中会有Bug)</p>
+<p><a href="https://gist.github.com/ZoeyYoung/5894202">代码</a></p>
+<p>当前博客主题即基于我使用的ST2/3主题设计的</p>
+<p><img alt="ST2/3 Theme" src="/static/images/sublime-text-2.jpg" /></p>
+<p>在ST3中将自定义的主题放入<strong>ST3\Data\Packages\User</strong>文件夹中, 即可在<strong>Preferences -&gt; Color Scheme -&gt; User</strong>中进行选择.</p>
+<h3>用户配置文件</h3>
+<p>在使用ST2之前, 对首选项进行适当调整会改进你的体验.</p>
+<p>默认配置在: <strong>Preferences</strong> -&gt; <strong>Settings - Default</strong>中, 通常你不会去修改这个文件, 但可以作为参考, 看有哪些可配置选项, 以及介绍</p>
+<p>用户配置在: <strong>Preferences</strong> -&gt; <strong>Settings - User</strong>中</p>
+<p>我的配置:</p>
+<script src="https://gist.github.com/ZoeyYoung/4239875.js"></script>
+
+<p>我将配置保存在Gist中, 以方便共享与使用</p>
+<p>这里你可以参考Default配置文件进行更多配置</p>
+<h3>参考文档</h3>
+<p><a href="http://docs.sublimetext.info/en/latest/">Sublime Text Unofficial Documentation</a></p>
+<p>Addy Osmani - <a href="http://addyosmani.com/blog/custom-sublime-text-build-systems-for-popular-tools-and-languages/">Custom Sublime Text Build Systems For Popular Tools And Languages</a></p>
+<p>Alex McCaw - <a href="http://blog.alexmaccaw.com/sublime-text">Setting up Sublime Text 2</a></p>
+<p>netttuts+ - <a href="http://net.tutsplus.com/tutorials/tools-and-tips/sublime-text-2-tips-and-tricks/">Sublime Text 2 Tips and Tricks</a></p>
+<p>tuts+ Premium - <a href="https://tutsplus.com/course/improve-workflow-in-sublime-text-2/">Perfect Workflow in Sublime Text 2</a></p>
+<p>Drew Barontini - <a href="http://drewbarontini.com/setup/sublime-text/">Sublime Text (2)</a></p>
+<p>Stuart Herbert - <a href="http://blog.stuartherbert.com/php/2012/02/28/setting-up-sublime-text-2-for-php-development/">Setting up Sublime Text 2 for PHP Development</a></p>
+<p>Hassan Khan - <a href="http://hassankhan.me/post/51651079207">My Sublime Text 2 Setup</a></p>
+<p><a href="http://buymeasoda.github.com/soda-theme/">Soda Theme</a></p>
+<p><a href="http://www.iplaysoft.com/sublimetext.html">异次元软件世界</a></p>
+<p><a href="http://aisensiy.sinaapp.com/all-about-sublime-text-2-sublime-使用的一些经验">All about sublime text 2 — sublime 使用的一些经验</a></p>
+<p><a href="http://web-design-weekly.com/2012/07/03/snippets-in-sublime-text-2/">Snippets in Sublime Text 2</a></p>
+<p><a href="https://github.com/joshnh/CSS-Snippets">Sublime Text 2 CSS Snippets</a></p>
+<p><a href="http://webtempest.com/sublime-text-2-how-to-create-snippets/">How to Create Snippets</a></p>
+<p><a href="http://www.qianduan.net/essential-to-sublime-the-text-2-plugins.html">一些必不可少的Sublime Text 2插件</a></p>
+<p><a href="http://dengo.org/archives/923">Sublime Text 3能用支持的插件推荐</a></p>
+        <hr />
+    </div>
+     <div>
         <a href="http://zoeyyoung.github.io/natural-language-processing-with-python-ch2.html"><h1>[学习] NLTK Python自然语言处理</h1></a>
 <div class="article-metadata">
 <time class="published" datetime="2013 八月 23 周五">2013 八月 23 周五 </time>
@@ -132,57 +287,7 @@
     <a href="http://zoeyyoung.github.io/tag/nlp.html">NLP</a>
 </span>
 <!-- <p></p> -->
-</div>        <p>Gutenberg Corpus</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">from</span> <span class="n">nltk</span><span class="p">.</span><span class="n">corpus</span> <span class="n">import</span> <span class="n">gutenberg</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">gutenberg</span><span class="p">.</span><span class="n">fileids</span><span class="p">()</span>
-<span class="p">[</span><span class="err">&#39;</span><span class="n">austen</span><span class="o">-</span><span class="n">emma</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">austen</span><span class="o">-</span><span class="n">persuasion</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">austen</span><span class="o">-</span><span class="n">sense</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">bible</span><span class="o">-</span><span class="n">kjv</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">blake</span><span class="o">-</span><span class="n">poems</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">bryant</span><span class="o">-</span><span class="n">stories</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">burgess</span><span class="o">-</span><span class="n">busterbrown</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">carroll</span><span class="o">-</span><span class="n">alice</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">chesterton</span><span class="o">-</span><span class="n">ball</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">chesterton</span><span class="o">-</span><span class="n">brown</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">chesterton</span><span class="o">-</span><span class="n">thursday</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">edgeworth</span><span class="o">-</span><span class="n">parents</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">melville</span><span class="o">-</span><span class="n">moby_dick</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">milton</span><span class="o">-</span><span class="n">paradise</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">shakespeare</span><span class="o">-</span><span class="n">caesar</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">shakespeare</span><span class="o">-</span><span class="n">hamlet</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">shakespeare</span><span class="o">-</span><span class="n">macbeth</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">whitman</span><span class="o">-</span><span class="n">leaves</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">emma</span> <span class="o">=</span> <span class="n">gutenberg</span><span class="p">.</span><span class="n">words</span><span class="p">(</span><span class="err">&#39;</span><span class="n">austen</span><span class="o">-</span><span class="n">emma</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">len</span><span class="p">(</span><span class="n">emma</span><span class="p">)</span>
-<span class="mi">192427</span>
-</pre></div>
-
-
-<p>创建nltk.Text对象</p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">type</span><span class="p">(</span><span class="n">text1</span><span class="p">)</span>
-<span class="o">&lt;</span><span class="n">class</span> <span class="err">&#39;</span><span class="n">nltk</span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="n">Text</span><span class="err">&#39;</span><span class="o">&gt;</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">emma</span> <span class="o">=</span> <span class="n">nltk</span><span class="p">.</span><span class="n">Text</span><span class="p">(</span><span class="n">gutenberg</span><span class="p">.</span><span class="n">words</span><span class="p">(</span><span class="err">&#39;</span><span class="n">austen</span><span class="o">-</span><span class="n">emma</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">))</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">emma</span><span class="p">.</span><span class="n">concordance</span><span class="p">(</span><span class="s">&quot;surprize&quot;</span><span class="p">)</span>
-
-
-
-<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">fileid</span> <span class="n">in</span> <span class="n">gutenberg</span><span class="p">.</span><span class="n">fileids</span><span class="p">()</span><span class="o">:</span>
-    <span class="n">num_chars</span> <span class="o">=</span> <span class="n">len</span><span class="p">(</span><span class="n">gutenberg</span><span class="p">.</span><span class="n">raw</span><span class="p">(</span><span class="n">fileid</span><span class="p">))</span>
-    <span class="n">num_words</span> <span class="o">=</span> <span class="n">len</span><span class="p">(</span><span class="n">gutenberg</span><span class="p">.</span><span class="n">words</span><span class="p">(</span><span class="n">fileid</span><span class="p">))</span>
-    <span class="n">num_sents</span> <span class="o">=</span> <span class="n">len</span><span class="p">(</span><span class="n">gutenberg</span><span class="p">.</span><span class="n">sents</span><span class="p">(</span><span class="n">fileid</span><span class="p">))</span>
-    <span class="n">num_vocab</span> <span class="o">=</span> <span class="n">len</span><span class="p">(</span><span class="n">set</span><span class="p">([</span><span class="n">w</span><span class="p">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">w</span> <span class="n">in</span> <span class="n">gutenberg</span><span class="p">.</span><span class="n">words</span><span class="p">(</span><span class="n">fileid</span><span class="p">)]))</span>
-    <span class="n">print</span><span class="p">(</span><span class="kt">int</span><span class="p">(</span><span class="n">num_chars</span><span class="o">/</span><span class="n">num_words</span><span class="p">),</span> <span class="kt">int</span><span class="p">(</span><span class="n">num_words</span><span class="o">/</span><span class="n">num_sents</span><span class="p">),</span> <span class="kt">int</span><span class="p">(</span><span class="n">num_words</span><span class="o">/</span><span class="n">num_vocab</span><span class="p">),</span> <span class="n">fileid</span><span class="p">)</span>
-<span class="mi">4</span> <span class="mi">21</span> <span class="mi">26</span> <span class="n">austen</span><span class="o">-</span><span class="n">emma</span><span class="p">.</span><span class="n">txt</span>
-<span class="mi">4</span> <span class="mi">23</span> <span class="mi">16</span> <span class="n">austen</span><span class="o">-</span><span class="n">persuasion</span><span class="p">.</span><span class="n">txt</span>
-<span class="mi">4</span> <span class="mi">23</span> <span class="mi">22</span> <span class="n">austen</span><span class="o">-</span><span class="n">sense</span><span class="p">.</span><span class="n">txt</span>
-<span class="mi">4</span> <span class="mi">33</span> <span class="mi">79</span> <span class="n">bible</span><span class="o">-</span><span class="n">kjv</span><span class="p">.</span><span class="n">txt</span>
-<span class="mi">4</span> <span class="mi">18</span> <span class="mi">5</span> <span class="n">blake</span><span class="o">-</span><span class="n">poems</span><span class="p">.</span><span class="n">txt</span>
-<span class="mi">4</span> <span class="mi">17</span> <span class="mi">14</span> <span class="n">bryant</span><span class="o">-</span><span class="n">stories</span><span class="p">.</span><span class="n">txt</span>
-<span class="mi">4</span> <span class="mi">17</span> <span class="mi">12</span> <span class="n">burgess</span><span class="o">-</span><span class="n">busterbrown</span><span class="p">.</span><span class="n">txt</span>
-<span class="mi">4</span> <span class="mi">16</span> <span class="mi">12</span> <span class="n">carroll</span><span class="o">-</span><span class="n">alice</span><span class="p">.</span><span class="n">txt</span>
-<span class="mi">4</span> <span class="mi">17</span> <span class="mi">11</span> <span class="n">chesterton</span><span class="o">-</span><span class="n">ball</span><span class="p">.</span><span class="n">txt</span>
-<span class="mi">4</span> <span class="mi">19</span> <span class="mi">11</span> <span class="n">chesterton</span><span class="o">-</span><span class="n">brown</span><span class="p">.</span><span class="n">txt</span>
-<span class="mi">4</span> <span class="mi">16</span> <span class="mi">10</span> <span class="n">chesterton</span><span class="o">-</span><span class="n">thursday</span><span class="p">.</span><span class="n">txt</span>
-<span class="mi">4</span> <span class="mi">17</span> <span class="mi">24</span> <span class="n">edgeworth</span><span class="o">-</span><span class="n">parents</span><span class="p">.</span><span class="n">txt</span>
-<span class="mi">4</span> <span class="mi">24</span> <span class="mi">15</span> <span class="n">melville</span><span class="o">-</span><span class="n">moby_dick</span><span class="p">.</span><span class="n">txt</span>
-<span class="mi">4</span> <span class="mi">52</span> <span class="mi">10</span> <span class="n">milton</span><span class="o">-</span><span class="n">paradise</span><span class="p">.</span><span class="n">txt</span>
-<span class="mi">4</span> <span class="mi">11</span> <span class="mi">8</span> <span class="n">shakespeare</span><span class="o">-</span><span class="n">caesar</span><span class="p">.</span><span class="n">txt</span>
-<span class="mi">4</span> <span class="mi">12</span> <span class="mi">7</span> <span class="n">shakespeare</span><span class="o">-</span><span class="n">hamlet</span><span class="p">.</span><span class="n">txt</span>
-<span class="mi">4</span> <span class="mi">12</span> <span class="mi">6</span> <span class="n">shakespeare</span><span class="o">-</span><span class="n">macbeth</span><span class="p">.</span><span class="n">txt</span>
-<span class="mi">4</span> <span class="mi">35</span> <span class="mi">12</span> <span class="n">whitman</span><span class="o">-</span><span class="n">leaves</span><span class="p">.</span><span class="n">txt</span>
-
-
-<span class="o">&gt;&gt;&gt;</span> <span class="n">macbeth_sentences</span> <span class="o">=</span> <span class="n">gutenberg</span><span class="p">.</span><span class="n">sents</span><span class="p">(</span><span class="err">&#39;</span><span class="n">shakespeare</span><span class="o">-</span><span class="n">macbeth</span><span class="p">.</span><span class="n">txt</span><span class="err">&#39;</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">macbeth_sentences</span><span class="p">[</span><span class="mi">1037</span><span class="p">]</span>
-<span class="p">[</span><span class="err">&#39;</span><span class="n">Good</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">night</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">and</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">better</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">health</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Attend</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">his</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Maiesty</span><span class="err">&#39;</span><span class="p">]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">longest_len</span> <span class="o">=</span> <span class="n">max</span><span class="p">([</span><span class="n">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="n">in</span> <span class="n">macbeth_sentences</span><span class="p">])</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="n">in</span> <span class="n">macbeth_sentences</span> <span class="k">if</span> <span class="n">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">==</span> <span class="n">longest_len</span><span class="p">]</span>
-<span class="p">[[</span><span class="err">&#39;</span><span class="n">Doubtfull</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">it</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">stood</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">As</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">two</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">spent</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Swimmers</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">that</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">doe</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">cling</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">together</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">And</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">choake</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">their</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Art</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;:&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">The</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">mercilesse</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Macdonwald</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;(&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Worthie</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">to</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">be</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;a&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Rebell</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="k">for</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">to</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">that</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">The</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">multiplying</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Villanies</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">of</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Nature</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Doe</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">swarme</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">vpon</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">him</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;)&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">from</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">the</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Westerne</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Isles</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Of</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Kernes</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">and</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Gallowgrosses</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">is</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">supply</span><span class="err">&#39;</span><span class="p">,</span> <span class="s">&quot;&#39;&quot;</span><span class="p">,</span> <span class="sc">&#39;d&#39;</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">And</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Fortune</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">on</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">his</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">damned</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Quarry</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">smiling</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Shew</span><span class="err">&#39;</span><span class="p">,</span> <span class="s">&quot;&#39;&quot;</span><span class="p">,</span> <span class="sc">&#39;d&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">like</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;a&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Rebells</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Whore</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;:&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">but</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">all</span><span class="err">&#39;</span><span class="p">,</span> <span class="s">&quot;&#39;&quot;</span><span class="p">,</span> <span class="sc">&#39;s&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">too</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">weake</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;:&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">For</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">braue</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Macbeth</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;(&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">well</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">hee</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">deserues</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">that</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Name</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;)&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Disdayning</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Fortune</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">with</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">his</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">brandisht</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Steele</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Which</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">smoak</span><span class="err">&#39;</span><span class="p">,</span> <span class="s">&quot;&#39;&quot;</span><span class="p">,</span> <span class="sc">&#39;d&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">with</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">bloody</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">execution</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;(&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Like</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Valours</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Minion</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;)&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">caru</span><span class="err">&#39;</span><span class="p">,</span> <span class="s">&quot;&#39;&quot;</span><span class="p">,</span> <span class="sc">&#39;d&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">out</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">his</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">passage</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Till</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">hee</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">fac</span><span class="err">&#39;</span><span class="p">,</span> <span class="s">&quot;&#39;&quot;</span><span class="p">,</span> <span class="sc">&#39;d&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">the</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Slaue</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;:&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Which</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">neu</span><span class="err">&#39;</span><span class="p">,</span> <span class="s">&quot;&#39;&quot;</span><span class="p">,</span> <span class="sc">&#39;r&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">shooke</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">hands</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">nor</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">bad</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">farwell</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">to</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">him</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Till</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">he</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">vnseam</span><span class="err">&#39;</span><span class="p">,</span> <span class="s">&quot;&#39;&quot;</span><span class="p">,</span> <span class="sc">&#39;d&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">him</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">from</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">the</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Naue</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">toth</span><span class="err">&#39;</span><span class="p">,</span> <span class="s">&quot;&#39;&quot;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Chops</span><span class="err">&#39;</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">And</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">fix</span><span class="err">&#39;</span><span class="p">,</span> <span class="s">&quot;&#39;&quot;</span><span class="p">,</span> <span class="sc">&#39;d&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">his</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Head</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">vpon</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">our</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Battlements</span><span class="err">&#39;</span><span class="p">]]</span>
-</pre></div>
+</div>        <p>第2章 获得文本语料和词汇资源</p>
         <hr />
     </div>
      <div>
@@ -341,27 +446,6 @@
 </span>
 <!-- <p></p> -->
 </div>        <p>Windows下安装Python Extension Package出现 error: Unable to find vcvarsall.bat 错误</p>
-        <hr />
-    </div>
-     <div>
-        <a href="http://zoeyyoung.github.io/sublime-text-2.html"><h1>[安装配置] 我的 Sublime Text 2/3 配置</h1></a>
-<div class="article-metadata">
-<time class="published" datetime="2013 六月 30 周日">2013 六月 30 周日 </time>
-<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
-<span>
-    <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/tips.html">Tips</a>
-</span>
-<span>
-    <i class="icon-tags"></i>
-    <a href="http://zoeyyoung.github.io/tag/windows.html">Windows</a>
-    <a href="http://zoeyyoung.github.io/tag/tips.html">Tips</a>
-    <a href="http://zoeyyoung.github.io/tag/sublime-text-2.html">Sublime Text 2</a>
-    <a href="http://zoeyyoung.github.io/tag/sublime-text-3.html">Sublime Text 3</a>
-    <a href="http://zoeyyoung.github.io/tag/pei-zhi.html">配置</a>
-</span>
-<!-- <p></p> -->
-</div>        <p>我的 Sublime Text 2/3 配置</p>
         <hr />
     </div>
 <ul class="pagination pagination-sm no-print">

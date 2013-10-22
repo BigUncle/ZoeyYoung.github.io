@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OK Computer</title><link>http://zoeyyoung.github.io/</link><description>It's better to burn out &lt;br/&gt; than to fade away.</description><atom:link href="http://zoeyyoung.github.io/feeds/tips.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 30 Jun 2013 00:00:00 +0800</lastBuildDate><item><title>[安装配置] 我的 Sublime Text 2/3 配置</title><link>http://zoeyyoung.github.io/sublime-text-2.html</link><description>&lt;blockquote&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OK Computer</title><link>http://zoeyyoung.github.io/</link><description>It's better to burn out &lt;br/&gt; than to fade away.</description><atom:link href="http://zoeyyoung.github.io/feeds/tips.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 22 Oct 2013 00:00:00 +0800</lastBuildDate><item><title>[安装配置] 我的 Sublime Text 2/3 配置</title><link>http://zoeyyoung.github.io/sublime-text.html</link><description>&lt;p&gt;初始化于: 2013-06-30&lt;/p&gt;
+&lt;blockquote&gt;
 &lt;p&gt;Sublime Text is a sophisticated text editor for code, markup and prose.
 You'll love the slick user interface, extraordinary features and amazing performance.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -94,6 +95,9 @@ You'll love the slick user interface, extraordinary features and amazing perform
 &lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/victorporof/Sublime-HTMLPrettify"&gt;HTML-CSS-JS Prettify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h3&gt;Themes&lt;/h3&gt;
 &lt;p&gt;我使用Soda主题&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://github.com/buymeasoda/soda-theme/"&gt;Soda&lt;/a&gt;&lt;/p&gt;
@@ -129,7 +133,7 @@ You'll love the slick user interface, extraordinary features and amazing perform
 &lt;p&gt;&lt;a href="https://github.com/joshnh/CSS-Snippets"&gt;Sublime Text 2 CSS Snippets&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://webtempest.com/sublime-text-2-how-to-create-snippets/"&gt;How to Create Snippets&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://www.qianduan.net/essential-to-sublime-the-text-2-plugins.html"&gt;一些必不可少的Sublime Text 2插件&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://dengo.org/archives/923"&gt;Sublime Text 3能用支持的插件推荐&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sun, 30 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-30:sublime-text-2.html</guid><category>Windows</category><category>Tips</category><category>Sublime Text 2</category><category>Sublime Text 3</category><category>配置</category></item><item><title>[安装配置] 在 Windows 下 Git 的使用</title><link>http://zoeyyoung.github.io/windows-git-https.html</link><description>&lt;p&gt;这个问题很基础, 但是第一次使用时很困扰&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://dengo.org/archives/923"&gt;Sublime Text 3能用支持的插件推荐&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 22 Oct 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-10-22:sublime-text.html</guid><category>Windows</category><category>Tips</category><category>Sublime Text 2</category><category>Sublime Text 3</category><category>配置</category></item><item><title>[安装配置] 在 Windows 下 Git 的使用</title><link>http://zoeyyoung.github.io/windows-git-https.html</link><description>&lt;p&gt;这个问题很基础, 但是第一次使用时很困扰&lt;/p&gt;
 &lt;p&gt;按照&lt;a href="https://gitcafe.com/GitCafe/Help/blob/master/Setup_Git.md"&gt;帮助&lt;/a&gt;安装了Windows下的Git客户端, 例如我下载安装了&lt;strong&gt;Git-1.8.3-preview20130601.exe&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;(还有其它软件, 比如&lt;a href="http://code.google.com/p/tortoisegit/"&gt;TortoiseGit&lt;/a&gt;)&lt;/p&gt;
 &lt;p&gt;在GitCafe上&lt;strong&gt;创建&lt;/strong&gt;仓库后, 会有提示怎么初始化仓库的说明&lt;/p&gt;

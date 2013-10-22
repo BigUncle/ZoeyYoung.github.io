@@ -116,6 +116,161 @@
       <div class="main-content col-md-8">
 
     <div>
+        <a href="http://zoeyyoung.github.io/sublime-text.html"><h1>[安装配置] 我的 Sublime Text 2/3 配置</h1></a>
+<div class="article-metadata">
+<time class="published" datetime="2013 十月 22 周二">2013 十月 22 周二 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/tips.html">Tips</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+    <a href="http://zoeyyoung.github.io/tag/windows.html">Windows</a>
+    <a href="http://zoeyyoung.github.io/tag/tips.html">Tips</a>
+    <a href="http://zoeyyoung.github.io/tag/sublime-text-2.html">Sublime Text 2</a>
+    <a href="http://zoeyyoung.github.io/tag/sublime-text-3.html">Sublime Text 3</a>
+    <a href="http://zoeyyoung.github.io/tag/pei-zhi.html">配置</a>
+</span>
+<!-- <p></p> -->
+</div>        <p>初始化于: 2013-06-30</p>
+<blockquote>
+<p>Sublime Text is a sophisticated text editor for code, markup and prose.
+You'll love the slick user interface, extraordinary features and amazing performance.</p>
+</blockquote>
+<p>— Description from the Sublime Text website.</p>
+<p>我使用<a href="http://www.sublimetext.com/">Sublime Text 2/3</a>已经有半年以上的时间了, 基本在文本编辑和一般的开发都在该编辑器中进行, 刚开始根据一些文章的介绍配置了许多东西, 但到后来都不记得自己到底配置过啥, 或者为啥而配置. 因此这里进行一些整理与总结.
+内容太多, 不时整理下.</p>
+<h3>快捷键</h3>
+<p>ST2有一个<code>super</code>键, 在OSX中是<code>⌘</code>, 在Windows/Linux中是<code>Ctrl</code>. 下面都用<code>super</code>来表示.</p>
+<p>根据文件名搜索和打开文件: <code>super + P</code></p>
+<p>列出(代码)文件中所有方法: <code>super + R</code></p>
+<p>在当前文档中, 选中下一处与<strong>当前选中文字</strong>相同的文字: <code>super + D</code></p>
+<p>在当前文档中, 选中所有<strong>当前选中文字</strong>相同的文字: OSX上<code>super + Ctrl + G</code> , Windows上<code>Alt + F3</code></p>
+<p>调出命令面板: <code>super + Shift + P</code></p>
+<h3>安装Package Control</h3>
+<p>要做的第一件事是安装<a href="https://sublime.wbond.net/installation">Package Control</a></p>
+<p>支持ST2 与 ST3, 用于安装插件</p>
+<h3>安装Packages</h3>
+<p><code>super + Shift + P</code>, 输入<code>ip</code>, 会出现<code>Package Control: Install Package</code>选项, <code>Enter</code></p>
+<p>有许多包可以选择安装</p>
+<ul>
+<li>Alignment</li>
+</ul>
+<p>修改了快捷键防止与QQ截图冲突：</p>
+<div class="highlight"><pre><span class="cp">[</span>
+  <span class="p">{</span> <span class="s2">&quot;keys&quot;</span><span class="p">:</span> <span class="err">[</span><span class="s2">&quot;ctrl+alt+f&quot;</span><span class="cp">]</span><span class="o">,</span> <span class="s2">&quot;command&quot;</span><span class="o">:</span> <span class="s2">&quot;alignment&quot;</span> <span class="err">}</span>
+<span class="o">]</span>
+</pre></div>
+
+
+<p>貌似默认没有对齐":"，在配置文件中添加了...</p>
+<ul>
+<li><a href="https://github.com/Monnoroch/ColorHighlighter">Color Highlighter</a> 还不支持ST3</li>
+</ul>
+<p><img alt="ColorHighlighter" src="https://github-camo.global.ssl.fastly.net/a1de8f4978332bcec21a5741747db8d5de448534/687474703a2f2f662e636c2e6c792f6974656d732f30623437314b3154305833623365316d326a31722f53637265656e25323053686f74253230323031332d30382d3037253230617425323031322e35322e3031253230504d2e6a7067" /></p>
+<ul>
+<li>SideBarEnhancements</li>
+</ul>
+<p>ST3版本需手动安装: https://github.com/titoBouzout/SideBarEnhancements/tree/st3</p>
+<ul>
+<li><a href="https://github.com/bgreenlee/sublime-github">Sublime GitHub</a></li>
+</ul>
+<p>Sublime Text 2/3 plugin that provides a number of useful commands for GitHub.</p>
+<p>ST3版本可直接用Package Control安装</p>
+<ul>
+<li>
+<p><a href="https://sublimegit.net/">Sublime Git</a></p>
+</li>
+<li>
+<p>SmartMarkdown for Sublime Text 2</p>
+</li>
+</ul>
+<p>可使用Tab和Shift Tab折叠标题</p>
+<ul>
+<li><a href="http://www.sublimerge.com/">Sublimerge Pro</a></li>
+</ul>
+<blockquote>
+<p>The diff and merge tool for Sublime Text 2 and 3</p>
+</blockquote>
+<p><img alt="Sublimerge" src="http://www.sublimerge.com/Images/sublimerge-pro-windows.png" /></p>
+<ul>
+<li><a href="https://github.com/facelessuser/BracketHighlighter">BracketHighlighter</a></li>
+</ul>
+<p>高亮显示匹配的括号、引号和标签</p>
+<p>ST3版本需手动安装: https://github.com/facelessuser/BracketHighlighter/tree/BH2ST3</p>
+<ul>
+<li><a href="https://github.com/SublimeText/TrailingSpaces">TrailingSpacer</a></li>
+</ul>
+<p>高亮显示多余的空格和Tab, ST3版本可直接用Package Control安装</p>
+<p>相关Settings - User</p>
+<div class="highlight"><pre><span class="p">{</span>
+    <span class="p">...</span>
+    <span class="s">&quot;draw_white_space&quot;</span><span class="o">:</span> <span class="s">&quot;all&quot;</span><span class="p">,</span>
+    <span class="s">&quot;ensure_newline_at_eof_on_save&quot;</span><span class="o">:</span> <span class="nb">true</span><span class="p">,</span>
+    <span class="s">&quot;trim_automatic_white_space&quot;</span><span class="o">:</span> <span class="nb">true</span><span class="p">,</span>
+    <span class="s">&quot;trim_trailing_white_space_on_save&quot;</span><span class="o">:</span> <span class="nb">true</span><span class="p">,</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<ul>
+<li>Fetch</li>
+</ul>
+<p>抓取文件</p>
+<p><a href="https://tutsplus.com/lesson/fetch-files-with-ease/">插件视频</a></p>
+<ul>
+<li><a href="https://github.com/leonid-shevtsov/ClickableUrls_SublimeText2">Clickable Urls</a></li>
+</ul>
+<p>ST3版本可直接用Package Control安装</p>
+<p>默认快捷键是<code>ctrl+alt+enter</code>, 但是发现有冲突, 固修改为:</p>
+<div class="highlight"><pre><span class="p">{</span> <span class="s">&quot;keys&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;ctrl+alt+u&quot;</span><span class="p">],</span> <span class="s">&quot;command&quot;</span><span class="p">:</span> <span class="s">&quot;open_url&quot;</span> <span class="p">}</span>
+</pre></div>
+
+
+<ul>
+<li><a href="https://github.com/victorporof/Sublime-HTMLPrettify">HTML-CSS-JS Prettify</a></li>
+</ul>
+<h3>Themes</h3>
+<p>我使用Soda主题</p>
+<p><a href="https://github.com/buymeasoda/soda-theme/">Soda</a></p>
+<h3>Color Scheme</h3>
+<p>使用添加了<strong>Markdown</strong>语法高亮后的<strong>Monokai</strong>, 即<strong>Monokai Soda.tmTheme</strong></p>
+<p>参考<a href="http://thepast.me/post/80017253">自定义 Markdown 高亮配色方案</a>, 修改以适应Soda主题(博文中的主题直接用在Soda主题中会有Bug)</p>
+<p><a href="https://gist.github.com/ZoeyYoung/5894202">代码</a></p>
+<p>当前博客主题即基于我使用的ST2/3主题设计的</p>
+<p><img alt="ST2/3 Theme" src="/static/images/sublime-text-2.jpg" /></p>
+<p>在ST3中将自定义的主题放入<strong>ST3\Data\Packages\User</strong>文件夹中, 即可在<strong>Preferences -&gt; Color Scheme -&gt; User</strong>中进行选择.</p>
+<h3>用户配置文件</h3>
+<p>在使用ST2之前, 对首选项进行适当调整会改进你的体验.</p>
+<p>默认配置在: <strong>Preferences</strong> -&gt; <strong>Settings - Default</strong>中, 通常你不会去修改这个文件, 但可以作为参考, 看有哪些可配置选项, 以及介绍</p>
+<p>用户配置在: <strong>Preferences</strong> -&gt; <strong>Settings - User</strong>中</p>
+<p>我的配置:</p>
+<script src="https://gist.github.com/ZoeyYoung/4239875.js"></script>
+
+<p>我将配置保存在Gist中, 以方便共享与使用</p>
+<p>这里你可以参考Default配置文件进行更多配置</p>
+<h3>参考文档</h3>
+<p><a href="http://docs.sublimetext.info/en/latest/">Sublime Text Unofficial Documentation</a></p>
+<p>Addy Osmani - <a href="http://addyosmani.com/blog/custom-sublime-text-build-systems-for-popular-tools-and-languages/">Custom Sublime Text Build Systems For Popular Tools And Languages</a></p>
+<p>Alex McCaw - <a href="http://blog.alexmaccaw.com/sublime-text">Setting up Sublime Text 2</a></p>
+<p>netttuts+ - <a href="http://net.tutsplus.com/tutorials/tools-and-tips/sublime-text-2-tips-and-tricks/">Sublime Text 2 Tips and Tricks</a></p>
+<p>tuts+ Premium - <a href="https://tutsplus.com/course/improve-workflow-in-sublime-text-2/">Perfect Workflow in Sublime Text 2</a></p>
+<p>Drew Barontini - <a href="http://drewbarontini.com/setup/sublime-text/">Sublime Text (2)</a></p>
+<p>Stuart Herbert - <a href="http://blog.stuartherbert.com/php/2012/02/28/setting-up-sublime-text-2-for-php-development/">Setting up Sublime Text 2 for PHP Development</a></p>
+<p>Hassan Khan - <a href="http://hassankhan.me/post/51651079207">My Sublime Text 2 Setup</a></p>
+<p><a href="http://buymeasoda.github.com/soda-theme/">Soda Theme</a></p>
+<p><a href="http://www.iplaysoft.com/sublimetext.html">异次元软件世界</a></p>
+<p><a href="http://aisensiy.sinaapp.com/all-about-sublime-text-2-sublime-使用的一些经验">All about sublime text 2 — sublime 使用的一些经验</a></p>
+<p><a href="http://web-design-weekly.com/2012/07/03/snippets-in-sublime-text-2/">Snippets in Sublime Text 2</a></p>
+<p><a href="https://github.com/joshnh/CSS-Snippets">Sublime Text 2 CSS Snippets</a></p>
+<p><a href="http://webtempest.com/sublime-text-2-how-to-create-snippets/">How to Create Snippets</a></p>
+<p><a href="http://www.qianduan.net/essential-to-sublime-the-text-2-plugins.html">一些必不可少的Sublime Text 2插件</a></p>
+<p><a href="http://dengo.org/archives/923">Sublime Text 3能用支持的插件推荐</a></p>
+        <hr />
+    </div>
+     <div>
         <a href="http://zoeyyoung.github.io/design-patten-iterator.html"><h1>[设计模式] 迭代器模式</h1></a>
 <div class="article-metadata">
 <time class="published" datetime="2013 十月 15 周二">2013 十月 15 周二 </time>
@@ -130,65 +285,7 @@
     <a href="http://zoeyyoung.github.io/tag/book.html">Book</a>
 </span>
 <!-- <p></p> -->
-</div>        <h3>意图</h3>
-<p>提供一种方法顺序访问一个<strong>聚合对象</strong>中各个元素, 而又不需暴露该对象的内部表示.</p>
-<p>什么是聚合对象? 数组、堆栈、列表、散列表等.</p>
-<p>关键思想是将对列表的访问和遍历从列表对象中分离出来并放入一个迭代器(iterator)对象中.</p>
-<p>创建迭代器是一个Factory Method模式的例子</p>
-<h3>别名</h3>
-<p>游标(Cursor)</p>
-<h3>适用性</h3>
-<p>迭代器模式可用来:</p>
-<ul>
-<li>访问一个聚合对象的内容而无需暴露它的内部表示</li>
-<li>支持对聚合对象的多种遍历</li>
-<li>为遍历不同的聚合结构提供一个统一的接口(即, 支持多态迭代)</li>
-</ul>
-<h3>结构</h3>
-<p><img alt="迭代器模式结构图" src="/images/design-patten-iterator.png" /></p>
-<h3>参与者</h3>
-<ul>
-<li>Iterator(迭代器)<ul>
-<li>迭代器定义访问和遍历元素的接口</li>
-</ul>
-</li>
-<li>ConcreteIterator(具体迭代器)<ul>
-<li>具体迭代器实现迭代器接口</li>
-<li>对该聚合遍历时跟踪当前位置</li>
-</ul>
-</li>
-<li>Aggregate(聚合)<ul>
-<li>聚合定义创建相应迭代器对象的接口</li>
-</ul>
-</li>
-<li>ConcreteAggregate(具体聚合)<ul>
-<li>具体聚合实现创建相应迭代器的接口, 该操作返回ConcreteIterator的一个适当的实例</li>
-</ul>
-</li>
-</ul>
-<h3>协作</h3>
-<ul>
-<li>ConcreteIterator跟踪聚合中的当前对象, 并能够计算出待遍历的后继对象.</li>
-</ul>
-<h3>效果</h3>
-<p>迭代器模式有三个重要的作用:</p>
-<ol>
-<li>它支持以不同的方式遍历一个聚合【前序 中序 后序】</li>
-<li>迭代器简化了聚合的接口</li>
-<li>在同一个聚合上可以有多个遍历</li>
-</ol>
-<h3>实现</h3>
-<ol>
-<li>定义Strategy和Context接口</li>
-<li>将Strategy作为模板参数【C++】</li>
-<li>使Strategy对象成为可选的【常见, 在无Strategy时使用默认实现】</li>
-</ol>
-<h3>JDK</h3>
-<p>recognizeable by behavioral methods in an abstract/interface type which invokes a method in an implementation of a different abstract/interface type which has been passed-in as method argument into the strategy implementation</p>
-<p><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Comparator.html#compare%28T,%20T%29">java.util.Comparator#compare()</a>, executed by among others Collections#sort().</p>
-<p><a href="http://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServlet.html">javax.servlet.http.HttpServlet</a>, the <code>service()</code> and all <code>doXXX()</code> methods take <code>HttpServletRequest</code> and <code>HttpServletResponse</code> and the implementor has to process them (and not to get hold of them as instance variables!).</p>
-<p><a href="http://docs.oracle.com/javaee/7/api/javax/servlet/Filter.html#doFilter%28javax.servlet.ServletRequest,%20javax.servlet.ServletResponse,%20javax.servlet.FilterChain%29">javax.servlet.Filter#doFilter()</a></p>
-<p><a href="http://docs.oracle.com/javase/7/docs/api/java/io/File.html#list(java.io.FilenameFilter)">java.io.File#list()</a> FilenameFilter作为Strategy, 其它带FilenameFilter参数的方法也是.</p>
+</div>        <p>ITERATOR(迭代器) —— 对象行为型模式</p>
         <hr />
     </div>
      <div>
@@ -342,26 +439,6 @@
 </span>
 <!-- <p></p> -->
 </div>        
-        <hr />
-    </div>
-     <div>
-        <a href="http://zoeyyoung.github.io/mysql-setup.html"><h1>[安装配置] MySQL</h1></a>
-<div class="article-metadata">
-<time class="published" datetime="2013 十月 06 周日">2013 十月 06 周日 </time>
-<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
-<span>
-    <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/shu-ju-ku.html">数据库</a>
-</span>
-<span>
-    <i class="icon-tags"></i>
-    <a href="http://zoeyyoung.github.io/tag/ubuntu.html">Ubuntu</a>
-    <a href="http://zoeyyoung.github.io/tag/linux.html">Linux</a>
-    <a href="http://zoeyyoung.github.io/tag/an-zhuang.html">安装</a>
-    <a href="http://zoeyyoung.github.io/tag/mysql.html">MySQL</a>
-</span>
-<!-- <p></p> -->
-</div>        <p>MySQL</p>
         <hr />
     </div>
 <ul class="pagination pagination-sm no-print">

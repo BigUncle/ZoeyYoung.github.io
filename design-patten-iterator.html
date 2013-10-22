@@ -157,7 +157,7 @@
 </ul>
 </li>
 <li>Aggregate(聚合)<ul>
-<li>聚合定义创建相应迭代器对象的接口</li>
+<li>聚合定义创建相应迭代器对象的接口【使用了工厂方法模式, CreateIterator()为工厂方法】</li>
 </ul>
 </li>
 <li>ConcreteAggregate(具体聚合)<ul>
@@ -177,17 +177,20 @@
 <li>在同一个聚合上可以有多个遍历</li>
 </ol>
 <h3>实现</h3>
-<ol>
-<li>定义Strategy和Context接口</li>
-<li>将Strategy作为模板参数【C++】</li>
-<li>使Strategy对象成为可选的【常见, 在无Strategy时使用默认实现】</li>
-</ol>
+<h3>相关模式</h3>
+<ul>
+<li>Composite: 迭代器常被应用到像复合这样的递归结构上</li>
+<li>Factory Method: 多态迭代器靠Factory Method来实例化适当的迭代器子类</li>
+<li>Memento: 常与迭代器模式一起使用. 迭代器可使用一个memento来捕获一个迭代的
+状态. 迭代器在其内部存储memento</li>
+</ul>
 <h3>JDK</h3>
-<p>recognizeable by behavioral methods in an abstract/interface type which invokes a method in an implementation of a different abstract/interface type which has been passed-in as method argument into the strategy implementation</p>
-<p><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Comparator.html#compare%28T,%20T%29">java.util.Comparator#compare()</a>, executed by among others Collections#sort().</p>
-<p><a href="http://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServlet.html">javax.servlet.http.HttpServlet</a>, the <code>service()</code> and all <code>doXXX()</code> methods take <code>HttpServletRequest</code> and <code>HttpServletResponse</code> and the implementor has to process them (and not to get hold of them as instance variables!).</p>
-<p><a href="http://docs.oracle.com/javaee/7/api/javax/servlet/Filter.html#doFilter%28javax.servlet.ServletRequest,%20javax.servlet.ServletResponse,%20javax.servlet.FilterChain%29">javax.servlet.Filter#doFilter()</a></p>
-<p><a href="http://docs.oracle.com/javase/7/docs/api/java/io/File.html#list(java.io.FilenameFilter)">java.io.File#list()</a> FilenameFilter作为Strategy, 其它带FilenameFilter参数的方法也是.</p>
+<p>recognizeable by behavioral methods sequentially returning instances of a different type from a queue</p>
+<ul>
+<li>All implementations of <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.html">java.util.Iterator</a> (thus among others also <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Scanner.html">java.util.Scanner</a>!).</li>
+<li>All implementations of <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Enumeration.html">java.util.Enumeration</a></li>
+<li><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html">java.util.Collection<E></a>接口扩展了Iterator接口.</li>
+</ul>
 </article>
 <div class="comment">
 <!-- JiaThis Button BEGIN -->

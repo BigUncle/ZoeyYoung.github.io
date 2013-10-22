@@ -27,7 +27,7 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;Aggregate(聚合)&lt;ul&gt;
-&lt;li&gt;聚合定义创建相应迭代器对象的接口&lt;/li&gt;
+&lt;li&gt;聚合定义创建相应迭代器对象的接口【使用了工厂方法模式, CreateIterator()为工厂方法】&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;ConcreteAggregate(具体聚合)&lt;ul&gt;
@@ -47,17 +47,20 @@
 &lt;li&gt;在同一个聚合上可以有多个遍历&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3&gt;实现&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;定义Strategy和Context接口&lt;/li&gt;
-&lt;li&gt;将Strategy作为模板参数【C++】&lt;/li&gt;
-&lt;li&gt;使Strategy对象成为可选的【常见, 在无Strategy时使用默认实现】&lt;/li&gt;
-&lt;/ol&gt;
+&lt;h3&gt;相关模式&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Composite: 迭代器常被应用到像复合这样的递归结构上&lt;/li&gt;
+&lt;li&gt;Factory Method: 多态迭代器靠Factory Method来实例化适当的迭代器子类&lt;/li&gt;
+&lt;li&gt;Memento: 常与迭代器模式一起使用. 迭代器可使用一个memento来捕获一个迭代的
+状态. 迭代器在其内部存储memento&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h3&gt;JDK&lt;/h3&gt;
-&lt;p&gt;recognizeable by behavioral methods in an abstract/interface type which invokes a method in an implementation of a different abstract/interface type which has been passed-in as method argument into the strategy implementation&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://docs.oracle.com/javase/7/docs/api/java/util/Comparator.html#compare%28T,%20T%29"&gt;java.util.Comparator#compare()&lt;/a&gt;, executed by among others Collections#sort().&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServlet.html"&gt;javax.servlet.http.HttpServlet&lt;/a&gt;, the &lt;code&gt;service()&lt;/code&gt; and all &lt;code&gt;doXXX()&lt;/code&gt; methods take &lt;code&gt;HttpServletRequest&lt;/code&gt; and &lt;code&gt;HttpServletResponse&lt;/code&gt; and the implementor has to process them (and not to get hold of them as instance variables!).&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://docs.oracle.com/javaee/7/api/javax/servlet/Filter.html#doFilter%28javax.servlet.ServletRequest,%20javax.servlet.ServletResponse,%20javax.servlet.FilterChain%29"&gt;javax.servlet.Filter#doFilter()&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://docs.oracle.com/javase/7/docs/api/java/io/File.html#list(java.io.FilenameFilter)"&gt;java.io.File#list()&lt;/a&gt; FilenameFilter作为Strategy, 其它带FilenameFilter参数的方法也是.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 15 Oct 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-10-15:design-patten-iterator.html</guid><category>读书</category><category>Book</category></item><item><title>[设计模式] 策略模式</title><link>http://zoeyyoung.github.io/design-patten-strategy.html</link><description>&lt;h3&gt;意图&lt;/h3&gt;
+&lt;p&gt;recognizeable by behavioral methods sequentially returning instances of a different type from a queue&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;All implementations of &lt;a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.html"&gt;java.util.Iterator&lt;/a&gt; (thus among others also &lt;a href="http://docs.oracle.com/javase/7/docs/api/java/util/Scanner.html"&gt;java.util.Scanner&lt;/a&gt;!).&lt;/li&gt;
+&lt;li&gt;All implementations of &lt;a href="http://docs.oracle.com/javase/7/docs/api/java/util/Enumeration.html"&gt;java.util.Enumeration&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html"&gt;java.util.Collection&lt;E&gt;&lt;/a&gt;接口扩展了Iterator接口.&lt;/li&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 15 Oct 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-10-15:design-patten-iterator.html</guid><category>读书</category><category>Book</category></item><item><title>[设计模式] 策略模式</title><link>http://zoeyyoung.github.io/design-patten-strategy.html</link><description>&lt;h3&gt;意图&lt;/h3&gt;
 &lt;p&gt;定义一系列的算法, 把它们一个个封装起来, 且使它们可相互替换. 本模式使得算法可独
 立于使用它的客户而变化.&lt;/p&gt;
 &lt;h3&gt;别名&lt;/h3&gt;
@@ -595,7 +598,7 @@
 &lt;p&gt;2、Template Method(类模式): 定义一个操作中的算法的骨架, 而将一些步骤延迟到子类中. 使得子类可以不改变一个算法的结构即可以重定义该算法的某些特定步骤.&lt;/p&gt;
 &lt;p&gt;3、&lt;a href="http://en.wikipedia.org/wiki/Chain_of_responsibility_pattern"&gt;Chain Of Responsibility&lt;/a&gt;: 为清除请求的发送者和接受者之间的耦合, 而使多个对象都有机会处理这个请求. 将这些对象连成一条链, 并沿着这条链传递该请求, 直到有一个对象处理它.&lt;/p&gt;
 &lt;p&gt;4、Command: 将一个请求封装为一个对象，从而使得可以用不同请求对客户进行参数化；对请求排队或记录请求日志，以及支持可取消的操作。&lt;/p&gt;
-&lt;p&gt;5、Iterator: 提供一种方法顺序访问一个聚合对象中的各个元素, 而又不需要暴露该对象的内部表示.&lt;/p&gt;
+&lt;p&gt;5、&lt;a href="http://en.wikipedia.org/wiki/Iterator_pattern"&gt;Iterator&lt;/a&gt;: 提供一种方法顺序访问一个聚合对象中的各个元素, 而又不需要暴露该对象的内部表示.&lt;/p&gt;
 &lt;p&gt;6、Mediator: 用一个中介对象来封装一系列的对象交互, 中介者使得各对象不需要显式地相互引用，从而使得耦合度降低，而且可以独立地改变它们之间的交互。&lt;/p&gt;
 &lt;p&gt;7、Memento: 在不破坏封装性的前提下, 捕获一个对象内部的状态, 并在该对象之外保存这个状态. 这样以后就可以将该对象恢复到保存状态.&lt;/p&gt;
 &lt;p&gt;8、&lt;a href="http://en.wikipedia.org/wiki/Observer_pattern"&gt;Observer&lt;/a&gt;: 定义对象的一种一对多的依赖关系, 以便当一个对象的状态发生改变时, 所有依赖于它的对象多得到通知并自动刷新.&lt;/p&gt;
