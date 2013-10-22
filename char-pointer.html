@@ -151,7 +151,7 @@
 
 
 <p>Debug:</p>
-<p><img alt="字符指针" src="/static/images/字符指针.png" /></p>
+<p><img alt="字符指针" src="/images/字符指针.png" /></p>
 <p>首先, 这题与是否<code>const</code>无关.</p>
 <p>str1, str2, str3, str4都是字符数组, 都有各自的存储区, 它们的值是各自存储区的首地址, 因此各不相等, 输出false.</p>
 <p>str5与str6为字符指针, 而非字符数组, 先请求的是一个指针的地址(初始化为随机地址), 然后赋值时它们都指向常量字符串"test", "test"存储在<strong>静态存储区</strong>. 即str5和str6为串"test"的地址, 所以<code>str5==str6</code>. 二者相等, 输出<code>true</code>.</p>

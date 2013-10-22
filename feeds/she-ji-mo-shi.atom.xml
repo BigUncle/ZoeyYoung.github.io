@@ -332,7 +332,7 @@
 子类化以匹配它们的接口. 对象适配器可以适配它的父类接口.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;Head First&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="适配器" src="/static/images/适配器.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="适配器" src="/images/适配器.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;1.真实世界的适配器: 交流电适配器. 【想想相机那个充电器.】&lt;/p&gt;
 &lt;p&gt;2.构造适配器的关键: 实现了目标接口, 并持有被适配者的实例.&lt;/p&gt;
 &lt;p&gt;举一个火鸡冒充鸭子的适配器例子:&lt;/p&gt;
@@ -499,7 +499,7 @@
 &lt;/ul&gt;
 &lt;p&gt;抽象工厂的方法经常以&lt;strong&gt;工厂方法&lt;/strong&gt;的方式实现. 抽象工厂的任务是定义一个负责创建一组产品的接口. 这个接口内的每个方法都负责创建一个具体产品, 同时我们利用实现抽象工厂的子类来提供这些具体的做法. 所以, 在抽象工厂中利用工厂方法实现生产方法是相当自然的做法.&lt;/p&gt;
 &lt;p&gt;缺点: 如果加入新产品就必须改变接口, 所有的子类都要相应修改.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="抽象工厂模式结构" src="/static/images/抽象工厂模式结构.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="抽象工厂模式结构" src="/images/抽象工厂模式结构.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;Client仅使用由抽象工厂和抽象产品类声明的接口(解耦)&lt;/p&gt;
 &lt;h3&gt;工厂方法和抽象工厂区别&lt;/h3&gt;
 &lt;p&gt;工厂方法使用的是类, 而抽象工厂使用的是对象.&lt;/p&gt;

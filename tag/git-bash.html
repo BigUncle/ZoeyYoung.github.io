@@ -144,7 +144,7 @@
 
 
 <p>但是这里提供的地址<code>git@gitcafe.com:ZoeyYoung/Hello_Git.git</code>是SSH的</p>
-<p><img alt="ssh" src="/static/images/gitcafe_ssh.jpg" /></p>
+<p><img alt="ssh" src="/images/gitcafe_ssh.jpg" /></p>
 <p>所以需要配置SSH, <a href="https://gitcafe.com/GitCafe/Help/tree/master/SSH">相关帮助</a></p>
 <p>如果不配置则会出现<code>Permission_denied: Error: Permission denied (publickey)</code>问题</p>
 <div class="highlight"><pre>Permission denied (publickey).
@@ -158,7 +158,7 @@ and the repository exists.
 <p>但是配置好SSH后, 尝试了下在Windows自带cmd下还是会出现上面的问题</p>
 <p>原因是SSH的地址是<code>~/.ssh</code>, 而cmd下并不识别这个地址...因此只能在Git Bash下使用(跟安装时选择的只在Git Bash下使用可能也有关, 没尝试)</p>
 <p>而我觉得比较方便的方式是使用<code>https</code>地址</p>
-<p><img alt="https" src="/static/images/gitcafe_https.jpg" /></p>
+<p><img alt="https" src="/images/gitcafe_https.jpg" /></p>
 <p>即把上面的语句改为</p>
 <div class="highlight"><pre>git remote add origin <span class="s1">&#39;https://gitcafe.com/ZoeyYoung/Hello_Git.git&#39;</span>
 </pre></div>

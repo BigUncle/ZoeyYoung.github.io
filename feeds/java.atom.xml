@@ -356,7 +356,7 @@
 &lt;p&gt;Do you know &lt;a href="http://www.programcreek.com/2011/04/a-method-to-detect-if-string-contains-1-uppercase-letter-in-java/"&gt;How to detect if a string contains only uppercase letter?&lt;/a&gt;【这篇感觉没啥意义】&lt;/p&gt;
 &lt;p&gt;Use &lt;code&gt;java.lang.Character#isUpperCase()&lt;/code&gt; and &lt;code&gt;#isLetter()&lt;/code&gt; instead of the magic numbers.&lt;/p&gt;
 &lt;p&gt;【最优的一般是使用内置的方法】&lt;/p&gt;</summary><category term="笔试"></category><category term="面试"></category><category term="Java"></category><category term="基础"></category><category term="编程"></category></entry><entry><title>[Java基础] 输出回形数</title><link href="http://zoeyyoung.github.io/java-circle-form-number.html" rel="alternate"></link><updated>2010-01-13T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2010-01-13:java-circle-form-number.html</id><summary type="html">&lt;p&gt;输出回形数, 根据两种算法画图如下:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="回形数" src="/static/images/回形数.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="回形数" src="/images/回形数.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;第一种算法: 分析行特征，按行输出&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;java.util.Scanner&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
 

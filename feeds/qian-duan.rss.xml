@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OK Computer</title><link>http://zoeyyoung.github.io/</link><description>It's better to burn out &lt;br/&gt; than to fade away.</description><atom:link href="http://zoeyyoung.github.io/feeds/qian-duan.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 06 Aug 2013 00:00:00 +0800</lastBuildDate><item><title>[实例] 彩色固定位置菜单</title><link>http://zoeyyoung.github.io/fixed-colorful-menu.html</link><description>&lt;p&gt;目前设计的比较满意的菜单, 把代码单独拿出来做成Demo.&lt;/p&gt;
 &lt;p&gt;可用在菜单项不多的应用中.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="menu" src="/static/images/menu.gif" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://zoeyyoung.github.io/lib/menudemo/menu.html"&gt;Demo&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 06 Aug 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-08-06:fixed-colorful-menu.html</guid><category>前端</category><category>Menu</category></item><item><title>[解决] jQuery hover对于动态添加元素无法生效的问题</title><link>http://zoeyyoung.github.io/jquery-hover.html</link><description>&lt;p&gt;原本直接使用&lt;code&gt;hover()&lt;/code&gt;, 但是我的应用中有使用Ajax动态添加元素, 而新添加的元素对&lt;code&gt;hover()&lt;/code&gt;事件无响应&lt;/p&gt;
+&lt;p&gt;&lt;img alt="menu" src="/images/menu.gif" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="/lib/menudemo/menu.html"&gt;Demo&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 06 Aug 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-08-06:fixed-colorful-menu.html</guid><category>前端</category><category>Menu</category></item><item><title>[解决] jQuery hover对于动态添加元素无法生效的问题</title><link>http://zoeyyoung.github.io/jquery-hover.html</link><description>&lt;p&gt;原本直接使用&lt;code&gt;hover()&lt;/code&gt;, 但是我的应用中有使用Ajax动态添加元素, 而新添加的元素对&lt;code&gt;hover()&lt;/code&gt;事件无响应&lt;/p&gt;
 &lt;p&gt;最初写法:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.link-item&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;hover&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.link-note&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;stop&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;slideToggle&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
@@ -41,14 +41,14 @@ As of jQuery 1.7, the &lt;code&gt;.live()&lt;/code&gt; method is deprecated. Use
 &lt;p&gt;每次直接修改本地文件, 然后Git提交, 感觉非常好. 当然了...一般人还是用富文本比较直接...这种方式估计只有程序员会这么做, 或者一些对计算机, 编程感兴趣的人...&lt;/p&gt;
 &lt;p&gt;End&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Sat, 27 Jul 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-07-27:jquery-hover.html</guid><category>前端</category><category>JavaScript</category><category>jQuery</category></item><item><title>[实例] 使用SVG制作简单LOGO</title><link>http://zoeyyoung.github.io/svg-logo.html</link><description>&lt;h3&gt;什么是SVG?&lt;/h3&gt;
 &lt;p&gt;&lt;a href="http://zh.wikipedia.org/wiki/SVG"&gt;维基&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="位图和矢量图" src="/static/images/Bitmap_VS_SVG.svg.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="位图和矢量图" src="/images/Bitmap_VS_SVG.svg.png" /&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;这张图片展示了位图和矢量图的区别。位图是由点构成的，矢量图则是由一些形状元素构成。该图中显示放大位图可以看到点，而放大矢量图看到的仍然是形状。SVG属于矢量图，因此能够无级缩放，而不会导致马赛克。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3&gt;开始制作&lt;/h3&gt;
 &lt;p&gt;首先在&lt;a href="http://www.google.com/fonts/"&gt;Google Font&lt;/a&gt;选择一款字体, 其它地方也可以..&lt;/p&gt;
 &lt;p&gt;我选了&lt;strong&gt;Lobster&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Lobster" src="/static/images/Lobster.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Lobster" src="/images/Lobster.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;使用&lt;a href="http://inkscape.org/download/"&gt;Inkscape&lt;/a&gt;制作&lt;strong&gt;.svg&lt;/strong&gt;文件&lt;/p&gt;
 &lt;p&gt;参考&lt;a href="http://inkscape.org/doc/advanced/tutorial-advanced.zh_CN.html"&gt;教程&lt;/a&gt;中创建文本部分&lt;/p&gt;
 &lt;p&gt;快捷键&lt;/p&gt;
@@ -60,10 +60,10 @@ As of jQuery 1.7, the &lt;code&gt;.live()&lt;/code&gt; method is deprecated. Use
 &lt;/ul&gt;
 &lt;p&gt;可单独调整每个文字的大小&lt;/p&gt;
 &lt;p&gt;制作后的效果:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Inkscape" src="/static/images/Inkscape.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Inkscape" src="/images/Inkscape.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;这里我只使用了最基础的功能, 因为也是第一次用...还有很多功能值得探索&lt;/p&gt;
 &lt;p&gt;在&lt;strong&gt;Document Properties&lt;/strong&gt;中可调整画布大小&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Inkscape" src="/static/images/Inkscape2.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Inkscape" src="/images/Inkscape2.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;将文件存为&lt;strong&gt;logo.svg&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;接下来可以在网站中设置CSS来实现特殊的效果了&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;brand-wrapper&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
@@ -97,11 +97,11 @@ As of jQuery 1.7, the &lt;code&gt;.live()&lt;/code&gt; method is deprecated. Use
 
 &lt;p&gt;这里用到了设置Logo经常用使用的方法, &lt;code&gt;text-indent: -9999px;&lt;/code&gt;, 然后设置背景图片.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;brand-wrapper&lt;/code&gt;用来制作圆形边框, 通过微调可实现不同的效果&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Logo" src="/static/images/logo.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Logo" src="/images/logo.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://zoeyyoung.gitcafe.com/lib/brand.html"&gt;Demo&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;这样一个简单的LOGO就完成了, 而且放大网页并不影响显示效果.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Wed, 26 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-26:svg-logo.html</guid><category>前端</category><category>Logo</category><category>SVG</category></item><item><title>[实例] 自动动手制作Pelican主题</title><link>http://zoeyyoung.github.io/pelican-theme.html</link><description>&lt;h3&gt;我创建的主题&lt;/h3&gt;
 &lt;p&gt;&lt;a href="https://github.com/ZoeyYoung/my-pelican-theme"&gt;第1个主题&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="第1个主题" src="/static/images/screenshot.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="第1个主题" src="/images/screenshot.jpg" /&gt;&lt;/p&gt;
 &lt;h3&gt;使用主题&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Specify name of a built-in theme&lt;/span&gt;
 &lt;span class="n"&gt;THEME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;notmyidea&amp;quot;&lt;/span&gt;
@@ -201,23 +201,23 @@ As of jQuery 1.7, the &lt;code&gt;.live()&lt;/code&gt; method is deprecated. Use
 &lt;ul&gt;
 &lt;li&gt;默认&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img alt="1" src="/static/images/Font/默认.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="1" src="/images/Font/默认.jpg" /&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;淘宝 &lt;code&gt;font: 12px/1.5 tahoma,arial,\5b8b\4f53;&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img alt="2" src="/static/images/Font/测试1.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="2" src="/images/Font/测试1.jpg" /&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;font: 62.5%/160% "Microsoft JhengHei","微軟正黑體","Microsoft YaHei","微软雅黑",Verdana, Arial, Helvetica, sans-serif;&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img alt="3" src="/static/images/Font/测试2.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="3" src="/images/Font/测试2.jpg" /&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;谷歌 &lt;code&gt;font: 12px/1.5 arial,sans-serif;&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img alt="4" src="/static/images/Font/测试3.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="4" src="/images/Font/测试3.jpg" /&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;我的设置: &lt;code&gt;font: 16px/1.5 \5fae\8f6f\96c5\9ed1,tahoma,arial,\5b8b\4f53;&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img alt="5" src="/static/images/Font/测试4.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="5" src="/images/Font/测试4.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;主要区别在斜体上&lt;/p&gt;
 &lt;p&gt;12px对于现在的屏幕我感觉太小了, 基本我都得把网页放大了看&lt;/p&gt;
 &lt;hr /&gt;
@@ -382,16 +382,16 @@ As of jQuery 1.7, the &lt;code&gt;.live()&lt;/code&gt; method is deprecated. Use
 &lt;script src="https://gist.github.com/ZoeyYoung/5850742.js"&gt;&lt;/script&gt;
 
 &lt;p&gt;添加样式前:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="顶部导航也显示在打印页中" src="/static/images/print-style-sheet.jpg" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="评论与文章是连续显示的" src="/static/images/print-style-sheet2.jpg" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="底部导航也显示在打印页中" src="/static/images/print-style-sheet3.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="顶部导航也显示在打印页中" src="/images/print-style-sheet.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="评论与文章是连续显示的" src="/images/print-style-sheet2.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="底部导航也显示在打印页中" src="/images/print-style-sheet3.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;添加样式后:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="首页不显示导航了" src="/static/images/print-style-sheet4.jpg" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="评论页单独出来了" src="/static/images/print-style-sheet5.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="首页不显示导航了" src="/images/print-style-sheet4.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="评论页单独出来了" src="/images/print-style-sheet5.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;Chrome的开发人员工具中还有模拟media的功能&lt;/p&gt;
-&lt;p&gt;&lt;img alt="media" src="/static/images/chrome-dev-tool.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="media" src="/images/chrome-dev-tool.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;将&lt;strong&gt;Emulate CSS media&lt;/strong&gt;修改为&lt;strong&gt;print&lt;/strong&gt;后页面显示为&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Emulate CSS media:print" src="/static/images/print-style-sheet6.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Emulate CSS media:print" src="/images/print-style-sheet6.jpg" /&gt;&lt;/p&gt;
 &lt;h3&gt;参考文档:&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://www.webdesignerdepot.com/2010/01/10-tips-for-better-print-style-sheets/"&gt;10 Tips for Better Print Style Sheets&lt;/a&gt;&lt;/li&gt;
@@ -403,7 +403,7 @@ As of jQuery 1.7, the &lt;code&gt;.live()&lt;/code&gt; method is deprecated. Use
 &lt;p&gt;当然和Wordpress中的那么多主题资源不能比了...&lt;/p&gt;
 &lt;p&gt;该主题基于Bootstrap, 很容易进行修改&lt;/p&gt;
 &lt;p&gt;我根据需要进行了一些修改, 先给个原始的截图&lt;/p&gt;
-&lt;p&gt;&lt;img alt="built-texts-screenshot" src="/static/images/build-texts.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="built-texts-screenshot" src="/images/build-texts.png" /&gt;&lt;/p&gt;
 &lt;p&gt;下面记录一些可做的修改和资源&lt;/p&gt;
 &lt;h2&gt;字体&lt;/h2&gt;
 &lt;p&gt;本博客的字体使用到了Google Font API&lt;/p&gt;
@@ -425,7 +425,7 @@ As of jQuery 1.7, the &lt;code&gt;.live()&lt;/code&gt; method is deprecated. Use
 
 &lt;p&gt;使用方法很简单, 就不介绍了, 缺点是只适用于英文字体...&lt;/p&gt;
 &lt;h2&gt;自定义文本选择&lt;/h2&gt;
-&lt;p&gt;&lt;img alt="自定义文本选择" src="/static/images/selection.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="自定义文本选择" src="/images/selection.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;设置选中时的颜色&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="nd"&gt;:selection&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="k"&gt;background&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;#F92659&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;color&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="nb"&gt;white&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="nd"&gt;:-moz-selection&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="k"&gt;background&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;#F92659&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;color&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="nb"&gt;white&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
@@ -472,7 +472,7 @@ As of jQuery 1.7, the &lt;code&gt;.live()&lt;/code&gt; method is deprecated. Use
 
 &lt;p&gt;&lt;a href="http://css-tricks.com/snippets/css/simple-and-nice-blockquote-styling/"&gt;来源&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;给文章图片加边框&lt;/h2&gt;
-&lt;p&gt;&lt;img alt="给文章图片加边框" src="/static/images/img-border.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="给文章图片加边框" src="/images/img-border.jpg" /&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;article&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt; &lt;span class="n"&gt;img&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="nl"&gt;background:&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="mo"&gt;000&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="cm"&gt;/*Change this to a background image or remove*/&lt;/span&gt;
     &lt;span class="nl"&gt;border:&lt;/span&gt;&lt;span class="n"&gt;solid&lt;/span&gt; &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="n"&gt;fff&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;

@@ -106,7 +106,7 @@ You'll love the slick user interface, extraordinary features and amazing perform
 &lt;p&gt;参考&lt;a href="http://thepast.me/post/80017253"&gt;自定义 Markdown 高亮配色方案&lt;/a&gt;, 修改以适应Soda主题(博文中的主题直接用在Soda主题中会有Bug)&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://gist.github.com/ZoeyYoung/5894202"&gt;代码&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;当前博客主题即基于我使用的ST2/3主题设计的&lt;/p&gt;
-&lt;p&gt;&lt;img alt="ST2/3 Theme" src="/static/images/sublime-text-2.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="ST2/3 Theme" src="/images/sublime-text-2.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;在ST3中将自定义的主题放入&lt;strong&gt;ST3\Data\Packages\User&lt;/strong&gt;文件夹中, 即可在&lt;strong&gt;Preferences -&amp;gt; Color Scheme -&amp;gt; User&lt;/strong&gt;中进行选择.&lt;/p&gt;
 &lt;h3&gt;用户配置文件&lt;/h3&gt;
 &lt;p&gt;在使用ST2之前, 对首选项进行适当调整会改进你的体验.&lt;/p&gt;
@@ -1498,7 +1498,7 @@ You'll love the slick user interface, extraordinary features and amazing perform
 子类化以匹配它们的接口. 对象适配器可以适配它的父类接口.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;Head First&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="适配器" src="/static/images/适配器.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="适配器" src="/images/适配器.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;1.真实世界的适配器: 交流电适配器. 【想想相机那个充电器.】&lt;/p&gt;
 &lt;p&gt;2.构造适配器的关键: 实现了目标接口, 并持有被适配者的实例.&lt;/p&gt;
 &lt;p&gt;举一个火鸡冒充鸭子的适配器例子:&lt;/p&gt;
@@ -2628,7 +2628,7 @@ You'll love the slick user interface, extraordinary features and amazing perform
 
 
 &lt;p&gt;Debug:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="字符指针" src="/static/images/字符指针.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="字符指针" src="/images/字符指针.png" /&gt;&lt;/p&gt;
 &lt;p&gt;首先, 这题与是否&lt;code&gt;const&lt;/code&gt;无关.&lt;/p&gt;
 &lt;p&gt;str1, str2, str3, str4都是字符数组, 都有各自的存储区, 它们的值是各自存储区的首地址, 因此各不相等, 输出false.&lt;/p&gt;
 &lt;p&gt;str5与str6为字符指针, 而非字符数组, 先请求的是一个指针的地址(初始化为随机地址), 然后赋值时它们都指向常量字符串"test", "test"存储在&lt;strong&gt;静态存储区&lt;/strong&gt;. 即str5和str6为串"test"的地址, 所以&lt;code&gt;str5==str6&lt;/code&gt;. 二者相等, 输出&lt;code&gt;true&lt;/code&gt;.&lt;/p&gt;
@@ -2886,7 +2886,7 @@ You'll love the slick user interface, extraordinary features and amazing perform
 &lt;/ul&gt;
 &lt;p&gt;抽象工厂的方法经常以&lt;strong&gt;工厂方法&lt;/strong&gt;的方式实现. 抽象工厂的任务是定义一个负责创建一组产品的接口. 这个接口内的每个方法都负责创建一个具体产品, 同时我们利用实现抽象工厂的子类来提供这些具体的做法. 所以, 在抽象工厂中利用工厂方法实现生产方法是相当自然的做法.&lt;/p&gt;
 &lt;p&gt;缺点: 如果加入新产品就必须改变接口, 所有的子类都要相应修改.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="抽象工厂模式结构" src="/static/images/抽象工厂模式结构.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="抽象工厂模式结构" src="/images/抽象工厂模式结构.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;Client仅使用由抽象工厂和抽象产品类声明的接口(解耦)&lt;/p&gt;
 &lt;h3&gt;工厂方法和抽象工厂区别&lt;/h3&gt;
 &lt;p&gt;工厂方法使用的是类, 而抽象工厂使用的是对象.&lt;/p&gt;
@@ -4890,8 +4890,8 @@ You'll love the slick user interface, extraordinary features and amazing perform
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;db&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pymongo&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MongoClient&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;mongodb://username:password@dharma.mongohq.com:10088/bookmarks_cloud&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;bookmarks_cloud&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;</summary><category term="MongoDB"></category><category term="MongoHQ"></category><category term="MongoLib"></category></entry><entry><title>[实例] 彩色固定位置菜单</title><link href="http://zoeyyoung.github.io/fixed-colorful-menu.html" rel="alternate"></link><updated>2013-08-06T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2013-08-06:fixed-colorful-menu.html</id><summary type="html">&lt;p&gt;目前设计的比较满意的菜单, 把代码单独拿出来做成Demo.&lt;/p&gt;
 &lt;p&gt;可用在菜单项不多的应用中.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="menu" src="/static/images/menu.gif" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://zoeyyoung.github.io/lib/menudemo/menu.html"&gt;Demo&lt;/a&gt;&lt;/p&gt;</summary><category term="前端"></category><category term="Menu"></category></entry><entry><title>[基础] 在Python中获得字典列表中最大值与最小值</title><link href="http://zoeyyoung.github.io/python-dict-list-min-max-value.html" rel="alternate"></link><updated>2013-08-06T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2013-08-06:python-dict-list-min-max-value.html</id><summary type="html">&lt;p&gt;假设有字典列表:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="menu" src="/images/menu.gif" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="/lib/menudemo/menu.html"&gt;Demo&lt;/a&gt;&lt;/p&gt;</summary><category term="前端"></category><category term="Menu"></category></entry><entry><title>[基础] 在Python中获得字典列表中最大值与最小值</title><link href="http://zoeyyoung.github.io/python-dict-list-min-max-value.html" rel="alternate"></link><updated>2013-08-06T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2013-08-06:python-dict-list-min-max-value.html</id><summary type="html">&lt;p&gt;假设有字典列表:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;dict_list&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[{&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;price&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;99&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;barcode&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;2342355&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;price&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;88&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;barcode&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;2345566&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;price&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;77&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;barcode&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;2342377&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;}]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -5363,27 +5363,27 @@ As of jQuery 1.7, the &lt;code&gt;.live()&lt;/code&gt; method is deprecated. Use
 &lt;p&gt;进行中....&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://github.com/ZoeyYoung/Bookmarks_Cloud"&gt;项目地址&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;2013/08/07&lt;/p&gt;
-&lt;p&gt;&lt;img alt="界面" src="/static/images/20130807001420.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="界面" src="/images/20130807001420.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;2013/07/27&lt;/p&gt;
-&lt;p&gt;&lt;img alt="界面" src="/static/images/界面20130727.jpg" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="界面" src="/static/images/界面20130727Edit.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="界面" src="/images/界面20130727.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="界面" src="/images/界面20130727Edit.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;书签面板与编辑面板之间的切换用翻转&lt;/p&gt;
-&lt;p&gt;&lt;img alt="菜单" src="/static/images/菜单.jpg" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="菜单搜索" src="/static/images/菜单搜索.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="菜单" src="/images/菜单.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="菜单搜索" src="/images/菜单搜索.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;2013/07/24&lt;/p&gt;
-&lt;p&gt;&lt;img alt="界面" src="/static/images/界面20130724.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="界面" src="/images/界面20130724.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;2013/07/20&lt;/p&gt;
-&lt;p&gt;&lt;img alt="正文提取" src="/static/images/正文提取.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="正文提取" src="/images/正文提取.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;2013/07/01&lt;/p&gt;
 &lt;p&gt;首页，显示所有链接，有分页&lt;/p&gt;
-&lt;p&gt;&lt;img alt="首页" src="/static/images/首页.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="首页" src="/images/首页.png" /&gt;&lt;/p&gt;
 &lt;p&gt;一般使用，当我看到某个网页想保存的时候，通过点击获取信息，可自动获取标题和摘要，设置标签，然后可添加笔记，使用Markdown语法&lt;/p&gt;
-&lt;p&gt;&lt;img alt="添加链接" src="/static/images/添加链接.png" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="添加后" src="/static/images/添加后.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="添加链接" src="/images/添加链接.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="添加后" src="/images/添加后.png" /&gt;&lt;/p&gt;
 &lt;p&gt;通过标签云可快速查看某个类别的链接&lt;/p&gt;
-&lt;p&gt;&lt;img alt="标签云" src="/static/images/标签云.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="标签云" src="/images/标签云.png" /&gt;&lt;/p&gt;
 &lt;p&gt;搜索，包括标签、标题和网址等&lt;/p&gt;
-&lt;p&gt;&lt;img alt="搜索" src="/static/images/搜索.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="搜索" src="/images/搜索.png" /&gt;&lt;/p&gt;
 &lt;p&gt;2013/6/3&lt;/p&gt;
 &lt;p&gt;&lt;img alt="在此输入图片描述" src="http://static.oschina.net/uploads/space/2013/0604/141143_2wb3_567775.png" /&gt;&lt;/p&gt;
 &lt;p&gt;简化了模板，标签云以Tab的形式切换显示，不直接显示在主页&lt;/p&gt;
@@ -6128,7 +6128,7 @@ error: command &lt;span class="s1"&gt;&amp;#39;gcc&amp;#39;&lt;/span&gt; failed 
 
 
 &lt;p&gt;但是这里提供的地址&lt;code&gt;git@gitcafe.com:ZoeyYoung/Hello_Git.git&lt;/code&gt;是SSH的&lt;/p&gt;
-&lt;p&gt;&lt;img alt="ssh" src="/static/images/gitcafe_ssh.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="ssh" src="/images/gitcafe_ssh.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;所以需要配置SSH, &lt;a href="https://gitcafe.com/GitCafe/Help/tree/master/SSH"&gt;相关帮助&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;如果不配置则会出现&lt;code&gt;Permission_denied: Error: Permission denied (publickey)&lt;/code&gt;问题&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;Permission denied (publickey).
@@ -6142,7 +6142,7 @@ and the repository exists.
 &lt;p&gt;但是配置好SSH后, 尝试了下在Windows自带cmd下还是会出现上面的问题&lt;/p&gt;
 &lt;p&gt;原因是SSH的地址是&lt;code&gt;~/.ssh&lt;/code&gt;, 而cmd下并不识别这个地址...因此只能在Git Bash下使用(跟安装时选择的只在Git Bash下使用可能也有关, 没尝试)&lt;/p&gt;
 &lt;p&gt;而我觉得比较方便的方式是使用&lt;code&gt;https&lt;/code&gt;地址&lt;/p&gt;
-&lt;p&gt;&lt;img alt="https" src="/static/images/gitcafe_https.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="https" src="/images/gitcafe_https.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;即把上面的语句改为&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;git remote add origin &lt;span class="s1"&gt;&amp;#39;https://gitcafe.com/ZoeyYoung/Hello_Git.git&amp;#39;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -6206,14 +6206,14 @@ git push
 &lt;li&gt;&lt;a href="http://zengrong.net/post/1722.htm"&gt;使用Git、Git GUI和TortoiseGit&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="Git"></category><category term="Windows"></category><category term="Git Bash"></category><category term="SSH"></category><category term="配置"></category><category term="安装"></category></entry><entry><title>[实例] 使用SVG制作简单LOGO</title><link href="http://zoeyyoung.github.io/svg-logo.html" rel="alternate"></link><updated>2013-06-26T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2013-06-26:svg-logo.html</id><summary type="html">&lt;h3&gt;什么是SVG?&lt;/h3&gt;
 &lt;p&gt;&lt;a href="http://zh.wikipedia.org/wiki/SVG"&gt;维基&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="位图和矢量图" src="/static/images/Bitmap_VS_SVG.svg.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="位图和矢量图" src="/images/Bitmap_VS_SVG.svg.png" /&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;这张图片展示了位图和矢量图的区别。位图是由点构成的，矢量图则是由一些形状元素构成。该图中显示放大位图可以看到点，而放大矢量图看到的仍然是形状。SVG属于矢量图，因此能够无级缩放，而不会导致马赛克。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3&gt;开始制作&lt;/h3&gt;
 &lt;p&gt;首先在&lt;a href="http://www.google.com/fonts/"&gt;Google Font&lt;/a&gt;选择一款字体, 其它地方也可以..&lt;/p&gt;
 &lt;p&gt;我选了&lt;strong&gt;Lobster&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Lobster" src="/static/images/Lobster.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Lobster" src="/images/Lobster.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;使用&lt;a href="http://inkscape.org/download/"&gt;Inkscape&lt;/a&gt;制作&lt;strong&gt;.svg&lt;/strong&gt;文件&lt;/p&gt;
 &lt;p&gt;参考&lt;a href="http://inkscape.org/doc/advanced/tutorial-advanced.zh_CN.html"&gt;教程&lt;/a&gt;中创建文本部分&lt;/p&gt;
 &lt;p&gt;快捷键&lt;/p&gt;
@@ -6225,10 +6225,10 @@ git push
 &lt;/ul&gt;
 &lt;p&gt;可单独调整每个文字的大小&lt;/p&gt;
 &lt;p&gt;制作后的效果:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Inkscape" src="/static/images/Inkscape.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Inkscape" src="/images/Inkscape.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;这里我只使用了最基础的功能, 因为也是第一次用...还有很多功能值得探索&lt;/p&gt;
 &lt;p&gt;在&lt;strong&gt;Document Properties&lt;/strong&gt;中可调整画布大小&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Inkscape" src="/static/images/Inkscape2.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Inkscape" src="/images/Inkscape2.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;将文件存为&lt;strong&gt;logo.svg&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;接下来可以在网站中设置CSS来实现特殊的效果了&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;brand-wrapper&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
@@ -6262,11 +6262,11 @@ git push
 
 &lt;p&gt;这里用到了设置Logo经常用使用的方法, &lt;code&gt;text-indent: -9999px;&lt;/code&gt;, 然后设置背景图片.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;brand-wrapper&lt;/code&gt;用来制作圆形边框, 通过微调可实现不同的效果&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Logo" src="/static/images/logo.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Logo" src="/images/logo.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://zoeyyoung.gitcafe.com/lib/brand.html"&gt;Demo&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;这样一个简单的LOGO就完成了, 而且放大网页并不影响显示效果.&lt;/p&gt;</summary><category term="前端"></category><category term="Logo"></category><category term="SVG"></category></entry><entry><title>[实例] 自动动手制作Pelican主题</title><link href="http://zoeyyoung.github.io/pelican-theme.html" rel="alternate"></link><updated>2013-06-25T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2013-06-25:pelican-theme.html</id><summary type="html">&lt;h3&gt;我创建的主题&lt;/h3&gt;
 &lt;p&gt;&lt;a href="https://github.com/ZoeyYoung/my-pelican-theme"&gt;第1个主题&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="第1个主题" src="/static/images/screenshot.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="第1个主题" src="/images/screenshot.jpg" /&gt;&lt;/p&gt;
 &lt;h3&gt;使用主题&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Specify name of a built-in theme&lt;/span&gt;
 &lt;span class="n"&gt;THEME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;notmyidea&amp;quot;&lt;/span&gt;
@@ -6366,23 +6366,23 @@ git push
 &lt;ul&gt;
 &lt;li&gt;默认&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img alt="1" src="/static/images/Font/默认.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="1" src="/images/Font/默认.jpg" /&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;淘宝 &lt;code&gt;font: 12px/1.5 tahoma,arial,\5b8b\4f53;&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img alt="2" src="/static/images/Font/测试1.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="2" src="/images/Font/测试1.jpg" /&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;font: 62.5%/160% "Microsoft JhengHei","微軟正黑體","Microsoft YaHei","微软雅黑",Verdana, Arial, Helvetica, sans-serif;&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img alt="3" src="/static/images/Font/测试2.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="3" src="/images/Font/测试2.jpg" /&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;谷歌 &lt;code&gt;font: 12px/1.5 arial,sans-serif;&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img alt="4" src="/static/images/Font/测试3.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="4" src="/images/Font/测试3.jpg" /&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;我的设置: &lt;code&gt;font: 16px/1.5 \5fae\8f6f\96c5\9ed1,tahoma,arial,\5b8b\4f53;&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img alt="5" src="/static/images/Font/测试4.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="5" src="/images/Font/测试4.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;主要区别在斜体上&lt;/p&gt;
 &lt;p&gt;12px对于现在的屏幕我感觉太小了, 基本我都得把网页放大了看&lt;/p&gt;
 &lt;hr /&gt;
@@ -6547,16 +6547,16 @@ git push
 &lt;script src="https://gist.github.com/ZoeyYoung/5850742.js"&gt;&lt;/script&gt;
 
 &lt;p&gt;添加样式前:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="顶部导航也显示在打印页中" src="/static/images/print-style-sheet.jpg" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="评论与文章是连续显示的" src="/static/images/print-style-sheet2.jpg" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="底部导航也显示在打印页中" src="/static/images/print-style-sheet3.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="顶部导航也显示在打印页中" src="/images/print-style-sheet.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="评论与文章是连续显示的" src="/images/print-style-sheet2.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="底部导航也显示在打印页中" src="/images/print-style-sheet3.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;添加样式后:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="首页不显示导航了" src="/static/images/print-style-sheet4.jpg" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="评论页单独出来了" src="/static/images/print-style-sheet5.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="首页不显示导航了" src="/images/print-style-sheet4.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="评论页单独出来了" src="/images/print-style-sheet5.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;Chrome的开发人员工具中还有模拟media的功能&lt;/p&gt;
-&lt;p&gt;&lt;img alt="media" src="/static/images/chrome-dev-tool.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="media" src="/images/chrome-dev-tool.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;将&lt;strong&gt;Emulate CSS media&lt;/strong&gt;修改为&lt;strong&gt;print&lt;/strong&gt;后页面显示为&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Emulate CSS media:print" src="/static/images/print-style-sheet6.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Emulate CSS media:print" src="/images/print-style-sheet6.jpg" /&gt;&lt;/p&gt;
 &lt;h3&gt;参考文档:&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://www.webdesignerdepot.com/2010/01/10-tips-for-better-print-style-sheets/"&gt;10 Tips for Better Print Style Sheets&lt;/a&gt;&lt;/li&gt;
@@ -6568,7 +6568,7 @@ git push
 &lt;p&gt;当然和Wordpress中的那么多主题资源不能比了...&lt;/p&gt;
 &lt;p&gt;该主题基于Bootstrap, 很容易进行修改&lt;/p&gt;
 &lt;p&gt;我根据需要进行了一些修改, 先给个原始的截图&lt;/p&gt;
-&lt;p&gt;&lt;img alt="built-texts-screenshot" src="/static/images/build-texts.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="built-texts-screenshot" src="/images/build-texts.png" /&gt;&lt;/p&gt;
 &lt;p&gt;下面记录一些可做的修改和资源&lt;/p&gt;
 &lt;h2&gt;字体&lt;/h2&gt;
 &lt;p&gt;本博客的字体使用到了Google Font API&lt;/p&gt;
@@ -6590,7 +6590,7 @@ git push
 
 &lt;p&gt;使用方法很简单, 就不介绍了, 缺点是只适用于英文字体...&lt;/p&gt;
 &lt;h2&gt;自定义文本选择&lt;/h2&gt;
-&lt;p&gt;&lt;img alt="自定义文本选择" src="/static/images/selection.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="自定义文本选择" src="/images/selection.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;设置选中时的颜色&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="nd"&gt;:selection&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="k"&gt;background&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;#F92659&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;color&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="nb"&gt;white&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="nd"&gt;:-moz-selection&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="k"&gt;background&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;#F92659&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;color&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="nb"&gt;white&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
@@ -6637,7 +6637,7 @@ git push
 
 &lt;p&gt;&lt;a href="http://css-tricks.com/snippets/css/simple-and-nice-blockquote-styling/"&gt;来源&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;给文章图片加边框&lt;/h2&gt;
-&lt;p&gt;&lt;img alt="给文章图片加边框" src="/static/images/img-border.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="给文章图片加边框" src="/images/img-border.jpg" /&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;article&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt; &lt;span class="n"&gt;img&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="nl"&gt;background:&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="mo"&gt;000&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="cm"&gt;/*Change this to a background image or remove*/&lt;/span&gt;
     &lt;span class="nl"&gt;border:&lt;/span&gt;&lt;span class="n"&gt;solid&lt;/span&gt; &lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="n"&gt;fff&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -6671,8 +6671,8 @@ git push
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://www.hongkiat.com/blog/css-snippets-for-designers/"&gt;50 Useful CSS Snippets Every Designer Should Have&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="CSS"></category><category term="HTML"></category></entry><entry><title>[记录] 使用GIST管理常用代码</title><link href="http://zoeyyoung.github.io/gist.html" rel="alternate"></link><updated>2013-06-20T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2013-06-20:gist.html</id><summary type="html">&lt;p&gt;&lt;a href="https://gist.github.com/ZoeyYoung"&gt;我的GIST&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Sublime Text 2 + GIST 插件, 用得很爽&lt;/p&gt;</summary><category term="GIST"></category><category term="GitHub"></category></entry><entry><title>[项目] 书签云项目的Chrome浏览器插件</title><link href="http://zoeyyoung.github.io/chrome-ext-dev.html" rel="alternate"></link><updated>2013-06-17T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2013-06-17:chrome-ext-dev.html</id><summary type="html">&lt;p&gt;&lt;img alt="1" src="/static/images/ChromeExt/截图.jpg" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="2" src="/static/images/ChromeExt/截图2.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;Sublime Text 2 + GIST 插件, 用得很爽&lt;/p&gt;</summary><category term="GIST"></category><category term="GitHub"></category></entry><entry><title>[项目] 书签云项目的Chrome浏览器插件</title><link href="http://zoeyyoung.github.io/chrome-ext-dev.html" rel="alternate"></link><updated>2013-06-17T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2013-06-17:chrome-ext-dev.html</id><summary type="html">&lt;p&gt;&lt;img alt="1" src="/images/ChromeExt/截图.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="2" src="/images/ChromeExt/截图2.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;创建&lt;strong&gt;manifest.json&lt;/strong&gt;文件&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="s2"&gt;&amp;quot;manifest_version&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
@@ -6740,28 +6740,28 @@ git push
 &lt;/ul&gt;
 &lt;h3&gt;安装Openfire(当前版本3.8.2)&lt;/h3&gt;
 &lt;p&gt;普通安装包, 像正常安装软件一样安装就行了&lt;/p&gt;
-&lt;p&gt;&lt;img alt="1" src="/static/images/XMPP/openfire_1.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="1" src="/images/XMPP/openfire_1.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;首次需配置, 后面仍可在管理控制台进行更改&lt;/p&gt;
 &lt;p&gt;goingmerry为我的主机名, 相当于localhost&lt;/p&gt;
-&lt;p&gt;&lt;img alt="2" src="/static/images/XMPP/openfire_2.jpg" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="3" src="/static/images/XMPP/openfire_3.jpg" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="4" src="/static/images/XMPP/openfire_4.jpg" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="5" src="/static/images/XMPP/openfire_5.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="2" src="/images/XMPP/openfire_2.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="3" src="/images/XMPP/openfire_3.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="4" src="/images/XMPP/openfire_4.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="5" src="/images/XMPP/openfire_5.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;需要打开OpenFire的&lt;strong&gt;http-binding&lt;/strong&gt;. 具体为登录后台管理界面。&lt;/p&gt;
 &lt;p&gt;服务器 -&amp;gt; 服务器设置 -&amp;gt; Http绑定(英文界面：Server -&amp;gt; Server Settings -&amp;gt; Http Binding)&lt;/p&gt;
-&lt;p&gt;&lt;img alt="6" src="/static/images/XMPP/openfire_6.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="6" src="/images/XMPP/openfire_6.jpg" /&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;启用 - 客户端能使用HTTP绑定连接到这台服务器&lt;/li&gt;
 &lt;li&gt;Script Syntax - Enabled - Allows BOSH Clients With Limited Access to Connect to the Server&lt;/li&gt;
 &lt;li&gt;端口按默认的。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;安装Spark(当前版本2.6.3), 用于测试&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="7" src="/static/images/XMPP/openfire_7.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="7" src="/images/XMPP/openfire_7.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;下面两图设置是对应的&lt;/p&gt;
-&lt;p&gt;&lt;img alt="8" src="/static/images/XMPP/openfire_8.jpg" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="9" src="/static/images/XMPP/openfire_9.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="8" src="/images/XMPP/openfire_8.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="9" src="/images/XMPP/openfire_9.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;可在Spark中建立新帐号&lt;/p&gt;
-&lt;p&gt;&lt;img alt="10" src="/static/images/XMPP/openfire_10.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="10" src="/images/XMPP/openfire_10.jpg" /&gt;&lt;/p&gt;
 &lt;h3&gt;Nginx的配置&lt;/h3&gt;
 &lt;p&gt;下载Nginx(当前版本1.5.1): http://nginx.org/en/download.html&lt;/p&gt;
 &lt;p&gt;打开nginx的配置文件&lt;strong&gt;conf/nginx.conf&lt;/strong&gt;，增加如下行：&lt;/p&gt;
@@ -6795,7 +6795,7 @@ git push
 
 &lt;p&gt;在浏览器中打开：http://localhost/strophejs/examples/echobot.html&lt;/p&gt;
 &lt;p&gt;使用Openfire中的用户进行登录, 点击连接成功后, 如图.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="11" src="/static/images/XMPP/openfire_11.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="11" src="/images/XMPP/openfire_11.jpg" /&gt;&lt;/p&gt;
 &lt;h3&gt;Apache的配置&lt;/h3&gt;
 &lt;p&gt;在&lt;strong&gt;httpd.conf&lt;/strong&gt;中加入下面几行：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;LoadModule&lt;/span&gt; &lt;span class="n"&gt;proxy_module&lt;/span&gt; &lt;span class="n"&gt;modules&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;mod_proxy&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;so&lt;/span&gt;
@@ -6812,7 +6812,7 @@ git push
 &lt;p&gt;我的项目实现了许多常用功能, 包括群聊, 状态设置, 个人名片等..&lt;/p&gt;
 &lt;p&gt;代码未整理, 整理后再传到GitHub上&lt;/p&gt;
 &lt;p&gt;与Spark进行通信, 如图&lt;/p&gt;
-&lt;p&gt;&lt;img alt="12" src="/static/images/XMPP/openfire_12.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="12" src="/images/XMPP/openfire_12.jpg" /&gt;&lt;/p&gt;
 &lt;h3&gt;参考文档&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://gist.github.com/makoto/272956"&gt;A short tutorial on Echobot by Alfred Westerveld&lt;/a&gt;&lt;/li&gt;
@@ -6851,40 +6851,40 @@ git push
 &lt;p&gt;Ubuntu下应该没这个问题吧...&lt;/p&gt;</summary><category term="pelican"></category></entry><entry><title>[项目] LinksBox</title><link href="http://zoeyyoung.github.io/linksbox-flask-project.html" rel="alternate"></link><updated>2013-06-13T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2013-06-13:linksbox-flask-project.html</id><summary type="html">&lt;p&gt;基于Flask, 数据库使用sqlite&lt;/p&gt;
 &lt;p&gt;多用户, 类似微博, 可关注(取消关注)别人的收藏夹&lt;/p&gt;
 &lt;p&gt;首页，显示所有链接&lt;/p&gt;
-&lt;p&gt;&lt;img alt="1" src="/static/images/Flask.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="1" src="/images/Flask.png" /&gt;&lt;/p&gt;
 &lt;p&gt;添加链接&lt;/p&gt;
-&lt;p&gt;&lt;img alt="2" src="/static/images/Flask2.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="2" src="/images/Flask2.png" /&gt;&lt;/p&gt;
 &lt;p&gt;注: 一开始想实现的功能比较复杂, 后面想保持简单, 因此用Tornado实现了另一个个人使用的版本, 个人使用中...&lt;/p&gt;</summary><category term="Flask"></category><category term="Python"></category><category term="Web"></category></entry><entry><title>[项目] Web IM</title><link href="http://zoeyyoung.github.io/web-im-project.html" rel="alternate"></link><updated>2013-06-13T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2013-06-13:web-im-project.html</id><summary type="html">&lt;p&gt;在永中实习期间的项目, 独立维护, 对公司原有的代码进行了大量的修改, 解决了大量Bug, 并对原有代码进行了重构、优化&lt;/p&gt;
 &lt;p&gt;项目主要使用到了ExtJS, jQuery, 使用DWR进行数据推送与Ajax数据获取&lt;/p&gt;
 &lt;p&gt;在这里只给出截图&lt;/p&gt;
 &lt;p&gt;联系人界面, 可收进, 展开, 模仿新浪微博&lt;/p&gt;
-&lt;p&gt;&lt;img alt="1" src="/static/images/IM/1.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="1" src="/images/IM/1.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;主聊天界面, 主要使用了ExtJS组件实现&lt;/p&gt;
-&lt;p&gt;&lt;img alt="2" src="/static/images/IM/2.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="2" src="/images/IM/2.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;在有新消息时, 会有声音提醒, 闪动提醒, 高亮提醒&lt;/p&gt;
-&lt;p&gt;&lt;img alt="3" src="/static/images/IM/3.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="3" src="/images/IM/3.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;悬浮可出现消息列表&lt;/p&gt;
-&lt;p&gt;&lt;img alt="4" src="/static/images/IM/4.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="4" src="/images/IM/4.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;联系人资料&lt;/p&gt;
-&lt;p&gt;&lt;img alt="5" src="/static/images/IM/5.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="5" src="/images/IM/5.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;创建讨论组&lt;/p&gt;
-&lt;p&gt;&lt;img alt="6" src="/static/images/IM/6.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="6" src="/images/IM/6.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;查找联系人&lt;/p&gt;
-&lt;p&gt;&lt;img alt="7" src="/static/images/IM/7.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="7" src="/images/IM/7.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;添加联系人&lt;/p&gt;
-&lt;p&gt;&lt;img alt="8" src="/static/images/IM/8.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="8" src="/images/IM/8.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;查找讨论组&lt;/p&gt;
-&lt;p&gt;&lt;img alt="9" src="/static/images/IM/9.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="9" src="/images/IM/9.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;加入讨论组&lt;/p&gt;
-&lt;p&gt;&lt;img alt="10" src="/static/images/IM/10.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="10" src="/images/IM/10.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;添加好友提醒&lt;/p&gt;
-&lt;p&gt;&lt;img alt="11" src="/static/images/IM/11.jpg" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="14" src="/static/images/IM/14.jpg" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="15" src="/static/images/IM/15.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="11" src="/images/IM/11.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="14" src="/images/IM/14.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="15" src="/images/IM/15.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;历史记录&lt;/p&gt;
-&lt;p&gt;&lt;img alt="12" src="/static/images/IM/12.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="12" src="/images/IM/12.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;右键菜单&lt;/p&gt;
-&lt;p&gt;&lt;img alt="13" src="/static/images/IM/13.jpg" /&gt;&lt;/p&gt;</summary><category term="ExtJS"></category><category term="jQuery"></category><category term="DWR"></category><category term="Java EE"></category><category term="Spring"></category></entry><entry><title>[算法] 子数组的最大乘积</title><link href="http://zoeyyoung.github.io/find-max-multiply.html" rel="alternate"></link><updated>2013-06-04T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2013-06-04:find-max-multiply.html</id><summary type="html">&lt;p&gt;《编程之美》2.13 子数组的最大乘积&lt;/p&gt;
+&lt;p&gt;&lt;img alt="13" src="/images/IM/13.jpg" /&gt;&lt;/p&gt;</summary><category term="ExtJS"></category><category term="jQuery"></category><category term="DWR"></category><category term="Java EE"></category><category term="Spring"></category></entry><entry><title>[算法] 子数组的最大乘积</title><link href="http://zoeyyoung.github.io/find-max-multiply.html" rel="alternate"></link><updated>2013-06-04T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2013-06-04:find-max-multiply.html</id><summary type="html">&lt;p&gt;《编程之美》2.13 子数组的最大乘积&lt;/p&gt;
 &lt;p&gt;题目: 给定一个长度为N的整数数组, 只允许用乘法, 不能用除法, 计算任意(N-1)个数的组合乘积中最大的一组, 并写出算法的时间复杂度.&lt;/p&gt;
 &lt;p&gt;一开始想到的就是给的第二种解法. 有谁会一开始就去算乘积吗?&lt;/p&gt;
 &lt;ul&gt;
@@ -7410,7 +7410,7 @@ git push
 &lt;p&gt;参考整合上面两篇，做了个Demo，中文乱码问题用第三篇解决&lt;/p&gt;
 &lt;p&gt;需要&lt;a href="http://www.oracle.com/technetwork/java/javamail/index.html"&gt;JavaMail的jar包&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Demo结构&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Demo结构" src="/static/images/javamail-verify-user.gif" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Demo结构" src="/images/javamail-verify-user.gif" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;MailInfo.java&lt;/strong&gt; 邮件相关信息&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;package&lt;/span&gt; &lt;span class="n"&gt;zoey&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;model&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
 
@@ -7846,7 +7846,7 @@ sudo apt-get install oracle-java7-installer
 
 
 &lt;p&gt;对数据进行修改即可&lt;/p&gt;
-&lt;p&gt;&lt;img alt="注册表中修改" src="/static/images/default-folder.gif" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="注册表中修改" src="/images/default-folder.gif" /&gt;&lt;/p&gt;
 &lt;p&gt;修改后可能要重启explorer才生效&lt;/p&gt;
 &lt;h3&gt;懒人&lt;/h3&gt;
 &lt;p&gt;可将相应设置存为".reg"文件，在重装系统后可直接导入注册表&lt;/p&gt;
@@ -8268,7 +8268,7 @@ sudo apt-get install oracle-java7-installer
  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;jdbcGroupProvider.loadMembersSQL&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;SELECT uid FROM groupusers WHERE groupName=? AND admin=0&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;jdbcGroupProvider.userGroupsSQL&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;SELECT groupName from groupusers WHERE uid=?&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="c1"&gt;-----------------------------------------------------------------------------------------------------------&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="Openfire"></category><category term="数据库"></category><category term="XMPP"></category><category term="MySQL"></category></entry><entry><title>[解决] GitHub图标变方块</title><link href="http://zoeyyoung.github.io/github-webfont.html" rel="alternate"></link><updated>2012-10-01T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2012-10-01:github-webfont.html</id><summary type="html">&lt;p&gt;&lt;img alt="图标变方块" src="/static/images/方块.png" /&gt;&lt;/p&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="Openfire"></category><category term="数据库"></category><category term="XMPP"></category><category term="MySQL"></category></entry><entry><title>[解决] GitHub图标变方块</title><link href="http://zoeyyoung.github.io/github-webfont.html" rel="alternate"></link><updated>2012-10-01T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2012-10-01:github-webfont.html</id><summary type="html">&lt;p&gt;&lt;img alt="图标变方块" src="/images/方块.png" /&gt;&lt;/p&gt;
 &lt;p&gt;之前在Chrome中使用GitHub的时候看着图标一直是方块的, 以为原来就是那样设计的- -&lt;/p&gt;
 &lt;p&gt;后来感觉不应该, 在IE中打开才发现原来是有图标的, 然后才发现原来是使用如下插件设置了字体的关系, 只能删除了...&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://chrome.google.com/webstore/detail/force-microsoft-yahei-fon/ojlocjfaheiilmgjdgnoehhdigfedhjl"&gt;Force Microsoft Yahei Font&lt;/a&gt;&lt;/p&gt;
@@ -8409,7 +8409,7 @@ sudo apt-get install oracle-java7-installer
 &lt;h3&gt;6 解释.&lt;/h3&gt;
 &lt;p&gt;如果你说一件事的时候不断有人打断你问你刚说的东西. 你有可能就要意识到要不你说的问题太难了, 要不你就没有把问题说清楚, 因此再多的解释可能都无助于最终把事情说清楚. 对于写代码, 注释就是解释. 除非在非常必要的时候进行适当的注释, 否则只会增加阅读代码"噪声". 写一些"挂羊头卖狗肉"的注释更是害人非浅.&lt;/p&gt;
 &lt;p&gt;很多时候对于同一个问题我们可能说得很好, 却没办法去用代码自然表达, 原因就在于编程的时候太关注编程技术和语言本身了, 而忽略了生活中自然的表达. 不过说是一回事, 实际做起来又是另一回事. 尽管在平常的编程实践中我经常提醒自己注意这些, 但还是会有言行不一的时候. 所以也希望以此博文和大家共勉.&lt;/p&gt;
-&lt;p&gt;本文出自 "林家男孩" 博客, 请务必保留此出处 http://bj007.blog.51cto.com/1701577/330932&lt;/p&gt;</summary><category term="编程"></category><category term="经验"></category><category term="收藏"></category></entry><entry><title>[软件] Terminator</title><link href="http://zoeyyoung.github.io/terminator-software.html" rel="alternate"></link><updated>2012-07-08T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2012-07-08:terminator-software.html</id><summary type="html">&lt;p&gt;&lt;img alt="terminator" src="/static/images/terminator.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;本文出自 "林家男孩" 博客, 请务必保留此出处 http://bj007.blog.51cto.com/1701577/330932&lt;/p&gt;</summary><category term="编程"></category><category term="经验"></category><category term="收藏"></category></entry><entry><title>[软件] Terminator</title><link href="http://zoeyyoung.github.io/terminator-software.html" rel="alternate"></link><updated>2012-07-08T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2012-07-08:terminator-software.html</id><summary type="html">&lt;p&gt;&lt;img alt="terminator" src="/images/terminator.jpg" /&gt;&lt;/p&gt;
 &lt;h2&gt;安装Terminator&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;aptitude&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;terminator&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -8461,7 +8461,7 @@ sudo apt-get install oracle-java7-installer
 
 &lt;p&gt;将上面的代码保存为“*.reg”文件，例如，“清空回车站.reg”&lt;/p&gt;
 &lt;p&gt;运行后，会写注册表，结果如下图：&lt;/p&gt;
-&lt;p&gt;&lt;img alt="recyle" src="/static/images/recyle.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="recyle" src="/images/recyle.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;还有一种方法就是&lt;a href="http://jingyan.baidu.com/article/8275fc86dcd94946a03cf6ae.html"&gt;在任务栏添加回车站&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;尝试了下可行，但是占用任务栏位置，因此，还是决定放在桌面右键里面&lt;/p&gt;</summary><category term="Windows"></category><category term="注册表"></category><category term="右键"></category><category term="桌面"></category><category term="菜单"></category></entry><entry><title>[安装配置] RVM</title><link href="http://zoeyyoung.github.io/ruby-rvm.html" rel="alternate"></link><updated>2012-06-24T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2012-06-24:ruby-rvm.html</id><summary type="html">&lt;p&gt;rvm是一个命令行工具，可以提供一个便捷的多版本ruby环境的管理和切换。&lt;/p&gt;
 &lt;p&gt;https://rvm.io/&lt;/p&gt;
@@ -8806,7 +8806,7 @@ sudo apt-get install oracle-java7-installer
 &lt;p&gt;简单发生在用户的头脑中　　184&lt;/p&gt;</summary><category term="读书"></category><category term="Book"></category></entry><entry><title>[软件] DeskPins 窗口置顶</title><link href="http://zoeyyoung.github.io/software-deskpins.html" rel="alternate"></link><updated>2012-06-22T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2012-06-22:software-deskpins.html</id><summary type="html">&lt;p&gt;工欲善其事,必先利其器！&lt;/p&gt;
 &lt;p&gt;介绍一款窗口置顶软件&lt;strong&gt;DeskPins&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;DeskPins可一键将Windows桌面常用窗口钉在最前端，类似于视频软件的&lt;strong&gt;“始终保持在最前”&lt;/strong&gt;的功能&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Deskpins" src="/static/images/deskpins.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Deskpins" src="/images/deskpins.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;DeskPins算是我的常用软件之一，主要用在两个方面:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -9026,7 +9026,7 @@ sudo apt-get install fcitx-table-
 &lt;h3&gt;解法方案&lt;/h3&gt;
 &lt;p&gt;因为鼠标点不到屏幕外, 只能用键盘了..这时快捷键就派上用场了..&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;alt+空格&lt;/code&gt;，然后点&lt;code&gt;M&lt;/code&gt;键，然后用方向键或鼠标把窗口拖回来(方向键要多按一会..)&lt;/p&gt;
-&lt;p&gt;&lt;img alt="将窗口移回" src="/static/images/move-back.jpg" /&gt;&lt;/p&gt;</summary><category term="Windows"></category><category term="Tips"></category><category term="窗口"></category><category term="桌面"></category></entry><entry><title>[项目] 数据挖掘——Wine Data Set</title><link href="http://zoeyyoung.github.io/data-mining-wine-data-set-project.html" rel="alternate"></link><updated>2011-11-18T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2011-11-18:data-mining-wine-data-set-project.html</id><summary type="html">&lt;h1&gt;数据源&lt;/h1&gt;
+&lt;p&gt;&lt;img alt="将窗口移回" src="/images/move-back.jpg" /&gt;&lt;/p&gt;</summary><category term="Windows"></category><category term="Tips"></category><category term="窗口"></category><category term="桌面"></category></entry><entry><title>[项目] 数据挖掘——Wine Data Set</title><link href="http://zoeyyoung.github.io/data-mining-wine-data-set-project.html" rel="alternate"></link><updated>2011-11-18T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2011-11-18:data-mining-wine-data-set-project.html</id><summary type="html">&lt;h1&gt;数据源&lt;/h1&gt;
 &lt;p&gt;&lt;a href="http://archive.ics.uci.edu/ml/datasets/Wine"&gt;来源&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;数据源的完整名称是&lt;strong&gt;Wine Data Set&lt;/strong&gt;，是对3种不同的酒进行分类。这三种酒包括13种不同的属性，分别为：Alcohol, Malic acid, Ash, Alcalinity of ash, Magnesium, Total phenols, Flavanoids, Nonflavanoid phenols, Proanthocyanins, Color intensity, Hue, OD280/OD315 of diluted wines, Proline. 在“wine.data”文件中, 每行代表一种酒的样本, 共有178个样本; 一共有14列, 其中, 第一列为类标志属性, 共有三类, 分别记为“1”, “2”, “3”; 后面的13列为每个样本的对应属性的样本值. 其中第1类有59个样本，第2类有71个样本，第3类有48个样本。&lt;/p&gt;
 &lt;h1&gt;算法介绍&lt;/h1&gt;
@@ -9081,7 +9081,7 @@ sudo apt-get install fcitx-table-
 
 
 &lt;h2&gt;结果展示&lt;/h2&gt;
-&lt;p&gt;&lt;img alt="朴素贝叶斯" src="/static/images/朴素贝叶斯.gif" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="朴素贝叶斯" src="/images/朴素贝叶斯.gif" /&gt;&lt;/p&gt;
 &lt;h1&gt;KNN算法简介&lt;/h1&gt;
 &lt;p&gt;基于类比学习，通过比较训练元组和测试元组的相似度来学习。&lt;/p&gt;
 &lt;p&gt;将训练元组和测试元组看作是n维（若元组有n的属性）空间内的点，给定一条测试元组，搜索n维空间，找出与测试元组最相近的k个点（即训练元组），最后取这k个点中的多数类作为测试元组的类别。&lt;/p&gt;
@@ -9108,42 +9108,42 @@ sudo apt-get install fcitx-table-
 
 
 &lt;h2&gt;结果展示&lt;/h2&gt;
-&lt;p&gt;&lt;img alt="KNN" src="/static/images/KNN.gif" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="KNN" src="/images/KNN.gif" /&gt;&lt;/p&gt;
 &lt;h1&gt;项目结构&lt;/h1&gt;
-&lt;p&gt;&lt;img alt="项目结构" src="/static/images/数据挖掘.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="项目结构" src="/images/数据挖掘.png" /&gt;&lt;/p&gt;
 &lt;p&gt;算法的实现在KNN.java与NaiveBayes.java中。&lt;/p&gt;
 &lt;p&gt;Data.java用来获取数据并含有对数据进行预处理的算法。&lt;/p&gt;
 &lt;p&gt;ModelAssessment用来保存模型评估相关数据，暂时只保存正确率、错误率与算法执行时间。其它包中文件为数据库与Servlet相关。&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://github.com/ZoeyYoung/wine-data-set"&gt;源代码&lt;/a&gt;&lt;/p&gt;</summary><category term="Servlet"></category><category term="数据挖掘"></category></entry><entry><title>[项目] 中外合作办学管理平台的设计和实现</title><link href="http://zoeyyoung.github.io/cfce-project.html" rel="alternate"></link><updated>2011-06-01T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2011-06-01:cfce-project.html</id><summary type="html">&lt;h2&gt;研究背景&lt;/h2&gt;
 &lt;p&gt;中外合作办学是指中国教育机构与外国教育机构依法在中国境内合作举办以中国公民为主要招生对象的教育教学活动。&lt;/p&gt;
 &lt;p&gt;本系统以我校卡耐基梅隆合作办学为背景，采用Java EE进行开发，设计B/S结构的信息管理系统，能够做到统一的项目宣传和信息服务功能。&lt;/p&gt;
-&lt;p&gt;&lt;img alt="1" src="/static/images/CFCE/网站设计1.png" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="2" src="/static/images/CFCE/网站设计2.png" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="3" src="/static/images/CFCE/中外合作办学项目.jpg" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="4" src="/static/images/CFCE/中外合作办学项目文章.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="1" src="/images/CFCE/网站设计1.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="2" src="/images/CFCE/网站设计2.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="3" src="/images/CFCE/中外合作办学项目.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="4" src="/images/CFCE/中外合作办学项目文章.jpg" /&gt;&lt;/p&gt;
 &lt;h1&gt;系统开发技术&lt;/h1&gt;
-&lt;p&gt;&lt;img alt="5" src="/static/images/CFCE/技术.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="5" src="/images/CFCE/技术.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;在前台开发中，使用了FreeMarker作为表现层的实现技术。&lt;/p&gt;
 &lt;p&gt;FreeMarker是一个用Java语言编写的模板引擎，它基于模板来生成文本输出。
 使用FreeMarker可以彻底的分离表现层和业务逻辑。&lt;/p&gt;
-&lt;p&gt;&lt;img alt="6" src="/static/images/CFCE/Freemarker.jpg" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="7" src="/static/images/CFCE/框架.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="6" src="/images/CFCE/Freemarker.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="7" src="/images/CFCE/框架.jpg" /&gt;&lt;/p&gt;
 &lt;h2&gt;系统功能介绍&lt;/h2&gt;
-&lt;p&gt;&lt;img alt="8" src="/static/images/CFCE/功能.jpg" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="9" src="/static/images/CFCE/申请项目流程.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="8" src="/images/CFCE/功能.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="9" src="/images/CFCE/申请项目流程.jpg" /&gt;&lt;/p&gt;
 &lt;h2&gt;页面展示&lt;/h2&gt;
-&lt;p&gt;&lt;img alt="10" src="/static/images/CFCE/后台管理.gif" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="11" src="/static/images/CFCE/主页中文.gif" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="12" src="/static/images/CFCE/主页英文.gif" /&gt;&lt;/p&gt;</summary><category term="Java EE"></category><category term="Hibernate"></category><category term="Struts2"></category></entry><entry><title>[备忘] 8080端口被占用</title><link href="http://zoeyyoung.github.io/tomcat-cant-start.html" rel="alternate"></link><updated>2011-05-03T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2011-05-03:tomcat-cant-start.html</id><summary type="html">&lt;p&gt;用tomcat的时候出现tomcat启动不起来多数情况是由于8080端口被占用&lt;/p&gt;
+&lt;p&gt;&lt;img alt="10" src="/images/CFCE/后台管理.gif" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="11" src="/images/CFCE/主页中文.gif" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="12" src="/images/CFCE/主页英文.gif" /&gt;&lt;/p&gt;</summary><category term="Java EE"></category><category term="Hibernate"></category><category term="Struts2"></category></entry><entry><title>[备忘] 8080端口被占用</title><link href="http://zoeyyoung.github.io/tomcat-cant-start.html" rel="alternate"></link><updated>2011-05-03T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2011-05-03:tomcat-cant-start.html</id><summary type="html">&lt;p&gt;用tomcat的时候出现tomcat启动不起来多数情况是由于8080端口被占用&lt;/p&gt;
 &lt;p&gt;那如何结束占用8080端口的进程呢?&lt;/p&gt;
 &lt;p&gt;1、&lt;code&gt;Win+R&lt;/code&gt; cmd 打开运行窗口&lt;/p&gt;
 &lt;p&gt;输入&lt;code&gt;netstat -ano&lt;/code&gt;会出现类似下图的数据窗口&lt;/p&gt;
-&lt;p&gt;&lt;img alt="netstat -ano" src="/static/images/netstat-ano.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="netstat -ano" src="/images/netstat-ano.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;2、比如我们要结束tomcat的8080端口&lt;/p&gt;
 &lt;p&gt;由图8080的端口PID是2272, 调出windows资源管理器可以看到PID 2272被&lt;strong&gt;reportingservicesservice.exe&lt;/strong&gt;进程占用, 结束该进程, 然后重启Tomcat.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="任务管理器" src="/static/images/pip2272.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="任务管理器" src="/images/pip2272.png" /&gt;&lt;/p&gt;
 &lt;p&gt;3、还有一种情况, 直接结束进程中的&lt;strong&gt;javaw.exe&lt;/strong&gt;即可&lt;/p&gt;</summary><category term="端口"></category><category term="Tomcat"></category><category term="进程"></category><category term="Windows"></category></entry><entry><title>[Java基础] 输出回形数</title><link href="http://zoeyyoung.github.io/java-circle-form-number.html" rel="alternate"></link><updated>2010-01-13T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2010-01-13:java-circle-form-number.html</id><summary type="html">&lt;p&gt;输出回形数, 根据两种算法画图如下:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="回形数" src="/static/images/回形数.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="回形数" src="/images/回形数.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;第一种算法: 分析行特征，按行输出&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;java.util.Scanner&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
 

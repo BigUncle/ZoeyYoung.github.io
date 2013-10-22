@@ -144,28 +144,28 @@
 </ul>
 <h3>安装Openfire(当前版本3.8.2)</h3>
 <p>普通安装包, 像正常安装软件一样安装就行了</p>
-<p><img alt="1" src="/static/images/XMPP/openfire_1.jpg" /></p>
+<p><img alt="1" src="/images/XMPP/openfire_1.jpg" /></p>
 <p>首次需配置, 后面仍可在管理控制台进行更改</p>
 <p>goingmerry为我的主机名, 相当于localhost</p>
-<p><img alt="2" src="/static/images/XMPP/openfire_2.jpg" /></p>
-<p><img alt="3" src="/static/images/XMPP/openfire_3.jpg" /></p>
-<p><img alt="4" src="/static/images/XMPP/openfire_4.jpg" /></p>
-<p><img alt="5" src="/static/images/XMPP/openfire_5.jpg" /></p>
+<p><img alt="2" src="/images/XMPP/openfire_2.jpg" /></p>
+<p><img alt="3" src="/images/XMPP/openfire_3.jpg" /></p>
+<p><img alt="4" src="/images/XMPP/openfire_4.jpg" /></p>
+<p><img alt="5" src="/images/XMPP/openfire_5.jpg" /></p>
 <p>需要打开OpenFire的<strong>http-binding</strong>. 具体为登录后台管理界面。</p>
 <p>服务器 -&gt; 服务器设置 -&gt; Http绑定(英文界面：Server -&gt; Server Settings -&gt; Http Binding)</p>
-<p><img alt="6" src="/static/images/XMPP/openfire_6.jpg" /></p>
+<p><img alt="6" src="/images/XMPP/openfire_6.jpg" /></p>
 <ul>
 <li>启用 - 客户端能使用HTTP绑定连接到这台服务器</li>
 <li>Script Syntax - Enabled - Allows BOSH Clients With Limited Access to Connect to the Server</li>
 <li>端口按默认的。</li>
 </ul>
 <h3>安装Spark(当前版本2.6.3), 用于测试</h3>
-<p><img alt="7" src="/static/images/XMPP/openfire_7.jpg" /></p>
+<p><img alt="7" src="/images/XMPP/openfire_7.jpg" /></p>
 <p>下面两图设置是对应的</p>
-<p><img alt="8" src="/static/images/XMPP/openfire_8.jpg" /></p>
-<p><img alt="9" src="/static/images/XMPP/openfire_9.jpg" /></p>
+<p><img alt="8" src="/images/XMPP/openfire_8.jpg" /></p>
+<p><img alt="9" src="/images/XMPP/openfire_9.jpg" /></p>
 <p>可在Spark中建立新帐号</p>
-<p><img alt="10" src="/static/images/XMPP/openfire_10.jpg" /></p>
+<p><img alt="10" src="/images/XMPP/openfire_10.jpg" /></p>
 <h3>Nginx的配置</h3>
 <p>下载Nginx(当前版本1.5.1): http://nginx.org/en/download.html</p>
 <p>打开nginx的配置文件<strong>conf/nginx.conf</strong>，增加如下行：</p>
@@ -199,7 +199,7 @@
 
 <p>在浏览器中打开：http://localhost/strophejs/examples/echobot.html</p>
 <p>使用Openfire中的用户进行登录, 点击连接成功后, 如图.</p>
-<p><img alt="11" src="/static/images/XMPP/openfire_11.jpg" /></p>
+<p><img alt="11" src="/images/XMPP/openfire_11.jpg" /></p>
 <h3>Apache的配置</h3>
 <p>在<strong>httpd.conf</strong>中加入下面几行：</p>
 <div class="highlight"><pre><span class="n">LoadModule</span> <span class="n">proxy_module</span> <span class="n">modules</span><span class="o">/</span><span class="n">mod_proxy</span><span class="p">.</span><span class="n">so</span>
@@ -216,7 +216,7 @@
 <p>我的项目实现了许多常用功能, 包括群聊, 状态设置, 个人名片等..</p>
 <p>代码未整理, 整理后再传到GitHub上</p>
 <p>与Spark进行通信, 如图</p>
-<p><img alt="12" src="/static/images/XMPP/openfire_12.jpg" /></p>
+<p><img alt="12" src="/images/XMPP/openfire_12.jpg" /></p>
 <h3>参考文档</h3>
 <ul>
 <li><a href="https://gist.github.com/makoto/272956">A short tutorial on Echobot by Alfred Westerveld</a></li>

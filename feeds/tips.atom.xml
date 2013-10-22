@@ -106,7 +106,7 @@ You'll love the slick user interface, extraordinary features and amazing perform
 &lt;p&gt;参考&lt;a href="http://thepast.me/post/80017253"&gt;自定义 Markdown 高亮配色方案&lt;/a&gt;, 修改以适应Soda主题(博文中的主题直接用在Soda主题中会有Bug)&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://gist.github.com/ZoeyYoung/5894202"&gt;代码&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;当前博客主题即基于我使用的ST2/3主题设计的&lt;/p&gt;
-&lt;p&gt;&lt;img alt="ST2/3 Theme" src="/static/images/sublime-text-2.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="ST2/3 Theme" src="/images/sublime-text-2.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;在ST3中将自定义的主题放入&lt;strong&gt;ST3\Data\Packages\User&lt;/strong&gt;文件夹中, 即可在&lt;strong&gt;Preferences -&amp;gt; Color Scheme -&amp;gt; User&lt;/strong&gt;中进行选择.&lt;/p&gt;
 &lt;h3&gt;用户配置文件&lt;/h3&gt;
 &lt;p&gt;在使用ST2之前, 对首选项进行适当调整会改进你的体验.&lt;/p&gt;
@@ -143,7 +143,7 @@ You'll love the slick user interface, extraordinary features and amazing perform
 
 
 &lt;p&gt;但是这里提供的地址&lt;code&gt;git@gitcafe.com:ZoeyYoung/Hello_Git.git&lt;/code&gt;是SSH的&lt;/p&gt;
-&lt;p&gt;&lt;img alt="ssh" src="/static/images/gitcafe_ssh.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="ssh" src="/images/gitcafe_ssh.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;所以需要配置SSH, &lt;a href="https://gitcafe.com/GitCafe/Help/tree/master/SSH"&gt;相关帮助&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;如果不配置则会出现&lt;code&gt;Permission_denied: Error: Permission denied (publickey)&lt;/code&gt;问题&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;Permission denied (publickey).
@@ -157,7 +157,7 @@ and the repository exists.
 &lt;p&gt;但是配置好SSH后, 尝试了下在Windows自带cmd下还是会出现上面的问题&lt;/p&gt;
 &lt;p&gt;原因是SSH的地址是&lt;code&gt;~/.ssh&lt;/code&gt;, 而cmd下并不识别这个地址...因此只能在Git Bash下使用(跟安装时选择的只在Git Bash下使用可能也有关, 没尝试)&lt;/p&gt;
 &lt;p&gt;而我觉得比较方便的方式是使用&lt;code&gt;https&lt;/code&gt;地址&lt;/p&gt;
-&lt;p&gt;&lt;img alt="https" src="/static/images/gitcafe_https.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="https" src="/images/gitcafe_https.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;即把上面的语句改为&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;git remote add origin &lt;span class="s1"&gt;&amp;#39;https://gitcafe.com/ZoeyYoung/Hello_Git.git&amp;#39;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -258,7 +258,7 @@ git push
 
 
 &lt;p&gt;对数据进行修改即可&lt;/p&gt;
-&lt;p&gt;&lt;img alt="注册表中修改" src="/static/images/default-folder.gif" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="注册表中修改" src="/images/default-folder.gif" /&gt;&lt;/p&gt;
 &lt;p&gt;修改后可能要重启explorer才生效&lt;/p&gt;
 &lt;h3&gt;懒人&lt;/h3&gt;
 &lt;p&gt;可将相应设置存为".reg"文件，在重装系统后可直接导入注册表&lt;/p&gt;
@@ -275,7 +275,7 @@ git push
 
 
 &lt;p&gt;注：上面文件夹路径中要使用双斜杠(\)，使用单斜杠无效。&lt;/p&gt;
-&lt;p&gt;设置后要重新启动&lt;strong&gt;explorer&lt;/strong&gt;才能生效&lt;/p&gt;</summary><category term="Windows"></category><category term="Tips"></category><category term="文件夹"></category></entry><entry><title>[解决] GitHub图标变方块</title><link href="http://zoeyyoung.github.io/github-webfont.html" rel="alternate"></link><updated>2012-10-01T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2012-10-01:github-webfont.html</id><summary type="html">&lt;p&gt;&lt;img alt="图标变方块" src="/static/images/方块.png" /&gt;&lt;/p&gt;
+&lt;p&gt;设置后要重新启动&lt;strong&gt;explorer&lt;/strong&gt;才能生效&lt;/p&gt;</summary><category term="Windows"></category><category term="Tips"></category><category term="文件夹"></category></entry><entry><title>[解决] GitHub图标变方块</title><link href="http://zoeyyoung.github.io/github-webfont.html" rel="alternate"></link><updated>2012-10-01T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2012-10-01:github-webfont.html</id><summary type="html">&lt;p&gt;&lt;img alt="图标变方块" src="/images/方块.png" /&gt;&lt;/p&gt;
 &lt;p&gt;之前在Chrome中使用GitHub的时候看着图标一直是方块的, 以为原来就是那样设计的- -&lt;/p&gt;
 &lt;p&gt;后来感觉不应该, 在IE中打开才发现原来是有图标的, 然后才发现原来是使用如下插件设置了字体的关系, 只能删除了...&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://chrome.google.com/webstore/detail/force-microsoft-yahei-fon/ojlocjfaheiilmgjdgnoehhdigfedhjl"&gt;Force Microsoft Yahei Font&lt;/a&gt;&lt;/p&gt;
@@ -284,7 +284,7 @@ git push
 安装即用, 不像 Stylish 之类全能样式扩展那样需要额外费心设置, 由于是指定 CSS, 而非 JavaScript 遍历 DOM 修改样式, 所以不占扩展进程, 无须等待页面载入并修改重绘, 不增加额外开销.
 缺点和其他浏览器强制字体一样, web font 和定义了衬线体的网页会失效.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;没认真看说明...&lt;/p&gt;</summary><category term="GitHub"></category><category term="Tips"></category><category term="Chrome"></category></entry><entry><title>[软件] Terminator</title><link href="http://zoeyyoung.github.io/terminator-software.html" rel="alternate"></link><updated>2012-07-08T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2012-07-08:terminator-software.html</id><summary type="html">&lt;p&gt;&lt;img alt="terminator" src="/static/images/terminator.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;没认真看说明...&lt;/p&gt;</summary><category term="GitHub"></category><category term="Tips"></category><category term="Chrome"></category></entry><entry><title>[软件] Terminator</title><link href="http://zoeyyoung.github.io/terminator-software.html" rel="alternate"></link><updated>2012-07-08T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2012-07-08:terminator-software.html</id><summary type="html">&lt;p&gt;&lt;img alt="terminator" src="/images/terminator.jpg" /&gt;&lt;/p&gt;
 &lt;h2&gt;安装Terminator&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;aptitude&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;terminator&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -319,12 +319,12 @@ git push
 
 &lt;p&gt;将上面的代码保存为“*.reg”文件，例如，“清空回车站.reg”&lt;/p&gt;
 &lt;p&gt;运行后，会写注册表，结果如下图：&lt;/p&gt;
-&lt;p&gt;&lt;img alt="recyle" src="/static/images/recyle.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="recyle" src="/images/recyle.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;还有一种方法就是&lt;a href="http://jingyan.baidu.com/article/8275fc86dcd94946a03cf6ae.html"&gt;在任务栏添加回车站&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;尝试了下可行，但是占用任务栏位置，因此，还是决定放在桌面右键里面&lt;/p&gt;</summary><category term="Windows"></category><category term="注册表"></category><category term="右键"></category><category term="桌面"></category><category term="菜单"></category></entry><entry><title>[软件] DeskPins 窗口置顶</title><link href="http://zoeyyoung.github.io/software-deskpins.html" rel="alternate"></link><updated>2012-06-22T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2012-06-22:software-deskpins.html</id><summary type="html">&lt;p&gt;工欲善其事,必先利其器！&lt;/p&gt;
 &lt;p&gt;介绍一款窗口置顶软件&lt;strong&gt;DeskPins&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;DeskPins可一键将Windows桌面常用窗口钉在最前端，类似于视频软件的&lt;strong&gt;“始终保持在最前”&lt;/strong&gt;的功能&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Deskpins" src="/static/images/deskpins.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Deskpins" src="/images/deskpins.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;DeskPins算是我的常用软件之一，主要用在两个方面:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -339,4 +339,4 @@ git push
 &lt;h3&gt;解法方案&lt;/h3&gt;
 &lt;p&gt;因为鼠标点不到屏幕外, 只能用键盘了..这时快捷键就派上用场了..&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;alt+空格&lt;/code&gt;，然后点&lt;code&gt;M&lt;/code&gt;键，然后用方向键或鼠标把窗口拖回来(方向键要多按一会..)&lt;/p&gt;
-&lt;p&gt;&lt;img alt="将窗口移回" src="/static/images/move-back.jpg" /&gt;&lt;/p&gt;</summary><category term="Windows"></category><category term="Tips"></category><category term="窗口"></category><category term="桌面"></category></entry></feed>
+&lt;p&gt;&lt;img alt="将窗口移回" src="/images/move-back.jpg" /&gt;&lt;/p&gt;</summary><category term="Windows"></category><category term="Tips"></category><category term="窗口"></category><category term="桌面"></category></entry></feed>
