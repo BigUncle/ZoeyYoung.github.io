@@ -1,54 +1,131 @@
-::selection { background: #F92659; color:white; }
-::-moz-selection { background: #F92659; color:white; }
-::-webkit-selection { background: #F92659; color:white;}
-body { font: 16px/1.5 \5fae\8f6f\96c5\9ed1,tahoma,arial,\5b8b\4f53; }
-hr { margin: 5px 0; }
-.article-metadata { font-size: 12px; margin: 10px 0;}
-.nav>li>a { padding: 0; }
-.nav>li>a:hover { display: block; }
-.nav > .active > a, .nav > .active > a:hover { font-weight: bold; }
-#blog-nav{
-  padding: 5px 0;
-  margin: 0 auto;
-  text-align: center;
+::selection {
+    background: #F92659;
+    color:white;
+}
+::-moz-selection {
+    background: #F92659;
+    color:white;
+}
+::-webkit-selection {
+    background: #F92659;
+    color:white;
+}
+body {
+    font: 16px/1.5 \5fae\8f6f\96c5\9ed1, tahoma, arial, \5b8b\4f53;
+}
+hr {
+    margin: 5px 0;
+}
+img {
+    display: block;
+    height: auto;
+    max-width: 100%
+}
+.article-metadata {
+    font-size: 12px;
+    margin: 10px 0;
+}
+.nav>li>a {
+    padding: 0;
+}
+.nav>li>a:hover {
+    display: block;
+}
+.nav > .active > a, .nav > .active > a:hover {
+    font-weight: bold;
+}
+#blog-nav {
+    padding: 5px 0;
+    margin: 0 auto;
+    text-align: center;
 }
 .navbar-brand {
-  text-align: center;
+    text-align: center;
 }
-.main-content { padding: 0 20px; }
-.main-content a:hover { text-decoration: none; }
-p { font: \5fae\8f6f\96c5\9ed1,tahoma,arial,\5b8b\4f53; }
-li { line-height: 1.6em; }
-h1 { font: 28px/1.5 'Alegreya SC', 'Garamond', 'Georgia', \5fae\8f6f\96c5\9ed1,tahoma,arial,\5b8b\4f53; }
-h2 { font: 24px/1.5 'Alegreya SC', 'Garamond', 'Georgia', \5fae\8f6f\96c5\9ed1,tahoma,arial,\5b8b\4f53; }
-h3 { font: 20px/1.5 'Alegreya SC', 'Garamond', 'Georgia', \5fae\8f6f\96c5\9ed1,tahoma,arial,\5b8b\4f53; }
-h2, h3, h4 { background: antiquewhite; }
-strong { color: #F92659; }
-.table th, .table td { line-height: 1.3em; }
+.main-content {
+    padding: 0 20px;
+}
+.main-content a:hover {
+    text-decoration: none;
+}
+p {
+    font: \5fae\8f6f\96c5\9ed1, tahoma, arial, \5b8b\4f53;
+}
+li {
+    line-height: 1.6em;
+}
+h1 {
+    font: 28px/1.5'Alegreya SC', 'Garamond', 'Georgia', \5fae\8f6f\96c5\9ed1, tahoma, arial, \5b8b\4f53;
+}
+h2 {
+    font: 24px/1.5'Alegreya SC', 'Garamond', 'Georgia', \5fae\8f6f\96c5\9ed1, tahoma, arial, \5b8b\4f53;
+}
+h3 {
+    font: 20px/1.5'Alegreya SC', 'Garamond', 'Georgia', \5fae\8f6f\96c5\9ed1, tahoma, arial, \5b8b\4f53;
+}
+h2, h3, h4 {
+    background: antiquewhite;
+}
+strong {
+    color: #F92659;
+}
+.table th, .table td {
+    line-height: 1.3em;
+}
 /* Styling for articles */
-.article { padding-bottom:15px; padding-right: 40px; }
-.article a:hover { text-decoration: none; }
+ .article {
+    padding-bottom:15px;
+    padding-right: 40px;
+}
+.article a:hover {
+    text-decoration: none;
+}
 /* Article summary */
-.summary { margin-bottom: 2em; margin-top: 0.8em; font-size: 16px; line-height: 1.2em }
-.summary pre { display: none; }
-
-#footer { padding: 10px; }
-
-.nav a [class^="icon-"], .nav a [class*=" icon-"] {
-  display: inline-block;
-  width: 2em;
+ .summary {
+    margin-bottom: 2em;
+    margin-top: 0.8em;
+    font-size: 16px;
+    line-height: 1.2em
 }
-
-@media(max-width: 768px){
-  #socialist { display: table-footer-group;}
-  #colophon { display: table-header-group;}
-  #sitelinks { display: table-footer-group;}
+.summary pre {
+    display: none;
 }
-
-.tag-cloud { margin: 30px 0;}
-.tag-cloud p { margin: 0; }
-.tag-0 { font-size: 8px; }
-.tag-1 { font-size: 12px; }
-.tag-2 { font-size: 16px; }
-.tag-3 { font-size: 20px; }
-.tag-4 { font-size: 24px; }
+#footer {
+    padding: 10px;
+}
+.nav a[class^="icon-"], .nav a[class*=" icon-"] {
+    display: inline-block;
+    width: 2em;
+}
+@media(max-width: 768px) {
+    #socialist {
+        display: table-footer-group;
+    }
+    #colophon {
+        display: table-header-group;
+    }
+    #sitelinks {
+        display: table-footer-group;
+    }
+}
+.tag-cloud {
+    margin: 30px 0;
+}
+.tag-cloud p {
+    margin: 0;
+}
+.tag-0 {
+    font-size: 8px;
+}
+.tag-1 {
+    font-size: 12px;
+}
+.tag-2 {
+    font-size: 16px;
+}
+.tag-3 {
+    font-size: 20px;
+}
+.tag-4 {
+    font-size: 24px;
+}
