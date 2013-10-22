@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
-  <title>OK Computer</title>
+  <title>[设计模式] 迭代器模式 - OK Computer</title>
   <meta name="description" content="杨丁苗的个人博客">
   <meta name="author" content="Zoey Young">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -69,13 +69,13 @@
           <li >
             <a href="http://zoeyyoung.github.io/category/ruby.html ">Ruby</a>
           </li>
-          <li >
+          <li  class="active" >
             <a href="http://zoeyyoung.github.io/category/she-ji-mo-shi.html ">设计模式</a>
           </li>
           <li >
             <a href="http://zoeyyoung.github.io/category/shou-cang.html ">收藏</a>
           </li>
-          <li  class="active" >
+          <li >
             <a href="http://zoeyyoung.github.io/category/shu-ju-ku.html ">数据库</a>
           </li>
           <li >
@@ -114,128 +114,95 @@
         </ul>
       </div>
       <div class="main-content col-md-8">
-
-    <div>
-        <a href="http://zoeyyoung.github.io/mysql-setup.html"><h1>[安装配置] MySQL</h1></a>
+<article>
+  <h1>[设计模式] 迭代器模式</h1>
 <div class="article-metadata">
-<time class="published" datetime="2013 十月 06 周日">2013 十月 06 周日 </time>
+<time class="published" datetime="2013 十月 15 周二">2013 十月 15 周二 </time>
 <a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
 <span>
     <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/shu-ju-ku.html">数据库</a>
+    <a href="http://zoeyyoung.github.io/category/she-ji-mo-shi.html">设计模式</a>
 </span>
 <span>
     <i class="icon-tags"></i>
-    <a href="http://zoeyyoung.github.io/tag/ubuntu.html">Ubuntu</a>
-    <a href="http://zoeyyoung.github.io/tag/linux.html">Linux</a>
-    <a href="http://zoeyyoung.github.io/tag/an-zhuang.html">安装</a>
-    <a href="http://zoeyyoung.github.io/tag/mysql.html">MySQL</a>
+    <a href="http://zoeyyoung.github.io/tag/du-shu.html">读书</a>
+    <a href="http://zoeyyoung.github.io/tag/book.html">Book</a>
 </span>
 <!-- <p></p> -->
-</div>        <h3>Ubuntu</h3>
-<p>安装: <code>sudo apt-get install mysql-server</code></p>
-<p>额外的一些包也会提示装上.</p>
-<p>安装过程会给<strong>root</strong>用户创建密码</p>
-<p>作为测试时我会用<strong>123456</strong>(有时会忘了...实验环境.)</p>
-<p>装好后访问: <code>mysql -uroot -p123456</code> 就可以在命令行中操作数据库</p>
-<p>安装使用<strong>phpmyadmin</strong>: <code>sudo apt-get install phpmyadmin</code></p>
-<p>添加链接:</p>
-<div class="highlight"><pre><span class="o">~</span><span class="err">$</span> <span class="n">cd</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span>
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="err">$</span> <span class="n">sudo</span> <span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">phpmyadmin</span><span class="o">/</span>
-</pre></div>
-
-
-<p>打开页面: http://127.0.0.1/phpmyadmin/</p>
-<p>用户名: root 密码: 123456</p>
-<p>备份: <code>mysqldump -uroot -p123456 test&gt;test.sql</code></p>
-<p>恢复: <code>mysql -uroot -p123456 test&lt;test.sql</code></p>
-<p><a href="http://wiki.ubuntu.org.cn/MySQL安装指南">MySQL安装指南</a></p>
-        <hr />
-    </div>
-     <div>
-        <a href="http://zoeyyoung.github.io/mongodb-whoosh-full-text-search.html"><h1>[记录] MongoDB使用Whoosh进行全文搜索</h1></a>
-<div class="article-metadata">
-<time class="published" datetime="2013 八月 08 周四">2013 八月 08 周四 </time>
-<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
-<span>
-    <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/shu-ju-ku.html">数据库</a>
-</span>
-<span>
-    <i class="icon-tags"></i>
-    <a href="http://zoeyyoung.github.io/tag/mongodb.html">MongoDB</a>
-    <a href="http://zoeyyoung.github.io/tag/nosql.html">NoSQL</a>
-    <a href="http://zoeyyoung.github.io/tag/whoosh.html">Whoosh</a>
-</span>
-<!-- <p></p> -->
-</div>        <p>MongoDB使用Whoosh进行全文搜索</p>
-        <hr />
-    </div>
-     <div>
-        <a href="http://zoeyyoung.github.io/mongodb-cloud-service.html"><h1>[尝试] MongoDB云服务使用</h1></a>
-<div class="article-metadata">
-<time class="published" datetime="2013 八月 07 周三">2013 八月 07 周三 </time>
-<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
-<span>
-    <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/shu-ju-ku.html">数据库</a>
-</span>
-<span>
-    <i class="icon-tags"></i>
-    <a href="http://zoeyyoung.github.io/tag/mongodb.html">MongoDB</a>
-    <a href="http://zoeyyoung.github.io/tag/mongohq.html">MongoHQ</a>
-    <a href="http://zoeyyoung.github.io/tag/mongolib.html">MongoLib</a>
-</span>
-<!-- <p></p> -->
-</div>        <p>MongoDB云服务使用</p>
-        <hr />
-    </div>
-     <div>
-        <a href="http://zoeyyoung.github.io/mongodb-array-update-with-query.html"><h1>[记录] MongoDB中数组更新操作</h1></a>
-<div class="article-metadata">
-<time class="published" datetime="2013 八月 03 周六">2013 八月 03 周六 </time>
-<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
-<span>
-    <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/shu-ju-ku.html">数据库</a>
-</span>
-<span>
-    <i class="icon-tags"></i>
-    <a href="http://zoeyyoung.github.io/tag/mongodb.html">MongoDB</a>
-    <a href="http://zoeyyoung.github.io/tag/nosql.html">NoSQL</a>
-    <a href="http://zoeyyoung.github.io/tag/update.html">Update</a>
-</span>
-<!-- <p></p> -->
-</div>        <p>在每个文档, 标签tags是以数组Array的形式存在的, 我现在有个标签命名为<strong>python</strong>, 我想全部改成<strong>Python</strong></p>
-        <hr />
-    </div>
-     <div>
-        <a href="http://zoeyyoung.github.io/mongodb.html"><h1>[安装配置] MongoDB相关记录</h1></a>
-<div class="article-metadata">
-<time class="published" datetime="2013 七月 06 周六">2013 七月 06 周六 </time>
-<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
-<span>
-    <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/shu-ju-ku.html">数据库</a>
-</span>
-<span>
-    <i class="icon-tags"></i>
-    <a href="http://zoeyyoung.github.io/tag/windows.html">Windows</a>
-    <a href="http://zoeyyoung.github.io/tag/python.html">Python</a>
-    <a href="http://zoeyyoung.github.io/tag/pip.html">pip</a>
-    <a href="http://zoeyyoung.github.io/tag/virtualenv.html">virtualenv</a>
-</span>
-<!-- <p></p> -->
-</div>        <p>MongoDB相关记录, 安装, 启动...</p>
-        <hr />
-    </div>
-<ul class="pagination pagination-sm no-print">
-    <li class="prev disabled"><a href="#">&larr; 上一页</a></li>
-
-    <li class="active"><a href="http://zoeyyoung.github.io/category/shu-ju-ku.html">1</a></li>
-
-    <li class="next disabled"><a href="#">&rarr; 下一页</a></li>
-</ul>   
+</div>  <h3>意图</h3>
+<p>提供一种方法顺序访问一个<strong>聚合对象</strong>中各个元素, 而又不需暴露该对象的内部表示.</p>
+<p>什么是聚合对象? 数组、堆栈、列表、散列表等.</p>
+<p>关键思想是将对列表的访问和遍历从列表对象中分离出来并放入一个迭代器(iterator)对象中.</p>
+<p>创建迭代器是一个Factory Method模式的例子</p>
+<h3>别名</h3>
+<p>游标(Cursor)</p>
+<h3>适用性</h3>
+<p>迭代器模式可用来:</p>
+<ul>
+<li>访问一个聚合对象的内容而无需暴露它的内部表示</li>
+<li>支持对聚合对象的多种遍历</li>
+<li>为遍历不同的聚合结构提供一个统一的接口(即, 支持多态迭代)</li>
+</ul>
+<h3>结构</h3>
+<p><img alt="迭代器模式结构图" src="/images/design-patten-iterator.png" /></p>
+<h3>参与者</h3>
+<ul>
+<li>Iterator(迭代器)<ul>
+<li>迭代器定义访问和遍历元素的接口</li>
+</ul>
+</li>
+<li>ConcreteIterator(具体迭代器)<ul>
+<li>具体迭代器实现迭代器接口</li>
+<li>对该聚合遍历时跟踪当前位置</li>
+</ul>
+</li>
+<li>Aggregate(聚合)<ul>
+<li>聚合定义创建相应迭代器对象的接口</li>
+</ul>
+</li>
+<li>ConcreteAggregate(具体聚合)<ul>
+<li>具体聚合实现创建相应迭代器的接口, 该操作返回ConcreteIterator的一个适当的实例</li>
+</ul>
+</li>
+</ul>
+<h3>协作</h3>
+<ul>
+<li>ConcreteIterator跟踪聚合中的当前对象, 并能够计算出待遍历的后继对象.</li>
+</ul>
+<h3>效果</h3>
+<p>迭代器模式有三个重要的作用:</p>
+<ol>
+<li>它支持以不同的方式遍历一个聚合【前序 中序 后序】</li>
+<li>迭代器简化了聚合的接口</li>
+<li>在同一个聚合上可以有多个遍历</li>
+</ol>
+<h3>实现</h3>
+<ol>
+<li>定义Strategy和Context接口</li>
+<li>将Strategy作为模板参数【C++】</li>
+<li>使Strategy对象成为可选的【常见, 在无Strategy时使用默认实现】</li>
+</ol>
+<h3>JDK</h3>
+<p>recognizeable by behavioral methods in an abstract/interface type which invokes a method in an implementation of a different abstract/interface type which has been passed-in as method argument into the strategy implementation</p>
+<p><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Comparator.html#compare%28T,%20T%29">java.util.Comparator#compare()</a>, executed by among others Collections#sort().</p>
+<p><a href="http://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServlet.html">javax.servlet.http.HttpServlet</a>, the <code>service()</code> and all <code>doXXX()</code> methods take <code>HttpServletRequest</code> and <code>HttpServletResponse</code> and the implementor has to process them (and not to get hold of them as instance variables!).</p>
+<p><a href="http://docs.oracle.com/javaee/7/api/javax/servlet/Filter.html#doFilter%28javax.servlet.ServletRequest,%20javax.servlet.ServletResponse,%20javax.servlet.FilterChain%29">javax.servlet.Filter#doFilter()</a></p>
+<p><a href="http://docs.oracle.com/javase/7/docs/api/java/io/File.html#list(java.io.FilenameFilter)">java.io.File#list()</a> FilenameFilter作为Strategy, 其它带FilenameFilter参数的方法也是.</p>
+</article>
+<div class="comment">
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a href="http://www.jiathis.com/share?uid=1801890" class="jiathis jiathis_txt" target="_blank"><img src="http://v3.jiathis.com/code_mini/images/btn/v1/jiathis1.gif" border="0" /></a>
+  <a class="jiathis_counter_style_margin:3px 0 0 2px"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code_mini/jia.js?uid=1371447419774871" charset="utf-8"></script>
+<!-- JiaThis Button END --><!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" id="UYScript" src="http://v1.uyan.cc/js/iframe.js?UYUserId=1801890" async=""></script>
+<!-- UY END --></div>
       </div>    </div><!-- End of fluid row-->
   </div><!-- End of Container-->
   <!--footer-->

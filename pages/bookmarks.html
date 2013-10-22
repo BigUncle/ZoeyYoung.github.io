@@ -75,7 +75,7 @@
           <li >
             <a href="http://zoeyyoung.github.io/category/shou-cang.html ">收藏</a>
           </li>
-          <li  class="active" >
+          <li >
             <a href="http://zoeyyoung.github.io/category/shu-ju-ku.html ">数据库</a>
           </li>
           <li >
@@ -114,128 +114,13 @@
         </ul>
       </div>
       <div class="main-content col-md-8">
-
-    <div>
-        <a href="http://zoeyyoung.github.io/mysql-setup.html"><h1>[安装配置] MySQL</h1></a>
-<div class="article-metadata">
-<time class="published" datetime="2013 十月 06 周日">2013 十月 06 周日 </time>
-<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
-<span>
-    <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/shu-ju-ku.html">数据库</a>
-</span>
-<span>
-    <i class="icon-tags"></i>
-    <a href="http://zoeyyoung.github.io/tag/ubuntu.html">Ubuntu</a>
-    <a href="http://zoeyyoung.github.io/tag/linux.html">Linux</a>
-    <a href="http://zoeyyoung.github.io/tag/an-zhuang.html">安装</a>
-    <a href="http://zoeyyoung.github.io/tag/mysql.html">MySQL</a>
-</span>
-<!-- <p></p> -->
-</div>        <h3>Ubuntu</h3>
-<p>安装: <code>sudo apt-get install mysql-server</code></p>
-<p>额外的一些包也会提示装上.</p>
-<p>安装过程会给<strong>root</strong>用户创建密码</p>
-<p>作为测试时我会用<strong>123456</strong>(有时会忘了...实验环境.)</p>
-<p>装好后访问: <code>mysql -uroot -p123456</code> 就可以在命令行中操作数据库</p>
-<p>安装使用<strong>phpmyadmin</strong>: <code>sudo apt-get install phpmyadmin</code></p>
-<p>添加链接:</p>
-<div class="highlight"><pre><span class="o">~</span><span class="err">$</span> <span class="n">cd</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span>
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="err">$</span> <span class="n">sudo</span> <span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">phpmyadmin</span><span class="o">/</span>
-</pre></div>
-
-
-<p>打开页面: http://127.0.0.1/phpmyadmin/</p>
-<p>用户名: root 密码: 123456</p>
-<p>备份: <code>mysqldump -uroot -p123456 test&gt;test.sql</code></p>
-<p>恢复: <code>mysql -uroot -p123456 test&lt;test.sql</code></p>
-<p><a href="http://wiki.ubuntu.org.cn/MySQL安装指南">MySQL安装指南</a></p>
-        <hr />
-    </div>
-     <div>
-        <a href="http://zoeyyoung.github.io/mongodb-whoosh-full-text-search.html"><h1>[记录] MongoDB使用Whoosh进行全文搜索</h1></a>
-<div class="article-metadata">
-<time class="published" datetime="2013 八月 08 周四">2013 八月 08 周四 </time>
-<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
-<span>
-    <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/shu-ju-ku.html">数据库</a>
-</span>
-<span>
-    <i class="icon-tags"></i>
-    <a href="http://zoeyyoung.github.io/tag/mongodb.html">MongoDB</a>
-    <a href="http://zoeyyoung.github.io/tag/nosql.html">NoSQL</a>
-    <a href="http://zoeyyoung.github.io/tag/whoosh.html">Whoosh</a>
-</span>
-<!-- <p></p> -->
-</div>        <p>MongoDB使用Whoosh进行全文搜索</p>
-        <hr />
-    </div>
-     <div>
-        <a href="http://zoeyyoung.github.io/mongodb-cloud-service.html"><h1>[尝试] MongoDB云服务使用</h1></a>
-<div class="article-metadata">
-<time class="published" datetime="2013 八月 07 周三">2013 八月 07 周三 </time>
-<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
-<span>
-    <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/shu-ju-ku.html">数据库</a>
-</span>
-<span>
-    <i class="icon-tags"></i>
-    <a href="http://zoeyyoung.github.io/tag/mongodb.html">MongoDB</a>
-    <a href="http://zoeyyoung.github.io/tag/mongohq.html">MongoHQ</a>
-    <a href="http://zoeyyoung.github.io/tag/mongolib.html">MongoLib</a>
-</span>
-<!-- <p></p> -->
-</div>        <p>MongoDB云服务使用</p>
-        <hr />
-    </div>
-     <div>
-        <a href="http://zoeyyoung.github.io/mongodb-array-update-with-query.html"><h1>[记录] MongoDB中数组更新操作</h1></a>
-<div class="article-metadata">
-<time class="published" datetime="2013 八月 03 周六">2013 八月 03 周六 </time>
-<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
-<span>
-    <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/shu-ju-ku.html">数据库</a>
-</span>
-<span>
-    <i class="icon-tags"></i>
-    <a href="http://zoeyyoung.github.io/tag/mongodb.html">MongoDB</a>
-    <a href="http://zoeyyoung.github.io/tag/nosql.html">NoSQL</a>
-    <a href="http://zoeyyoung.github.io/tag/update.html">Update</a>
-</span>
-<!-- <p></p> -->
-</div>        <p>在每个文档, 标签tags是以数组Array的形式存在的, 我现在有个标签命名为<strong>python</strong>, 我想全部改成<strong>Python</strong></p>
-        <hr />
-    </div>
-     <div>
-        <a href="http://zoeyyoung.github.io/mongodb.html"><h1>[安装配置] MongoDB相关记录</h1></a>
-<div class="article-metadata">
-<time class="published" datetime="2013 七月 06 周六">2013 七月 06 周六 </time>
-<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
-<span>
-    <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/shu-ju-ku.html">数据库</a>
-</span>
-<span>
-    <i class="icon-tags"></i>
-    <a href="http://zoeyyoung.github.io/tag/windows.html">Windows</a>
-    <a href="http://zoeyyoung.github.io/tag/python.html">Python</a>
-    <a href="http://zoeyyoung.github.io/tag/pip.html">pip</a>
-    <a href="http://zoeyyoung.github.io/tag/virtualenv.html">virtualenv</a>
-</span>
-<!-- <p></p> -->
-</div>        <p>MongoDB相关记录, 安装, 启动...</p>
-        <hr />
-    </div>
-<ul class="pagination pagination-sm no-print">
-    <li class="prev disabled"><a href="#">&larr; 上一页</a></li>
-
-    <li class="active"><a href="http://zoeyyoung.github.io/category/shu-ju-ku.html">1</a></li>
-
-    <li class="next disabled"><a href="#">&rarr; 下一页</a></li>
-</ul>   
+<section id="content" class="body col-md-10">
+    <h2 class="content-title">我的书签</h2>
+    <p><a href="http://www.oschina.net/">开源中国</a></p>
+<p><a href="http://blog.jobbole.com/">伯乐在线</a></p>
+<p><a href="http://www.aqee.net/">外刊IT评论</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/">阮一峰的网络日志</a></p>
+</section>
       </div>    </div><!-- End of fluid row-->
   </div><!-- End of Container-->
   <!--footer-->
