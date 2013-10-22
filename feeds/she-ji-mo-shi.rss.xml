@@ -1,5 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OK Computer</title><link>http://zoeyyoung.github.io/</link><description>It's better to burn out &lt;br/&gt; than to fade away.</description><atom:link href="http://zoeyyoung.github.io/feeds/she-ji-mo-shi.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 15 Oct 2013 00:00:00 +0800</lastBuildDate><item><title>[设计模式] 迭代器模式</title><link>http://zoeyyoung.github.io/design-patten-iterator.html</link><description>&lt;h3&gt;意图&lt;/h3&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OK Computer</title><link>http://zoeyyoung.github.io/</link><description>It's better to burn out &lt;br/&gt; than to fade away.</description><atom:link href="http://zoeyyoung.github.io/feeds/she-ji-mo-shi.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 22 Oct 2013 00:00:00 +0800</lastBuildDate><item><title>[设计模式] 组合模式</title><link>http://zoeyyoung.github.io/design-patten-composite.html</link><description>&lt;h3&gt;意图&lt;/h3&gt;
+&lt;p&gt;将对象组合成树形结构以表示"部分-整体"的层次结构. Composite使得用户对单个对象
+和组合对象的使用具有一致性.&lt;/p&gt;
+&lt;h3&gt;适用性&lt;/h3&gt;
+&lt;p&gt;以下情况使用Composite模式:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;你想表示对象的部分-整体层次结构&lt;/li&gt;
+&lt;li&gt;你希望用户忽略组合对象与单个对象的不同, 用户将统一地使用组合结构中的所有对象&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;结构&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="组合模式结构图" src="/images/design-patten-composite.png" /&gt;&lt;/p&gt;
+&lt;h3&gt;参与者&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Component&lt;ul&gt;
+&lt;li&gt;为组合中的对象声明接口&lt;/li&gt;
+&lt;li&gt;在适当的情况下, 实现所有类共有接口的缺省行为&lt;/li&gt;
+&lt;li&gt;声明一个接口用于访问和管理Component的子组件&lt;/li&gt;
+&lt;li&gt;(可选)在递归结构中定义一个接口, 用于访问一个父部件, 并在合适的情况下实现它&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Leaf&lt;ul&gt;
+&lt;li&gt;在组合中表示叶节点对象, 叶节点没有子节点&lt;/li&gt;
+&lt;li&gt;在组合中定义图元对象的行为&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Composite&lt;ul&gt;
+&lt;li&gt;定义有子部件的那些部件的行为&lt;/li&gt;
+&lt;li&gt;存储子部件&lt;/li&gt;
+&lt;li&gt;在Component接口中实现与子部件有关的操作&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Client&lt;ul&gt;
+&lt;li&gt;通过Component接口操纵组合部件的对象&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;协作&lt;/h3&gt;
+&lt;p&gt;用户使用Component类接口与组合结构中的对象进行交互. 如果接收者是一个叶节点, 则直接处理请求. 如果接收者是Composite, 它通常将请求发送给它的子部件, 在转发请求
+之前与/或之后可能执行一些辅助操作.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 22 Oct 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-10-22:design-patten-composite.html</guid><category>读书</category><category>Book</category></item><item><title>[设计模式] 迭代器模式</title><link>http://zoeyyoung.github.io/design-patten-iterator.html</link><description>&lt;h3&gt;意图&lt;/h3&gt;
 &lt;p&gt;提供一种方法顺序访问一个&lt;strong&gt;聚合对象&lt;/strong&gt;中各个元素, 而又不需暴露该对象的内部表示.&lt;/p&gt;
 &lt;p&gt;什么是聚合对象? 数组、堆栈、列表、散列表等.&lt;/p&gt;
 &lt;p&gt;关键思想是将对列表的访问和遍历从列表对象中分离出来并放入一个迭代器(iterator)对象中.&lt;/p&gt;
@@ -312,7 +350,7 @@
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://docs.oracle.com/javase/7/docs/api/java/util/logging/Logger.html#log%28java.util.logging.Level,%20java.lang.String%29"&gt;java.util.logging.Logger#log()&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://docs.oracle.com/javaee/7/api/javax/servlet/Filter.html#doFilter%28javax.servlet.ServletRequest,%20javax.servlet.ServletResponse,%20javax.servlet.FilterChain%29"&gt;javax.servlet.Filter#doFilter()&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 08 Oct 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-10-08:design-pattern-chain-of-responsibility.html</guid><category>读书</category><category>Book</category><category>设计模式</category></item><item><title>[设计模式] Adapter</title><link>http://zoeyyoung.github.io/design-patten-adapter.html</link><description>&lt;h3&gt;意图:&lt;/h3&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Tue, 08 Oct 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-10-08:design-pattern-chain-of-responsibility.html</guid><category>读书</category><category>Book</category><category>设计模式</category></item><item><title>[设计模式] Adapter</title><link>http://zoeyyoung.github.io/design-patten-adapter.html</link><description>&lt;h3&gt;意图&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;Adapter(类模式): 通过类继承, 将一个类的接口转换成客户希望的另外一个接口. 使得原本由于接口不兼容而不能一起工作的那些类可以一起工作.&lt;/p&gt;
@@ -321,7 +359,8 @@
 &lt;p&gt;Adapter: 通过对象组合, 将一个类的接口转换成客户希望的另外一个接口. 使得原本由于接口不兼容而不能一起工作的那些类可以一起工作.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h3&gt;别名: 包装器 Wrapper&lt;/h3&gt;
+&lt;h3&gt;别名&lt;/h3&gt;
+&lt;p&gt;包装器 Wrapper&lt;/p&gt;
 &lt;h3&gt;适用性&lt;/h3&gt;
 &lt;p&gt;以下情况使用Adapter模式&lt;/p&gt;
 &lt;ul&gt;

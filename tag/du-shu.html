@@ -116,6 +116,62 @@
       <div class="main-content col-md-8">
 
     <div>
+        <a href="http://zoeyyoung.github.io/design-patten-composite.html"><h1>[设计模式] 组合模式</h1></a>
+<div class="article-metadata">
+<time class="published" datetime="2013 十月 22 周二">2013 十月 22 周二 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/she-ji-mo-shi.html">设计模式</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+    <a href="http://zoeyyoung.github.io/tag/du-shu.html">读书</a>
+    <a href="http://zoeyyoung.github.io/tag/book.html">Book</a>
+</span>
+<!-- <p></p> -->
+</div>        <h3>意图</h3>
+<p>将对象组合成树形结构以表示"部分-整体"的层次结构. Composite使得用户对单个对象
+和组合对象的使用具有一致性.</p>
+<h3>适用性</h3>
+<p>以下情况使用Composite模式:</p>
+<ul>
+<li>你想表示对象的部分-整体层次结构</li>
+<li>你希望用户忽略组合对象与单个对象的不同, 用户将统一地使用组合结构中的所有对象</li>
+</ul>
+<h3>结构</h3>
+<p><img alt="组合模式结构图" src="/images/design-patten-composite.png" /></p>
+<h3>参与者</h3>
+<ul>
+<li>Component<ul>
+<li>为组合中的对象声明接口</li>
+<li>在适当的情况下, 实现所有类共有接口的缺省行为</li>
+<li>声明一个接口用于访问和管理Component的子组件</li>
+<li>(可选)在递归结构中定义一个接口, 用于访问一个父部件, 并在合适的情况下实现它</li>
+</ul>
+</li>
+<li>Leaf<ul>
+<li>在组合中表示叶节点对象, 叶节点没有子节点</li>
+<li>在组合中定义图元对象的行为</li>
+</ul>
+</li>
+<li>Composite<ul>
+<li>定义有子部件的那些部件的行为</li>
+<li>存储子部件</li>
+<li>在Component接口中实现与子部件有关的操作</li>
+</ul>
+</li>
+<li>Client<ul>
+<li>通过Component接口操纵组合部件的对象</li>
+</ul>
+</li>
+</ul>
+<h3>协作</h3>
+<p>用户使用Component类接口与组合结构中的对象进行交互. 如果接收者是一个叶节点, 则直接处理请求. 如果接收者是Composite, 它通常将请求发送给它的子部件, 在转发请求
+之前与/或之后可能执行一些辅助操作.</p>
+        <hr />
+    </div>
+     <div>
         <a href="http://zoeyyoung.github.io/design-patten-iterator.html"><h1>[设计模式] 迭代器模式</h1></a>
 <div class="article-metadata">
 <time class="published" datetime="2013 十月 15 周二">2013 十月 15 周二 </time>
@@ -130,68 +186,7 @@
     <a href="http://zoeyyoung.github.io/tag/book.html">Book</a>
 </span>
 <!-- <p></p> -->
-</div>        <h3>意图</h3>
-<p>提供一种方法顺序访问一个<strong>聚合对象</strong>中各个元素, 而又不需暴露该对象的内部表示.</p>
-<p>什么是聚合对象? 数组、堆栈、列表、散列表等.</p>
-<p>关键思想是将对列表的访问和遍历从列表对象中分离出来并放入一个迭代器(iterator)对象中.</p>
-<p>创建迭代器是一个Factory Method模式的例子</p>
-<h3>别名</h3>
-<p>游标(Cursor)</p>
-<h3>适用性</h3>
-<p>迭代器模式可用来:</p>
-<ul>
-<li>访问一个聚合对象的内容而无需暴露它的内部表示</li>
-<li>支持对聚合对象的多种遍历</li>
-<li>为遍历不同的聚合结构提供一个统一的接口(即, 支持多态迭代)</li>
-</ul>
-<h3>结构</h3>
-<p><img alt="迭代器模式结构图" src="/images/design-patten-iterator.png" /></p>
-<h3>参与者</h3>
-<ul>
-<li>Iterator(迭代器)<ul>
-<li>迭代器定义访问和遍历元素的接口</li>
-</ul>
-</li>
-<li>ConcreteIterator(具体迭代器)<ul>
-<li>具体迭代器实现迭代器接口</li>
-<li>对该聚合遍历时跟踪当前位置</li>
-</ul>
-</li>
-<li>Aggregate(聚合)<ul>
-<li>聚合定义创建相应迭代器对象的接口【使用了工厂方法模式, CreateIterator()为工厂方法】</li>
-</ul>
-</li>
-<li>ConcreteAggregate(具体聚合)<ul>
-<li>具体聚合实现创建相应迭代器的接口, 该操作返回ConcreteIterator的一个适当的实例</li>
-</ul>
-</li>
-</ul>
-<h3>协作</h3>
-<ul>
-<li>ConcreteIterator跟踪聚合中的当前对象, 并能够计算出待遍历的后继对象.</li>
-</ul>
-<h3>效果</h3>
-<p>迭代器模式有三个重要的作用:</p>
-<ol>
-<li>它支持以不同的方式遍历一个聚合【前序 中序 后序】</li>
-<li>迭代器简化了聚合的接口</li>
-<li>在同一个聚合上可以有多个遍历</li>
-</ol>
-<h3>实现</h3>
-<h3>相关模式</h3>
-<ul>
-<li>Composite: 迭代器常被应用到像复合这样的递归结构上</li>
-<li>Factory Method: 多态迭代器靠Factory Method来实例化适当的迭代器子类</li>
-<li>Memento: 常与迭代器模式一起使用. 迭代器可使用一个memento来捕获一个迭代的
-状态. 迭代器在其内部存储memento</li>
-</ul>
-<h3>JDK</h3>
-<p>recognizeable by behavioral methods sequentially returning instances of a different type from a queue</p>
-<ul>
-<li>All implementations of <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.html">java.util.Iterator</a> (thus among others also <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Scanner.html">java.util.Scanner</a>!).</li>
-<li>All implementations of <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Enumeration.html">java.util.Enumeration</a></li>
-<li><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html">java.util.Collection<E></a>接口扩展了Iterator接口.</li>
-</ul>
+</div>        <p>ITERATOR(迭代器) —— 对象行为型模式</p>
         <hr />
     </div>
      <div>
@@ -338,24 +333,6 @@
 </span>
 <!-- <p></p> -->
 </div>        <p>观察者模式</p>
-        <hr />
-    </div>
-     <div>
-        <a href="http://zoeyyoung.github.io/simple-and-usable.html"><h1>[笔记]《简约至上——交互式设计四策略》</h1></a>
-<div class="article-metadata">
-<time class="published" datetime="2012 六月 24 周日">2012 六月 24 周日 </time>
-<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
-<span>
-    <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/du-shu.html">读书</a>
-</span>
-<span>
-    <i class="icon-tags"></i>
-    <a href="http://zoeyyoung.github.io/tag/du-shu.html">读书</a>
-    <a href="http://zoeyyoung.github.io/tag/book.html">Book</a>
-</span>
-<!-- <p></p> -->
-</div>        <p>《简约至上——交互式设计四策略》</p>
         <hr />
     </div>
 <ul class="pagination pagination-sm no-print">

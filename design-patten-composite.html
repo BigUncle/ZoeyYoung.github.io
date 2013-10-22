@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
-  <title>OK Computer</title>
+  <title>[设计模式] 组合模式 - OK Computer</title>
   <meta name="description" content="杨丁苗的个人博客">
   <meta name="author" content="Zoey Young">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -69,7 +69,7 @@
           <li >
             <a href="http://zoeyyoung.github.io/category/ruby.html ">Ruby</a>
           </li>
-          <li >
+          <li  class="active" >
             <a href="http://zoeyyoung.github.io/category/she-ji-mo-shi.html ">设计模式</a>
           </li>
           <li >
@@ -114,15 +114,14 @@
         </ul>
       </div>
       <div class="main-content col-md-8">
-
-    <div>
-        <a href="http://zoeyyoung.github.io/simple-and-usable.html"><h1>[笔记]《简约至上——交互式设计四策略》</h1></a>
+<article>
+  <h1>[设计模式] 组合模式</h1>
 <div class="article-metadata">
-<time class="published" datetime="2012 六月 24 周日">2012 六月 24 周日 </time>
+<time class="published" datetime="2013 十月 22 周二">2013 十月 22 周二 </time>
 <a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
 <span>
     <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/du-shu.html">读书</a>
+    <a href="http://zoeyyoung.github.io/category/she-ji-mo-shi.html">设计模式</a>
 </span>
 <span>
     <i class="icon-tags"></i>
@@ -130,53 +129,60 @@
     <a href="http://zoeyyoung.github.io/tag/book.html">Book</a>
 </span>
 <!-- <p></p> -->
-</div>        <p>《简约至上——交互式设计四策略》</p>
-        <hr />
-    </div>
-     <div>
-        <a href="http://zoeyyoung.github.io/rework.html"><h1>[笔记]《Rework》</h1></a>
-<div class="article-metadata">
-<time class="published" datetime="2012 六月 21 周四">2012 六月 21 周四 </time>
-<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
-<span>
-    <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/du-shu.html">读书</a>
-</span>
-<span>
-    <i class="icon-tags"></i>
-    <a href="http://zoeyyoung.github.io/tag/du-shu.html">读书</a>
-    <a href="http://zoeyyoung.github.io/tag/book.html">Book</a>
-</span>
-<!-- <p></p> -->
-</div>        <p>《Rework》</p>
-        <hr />
-    </div>
-     <div>
-        <a href="http://zoeyyoung.github.io/hakers-and-painters.html"><h1>[笔记]《黑客与画家》</h1></a>
-<div class="article-metadata">
-<time class="published" datetime="2012 六月 13 周三">2012 六月 13 周三 </time>
-<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
-<span>
-    <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/du-shu.html">读书</a>
-</span>
-<span>
-    <i class="icon-tags"></i>
-    <a href="http://zoeyyoung.github.io/tag/du-shu.html">读书</a>
-    <a href="http://zoeyyoung.github.io/tag/book.html">Book</a>
-</span>
-<!-- <p></p> -->
-</div>        <p>《黑客与画家》</p>
-        <hr />
-    </div>
-<ul class="pagination pagination-sm no-print">
-    <li class="prev"><a href="http://zoeyyoung.github.io/tag/book.html">&larr; 上一页</a></li>
-
-    <li class=""><a href="http://zoeyyoung.github.io/tag/book.html">1</a></li>
-    <li class="active"><a href="http://zoeyyoung.github.io/tag/book2.html">2</a></li>
-
-    <li class="next disabled"><a href="#">&rarr; 下一页</a></li>
-</ul>   
+</div>  <h3>意图</h3>
+<p>将对象组合成树形结构以表示"部分-整体"的层次结构. Composite使得用户对单个对象
+和组合对象的使用具有一致性.</p>
+<h3>适用性</h3>
+<p>以下情况使用Composite模式:</p>
+<ul>
+<li>你想表示对象的部分-整体层次结构</li>
+<li>你希望用户忽略组合对象与单个对象的不同, 用户将统一地使用组合结构中的所有对象</li>
+</ul>
+<h3>结构</h3>
+<p><img alt="组合模式结构图" src="/images/design-patten-composite.png" /></p>
+<h3>参与者</h3>
+<ul>
+<li>Component<ul>
+<li>为组合中的对象声明接口</li>
+<li>在适当的情况下, 实现所有类共有接口的缺省行为</li>
+<li>声明一个接口用于访问和管理Component的子组件</li>
+<li>(可选)在递归结构中定义一个接口, 用于访问一个父部件, 并在合适的情况下实现它</li>
+</ul>
+</li>
+<li>Leaf<ul>
+<li>在组合中表示叶节点对象, 叶节点没有子节点</li>
+<li>在组合中定义图元对象的行为</li>
+</ul>
+</li>
+<li>Composite<ul>
+<li>定义有子部件的那些部件的行为</li>
+<li>存储子部件</li>
+<li>在Component接口中实现与子部件有关的操作</li>
+</ul>
+</li>
+<li>Client<ul>
+<li>通过Component接口操纵组合部件的对象</li>
+</ul>
+</li>
+</ul>
+<h3>协作</h3>
+<p>用户使用Component类接口与组合结构中的对象进行交互. 如果接收者是一个叶节点, 则直接处理请求. 如果接收者是Composite, 它通常将请求发送给它的子部件, 在转发请求
+之前与/或之后可能执行一些辅助操作.</p>
+</article>
+<div class="comment">
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a href="http://www.jiathis.com/share?uid=1801890" class="jiathis jiathis_txt" target="_blank"><img src="http://v3.jiathis.com/code_mini/images/btn/v1/jiathis1.gif" border="0" /></a>
+  <a class="jiathis_counter_style_margin:3px 0 0 2px"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code_mini/jia.js?uid=1371447419774871" charset="utf-8"></script>
+<!-- JiaThis Button END --><!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" id="UYScript" src="http://v1.uyan.cc/js/iframe.js?UYUserId=1801890" async=""></script>
+<!-- UY END --></div>
       </div>    </div><!-- End of fluid row-->
   </div><!-- End of Container-->
   <!--footer-->
