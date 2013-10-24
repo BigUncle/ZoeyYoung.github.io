@@ -109,7 +109,7 @@
             <a href="http://zoeyyoung.github.io/pages/on-the-road.html">在路上</a>
           </li>
           <li>
-            <a href="http://zoeyyoung.github.io/pages/software.html">我使用的软件</a>
+            <a href="http://zoeyyoung.github.io/pages/pc-software.html">PC上的软件</a>
           </li>
           <li>
             <a href="http://zoeyyoung.github.io/pages/translate.html">翻译</a>
@@ -220,7 +220,33 @@
 <h4>第40条: 谨慎设计方法签名</h4>
 <h4>第41条: 谨慎重载</h4>
 <h4>第42条: 慎用可变参数</h4>
-<h4>第43条: 返回零长度的数组或者集合, 而不是null【】</h4>
+<h4>第43条: 返回零长度的数组或者集合, 而不是null【√】</h4>
+<p>【没注意的话, 确实经常会使用返回null的方式. 然后在前端再判断是否为null. 导致前端许多判断是否为null的语句. 如果只是返回对象而不是数组或集合呢?】</p>
+<p>返回null的坏处: 客户端中必须有额外的代码来处理null返回值.【判断是否为null】</p>
+<p>正确的做法:</p>
+<div class="highlight"><pre><span class="c1">// The right way to return an array from a collection</span>
+<span class="kd">private</span> <span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Cheese</span><span class="o">&gt;</span> <span class="n">cheesesInStock</span> <span class="o">=</span> <span class="o">...;</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Cheese</span><span class="o">[]</span> <span class="n">EMPTY_CHEESE_ARRAY</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Cheese</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
+<span class="cm">/**</span>
+<span class="cm"> * @return an array containing all of the cheeses in the shop.</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="n">Cheese</span><span class="o">[]</span> <span class="nf">getCheeses</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">cheesesInStock</span><span class="o">.</span><span class="na">toArray</span><span class="o">(</span><span class="n">EMPTY</span><span class="o">-</span><span class="n">CHEESE_ARRAY</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<p>对于空集合, 使用<code>Collections.emptySet()</code>、<code>Collections.emptyList()</code>和<code>Collections.emptyMap()</code>.</p>
+<div class="highlight"><pre><span class="c1">// The right way to return a copy of a collection</span>
+<span class="n">publlic</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Cheese</span><span class="o">&gt;</span> <span class="nf">getCheeseList</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">cheesesInStock</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span>
+        <span class="k">return</span> <span class="n">Collections</span><span class="o">.</span><span class="na">emptyList</span><span class="o">();</span> <span class="c1">// Always returns same list</span>
+    <span class="k">else</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Cheese</span><span class="o">&gt;(</span><span class="n">cheesesInStock</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+
+
 <h4>第44条: 为所有导出的API元素编写文档注释</h4>
 <h3>第8章 通用程序设计</h3>
 <p>http://www.cnblogs.com/stephen-liu74/archive/2012/01/27/2261576.html</p>

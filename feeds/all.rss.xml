@@ -86,7 +86,33 @@
 &lt;h4&gt;第40条: 谨慎设计方法签名&lt;/h4&gt;
 &lt;h4&gt;第41条: 谨慎重载&lt;/h4&gt;
 &lt;h4&gt;第42条: 慎用可变参数&lt;/h4&gt;
-&lt;h4&gt;第43条: 返回零长度的数组或者集合, 而不是null【】&lt;/h4&gt;
+&lt;h4&gt;第43条: 返回零长度的数组或者集合, 而不是null【√】&lt;/h4&gt;
+&lt;p&gt;【没注意的话, 确实经常会使用返回null的方式. 然后在前端再判断是否为null. 导致前端许多判断是否为null的语句. 如果只是返回对象而不是数组或集合呢?】&lt;/p&gt;
+&lt;p&gt;返回null的坏处: 客户端中必须有额外的代码来处理null返回值.【判断是否为null】&lt;/p&gt;
+&lt;p&gt;正确的做法:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;// The right way to return an array from a collection&lt;/span&gt;
+&lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="kd"&gt;final&lt;/span&gt; &lt;span class="n"&gt;List&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;Cheese&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;cheesesInStock&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;...;&lt;/span&gt;
+&lt;span class="kd"&gt;private&lt;/span&gt; &lt;span class="kd"&gt;static&lt;/span&gt; &lt;span class="kd"&gt;final&lt;/span&gt; &lt;span class="n"&gt;Cheese&lt;/span&gt;&lt;span class="o"&gt;[]&lt;/span&gt; &lt;span class="n"&gt;EMPTY_CHEESE_ARRAY&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;Cheese&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;];&lt;/span&gt;
+&lt;span class="cm"&gt;/**&lt;/span&gt;
+&lt;span class="cm"&gt; * @return an array containing all of the cheeses in the shop.&lt;/span&gt;
+&lt;span class="cm"&gt; */&lt;/span&gt;
+&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="n"&gt;Cheese&lt;/span&gt;&lt;span class="o"&gt;[]&lt;/span&gt; &lt;span class="nf"&gt;getCheeses&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;cheesesInStock&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;toArray&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;EMPTY&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;CHEESE_ARRAY&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;对于空集合, 使用&lt;code&gt;Collections.emptySet()&lt;/code&gt;、&lt;code&gt;Collections.emptyList()&lt;/code&gt;和&lt;code&gt;Collections.emptyMap()&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;// The right way to return a copy of a collection&lt;/span&gt;
+&lt;span class="n"&gt;publlic&lt;/span&gt; &lt;span class="n"&gt;List&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;Cheese&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="nf"&gt;getCheeseList&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cheesesInStock&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;isEmpty&lt;/span&gt;&lt;span class="o"&gt;())&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;Collections&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;emptyList&lt;/span&gt;&lt;span class="o"&gt;();&lt;/span&gt; &lt;span class="c1"&gt;// Always returns same list&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;ArrayList&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;Cheese&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;(&lt;/span&gt;&lt;span class="n"&gt;cheesesInStock&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;h4&gt;第44条: 为所有导出的API元素编写文档注释&lt;/h4&gt;
 &lt;h3&gt;第8章 通用程序设计&lt;/h3&gt;
 &lt;p&gt;http://www.cnblogs.com/stephen-liu74/archive/2012/01/27/2261576.html&lt;/p&gt;
