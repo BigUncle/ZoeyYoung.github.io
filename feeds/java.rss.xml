@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OK Computer</title><link>http://zoeyyoung.github.io/</link><description>It's better to burn out &lt;br/&gt; than to fade away.</description><atom:link href="http://zoeyyoung.github.io/feeds/java.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 23 Oct 2013 00:00:00 +0800</lastBuildDate><item><title>[笔记]《Effective Java》</title><link>http://zoeyyoung.github.io/effective-java.html</link><description>&lt;p&gt;刚入手了这本书. 列个目录. 仅仅目录信息量就很大了...偶尔翻翻感兴趣的条目.&lt;/p&gt;
+&lt;p&gt;【√】为已掌握&lt;/p&gt;
 &lt;h3&gt;第2章 创建和销毁对象&lt;/h3&gt;
 &lt;p&gt;http://www.cnblogs.com/stephen-liu74/archive/2012/01/13/2228354.html&lt;/p&gt;
 &lt;h4&gt;第1条: 考虑用静态工厂方法代替构造器&lt;/h4&gt;
 &lt;h4&gt;第2条: 遇到多个构造参数时要考虑用构建器(Builder模式)&lt;/h4&gt;
 &lt;h4&gt;第3条: 用私有构造器或者枚举类型强化Singleton属性&lt;/h4&gt;
-&lt;h4&gt;第4条: 通过私有构造器强化不可实例化的能力&lt;/h4&gt;
+&lt;h4&gt;第4条: 通过私有构造器强化不可实例化的能力【√】&lt;/h4&gt;
 &lt;p&gt;针对: 只包含静态方法和静态域的类, 一般是工具类(utility class)&lt;/p&gt;
 &lt;p&gt;实例化没有意义&lt;/p&gt;
-&lt;p&gt;注意: 要使类的外部和内部都不能实例化这个类.&lt;/p&gt;
+&lt;p&gt;注意点: 要使类的外部和内部都不能实例化这个类.&lt;/p&gt;
 &lt;p&gt;怎么做? 将构造器设置为private, 这样类的外部将无法实例化该类, 与此同时, 在这个私有的构造函数的实现中直接抛出异常, 从而避免不小心在类的内部调用构造器.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;// Noninstantiable utility class&lt;/span&gt;
 &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;UtilityClass&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
@@ -26,7 +27,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;所有的构造器都必须显式或隐式地调用超类(superclass)构造器.&lt;/p&gt;
+&lt;p&gt;为什么? 所有的构造器都必须显式或隐式地调用超类(superclass)构造器.&lt;/p&gt;
 &lt;h4&gt;第5条: 避免创建不必要的对象&lt;/h4&gt;
 &lt;h4&gt;第6条: 消除过期的对象引用&lt;/h4&gt;
 &lt;h4&gt;第7条: 避免使用终结方法&lt;/h4&gt;
@@ -85,7 +86,7 @@
 &lt;h4&gt;第40条: 谨慎设计方法签名&lt;/h4&gt;
 &lt;h4&gt;第41条: 谨慎重载&lt;/h4&gt;
 &lt;h4&gt;第42条: 慎用可变参数&lt;/h4&gt;
-&lt;h4&gt;第43条: 返回零长度的数组或者集合, 而不是null&lt;/h4&gt;
+&lt;h4&gt;第43条: 返回零长度的数组或者集合, 而不是null【】&lt;/h4&gt;
 &lt;h4&gt;第44条: 为所有导出的API元素编写文档注释&lt;/h4&gt;
 &lt;h3&gt;第8章 通用程序设计&lt;/h3&gt;
 &lt;p&gt;http://www.cnblogs.com/stephen-liu74/archive/2012/01/27/2261576.html&lt;/p&gt;
