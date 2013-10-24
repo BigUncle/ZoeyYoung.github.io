@@ -100,6 +100,9 @@
             <a href="http://zoeyyoung.github.io/pages/golden-slumber.html">Golden Slumber</a>
           </li>
           <li>
+            <a href="http://zoeyyoung.github.io/pages/mobile-software.html">手机上的软件</a>
+          </li>
+          <li>
             <a href="http://zoeyyoung.github.io/pages/neil-young.html">Neil Young</a>
           </li>
           <li>
@@ -116,6 +119,154 @@
       <div class="main-content col-md-8">
 
     <div>
+        <a href="http://zoeyyoung.github.io/effective-java.html"><h1>[笔记]《Effective Java》</h1></a>
+<div class="article-metadata">
+<time class="published" datetime="2013 十月 23 周三">2013 十月 23 周三 </time>
+<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
+<span>
+    <i class="icon-folder-open"></i>
+    <a href="http://zoeyyoung.github.io/category/java.html">Java</a>
+</span>
+<span>
+    <i class="icon-tags"></i>
+    <a href="http://zoeyyoung.github.io/tag/du-shu.html">读书</a>
+    <a href="http://zoeyyoung.github.io/tag/book.html">Book</a>
+    <a href="http://zoeyyoung.github.io/tag/java.html">Java</a>
+</span>
+<!-- <p></p> -->
+</div>        <p>刚入手了这本书. 列个目录. 仅仅目录信息量就很大了...偶尔翻翻感兴趣的条目.</p>
+<h3>第2章 创建和销毁对象</h3>
+<p>http://www.cnblogs.com/stephen-liu74/archive/2012/01/13/2228354.html</p>
+<h4>第1条: 考虑用静态工厂方法代替构造器</h4>
+<h4>第2条: 遇到多个构造参数时要考虑用构建器(Builder模式)</h4>
+<h4>第3条: 用私有构造器或者枚举类型强化Singleton属性</h4>
+<h4>第4条: 通过私有构造器强化不可实例化的能力</h4>
+<p>针对: 只包含静态方法和静态域的类, 一般是工具类(utility class)</p>
+<p>实例化没有意义</p>
+<p>注意: 要使类的外部和内部都不能实例化这个类.</p>
+<p>怎么做? 将构造器设置为private, 这样类的外部将无法实例化该类, 与此同时, 在这个私有的构造函数的实现中直接抛出异常, 从而避免不小心在类的内部调用构造器.</p>
+<div class="highlight"><pre><span class="c1">// Noninstantiable utility class</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UtilityClass</span> <span class="o">{</span>
+    <span class="c1">// Suppress default constructor for noninstantiability</span>
+    <span class="kd">private</span> <span class="nf">UtilityClass</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nf">AssertionError</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<p>副作用: 该类不能被子类化.</p>
+<p>如果想要继承上面的<strong>UtilityClass</strong>类, 会得到错误提示:</p>
+<div class="highlight"><pre><span class="n">Implicit</span> <span class="n">super</span> <span class="n">constructor</span> <span class="n">UtilityClass</span><span class="p">()</span> <span class="n">is</span> <span class="n">not</span> <span class="n">visible</span><span class="p">.</span> <span class="n">Must</span> <span class="n">explicitly</span> <span class="n">invoke</span> <span class="n">another</span> <span class="n">constructor</span><span class="p">.</span>
+</pre></div>
+
+
+<p>所有的构造器都必须显式或隐式地调用超类(superclass)构造器.</p>
+<h4>第5条: 避免创建不必要的对象</h4>
+<h4>第6条: 消除过期的对象引用</h4>
+<h4>第7条: 避免使用终结方法</h4>
+<h3>第3章 对象通用方法</h3>
+<p>http://www.cnblogs.com/stephen-liu74/archive/2012/01/16/2228360.html</p>
+<h4>第8条: 覆盖equals时请遵守通用约定</h4>
+<h4>第9条: 覆盖equals时总要覆盖hashCode</h4>
+<h4>第10条: 始终要覆盖toString</h4>
+<p>要考虑的问题: 是否在文档中指定返回值的格式.</p>
+<h4>第11条: 谨慎地覆盖clone</h4>
+<h4>第12条: 考虑实现Comparable接口</h4>
+<h3>第4章 类和接口</h3>
+<p>http://www.cnblogs.com/stephen-liu74/archive/2012/01/18/2228349.html</p>
+<h4>第13条: 使类和成员的可访问性最小化</h4>
+<h4>第14条: 在公有类中使用访问方法而非公有域</h4>
+<h4>第15条: 使可变性最小化</h4>
+<h4>第16条: 复合优先于继承</h4>
+<h4>第17条: 要么为继承而设计，并提供文档说明，要么就禁止继承</h4>
+<h4>第18条: 接口优先于抽象类【*】</h4>
+<p>关键原因: Java是不支持多重继承但是可以实现多个接口的.</p>
+<ul>
+<li>现有的类可以很容易被更新, 以实现新的接口.</li>
+<li>接口是定义mixin(混合类型)的理想选择.【Comparable是一个典型的mixin接口】</li>
+<li>接口允许我们构造非层次结构的类型框架.</li>
+</ul>
+<p>可以为接口提供一个抽象的骨架实现(skeletal implementation)类.【AbstractInterface】</p>
+<h4>第19条: 接口只用于定义类型</h4>
+<p>常量接口模式是对接口的不良使用.</p>
+<p>应该使用枚举类型(enum type)或工具类(utility class)</p>
+<h4>第20条: 类层次优于标签类</h4>
+<h4>第21条: 用函数对象表示策略</h4>
+<h4>第22条: 优先考虑静态成员类</h4>
+<h3>第5章 泛型</h3>
+<p>http://www.cnblogs.com/stephen-liu74/archive/2012/01/20/2228938.html</p>
+<h4>第23条: 请不要在新代码中使用原生态类型</h4>
+<h4>第24条: 消除非受检警告</h4>
+<h4>第25条: 列表优先于数组</h4>
+<h4>第26条: 优先考虑泛型</h4>
+<h4>第27条: 优先考虑泛型方法</h4>
+<h4>第28条: 利用有限制通配符来提升API的灵活性</h4>
+<h4>第29条: 优先考虑类型安全的异构容器</h4>
+<h3>第6章 枚举和注解</h3>
+<p>http://www.cnblogs.com/stephen-liu74/archive/2012/01/23/2232218.html</p>
+<h4>第30条: 用enum代替int常量</h4>
+<h4>第31条: 用实例域代替序数</h4>
+<h4>第32条: 用EnumSet代替位域</h4>
+<h4>第33条: 用EnumMap代替序数索引</h4>
+<h4>第34条: 用接口模拟可伸缩的枚举</h4>
+<h4>第35条: 注解优先于命名模式</h4>
+<h4>第36条: 坚持使用Override注解</h4>
+<h4>第37条: 用标记接口定义类型</h4>
+<h3>第7章 方法</h3>
+<p>http://www.cnblogs.com/stephen-liu74/archive/2012/01/25/2245971.html</p>
+<h4>第38条: 检查参数的有效性</h4>
+<h4>第39条: 必要时进行保护性拷贝</h4>
+<h4>第40条: 谨慎设计方法签名</h4>
+<h4>第41条: 谨慎重载</h4>
+<h4>第42条: 慎用可变参数</h4>
+<h4>第43条: 返回零长度的数组或者集合, 而不是null</h4>
+<h4>第44条: 为所有导出的API元素编写文档注释</h4>
+<h3>第8章 通用程序设计</h3>
+<p>http://www.cnblogs.com/stephen-liu74/archive/2012/01/27/2261576.html</p>
+<h4>第45条: 将局部变量的作用域最小化</h4>
+<h4>第46条: for-each循环优先于传统的for循环</h4>
+<h4>第47条: 了解和使用类库</h4>
+<h4>第48条: 如果需要精确的答案，请避免使用float和double</h4>
+<h4>第49条: 基本类型优先于基本装箱类型</h4>
+<h4>第50条: 如果其他类型更适合, 则尽量避免使用字符串</h4>
+<h4>第51条: 当心字符串连接的性能</h4>
+<h4>第52条: 通过接口引用对象</h4>
+<h4>第53条: 接口优先于反射机制</h4>
+<h4>第54条: 谨慎地使用本地方法</h4>
+<h4>第55条: 谨慎地进行优化</h4>
+<h4>第56条: 遵守普遍接受的命名惯例</h4>
+<h3>第9章 异常</h3>
+<p>http://www.cnblogs.com/stephen-liu74/archive/2012/01/30/2263585.html</p>
+<h4>第57条: 只针对异常情况才使用异常</h4>
+<h4>第58条: 对可恢复的情况使用受检异常，对编程错误使用运行时异常</h4>
+<h4>第59条: 避免不必要的使用受检异常</h4>
+<h4>第60条: 优先使用标准异常</h4>
+<h4>第61条: 抛出与抽象相对应的异常</h4>
+<h4>第62条: 每个方法抛出的异常都要有文档</h4>
+<h4>第63条: 在细节中包含能捕获失败的信息</h4>
+<h4>第64条: 努力使失败保持原子性</h4>
+<h4>第65条: 不要忽略异常</h4>
+<h3>第10章 并发</h3>
+<p>http://www.cnblogs.com/stephen-liu74/archive/2012/02/01/2270868.html</p>
+<h4>第66条: 同步访问共享的可变数据</h4>
+<h4>第67条: 避免过度同步</h4>
+<h4>第68条: executor和task优先于线程</h4>
+<h4>第69条: 并发工具优先于wait和notify</h4>
+<h4>第70条: 线程安全性的文档化</h4>
+<h4>第71条: 慎用延迟初始化</h4>
+<h4>第72条: 不要依赖于线程调度器</h4>
+<h4>第73条: 避免使用线程组</h4>
+<h3>第11章 序列化</h3>
+<p>http://www.cnblogs.com/stephen-liu74/archive/2012/02/03/2284306.html</p>
+<h4>第74条: 谨慎地实现Serializable接口</h4>
+<h4>第75条: 考虑使用自定义的序列化形式</h4>
+<h4>第76条: 保护性的编写readObject方法</h4>
+<h4>第77条: 对于实例控制, 枚举类型优先于readResolve</h4>
+<h4>第78条: 考虑用序列化代理代替序列化实例</h4>
+        <hr />
+    </div>
+     <div>
         <a href="http://zoeyyoung.github.io/java-arrays.html"><h1>[Java基础] 数组</h1></a>
 <div class="article-metadata">
 <time class="published" datetime="2013 十月 10 周四">2013 十月 10 周四 </time>
@@ -130,113 +281,7 @@
     <a href="http://zoeyyoung.github.io/tag/bian-cheng-ji-chu.html">编程基础</a>
 </span>
 <!-- <p></p> -->
-</div>        <p>这回笔试, 要手写代码, 然后发现很久不写Java, 连怎么初始化数组都不记得啦. 方括号? 大括号? 要不要写大小? 在哪写? 主要也是受了Python列表的影响...</p>
-<p><a href="http://www.programcreek.com/2013/09/top-10-methods-for-java-arrays/">Top 10 Methods for Java Arrays</a></p>
-<p>The following are top 10 methods for Java Array. They are the most voted questions from stackoverflow.</p>
-<h4>0. Declare an array</h4>
-<div class="highlight"><pre><span class="n">String</span><span class="o">[]</span> <span class="n">aArray</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[</span><span class="mi">5</span><span class="o">];</span>
-<span class="n">String</span><span class="o">[]</span> <span class="n">bArray</span> <span class="o">=</span> <span class="o">{</span><span class="s">&quot;a&quot;</span><span class="o">,</span> <span class="s">&quot;b&quot;</span><span class="o">,</span> <span class="s">&quot;c&quot;</span><span class="o">,</span> <span class="s">&quot;d&quot;</span><span class="o">,</span> <span class="s">&quot;e&quot;</span><span class="o">};</span>
-<span class="n">String</span><span class="o">[]</span> <span class="n">cArray</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[]{</span><span class="s">&quot;a&quot;</span><span class="o">,</span><span class="s">&quot;b&quot;</span><span class="o">,</span><span class="s">&quot;c&quot;</span><span class="o">,</span><span class="s">&quot;d&quot;</span><span class="o">,</span><span class="s">&quot;e&quot;</span><span class="o">};</span>
-</pre></div>
-
-
-<p>【<strong>数组长度</strong>: <code>arr.length</code>, 不是size, 也不是len】</p>
-<h4>1. Print an array in Java</h4>
-<div class="highlight"><pre><span class="kt">int</span><span class="o">[]</span> <span class="n">intArray</span> <span class="o">=</span> <span class="o">{</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span> <span class="o">};</span>
-<span class="n">String</span> <span class="n">intArrayString</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">intArray</span><span class="o">);</span>
-
-<span class="c1">// print directly will print reference value</span>
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intArray</span><span class="o">);</span>
-<span class="c1">// [I@7150bd4d</span>
-
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">intArrayString</span><span class="o">);</span>
-<span class="c1">// [1, 2, 3, 4, 5]</span>
-</pre></div>
-
-
-<h4>2. Create an ArrayList from an array</h4>
-<div class="highlight"><pre><span class="n">String</span><span class="o">[]</span> <span class="n">stringArray</span> <span class="o">=</span> <span class="o">{</span><span class="s">&quot;a&quot;</span><span class="o">,</span> <span class="s">&quot;b&quot;</span><span class="o">,</span> <span class="s">&quot;c&quot;</span><span class="o">,</span> <span class="s">&quot;d&quot;</span><span class="o">,</span> <span class="s">&quot;e&quot;</span><span class="o">};</span>
-<span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">arrayList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">stringArray</span><span class="o">));</span>
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">arrayList</span><span class="o">);</span>
-<span class="c1">// [a, b, c, d, e]</span>
-</pre></div>
-
-
-<h4>3. Check if an array contains a certain value</h4>
-<div class="highlight"><pre><span class="n">String</span><span class="o">[]</span> <span class="n">stringArray</span> <span class="o">=</span> <span class="o">{</span><span class="s">&quot;a&quot;</span><span class="o">,</span> <span class="s">&quot;b&quot;</span><span class="o">,</span> <span class="s">&quot;c&quot;</span><span class="o">,</span> <span class="s">&quot;d&quot;</span><span class="o">,</span> <span class="s">&quot;e&quot;</span><span class="o">};</span>
-<span class="kt">boolean</span> <span class="n">b</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">stringArray</span><span class="o">).</span><span class="na">contains</span><span class="o">(</span><span class="s">&quot;a&quot;</span><span class="o">);</span>
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">b</span><span class="o">);</span>
-<span class="c1">// true</span>
-</pre></div>
-
-
-<h4>4. Concatenate two arrays</h4>
-<div class="highlight"><pre><span class="kt">int</span><span class="o">[]</span> <span class="n">intArray</span> <span class="o">=</span> <span class="o">{</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span> <span class="o">};</span>
-<span class="kt">int</span><span class="o">[]</span> <span class="n">intArray2</span> <span class="o">=</span> <span class="o">{</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">8</span><span class="o">,</span> <span class="mi">9</span><span class="o">,</span> <span class="mi">10</span> <span class="o">};</span>
-<span class="c1">// Apache Commons Lang library</span>
-<span class="kt">int</span><span class="o">[]</span> <span class="n">combinedIntArray</span> <span class="o">=</span> <span class="n">ArrayUtils</span><span class="o">.</span><span class="na">addAll</span><span class="o">(</span><span class="n">intArray</span><span class="o">,</span> <span class="n">intArray2</span><span class="o">);</span>
-</pre></div>
-
-
-<h4>5. Declare an array inline</h4>
-<div class="highlight"><pre><span class="n">method</span><span class="o">(</span><span class="k">new</span> <span class="n">String</span><span class="o">[]{</span><span class="s">&quot;a&quot;</span><span class="o">,</span> <span class="s">&quot;b&quot;</span><span class="o">,</span> <span class="s">&quot;c&quot;</span><span class="o">,</span> <span class="s">&quot;d&quot;</span><span class="o">,</span> <span class="s">&quot;e&quot;</span><span class="o">});</span>
-</pre></div>
-
-
-<h4>6. Joins the elements of the provided array into a single String</h4>
-<div class="highlight"><pre><span class="c1">// containing the provided list of elements</span>
-<span class="c1">// Apache common lang</span>
-<span class="n">String</span> <span class="n">j</span> <span class="o">=</span> <span class="n">StringUtils</span><span class="o">.</span><span class="na">join</span><span class="o">(</span><span class="k">new</span> <span class="n">String</span><span class="o">[]</span> <span class="o">{</span> <span class="s">&quot;a&quot;</span><span class="o">,</span> <span class="s">&quot;b&quot;</span><span class="o">,</span> <span class="s">&quot;c&quot;</span> <span class="o">},</span> <span class="s">&quot;, &quot;</span><span class="o">);</span>
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">j</span><span class="o">);</span>
-<span class="c1">// a, b, c</span>
-</pre></div>
-
-
-<h4>7. Covnert an ArrayList to an array</h4>
-<div class="highlight"><pre><span class="n">String</span><span class="o">[]</span> <span class="n">stringArray</span> <span class="o">=</span> <span class="o">{</span> <span class="s">&quot;a&quot;</span><span class="o">,</span> <span class="s">&quot;b&quot;</span><span class="o">,</span> <span class="s">&quot;c&quot;</span><span class="o">,</span> <span class="s">&quot;d&quot;</span><span class="o">,</span> <span class="s">&quot;e&quot;</span> <span class="o">};</span>
-<span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">arrayList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">stringArray</span><span class="o">));</span>
-<span class="n">String</span><span class="o">[]</span> <span class="n">stringArr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[</span><span class="n">arrayList</span><span class="o">.</span><span class="na">size</span><span class="o">()];</span>
-<span class="n">arrayList</span><span class="o">.</span><span class="na">toArray</span><span class="o">(</span><span class="n">stringArr</span><span class="o">);</span>
-<span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">s</span> <span class="o">:</span> <span class="n">stringArr</span><span class="o">)</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
-</pre></div>
-
-
-<h4>8. Convert an array to a set</h4>
-<div class="highlight"><pre><span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">set</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">stringArray</span><span class="o">));</span>
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">set</span><span class="o">);</span>
-<span class="c1">//[d, e, b, c, a]</span>
-</pre></div>
-
-
-<h4>9. Reverse an array</h4>
-<div class="highlight"><pre><span class="kt">int</span><span class="o">[]</span> <span class="n">intArray</span> <span class="o">=</span> <span class="o">{</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">};</span>
-<span class="n">ArrayUtils</span><span class="o">.</span><span class="na">reverse</span><span class="o">(</span><span class="n">intArray</span><span class="o">);</span>
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">intArray</span><span class="o">));</span>
-<span class="c1">//[5, 4, 3, 2, 1]</span>
-</pre></div>
-
-
-<h4>10. Remove element of an array</h4>
-<div class="highlight"><pre><span class="kt">int</span><span class="o">[]</span> <span class="n">intArray</span> <span class="o">=</span> <span class="o">{</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span> <span class="o">};</span>
-<span class="kt">int</span><span class="o">[]</span> <span class="n">removed</span> <span class="o">=</span> <span class="n">ArrayUtils</span><span class="o">.</span><span class="na">removeElement</span><span class="o">(</span><span class="n">intArray</span><span class="o">,</span> <span class="mi">3</span><span class="o">);</span><span class="c1">//create a new array</span>
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">removed</span><span class="o">));</span>
-<span class="n">One</span> <span class="n">more</span> <span class="err">–</span> <span class="n">convert</span> <span class="kt">int</span> <span class="n">to</span> <span class="kt">byte</span> <span class="n">array</span>
-
-<span class="kt">byte</span><span class="o">[]</span> <span class="n">bytes</span> <span class="o">=</span> <span class="n">ByteBuffer</span><span class="o">.</span><span class="na">allocate</span><span class="o">(</span><span class="mi">4</span><span class="o">).</span><span class="na">putInt</span><span class="o">(</span><span class="mi">8</span><span class="o">).</span><span class="na">array</span><span class="o">();</span>
-
-<span class="k">for</span> <span class="o">(</span><span class="kt">byte</span> <span class="n">t</span> <span class="o">:</span> <span class="n">bytes</span><span class="o">)</span> <span class="o">{</span>
-   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;0x%x &quot;</span><span class="o">,</span> <span class="n">t</span><span class="o">);</span>
-<span class="o">}</span>
-</pre></div>
-
-
-<h4>One more – convert int to byte array</h4>
-<div class="highlight"><pre><span class="kt">byte</span><span class="o">[]</span> <span class="n">bytes</span> <span class="o">=</span> <span class="n">ByteBuffer</span><span class="o">.</span><span class="na">allocate</span><span class="o">(</span><span class="mi">4</span><span class="o">).</span><span class="na">putInt</span><span class="o">(</span><span class="mi">8</span><span class="o">).</span><span class="na">array</span><span class="o">();</span>
-<span class="k">for</span> <span class="o">(</span><span class="kt">byte</span> <span class="n">t</span> <span class="o">:</span> <span class="n">bytes</span><span class="o">)</span> <span class="o">{</span>
-   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;0x%x &quot;</span><span class="o">,</span> <span class="n">t</span><span class="o">);</span>
-<span class="o">}</span>
-</pre></div>
+</div>        <p>关于Java数组的相关问题</p>
         <hr />
     </div>
      <div>
@@ -402,27 +447,6 @@
 </span>
 <!-- <p></p> -->
 </div>        <p>JavaMail邮箱验证用户注册Demo</p>
-        <hr />
-    </div>
-     <div>
-        <a href="http://zoeyyoung.github.io/ubuntu-jdk-install.html"><h1>[安装配置] Ubuntu下安装JDK</h1></a>
-<div class="article-metadata">
-<time class="published" datetime="2012 十一月 06 周二">2012 十一月 06 周二 </time>
-<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
-<span>
-    <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/linux.html">Linux</a>
-</span>
-<span>
-    <i class="icon-tags"></i>
-    <a href="http://zoeyyoung.github.io/tag/java.html">Java</a>
-    <a href="http://zoeyyoung.github.io/tag/ubuntu.html">Ubuntu</a>
-    <a href="http://zoeyyoung.github.io/tag/jdk.html">JDK</a>
-    <a href="http://zoeyyoung.github.io/tag/an-zhuang.html">安装</a>
-    <a href="http://zoeyyoung.github.io/tag/oracle.html">Oracle</a>
-</span>
-<!-- <p></p> -->
-</div>        <p>Ubuntu下使用PPA安装JDK</p>
         <hr />
     </div>
 <ul class="pagination pagination-sm no-print">

@@ -117,112 +117,14 @@
         </ul>
       </div>
       <div class="main-content col-md-8">
-
-    <div>
-        <a href="http://zoeyyoung.github.io/chrome-ext-dev.html"><h1>[项目] 书签云项目的Chrome浏览器插件</h1></a>
-<div class="article-metadata">
-<time class="published" datetime="2013 六月 17 周一">2013 六月 17 周一 </time>
-<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
-<span>
-    <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/wo-de-xiang-mu.html">我的项目</a>
-</span>
-<span>
-    <i class="icon-tags"></i>
-    <a href="http://zoeyyoung.github.io/tag/chrome.html">Chrome</a>
-    <a href="http://zoeyyoung.github.io/tag/chromecha-jian.html">Chrome插件</a>
-    <a href="http://zoeyyoung.github.io/tag/kai-fa.html">开发</a>
-</span>
-<!-- <p></p> -->
-</div>        <p><img alt="1" src="/images/ChromeExt/截图.jpg" /></p>
-<p><img alt="2" src="/images/ChromeExt/截图2.jpg" /></p>
-<p>创建<strong>manifest.json</strong>文件</p>
-<div class="highlight"><pre><span class="p">{</span>
-  <span class="s2">&quot;manifest_version&quot;</span><span class="o">:</span> <span class="m">2</span><span class="o">,</span>
-
-  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;LinksBox&quot;</span><span class="o">,</span>
-  <span class="s2">&quot;description&quot;</span><span class="o">:</span> <span class="s2">&quot;我的书签管理应用Chrome浏览器插件.&quot;</span><span class="o">,</span>
-  <span class="s2">&quot;version&quot;</span><span class="o">:</span> <span class="s2">&quot;1.0&quot;</span><span class="o">,</span>
-  <span class="s2">&quot;icons&quot;</span><span class="o">:</span> <span class="err">{</span>
-    <span class="s2">&quot;16&quot;</span><span class="o">:</span> <span class="s2">&quot;icon.png&quot;</span><span class="o">,</span>
-    <span class="s2">&quot;48&quot;</span><span class="o">:</span> <span class="s2">&quot;icon.png&quot;</span><span class="o">,</span>
-    <span class="s2">&quot;128&quot;</span><span class="o">:</span> <span class="s2">&quot;icon.png&quot;</span> <span class="p">}</span><span class="o">,</span>
-  <span class="s2">&quot;browser_action&quot;</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">&quot;default_icon&quot;</span><span class="o">:</span> <span class="s2">&quot;icon.png&quot;</span><span class="o">,</span>
-    <span class="s2">&quot;default_popup&quot;</span><span class="o">:</span> <span class="s2">&quot;popup.html&quot;</span>
-  <span class="p">}</span><span class="o">,</span>
-  <span class="s2">&quot;permissions&quot;</span><span class="o">:</span> <span class="cp">[</span>
-    <span class="s2">&quot;tabs&quot;</span><span class="p">,</span> <span class="s2">&quot;http://localhost:8888/&quot;</span>
-  <span class="cp">]</span>
-<span class="err">}</span>
-</pre></div>
-
-
-<p>注意设置<code>permissions</code>才能进行Ajax请求等跨域操作</p>
-<p><code>permissions</code>中添加<code>tabs</code>使允许获得网页<code>url</code>, <code>title</code>, <code>favIconUrl</code>三个属性</p>
-<p><code>popup.html</code>中放置要弹出的界面, 与写普通的HTML一样</p>
-<p>我偷懒直接用了原来的表单, 但是CSS进行了简化</p>
-<p><code>popup.js</code>中放置要执行的脚本, 获取当前标签页的参数</p>
-<div class="highlight"><pre><span class="nx">chrome</span><span class="p">.</span><span class="nx">tabs</span><span class="p">.</span><span class="nx">getSelected</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">tab</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">initForm</span><span class="p">(</span><span class="nx">tab</span><span class="p">);</span>
-<span class="p">});</span>
-
-<span class="nx">chrome</span><span class="p">.</span><span class="nx">tabs</span><span class="p">.</span><span class="nx">onUpdated</span><span class="p">.</span><span class="nx">addListener</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">tabId</span><span class="p">,</span> <span class="nx">changeInfo</span><span class="p">,</span> <span class="nx">tab</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">initForm</span><span class="p">(</span><span class="nx">tab</span><span class="p">);</span>
-<span class="p">});</span>
-</pre></div>
-
-
-<p>初始化表单:</p>
-<div class="highlight"><pre><span class="kd">var</span> <span class="nx">initForm</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">tab</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">url</span> <span class="o">=</span> <span class="nx">tab</span><span class="p">.</span><span class="nx">url</span><span class="p">;</span>
-    <span class="nx">title</span> <span class="o">=</span> <span class="nx">tab</span><span class="p">.</span><span class="nx">title</span><span class="p">;</span>
-    <span class="nx">favicon</span> <span class="o">=</span> <span class="nx">tab</span><span class="p">.</span><span class="nx">favIconUrl</span><span class="p">;</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#title&quot;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">title</span><span class="p">);</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#favicon&quot;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">favicon</span><span class="p">);</span>
-    <span class="nx">jQuery</span><span class="p">.</span><span class="nx">getJSON</span><span class="p">(</span><span class="nx">host</span> <span class="o">+</span> <span class="s1">&#39;/link/get_info&#39;</span><span class="p">,</span> <span class="p">{</span><span class="nx">url</span><span class="o">:</span> <span class="nx">url</span><span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">success</span> <span class="o">===</span> <span class="s1">&#39;true&#39;</span><span class="p">)</span> <span class="p">{</span>
-          <span class="nx">initAddLinkForm</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-          <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;数据库返回错误&#39;</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">});</span>
-<span class="p">};</span>
-</pre></div>
-
-
-<p>项目地址: https://github.com/ZoeyYoung/www-Links-Chrome-Extension</p>
-<p>2013/07/24</p>
-<p>更新可直接通过选中文本作为笔记</p>
-<p>并直接获取网页的HTML字符串, 不在后台重新抓取</p>
-        <hr />
-    </div>
-     <div>
-        <a href="http://zoeyyoung.github.io/github-webfont.html"><h1>[解决] GitHub图标变方块</h1></a>
-<div class="article-metadata">
-<time class="published" datetime="2012 十月 01 周一">2012 十月 01 周一 </time>
-<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
-<span>
-    <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/tips.html">Tips</a>
-</span>
-<span>
-    <i class="icon-tags"></i>
-    <a href="http://zoeyyoung.github.io/tag/github.html">GitHub</a>
-    <a href="http://zoeyyoung.github.io/tag/tips.html">Tips</a>
-    <a href="http://zoeyyoung.github.io/tag/chrome.html">Chrome</a>
-</span>
-<!-- <p></p> -->
-</div>        <p>GitHub图标变方块的原因: 强制设置了字体, GitHub的图标是使用Web Font, 因此失效了.</p>
-        <hr />
-    </div>
-<ul class="pagination pagination-sm no-print">
-    <li class="prev disabled"><a href="#">&larr; 上一页</a></li>
-
-    <li class="active"><a href="http://zoeyyoung.github.io/tag/chrome.html">1</a></li>
-
-    <li class="next disabled"><a href="#">&rarr; 下一页</a></li>
-</ul>   
+<section id="content" class="body col-md-10">
+    <h2 class="content-title">手机上的软件</h2>
+    <p>考虑考虑手机上需要什么软件</p>
+<p>日历:</p>
+<p>目前还没有特别满意的</p>
+<p>记帐:</p>
+<p>随手记: 我还是有良好的记帐习惯的哈.</p>
+</section>
       </div>    </div><!-- End of fluid row-->
   </div><!-- End of Container-->
   <!--footer-->

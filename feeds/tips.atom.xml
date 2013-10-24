@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>OK Computer</title><link href="http://zoeyyoung.github.io/" rel="alternate"></link><link href="http://zoeyyoung.github.io/feeds/tips.atom.xml" rel="self"></link><id>http://zoeyyoung.github.io/</id><updated>2013-10-23T00:00:00+08:00</updated><entry><title>[折腾] 虚拟机</title><link href="http://zoeyyoung.github.io/virtualbox.html" rel="alternate"></link><updated>2013-10-23T00:00:00+08:00</updated><author><name>Zoey Young</name></author><id>tag:zoeyyoung.github.io,2013-10-23:virtualbox.html</id><summary type="html">&lt;p&gt;目前在VirtualBox中装了两个虚拟机. 一个是Ubuntu. 一个是XP.&lt;/p&gt;
-&lt;p&gt;Ubuntu我用于学习.&lt;/p&gt;
+&lt;p&gt;Ubuntu我用于学习. 搭建开发环境.&lt;/p&gt;
 &lt;p&gt;XP用于装一些不想装在本机上的, 当沙盒用.&lt;/p&gt;
 &lt;p&gt;主要是一些不常用的软件.&lt;/p&gt;
 &lt;p&gt;比如美图秀秀, 有时需要把图片处理成一定的尺寸什么的.&lt;/p&gt;
