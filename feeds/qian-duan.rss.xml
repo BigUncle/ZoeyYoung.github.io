@@ -505,7 +505,42 @@ As of jQuery 1.7, the &lt;code&gt;.live()&lt;/code&gt; method is deprecated. Use
 &lt;p&gt;参考文档:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://www.hongkiat.com/blog/css-snippets-for-designers/"&gt;50 Useful CSS Snippets Every Designer Should Have&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Fri, 21 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-21:theme-design.html</guid><category>CSS</category><category>HTML</category></item><item><title>[备忘] Ext.QuickTips.init()</title><link>http://zoeyyoung.github.io/ext-quicktips-init.html</link><description>&lt;p&gt;先说我测试的Ext版本: ext-4.1.1a-gpl（感觉独立于版本存在的教程都有点...）&lt;/p&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Fri, 21 Jun 2013 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2013-06-21:theme-design.html</guid><category>CSS</category><category>HTML</category></item><item><title>[实例] JS过滤HTML</title><link>http://zoeyyoung.github.io/js-filter-html.html</link><description>&lt;p&gt;ExtJS中的方法:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Ext&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;util&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Format&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stripTags&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;//去除HTML标签: /&amp;lt;\/?[^&amp;gt;]+&amp;gt;/gi&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;====================&lt;/p&gt;
+&lt;p&gt;必须先声明, 这种方法是比较不严谨的, 只用于处理简单的情况&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://yiminghe.iteye.com/blog/1286437"&gt;write html parser&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;需求: 在HTML编辑器提交时, 一般会先在外层封装一些HTML代码, 所以直接检测消息内容是否为空一般返回的是&lt;code&gt;false&lt;/code&gt;, 所以应该先将&lt;strong&gt;HTML内容&lt;/strong&gt;处理成&lt;strong&gt;纯文本&lt;/strong&gt;来进行判断.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;脑袋一闪而过一个问题: 上传的图片也被过滤掉了...只传一张图片的话也会被理解成消息为空- -||||...所以一个bug就这样产生了...&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;添加一个判断条件&lt;code&gt;str.indexOf('&amp;lt;img') === -1&lt;/code&gt;, 就可以解决这个问题了&lt;/p&gt;
+&lt;p&gt;还有只发送一个链接也是同样的情况&lt;code&gt;str.indexOf('&amp;lt;a') === -1&lt;/code&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;其它用途: 判断编辑器中 字数 或 保存到数据库时过滤掉HTML保存 等&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;filterHTML&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;str&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;str&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sr"&gt;/&amp;lt;\/?[^&amp;gt;]+&amp;gt;/g&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// 去除HTML tag&lt;/span&gt;
+  &lt;span class="nx"&gt;str&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;str&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sr"&gt;/[ | ]*\n/g&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;\n&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// 去除行尾空白&lt;/span&gt;
+  &lt;span class="nx"&gt;str&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;str&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sr"&gt;/\n[\s| | ]*\r/g&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;\n&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// 去除多余空行&lt;/span&gt;
+  &lt;span class="nx"&gt;str&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;str&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sr"&gt;/&amp;amp;nbsp;/ig&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// 去掉&amp;amp;nbsp;&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;str&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;使用: &lt;code&gt;filterHTML("&amp;lt;htmltag 这些内容被过滤掉了&amp;gt;要保留的内容&amp;lt;/htmltag&amp;gt;")&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;输出为: &lt;code&gt;要保留的内容&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;\n&lt;/code&gt; 换行符&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\r&lt;/code&gt; 回车符&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\s&lt;/code&gt; 等同于&lt;code&gt;[\f\n\r\t\u000B\u0020\u00A0\u2028\u2029]&lt;/code&gt;。这是Unicode空白符的一个不完全子集。&lt;code&gt;\S&lt;/code&gt;则表示与其相反的&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;g&lt;/code&gt; 全局匹配&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;i&lt;/code&gt; 大小写不敏感&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;参考了: &lt;a href="http://www.cnblogs.com/liszt/archive/2011/08/16/2140007.html"&gt;js过滤HTML标签以及&amp;amp;nbsp&lt;/a&gt;, 但发现它给的例子解释是错误的.&lt;/p&gt;
+&lt;p&gt;实际应用时, 得考虑要过滤的HTML的格式是怎样的, 处理特殊情况. 比如上面的插入图片问题, 不能忽略.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Wed, 05 Dec 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-12-05:js-filter-html.html</guid><category>JavaScript</category><category>HTML</category><category>工作记录</category></item><item><title>[备忘] Ext.QuickTips.init()</title><link>http://zoeyyoung.github.io/ext-quicktips-init.html</link><description>&lt;p&gt;先说我测试的Ext版本: ext-4.1.1a-gpl（感觉独立于版本存在的教程都有点...）&lt;/p&gt;
 &lt;p&gt;虽然API里面有例子, 写这个有点多余, 但是网上搜索到的文章存在误导, 例如:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;a&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;ext:qtip=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;my tooltip&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;Link&lt;span class="nt"&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
