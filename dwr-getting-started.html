@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
-  <title>OK Computer</title>
+  <title>[实例] DWR Getting Started - OK Computer</title>
   <meta name="description" content="杨丁苗的个人博客">
   <meta name="author" content="Zoey Young">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,7 +48,7 @@
           <li >
             <a href="http://zoeyyoung.github.io/category/gong-zuo-ji-lu.html ">工作记录</a>
           </li>
-          <li >
+          <li  class="active" >
             <a href="http://zoeyyoung.github.io/category/java.html ">Java</a>
           </li>
           <li >
@@ -117,9 +117,8 @@
         </ul>
       </div>
       <div class="main-content col-md-8">
-
-    <div>
-        <a href="http://zoeyyoung.github.io/dwr-getting-started.html"><h1>[实例] DWR Getting Started</h1></a>
+<article>
+  <h1>[实例] DWR Getting Started</h1>
 <div class="article-metadata">
 <time class="published" datetime="2012 十一月 12 周一">2012 十一月 12 周一 </time>
 <a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
@@ -136,55 +135,104 @@
     <a href="http://zoeyyoung.github.io/tag/gong-zuo-ji-lu.html">工作记录</a>
 </span>
 <!-- <p></p> -->
-</div>        <p>DWR Getting Started</p>
-        <hr />
-    </div>
-     <div>
-        <a href="http://zoeyyoung.github.io/ubuntu-jdk-install.html"><h1>[安装配置] Ubuntu下安装JDK</h1></a>
-<div class="article-metadata">
-<time class="published" datetime="2012 十一月 06 周二">2012 十一月 06 周二 </time>
-<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
-<span>
-    <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/linux.html">Linux</a>
-</span>
-<span>
-    <i class="icon-tags"></i>
-    <a href="http://zoeyyoung.github.io/tag/java.html">Java</a>
-    <a href="http://zoeyyoung.github.io/tag/ubuntu.html">Ubuntu</a>
-    <a href="http://zoeyyoung.github.io/tag/jdk.html">JDK</a>
-    <a href="http://zoeyyoung.github.io/tag/an-zhuang.html">安装</a>
-    <a href="http://zoeyyoung.github.io/tag/oracle.html">Oracle</a>
-</span>
-<!-- <p></p> -->
-</div>        <p>Ubuntu下使用PPA安装JDK</p>
-        <hr />
-    </div>
-     <div>
-        <a href="http://zoeyyoung.github.io/java-circle-form-number.html"><h1>[Java基础] 输出回形数</h1></a>
-<div class="article-metadata">
-<time class="published" datetime="2010 一月 13 周三">2010 一月 13 周三 </time>
-<a class="url fn" href="http://zoeyyoung.github.io/author/zoey-young.html">Zoey Young </a>
-<span>
-    <i class="icon-folder-open"></i>
-    <a href="http://zoeyyoung.github.io/category/java.html">Java</a>
-</span>
-<span>
-    <i class="icon-tags"></i>
-    <a href="http://zoeyyoung.github.io/tag/java.html">Java</a>
-</span>
-<!-- <p></p> -->
-</div>        <p>输出回形数</p>
-        <hr />
-    </div>
-<ul class="pagination pagination-sm no-print">
-    <li class="prev"><a href="http://zoeyyoung.github.io/tag/java.html">&larr; 上一页</a></li>
+</div>  <p><a href="http://directwebremoting.org/dwr/">DWR</a></p>
+<p><a href="http://directwebremoting.org/dwr/introduction/getting-started.html">Getting Started with DWR</a></p>
+<p>入门一下DWR</p>
+<p>第一步还是按照官网的Getting Started...只要5步就跑起来了</p>
+<p>两个jar包, web.xml中配置, dwr.xml中配置</p>
+<p><img alt="Getting Started with DWR" src="/images/dwr1.gif" /></p>
+<p>Demo.java</p>
+<div class="highlight"><pre><span class="kn">package</span> <span class="n">zoey</span><span class="o">.</span><span class="na">bean</span><span class="o">;</span>
 
-    <li class=""><a href="http://zoeyyoung.github.io/tag/java.html">1</a></li>
-    <li class="active"><a href="http://zoeyyoung.github.io/tag/java2.html">2</a></li>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">sayHello</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">&quot;Hello, &quot;</span> <span class="o">+</span> <span class="n">name</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
 
-    <li class="next disabled"><a href="#">&rarr; 下一页</a></li>
-</ul>   
+
+<p>web.xml</p>
+<div class="highlight"><pre><span class="nt">&lt;servlet&gt;</span>
+    <span class="nt">&lt;display-name&gt;</span>DWR Servlet<span class="nt">&lt;/display-name&gt;</span>
+    <span class="nt">&lt;servlet-name&gt;</span>dwr-invoker<span class="nt">&lt;/servlet-name&gt;</span>
+    <span class="nt">&lt;servlet-class&gt;</span>org.directwebremoting.servlet.DwrServlet<span class="nt">&lt;/servlet-class&gt;</span>
+    <span class="nt">&lt;init-param&gt;</span>
+        <span class="nt">&lt;param-name&gt;</span>debug<span class="nt">&lt;/param-name&gt;</span>
+        <span class="nt">&lt;param-value&gt;</span>true<span class="nt">&lt;/param-value&gt;</span>
+    <span class="nt">&lt;/init-param&gt;</span>
+<span class="nt">&lt;/servlet&gt;</span>
+
+<span class="nt">&lt;servlet-mapping&gt;</span>
+    <span class="nt">&lt;servlet-name&gt;</span>dwr-invoker<span class="nt">&lt;/servlet-name&gt;</span>
+    <span class="nt">&lt;url-pattern&gt;</span>/dwr/*<span class="nt">&lt;/url-pattern&gt;</span>
+<span class="nt">&lt;/servlet-mapping&gt;</span>
+</pre></div>
+
+
+<p>dwr.xml</p>
+<div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="cp">&lt;!DOCTYPE dwr PUBLIC</span>
+<span class="cp">    &quot;-//GetAhead Limited//DTD Direct Web Remoting 3.0//EN&quot;</span>
+<span class="cp">    &quot;http://getahead.org/dwr/dwr30.dtd&quot;&gt;</span>
+<span class="nt">&lt;dwr&gt;</span>
+    <span class="nt">&lt;allow&gt;</span>
+        <span class="nt">&lt;create</span> <span class="na">creator=</span><span class="s">&quot;new&quot;</span> <span class="na">javascript=</span><span class="s">&quot;demo&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;class&quot;</span> <span class="na">value=</span><span class="s">&quot;zoey.bean.Demo&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/create&gt;</span>
+    <span class="nt">&lt;/allow&gt;</span>
+<span class="nt">&lt;/dwr&gt;</span>
+</pre></div>
+
+
+<p><img alt="Modules known to DWR" src="/images/dwr2.gif" /></p>
+<p><img alt="Methods For: Demo" src="/images/dwr3.gif" /></p>
+<p>index.jsp</p>
+<div class="highlight"><pre><span class="k">&lt;%@</span> <span class="n">page</span> <span class="n">language</span><span class="o">=</span><span class="s">&quot;java&quot;</span> <span class="n">contentType</span><span class="o">=</span><span class="s">&quot;text/html; charset=utf-8&quot;</span>
+<span class="n">pageEncoding</span><span class="o">=</span><span class="s">&quot;ISO-8859-1&quot;</span><span class="k">%&gt;</span>
+<span class="cp">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;  &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;Content-Type&quot;</span> <span class="na">content=</span><span class="s">&quot;text/html; charset=utf-8&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;title&gt;</span>Hello DWR<span class="nt">&lt;/title&gt;</span>
+<span class="nt">&lt;script</span> <span class="na">type=</span><span class="s">&#39;text/javascript&#39;</span> <span class="na">src=</span><span class="s">&#39;/dwrDemo/dwr/engine.js&#39;</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script</span> <span class="na">type=</span><span class="s">&#39;text/javascript&#39;</span> <span class="na">src=</span><span class="s">&#39;/dwrDemo/dwr/interface/demo.js&#39;</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script</span> <span class="na">type=</span><span class="s">&#39;text/javascript&#39;</span> <span class="na">src=</span><span class="s">&#39;/dwrDemo/dwr/util.js&#39;</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script</span> <span class="na">type=</span><span class="s">&#39;text/javascript&#39;</span><span class="nt">&gt;</span>
+  function update() {
+      var name = dwr.util.getValue(&quot;demoName&quot;);
+      demo.sayHello(name, function (data) {
+          dwr.util.setValue(&quot;demoReply&quot;, data);
+      });
+  }
+<span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    Name：<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">id=</span><span class="s">&quot;demoName&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;button&quot;</span> <span class="na">value=</span><span class="s">&quot;Send&quot;</span> <span class="na">onclick=</span><span class="s">&quot;update()&quot;</span> <span class="nt">/&gt;&lt;br/&gt;</span>
+    Reply: <span class="nt">&lt;span</span> <span class="na">id=</span><span class="s">&quot;demoReply&quot;</span><span class="nt">&gt;&lt;/span&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
+
+
+<p><img alt="Hello DWR" src="/images/dwr4.gif" /></p>
+<p>官方还给出了许多事例程序, 接下去根据需要学习了</p>
+</article>
+<div class="comment">
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a href="http://www.jiathis.com/share?uid=1801890" class="jiathis jiathis_txt" target="_blank"><img src="http://v3.jiathis.com/code_mini/images/btn/v1/jiathis1.gif" border="0" /></a>
+  <a class="jiathis_counter_style_margin:3px 0 0 2px"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code_mini/jia.js?uid=1371447419774871" charset="utf-8"></script>
+<!-- JiaThis Button END --><!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" id="UYScript" src="http://v1.uyan.cc/js/iframe.js?UYUserId=1801890" async=""></script>
+<!-- UY END --></div>
       </div>    </div><!-- End of fluid row-->
   </div><!-- End of Container-->
   <!--footer-->

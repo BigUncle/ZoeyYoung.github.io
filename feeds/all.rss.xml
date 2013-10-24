@@ -8119,7 +8119,89 @@ ${userName}您的邮箱&lt;span class="nt"&gt;&amp;lt;a&lt;/span&gt; &lt;span cl
 
 &lt;p&gt;使用&lt;code&gt;IM.util.scrollTitle.setTitle( '.XXX...来消息了...');&lt;/code&gt;进行调用.&lt;/p&gt;
 &lt;p&gt;这里在写时犯了个愚蠢的错误, 导致调试了很久, 那就是在scroll中设置标题, 结果在循环调用时一直重设了标题, 然后想不明白为啥不滚动, 最后才发现了问题, 把设置标题的函数另外提取了出来, 因为循环调用的是return里面的scroll而不是第一个scroll, 应该把两个东西取不同名称比较不会弄混(刚开始搞了同一个名字).&lt;/p&gt;
-&lt;p&gt;OK, 先整理到这, 有些东西还需要理解, 写得不熟练导致绕了点弯, 刚开始代码是分散开的, 初始化和变量定义都放在主程序中, 后来想想应该封装起来, 在主程序中直接调用, 而不是直接在主程序中定义, 所以就有了现在的代码. 放到其它程序中也应该好用的.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Wed, 14 Nov 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-11-14:scroll-title-in-brower.html</guid><category>JavaScript</category><category>HTML</category><category>工作记录</category></item><item><title>[备忘] Ext.QuickTips.init()</title><link>http://zoeyyoung.github.io/ext-quicktips-init.html</link><description>&lt;p&gt;先说我测试的Ext版本: ext-4.1.1a-gpl（感觉独立于版本存在的教程都有点...）&lt;/p&gt;
+&lt;p&gt;OK, 先整理到这, 有些东西还需要理解, 写得不熟练导致绕了点弯, 刚开始代码是分散开的, 初始化和变量定义都放在主程序中, 后来想想应该封装起来, 在主程序中直接调用, 而不是直接在主程序中定义, 所以就有了现在的代码. 放到其它程序中也应该好用的.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Wed, 14 Nov 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-11-14:scroll-title-in-brower.html</guid><category>JavaScript</category><category>HTML</category><category>工作记录</category></item><item><title>[实例] DWR Getting Started</title><link>http://zoeyyoung.github.io/dwr-getting-started.html</link><description>&lt;p&gt;&lt;a href="http://directwebremoting.org/dwr/"&gt;DWR&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://directwebremoting.org/dwr/introduction/getting-started.html"&gt;Getting Started with DWR&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;入门一下DWR&lt;/p&gt;
+&lt;p&gt;第一步还是按照官网的Getting Started...只要5步就跑起来了&lt;/p&gt;
+&lt;p&gt;两个jar包, web.xml中配置, dwr.xml中配置&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Getting Started with DWR" src="/images/dwr1.gif" /&gt;&lt;/p&gt;
+&lt;p&gt;Demo.java&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;package&lt;/span&gt; &lt;span class="n"&gt;zoey&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;bean&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+
+&lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="kd"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Demo&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="kd"&gt;public&lt;/span&gt; &lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="nf"&gt;sayHello&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="n"&gt;String&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Hello, &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;web.xml&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;servlet&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;display-name&amp;gt;&lt;/span&gt;DWR Servlet&lt;span class="nt"&gt;&amp;lt;/display-name&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;servlet-name&amp;gt;&lt;/span&gt;dwr-invoker&lt;span class="nt"&gt;&amp;lt;/servlet-name&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;servlet-class&amp;gt;&lt;/span&gt;org.directwebremoting.servlet.DwrServlet&lt;span class="nt"&gt;&amp;lt;/servlet-class&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;init-param&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;param-name&amp;gt;&lt;/span&gt;debug&lt;span class="nt"&gt;&amp;lt;/param-name&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;param-value&amp;gt;&lt;/span&gt;true&lt;span class="nt"&gt;&amp;lt;/param-value&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/init-param&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/servlet&amp;gt;&lt;/span&gt;
+
+&lt;span class="nt"&gt;&amp;lt;servlet-mapping&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;servlet-name&amp;gt;&lt;/span&gt;dwr-invoker&lt;span class="nt"&gt;&amp;lt;/servlet-name&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;url-pattern&amp;gt;&lt;/span&gt;/dwr/*&lt;span class="nt"&gt;&amp;lt;/url-pattern&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/servlet-mapping&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;dwr.xml&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;&lt;/span&gt;
+&lt;span class="cp"&gt;&amp;lt;!DOCTYPE dwr PUBLIC&lt;/span&gt;
+&lt;span class="cp"&gt;    &amp;quot;-//GetAhead Limited//DTD Direct Web Remoting 3.0//EN&amp;quot;&lt;/span&gt;
+&lt;span class="cp"&gt;    &amp;quot;http://getahead.org/dwr/dwr30.dtd&amp;quot;&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;dwr&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;allow&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;create&lt;/span&gt; &lt;span class="na"&gt;creator=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;new&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;javascript=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;demo&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class="nt"&gt;&amp;lt;param&lt;/span&gt; &lt;span class="na"&gt;name=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;class&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;value=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;zoey.bean.Demo&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;/create&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/allow&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/dwr&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img alt="Modules known to DWR" src="/images/dwr2.gif" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Methods For: Demo" src="/images/dwr3.gif" /&gt;&lt;/p&gt;
+&lt;p&gt;index.jsp&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;&amp;lt;%@&lt;/span&gt; &lt;span class="n"&gt;page&lt;/span&gt; &lt;span class="n"&gt;language&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;java&amp;quot;&lt;/span&gt; &lt;span class="n"&gt;contentType&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text/html; charset=utf-8&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;pageEncoding&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;ISO-8859-1&amp;quot;&lt;/span&gt;&lt;span class="k"&gt;%&amp;gt;&lt;/span&gt;
+&lt;span class="cp"&gt;&amp;lt;!DOCTYPE html PUBLIC &amp;quot;-//W3C//DTD HTML 4.01 Transitional//EN&amp;quot;  &amp;quot;http://www.w3.org/TR/html4/loose.dtd&amp;quot;&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;meta&lt;/span&gt; &lt;span class="na"&gt;http-equiv=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Content-Type&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;content=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text/html; charset=utf-8&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;title&amp;gt;&lt;/span&gt;Hello DWR&lt;span class="nt"&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;script&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;text/javascript&amp;#39;&lt;/span&gt; &lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;/dwrDemo/dwr/engine.js&amp;#39;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;script&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;text/javascript&amp;#39;&lt;/span&gt; &lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;/dwrDemo/dwr/interface/demo.js&amp;#39;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;script&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;text/javascript&amp;#39;&lt;/span&gt; &lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;/dwrDemo/dwr/util.js&amp;#39;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;script&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;text/javascript&amp;#39;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+  function update() {
+      var name = dwr.util.getValue(&amp;quot;demoName&amp;quot;);
+      demo.sayHello(name, function (data) {
+          dwr.util.setValue(&amp;quot;demoReply&amp;quot;, data);
+      });
+  }
+&lt;span class="nt"&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+    Name：&lt;span class="nt"&gt;&amp;lt;input&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;demoName&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;input&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;button&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;value=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Send&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;onclick=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;update()&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&amp;lt;br/&amp;gt;&lt;/span&gt;
+    Reply: &lt;span class="nt"&gt;&amp;lt;span&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;demoReply&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img alt="Hello DWR" src="/images/dwr4.gif" /&gt;&lt;/p&gt;
+&lt;p&gt;官方还给出了许多事例程序, 接下去根据需要学习了&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zoey Young</dc:creator><pubDate>Mon, 12 Nov 2012 00:00:00 +0800</pubDate><guid>tag:zoeyyoung.github.io,2012-11-12:dwr-getting-started.html</guid><category>JavaScript</category><category>HTML</category><category>Dwr</category><category>Java</category><category>工作记录</category></item><item><title>[备忘] Ext.QuickTips.init()</title><link>http://zoeyyoung.github.io/ext-quicktips-init.html</link><description>&lt;p&gt;先说我测试的Ext版本: ext-4.1.1a-gpl（感觉独立于版本存在的教程都有点...）&lt;/p&gt;
 &lt;p&gt;虽然API里面有例子, 写这个有点多余, 但是网上搜索到的文章存在误导, 例如:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;a&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;ext:qtip=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;my tooltip&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;Link&lt;span class="nt"&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
